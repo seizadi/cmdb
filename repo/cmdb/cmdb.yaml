@@ -1,0 +1,12 @@
+# CMDB.yaml included by Template Engine
+# Intended for use with Spinnaker on Kubernetes clusters
+# that do not have Tiller running for deployment
+cmdb: true
+tiller: false
+
+# info, debug, or error
+logLevel: debug
+
+postgresql:
+  ## Disable the PostgreSQL chart dependency.
+  enabled: false

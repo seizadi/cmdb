@@ -1,0 +1,83 @@
+{{- $fullName := include "chart-app.fullname" . -}}
+{{- $appName := include "chart-app.name" . -}}
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ $fullName }}
+{{- if .Values.cmdb }}
+  namespace: {{ .Values.nameSpace }}
+{{- end }}
+  labels:
+    app: {{ $appName }}
+    chart: {{ template "chart-app.chart" . }}
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: {{ $appName }}
+      release: {{ .Release.Name }}
+  template:
+    metadata:
+      labels:
+        app: {{ $appName }}
+        release: {{ .Release.Name }}
+    spec:
+      containers:
+        - name: {{ .Chart.Name }}
+          image: {{template "imagespec" dict "containers" .Values.containers "containername" "cmdb-app"}}
+          imagePullPolicy: {{template "imagepull" dict "containers" .Values.containers "containername" "cmdb-app"}}
+          envFrom:
+          - configMapRef:
+              name: {{ $fullName }}
+          env:
+{{- if .Values.postgresql.enabled }}
+            - name: CMDB_DATABASE_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: {{ template "chart-app.postgresql.fullname" . }}
+                  key: postgres-password
+{{- end }}
+            - name: "CMDB_LOGGING_LEVEL"
+              value: {{ .Values.logLevel }}
+          ports:
+          - containerPort: 8080
+            name: http
+            protocol: TCP
+          - containerPort: 8081
+            protocol: TCP
+          - containerPort: 9090
+            protocol: TCP
+          livenessProbe:
+            httpGet:
+              path: /healthz
+              port: 8081
+              scheme: HTTP
+            initialDelaySeconds: 5
+            periodSeconds: 5
+            successThreshold: 1
+            failureThreshold: 10
+          readinessProbe:
+            httpGet:
+              path: /ready
+              port: 8081
+              scheme: HTTP
+            initialDelaySeconds: 5
+            periodSeconds: 5
+            successThreshold: 1
+            failureThreshold: 10
+          resources:
+{{ toYaml .Values.resources | indent 12 }}
+    {{- with .Values.nodeSelector }}
+      nodeSelector:
+{{ toYaml . | indent 8 }}
+    {{- end }}
+    {{- with .Values.affinity }}
+      affinity:
+{{ toYaml . | indent 8 }}
+    {{- end }}
+    {{- with .Values.tolerations }}
+      tolerations:
+{{ toYaml . | indent 8 }}
+    {{- end }}

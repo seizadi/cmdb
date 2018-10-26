@@ -23,9 +23,9 @@ const (
 	defaultDatabaseType     = "postgres"
 	defaultDatabaseAddress  = "0.0.0.0"
 	defaultDatabasePort     = "5432"
-	defaultDatabaseName     = "atlas_contacts_app"
-	defaultDatabaseUser     = "seizadi"
-	defaultDatabasePassword = ""
+	defaultDatabaseName     = "cmdb"
+	defaultDatabaseUser     = "postgres"
+	defaultDatabasePassword = "postgres"
 	defaultDatabaseSSL      = "disable"
 	defaultDatabaseOption   = ""
 

@@ -1,6 +1,6 @@
 pipeline {
   agent {
-    label 'cdnsfw_dockerhub_ami'
+    label 'cmdb_dockerhub_ami'
   }
   tools {
     go "Go 1.10.3"

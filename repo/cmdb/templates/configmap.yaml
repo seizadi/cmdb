@@ -1,0 +1,27 @@
+{{- $fullName := include "chart-app.fullname" . -}}
+{{- $appName := include "chart-app.name" . -}}
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ $fullName }}
+{{- if .Values.cmdb }}
+  namespace: {{ .Values.nameSpace }}
+{{- end }}
+  labels:
+    app: {{ $appName }}
+    chart: {{ template "chart-app.chart" . }}
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
+data:
+{{- if .Values.cmdb }}
+  {{- range $key, $value := .Values.manifestValues }}
+    {{ $key }}: {{ $value | quote }}
+  {{- end }}
+{{- end }}
+{{- if .Values.tiller }}
+{{- if .Values.postgresql.enabled }}
+    CMDB_DATABASE_ADDRESS: {{ template "chart-app.postgresql.fullname" . }}
+    CMDB_DATABASE_NAME: {{ .Values.postgresql.postgresDatabase }}
+    CMDB_DATABASE_USER: {{ .Values.postgresql.postgresUser }}
+{{- end }}
+{{- end }}

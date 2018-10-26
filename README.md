@@ -1,4 +1,4 @@
-# atlas-contacts-app
+# CMDB Application
 
 _This generated README.md file loosely follows a [popular template](https://gist.github.com/PurpleBooth/109311bb0361f32d87a2)._
 
@@ -17,7 +17,6 @@ go get -u github.com/golang/dep/cmd/dep
 ```
 
 ### Database Migration
-[Architecture](https://docs.google.com/document/d/1wM26w4Fdkvw0mWKKupkiLwHQSBLeN5H0euieizKue-Q/edit?usp=sharing)
 
 For migrating the database schema, [golang-migrate](https://github.com/golang-migrate/migrate) framework is used.
 

@@ -6,12 +6,12 @@ DOCKERFILE_PATH := $(CURDIR)/docker
 USERNAME       := $(USER)
 GIT_COMMIT     := $(shell git describe --dirty=-unsupported --always || echo pre-commit)
 IMAGE_VERSION  ?= $(USERNAME)-dev-$(GIT_COMMIT)
-IMAGE_REGISTRY ?= infobloxcto
+IMAGE_REGISTRY ?= soheileizadi
 
 # configuration for server binary and image
 SERVER_BINARY     := $(BUILD_PATH)/server
 SERVER_PATH       := $(PROJECT_ROOT)/cmd/server
-SERVER_IMAGE      := $(IMAGE_REGISTRY)/contacts-server
+SERVER_IMAGE      := $(IMAGE_REGISTRY)/cmdb-server
 SERVER_DOCKERFILE := $(DOCKERFILE_PATH)/Dockerfile
 # Placeholder. modify as defined conventions.
 DB_VERSION        := 3

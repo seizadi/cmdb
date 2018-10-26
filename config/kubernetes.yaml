@@ -1,20 +1,18 @@
 metadata:
-  id: atlas-contacts-app
+  id: cmdb-app
 server:
   address: 0.0.0.0:9090
 gateway:
   address: 0.0.0.0:8080
-  endpoint: /contacts-application
+  endpoint: /cmdb
   swaggerFile: ./www/contacts.swagger.json
   swaggerUI: ./www/swagger-ui-dist/
 database:
 #  address: postgres.contacts:5432
   address: localhost:5432
-  name: atlas_contacts_app
-#  user: postgres
-  user: seizadi
-#  password: postgres
-  password:
+  name: cmdb
+  user: postgres
+  password: postgres
   ssl: disable
 atlas.authz:
   enable: false

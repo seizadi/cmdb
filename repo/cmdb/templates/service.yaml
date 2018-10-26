@@ -1,0 +1,32 @@
+{{- $fullName := include "chart-app.fullname" . -}}
+{{- $appName := include "chart-app.name" . -}}
+{{- $service := index .Values.services 0 -}}
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ $fullName }}
+{{- if .Values.cmdb }}
+  namespace: {{ .Values.nameSpace }}
+{{- end }}
+  labels:
+    app: {{ $appName }}
+    chart: {{ template "chart-app.chart" . }}
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
+spec:
+  type: {{ $service.type }}
+  ports:
+  {{- range $service.ports }}
+    - port: {{ .port }}
+      protocol: {{ .protocol }}
+      name: {{ .name }}
+    {{- if .targetPort }}
+      targetPort: {{ .targetPort }}
+    {{- end }}
+    {{- if .nodePort }}
+      nodePort: {{ .nodePort }}
+    {{- end }}
+  {{- end }}
+  selector:
+    app: {{ $appName }}
+    release: {{ .Release.Name }}

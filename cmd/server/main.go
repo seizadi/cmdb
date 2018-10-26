@@ -41,6 +41,7 @@ func init() {
 	pflag.Parse()
 	viper.BindPFlags(pflag.CommandLine)
 	viper.AutomaticEnv()
+	viper.SetEnvPrefix("CMDB")
 	viper.SetEnvKeyReplacer(strings.NewReplacer(".", "_"))
 	viper.AddConfigPath(viper.GetString("config.source"))
 	if viper.GetString("config.file") != "" {
