@@ -5,80 +5,24 @@ import (
 	"fmt"
 	"reflect"
 
+	"github.com/golang/protobuf/proto"
 	"github.com/infobloxopen/atlas-app-toolkit/query"
 	"google.golang.org/grpc"
-	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/grpclog"
-	"google.golang.org/grpc/status"
 )
 
 // UnaryServerInterceptor returns grpc.UnaryServerInterceptor
-// that should be used as a middleware if an user's testRequest message
+// that should be used as a middleware if an user's request message
 // defines any of collection operators.
 //
 // Returned middleware populates collection operators from gRPC metadata if
-// they defined in a testRequest message.
+// they defined in a request message.
 func UnaryServerInterceptor() grpc.UnaryServerInterceptor {
 	return func(ctx context.Context, req interface{}, info *grpc.UnaryServerInfo, handler grpc.UnaryHandler) (res interface{}, err error) {
-		// handle panic
-		defer func() {
-			if perr := recover(); perr != nil {
-				err = status.Errorf(codes.Internal, "collection operators interceptor: %s", perr)
-				grpclog.Errorln(err)
-				res, err = nil, err
-			}
-		}()
 
 		if req == nil {
-			grpclog.Warningf("collection operator interceptor: empty testRequest %+v", req)
+			grpclog.Warningf("collection operator interceptor: empty request %+v", req)
 			return handler(ctx, req)
-		}
-
-		// looking for op.Sorting
-		sorting, err := Sorting(ctx)
-		if err != nil {
-			err = status.Errorf(codes.InvalidArgument, "collection operator interceptor: invalid sorting operator - %s", err)
-			grpclog.Errorln(err)
-			return nil, err
-		}
-		if sorting != nil {
-			if err := setOp(req, sorting); err != nil {
-				grpclog.Errorf("collection operator interceptor: failed to set sorting operator - %s", err)
-			}
-		}
-
-		// looking for op.FieldSelection
-		fieldSelection := FieldSelection(ctx)
-		if fieldSelection != nil {
-			if err := setOp(req, fieldSelection); err != nil {
-				grpclog.Errorf("collection operator interceptor: failed to set field selection operator - %s", err)
-			}
-		}
-
-		// looking for op.Filtering
-		filtering, err := Filtering(ctx)
-		if err != nil {
-			err = status.Errorf(codes.InvalidArgument, "collection operator interceptor: invalid filtering operator - %s", err)
-			grpclog.Errorln(err)
-			return nil, err
-		}
-		if filtering != nil {
-			if err := setOp(req, filtering); err != nil {
-				grpclog.Errorf("collection operator interceptor: failed to set filtering operator - %s", err)
-			}
-		}
-
-		// looking for op.ClientDrivenPagination
-		pagination, err := Pagination(ctx)
-		if err != nil {
-			err = status.Errorf(codes.InvalidArgument, "collection operator interceptor: invalid pagination operator - %s", err)
-			grpclog.Errorln(err)
-			return nil, err
-		}
-		if pagination != nil {
-			if err := setOp(req, pagination); err != nil {
-				grpclog.Errorf("collection operator interceptor: failed to set pagination operator - %s", err)
-			}
 		}
 
 		res, err = handler(ctx, req)
@@ -101,17 +45,17 @@ func UnaryServerInterceptor() grpc.UnaryServerInterceptor {
 	}
 }
 
-func setOp(req, op interface{}) error {
+func SetCollectionOps(req, op interface{}) error {
 	reqval := reflect.ValueOf(req)
 
 	if reqval.Kind() != reflect.Ptr {
-		return fmt.Errorf("testRequest is not a pointer - %s", reqval.Kind())
+		return fmt.Errorf("request is not a pointer - %s", reqval.Kind())
 	}
 
 	reqval = reqval.Elem()
 
 	if reqval.Kind() != reflect.Struct {
-		return fmt.Errorf("testRequest value is not a struct - %s", reqval.Kind())
+		return fmt.Errorf("request value is not a struct - %s", reqval.Kind())
 	}
 
 	for i := 0; i < reqval.NumField(); i++ {
@@ -122,31 +66,42 @@ func setOp(req, op interface{}) error {
 		}
 
 		if !f.IsValid() || !f.CanSet() {
-			return fmt.Errorf("operation field %+v in testRequest %+v is invalid or cannot be set", op, req)
+			return fmt.Errorf("operation field %+v in request %+v is invalid or cannot be set", op, req)
 		}
 
 		if vop := reflect.ValueOf(op); vop.IsValid() {
 			f.Set(vop)
 		}
+
 	}
 
 	return nil
 }
 
+func GetCollectionOp(res, op interface{}) error {
+	_, err := getAndUnsetOp(res, op, false)
+	return err
+}
+
 func unsetOp(res, op interface{}) error {
+	_, err := getAndUnsetOp(res, op, true)
+	return err
+}
+
+func getAndUnsetOp(res, op interface{}, unset bool) (fieldName string, err error) {
 	resval := reflect.ValueOf(res)
 	if resval.Kind() != reflect.Ptr {
-		return fmt.Errorf("response is not a pointer - %s", resval.Kind())
+		return "", fmt.Errorf("response is not a pointer - %s", resval.Kind())
 	}
 
 	resval = resval.Elem()
 	if resval.Kind() != reflect.Struct {
-		return fmt.Errorf("response value is not a struct - %s", resval.Kind())
+		return "", fmt.Errorf("response value is not a struct - %s", resval.Kind())
 	}
 
 	opval := reflect.ValueOf(op)
 	if opval.Kind() != reflect.Ptr {
-		return fmt.Errorf("operator is not a pointer - %s", opval.Kind())
+		return "", fmt.Errorf("operator is not a pointer - %s", opval.Kind())
 	}
 
 	for i := 0; i < resval.NumField(); i++ {
@@ -157,15 +112,62 @@ func unsetOp(res, op interface{}) error {
 		}
 
 		if !f.IsValid() || !f.CanSet() || f.Kind() != reflect.Ptr {
-			return fmt.Errorf("operation field %T in response %+v is invalid or cannot be set", op, res)
+			return "", fmt.Errorf("operation field %T in response %+v is invalid or cannot be set", op, res)
 		}
 
 		if o := opval.Elem(); o.IsValid() && o.CanSet() && f.Elem().IsValid() {
 			o.Set(f.Elem())
 		}
+		fieldName = reflect.TypeOf(res).Elem().Field(i).Name
+		if unset {
+			f.Set(reflect.Zero(f.Type()))
+		}
 
-		f.Set(reflect.Zero(f.Type()))
 	}
+	return fieldName, nil
+}
 
-	return nil
+func GetPageInfo(resp proto.Message) (fieldName string, pg *query.PageInfo, err error) {
+	pg = new(query.PageInfo)
+	fieldName, err = getAndUnsetOp(resp, pg, false)
+	if fieldName == "" {
+		pg = nil
+	}
+	return
+}
+
+func GetFiltering(req proto.Message) (fieldName string, f *query.Filtering, err error) {
+	f = new(query.Filtering)
+	fieldName, err = getAndUnsetOp(req, f, false)
+	if fieldName == "" {
+		f = nil
+	}
+	return
+}
+
+func GetSorting(req proto.Message) (fieldName string, s *query.Sorting, err error) {
+	s = new(query.Sorting)
+	fieldName, err = getAndUnsetOp(req, s, false)
+	if fieldName == "" {
+		s = nil
+	}
+	return
+}
+
+func GetPagination(req proto.Message) (fieldName string, p *query.Pagination, err error) {
+	p = new(query.Pagination)
+	fieldName, err = getAndUnsetOp(req, p, false)
+	if fieldName == "" {
+		p = nil
+	}
+	return
+}
+
+func GetFieldSelection(req proto.Message) (fieldName string, fs *query.FieldSelection, err error) {
+	fs = new(query.FieldSelection)
+	fieldName, err = getAndUnsetOp(req, fs, false)
+	if fieldName == "" {
+		fs = nil
+	}
+	return
 }

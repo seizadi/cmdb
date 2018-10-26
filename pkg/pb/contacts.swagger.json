@@ -1,0 +1,1442 @@
+{
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "schemes": [
+    "http",
+    "https"
+  ],
+  "swagger": "2.0",
+  "info": {
+    "title": "Contacts",
+    "contact": {
+      "name": "John Belamaric",
+      "url": "https://github.com/seizadi/cmdb",
+      "email": "jbelamaric@infoblox.com"
+    },
+    "version": "1.0"
+  },
+  "basePath": "/v1/",
+  "paths": {
+    "/contacts": {
+      "get": {
+        "tags": [
+          "Contacts"
+        ],
+        "summary": "Use this method to retrieve all the contacts.",
+        "operationId": "ContactsList",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "\n\nA collection of response resources can be filtered by a logical expression string that includes JSON tag references to values in each resource, literal values, and logical operators. If a resource does not have the specified tag, its value is assumed to be null.\n\nLiteral values include numbers (integer and floating-point), and quoted (both single- or double-quoted) literal strings, and 'null'. The following operators are commonly used in filter expressions:\n\n|  Op   |  Description               | \n|  --   |  -----------               | \n|  ==   |  Equal                     | \n|  !=   |  Not Equal                 | \n|  \u003e    |  Greater Than              | \n|   \u003e=  |  Greater Than or Equal To  | \n|  \u003c    |  Less Than                 | \n|  \u003c=   |  Less Than or Equal To     | \n|  and  |  Logical AND               | \n|  ~    |  Matches Regex             | \n|  !~   |  Does Not Match Regex      | \n|  or   |  Logical OR                | \n|  not  |  Logical NOT               | \n|  ()   |  Groupping Operators       |\n\n\t\t\t\t\t\t",
+            "name": "_filter",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "description": "\n\nA collection of response resources can be sorted by their JSON tags. For a 'flat' resource, the tag name is straightforward. If sorting is allowed on non-flat hierarchical resources, the service should implement a qualified naming scheme such as dot-qualification to reference data down the hierarchy. If a resource does not have the specified tag, its value is assumed to be null.)\n\nSpecify this parameter as a comma-separated list of JSON tag names. The sort direction can be specified by a suffix separated by whitespace before the tag name. The suffix 'asc' sorts the data in ascending order. The suffix 'desc' sorts the data in descending order. If no suffix is specified the data is sorted in ascending order.\n\n\t\t\t\t\t\t",
+            "name": "_order_by",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "description": "\n\nA collection of response resources can be transformed by specifying a set of JSON tags to be returned. For a “flat” resource, the tag name is straightforward. If field selection is allowed on non-flat hierarchical resources, the service should implement a qualified naming scheme such as dot-qualification to reference data down the hierarchy. If a resource does not have the specified tag, the tag does not appear in the output resource.\n\nSpecify this parameter as a comma-separated list of JSON tag names.\n\n\t\t\t\t\t\t",
+            "name": "_fields",
+            "in": "query"
+          },
+          {
+            "type": "integer",
+            "description": "\n\nThe integer index (zero-origin) of the offset into a collection of resources. If omitted or null the value is assumed to be '0'.\n\n\t\t\t\t\t\t\t",
+            "name": "_offset",
+            "in": "query"
+          },
+          {
+            "type": "integer",
+            "description": "\n\nThe integer number of resources to be returned in the response. The service may impose maximum value. If omitted the service may impose a default value.\n\n\t\t\t\t\t\t\t",
+            "name": "_limit",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "description": "\n\nThe service-defined string used to identify a page of resources. A null value indicates the first page.\n\n\t\t\t\t\t\t\t",
+            "name": "_page_token",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "GET operation response",
+            "schema": {
+              "$ref": "#/definitions/contactsListContactsResponse"
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Contacts"
+        ],
+        "summary": "Use this method to create a contact information.",
+        "operationId": "ContactsCreate",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/apicontactsContact"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "POST operation response",
+            "schema": {
+              "$ref": "#/definitions/contactsCreateContactResponse"
+            }
+          }
+        }
+      }
+    },
+    "/contacts/{id}": {
+      "get": {
+        "tags": [
+          "Contacts"
+        ],
+        "summary": "Use this method to read a contact information by identifier.",
+        "operationId": "ContactsRead",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "An application specific resource identity of a resource",
+            "name": "id",
+            "in": "path",
+            "required": true
+          },
+          {
+            "type": "string",
+            "description": "\n\nA collection of response resources can be transformed by specifying a set of JSON tags to be returned. For a “flat” resource, the tag name is straightforward. If field selection is allowed on non-flat hierarchical resources, the service should implement a qualified naming scheme such as dot-qualification to reference data down the hierarchy. If a resource does not have the specified tag, the tag does not appear in the output resource.\n\nSpecify this parameter as a comma-separated list of JSON tag names.\n\n\t\t\t\t\t\t",
+            "name": "_fields",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "GET operation response",
+            "schema": {
+              "$ref": "#/definitions/contactsReadContactResponse"
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Contacts"
+        ],
+        "summary": "Use this method to update a contact information.",
+        "operationId": "ContactsUpdate",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "An application specific resource identity of a resource",
+            "name": "id",
+            "in": "path",
+            "required": true
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/apicontactsContact"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "PUT operation response",
+            "schema": {
+              "$ref": "#/definitions/contactsUpdateContactResponse"
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Contacts"
+        ],
+        "summary": "Use this method to delete a particular contact.",
+        "operationId": "ContactsDelete",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "An application specific resource identity of a resource",
+            "name": "id",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "DELETE operation response",
+            "schema": {
+              "$ref": "#/definitions/contactsDeleteContactResponse"
+            }
+          }
+        }
+      },
+      "patch": {
+        "tags": [
+          "Contacts"
+        ],
+        "summary": "Use this method to update a contact information.",
+        "operationId": "ContactsUpdate2",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "An application specific resource identity of a resource",
+            "name": "id",
+            "in": "path",
+            "required": true
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/apicontactsContact"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "PATCH operation response",
+            "schema": {
+              "$ref": "#/definitions/contactsUpdateContactResponse"
+            }
+          }
+        }
+      }
+    },
+    "/contacts/{id}/sms": {
+      "post": {
+        "tags": [
+          "Contacts"
+        ],
+        "summary": "Use this method to Send an SMS to a given contact.",
+        "operationId": "ContactsSendSMS",
+        "parameters": [
+          {
+            "type": "string",
+            "format": "uint64",
+            "name": "id",
+            "in": "path",
+            "required": true
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/contactsSMSRequest"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "POST operation response",
+            "schema": {
+              "$ref": "#/definitions/contactsSMSResponse"
+            }
+          }
+        }
+      }
+    },
+    "/groups": {
+      "get": {
+        "tags": [
+          "Groups"
+        ],
+        "summary": "Use this method to retrieve all the contact groups.",
+        "operationId": "GroupsList",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "\n\nA collection of response resources can be filtered by a logical expression string that includes JSON tag references to values in each resource, literal values, and logical operators. If a resource does not have the specified tag, its value is assumed to be null.\n\nLiteral values include numbers (integer and floating-point), and quoted (both single- or double-quoted) literal strings, and 'null'. The following operators are commonly used in filter expressions:\n\n|  Op   |  Description               | \n|  --   |  -----------               | \n|  ==   |  Equal                     | \n|  !=   |  Not Equal                 | \n|  \u003e    |  Greater Than              | \n|   \u003e=  |  Greater Than or Equal To  | \n|  \u003c    |  Less Than                 | \n|  \u003c=   |  Less Than or Equal To     | \n|  and  |  Logical AND               | \n|  ~    |  Matches Regex             | \n|  !~   |  Does Not Match Regex      | \n|  or   |  Logical OR                | \n|  not  |  Logical NOT               | \n|  ()   |  Groupping Operators       |\n\n\t\t\t\t\t\t",
+            "name": "_filter",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "description": "\n\nA collection of response resources can be sorted by their JSON tags. For a 'flat' resource, the tag name is straightforward. If sorting is allowed on non-flat hierarchical resources, the service should implement a qualified naming scheme such as dot-qualification to reference data down the hierarchy. If a resource does not have the specified tag, its value is assumed to be null.)\n\nSpecify this parameter as a comma-separated list of JSON tag names. The sort direction can be specified by a suffix separated by whitespace before the tag name. The suffix 'asc' sorts the data in ascending order. The suffix 'desc' sorts the data in descending order. If no suffix is specified the data is sorted in ascending order.\n\n\t\t\t\t\t\t",
+            "name": "_order_by",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "description": "\n\nA collection of response resources can be transformed by specifying a set of JSON tags to be returned. For a “flat” resource, the tag name is straightforward. If field selection is allowed on non-flat hierarchical resources, the service should implement a qualified naming scheme such as dot-qualification to reference data down the hierarchy. If a resource does not have the specified tag, the tag does not appear in the output resource.\n\nSpecify this parameter as a comma-separated list of JSON tag names.\n\n\t\t\t\t\t\t",
+            "name": "_fields",
+            "in": "query"
+          },
+          {
+            "type": "integer",
+            "description": "\n\nThe integer index (zero-origin) of the offset into a collection of resources. If omitted or null the value is assumed to be '0'.\n\n\t\t\t\t\t\t\t",
+            "name": "_offset",
+            "in": "query"
+          },
+          {
+            "type": "integer",
+            "description": "\n\nThe integer number of resources to be returned in the response. The service may impose maximum value. If omitted the service may impose a default value.\n\n\t\t\t\t\t\t\t",
+            "name": "_limit",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "description": "\n\nThe service-defined string used to identify a page of resources. A null value indicates the first page.\n\n\t\t\t\t\t\t\t",
+            "name": "_page_token",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "GET operation response",
+            "schema": {
+              "$ref": "#/definitions/contactsListGroupsResponse"
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Groups"
+        ],
+        "summary": "Use this method to create a specific contacts group.",
+        "operationId": "GroupsCreate",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/contactsGroup"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "POST operation response",
+            "schema": {
+              "$ref": "#/definitions/contactsCreateGroupResponse"
+            }
+          }
+        }
+      }
+    },
+    "/groups/{id}": {
+      "get": {
+        "tags": [
+          "Groups"
+        ],
+        "summary": "Use this method to retrieve a particular contacts group.",
+        "operationId": "GroupsRead",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "An application specific resource identity of a resource",
+            "name": "id",
+            "in": "path",
+            "required": true
+          },
+          {
+            "type": "string",
+            "description": "\n\nA collection of response resources can be transformed by specifying a set of JSON tags to be returned. For a “flat” resource, the tag name is straightforward. If field selection is allowed on non-flat hierarchical resources, the service should implement a qualified naming scheme such as dot-qualification to reference data down the hierarchy. If a resource does not have the specified tag, the tag does not appear in the output resource.\n\nSpecify this parameter as a comma-separated list of JSON tag names.\n\n\t\t\t\t\t\t",
+            "name": "_fields",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "GET operation response",
+            "schema": {
+              "$ref": "#/definitions/contactsReadGroupResponse"
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Groups"
+        ],
+        "summary": "Use this method to update a particular contacts group.",
+        "operationId": "GroupsUpdate",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "An application specific resource identity of a resource",
+            "name": "id",
+            "in": "path",
+            "required": true
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/contactsGroup"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "PUT operation response",
+            "schema": {
+              "$ref": "#/definitions/contactsUpdateGroupResponse"
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Groups"
+        ],
+        "summary": "Use this method to remove a selected contacts group.",
+        "operationId": "GroupsDelete",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "An application specific resource identity of a resource",
+            "name": "id",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "DELETE operation response",
+            "schema": {
+              "$ref": "#/definitions/contactsDeleteGroupResponse"
+            }
+          }
+        }
+      },
+      "patch": {
+        "tags": [
+          "Groups"
+        ],
+        "summary": "Use this method to update a particular contacts group.",
+        "operationId": "GroupsUpdate2",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "An application specific resource identity of a resource",
+            "name": "id",
+            "in": "path",
+            "required": true
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/contactsGroup"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "PATCH operation response",
+            "schema": {
+              "$ref": "#/definitions/contactsUpdateGroupResponse"
+            }
+          }
+        }
+      }
+    },
+    "/groups/{id}/contacts": {
+      "get": {
+        "tags": [
+          "Contacts"
+        ],
+        "summary": "Use this method to retrieve all contacts which belong to a group.",
+        "operationId": "ContactsListByGroup",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "An application specific resource identity of a resource",
+            "name": "id",
+            "in": "path",
+            "required": true
+          },
+          {
+            "type": "string",
+            "description": "\n\nA collection of response resources can be filtered by a logical expression string that includes JSON tag references to values in each resource, literal values, and logical operators. If a resource does not have the specified tag, its value is assumed to be null.\n\nLiteral values include numbers (integer and floating-point), and quoted (both single- or double-quoted) literal strings, and 'null'. The following operators are commonly used in filter expressions:\n\n|  Op   |  Description               | \n|  --   |  -----------               | \n|  ==   |  Equal                     | \n|  !=   |  Not Equal                 | \n|  \u003e    |  Greater Than              | \n|   \u003e=  |  Greater Than or Equal To  | \n|  \u003c    |  Less Than                 | \n|  \u003c=   |  Less Than or Equal To     | \n|  and  |  Logical AND               | \n|  ~    |  Matches Regex             | \n|  !~   |  Does Not Match Regex      | \n|  or   |  Logical OR                | \n|  not  |  Logical NOT               | \n|  ()   |  Groupping Operators       |\n\n\t\t\t\t\t\t",
+            "name": "_filter",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "description": "\n\nA collection of response resources can be sorted by their JSON tags. For a 'flat' resource, the tag name is straightforward. If sorting is allowed on non-flat hierarchical resources, the service should implement a qualified naming scheme such as dot-qualification to reference data down the hierarchy. If a resource does not have the specified tag, its value is assumed to be null.)\n\nSpecify this parameter as a comma-separated list of JSON tag names. The sort direction can be specified by a suffix separated by whitespace before the tag name. The suffix 'asc' sorts the data in ascending order. The suffix 'desc' sorts the data in descending order. If no suffix is specified the data is sorted in ascending order.\n\n\t\t\t\t\t\t",
+            "name": "_order_by",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "description": "\n\nA collection of response resources can be transformed by specifying a set of JSON tags to be returned. For a “flat” resource, the tag name is straightforward. If field selection is allowed on non-flat hierarchical resources, the service should implement a qualified naming scheme such as dot-qualification to reference data down the hierarchy. If a resource does not have the specified tag, the tag does not appear in the output resource.\n\nSpecify this parameter as a comma-separated list of JSON tag names.\n\n\t\t\t\t\t\t",
+            "name": "_fields",
+            "in": "query"
+          },
+          {
+            "type": "integer",
+            "description": "\n\nThe integer index (zero-origin) of the offset into a collection of resources. If omitted or null the value is assumed to be '0'.\n\n\t\t\t\t\t\t\t",
+            "name": "_offset",
+            "in": "query"
+          },
+          {
+            "type": "integer",
+            "description": "\n\nThe integer number of resources to be returned in the response. The service may impose maximum value. If omitted the service may impose a default value.\n\n\t\t\t\t\t\t\t",
+            "name": "_limit",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "description": "\n\nThe service-defined string used to identify a page of resources. A null value indicates the first page.\n\n\t\t\t\t\t\t\t",
+            "name": "_page_token",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "GET operation response",
+            "schema": {
+              "$ref": "#/definitions/contactsListContactsResponse"
+            }
+          }
+        }
+      }
+    },
+    "/profiles": {
+      "get": {
+        "tags": [
+          "Profiles"
+        ],
+        "summary": "Use this method to retrieve the list of user profiles.",
+        "operationId": "ProfilesList",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "\n\nA collection of response resources can be filtered by a logical expression string that includes JSON tag references to values in each resource, literal values, and logical operators. If a resource does not have the specified tag, its value is assumed to be null.\n\nLiteral values include numbers (integer and floating-point), and quoted (both single- or double-quoted) literal strings, and 'null'. The following operators are commonly used in filter expressions:\n\n|  Op   |  Description               | \n|  --   |  -----------               | \n|  ==   |  Equal                     | \n|  !=   |  Not Equal                 | \n|  \u003e    |  Greater Than              | \n|   \u003e=  |  Greater Than or Equal To  | \n|  \u003c    |  Less Than                 | \n|  \u003c=   |  Less Than or Equal To     | \n|  and  |  Logical AND               | \n|  ~    |  Matches Regex             | \n|  !~   |  Does Not Match Regex      | \n|  or   |  Logical OR                | \n|  not  |  Logical NOT               | \n|  ()   |  Groupping Operators       |\n\n\t\t\t\t\t\t",
+            "name": "_filter",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "description": "\n\nA collection of response resources can be sorted by their JSON tags. For a 'flat' resource, the tag name is straightforward. If sorting is allowed on non-flat hierarchical resources, the service should implement a qualified naming scheme such as dot-qualification to reference data down the hierarchy. If a resource does not have the specified tag, its value is assumed to be null.)\n\nSpecify this parameter as a comma-separated list of JSON tag names. The sort direction can be specified by a suffix separated by whitespace before the tag name. The suffix 'asc' sorts the data in ascending order. The suffix 'desc' sorts the data in descending order. If no suffix is specified the data is sorted in ascending order.\n\n\t\t\t\t\t\t",
+            "name": "_order_by",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "description": "\n\nA collection of response resources can be transformed by specifying a set of JSON tags to be returned. For a “flat” resource, the tag name is straightforward. If field selection is allowed on non-flat hierarchical resources, the service should implement a qualified naming scheme such as dot-qualification to reference data down the hierarchy. If a resource does not have the specified tag, the tag does not appear in the output resource.\n\nSpecify this parameter as a comma-separated list of JSON tag names.\n\n\t\t\t\t\t\t",
+            "name": "_fields",
+            "in": "query"
+          },
+          {
+            "type": "integer",
+            "description": "\n\nThe integer index (zero-origin) of the offset into a collection of resources. If omitted or null the value is assumed to be '0'.\n\n\t\t\t\t\t\t\t",
+            "name": "_offset",
+            "in": "query"
+          },
+          {
+            "type": "integer",
+            "description": "\n\nThe integer number of resources to be returned in the response. The service may impose maximum value. If omitted the service may impose a default value.\n\n\t\t\t\t\t\t\t",
+            "name": "_limit",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "description": "\n\nThe service-defined string used to identify a page of resources. A null value indicates the first page.\n\n\t\t\t\t\t\t\t",
+            "name": "_page_token",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "GET operation response",
+            "schema": {
+              "$ref": "#/definitions/contactsListProfilesResponse"
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Profiles"
+        ],
+        "summary": "Use this method to create a user profile.",
+        "operationId": "ProfilesCreate",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/contactsProfile"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "POST operation response",
+            "schema": {
+              "$ref": "#/definitions/contactsCreateProfileResponse"
+            }
+          }
+        }
+      }
+    },
+    "/profiles/{id}": {
+      "get": {
+        "tags": [
+          "Profiles"
+        ],
+        "summary": "Use this method to retrieve the particular user profile.",
+        "operationId": "ProfilesRead",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "An application specific resource identity of a resource",
+            "name": "id",
+            "in": "path",
+            "required": true
+          },
+          {
+            "type": "string",
+            "description": "\n\nA collection of response resources can be transformed by specifying a set of JSON tags to be returned. For a “flat” resource, the tag name is straightforward. If field selection is allowed on non-flat hierarchical resources, the service should implement a qualified naming scheme such as dot-qualification to reference data down the hierarchy. If a resource does not have the specified tag, the tag does not appear in the output resource.\n\nSpecify this parameter as a comma-separated list of JSON tag names.\n\n\t\t\t\t\t\t",
+            "name": "_fields",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "GET operation response",
+            "schema": {
+              "$ref": "#/definitions/contactsReadProfileResponse"
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Profiles"
+        ],
+        "summary": "Use this method to update user profile.",
+        "operationId": "ProfilesUpdate",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "An application specific resource identity of a resource",
+            "name": "id",
+            "in": "path",
+            "required": true
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/contactsProfile"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "PUT operation response",
+            "schema": {
+              "$ref": "#/definitions/contactsUpdateProfileResponse"
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Profiles"
+        ],
+        "summary": "Use this method to delete a profile.",
+        "operationId": "ProfilesDelete",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "An application specific resource identity of a resource",
+            "name": "id",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "DELETE operation response",
+            "schema": {
+              "$ref": "#/definitions/contactsDeleteProfileResponse"
+            }
+          }
+        }
+      },
+      "patch": {
+        "tags": [
+          "Profiles"
+        ],
+        "summary": "Use this method to update user profile.",
+        "operationId": "ProfilesUpdate2",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "An application specific resource identity of a resource",
+            "name": "id",
+            "in": "path",
+            "required": true
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/contactsProfile"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "PATCH operation response",
+            "schema": {
+              "$ref": "#/definitions/contactsUpdateProfileResponse"
+            }
+          }
+        }
+      }
+    },
+    "/profiles/{id}/contacts": {
+      "get": {
+        "tags": [
+          "Contacts"
+        ],
+        "summary": "Use this method to retrieve all contacts which belong to a profile.",
+        "operationId": "ContactsListByProfile",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "An application specific resource identity of a resource",
+            "name": "id",
+            "in": "path",
+            "required": true
+          },
+          {
+            "type": "string",
+            "description": "\n\nA collection of response resources can be filtered by a logical expression string that includes JSON tag references to values in each resource, literal values, and logical operators. If a resource does not have the specified tag, its value is assumed to be null.\n\nLiteral values include numbers (integer and floating-point), and quoted (both single- or double-quoted) literal strings, and 'null'. The following operators are commonly used in filter expressions:\n\n|  Op   |  Description               | \n|  --   |  -----------               | \n|  ==   |  Equal                     | \n|  !=   |  Not Equal                 | \n|  \u003e    |  Greater Than              | \n|   \u003e=  |  Greater Than or Equal To  | \n|  \u003c    |  Less Than                 | \n|  \u003c=   |  Less Than or Equal To     | \n|  and  |  Logical AND               | \n|  ~    |  Matches Regex             | \n|  !~   |  Does Not Match Regex      | \n|  or   |  Logical OR                | \n|  not  |  Logical NOT               | \n|  ()   |  Groupping Operators       |\n\n\t\t\t\t\t\t",
+            "name": "_filter",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "description": "\n\nA collection of response resources can be sorted by their JSON tags. For a 'flat' resource, the tag name is straightforward. If sorting is allowed on non-flat hierarchical resources, the service should implement a qualified naming scheme such as dot-qualification to reference data down the hierarchy. If a resource does not have the specified tag, its value is assumed to be null.)\n\nSpecify this parameter as a comma-separated list of JSON tag names. The sort direction can be specified by a suffix separated by whitespace before the tag name. The suffix 'asc' sorts the data in ascending order. The suffix 'desc' sorts the data in descending order. If no suffix is specified the data is sorted in ascending order.\n\n\t\t\t\t\t\t",
+            "name": "_order_by",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "description": "\n\nA collection of response resources can be transformed by specifying a set of JSON tags to be returned. For a “flat” resource, the tag name is straightforward. If field selection is allowed on non-flat hierarchical resources, the service should implement a qualified naming scheme such as dot-qualification to reference data down the hierarchy. If a resource does not have the specified tag, the tag does not appear in the output resource.\n\nSpecify this parameter as a comma-separated list of JSON tag names.\n\n\t\t\t\t\t\t",
+            "name": "_fields",
+            "in": "query"
+          },
+          {
+            "type": "integer",
+            "description": "\n\nThe integer index (zero-origin) of the offset into a collection of resources. If omitted or null the value is assumed to be '0'.\n\n\t\t\t\t\t\t\t",
+            "name": "_offset",
+            "in": "query"
+          },
+          {
+            "type": "integer",
+            "description": "\n\nThe integer number of resources to be returned in the response. The service may impose maximum value. If omitted the service may impose a default value.\n\n\t\t\t\t\t\t\t",
+            "name": "_limit",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "description": "\n\nThe service-defined string used to identify a page of resources. A null value indicates the first page.\n\n\t\t\t\t\t\t\t",
+            "name": "_page_token",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "GET operation response",
+            "schema": {
+              "$ref": "#/definitions/contactsListContactsResponse"
+            }
+          }
+        }
+      }
+    },
+    "/profiles/{id}/groups": {
+      "get": {
+        "tags": [
+          "Groups"
+        ],
+        "summary": "Use this method to retrieve all groups which belong to a profile.",
+        "operationId": "GroupsListByProfile",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "An application specific resource identity of a resource",
+            "name": "id",
+            "in": "path",
+            "required": true
+          },
+          {
+            "type": "string",
+            "description": "\n\nA collection of response resources can be filtered by a logical expression string that includes JSON tag references to values in each resource, literal values, and logical operators. If a resource does not have the specified tag, its value is assumed to be null.\n\nLiteral values include numbers (integer and floating-point), and quoted (both single- or double-quoted) literal strings, and 'null'. The following operators are commonly used in filter expressions:\n\n|  Op   |  Description               | \n|  --   |  -----------               | \n|  ==   |  Equal                     | \n|  !=   |  Not Equal                 | \n|  \u003e    |  Greater Than              | \n|   \u003e=  |  Greater Than or Equal To  | \n|  \u003c    |  Less Than                 | \n|  \u003c=   |  Less Than or Equal To     | \n|  and  |  Logical AND               | \n|  ~    |  Matches Regex             | \n|  !~   |  Does Not Match Regex      | \n|  or   |  Logical OR                | \n|  not  |  Logical NOT               | \n|  ()   |  Groupping Operators       |\n\n\t\t\t\t\t\t",
+            "name": "_filter",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "description": "\n\nA collection of response resources can be sorted by their JSON tags. For a 'flat' resource, the tag name is straightforward. If sorting is allowed on non-flat hierarchical resources, the service should implement a qualified naming scheme such as dot-qualification to reference data down the hierarchy. If a resource does not have the specified tag, its value is assumed to be null.)\n\nSpecify this parameter as a comma-separated list of JSON tag names. The sort direction can be specified by a suffix separated by whitespace before the tag name. The suffix 'asc' sorts the data in ascending order. The suffix 'desc' sorts the data in descending order. If no suffix is specified the data is sorted in ascending order.\n\n\t\t\t\t\t\t",
+            "name": "_order_by",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "description": "\n\nA collection of response resources can be transformed by specifying a set of JSON tags to be returned. For a “flat” resource, the tag name is straightforward. If field selection is allowed on non-flat hierarchical resources, the service should implement a qualified naming scheme such as dot-qualification to reference data down the hierarchy. If a resource does not have the specified tag, the tag does not appear in the output resource.\n\nSpecify this parameter as a comma-separated list of JSON tag names.\n\n\t\t\t\t\t\t",
+            "name": "_fields",
+            "in": "query"
+          },
+          {
+            "type": "integer",
+            "description": "\n\nThe integer index (zero-origin) of the offset into a collection of resources. If omitted or null the value is assumed to be '0'.\n\n\t\t\t\t\t\t\t",
+            "name": "_offset",
+            "in": "query"
+          },
+          {
+            "type": "integer",
+            "description": "\n\nThe integer number of resources to be returned in the response. The service may impose maximum value. If omitted the service may impose a default value.\n\n\t\t\t\t\t\t\t",
+            "name": "_limit",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "description": "\n\nThe service-defined string used to identify a page of resources. A null value indicates the first page.\n\n\t\t\t\t\t\t\t",
+            "name": "_page_token",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "GET operation response",
+            "schema": {
+              "$ref": "#/definitions/contactsListGroupsResponse"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "apiPageInfo": {
+      "description": "PageInfo represents both server-driven and client-driven pagination response.\nServer-driven pagination is a model in which the server returns some\namount of data along with an token indicating there is more data\nand where subsequent queries can get the next page of data.\nClient-driven pagination is a model in which rows are addressable by\noffset and page size (limit).",
+      "type": "object",
+      "properties": {
+        "offset": {
+          "description": "The service may optionally include the offset of the next page of resources.\nA null value indicates no more pages.",
+          "type": "integer",
+          "format": "int32"
+        },
+        "page_token": {
+          "description": "The service response should contain a string to indicate\nthe next page of resources.\nA null value indicates no more pages.",
+          "type": "string"
+        },
+        "size": {
+          "description": "The service may optionally include the total number of resources being paged.",
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "apicontactsContact": {
+      "description": "Contact represents a particular person in an contacts list.",
+      "type": "object",
+      "properties": {
+        "emails": {
+          "description": "The list of emails associated with person.",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/contactsEmail"
+          }
+        },
+        "first_name": {
+          "description": "The first name of the person.",
+          "type": "string"
+        },
+        "groups": {
+          "description": "The resource identifier.",
+          "type": "string"
+        },
+        "home_address": {
+          "description": "The home address of the person.",
+          "$ref": "#/definitions/contactsAddress"
+        },
+        "id": {
+          "description": "The resource identifier.",
+          "type": "string",
+          "readOnly": true
+        },
+        "last_name": {
+          "description": "The last name of the person.",
+          "type": "string"
+        },
+        "middle_name": {
+          "description": "The middle name of the person.",
+          "type": "string"
+        },
+        "nicknames": {
+          "description": "nicknames is arbitrary json, but should be used for a list of strings.",
+          "$ref": "#/definitions/typesJSONValue"
+        },
+        "notes": {
+          "description": "Brief description associated with contact.",
+          "type": "string"
+        },
+        "primary_email": {
+          "description": "The person's primary email.",
+          "type": "string"
+        },
+        "profile_id": {
+          "description": "The resource identifier.",
+          "type": "string"
+        },
+        "work_address": {
+          "title": "The work address of the person",
+          "$ref": "#/definitions/contactsAddress"
+        }
+      }
+    },
+    "contactsAddress": {
+      "description": "Address represents information about contact location.",
+      "type": "object",
+      "properties": {
+        "address": {
+          "description": "The address value.",
+          "type": "string"
+        },
+        "city": {
+          "description": "The city name.",
+          "type": "string"
+        },
+        "country": {
+          "description": "Country name.",
+          "type": "string"
+        },
+        "state": {
+          "description": "State name abbrivated to two letters.",
+          "type": "string"
+        },
+        "zip": {
+          "description": "ZIP code.",
+          "type": "string"
+        }
+      }
+    },
+    "contactsCreateContactResponse": {
+      "type": "object",
+      "properties": {
+        "result": {
+          "$ref": "#/definitions/apicontactsContact"
+        },
+        "success": {
+          "properties": {
+            "code": {
+              "type": "integer",
+              "format": "int32",
+              "example": 201
+            },
+            "message": {
+              "type": "string",
+              "example": "\u003cresponse message\u003e"
+            },
+            "status": {
+              "type": "string",
+              "example": "CREATED"
+            }
+          }
+        }
+      }
+    },
+    "contactsCreateGroupResponse": {
+      "type": "object",
+      "properties": {
+        "result": {
+          "$ref": "#/definitions/contactsGroup"
+        },
+        "success": {
+          "properties": {
+            "code": {
+              "type": "integer",
+              "format": "int32",
+              "example": 201
+            },
+            "message": {
+              "type": "string",
+              "example": "\u003cresponse message\u003e"
+            },
+            "status": {
+              "type": "string",
+              "example": "CREATED"
+            }
+          }
+        }
+      }
+    },
+    "contactsCreateProfileResponse": {
+      "type": "object",
+      "properties": {
+        "result": {
+          "$ref": "#/definitions/contactsProfile"
+        },
+        "success": {
+          "properties": {
+            "code": {
+              "type": "integer",
+              "format": "int32",
+              "example": 201
+            },
+            "message": {
+              "type": "string",
+              "example": "\u003cresponse message\u003e"
+            },
+            "status": {
+              "type": "string",
+              "example": "CREATED"
+            }
+          }
+        }
+      }
+    },
+    "contactsDeleteContactResponse": {
+      "type": "object",
+      "properties": {
+        "success": {
+          "properties": {
+            "code": {
+              "type": "integer",
+              "format": "int32",
+              "example": 204
+            },
+            "message": {
+              "type": "string",
+              "example": "\u003cresponse message\u003e"
+            },
+            "status": {
+              "type": "string",
+              "example": "DELETED"
+            }
+          }
+        }
+      }
+    },
+    "contactsDeleteGroupResponse": {
+      "type": "object",
+      "properties": {
+        "success": {
+          "properties": {
+            "code": {
+              "type": "integer",
+              "format": "int32",
+              "example": 204
+            },
+            "message": {
+              "type": "string",
+              "example": "\u003cresponse message\u003e"
+            },
+            "status": {
+              "type": "string",
+              "example": "DELETED"
+            }
+          }
+        }
+      }
+    },
+    "contactsDeleteProfileResponse": {
+      "type": "object",
+      "properties": {
+        "success": {
+          "properties": {
+            "code": {
+              "type": "integer",
+              "format": "int32",
+              "example": 204
+            },
+            "message": {
+              "type": "string",
+              "example": "\u003cresponse message\u003e"
+            },
+            "status": {
+              "type": "string",
+              "example": "DELETED"
+            }
+          }
+        }
+      }
+    },
+    "contactsEmail": {
+      "description": "Email respresents the e-mail address.",
+      "type": "object",
+      "properties": {
+        "address": {
+          "description": "The value of the e-mail address.",
+          "type": "string"
+        }
+      }
+    },
+    "contactsGroup": {
+      "description": "Group is used to group the contacts, e. g. 'Friends', 'Family'.",
+      "type": "object",
+      "properties": {
+        "id": {
+          "description": "The resource identifier.",
+          "type": "string",
+          "readOnly": true
+        },
+        "name": {
+          "description": "The contacts group name.",
+          "type": "string"
+        },
+        "notes": {
+          "description": "Brief description of group.",
+          "type": "string"
+        },
+        "profile_id": {
+          "description": "The resource identifier.",
+          "type": "string"
+        }
+      }
+    },
+    "contactsListContactsResponse": {
+      "type": "object",
+      "properties": {
+        "page": {
+          "$ref": "#/definitions/apiPageInfo"
+        },
+        "results": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/apicontactsContact"
+          }
+        },
+        "success": {
+          "properties": {
+            "code": {
+              "type": "integer",
+              "format": "int32",
+              "example": 200
+            },
+            "message": {
+              "type": "string",
+              "example": "\u003cresponse message\u003e"
+            },
+            "status": {
+              "type": "string",
+              "example": "OK"
+            }
+          }
+        }
+      }
+    },
+    "contactsListGroupsResponse": {
+      "type": "object",
+      "properties": {
+        "page": {
+          "$ref": "#/definitions/apiPageInfo"
+        },
+        "results": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/contactsGroup"
+          }
+        },
+        "success": {
+          "properties": {
+            "code": {
+              "type": "integer",
+              "format": "int32",
+              "example": 200
+            },
+            "message": {
+              "type": "string",
+              "example": "\u003cresponse message\u003e"
+            },
+            "status": {
+              "type": "string",
+              "example": "OK"
+            }
+          }
+        }
+      }
+    },
+    "contactsListProfilesResponse": {
+      "type": "object",
+      "properties": {
+        "page": {
+          "$ref": "#/definitions/apiPageInfo"
+        },
+        "results": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/contactsProfile"
+          }
+        },
+        "success": {
+          "properties": {
+            "code": {
+              "type": "integer",
+              "format": "int32",
+              "example": 200
+            },
+            "message": {
+              "type": "string",
+              "example": "\u003cresponse message\u003e"
+            },
+            "status": {
+              "type": "string",
+              "example": "OK"
+            }
+          }
+        }
+      }
+    },
+    "contactsProfile": {
+      "description": "Profile represents a summary of details regarding user contacts and groups.",
+      "type": "object",
+      "properties": {
+        "id": {
+          "description": "The resource identifier.",
+          "type": "string",
+          "readOnly": true
+        },
+        "name": {
+          "description": "Contacts profile name.",
+          "type": "string"
+        },
+        "notes": {
+          "description": "Contacts profile notes.",
+          "type": "string"
+        }
+      }
+    },
+    "contactsReadContactResponse": {
+      "type": "object",
+      "properties": {
+        "result": {
+          "$ref": "#/definitions/apicontactsContact"
+        },
+        "success": {
+          "properties": {
+            "code": {
+              "type": "integer",
+              "format": "int32",
+              "example": 200
+            },
+            "message": {
+              "type": "string",
+              "example": "\u003cresponse message\u003e"
+            },
+            "status": {
+              "type": "string",
+              "example": "OK"
+            }
+          }
+        }
+      }
+    },
+    "contactsReadGroupResponse": {
+      "type": "object",
+      "properties": {
+        "result": {
+          "$ref": "#/definitions/contactsGroup"
+        },
+        "success": {
+          "properties": {
+            "code": {
+              "type": "integer",
+              "format": "int32",
+              "example": 200
+            },
+            "message": {
+              "type": "string",
+              "example": "\u003cresponse message\u003e"
+            },
+            "status": {
+              "type": "string",
+              "example": "OK"
+            }
+          }
+        }
+      }
+    },
+    "contactsReadProfileResponse": {
+      "type": "object",
+      "properties": {
+        "result": {
+          "$ref": "#/definitions/contactsProfile"
+        },
+        "success": {
+          "properties": {
+            "code": {
+              "type": "integer",
+              "format": "int32",
+              "example": 200
+            },
+            "message": {
+              "type": "string",
+              "example": "\u003cresponse message\u003e"
+            },
+            "status": {
+              "type": "string",
+              "example": "OK"
+            }
+          }
+        }
+      }
+    },
+    "contactsSMSRequest": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "uint64",
+          "readOnly": true
+        },
+        "message": {
+          "type": "string"
+        }
+      }
+    },
+    "contactsSMSResponse": {
+      "type": "object",
+      "properties": {
+        "success": {
+          "properties": {
+            "code": {
+              "type": "integer",
+              "format": "int32",
+              "example": 201
+            },
+            "message": {
+              "type": "string",
+              "example": "\u003cresponse message\u003e"
+            },
+            "status": {
+              "type": "string",
+              "example": "CREATED"
+            }
+          }
+        }
+      }
+    },
+    "contactsUpdateContactResponse": {
+      "type": "object",
+      "properties": {
+        "result": {
+          "$ref": "#/definitions/apicontactsContact"
+        },
+        "success": {
+          "properties": {
+            "code": {
+              "type": "integer",
+              "format": "int32",
+              "example": 201
+            },
+            "message": {
+              "type": "string",
+              "example": "\u003cresponse message\u003e"
+            },
+            "status": {
+              "type": "string",
+              "example": "UPDATED"
+            }
+          }
+        }
+      }
+    },
+    "contactsUpdateGroupResponse": {
+      "type": "object",
+      "properties": {
+        "result": {
+          "$ref": "#/definitions/contactsGroup"
+        },
+        "success": {
+          "properties": {
+            "code": {
+              "type": "integer",
+              "format": "int32",
+              "example": 201
+            },
+            "message": {
+              "type": "string",
+              "example": "\u003cresponse message\u003e"
+            },
+            "status": {
+              "type": "string",
+              "example": "UPDATED"
+            }
+          }
+        }
+      }
+    },
+    "contactsUpdateProfileResponse": {
+      "type": "object",
+      "properties": {
+        "result": {
+          "$ref": "#/definitions/contactsProfile"
+        },
+        "success": {
+          "properties": {
+            "code": {
+              "type": "integer",
+              "format": "int32",
+              "example": 201
+            },
+            "message": {
+              "type": "string",
+              "example": "\u003cresponse message\u003e"
+            },
+            "status": {
+              "type": "string",
+              "example": "UPDATED"
+            }
+          }
+        }
+      }
+    },
+    "typesJSONValue": {
+      "type": "object",
+      "properties": {
+        "value": {
+          "type": "string"
+        }
+      }
+    }
+  },
+  "securityDefinitions": {
+    "ApiKeyAuth": {
+      "type": "apiKey",
+      "name": "Authorization",
+      "in": "header"
+    }
+  },
+  "security": [
+    {
+      "ApiKeyAuth": []
+    }
+  ]
+}

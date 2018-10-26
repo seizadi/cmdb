@@ -1,0 +1,63 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: postgres
+  namespace: contacts
+  labels:
+    app.kubernetes.io/name: postgres
+    app.kubernetes.io/part-of: atlas-contacts-app
+    app.kubernetes.io/component: database
+spec:
+  ports:
+    - port: 5432
+  selector:
+    app.kubernetes.io/name: postgres
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: postgres
+  namespace: contacts
+  labels:
+    app.kubernetes.io/name: postgres
+    app.kubernetes.io/part-of: atlas-contacts-app
+    app.kubernetes.io/component: database
+spec:
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: postgres
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: postgres
+        app.kubernetes.io/part-of: atlas-contacts-app
+        app.kubernetes.io/component: database
+    spec:
+      containers:
+      - name: postgres
+        image: postgres:10.5
+        env:
+        - name: POSTGRES_USER
+          value: postgres
+        - name: POSTGRES_PASSWORD
+          value: postgres
+        - name: POSTGRES_DB
+          value: atlas_contacts_app
+        ports:
+          - containerPort: 5432
+        livenessProbe:
+          initialDelaySeconds: 20
+          exec:
+            command:
+            - "/bin/sh"
+            - "-i"
+            - "-c"
+            - "pg_isready -h 127.0.0.1 -p 5432 -U $POSTGRES_USER"
+        readinessProbe:
+          initialDelaySeconds: 5
+          exec:
+            command:
+            - "/bin/sh"
+            - "-i"
+            - "-c"
+            - "psql -h 127.0.0.1 -U $POSTGRES_USER -q -d $POSTGRES_PASSWORD -c 'SELECT 1'"

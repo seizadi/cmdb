@@ -3,8 +3,10 @@ package gateway
 import (
 	"context"
 	"fmt"
+	"github.com/infobloxopen/atlas-app-toolkit/util"
 	"io"
 	"net/http"
+	"strconv"
 
 	"github.com/golang/protobuf/proto"
 	"google.golang.org/grpc/codes"
@@ -54,7 +56,7 @@ func NewForwardResponseStream(out runtime.HeaderMatcherFunc, meh runtime.ProtoEr
 func (fw *ResponseForwarder) ForwardMessage(ctx context.Context, mux *runtime.ServeMux, marshaler runtime.Marshaler, rw http.ResponseWriter, req *http.Request, resp proto.Message, opts ...func(context.Context, http.ResponseWriter, proto.Message) error) {
 	md, ok := runtime.ServerMetadataFromContext(ctx)
 	if !ok {
-		grpclog.Printf("forward response message: failed to extract ServerMetadata from context")
+		grpclog.Infof("forward response message: failed to extract ServerMetadata from context")
 		fw.MessageErrHandler(ctx, mux, marshaler, rw, req, fmt.Errorf("forward response message: internal error"))
 	}
 
@@ -79,27 +81,53 @@ func (fw *ResponseForwarder) ForwardMessage(ctx context.Context, mux *runtime.Se
 	// -- In this way the success data becomes just a tag added to an existing structure.
 	data, err := marshaler.Marshal(resp)
 	if err != nil {
-		grpclog.Printf("forward response: failed to marshal response: %v", err)
+		grpclog.Infof("forward response: failed to marshal response: %v", err)
 		fw.MessageErrHandler(ctx, mux, marshaler, rw, req, err)
 	}
 
 	var dynmap map[string]interface{}
 	if err := marshaler.Unmarshal(data, &dynmap); err != nil {
-		grpclog.Printf("forward response: failed to unmarshal response: %v", err)
+		grpclog.Infof("forward response: failed to unmarshal response: %v", err)
 		fw.MessageErrHandler(ctx, mux, marshaler, rw, req, err)
+	}
+	pageInfoName, pg, err := GetPageInfo(resp)
+
+	if pageInfoName != "" {
+		name := util.CamelToSnake(pageInfoName)
+		_, ok := dynmap[name]
+		if ok {
+			delete(dynmap, name)
+		}
 	}
 
 	retainFields(ctx, req, dynmap)
 
+	// FIXME: standard grpc JSON marshaller doesn't handle
+	// nil values inside maps.
+	for k := range dynmap {
+		dynmap[k] = fixNilValues(dynmap[k])
+	}
+
 	// Here we set "Location" header which contains a url to a long running task
 	// Using it we can retrieve its status
 	rst := Status(ctx, nil)
+	if pageInfoName != "" {
+		if pg.Offset != 0 {
+			rst.Offset = strconv.Itoa(int(pg.Offset))
+		}
+		if pg.Size != 0 {
+			rst.Size = strconv.Itoa(int(pg.Size))
+		}
+		if pg.PageToken != "" {
+			rst.PageToken = pg.PageToken
+		}
+	}
 	if rst.Code == CodeName(LongRunning) {
 		location, exists := Header(ctx, "Location")
 
 		if !exists || location == "" {
 			err := fmt.Errorf("Header Location should be set for long running operation")
-			grpclog.Printf("forward response: %v", err)
+			grpclog.Infof("forward response: %v", err)
 			fw.MessageErrHandler(ctx, mux, marshaler, rw, req, err)
 		}
 		rw.Header().Add("Location", location)
@@ -112,14 +140,14 @@ func (fw *ResponseForwarder) ForwardMessage(ctx context.Context, mux *runtime.Se
 
 	data, err = marshaler.Marshal(dynmap)
 	if err != nil {
-		grpclog.Printf("forward response: failed to marshal response: %v", err)
+		grpclog.Infof("forward response: failed to marshal response: %v", err)
 		fw.MessageErrHandler(ctx, mux, marshaler, rw, req, err)
 	}
 
 	rw.WriteHeader(rst.HTTPStatus)
 
 	if _, err = rw.Write(data); err != nil {
-		grpclog.Printf("forward response: failed to write response: %v", err)
+		grpclog.Infof("forward response: failed to write response: %v", err)
 	}
 
 	handleForwardResponseTrailer(rw, md)
@@ -130,14 +158,14 @@ func (fw *ResponseForwarder) ForwardMessage(ctx context.Context, mux *runtime.Se
 func (fw *ResponseForwarder) ForwardStream(ctx context.Context, mux *runtime.ServeMux, marshaler runtime.Marshaler, rw http.ResponseWriter, req *http.Request, recv func() (proto.Message, error), opts ...func(context.Context, http.ResponseWriter, proto.Message) error) {
 	flusher, ok := rw.(http.Flusher)
 	if !ok {
-		grpclog.Printf("forward response stream: flush not supported in %T", rw)
+		grpclog.Infof("forward response stream: flush not supported in %T", rw)
 		fw.StreamErrHandler(ctx, false, mux, marshaler, rw, req, fmt.Errorf("forward response message: internal error"))
 		return
 	}
 
 	md, ok := runtime.ServerMetadataFromContext(ctx)
 	if !ok {
-		grpclog.Printf("forward response stream: failed to extract ServerMetadata from context")
+		grpclog.Infof("forward response stream: failed to extract ServerMetadata from context")
 		fw.StreamErrHandler(ctx, false, mux, marshaler, rw, req, fmt.Errorf("forward response message: internal error"))
 		return
 	}
@@ -170,7 +198,7 @@ func (fw *ResponseForwarder) ForwardStream(ctx context.Context, mux *runtime.Ser
 	}
 
 	if _, err := rw.Write(data); err != nil {
-		grpclog.Printf("forward response stream: failed to write status object: %s", err)
+		grpclog.Infof("forward response stream: failed to write status object: %s", err)
 		return
 	}
 
@@ -202,12 +230,12 @@ func (fw *ResponseForwarder) ForwardStream(ctx context.Context, mux *runtime.Ser
 		}
 
 		if _, err := rw.Write(data); err != nil {
-			grpclog.Printf("forward response stream: failed to write response object: %s", err)
+			grpclog.Infof("forward response stream: failed to write response object: %s", err)
 			return
 		}
 
 		if _, err = rw.Write(delimiter); err != nil {
-			grpclog.Printf("forward response stream: failed to send delimiter chunk: %v", err)
+			grpclog.Infof("forward response stream: failed to send delimiter chunk: %v", err)
 			return
 		}
 		flusher.Flush()
@@ -220,9 +248,26 @@ func handleForwardResponseOptions(ctx context.Context, rw http.ResponseWriter, r
 	}
 	for _, opt := range opts {
 		if err := opt(ctx, rw, resp); err != nil {
-			grpclog.Printf("error handling ForwardResponseOptions: %v", err)
+			grpclog.Infof("error handling ForwardResponseOptions: %v", err)
 			return err
 		}
 	}
 	return nil
+}
+
+// fixNilValues function walks v tree and removes
+// map keys that have value nil.
+func fixNilValues(v interface{}) interface{} {
+	switch v := v.(type) {
+	case map[string]interface{}:
+		for k := range v {
+			if v[k] == nil {
+				delete(v, k)
+			} else {
+				v[k] = fixNilValues(v[k])
+			}
+		}
+	}
+
+	return v
 }

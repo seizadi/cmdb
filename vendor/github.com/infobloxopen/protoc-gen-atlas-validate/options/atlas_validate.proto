@@ -1,0 +1,31 @@
+syntax = "proto3";
+
+package atlas_validate;
+
+option go_package = "github.com/infobloxopen/protoc-gen-atlas-validate/options;options";
+
+import "google/protobuf/descriptor.proto";
+
+extend google.protobuf.FileOptions {
+  AtlasValidateFileOption file = 52219;
+}
+
+message AtlasValidateFileOption {
+  bool allow_unknown_fields = 1;
+}
+
+extend google.protobuf.MethodOptions {
+  AtlasValidateMethodOption method = 52219;
+}
+
+message AtlasValidateMethodOption {
+  bool allow_unknown_fields = 1;
+}
+
+extend google.protobuf.ServiceOptions {
+  AtlasValidateServiceOption service = 52219;
+}
+
+message AtlasValidateServiceOption {
+  bool allow_unknown_fields = 1;
+}

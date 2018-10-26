@@ -4,37 +4,16 @@ import (
 	"context"
 	"net/http"
 
-	"github.com/grpc-ecosystem/grpc-gateway/runtime"
 	"github.com/infobloxopen/atlas-app-toolkit/query"
-	"google.golang.org/grpc"
-	"google.golang.org/grpc/metadata"
 )
-
-//SetFieldSelection sets op.FieldSelection to gRPC metadata
-func SetFieldSelection(ctx context.Context, fields *query.FieldSelection) error {
-	fieldsStr := fields.GoString()
-	md := metadata.Pairs(
-		runtime.MetadataPrefix+fieldsMetaKey, fieldsStr,
-	)
-	return grpc.SetHeader(ctx, md)
-}
-
-//FieldSelection extracts op.FieldSelection from gRPC metadata
-func FieldSelection(ctx context.Context) *query.FieldSelection {
-	fields, ok := Header(ctx, fieldsMetaKey)
-	if !ok {
-		return nil
-	}
-	return query.ParseFieldSelection(fields)
-}
 
 //retainFields function extracts the configuration for fields that
 //need to be ratained either from gRPC response or from original testRequest
 //(in case when gRPC side didn't set any preferences) and retains only
 //this fields on outgoing response (dynmap).
 func retainFields(ctx context.Context, req *http.Request, dynmap map[string]interface{}) {
-	fieldsStr, ok := Header(ctx, fieldsMetaKey)
-	if !ok && req != nil {
+	fieldsStr := ""
+	if req != nil {
 		//no fields in gprc response -> try to get from original testRequest
 		vals := req.URL.Query()
 		fieldsStr = vals.Get(fieldsQueryKey)
@@ -53,6 +32,8 @@ func retainFields(ctx context.Context, req *http.Request, dynmap map[string]inte
 						doRetainFields(m, fields.Fields)
 					}
 				}
+			} else if m, ok := result.(map[string]interface{}); ok {
+				doRetainFields(m, fields.Fields)
 			}
 		}
 	}
@@ -74,7 +55,12 @@ func doRetainFields(obj map[string]interface{}, fields query.FieldSelectionMap) 
 					doRetainFields(x, fds)
 				}
 			case []interface{}:
-				//ingnoring arrays for now
+				for _, r := range obj[key].([]interface{}) {
+					if m, ok := r.(map[string]interface{}); ok {
+						fds := fields[key].Subs
+						doRetainFields(m, fds)
+					}
+				}
 			}
 		}
 	}
