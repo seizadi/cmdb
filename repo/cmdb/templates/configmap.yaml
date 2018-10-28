@@ -18,10 +18,8 @@ data:
     {{ $key }}: {{ $value | quote }}
   {{- end }}
 {{- end }}
-{{- if .Values.tiller }}
 {{- if .Values.postgresql.enabled }}
-    CMDB_DATABASE_ADDRESS: {{ template "chart-app.postgresql.fullname" . }}
+    CMDB_DATABASE_HOST: {{ template "chart-app.postgresql.fullname" . }}
     CMDB_DATABASE_NAME: {{ .Values.postgresql.postgresDatabase }}
     CMDB_DATABASE_USER: {{ .Values.postgresql.postgresUser }}
-{{- end }}
 {{- end }}

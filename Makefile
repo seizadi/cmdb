@@ -27,7 +27,7 @@ DOCKER_GENERATOR     := infoblox/atlas-gentool:latest
 GENERATOR            := $(DOCKER_RUNNER) $(DOCKER_GENERATOR)
 
 # configuration for the database
-DATABASE_ADDRESS ?= localhost:5432
+DATABASE_HOST ?= localhost:5432
 
 # configuration for building on host machine
 GO_CACHE       := -pkgdir $(BUILD_PATH)/go-cache
@@ -103,10 +103,8 @@ nginx-down:
 
 .PHONY: migrate-up
 migrate-up:
-#	@migrate -database 'postgres://$(DATABASE_ADDRESS)/cmdb?sslmode=disable' -path ./db/migrations up
-	@migrate -database 'postgres://$(DATABASE_ADDRESS)/atlas_contacts_app?sslmode=disable' -path ./db/migrations up
+	@migrate -database 'postgres://$(DATABASE_HOST)/cmdb?sslmode=disable' -path ./db/migrations up
 
 .PHONY: migrate-down
 migrate-down:
-#	@migrate -database 'postgres://$(DATABASE_ADDRESS):5432/cmdb?sslmode=disable' -path ./db/migrations down
-	@migrate -database 'postgres://$(DATABASE_ADDRESS):5432/atlas_contacts_app?sslmode=disable' -path ./db/migrations down
+	@migrate -database 'postgres://$(DATABASE_HOST):5432/cmdb?sslmode=disable' -path ./db/migrations down

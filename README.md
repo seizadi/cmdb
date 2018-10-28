@@ -21,11 +21,20 @@ go get -u github.com/golang/dep/cmd/dep
 For migrating the database schema, [golang-migrate](https://github.com/golang-migrate/migrate) framework is used.
 
 ***Steps for local development***
-1. The migration files must be placed `/db/migrations/` directory.
+1. The migration files must be placed `./db/migrations/` directory.
 2. Make sure you have [migrate CLI](https://github.com/golang-migrate/migrate/tree/master/cli)
 3. Run migration
 ```bash
 $ make migrate-up
+```
+
+***Steps for container deployment***
+1. The service container is modified to include migration files in `/db/migrations/` directory.
+2. Then `initContainers` are leveraged to copy the migration files from service image to migration image as outlined in `deploy/migrations.yaml`.
+3. To create migrations update `migrations.yaml` with **database details** and run:
+```
+  # Modify database details in migrations.yaml (database name, user, password, address)
+  kubectl apply -f deploy/migration.yaml
 ```
 
 #### Schema
@@ -88,10 +97,10 @@ You should reference the migration files (./db/migrations) for more detail on th
 In case you don't want to follow the kubernetes deployment; build service image following Step 1 and run
 ```
 docker create --name init-container1 -v migrations:/db/migrations infobloxcto/contacts-server:latest
-docker run --name contacts-app-migration --volumes-from init-container1 --network host infoblox/migrate:latest --verbose --path=/db/migrations/ --database.address=postgres.contacts:5432 --database.user=postgres --database.password=postgres --database.name=atlas_contacts_app up
+docker run --name contacts-app-migration --volumes-from init-container1 --network host infoblox/migrate:latest --verbose --path=/db/migrations/ --database.host=postgres.contacts:5432 --database.user=postgres --database.password=postgres --database.name=atlas_contacts_app up
 ```
 
-**NOTE**: migrate support database connection string (passed as --database.dsn) as well as individual parameters (passed as --database.driver, --database.address, --database.name, --database.user, --database.password and --database.ssl)
+**NOTE**: migrate support database connection string (passed as --database.dsn) as well as individual parameters (passed as --database.driver, --database.host, --database.name, --database.user, --database.password and --database.ssl)
 
 ### Local development setup
 
@@ -715,11 +724,11 @@ index 934b4fc..1d095dd 100644
 
 +.PHONY: migrate-up
 +migrate-up:
-+        @migrate -database 'postgres://$(DATABASE_ADDRESS)/atlas_contacts_app?sslmode=disable' -path ./db/migrations up
++        @migrate -database 'postgres://$(DATABASE_HOST)/atlas_contacts_app?sslmode=disable' -path ./db/migrations up
 +
 +.PHONY: migrate-down
 +migrate-down:
-+        @migrate -database 'postgres://$(DATABASE_ADDRESS):5432/atlas_contacts_app?sslmode=disable' -path ./db/migrations down
++        @migrate -database 'postgres://$(DATABASE_HOST):5432/atlas_contacts_app?sslmode=disable' -path ./db/migrations down
 
 $ createdb atlas_contacts_app
 $ make migrate-up
@@ -747,3 +756,134 @@ Log from Postgres Server:
 2018-10-25 22:11:31.767 PDT [24996] ERROR:  relation "contacts" does not exist at character 15
 2018-10-25 22:11:31.767 PDT [24996] STATEMENT:  SELECT * FROM "contacts"  WHERE ("contacts"."account_id" = $1) ORDER BY "id" LIMIT 1000 OFFSET 0
 ```
+
+I gave up running this on my local postgres and wrote the helm chart
+to run it on k8, I'll come back to the problem later if I can reproduce
+it on the k8 enviornment.
+
+### Migration Debug
+Now debugging migration. You can see from database that it has no
+tables!
+```bash
+$ k get pods
+NAME                                        READY     STATUS              RESTARTS   AGE
+jumpy-squirrel-cmdb-dbc4575bd-ggflf         0/1       ContainerCreating   0          4s
+jumpy-squirrel-cmdb-migrate                 0/1       PodInitializing     0          4s
+jumpy-squirrel-postgresql-89d447cbc-xcdwq   0/1       Running             0          4s
+$ k logs jumpy-squirrel-cmdb-migrate
+$ k exec -it jumpy-squirrel-postgresql-89d447cbc-xcdwq /bin/sh
+# psql cmdb
+cmdb=# \dt
+No relations found.
+```
+It looks like the migration container runs before the database
+container has been able to come up, so I added additional check to
+make sure at least database was reachable before running it.
+```bash
+{{- if .Values.postgresql.enabled }}
+    - name: init-database
+      image: busybox
+      command: ['sh', '-c', 'until nslookup {{ template "chart-app.postgresql.fullname" . }}; do echo waiting for cmdb database; sleep 2; done;']
+{{- end }}
+```
+
+Run the migration mannually and check what is going on!
+Here is the command line for regular migrate image:
+```bash
+migrate -v -database 'postgres://$CMDB_DATABASE_HOST:$CMDB_DATABASE_PASSWORD/cmdb' -path /cmdb-migrations/migrations up
+```
+Here is the command line for infobloxopen migrate image:
+```bash
+migrate --verbose --source file://cmdb-migrations/migrations --database.address $CMDB_DATABASE_HOST --database.name $CMDB_DATABASE_NAME --database.user $CMDB_DATABASE_USER --database.password $CMDB_DATABASE_PASSWORD up
+```
+The problem is that the container does not stay around after I fixed
+checking for the database startup, also noticed that the CMDB server
+is restarting:
+```bash
+NAME                                         READY     STATUS             RESTARTS   AGE
+terrific-robin-cmdb-6b4c45669b-xv8sv         0/1       CrashLoopBackOff   53         2h
+terrific-robin-postgresql-6b7bdddf75-2s68k   1/1       Running            0          2h
+```
+So look at the logs on the cluster:
+```sh
+minikube ssh
+cd /var/log/containers
+ls | grep logging-app
+```
+You see the logs associated with the containers including the ones
+that terminated:
+```sh
+$ ls
+....
+terrific-robin-cmdb-6b4c45669b-xv8sv_default_cmdb-d21e964e56692bf80ac197569ece97a42397a08f6180bf092a605c9a59b88ea5.log
+terrific-robin-cmdb-migrate_default_init-container1-81dd1d6c0ecd2d3f6616618916ed713b336f57dd1c02903d9c2715133df89dca.log
+terrific-robin-cmdb-migrate_default_init-database-18c8681ed897d8338c134a22b584abd0b5a048b77e01f046a73639549faf66d6.log
+terrific-robin-cmdb-migrate_default_migration-9d7f42691fe87a1eed34f3b5ced1ed2f53a64739b276c5e04156156b4164b50b.log
+```
+Look at what is going on...
+```sh
+$ sudo cat terrific-robin-cmdb-migrate_default_init-container1-81dd1d6c0ecd2d3f6616618916ed713b336f57dd1c02903d9c2715133df89dca.log
+$ sudo cat terrific-robin-cmdb-migrate_default_init-database-18c8681ed897d8338c134a22b584abd0b5a048b77e01f046a73639549faf66d6.log
+{"log":"Server:\u0009\u000910.96.0.10\n","stream":"stdout","time":"2018-10-27T21:06:25.159546604Z"}
+{"log":"Address:\u000910.96.0.10:53\n","stream":"stdout","time":"2018-10-27T21:06:25.159629556Z"}
+{"log":"\n","stream":"stdout","time":"2018-10-27T21:06:25.159635644Z"}
+{"log":"** server can't find terrific-robin-postgresql: NXDOMAIN\n","stream":"stdout","time":"2018-10-27T21:06:25.15963901Z"}
+{"log":"\n","stream":"stdout","time":"2018-10-27T21:06:25.159642446Z"}
+{"log":"*** Can't find terrific-robin-postgresql: No answer\n","stream":"stdout","time":"2018-10-27T21:06:25.159645594Z"}
+{"log":"\n","stream":"stdout","time":"2018-10-27T21:06:25.159648868Z"}
+$ sudo cat terrific-robin-cmdb-migrate_default_migration-9d7f42691fe87a1eed34f3b5ced1ed2f53a64739b276c5e04156156b4164b50b.log
+{"log":"time=\"2018-10-27T21:06:36Z\" level=info msg=\"error: dial tcp: lookup $CMDB_DATABASE_HOST: no such host\"\n","stream":"stderr","time":"2018-10-27T21:06:36.428068346Z"}
+```
+Look like problem with environment variable for migration container.
+```sh
+$ sudo cat terrific-robin-cmdb-6b4c45669b-xv8sv_default_cmdb-c076e6e03d69449c3fe230f50797b4eab78b183989d1d6625a1998d474c93351.log
+{"log":"time=\"2018-10-28T00:58:23Z\" level=debug msg=\"serving internal http at \\\"0.0.0.0:8081\\\"\"\n","stream":"stderr","time":"2018-10-28T00:58:23.615289033Z"}
+{"log":"time=\"2018-10-28T00:58:23Z\" level=debug msg=\"serving gRPC at \\\"0.0.0.0:9090\\\"\"\n","stream":"stderr","time":"2018-10-28T00:58:23.618894925Z"}
+{"log":"time=\"2018-10-28T00:58:23Z\" level=debug msg=\"serving http at \\\"0.0.0.0:8080\\\"\"\n","stream":"stderr","time":"2018-10-28T00:58:23.619914331Z"}
+```
+This look fine for the CMDB Server, but looking at the Pod you see that
+it is failing health checks are being terminated!
+```sh
+$ k describe pod terrific-robin-cmdb-6b4c45669b-xv8sv
+Name:		terrific-robin-cmdb-6b4c45669b-xv8sv
+Namespace:	default
+...
+Events:
+  FirstSeen	LastSeen	Count	From			SubObjectPath		Type		Reason		Message
+  ---------	--------	-----	----			-------------		--------	------		-------
+  3h		53m		59	kubelet, minikube	spec.containers{cmdb}	Normal		Pulling		pulling image "soheileizadi/cmdb-server:latest"
+  3h		18m		623	kubelet, minikube	spec.containers{cmdb}	Warning		Unhealthy	Liveness probe failed: HTTP probe failed with statuscode: 404
+  3h		3m		818	kubelet, minikube	spec.containers{cmdb}	Warning		BackOff		Back-off restarting failed container
+```
+Now with migration manifest fix it is working..*[]:
+```sh
+$ sudo cat boiling-grizzly-cmdb-migrate_default_migration-64ea9e69410211e3408e15f9504062dcc61cb3c879a96adc112900e1bed20d22.log
+{"log":"time=\"2018-10-28T01:48:15Z\" level=info msg=\"Start buffering 1/u contacts\\n\"\n","stream":"stderr","time":"2018-10-28T01:48:15.517166935Z"}
+{"log":"time=\"2018-10-28T01:48:15Z\" level=info msg=\"Start buffering 2/u emails\\n\"\n","stream":"stderr","time":"2018-10-28T01:48:15.51722086Z"}
+{"log":"time=\"2018-10-28T01:48:15Z\" level=info msg=\"Start buffering 3/u groupprofileaddress\\n\"\n","stream":"stderr","time":"2018-10-28T01:48:15.517225129Z"}
+{"log":"time=\"2018-10-28T01:48:15Z\" level=info msg=\"Read and execute 1/u contacts\\n\"\n","stream":"stderr","time":"2018-10-28T01:48:15.563651279Z"}
+{"log":"time=\"2018-10-28T01:48:15Z\" level=info msg=\"Finished 1/u contacts (read 55.09152ms, ran 46.802571ms)\\n\"\n","stream":"stderr","time":"2018-10-28T01:48:15.610572413Z"}
+{"log":"time=\"2018-10-28T01:48:15Z\" level=info msg=\"Read and execute 2/u emails\\n\"\n","stream":"stderr","time":"2018-10-28T01:48:15.613079247Z"}
+{"log":"time=\"2018-10-28T01:48:15Z\" level=info msg=\"Finished 2/u emails (read 104.553177ms, ran 10.486612ms)\\n\"\n","stream":"stderr","time":"2018-10-28T01:48:15.623621257Z"}
+{"log":"time=\"2018-10-28T01:48:15Z\" level=info msg=\"Read and execute 3/u groupprofileaddress\\n\"\n","stream":"stderr","time":"2018-10-28T01:48:15.631196483Z"}
+{"log":"time=\"2018-10-28T01:48:15Z\" level=info msg=\"Finished 3/u groupprofileaddress (read 122.940552ms, ran 16.988888ms)\\n\"\n","stream":"stderr","time":"2018-10-28T01:48:15.648301205Z"}
+{"log":"time=\"2018-10-28T01:48:15Z\" level=info msg=\"Finished after 155.304011ms\"\n","stream":"stderr","time":"2018-10-28T01:48:15.648573351Z"}
+{"log":"time=\"2018-10-28T01:48:15Z\" level=info msg=\"Closing source and database\\n\"\n","stream":"stderr","time":"2018-10-28T01:48:15.648582722Z"}
+```
+Now look at database
+```sh
+$ k exec -it boiling-grizzly-postgresql-7f899d549c-6z8qr /bin/sh
+# psql cmdb
+cmdb=# \dt
+               List of relations
+ Schema |       Name        | Type  |  Owner
+--------+-------------------+-------+----------
+ public | addresses         | table | postgres
+ public | contacts          | table | postgres
+ public | emails            | table | postgres
+ public | group_contacts    | table | postgres
+ public | groups            | table | postgres
+ public | profiles          | table | postgres
+ public | schema_migrations | table | postgres
+```
+

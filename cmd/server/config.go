@@ -21,7 +21,7 @@ const (
 	// DSN example: "postgres://postgres:postgres@postgres:5432/atlas_db?sslmode=disable"
 	defaultDatabaseDSN      = ""
 	defaultDatabaseType     = "postgres"
-	defaultDatabaseAddress  = "0.0.0.0"
+	defaultDatabaseHost     = "0.0.0.0"
 	defaultDatabasePort     = "5432"
 	defaultDatabaseName     = "cmdb"
 	defaultDatabaseUser     = "postgres"
@@ -83,7 +83,7 @@ var (
 	flagDatabaseEnable   = pflag.Bool("database.enable", defaultDatabaseEnable, "enable database")
 	flagDatabaseDSN      = pflag.String("database.dsn", defaultDatabaseDSN, "DSN of the database")
 	flagDatabaseType     = pflag.String("database.type", defaultDatabaseType, "type of the database")
-	flagDatabaseAddress  = pflag.String("database.address", defaultDatabaseAddress, "address of the database")
+	flagDatabaseHost  = pflag.String("database.host", defaultDatabaseHost, "address of the database")
 	flagDatabasePort     = pflag.String("database.port", defaultDatabasePort, "port of the database")
 	flagDatabaseName     = pflag.String("database.name", defaultDatabaseName, "name of the database")
 	flagDatabaseUser     = pflag.String("database.user", defaultDatabaseUser, "database username")

@@ -285,7 +285,7 @@ func ServeExternal(logger *logrus.Logger) error {
 func setDBString() {
 	viper.Set("database.dsn", fmt.Sprintf("postgres://%s:%s@%s:%s/%s?sslmode=%s",
 		viper.GetString("database.user"), viper.GetString("database.password"),
-		viper.GetString("database.address"), viper.GetString("database.port"),
+		viper.GetString("database.host"), viper.GetString("database.port"),
 		viper.GetString("database.name"), viper.GetString("database.ssl"),
 	))
 }

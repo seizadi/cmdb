@@ -1,0 +1,77 @@
+{{- $fullName := include "chart-app.fullname" . -}}
+{{- $appName := include "chart-app.name" . -}}
+apiVersion: v1
+kind: Pod
+metadata:
+  name: {{ $fullName }}-migrate
+{{- if .Values.cmdb }}
+  namespace: {{ .Values.nameSpace }}
+{{- end }}
+  labels:
+    app: {{ $appName }}
+    chart: {{ template "chart-app.chart" . }}
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
+spec:
+  restartPolicy: Never
+  initContainers:
+    - name: init-container1
+      image: {{template "imagespec" dict "containers" .Values.containers "containername" "cmdb-app"}}
+      imagePullPolicy: {{template "imagepull" dict "containers" .Values.containers "containername" "cmdb-app"}}
+      volumeMounts:
+        - mountPath: "/cmdb-migrations"
+          name: migrations
+      command:
+        - "cp"
+        - "-r"
+        - "/db/migrations"
+        - "/cmdb-migrations"
+{{- if .Values.postgresql.enabled }}
+    - name: init-database
+      image: busybox
+      command: ['sh', '-c', 'until nslookup {{ template "chart-app.postgresql.fullname" . }}; do echo waiting for cmdb database; sleep 2; done;']
+{{- end }}
+  containers:
+  - name: migration
+    env:
+    - name: DATABASE_ADDRESS
+      valueFrom:
+        configMapKeyRef:
+          name: {{ $fullName }}
+          key: CMDB_DATABASE_HOST
+    - name: DATABASE_NAME
+      valueFrom:
+        configMapKeyRef:
+          name: {{ $fullName }}
+          key: CMDB_DATABASE_NAME
+    - name: DATABASE_USER
+      valueFrom:
+        configMapKeyRef:
+          name: {{ $fullName }}
+          key: CMDB_DATABASE_USER
+  {{- if .Values.postgresql.enabled }}
+    - name: DATABASE_PASSWORD
+      valueFrom:
+        secretKeyRef:
+          name: {{ template "chart-app.postgresql.fullname" . }}
+          key: postgres-password
+{{- end }}
+    - name: CONFIG_FILE
+      value: defaults
+    image: infoblox/migrate:latest
+    imagePullPolicy: Always
+    volumeMounts:
+      - mountPath: /cmdb-migrations
+        name: migrations
+    command:
+      - /migrate
+    args:
+      - "--verbose"
+      - "--source"
+      - "file:///cmdb-migrations/migrations"
+      - up
+      # to get to a particular level append following
+      #- "2"
+  volumes:
+    - name: migrations
+      emptyDir: {}
