@@ -23,12 +23,6 @@ containers:
   # Always or IfNotPresent
   imagepullpolicy: Always
 
-image:
-  repository: soheileizadi/contacts-server
-  tag: latest
-  # Always or IfNotPresent
-  pullPolicy: Always
-
 services:
 - name: cmdb
   servicename: cmdb
