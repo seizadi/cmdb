@@ -169,7 +169,7 @@ func ServeExternal(logger *logrus.Logger) error {
 				)}...,
 			),
 			gateway.WithServerAddress(fmt.Sprintf("%s:%s", viper.GetString("server.address"), viper.GetString("server.port"))),
-			gateway.WithEndpointRegistration("/v1/", pb.RegisterProfilesHandlerFromEndpoint, pb.RegisterGroupsHandlerFromEndpoint, pb.RegisterContactsHandlerFromEndpoint),
+			gateway.WithEndpointRegistration(viper.GetString("server.version"), pb.RegisterCmdbHandlerFromEndpoint),
 		),
 		// serve swagger at the root
 		server.WithHandler("/swagger", http.HandlerFunc(func(writer http.ResponseWriter, request *http.Request) {

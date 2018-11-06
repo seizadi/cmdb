@@ -6,7 +6,19 @@ One paragraph of project description goes here.
 
 ## Getting Started
 
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
+These instructions will get you a copy of the project up and running
+on your local machine for development and testing purposes.
+See deployment for notes on how to deploy the project on a live system.
+
+## Design
+
+I started using the [atlas CLI](https://github.com/infobloxopen/atlas-cli)
+compared the application to what you have for the
+[contacts-app](https://github.com/infobloxopen/atlas-contacts-app) and
+decided it was better to create a template using Atlas CLI and remove
+the proto and stubs and the zserver implementation and replace them
+with the contacts-app pieces. This gave me the best starting point to
+start a new application.
 
 ### Prerequisites
 
@@ -15,6 +27,20 @@ These instructions will get you a copy of the project up and running on your loc
 ``` sh
 go get -u github.com/golang/dep/cmd/dep
 ```
+
+## Database
+
+### Design
+The process of designing the data model for the application could be
+iterative and maybe visual tools. I created a sample ./model directory
+here with a make target for generating ERD:
+```sh
+make erd
+Create file://out.html and file://out.pdf
+```
+Which creates targets e.g.
+![cmdb ERD](https://raw.githubusercontent.com/seizadi/cmdb/master/out.pdf)
+that you can view.
 
 ### Database Migration
 
@@ -120,10 +146,21 @@ Create vendor directory with required golang packages
 make vendor
 ```
 
-Run App server:
+Run CMDB App server:
 
-``` sh
+```bash
 go run ./cmd/server/*.go
+```
+Then you do the REST call:
+```sh
+curl http://localhost:8080/v1/version
+{"version":"0.0.1"}
+```
+
+Now try a REST call that requires authentication:
+```bash
+export JWT="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJBY2NvdW50SUQiOjF9.GsXyFDDARjXe1t9DPo2LIBKHEal3O7t3vLI3edA7dGU"
+curl -H "Authorization: Bearer $JWT" http://localhost:8080/v1/regions
 ```
 
 #### Try atlas-contacts-app
@@ -212,53 +249,53 @@ Try it out by executing following curl commands:
 ``` sh
 # Create some profiles
 curl -k -H "User-And-Pass: admin1:admin" \
-https://$(minikube ip)/atlas-contacts-app/v1/profiles -d '{"name": "personal", "notes": "Used for personal aims"}' | jq
+http://minkube/cmdb/v1/profiles -d '{"name": "personal", "notes": "Used for personal aims"}' | jq
 
 curl -k -H "User-And-Pass: admin1:admin" \
-https://$(minikube ip)/atlas-contacts-app/v1/profiles -d '{"name": "work", "notes": "Used for work aims"}' | jq
+http://minkube/cmdb/v1/profiles -d '{"name": "work", "notes": "Used for work aims"}' | jq
 
 # Create some groups assigned to profiles
 curl -k -H "User-And-Pass: admin1:admin" \
-https://$(minikube ip)/atlas-contacts-app/v1/groups -d '{"name": "schoolmates", "profile_id": "atlas-contacts-app/profiles/1"}' | jq
+http://minkube/cmdb/v1/groups -d '{"name": "schoolmates", "profile_id": "atlas-contacts-app/profiles/1"}' | jq
 
 curl -k -H "User-And-Pass: admin1:admin" \
-https://$(minikube ip)/atlas-contacts-app/v1/groups -d '{"name": "family", "profile_id": "atlas-contacts-app/profiles/1"}' | jq
+http://minkube/cmdb/v1/groups -d '{"name": "family", "profile_id": "atlas-contacts-app/profiles/1"}' | jq
 
 curl -k -H "User-And-Pass: admin1:admin" \
-https://$(minikube ip)/atlas-contacts-app/v1/groups -d '{"name": "accountants", "profile_id": "atlas-contacts-app/profiles/2"}' | jq
+http://minkube/cmdb/v1/groups -d '{"name": "accountants", "profile_id": "atlas-contacts-app/profiles/2"}' | jq
 
 # Add some contacts assigned to profiles and groups
 curl -k -H "User-And-Pass: admin1:admin" \
-https://$(minikube ip)/atlas-contacts-app/v1/contacts -d '{"first_name": "Mike", "primary_email": "mike@gmail.com", "profile_id": "atlas-contacts-app/profiles/1", "groups": ["atlas-contacts-app/groups/1", "atlas-contacts-app/groups/2"], "home_address": {"city": "Minneapolis", "state": "Minnesota", "country": "US"}}' | jq
+http://minkube/cmdb/v1/contacts -d '{"first_name": "Mike", "primary_email": "mike@gmail.com", "profile_id": "atlas-contacts-app/profiles/1", "groups": ["atlas-contacts-app/groups/1", "atlas-contacts-app/groups/2"], "home_address": {"city": "Minneapolis", "state": "Minnesota", "country": "US"}}' | jq
 
 curl -k -H "User-And-Pass: admin1:admin" \
-https://$(minikube ip)/atlas-contacts-app/v1/contacts -d '{"first_name": "John", "primary_email": "john@gmail.com", "profile_id": "atlas-contacts-app/profiles/2", "work_address": {"city": "St.Paul", "state": "Minnesota", "country": "US"}}' | jq
+http://minkube/cmdb/v1/contacts -d '{"first_name": "John", "primary_email": "john@gmail.com", "profile_id": "atlas-contacts-app/profiles/2", "work_address": {"city": "St.Paul", "state": "Minnesota", "country": "US"}}' | jq
 
 # Patch zip value for a particular contact
 curl -k -H "User-And-Pass: admin1:admin" -X PATCH \
-https://$(minikube ip)/atlas-contacts-app/v1/contacts/{contact_id} -d '{"work_address": {"zip": "161"}}' | jq
+http://minkube/cmdb/v1/contacts/{contact_id} -d '{"work_address": {"zip": "161"}}' | jq
 
 # Read created resources
 curl -k -H "User-And-Pass: admin1:admin" \
-https://$(minikube ip)/atlas-contacts-app/v1/profiles  | jq
+http://minkube/cmdb/v1/profiles  | jq
 
 curl -k -H "User-And-Pass: admin1:admin" \
-https://$(minikube ip)/atlas-contacts-app/v1/groups | jq
+http://minkube/cmdb/v1/groups | jq
 
 curl -k -H "User-And-Pass: admin1:admin" \
-https://$(minikube ip)/atlas-contacts-app/v1/contacts | jq
+http://minkube/cmdb/v1/contacts | jq
 
 # Read groups which belong to a profile
 curl -k -H "User-And-Pass: admin1:admin" \
-https://$(minikube ip)/atlas-contacts-app/v1/profiles/1/groups  | jq
+http://minkube/cmdb/v1/profiles/1/groups  | jq
 
 # Read contacts which belong to a profile
 curl -k -H "User-And-Pass: admin1:admin" \
-https://$(minikube ip)/atlas-contacts-app/v1/profiles/1/contacts  | jq
+http://minkube/cmdb/v1/profiles/1/contacts  | jq
 
 # Read contacts which belong to a group
 curl -k -H "User-And-Pass: admin1:admin" \
-https://$(minikube ip)/atlas-contacts-app/v1/groups/1/contacts  | jq
+http://minkube/cmdb/v1/groups/1/contacts  | jq
 ```
 
 ##### API documentation
@@ -266,7 +303,7 @@ https://$(minikube ip)/atlas-contacts-app/v1/groups/1/contacts  | jq
 API documentation in k8s deployment could be found on following link, note that no credentials needed to access it:
 
 ```
-https://<minikube address>/atlas-contacts-app/apidoc/index
+https://<minikube address>/cmdb/apidoc/index
 ```
 
 NOTE: This documentation page is only for demo purposes, do not copy and use it in your own production due to risk of injections.
@@ -443,6 +480,44 @@ Give an example
 We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/your/project/tags).
 
 ## Debugging
+The problems related to grpc-gateway routing below the
+base path ./cmdb/v1 are handled by HTTP server and more difficult to
+debug as you get generic error messages that are not very helpful:
+```sh
+$ curl http://localhost:8080/cmdb/v1
+<a href="/cmdb/v1/">Moved Permanently</a>.
+
+$ curl http://localhost:8080/v1/version
+404 page not found
+```
+The first message is a 301 redirect and redirect location is the same
+path that was accessed which not helpful it should have probably
+returned another '404' page not found error:
+```sh
+$ curl -v http://localhost:8080/cmdb/v1
+*   Trying ::1...
+* TCP_NODELAY set
+* Connected to localhost (::1) port 8080 (#0)
+> GET /cmdb/v1 HTTP/1.1
+> Host: localhost:8080
+> User-Agent: curl/7.54.0
+> Accept: */*
+>
+< HTTP/1.1 301 Moved Permanently
+< Content-Type: text/html; charset=utf-8
+< Location: /cmdb/v1/
+< Date: Mon, 05 Nov 2018 19:39:57 GMT
+< Content-Length: 44
+<
+<a href="/cmdb/v1/">Moved Permanently</a>.
+```
+The call stack of cmdb application look like with Atlas CLI setup:
+![atlas basic call stack](https://raw.githubusercontent.com/seizadi/cmdb/master/doc/img/atlas_callstack.png)
+
+This is similar to the contact application:
+![cmdb call stack](https://raw.githubusercontent.com/seizadi/cmdb/master/doc/img/cmdb_callstack.png)
+
+### Database Issues
 Here is a real life case, I downloaded the application and did migration:
 ```bash
 $ createdb atlas_contacts_app

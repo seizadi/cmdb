@@ -4,18 +4,14 @@ import (
 	"context"
 	//"fmt"
 	//"github.com/Infoblox-CTO/go.grpc.middleware/authz"
-	
 	"github.com/grpc-ecosystem/go-grpc-middleware"
 	"github.com/grpc-ecosystem/go-grpc-middleware/logging/logrus"
 	"github.com/jinzhu/gorm"
 	_ "github.com/jinzhu/gorm/dialects/postgres"
-	"github.com/sirupsen/logrus"
-	"google.golang.org/grpc"
-	"google.golang.org/grpc/codes"
-	"google.golang.org/grpc/status"
-
 	"github.com/seizadi/cmdb/pkg/pb"
 	"github.com/seizadi/cmdb/pkg/svc"
+	"github.com/sirupsen/logrus"
+	"google.golang.org/grpc"
 	//"github.com/Infoblox-CTO/go.grpc.middleware/authz"
 	"github.com/infobloxopen/atlas-app-toolkit/auth"
 	"github.com/infobloxopen/atlas-app-toolkit/errors"
@@ -27,11 +23,14 @@ import (
 
 func NewGRPCServer(logger *logrus.Logger, db *gorm.DB) (*grpc.Server, error) {
 	interceptors := []grpc.UnaryServerInterceptor{
+		// logging middleware
 		grpc_logrus.UnaryServerInterceptor(logrus.NewEntry(logger)),
+		
+		// Request-Id interceptor
 		requestid.UnaryServerInterceptor(),
 		auth.LogrusUnaryServerInterceptor(),
 		errors.UnaryServerInterceptor(ErrorMappings...),
-		// validation interceptor
+		// validation middleware
 		validationerrors.UnaryServerInterceptor(),
 		UnaryServerInterceptor(),
 	}
@@ -46,24 +45,12 @@ func NewGRPCServer(logger *logrus.Logger, db *gorm.DB) (*grpc.Server, error) {
 	// create new gRPC grpcServer with middleware chain
 	grpcServer := grpc.NewServer(grpc.UnaryInterceptor(grpc_middleware.ChainUnaryServer(interceptors...)))
 
-	// register all of our services into the grpcServer
-	ps, err := svc.NewProfilesServer(db)
+	// register all of our services with the grpcServer
+	s, err := svc.NewBasicServer(db)
 	if err != nil {
 		return nil, err
 	}
-	pb.RegisterProfilesServer(grpcServer, ps)
-
-	gs, err := svc.NewGroupsServer(db)
-	if err != nil {
-		return nil, err
-	}
-	pb.RegisterGroupsServer(grpcServer, gs)
-
-	cs, err := svc.NewContactsServer(db)
-	if err != nil {
-		return nil, err
-	}
-	pb.RegisterContactsServer(grpcServer, cs)
+	pb.RegisterCmdbServer(grpcServer, s)
 
 	return grpcServer, nil
 }
@@ -84,15 +71,6 @@ func UnaryServerInterceptor() grpc.UnaryServerInterceptor {
 		err = gateway.GetCollectionOp(req, fs)
 		if err != nil {
 			return nil, err
-		}
-		if err := pb.ContactsValidateFiltering(info.FullMethod, f); err != nil {
-			return nil, status.Errorf(codes.InvalidArgument, err.Error())
-		}
-		if err := pb.ContactsValidateSorting(info.FullMethod, s); err != nil {
-			return nil, status.Errorf(codes.InvalidArgument, err.Error())
-		}
-		if err := pb.ContactsValidateFieldSelection(info.FullMethod, fs); err != nil {
-			return nil, status.Errorf(codes.InvalidArgument, err.Error())
 		}
 		return handler(ctx, req)
 	}

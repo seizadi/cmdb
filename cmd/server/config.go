@@ -7,13 +7,14 @@ const (
 	// Server
 	defaultServerAddress = "0.0.0.0"
 	defaultServerPort    = "9090"
+	defaultServerVersion = "/v1/"
 
 	// Gateway
 	defaultGatewayEnable      = true
 	defaultGatewayAddress     = "0.0.0.0"
 	defaultGatewayPort        = "8080"
-	defaultGatewayURL         = "contacts"
-	defaultGatewaySwaggerFile = "pkg/pb/contacts.swagger.json"
+	defaultGatewayURL         = "cmdb"
+	defaultGatewaySwaggerFile = "pkg/pb/cmdb.swagger.json"
 	defaultGatewaySwaggerUI   = "./apidoc-poc/swagger-ui-dist/"
 
 	// Database
@@ -24,8 +25,8 @@ const (
 	defaultDatabaseHost     = "0.0.0.0"
 	defaultDatabasePort     = "5432"
 	defaultDatabaseName     = "cmdb"
-	defaultDatabaseUser     = "postgres"
-	defaultDatabasePassword = "postgres"
+	defaultDatabaseUser     = "seizadi"
+	defaultDatabasePassword = ""
 	defaultDatabaseSSL      = "disable"
 	defaultDatabaseOption   = ""
 
@@ -56,13 +57,13 @@ const (
 	defaultInternalEnable    = true
 	defaultInternalAddress   = "0.0.0.0"
 	defaultInternalPort      = "8081"
-	defaultInternalHealth    = "/health"
+	defaultInternalHealth    = "/healthz"
 	defaultInternalReadiness = "/ready"
 
 	defaultConfigDirectory = "deploy/"
 	defaultConfigFile      = ""
 	defaultSecretFile      = ""
-	defaultApplicationID   = "atlas-contacts-app"
+	defaultApplicationID   = "cmd-app"
 
 	// Logging
 	defaultLoggingLevel = "debug"
@@ -72,6 +73,7 @@ var (
 	// define flag overrides
 	flagServerAddress = pflag.String("server.address", defaultServerAddress, "adress of gRPC server")
 	flagServerPort    = pflag.String("server.port", defaultServerPort, "port of gRPC server")
+	flagServerVersion     = pflag.String("server.version", defaultServerVersion, "endpoint version of server")
 
 	flagGatewayEnable      = pflag.Bool("gateway.enable", defaultGatewayEnable, "enable gatway")
 	flagGatewayAddress     = pflag.String("gateway.address", defaultGatewayAddress, "address of gateway server")

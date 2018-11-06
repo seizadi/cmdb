@@ -1,0 +1,81 @@
+{
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "schemes": [
+    "http",
+    "https"
+  ],
+  "swagger": "2.0",
+  "info": {
+    "title": "CMDB",
+    "contact": {
+      "name": "Soheil Eizadi",
+      "url": "https://github.com/seizadi/cmdb",
+      "email": "seizadi@gmail.com"
+    },
+    "version": "1.0"
+  },
+  "basePath": "/v1/",
+  "paths": {
+    "/version": {
+      "get": {
+        "tags": [
+          "Cmdb"
+        ],
+        "operationId": "CmdbGetVersion",
+        "responses": {
+          "200": {
+            "description": "GET operation response",
+            "schema": {
+              "$ref": "#/definitions/serviceVersionResponse"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "serviceVersionResponse": {
+      "description": "TODO: Structure your own protobuf messages. Each protocol buffer message is a\nsmall logical record of information, containing a series of name-value pairs.",
+      "type": "object",
+      "properties": {
+        "success": {
+          "properties": {
+            "code": {
+              "type": "integer",
+              "format": "int32",
+              "example": 200
+            },
+            "message": {
+              "type": "string",
+              "example": "\u003cresponse message\u003e"
+            },
+            "status": {
+              "type": "string",
+              "example": "OK"
+            }
+          }
+        },
+        "version": {
+          "type": "string"
+        }
+      }
+    }
+  },
+  "securityDefinitions": {
+    "ApiKeyAuth": {
+      "type": "apiKey",
+      "name": "Authorization",
+      "in": "header"
+    }
+  },
+  "security": [
+    {
+      "ApiKeyAuth": []
+    }
+  ]
+}

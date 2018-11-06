@@ -68,7 +68,7 @@ protobuf:
 	--swagger_out="atlas_patch=true:." \
 	--atlas-query-validate_out=. \
 	--atlas-validate_out="." \
-	--validate_out="lang=go:." 	$(PROJECT_ROOT)/pkg/pb/contacts.proto
+	--validate_out="lang=go:." 	$(PROJECT_ROOT)/pkg/pb/cmdb.proto
 
 .PHONY: vendor
 vendor:
@@ -108,3 +108,9 @@ migrate-up:
 .PHONY: migrate-down
 migrate-down:
 	@migrate -database 'postgres://$(DATABASE_HOST):5432/cmdb?sslmode=disable' -path ./db/migrations down
+
+.PHONY: erd
+erd: out.html
+	@go-erd -path model |dot -Tsvg > out.html
+	@go-erd -path model |dot -Tpdf > out.pdf
+	@echo 'Create file://out.html and file://out.pdf'
