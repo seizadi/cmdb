@@ -60,6 +60,12 @@ func NewGRPCServer(logger *logrus.Logger, db *gorm.DB) (*grpc.Server, error) {
 	}
 	pb.RegisterRegionsServer(grpcServer, rs)
 	
+	cs, err := svc.NewContainersServer()
+	if err != nil {
+		return nil, err
+	}
+	pb.RegisterContainersServer(grpcServer, cs)
+	
 	return grpcServer, nil
 }
 

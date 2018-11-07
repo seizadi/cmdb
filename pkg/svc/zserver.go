@@ -69,6 +69,15 @@ func NewRegionsServer() (pb.RegionsServer, error) {
 	return &regionsServer{&pb.RegionsDefaultServer{}}, nil
 }
 
+type containersServer struct {
+	*pb.ContainersDefaultServer
+}
+
+// NewRegionsServer returns an instance of the default regions server interface
+func NewContainersServer() (pb.ContainersServer, error) {
+	return &containersServer{&pb.ContainersDefaultServer{}}, nil
+}
+
 // List wraps default RegionsDefaultServer.List implementation by adding
 // application specific page token implementation.
 // Actually the service supports "composite" pagination in a specific way:

@@ -17,12 +17,32 @@ var CmdbMethodsRequireFilteringValidation = map[string]map[string]options.Filter
 		"name":        options.FilteringOption{ValueType: options.QueryValidate_STRING},
 		"description": options.FilteringOption{ValueType: options.QueryValidate_STRING},
 	},
+	"/api.cmdb.Containers/List": map[string]options.FilteringOption{
+		"id":                options.FilteringOption{ValueType: options.QueryValidate_STRING},
+		"name":              options.FilteringOption{ValueType: options.QueryValidate_STRING},
+		"description":       options.FilteringOption{ValueType: options.QueryValidate_STRING},
+		"container_name":    options.FilteringOption{ValueType: options.QueryValidate_STRING},
+		"image_repo":        options.FilteringOption{ValueType: options.QueryValidate_STRING},
+		"image_tag":         options.FilteringOption{ValueType: options.QueryValidate_STRING},
+		"image_pull_policy": options.FilteringOption{ValueType: options.QueryValidate_STRING},
+		"digest":            options.FilteringOption{ValueType: options.QueryValidate_STRING},
+	},
 }
 var CmdbMethodsRequireSortingValidation = map[string][]string{
 	"/api.cmdb.Regions/List": []string{
 		"id",
 		"name",
 		"description",
+	},
+	"/api.cmdb.Containers/List": []string{
+		"id",
+		"name",
+		"description",
+		"container_name",
+		"image_repo",
+		"image_tag",
+		"image_pull_policy",
+		"digest",
 	},
 }
 var CmdbMethodsRequireFieldSelectionValidation = map[string][]string{
@@ -35,6 +55,26 @@ var CmdbMethodsRequireFieldSelectionValidation = map[string][]string{
 		"id",
 		"name",
 		"description",
+	},
+	"/api.cmdb.Containers/Read": {
+		"id",
+		"name",
+		"description",
+		"container_name",
+		"image_repo",
+		"image_tag",
+		"image_pull_policy",
+		"digest",
+	},
+	"/api.cmdb.Containers/List": {
+		"id",
+		"name",
+		"description",
+		"container_name",
+		"image_repo",
+		"image_tag",
+		"image_pull_policy",
+		"digest",
 	},
 }
 

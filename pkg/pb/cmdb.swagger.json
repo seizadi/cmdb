@@ -21,6 +21,206 @@
   },
   "basePath": "/v1/",
   "paths": {
+    "/containers": {
+      "get": {
+        "tags": [
+          "Containers"
+        ],
+        "summary": "Use this method to retrieve the list of containers.",
+        "operationId": "ContainersList",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "\n\nA collection of response resources can be filtered by a logical expression string that includes JSON tag references to values in each resource, literal values, and logical operators. If a resource does not have the specified tag, its value is assumed to be null.\n\nLiteral values include numbers (integer and floating-point), and quoted (both single- or double-quoted) literal strings, and 'null'. The following operators are commonly used in filter expressions:\n\n|  Op   |  Description               | \n|  --   |  -----------               | \n|  ==   |  Equal                     | \n|  !=   |  Not Equal                 | \n|  \u003e    |  Greater Than              | \n|   \u003e=  |  Greater Than or Equal To  | \n|  \u003c    |  Less Than                 | \n|  \u003c=   |  Less Than or Equal To     | \n|  and  |  Logical AND               | \n|  ~    |  Matches Regex             | \n|  !~   |  Does Not Match Regex      | \n|  or   |  Logical OR                | \n|  not  |  Logical NOT               | \n|  ()   |  Groupping Operators       |\n\n\t\t\t\t\t\t",
+            "name": "_filter",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "description": "\n\nA collection of response resources can be sorted by their JSON tags. For a 'flat' resource, the tag name is straightforward. If sorting is allowed on non-flat hierarchical resources, the service should implement a qualified naming scheme such as dot-qualification to reference data down the hierarchy. If a resource does not have the specified tag, its value is assumed to be null.)\n\nSpecify this parameter as a comma-separated list of JSON tag names. The sort direction can be specified by a suffix separated by whitespace before the tag name. The suffix 'asc' sorts the data in ascending order. The suffix 'desc' sorts the data in descending order. If no suffix is specified the data is sorted in ascending order.\n\n\t\t\t\t\t\t",
+            "name": "_order_by",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "description": "\n\nA collection of response resources can be transformed by specifying a set of JSON tags to be returned. For a “flat” resource, the tag name is straightforward. If field selection is allowed on non-flat hierarchical resources, the service should implement a qualified naming scheme such as dot-qualification to reference data down the hierarchy. If a resource does not have the specified tag, the tag does not appear in the output resource.\n\nSpecify this parameter as a comma-separated list of JSON tag names.\n\n\t\t\t\t\t\t",
+            "name": "_fields",
+            "in": "query"
+          },
+          {
+            "type": "integer",
+            "description": "\n\nThe integer index (zero-origin) of the offset into a collection of resources. If omitted or null the value is assumed to be '0'.\n\n\t\t\t\t\t\t\t",
+            "name": "_offset",
+            "in": "query"
+          },
+          {
+            "type": "integer",
+            "description": "\n\nThe integer number of resources to be returned in the response. The service may impose maximum value. If omitted the service may impose a default value.\n\n\t\t\t\t\t\t\t",
+            "name": "_limit",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "description": "\n\nThe service-defined string used to identify a page of resources. A null value indicates the first page.\n\n\t\t\t\t\t\t\t",
+            "name": "_page_token",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "GET operation response",
+            "schema": {
+              "$ref": "#/definitions/cmdbListContainersResponse"
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Containers"
+        ],
+        "summary": "Use this method to create a container.",
+        "operationId": "ContainersCreate",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/cmdbContainer"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "POST operation response",
+            "schema": {
+              "$ref": "#/definitions/cmdbCreateContainerResponse"
+            }
+          }
+        }
+      }
+    },
+    "/containers/{id}": {
+      "get": {
+        "tags": [
+          "Containers"
+        ],
+        "summary": "Use this method to retrieve the particular container.",
+        "operationId": "ContainersRead",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "An application specific resource identity of a resource",
+            "name": "id",
+            "in": "path",
+            "required": true
+          },
+          {
+            "type": "string",
+            "description": "\n\nA collection of response resources can be transformed by specifying a set of JSON tags to be returned. For a “flat” resource, the tag name is straightforward. If field selection is allowed on non-flat hierarchical resources, the service should implement a qualified naming scheme such as dot-qualification to reference data down the hierarchy. If a resource does not have the specified tag, the tag does not appear in the output resource.\n\nSpecify this parameter as a comma-separated list of JSON tag names.\n\n\t\t\t\t\t\t",
+            "name": "_fields",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "GET operation response",
+            "schema": {
+              "$ref": "#/definitions/cmdbReadContainerResponse"
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Containers"
+        ],
+        "summary": "Use this method to update container.",
+        "operationId": "ContainersUpdate",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "An application specific resource identity of a resource",
+            "name": "id",
+            "in": "path",
+            "required": true
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/cmdbContainer"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "PUT operation response",
+            "schema": {
+              "$ref": "#/definitions/cmdbUpdateContainerResponse"
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Containers"
+        ],
+        "summary": "Use this method to delete a container.",
+        "operationId": "ContainersDelete",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "An application specific resource identity of a resource",
+            "name": "id",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "DELETE operation response",
+            "schema": {
+              "$ref": "#/definitions/cmdbDeleteContainerResponse"
+            }
+          }
+        }
+      },
+      "patch": {
+        "tags": [
+          "Containers"
+        ],
+        "summary": "Use this method to update container.",
+        "operationId": "ContainersUpdate2",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "An application specific resource identity of a resource",
+            "name": "id",
+            "in": "path",
+            "required": true
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/cmdbContainer"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "PATCH operation response",
+            "schema": {
+              "$ref": "#/definitions/cmdbUpdateContainerResponse"
+            }
+          }
+        }
+      }
+    },
     "/regions": {
       "get": {
         "tags": [
@@ -259,6 +459,70 @@
         }
       }
     },
+    "cmdbContainer": {
+      "type": "object",
+      "title": "-----------------------------------------------------------------------------------\nContainer represents a Docker Image that has been loaded to a Registry\n-----------------------------------------------------------------------------------",
+      "properties": {
+        "container_name": {
+          "type": "string",
+          "title": "The unique container name referenced helm charts"
+        },
+        "description": {
+          "type": "string",
+          "title": "The description of the container"
+        },
+        "digest": {
+          "type": "string",
+          "title": "The digest of the image to check integrity (e.g. digest: sha256:9bf4971079f0ddf3f4ed8681dc96c2610804007359643809165f94a95bc5c3b6)"
+        },
+        "id": {
+          "description": "The resource identifier.",
+          "type": "string",
+          "readOnly": true
+        },
+        "image_pull_policy": {
+          "type": "string",
+          "title": "The image pull"
+        },
+        "image_repo": {
+          "type": "string",
+          "title": "The docker image repository (e.g. soheileizadi)"
+        },
+        "image_tag": {
+          "type": "string",
+          "title": "The docker image tag (e.g. latest)"
+        },
+        "name": {
+          "type": "string",
+          "title": "The name of the container"
+        }
+      }
+    },
+    "cmdbCreateContainerResponse": {
+      "type": "object",
+      "properties": {
+        "result": {
+          "$ref": "#/definitions/cmdbContainer"
+        },
+        "success": {
+          "properties": {
+            "code": {
+              "type": "integer",
+              "format": "int32",
+              "example": 201
+            },
+            "message": {
+              "type": "string",
+              "example": "\u003cresponse message\u003e"
+            },
+            "status": {
+              "type": "string",
+              "example": "CREATED"
+            }
+          }
+        }
+      }
+    },
     "cmdbCreateRegionResponse": {
       "type": "object",
       "properties": {
@@ -279,6 +543,28 @@
             "status": {
               "type": "string",
               "example": "CREATED"
+            }
+          }
+        }
+      }
+    },
+    "cmdbDeleteContainerResponse": {
+      "type": "object",
+      "properties": {
+        "success": {
+          "properties": {
+            "code": {
+              "type": "integer",
+              "format": "int32",
+              "example": 204
+            },
+            "message": {
+              "type": "string",
+              "example": "\u003cresponse message\u003e"
+            },
+            "status": {
+              "type": "string",
+              "example": "DELETED"
             }
           }
         }
@@ -306,6 +592,37 @@
         }
       }
     },
+    "cmdbListContainersResponse": {
+      "type": "object",
+      "properties": {
+        "page": {
+          "$ref": "#/definitions/apiPageInfo"
+        },
+        "results": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/cmdbContainer"
+          }
+        },
+        "success": {
+          "properties": {
+            "code": {
+              "type": "integer",
+              "format": "int32",
+              "example": 200
+            },
+            "message": {
+              "type": "string",
+              "example": "\u003cresponse message\u003e"
+            },
+            "status": {
+              "type": "string",
+              "example": "OK"
+            }
+          }
+        }
+      }
+    },
     "cmdbListRegionsResponse": {
       "type": "object",
       "properties": {
@@ -317,6 +634,31 @@
           "items": {
             "$ref": "#/definitions/cmdbRegion"
           }
+        },
+        "success": {
+          "properties": {
+            "code": {
+              "type": "integer",
+              "format": "int32",
+              "example": 200
+            },
+            "message": {
+              "type": "string",
+              "example": "\u003cresponse message\u003e"
+            },
+            "status": {
+              "type": "string",
+              "example": "OK"
+            }
+          }
+        }
+      }
+    },
+    "cmdbReadContainerResponse": {
+      "type": "object",
+      "properties": {
+        "result": {
+          "$ref": "#/definitions/cmdbContainer"
         },
         "success": {
           "properties": {
@@ -364,7 +706,7 @@
     },
     "cmdbRegion": {
       "type": "object",
-      "title": "Region represents a particular AWS Region",
+      "title": "------------------------------------------\nRegion represents a particular AWS Region\n------------------------------------------",
       "properties": {
         "description": {
           "type": "string",
@@ -378,6 +720,31 @@
         "name": {
           "type": "string",
           "title": "The name of the region"
+        }
+      }
+    },
+    "cmdbUpdateContainerResponse": {
+      "type": "object",
+      "properties": {
+        "result": {
+          "$ref": "#/definitions/cmdbContainer"
+        },
+        "success": {
+          "properties": {
+            "code": {
+              "type": "integer",
+              "format": "int32",
+              "example": 201
+            },
+            "message": {
+              "type": "string",
+              "example": "\u003cresponse message\u003e"
+            },
+            "status": {
+              "type": "string",
+              "example": "UPDATED"
+            }
+          }
         }
       }
     },
@@ -408,6 +775,7 @@
     },
     "cmdbVersionResponse": {
       "type": "object",
+      "title": "---------------------------------\nCMDB Application Version\n---------------------------------",
       "properties": {
         "success": {
           "properties": {

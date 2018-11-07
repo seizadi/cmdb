@@ -27,9 +27,58 @@ option go_package = "github.com/seizadi/cmdb/pkg/pb;pb";
 // https://github.com/grpc-ecosystem/grpc-gateway
 // https://developers.google.com/protocol-buffers/docs/style
 
-// Happy protobuffing!
+option (grpc.gateway.protoc_gen_swagger.options.openapiv2_swagger) = {
+  info: {
+    title: "CMDB";
+    version: "1.0";
+    contact: {
+        name: "Soheil Eizadi";
+        url: "https://github.com/seizadi/cmdb";
+        email: "seizadi@gmail.com";
+    };
+  };
+  schemes: HTTP;
+  schemes: HTTPS;
+  consumes: "application/json";
+  produces: "application/json";
+  base_path: "/v1/";
+  security_definitions: {
+    security: {
+      key: "ApiKeyAuth";
+      value: {
+        type: TYPE_API_KEY;
+        in: IN_HEADER;
+        name: "Authorization";
+      };
+    };
+  };
+  security: {
+    security_requirement: {
+      key: "ApiKeyAuth";
+      value: {};
+    }
+  };
+};
 
+// ---------------------------------
+// CMDB Application Version
+// ---------------------------------
+message VersionResponse {
+  string version = 1;
+}
+
+service Cmdb {
+  rpc GetVersion (google.protobuf.Empty) returns (VersionResponse) {
+  // TODO: Provide mappings between REST endpoints and service methods.
+    option (google.api.http) = {
+      get: "/version"
+    };
+  }
+}
+
+// ------------------------------------------
 // Region represents a particular AWS Region
+// ------------------------------------------
 message Region {
   option (gorm.opts) = {
       ormable: true,
@@ -140,48 +189,157 @@ service Regions {
   }
 }
 
-message VersionResponse {
-  string version = 1;
+
+// -----------------------------------------------------------------------------------
+// Container represents a Docker Image that has been loaded to a Registry
+// -----------------------------------------------------------------------------------
+message Container {
+  option (gorm.opts) = {
+      ormable: true,
+      multi_account: true
+  };
+
+  // The contact identifier.
+  atlas.rpc.Identifier id = 1 [(gorm.field).tag = {type: "serial"  primary_key: true}];
+
+  // The name of the container
+  string name = 2;
+
+  // The description of the container
+  string description = 3;
+
+  // The unique container name referenced helm charts
+  string container_name = 4;
+
+  // The docker image repository (e.g. soheileizadi)
+  string image_repo = 5;
+
+  // The docker image tag (e.g. latest)
+  string image_tag = 6;
+
+  // The image pull
+  string image_pull_policy = 7;
+
+  // The digest of the image to check integrity (e.g. digest: sha256:9bf4971079f0ddf3f4ed8681dc96c2610804007359643809165f94a95bc5c3b6)
+  string digest = 8;
+
 }
 
-service Cmdb {
-  rpc GetVersion (google.protobuf.Empty) returns (VersionResponse) {
-  // TODO: Provide mappings between REST endpoints and service methods.
-    option (google.api.http) = {
-      get: "/version"
-    };
-  }
+message CreateContainerRequest {
+    Container payload = 1;
 }
 
-option (grpc.gateway.protoc_gen_swagger.options.openapiv2_swagger) = {
-  info: {
-    title: "CMDB";
-    version: "1.0";
-    contact: {
-        name: "Soheil Eizadi";
-        url: "https://github.com/seizadi/cmdb";
-        email: "seizadi@gmail.com";
+message CreateContainerResponse {
+    Container result = 1;
+}
+
+message ReadContainerRequest {
+    atlas.rpc.Identifier id = 1;
+    infoblox.api.FieldSelection fields = 2;
+}
+
+message ReadContainerResponse {
+    Container result = 1;
+}
+
+message UpdateContainerRequest {
+    Container payload = 1;
+    google.protobuf.FieldMask fields = 2;
+}
+
+message UpdateContainerResponse {
+    Container result = 1;
+}
+
+message DeleteContainerRequest {
+    atlas.rpc.Identifier id = 1;
+}
+
+message DeleteContainerResponse{}
+
+message ListContainerRequest {
+    infoblox.api.Filtering filter = 1;
+    infoblox.api.Sorting order_by = 2;
+    infoblox.api.FieldSelection fields = 3;
+    infoblox.api.Pagination paging = 4;
+}
+
+message ListContainersResponse {
+    repeated Container results = 1;
+    infoblox.api.PageInfo page = 2;
+}
+
+service Containers {
+    option (gorm.server) = {
+      autogen: true,
+      txn_middleware: true,
     };
-  };
-  schemes: HTTP;
-  schemes: HTTPS;
-  consumes: "application/json";
-  produces: "application/json";
-  base_path: "/v1/";
-  security_definitions: {
-    security: {
-      key: "ApiKeyAuth";
-      value: {
-        type: TYPE_API_KEY;
-        in: IN_HEADER;
-        name: "Authorization";
-      };
-    };
-  };
-  security: {
-    security_requirement: {
-      key: "ApiKeyAuth";
-      value: {};
+
+    option (atlas_validate.service).allow_unknown_fields = true;
+
+    // Use this method to create a container.
+    rpc Create (CreateContainerRequest) returns (CreateContainerResponse) {
+        option (google.api.http) = {
+            post: "/containers"
+            body: "payload"
+        };
+
+        option (atlas_validate.method).allow_unknown_fields = false;
     }
-  };
-};
+
+    // Use this method to retrieve the particular container.
+    rpc Read (ReadContainerRequest) returns (ReadContainerResponse) {
+        option (google.api.http) = {
+            get: "/containers/{id.resource_id}"
+        };
+    }
+
+    // Use this method to update container.
+    rpc Update (UpdateContainerRequest) returns (UpdateContainerResponse) {
+        option (google.api.http) = {
+            put: "/containers/{payload.id.resource_id}"
+            body: "payload"
+            additional_bindings: {
+                patch: "/containers/{payload.id.resource_id}"
+                body: "payload"
+            }
+        };
+
+        option (atlas_validate.method).allow_unknown_fields = false;
+    }
+
+    // Use this method to delete a container.
+    rpc Delete (DeleteContainerRequest) returns (DeleteContainerResponse) {
+        option (google.api.http) = {
+            delete: "/containers/{id.resource_id}"
+        };
+        option (gorm.method).object_type = "Container";
+    }
+
+    // Use this method to retrieve the list of containers.
+    rpc List (ListContainerRequest) returns (ListContainersResponse) {
+        option (google.api.http) = {
+            get: "/containers"
+        };
+    }
+
+}
+
+//// -----------------------------------------------------------------------------------
+//// Environment represents a particular resource that can own Applications in a Region
+//// -----------------------------------------------------------------------------------
+//message Environment {
+//  option (gorm.opts) = {
+//      ormable: true,
+//      multi_account: true
+//  };
+//
+//  // The contact identifier.
+//  atlas.rpc.Identifier id = 1 [(gorm.field).tag = {type: "serial"  primary_key: true}];
+//
+//  // The name of the region
+//  string name = 2;
+//
+//  // The description of the region
+//  string description = 3;
+//}

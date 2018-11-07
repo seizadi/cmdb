@@ -3,8 +3,8 @@ package model
 type Container struct {
 	Model
 	Name            string
-	ContainerName   string
 	Description     string
+	ContainerName   string
 	ImageRepo       string
 	ImageTag        string
 	ImagePullPolicy string

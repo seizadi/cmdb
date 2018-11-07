@@ -171,6 +171,12 @@ curl -H "Authorization: Bearer $JWT" http://localhost:8080/v1/regions -d '{"name
 {"result":{"id":"cmdb-app/regions/1","name":"us-west-1","description":"sample..."}}
 ```
 
+Add Container:
+```sh
+curl -H "Authorization: Bearer $JWT" http://localhost:8080/v1/containers -d '{"name": "contacts-app", "description": "sample contacts application", "container_name": "contacts-app", "image_repo": "soheileizadi", "image_tag": "latest", "image_pull_policy": "always"}'
+{"result":{"id":"cmdb-app/containers/1","name":"contacts-app","description":"sample contacts application","container_name":"contacts-app","image_repo":"soheileizadi","image_tag":"latest","image_pull_policy":"always"}}
+```
+
 #### Try atlas-contacts-app
 
 For Multi-Account environment, Authorization token (Bearer) is required. You can generate it using https://jwt.io/ with following Payload:
