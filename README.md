@@ -130,15 +130,6 @@ docker run --name contacts-app-migration --volumes-from init-container1 --networ
 
 ### Local development setup
 
-Please note that you should have the following ports opened on you local workstation: `:8080 :8081 :9090 :5432`.
-If they are busy - please change them via corresponding parameters of `gateway` and `server` binaries or postgres container run.
-
-Run PostgresDB:
-
-```sh
-docker run --name contacts-db -e POSTGRES_PASSWORD=postgres -e POSTGRES_USER=postgres -e POSTGRES_DB=contacts -p 5432:5432 -d postgres:9.4
-```
-
 Table creation should be done manually by running the migrations scripts or following the steps defined in database migration section. Scripts can be found at `./db/migrations/`
 
 Create vendor directory with required golang packages
@@ -835,6 +826,128 @@ Log from Postgres Server:
 I gave up running this on my local postgres and wrote the helm chart
 to run it on k8, I'll come back to the problem later if I can reproduce
 it on the k8 enviornment.
+
+### Ingress Debug
+I built the initial application and it was working fine on local:
+```sh
+$ go run ./cmd/server/*.go
+$ curl http://localhost:8080/v1/version
+{"version":"0.0.1"}
+```
+
+Then I built a docker image and deployed it on minikube, now found
+this error:
+```sh
+$ curl http://minikube/cmdb/v1/version
+{"error":{"status":501,"code":"NOT_IMPLEMENTED","message":"Not Implemented"}}
+```
+There were no logs from the application, so I commented out most of
+the validators in func UnaryServerInterceptor() and left a basic
+validator, now when I run the same command I get a couple of different
+behaviors:
+```sh
+$ curl http://minikube/cmdb/v1/version
+<html>
+<head><title>502 Bad Gateway</title></head>
+<body bgcolor="white">
+<center><h1>502 Bad Gateway</h1></center>
+<hr><center>nginx/1.13.12</center>
+</body>
+</html>
+$ curl http://minikube/cmdb/v1/version
+{"error":{"status":501,"code":"NOT_IMPLEMENTED","message":"Not Implemented"}}
+```
+Looking at the nginx logs, looks like there is phase at the begining
+when the connection is refused then you get the 501 error:
+```sh
+sc-l-seizadi:cmdb seizadi$ k -n kube-system logs nginx-ingress-controller-5984b97644-xjv7q
+...
+
+2018/11/06 22:26:30 [error] 1148#1148: *116 connect() failed (111: Connection refused) while connecting to upstream, client: 192.168.99.1, server: minikube, request: "GET /cmdb/v1/version HTTP/1.1", upstream: "http://172.17.0.8:8080/v1/v1/version", host: "minikube"
+192.168.99.1 - [192.168.99.1] - - [06/Nov/2018:22:26:30 +0000] "GET /cmdb/v1/version HTTP/1.1" 502 174 "-" "curl/7.54.0" 87 0.000 [default-kissed-panda-cmdb-8080] 172.17.0.8:8080 0 0.000 502 3ec3c3aa05658daf0cad6524514427a1
+192.168.99.1 - [192.168.99.1] - - [06/Nov/2018:22:28:41 +0000] "GET /cmdb/v1/version HTTP/1.1" 501 77 "-" "curl/7.54.0" 87 0.002 [default-kissed-panda-cmdb-8080] 172.17.0.8:8080 77 0.001 501 8c62a4000a29b5c011e230d1f972c9cc
+```
+Since we not getting any logs from the application lets turn on
+[grpc tracing logs](https://github.com/grpc/grpc/blob/master/TROUBLESHOOTING.md)
+Here is more detail on the
+[settings](https://github.com/grpc/grpc/blob/master/doc/environment_variables.md)
+I enabled these two settings using the configmap.yaml but the equivalent as:
+```sh
+export GRPC_TRACE=all
+export GRPC_VERBOSITY=debug
+```
+This does not help and I still get no additional information:
+```sh
+sc-l-seizadi:cmdb seizadi$ k logs kindred-lynx-cmdb-558886f9c6-9nl4c
+time="2018-11-06T23:05:44Z" level=debug msg="serving internal http at \"0.0.0.0:8081\""
+time="2018-11-06T23:05:44Z" level=debug msg="serving gRPC at \"0.0.0.0:9090\""
+time="2018-11-06T23:05:44Z" level=debug msg="serving http at \"0.0.0.0:8080\""
+```
+Now more basic debugging, inside cluster see if service and container
+working, isolate problem between Ingress GW and Service/Container:
+```
+$ k get services
+NAME                      CLUSTER-IP      EXTERNAL-IP   PORT(S)          AGE
+kindred-lynx-cmdb         10.101.160.94   <nodes>       8080:30921/TCP   1h
+kindred-lynx-postgresql   10.106.131.92   <none>        5432/TCP         1h
+kubernetes                10.96.0.1       <none>        443/TCP
+
+$ k get pod kindred-lynx-cmdb-558886f9c6-9nl4c -o wide
+NAME                                 READY     STATUS    RESTARTS   AGE       IP           NODE
+kindred-lynx-cmdb-558886f9c6-9nl4c   1/1       Running   1          1h        172.17.0.8   minikube
+
+$ k run -it --rm --image=infoblox/dnstools api-test
+If you don't see a command prompt, try pressing enter.
+dnstools# curl http://10.101.160.94:8080/v1/version
+{"error":{"status":501,"code":"NOT_IMPLEMENTED","message":"Not Implemented"}}dnstools#
+dnstools#
+dnstools# curl http://172.17.0.8:8080/v1/version
+{"error":{"status":501,"code":"NOT_IMPLEMENTED","message":"Not Implemented"}}dnstools#
+dnstools# curl http://172.17.0.8:8080/swagger
+{
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "schemes": [
+    "http",
+    "https"
+  ],
+  "swagger": "2.0",
+  "info": {
+    "title": "Contacts",
+    "contact": {
+      "name": "John Belamaric",
+      "url": "https://github.com/seizadi/cmdb",
+      "email": "jbelamaric@infoblox.com"
+    },
+    "version": "1.0"
+  },
+  "basePath": "/v1/",
+  .....
+```
+So looks like API 'v1/version' is returnning error, fortunately we have
+two servers running and the swagger is returning a response and from
+that it looks like although we built an image the one being loaded is
+the old one which has the contact-app signature! Looks like I forgot to
+do a docker push, maybe should be part of the Makefile
+```sh
+soheileizadi/cmdb-server            latest                            1bc6c349bc51        2 hours ago         35MB
+
+From DockerHub...
+latest  11 MB   8 days ago
+```
+That fix in now it is still not working and it look like a problem with
+ingress, so I fixed ingress.yaml and now it is working :)
+```sh
+$ curl http://minikube/cmdb/v1/version
+{"version":"0.0.1"}
+$ curl http://minikube/cmdb/v1/swagger
+$ curl http://minikube/cmdb/swagger
+{"basePath":"/cmdb/v1/",....}
+```
 
 ### Migration Debug
 Now debugging migration. You can see from database that it has no

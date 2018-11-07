@@ -38,7 +38,7 @@
 
 [[projects]]
   branch = "master"
-  digest = "1:fc7de8226e55482effc476678682027ed42084ee24598c81e342f2d3cd881b63"
+  digest = "1:0907be6ccc0533bade1c1b9efbab366424983e912f58e57b96d5ae2616dda1ba"
   name = "github.com/golang/protobuf"
   packages = [
     "jsonpb",
@@ -50,6 +50,7 @@
     "ptypes",
     "ptypes/any",
     "ptypes/duration",
+    "ptypes/empty",
     "ptypes/struct",
     "ptypes/timestamp",
   ]
@@ -115,7 +116,7 @@
 
 [[projects]]
   branch = "master"
-  digest = "1:ff0b4518d6bb93b90355c393737fd2ed6c0024da8243b6ff4fa0c5c5e0aa6dab"
+  digest = "1:e4c78db767fa279d3d76aaaf4e05ecd00fd4997ced3570d8c67bcc6b9dd94aa6"
   name = "github.com/infobloxopen/atlas-app-toolkit"
   packages = [
     "auth",
@@ -123,7 +124,6 @@
     "errors/mappers/pqerrors",
     "errors/mappers/validationerrors",
     "gateway",
-    "gorm",
     "gorm/resource",
     "health",
     "query",
@@ -147,23 +147,19 @@
 
 [[projects]]
   branch = "master"
-  digest = "1:0af5befe2d93989c1462f8ddf51ea1027a2b880b8b99fb5e0830ea0944c1ef23"
+  digest = "1:0b52d31d8f2e86abb9f3cd9c7e143bc779c7bdfad1fd5920e2546006dd6b59d0"
   name = "github.com/infobloxopen/protoc-gen-atlas-validate"
   packages = [
     "interceptor",
-    "options",
     "runtime",
   ]
   pruneopts = "UT"
   revision = "9c77857916f43a2167aff8cd455b7ac58cdc9454"
 
 [[projects]]
-  digest = "1:a2dfc715f1be1972052d1b0f8eb05a733821a13bb0aca465691f12f2a2d85cb9"
+  digest = "1:447ff45708e10b03748c3e2c32e82ddce6b692b87ef36516b68a7527e1ac0e02"
   name = "github.com/infobloxopen/protoc-gen-gorm"
-  packages = [
-    "options",
-    "types",
-  ]
+  packages = ["options"]
   pruneopts = "UT"
   revision = "713bb1f858a807cee6ddd278f27ebe47a84564fc"
   version = "v0.13.0"
@@ -412,6 +408,7 @@
     "github.com/gogo/protobuf/proto",
     "github.com/golang/protobuf/proto",
     "github.com/golang/protobuf/ptypes",
+    "github.com/golang/protobuf/ptypes/empty",
     "github.com/grpc-ecosystem/go-grpc-middleware",
     "github.com/grpc-ecosystem/go-grpc-middleware/logging/logrus",
     "github.com/grpc-ecosystem/go-grpc-middleware/logging/logrus/ctxlogrus",
@@ -423,19 +420,15 @@
     "github.com/infobloxopen/atlas-app-toolkit/errors/mappers/pqerrors",
     "github.com/infobloxopen/atlas-app-toolkit/errors/mappers/validationerrors",
     "github.com/infobloxopen/atlas-app-toolkit/gateway",
-    "github.com/infobloxopen/atlas-app-toolkit/gorm",
     "github.com/infobloxopen/atlas-app-toolkit/gorm/resource",
     "github.com/infobloxopen/atlas-app-toolkit/health",
     "github.com/infobloxopen/atlas-app-toolkit/query",
     "github.com/infobloxopen/atlas-app-toolkit/requestid",
-    "github.com/infobloxopen/atlas-app-toolkit/rpc/resource",
     "github.com/infobloxopen/atlas-app-toolkit/server",
     "github.com/infobloxopen/protoc-gen-atlas-query-validate/options",
     "github.com/infobloxopen/protoc-gen-atlas-validate/interceptor",
-    "github.com/infobloxopen/protoc-gen-atlas-validate/options",
     "github.com/infobloxopen/protoc-gen-atlas-validate/runtime",
     "github.com/infobloxopen/protoc-gen-gorm/options",
-    "github.com/infobloxopen/protoc-gen-gorm/types",
     "github.com/jinzhu/gorm",
     "github.com/jinzhu/gorm/dialects/postgres",
     "github.com/lyft/protoc-gen-validate/validate",
@@ -444,7 +437,6 @@
     "github.com/spf13/viper",
     "golang.org/x/net/context",
     "google.golang.org/genproto/googleapis/api/annotations",
-    "google.golang.org/genproto/protobuf/field_mask",
     "google.golang.org/grpc",
     "google.golang.org/grpc/codes",
     "google.golang.org/grpc/grpclog",

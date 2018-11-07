@@ -13,14 +13,14 @@ ARG db_version=1
 ARG api_version=1
 ARG srv_version=1
 
-LABEL com.infoblox.atlas.contacts.db_version=${db_version}
-LABEL com.infoblox.atlas.contacts.api_version=${api_version}
-LABEL com.infoblox.atlas.contacts.srv_version=${srv_version}
+LABEL com.seizadi.cmdb.db_version=${db_version}
+LABEL com.seizadi.cmdb.api_version=${api_version}
+LABEL com.seizadi.cmdb.srv_version=${srv_version}
 
 WORKDIR /bin
 COPY --from=builder /go/src/github.com/seizadi/cmdb/bin/server .
 COPY --from=builder /go/src/github.com/seizadi/cmdb/config config/
-COPY --from=builder /go/src/github.com/seizadi/cmdb/pkg/pb/contacts.swagger.json www/swagger.json
+COPY --from=builder /go/src/github.com/seizadi/cmdb/pkg/pb/cmdb.swagger.json www/swagger.json
 COPY --from=builder /go/src/github.com/seizadi/cmdb/apidoc-poc/swagger-ui-dist www/swagger-ui-dist/
 
 # copy migration scripts to service container

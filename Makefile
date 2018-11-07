@@ -55,6 +55,7 @@ docker:
 	@docker build --build-arg db_version=$(DB_VERSION) --build-arg api_version=$(API_VERSION) --build-arg srv_version=$(SRV_VERSION) -f $(SERVER_DOCKERFILE) -t $(SERVER_IMAGE):$(IMAGE_VERSION) .
 	@docker tag $(SERVER_IMAGE):$(IMAGE_VERSION) $(SERVER_IMAGE):latest
 	@docker image prune -f --filter label=stage=server-intermediate
+	@docker push $(SERVER_IMAGE)
 .PHONY: push
 push:
 	@docker push $(SERVER_IMAGE)

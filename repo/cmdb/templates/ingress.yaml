@@ -36,9 +36,36 @@ spec:
     - host: {{ . }}
       http:
         paths:
+          - path: {{ $ingressPath }}/v1
+            backend:
+              serviceName: {{ $fullName }}
+              servicePort: {{ $servicePort }}
+  {{- end }}
+---
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: {{ $fullName }}-doc
+{{- if .Values.cmdb }}
+  namespace: {{ .Values.nameSpace }}
+{{- end }}
+  labels:
+    app: {{ $appName }}
+    chart: {{ template "chart-app.chart" . }}
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
+  annotations:
+      nginx.ingress.kubernetes.io/rewrite-target: /
+spec:
+  rules:
+  {{- range .Values.ingress.hosts }}
+    - host: {{ . }}
+      http:
+        paths:
           - path: {{ $ingressPath }}
             backend:
               serviceName: {{ $fullName }}
               servicePort: {{ $servicePort }}
   {{- end }}
+
 {{- end }}

@@ -37,7 +37,7 @@ services:
 ingress:
   enabled: true
   annotations:
-    nginx.ingress.kubernetes.io/rewrite-target: /
+    nginx.ingress.kubernetes.io/rewrite-target: /v1
   path: /cmdb
   hosts:
   - minikube

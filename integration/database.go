@@ -10,7 +10,7 @@ import (
 )
 
 const (
-	ApplicationID  = "atlas-contacts-app"
+	ApplicationID  = "cmdb-app"
 	ServerAddress  = "0.0.0.0:9090"
 	GatewayAddress = "0.0.0.0:8080"
 )

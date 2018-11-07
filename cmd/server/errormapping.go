@@ -3,10 +3,9 @@ package main
 import (
 	"context"
 	"google.golang.org/grpc/codes"
-
+	
 	"github.com/grpc-ecosystem/go-grpc-middleware/logging/logrus/ctxlogrus"
 	"github.com/infobloxopen/atlas-app-toolkit/errors"
-	"github.com/infobloxopen/atlas-app-toolkit/errors/mappers/pqerrors"
 	"github.com/infobloxopen/atlas-app-toolkit/errors/mappers/validationerrors"
 	"github.com/infobloxopen/atlas-app-toolkit/requestid"
 	"github.com/jinzhu/gorm"
@@ -26,7 +25,7 @@ var ErrorMappings = []errors.MapFunc{
 			"path/id", "the specified object was not found."),
 	),
 
-	pqerrors.NewUniqueMapping("emails_address_key", "Contacts", "Primary Email Address"),
+	//pqerrors.NewUniqueMapping("emails_address_key", "Contacts", "Primary Email Address"),
 
 	errors.NewMapping(
 		gorm.ErrRecordNotFound,
