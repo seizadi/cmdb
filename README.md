@@ -36,10 +36,9 @@ iterative and maybe visual tools. I created a sample ./model directory
 here with a make target for generating ERD:
 ```sh
 make erd
-Create file://out.html and file://out.pdf
+Create file://doc/db/out.html and file://doc/db/out.pdf
 ```
-Which creates targets e.g.
-![cmdb ERD](https://raw.githubusercontent.com/seizadi/cmdb/master/doc/db/out.html)
+Which creates targets e.g. [cmdb ERD](https://raw.githubusercontent.com/seizadi/cmdb/master/doc/db/out.pdf)
 that you can view.
 
 ### Database Migration
