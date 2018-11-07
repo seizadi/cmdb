@@ -116,14 +116,14 @@
 
 [[projects]]
   branch = "master"
-  digest = "1:e4c78db767fa279d3d76aaaf4e05ecd00fd4997ced3570d8c67bcc6b9dd94aa6"
+  digest = "1:c2914406c5646c0be5249b60a4444c0d8d7c415eb43372ab126ba78e2dc9ad76"
   name = "github.com/infobloxopen/atlas-app-toolkit"
   packages = [
     "auth",
     "errors",
-    "errors/mappers/pqerrors",
     "errors/mappers/validationerrors",
     "gateway",
+    "gorm",
     "gorm/resource",
     "health",
     "query",
@@ -147,10 +147,11 @@
 
 [[projects]]
   branch = "master"
-  digest = "1:0b52d31d8f2e86abb9f3cd9c7e143bc779c7bdfad1fd5920e2546006dd6b59d0"
+  digest = "1:0af5befe2d93989c1462f8ddf51ea1027a2b880b8b99fb5e0830ea0944c1ef23"
   name = "github.com/infobloxopen/protoc-gen-atlas-validate"
   packages = [
     "interceptor",
+    "options",
     "runtime",
   ]
   pruneopts = "UT"
@@ -417,16 +418,18 @@
     "github.com/grpc-ecosystem/grpc-gateway/utilities",
     "github.com/infobloxopen/atlas-app-toolkit/auth",
     "github.com/infobloxopen/atlas-app-toolkit/errors",
-    "github.com/infobloxopen/atlas-app-toolkit/errors/mappers/pqerrors",
     "github.com/infobloxopen/atlas-app-toolkit/errors/mappers/validationerrors",
     "github.com/infobloxopen/atlas-app-toolkit/gateway",
+    "github.com/infobloxopen/atlas-app-toolkit/gorm",
     "github.com/infobloxopen/atlas-app-toolkit/gorm/resource",
     "github.com/infobloxopen/atlas-app-toolkit/health",
     "github.com/infobloxopen/atlas-app-toolkit/query",
     "github.com/infobloxopen/atlas-app-toolkit/requestid",
+    "github.com/infobloxopen/atlas-app-toolkit/rpc/resource",
     "github.com/infobloxopen/atlas-app-toolkit/server",
     "github.com/infobloxopen/protoc-gen-atlas-query-validate/options",
     "github.com/infobloxopen/protoc-gen-atlas-validate/interceptor",
+    "github.com/infobloxopen/protoc-gen-atlas-validate/options",
     "github.com/infobloxopen/protoc-gen-atlas-validate/runtime",
     "github.com/infobloxopen/protoc-gen-gorm/options",
     "github.com/jinzhu/gorm",
@@ -437,6 +440,7 @@
     "github.com/spf13/viper",
     "golang.org/x/net/context",
     "google.golang.org/genproto/googleapis/api/annotations",
+    "google.golang.org/genproto/protobuf/field_mask",
     "google.golang.org/grpc",
     "google.golang.org/grpc/codes",
     "google.golang.org/grpc/grpclog",

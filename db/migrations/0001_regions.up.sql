@@ -1,14 +1,11 @@
 
-CREATE TABLE contacts (
+CREATE TABLE regions (
   id serial primary key,
   account_id varchar(255),
   created_at timestamptz DEFAULT current_timestamp,
   updated_at timestamptz DEFAULT NULL,
-  first_name varchar(255) DEFAULT NULL,
-  middle_name varchar(255) DEFAULT NULL,
-  last_name varchar(255) DEFAULT NULL,
-  email_address varchar(255) DEFAULT NULL,
-  nicknames jsonb
+  name varchar(255) DEFAULT NULL,
+  description varchar(255) DEFAULT NULL
 );
 
 CREATE FUNCTION set_updated_at()
@@ -18,7 +15,7 @@ CREATE FUNCTION set_updated_at()
     RETURN NEW;
   END $$ language plpgsql;
 
-CREATE TRIGGER contacts_updated_at
-  BEFORE UPDATE OR INSERT ON contacts
+CREATE TRIGGER regions_updated_at
+  BEFORE UPDATE OR INSERT ON regions
   FOR EACH ROW
   EXECUTE PROCEDURE set_updated_at();

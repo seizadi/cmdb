@@ -19,6 +19,6 @@ func MigrateDB(dbSQL sql.DB) error {
 	// database schema. The atlas-app-toolkit team will come up with a better
 	// solution that uses database migration files.
 	return db.AutoMigrate(
-		&pb.ProfileORM{}, &pb.GroupORM{}, &pb.ContactORM{}, &pb.AddressORM{}, &pb.EmailORM{},
+		&pb.RegionORM{},
 	).Error
 }

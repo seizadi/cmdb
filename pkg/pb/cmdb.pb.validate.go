@@ -34,6 +34,941 @@ var (
 	_ = ptypes.DynamicAny{}
 )
 
+// Validate checks the field values on Region with the rules defined in the
+// proto definition for this message. If any rules are violated, an error is returned.
+func (m *Region) Validate() error {
+	if m == nil {
+		return nil
+	}
+
+	if v, ok := interface{}(m.GetId()).(interface {
+		Validate() error
+	}); ok {
+		if err := v.Validate(); err != nil {
+			return RegionValidationError{
+				field:  "Id",
+				reason: "embedded message failed validation",
+				cause:  err,
+			}
+		}
+	}
+
+	// no validation rules for Name
+
+	// no validation rules for MiddleName
+
+	return nil
+}
+
+// RegionValidationError is the validation error returned by Region.Validate if
+// the designated constraints aren't met.
+type RegionValidationError struct {
+	field  string
+	reason string
+	cause  error
+	key    bool
+}
+
+// Field function returns field value.
+func (e RegionValidationError) Field() string { return e.field }
+
+// Reason function returns reason value.
+func (e RegionValidationError) Reason() string { return e.reason }
+
+// Cause function returns cause value.
+func (e RegionValidationError) Cause() error { return e.cause }
+
+// Key function returns key value.
+func (e RegionValidationError) Key() bool { return e.key }
+
+// ErrorName returns error name.
+func (e RegionValidationError) ErrorName() string { return "RegionValidationError" }
+
+// Error satisfies the builtin error interface
+func (e RegionValidationError) Error() string {
+	cause := ""
+	if e.cause != nil {
+		cause = fmt.Sprintf(" | caused by: %v", e.cause)
+	}
+
+	key := ""
+	if e.key {
+		key = "key for "
+	}
+
+	return fmt.Sprintf(
+		"invalid %sRegion.%s: %s%s",
+		key,
+		e.field,
+		e.reason,
+		cause)
+}
+
+var _ error = RegionValidationError{}
+
+var _ interface {
+	Field() string
+	Reason() string
+	Key() bool
+	Cause() error
+	ErrorName() string
+} = RegionValidationError{}
+
+// Validate checks the field values on CreateRegionRequest with the rules
+// defined in the proto definition for this message. If any rules are
+// violated, an error is returned.
+func (m *CreateRegionRequest) Validate() error {
+	if m == nil {
+		return nil
+	}
+
+	if v, ok := interface{}(m.GetPayload()).(interface {
+		Validate() error
+	}); ok {
+		if err := v.Validate(); err != nil {
+			return CreateRegionRequestValidationError{
+				field:  "Payload",
+				reason: "embedded message failed validation",
+				cause:  err,
+			}
+		}
+	}
+
+	return nil
+}
+
+// CreateRegionRequestValidationError is the validation error returned by
+// CreateRegionRequest.Validate if the designated constraints aren't met.
+type CreateRegionRequestValidationError struct {
+	field  string
+	reason string
+	cause  error
+	key    bool
+}
+
+// Field function returns field value.
+func (e CreateRegionRequestValidationError) Field() string { return e.field }
+
+// Reason function returns reason value.
+func (e CreateRegionRequestValidationError) Reason() string { return e.reason }
+
+// Cause function returns cause value.
+func (e CreateRegionRequestValidationError) Cause() error { return e.cause }
+
+// Key function returns key value.
+func (e CreateRegionRequestValidationError) Key() bool { return e.key }
+
+// ErrorName returns error name.
+func (e CreateRegionRequestValidationError) ErrorName() string {
+	return "CreateRegionRequestValidationError"
+}
+
+// Error satisfies the builtin error interface
+func (e CreateRegionRequestValidationError) Error() string {
+	cause := ""
+	if e.cause != nil {
+		cause = fmt.Sprintf(" | caused by: %v", e.cause)
+	}
+
+	key := ""
+	if e.key {
+		key = "key for "
+	}
+
+	return fmt.Sprintf(
+		"invalid %sCreateRegionRequest.%s: %s%s",
+		key,
+		e.field,
+		e.reason,
+		cause)
+}
+
+var _ error = CreateRegionRequestValidationError{}
+
+var _ interface {
+	Field() string
+	Reason() string
+	Key() bool
+	Cause() error
+	ErrorName() string
+} = CreateRegionRequestValidationError{}
+
+// Validate checks the field values on CreateRegionResponse with the rules
+// defined in the proto definition for this message. If any rules are
+// violated, an error is returned.
+func (m *CreateRegionResponse) Validate() error {
+	if m == nil {
+		return nil
+	}
+
+	if v, ok := interface{}(m.GetResult()).(interface {
+		Validate() error
+	}); ok {
+		if err := v.Validate(); err != nil {
+			return CreateRegionResponseValidationError{
+				field:  "Result",
+				reason: "embedded message failed validation",
+				cause:  err,
+			}
+		}
+	}
+
+	return nil
+}
+
+// CreateRegionResponseValidationError is the validation error returned by
+// CreateRegionResponse.Validate if the designated constraints aren't met.
+type CreateRegionResponseValidationError struct {
+	field  string
+	reason string
+	cause  error
+	key    bool
+}
+
+// Field function returns field value.
+func (e CreateRegionResponseValidationError) Field() string { return e.field }
+
+// Reason function returns reason value.
+func (e CreateRegionResponseValidationError) Reason() string { return e.reason }
+
+// Cause function returns cause value.
+func (e CreateRegionResponseValidationError) Cause() error { return e.cause }
+
+// Key function returns key value.
+func (e CreateRegionResponseValidationError) Key() bool { return e.key }
+
+// ErrorName returns error name.
+func (e CreateRegionResponseValidationError) ErrorName() string {
+	return "CreateRegionResponseValidationError"
+}
+
+// Error satisfies the builtin error interface
+func (e CreateRegionResponseValidationError) Error() string {
+	cause := ""
+	if e.cause != nil {
+		cause = fmt.Sprintf(" | caused by: %v", e.cause)
+	}
+
+	key := ""
+	if e.key {
+		key = "key for "
+	}
+
+	return fmt.Sprintf(
+		"invalid %sCreateRegionResponse.%s: %s%s",
+		key,
+		e.field,
+		e.reason,
+		cause)
+}
+
+var _ error = CreateRegionResponseValidationError{}
+
+var _ interface {
+	Field() string
+	Reason() string
+	Key() bool
+	Cause() error
+	ErrorName() string
+} = CreateRegionResponseValidationError{}
+
+// Validate checks the field values on ReadRegionRequest with the rules defined
+// in the proto definition for this message. If any rules are violated, an
+// error is returned.
+func (m *ReadRegionRequest) Validate() error {
+	if m == nil {
+		return nil
+	}
+
+	if v, ok := interface{}(m.GetId()).(interface {
+		Validate() error
+	}); ok {
+		if err := v.Validate(); err != nil {
+			return ReadRegionRequestValidationError{
+				field:  "Id",
+				reason: "embedded message failed validation",
+				cause:  err,
+			}
+		}
+	}
+
+	if v, ok := interface{}(m.GetFields()).(interface {
+		Validate() error
+	}); ok {
+		if err := v.Validate(); err != nil {
+			return ReadRegionRequestValidationError{
+				field:  "Fields",
+				reason: "embedded message failed validation",
+				cause:  err,
+			}
+		}
+	}
+
+	return nil
+}
+
+// ReadRegionRequestValidationError is the validation error returned by
+// ReadRegionRequest.Validate if the designated constraints aren't met.
+type ReadRegionRequestValidationError struct {
+	field  string
+	reason string
+	cause  error
+	key    bool
+}
+
+// Field function returns field value.
+func (e ReadRegionRequestValidationError) Field() string { return e.field }
+
+// Reason function returns reason value.
+func (e ReadRegionRequestValidationError) Reason() string { return e.reason }
+
+// Cause function returns cause value.
+func (e ReadRegionRequestValidationError) Cause() error { return e.cause }
+
+// Key function returns key value.
+func (e ReadRegionRequestValidationError) Key() bool { return e.key }
+
+// ErrorName returns error name.
+func (e ReadRegionRequestValidationError) ErrorName() string {
+	return "ReadRegionRequestValidationError"
+}
+
+// Error satisfies the builtin error interface
+func (e ReadRegionRequestValidationError) Error() string {
+	cause := ""
+	if e.cause != nil {
+		cause = fmt.Sprintf(" | caused by: %v", e.cause)
+	}
+
+	key := ""
+	if e.key {
+		key = "key for "
+	}
+
+	return fmt.Sprintf(
+		"invalid %sReadRegionRequest.%s: %s%s",
+		key,
+		e.field,
+		e.reason,
+		cause)
+}
+
+var _ error = ReadRegionRequestValidationError{}
+
+var _ interface {
+	Field() string
+	Reason() string
+	Key() bool
+	Cause() error
+	ErrorName() string
+} = ReadRegionRequestValidationError{}
+
+// Validate checks the field values on ReadRegionResponse with the rules
+// defined in the proto definition for this message. If any rules are
+// violated, an error is returned.
+func (m *ReadRegionResponse) Validate() error {
+	if m == nil {
+		return nil
+	}
+
+	if v, ok := interface{}(m.GetResult()).(interface {
+		Validate() error
+	}); ok {
+		if err := v.Validate(); err != nil {
+			return ReadRegionResponseValidationError{
+				field:  "Result",
+				reason: "embedded message failed validation",
+				cause:  err,
+			}
+		}
+	}
+
+	return nil
+}
+
+// ReadRegionResponseValidationError is the validation error returned by
+// ReadRegionResponse.Validate if the designated constraints aren't met.
+type ReadRegionResponseValidationError struct {
+	field  string
+	reason string
+	cause  error
+	key    bool
+}
+
+// Field function returns field value.
+func (e ReadRegionResponseValidationError) Field() string { return e.field }
+
+// Reason function returns reason value.
+func (e ReadRegionResponseValidationError) Reason() string { return e.reason }
+
+// Cause function returns cause value.
+func (e ReadRegionResponseValidationError) Cause() error { return e.cause }
+
+// Key function returns key value.
+func (e ReadRegionResponseValidationError) Key() bool { return e.key }
+
+// ErrorName returns error name.
+func (e ReadRegionResponseValidationError) ErrorName() string {
+	return "ReadRegionResponseValidationError"
+}
+
+// Error satisfies the builtin error interface
+func (e ReadRegionResponseValidationError) Error() string {
+	cause := ""
+	if e.cause != nil {
+		cause = fmt.Sprintf(" | caused by: %v", e.cause)
+	}
+
+	key := ""
+	if e.key {
+		key = "key for "
+	}
+
+	return fmt.Sprintf(
+		"invalid %sReadRegionResponse.%s: %s%s",
+		key,
+		e.field,
+		e.reason,
+		cause)
+}
+
+var _ error = ReadRegionResponseValidationError{}
+
+var _ interface {
+	Field() string
+	Reason() string
+	Key() bool
+	Cause() error
+	ErrorName() string
+} = ReadRegionResponseValidationError{}
+
+// Validate checks the field values on UpdateRegionRequest with the rules
+// defined in the proto definition for this message. If any rules are
+// violated, an error is returned.
+func (m *UpdateRegionRequest) Validate() error {
+	if m == nil {
+		return nil
+	}
+
+	if v, ok := interface{}(m.GetPayload()).(interface {
+		Validate() error
+	}); ok {
+		if err := v.Validate(); err != nil {
+			return UpdateRegionRequestValidationError{
+				field:  "Payload",
+				reason: "embedded message failed validation",
+				cause:  err,
+			}
+		}
+	}
+
+	if v, ok := interface{}(m.GetFields()).(interface {
+		Validate() error
+	}); ok {
+		if err := v.Validate(); err != nil {
+			return UpdateRegionRequestValidationError{
+				field:  "Fields",
+				reason: "embedded message failed validation",
+				cause:  err,
+			}
+		}
+	}
+
+	return nil
+}
+
+// UpdateRegionRequestValidationError is the validation error returned by
+// UpdateRegionRequest.Validate if the designated constraints aren't met.
+type UpdateRegionRequestValidationError struct {
+	field  string
+	reason string
+	cause  error
+	key    bool
+}
+
+// Field function returns field value.
+func (e UpdateRegionRequestValidationError) Field() string { return e.field }
+
+// Reason function returns reason value.
+func (e UpdateRegionRequestValidationError) Reason() string { return e.reason }
+
+// Cause function returns cause value.
+func (e UpdateRegionRequestValidationError) Cause() error { return e.cause }
+
+// Key function returns key value.
+func (e UpdateRegionRequestValidationError) Key() bool { return e.key }
+
+// ErrorName returns error name.
+func (e UpdateRegionRequestValidationError) ErrorName() string {
+	return "UpdateRegionRequestValidationError"
+}
+
+// Error satisfies the builtin error interface
+func (e UpdateRegionRequestValidationError) Error() string {
+	cause := ""
+	if e.cause != nil {
+		cause = fmt.Sprintf(" | caused by: %v", e.cause)
+	}
+
+	key := ""
+	if e.key {
+		key = "key for "
+	}
+
+	return fmt.Sprintf(
+		"invalid %sUpdateRegionRequest.%s: %s%s",
+		key,
+		e.field,
+		e.reason,
+		cause)
+}
+
+var _ error = UpdateRegionRequestValidationError{}
+
+var _ interface {
+	Field() string
+	Reason() string
+	Key() bool
+	Cause() error
+	ErrorName() string
+} = UpdateRegionRequestValidationError{}
+
+// Validate checks the field values on UpdateRegionResponse with the rules
+// defined in the proto definition for this message. If any rules are
+// violated, an error is returned.
+func (m *UpdateRegionResponse) Validate() error {
+	if m == nil {
+		return nil
+	}
+
+	if v, ok := interface{}(m.GetResult()).(interface {
+		Validate() error
+	}); ok {
+		if err := v.Validate(); err != nil {
+			return UpdateRegionResponseValidationError{
+				field:  "Result",
+				reason: "embedded message failed validation",
+				cause:  err,
+			}
+		}
+	}
+
+	return nil
+}
+
+// UpdateRegionResponseValidationError is the validation error returned by
+// UpdateRegionResponse.Validate if the designated constraints aren't met.
+type UpdateRegionResponseValidationError struct {
+	field  string
+	reason string
+	cause  error
+	key    bool
+}
+
+// Field function returns field value.
+func (e UpdateRegionResponseValidationError) Field() string { return e.field }
+
+// Reason function returns reason value.
+func (e UpdateRegionResponseValidationError) Reason() string { return e.reason }
+
+// Cause function returns cause value.
+func (e UpdateRegionResponseValidationError) Cause() error { return e.cause }
+
+// Key function returns key value.
+func (e UpdateRegionResponseValidationError) Key() bool { return e.key }
+
+// ErrorName returns error name.
+func (e UpdateRegionResponseValidationError) ErrorName() string {
+	return "UpdateRegionResponseValidationError"
+}
+
+// Error satisfies the builtin error interface
+func (e UpdateRegionResponseValidationError) Error() string {
+	cause := ""
+	if e.cause != nil {
+		cause = fmt.Sprintf(" | caused by: %v", e.cause)
+	}
+
+	key := ""
+	if e.key {
+		key = "key for "
+	}
+
+	return fmt.Sprintf(
+		"invalid %sUpdateRegionResponse.%s: %s%s",
+		key,
+		e.field,
+		e.reason,
+		cause)
+}
+
+var _ error = UpdateRegionResponseValidationError{}
+
+var _ interface {
+	Field() string
+	Reason() string
+	Key() bool
+	Cause() error
+	ErrorName() string
+} = UpdateRegionResponseValidationError{}
+
+// Validate checks the field values on DeleteRegionRequest with the rules
+// defined in the proto definition for this message. If any rules are
+// violated, an error is returned.
+func (m *DeleteRegionRequest) Validate() error {
+	if m == nil {
+		return nil
+	}
+
+	if v, ok := interface{}(m.GetId()).(interface {
+		Validate() error
+	}); ok {
+		if err := v.Validate(); err != nil {
+			return DeleteRegionRequestValidationError{
+				field:  "Id",
+				reason: "embedded message failed validation",
+				cause:  err,
+			}
+		}
+	}
+
+	return nil
+}
+
+// DeleteRegionRequestValidationError is the validation error returned by
+// DeleteRegionRequest.Validate if the designated constraints aren't met.
+type DeleteRegionRequestValidationError struct {
+	field  string
+	reason string
+	cause  error
+	key    bool
+}
+
+// Field function returns field value.
+func (e DeleteRegionRequestValidationError) Field() string { return e.field }
+
+// Reason function returns reason value.
+func (e DeleteRegionRequestValidationError) Reason() string { return e.reason }
+
+// Cause function returns cause value.
+func (e DeleteRegionRequestValidationError) Cause() error { return e.cause }
+
+// Key function returns key value.
+func (e DeleteRegionRequestValidationError) Key() bool { return e.key }
+
+// ErrorName returns error name.
+func (e DeleteRegionRequestValidationError) ErrorName() string {
+	return "DeleteRegionRequestValidationError"
+}
+
+// Error satisfies the builtin error interface
+func (e DeleteRegionRequestValidationError) Error() string {
+	cause := ""
+	if e.cause != nil {
+		cause = fmt.Sprintf(" | caused by: %v", e.cause)
+	}
+
+	key := ""
+	if e.key {
+		key = "key for "
+	}
+
+	return fmt.Sprintf(
+		"invalid %sDeleteRegionRequest.%s: %s%s",
+		key,
+		e.field,
+		e.reason,
+		cause)
+}
+
+var _ error = DeleteRegionRequestValidationError{}
+
+var _ interface {
+	Field() string
+	Reason() string
+	Key() bool
+	Cause() error
+	ErrorName() string
+} = DeleteRegionRequestValidationError{}
+
+// Validate checks the field values on DeleteRegionResponse with the rules
+// defined in the proto definition for this message. If any rules are
+// violated, an error is returned.
+func (m *DeleteRegionResponse) Validate() error {
+	if m == nil {
+		return nil
+	}
+
+	return nil
+}
+
+// DeleteRegionResponseValidationError is the validation error returned by
+// DeleteRegionResponse.Validate if the designated constraints aren't met.
+type DeleteRegionResponseValidationError struct {
+	field  string
+	reason string
+	cause  error
+	key    bool
+}
+
+// Field function returns field value.
+func (e DeleteRegionResponseValidationError) Field() string { return e.field }
+
+// Reason function returns reason value.
+func (e DeleteRegionResponseValidationError) Reason() string { return e.reason }
+
+// Cause function returns cause value.
+func (e DeleteRegionResponseValidationError) Cause() error { return e.cause }
+
+// Key function returns key value.
+func (e DeleteRegionResponseValidationError) Key() bool { return e.key }
+
+// ErrorName returns error name.
+func (e DeleteRegionResponseValidationError) ErrorName() string {
+	return "DeleteRegionResponseValidationError"
+}
+
+// Error satisfies the builtin error interface
+func (e DeleteRegionResponseValidationError) Error() string {
+	cause := ""
+	if e.cause != nil {
+		cause = fmt.Sprintf(" | caused by: %v", e.cause)
+	}
+
+	key := ""
+	if e.key {
+		key = "key for "
+	}
+
+	return fmt.Sprintf(
+		"invalid %sDeleteRegionResponse.%s: %s%s",
+		key,
+		e.field,
+		e.reason,
+		cause)
+}
+
+var _ error = DeleteRegionResponseValidationError{}
+
+var _ interface {
+	Field() string
+	Reason() string
+	Key() bool
+	Cause() error
+	ErrorName() string
+} = DeleteRegionResponseValidationError{}
+
+// Validate checks the field values on ListRegionRequest with the rules defined
+// in the proto definition for this message. If any rules are violated, an
+// error is returned.
+func (m *ListRegionRequest) Validate() error {
+	if m == nil {
+		return nil
+	}
+
+	if v, ok := interface{}(m.GetFilter()).(interface {
+		Validate() error
+	}); ok {
+		if err := v.Validate(); err != nil {
+			return ListRegionRequestValidationError{
+				field:  "Filter",
+				reason: "embedded message failed validation",
+				cause:  err,
+			}
+		}
+	}
+
+	if v, ok := interface{}(m.GetOrderBy()).(interface {
+		Validate() error
+	}); ok {
+		if err := v.Validate(); err != nil {
+			return ListRegionRequestValidationError{
+				field:  "OrderBy",
+				reason: "embedded message failed validation",
+				cause:  err,
+			}
+		}
+	}
+
+	if v, ok := interface{}(m.GetFields()).(interface {
+		Validate() error
+	}); ok {
+		if err := v.Validate(); err != nil {
+			return ListRegionRequestValidationError{
+				field:  "Fields",
+				reason: "embedded message failed validation",
+				cause:  err,
+			}
+		}
+	}
+
+	if v, ok := interface{}(m.GetPaging()).(interface {
+		Validate() error
+	}); ok {
+		if err := v.Validate(); err != nil {
+			return ListRegionRequestValidationError{
+				field:  "Paging",
+				reason: "embedded message failed validation",
+				cause:  err,
+			}
+		}
+	}
+
+	return nil
+}
+
+// ListRegionRequestValidationError is the validation error returned by
+// ListRegionRequest.Validate if the designated constraints aren't met.
+type ListRegionRequestValidationError struct {
+	field  string
+	reason string
+	cause  error
+	key    bool
+}
+
+// Field function returns field value.
+func (e ListRegionRequestValidationError) Field() string { return e.field }
+
+// Reason function returns reason value.
+func (e ListRegionRequestValidationError) Reason() string { return e.reason }
+
+// Cause function returns cause value.
+func (e ListRegionRequestValidationError) Cause() error { return e.cause }
+
+// Key function returns key value.
+func (e ListRegionRequestValidationError) Key() bool { return e.key }
+
+// ErrorName returns error name.
+func (e ListRegionRequestValidationError) ErrorName() string {
+	return "ListRegionRequestValidationError"
+}
+
+// Error satisfies the builtin error interface
+func (e ListRegionRequestValidationError) Error() string {
+	cause := ""
+	if e.cause != nil {
+		cause = fmt.Sprintf(" | caused by: %v", e.cause)
+	}
+
+	key := ""
+	if e.key {
+		key = "key for "
+	}
+
+	return fmt.Sprintf(
+		"invalid %sListRegionRequest.%s: %s%s",
+		key,
+		e.field,
+		e.reason,
+		cause)
+}
+
+var _ error = ListRegionRequestValidationError{}
+
+var _ interface {
+	Field() string
+	Reason() string
+	Key() bool
+	Cause() error
+	ErrorName() string
+} = ListRegionRequestValidationError{}
+
+// Validate checks the field values on ListRegionsResponse with the rules
+// defined in the proto definition for this message. If any rules are
+// violated, an error is returned.
+func (m *ListRegionsResponse) Validate() error {
+	if m == nil {
+		return nil
+	}
+
+	for idx, item := range m.GetResults() {
+		_, _ = idx, item
+
+		if v, ok := interface{}(item).(interface {
+			Validate() error
+		}); ok {
+			if err := v.Validate(); err != nil {
+				return ListRegionsResponseValidationError{
+					field:  fmt.Sprintf("Results[%v]", idx),
+					reason: "embedded message failed validation",
+					cause:  err,
+				}
+			}
+		}
+
+	}
+
+	if v, ok := interface{}(m.GetPage()).(interface {
+		Validate() error
+	}); ok {
+		if err := v.Validate(); err != nil {
+			return ListRegionsResponseValidationError{
+				field:  "Page",
+				reason: "embedded message failed validation",
+				cause:  err,
+			}
+		}
+	}
+
+	return nil
+}
+
+// ListRegionsResponseValidationError is the validation error returned by
+// ListRegionsResponse.Validate if the designated constraints aren't met.
+type ListRegionsResponseValidationError struct {
+	field  string
+	reason string
+	cause  error
+	key    bool
+}
+
+// Field function returns field value.
+func (e ListRegionsResponseValidationError) Field() string { return e.field }
+
+// Reason function returns reason value.
+func (e ListRegionsResponseValidationError) Reason() string { return e.reason }
+
+// Cause function returns cause value.
+func (e ListRegionsResponseValidationError) Cause() error { return e.cause }
+
+// Key function returns key value.
+func (e ListRegionsResponseValidationError) Key() bool { return e.key }
+
+// ErrorName returns error name.
+func (e ListRegionsResponseValidationError) ErrorName() string {
+	return "ListRegionsResponseValidationError"
+}
+
+// Error satisfies the builtin error interface
+func (e ListRegionsResponseValidationError) Error() string {
+	cause := ""
+	if e.cause != nil {
+		cause = fmt.Sprintf(" | caused by: %v", e.cause)
+	}
+
+	key := ""
+	if e.key {
+		key = "key for "
+	}
+
+	return fmt.Sprintf(
+		"invalid %sListRegionsResponse.%s: %s%s",
+		key,
+		e.field,
+		e.reason,
+		cause)
+}
+
+var _ error = ListRegionsResponseValidationError{}
+
+var _ interface {
+	Field() string
+	Reason() string
+	Key() bool
+	Cause() error
+	ErrorName() string
+} = ListRegionsResponseValidationError{}
+
 // Validate checks the field values on VersionResponse with the rules defined
 // in the proto definition for this message. If any rules are violated, an
 // error is returned.

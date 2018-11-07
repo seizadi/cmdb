@@ -41,6 +41,16 @@ Create file://doc/db/out.html and file://doc/db/out.pdf
 Which creates targets e.g. [cmdb ERD](https://github.com/seizadi/cmdb/blob/master/doc/db/out.pdf)
 that you can view.
 
+We can now start to design the proto definiton of our data model
+using the above model defintion for the messsage and service
+definitions.
+[Refer to the proto buff defintion](https://github.com/infobloxopen/protoc-gen-gorm)
+for database defintion which is layered on top of [Gorm](http://gorm.io/).
+
+We would build out the data model incrementaly starting with the top node
+in our case the Region. Then add the necessary migration for it, see below
+for more detail on database migration below.
+
 ### Database Migration
 
 For migrating the database schema, [golang-migrate](https://github.com/golang-migrate/migrate) framework is used.
@@ -50,7 +60,9 @@ For migrating the database schema, [golang-migrate](https://github.com/golang-mi
 2. Make sure you have [migrate CLI](https://github.com/golang-migrate/migrate/tree/master/cli)
 3. Run migration
 ```bash
-$ make migrate-up
+dropdb cmdb
+createdb cmdb
+make migrate-up
 ```
 
 ***Steps for container deployment***
@@ -145,6 +157,10 @@ Then you do the REST call:
 ```sh
 curl http://localhost:8080/v1/version
 {"version":"0.0.1"}
+```
+Create a Region:
+```sh
+curl http://localhost:8080/v1/regions -d '{"name": "us-west-1", "description": "sample..."}'
 ```
 
 Now try a REST call that requires authentication:

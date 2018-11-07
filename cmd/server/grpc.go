@@ -5,12 +5,16 @@ import (
 	//"github.com/Infoblox-CTO/go.grpc.middleware/authz"
 	"github.com/grpc-ecosystem/go-grpc-middleware"
 	"github.com/grpc-ecosystem/go-grpc-middleware/logging/logrus"
+	"github.com/grpc-ecosystem/go-grpc-middleware/logging/logrus/ctxlogrus"
 	"github.com/jinzhu/gorm"
 	_ "github.com/jinzhu/gorm/dialects/postgres"
 	"github.com/seizadi/cmdb/pkg/pb"
 	"github.com/seizadi/cmdb/pkg/svc"
 	"github.com/sirupsen/logrus"
+	"github.com/spf13/viper"
 	"google.golang.org/grpc"
+	"io/ioutil"
+	
 	//"github.com/Infoblox-CTO/go.grpc.middleware/authz"
 	"github.com/infobloxopen/atlas-app-toolkit/auth"
 	"github.com/infobloxopen/atlas-app-toolkit/errors"
@@ -25,6 +29,9 @@ func NewGRPCServer(logger *logrus.Logger, db *gorm.DB) (*grpc.Server, error) {
 		
 		// Request-Id interceptor
 		requestid.UnaryServerInterceptor(),
+		
+		dbLoggingWrapper(db),
+		
 		auth.LogrusUnaryServerInterceptor(),
 		errors.UnaryServerInterceptor(ErrorMappings...),
 		// validation middleware
@@ -48,6 +55,12 @@ func NewGRPCServer(logger *logrus.Logger, db *gorm.DB) (*grpc.Server, error) {
 		return nil, err
 	}
 	pb.RegisterCmdbServer(grpcServer, s)
+	
+	rs, err := svc.NewRegionsServer()
+	if err != nil {
+		return nil, err
+	}
+	pb.RegisterRegionsServer(grpcServer, rs)
 
 	return grpcServer, nil
 }
@@ -73,3 +86,17 @@ func NewGRPCServer(logger *logrus.Logger, db *gorm.DB) (*grpc.Server, error) {
 //		return handler(ctx, req)
 //	}
 //}
+
+// creates a per-request copy of the DB with db logging set using the context logger
+func dbLoggingWrapper(db *gorm.DB) grpc.UnaryServerInterceptor {
+	return func(ctx context.Context, req interface{}, info *grpc.UnaryServerInfo, handler grpc.UnaryHandler) (interface{}, error) {
+		logEntry := ctxlogrus.Extract(ctx)
+		// Do nothing if no logger was found in the context
+		if logEntry.Logger.Out != ioutil.Discard && viper.GetBool("database.logging") {
+			db = db.New()
+			db.SetLogger(logEntry)
+			db.LogMode(true)
+		}
+		return tkgorm.UnaryServerInterceptor(db)(ctx, req, info, handler)
+	}
+}

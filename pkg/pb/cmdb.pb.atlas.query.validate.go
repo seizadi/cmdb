@@ -6,12 +6,37 @@ package pb // import "github.com/seizadi/cmdb/pkg/pb"
 import options "github.com/infobloxopen/protoc-gen-atlas-query-validate/options"
 import query "github.com/infobloxopen/atlas-app-toolkit/query"
 import _ "github.com/golang/protobuf/ptypes/empty"
+import _ "github.com/infobloxopen/protoc-gen-atlas-validate/options"
+import _ "google.golang.org/genproto/protobuf/field_mask"
 
 // Reference imports to suppress errors if they are not otherwise used.
 
-var CmdbMethodsRequireFilteringValidation = map[string]map[string]options.FilteringOption{}
-var CmdbMethodsRequireSortingValidation = map[string][]string{}
-var CmdbMethodsRequireFieldSelectionValidation = map[string][]string{}
+var CmdbMethodsRequireFilteringValidation = map[string]map[string]options.FilteringOption{
+	"/api.cmdb.Regions/List": map[string]options.FilteringOption{
+		"id":          options.FilteringOption{ValueType: options.QueryValidate_STRING},
+		"name":        options.FilteringOption{ValueType: options.QueryValidate_STRING},
+		"middle_name": options.FilteringOption{ValueType: options.QueryValidate_STRING},
+	},
+}
+var CmdbMethodsRequireSortingValidation = map[string][]string{
+	"/api.cmdb.Regions/List": []string{
+		"id",
+		"name",
+		"middle_name",
+	},
+}
+var CmdbMethodsRequireFieldSelectionValidation = map[string][]string{
+	"/api.cmdb.Regions/Read": {
+		"id",
+		"name",
+		"middle_name",
+	},
+	"/api.cmdb.Regions/List": {
+		"id",
+		"name",
+		"middle_name",
+	},
+}
 
 func CmdbValidateFiltering(methodName string, f *query.Filtering) error {
 	info, ok := CmdbMethodsRequireFilteringValidation[methodName]
