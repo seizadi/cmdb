@@ -112,6 +112,6 @@ migrate-down:
 
 .PHONY: erd
 erd:
-	@go-erd -path model |dot -Tsvg > out.html
-	@go-erd -path model |dot -Tpdf > out.pdf
-	@echo 'Create file://out.html and file://out.pdf'
+	@go-erd -path model |dot -Tsvg > doc/db/out.html
+	@go-erd -path model |dot -Tpdf > doc/db/out.pdf
+	@echo 'Create file://doc/db/out.html and file://doc/db/out.pdf'

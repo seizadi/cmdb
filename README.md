@@ -39,7 +39,7 @@ make erd
 Create file://out.html and file://out.pdf
 ```
 Which creates targets e.g.
-![cmdb ERD](https://raw.githubusercontent.com/seizadi/cmdb/master/out.pdf)
+![cmdb ERD](https://raw.githubusercontent.com/seizadi/cmdb/master/doc/db/out.html)
 that you can view.
 
 ### Database Migration
