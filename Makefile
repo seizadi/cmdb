@@ -111,7 +111,7 @@ migrate-down:
 	@migrate -database 'postgres://$(DATABASE_HOST):5432/cmdb?sslmode=disable' -path ./db/migrations down
 
 .PHONY: erd
-erd: out.html
+erd:
 	@go-erd -path model |dot -Tsvg > out.html
 	@go-erd -path model |dot -Tpdf > out.pdf
 	@echo 'Create file://out.html and file://out.pdf'
