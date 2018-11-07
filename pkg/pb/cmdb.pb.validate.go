@@ -55,7 +55,7 @@ func (m *Region) Validate() error {
 
 	// no validation rules for Name
 
-	// no validation rules for MiddleName
+	// no validation rules for Description
 
 	return nil
 }

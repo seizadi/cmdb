@@ -1,55 +1,53 @@
 package main
 
 import (
-	//"fmt"
-	//"github.com/Infoblox-CTO/go.grpc.middleware/authz"
+	"context"
+	"io/ioutil"
+	
 	"github.com/grpc-ecosystem/go-grpc-middleware"
 	"github.com/grpc-ecosystem/go-grpc-middleware/logging/logrus"
 	"github.com/grpc-ecosystem/go-grpc-middleware/logging/logrus/ctxlogrus"
 	"github.com/jinzhu/gorm"
 	_ "github.com/jinzhu/gorm/dialects/postgres"
-	"github.com/seizadi/cmdb/pkg/pb"
-	"github.com/seizadi/cmdb/pkg/svc"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/viper"
 	"google.golang.org/grpc"
-	"io/ioutil"
 	
-	//"github.com/Infoblox-CTO/go.grpc.middleware/authz"
 	"github.com/infobloxopen/atlas-app-toolkit/auth"
 	"github.com/infobloxopen/atlas-app-toolkit/errors"
 	"github.com/infobloxopen/atlas-app-toolkit/errors/mappers/validationerrors"
+	"github.com/infobloxopen/atlas-app-toolkit/gateway"
+	tkgorm "github.com/infobloxopen/atlas-app-toolkit/gorm"
+	"github.com/infobloxopen/atlas-app-toolkit/logging"
+	"github.com/infobloxopen/atlas-app-toolkit/query"
 	"github.com/infobloxopen/atlas-app-toolkit/requestid"
+	"github.com/seizadi/cmdb/pkg/pb"
+	"github.com/seizadi/cmdb/pkg/svc"
 )
 
 func NewGRPCServer(logger *logrus.Logger, db *gorm.DB) (*grpc.Server, error) {
 	interceptors := []grpc.UnaryServerInterceptor{
-		// logging middleware
 		grpc_logrus.UnaryServerInterceptor(logrus.NewEntry(logger)),
-		
-		// Request-Id interceptor
 		requestid.UnaryServerInterceptor(),
-		
 		dbLoggingWrapper(db),
-		
 		auth.LogrusUnaryServerInterceptor(),
 		errors.UnaryServerInterceptor(ErrorMappings...),
-		// validation middleware
+		// validation interceptor
 		validationerrors.UnaryServerInterceptor(),
-		//UnaryServerInterceptor(),
+		UnaryServerInterceptor(),
 	}
-	// add authorization interceptor if authz service address is provided
-	//if viper.GetBool("atlas.authz.enable") {
-	//	// authorization interceptor
-	//	interceptors = append(interceptors, authz.UnaryServerInterceptor(
-	//		fmt.Sprintf("%s:%s", viper.GetString("atlas.authz.address"), viper.GetString("atlas.authz.port")), "cmdb"),
-	//	)
-	//}
 
+	// if per request log level is included, insert it right after the grpc_logrus interceptor
+	if viper.GetBool("logging.dynamic.level") {
+		interceptors = append(interceptors, nil)
+		copy(interceptors[2:], interceptors[1:])
+		interceptors[1] = logging.LogLevelInterceptor(logger.Level)
+	}
+	
 	// create new gRPC grpcServer with middleware chain
 	grpcServer := grpc.NewServer(grpc.UnaryInterceptor(grpc_middleware.ChainUnaryServer(interceptors...)))
-
-	// register all of our services with the grpcServer
+	
+	// register all of our services into the grpcServer
 	s, err := svc.NewBasicServer(db)
 	if err != nil {
 		return nil, err
@@ -61,31 +59,31 @@ func NewGRPCServer(logger *logrus.Logger, db *gorm.DB) (*grpc.Server, error) {
 		return nil, err
 	}
 	pb.RegisterRegionsServer(grpcServer, rs)
-
+	
 	return grpcServer, nil
 }
 
-//func UnaryServerInterceptor() grpc.UnaryServerInterceptor {
-//
-//	return func(ctx context.Context, req interface{}, info *grpc.UnaryServerInfo, handler grpc.UnaryHandler) (interface{}, error) {
-//		f := &query.Filtering{}
-//		err := gateway.GetCollectionOp(req, f)
-//		if err != nil {
-//			return nil, err
-//		}
-//		s := &query.Sorting{}
-//		err = gateway.GetCollectionOp(req, s)
-//		if err != nil {
-//			return nil, err
-//		}
-//		fs := &query.FieldSelection{}
-//		err = gateway.GetCollectionOp(req, fs)
-//		if err != nil {
-//			return nil, err
-//		}
-//		return handler(ctx, req)
-//	}
-//}
+func UnaryServerInterceptor() grpc.UnaryServerInterceptor {
+	return func(ctx context.Context, req interface{}, info *grpc.UnaryServerInfo, handler grpc.UnaryHandler) (interface{}, error) {
+		f := &query.Filtering{}
+		err := gateway.GetCollectionOp(req, f)
+		if err != nil {
+			return nil, err
+		}
+		s := &query.Sorting{}
+		err = gateway.GetCollectionOp(req, s)
+		if err != nil {
+			return nil, err
+		}
+		fs := &query.FieldSelection{}
+		err = gateway.GetCollectionOp(req, fs)
+		if err != nil {
+			return nil, err
+		}
+
+		return handler(ctx, req)
+	}
+}
 
 // creates a per-request copy of the DB with db logging set using the context logger
 func dbLoggingWrapper(db *gorm.DB) grpc.UnaryServerInterceptor {

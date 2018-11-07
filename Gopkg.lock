@@ -116,7 +116,7 @@
 
 [[projects]]
   branch = "master"
-  digest = "1:c2914406c5646c0be5249b60a4444c0d8d7c415eb43372ab126ba78e2dc9ad76"
+  digest = "1:108658d423483b4468ac92463e34a7707c0398a633f8b53adb0ca171ddd7b120"
   name = "github.com/infobloxopen/atlas-app-toolkit"
   packages = [
     "auth",
@@ -126,6 +126,7 @@
     "gorm",
     "gorm/resource",
     "health",
+    "logging",
     "query",
     "requestid",
     "rpc/errdetails",
@@ -135,7 +136,7 @@
     "util",
   ]
   pruneopts = "UT"
-  revision = "2e8beb292d615766ca6dac68d17d7b02ccc3a230"
+  revision = "d607cc1599e7691ea03180a5e52a0a16e13d982f"
 
 [[projects]]
   branch = "master"
@@ -423,6 +424,7 @@
     "github.com/infobloxopen/atlas-app-toolkit/gorm",
     "github.com/infobloxopen/atlas-app-toolkit/gorm/resource",
     "github.com/infobloxopen/atlas-app-toolkit/health",
+    "github.com/infobloxopen/atlas-app-toolkit/logging",
     "github.com/infobloxopen/atlas-app-toolkit/query",
     "github.com/infobloxopen/atlas-app-toolkit/requestid",
     "github.com/infobloxopen/atlas-app-toolkit/rpc/resource",

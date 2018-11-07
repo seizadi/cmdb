@@ -63,7 +63,7 @@ const (
 	defaultConfigDirectory = "deploy/"
 	defaultConfigFile      = ""
 	defaultSecretFile      = ""
-	defaultApplicationID   = "cmd-app"
+	defaultApplicationID   = "cmdb-app"
 
 	// Logging
 	defaultLoggingLevel = "debug"

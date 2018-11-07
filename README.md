@@ -158,15 +158,17 @@ Then you do the REST call:
 curl http://localhost:8080/v1/version
 {"version":"0.0.1"}
 ```
-Create a Region:
-```sh
-curl http://localhost:8080/v1/regions -d '{"name": "us-west-1", "description": "sample..."}'
-```
 
 Now try a REST call that requires authentication:
-```bash
+```sh
 export JWT="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJBY2NvdW50SUQiOjF9.GsXyFDDARjXe1t9DPo2LIBKHEal3O7t3vLI3edA7dGU"
 curl -H "Authorization: Bearer $JWT" http://localhost:8080/v1/regions
+{}
+```
+Now let's add a Region:
+```sh
+curl -H "Authorization: Bearer $JWT" http://localhost:8080/v1/regions -d '{"name": "us-west-1", "description": "sample..."}'
+{"result":{"id":"cmdb-app/regions/1","name":"us-west-1","description":"sample..."}}
 ```
 
 #### Try atlas-contacts-app

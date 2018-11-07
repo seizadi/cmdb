@@ -43,7 +43,7 @@ message Region {
   string name = 2;
 
   // The description of the region
-  string middle_name = 3;
+  string description = 3;
 }
 
 message CreateRegionRequest {

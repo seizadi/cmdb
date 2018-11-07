@@ -15,26 +15,26 @@ var CmdbMethodsRequireFilteringValidation = map[string]map[string]options.Filter
 	"/api.cmdb.Regions/List": map[string]options.FilteringOption{
 		"id":          options.FilteringOption{ValueType: options.QueryValidate_STRING},
 		"name":        options.FilteringOption{ValueType: options.QueryValidate_STRING},
-		"middle_name": options.FilteringOption{ValueType: options.QueryValidate_STRING},
+		"description": options.FilteringOption{ValueType: options.QueryValidate_STRING},
 	},
 }
 var CmdbMethodsRequireSortingValidation = map[string][]string{
 	"/api.cmdb.Regions/List": []string{
 		"id",
 		"name",
-		"middle_name",
+		"description",
 	},
 }
 var CmdbMethodsRequireFieldSelectionValidation = map[string][]string{
 	"/api.cmdb.Regions/Read": {
 		"id",
 		"name",
-		"middle_name",
+		"description",
 	},
 	"/api.cmdb.Regions/List": {
 		"id",
 		"name",
-		"middle_name",
+		"description",
 	},
 }
 

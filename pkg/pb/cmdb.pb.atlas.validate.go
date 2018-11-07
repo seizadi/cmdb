@@ -119,7 +119,7 @@ func validate_Object_Region(r json.RawMessage, path string, allowUnknown bool) (
 				return err
 			}
 		case "name":
-		case "middle_name":
+		case "description":
 		default:
 			if !allowUnknown {
 				return fmt.Errorf("Unknown field %q", validate_runtime.JoinPath(path, k))
