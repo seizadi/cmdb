@@ -183,6 +183,11 @@ curl -H "Authorization: Bearer $JWT" http://localhost:8080/v1/version_tags -d '{
 {"result":{"id":"cmdb-app/version_tags/1","name":"cmdb-app","description":"cmdb application version tag","version":"v0.0.4","repo":"https://github.com/seizadi/cmdb/releases/tag/v0.0.4","commit":"20ec77f5a8f8e260deb51e8d888a2597762184b6"}}sc-l-seizadi:cmdb seizadi$
 
 ```
+Add Secrets:
+```sh
+curl -H "Authorization: Bearer $JWT" http://localhost:8080/v1/secrets -d '{"name": "cmdb-app db password", "description": "cmdb database password", "type": "opaque", "key": "db_password"}'
+{"result":{"id":"cmdb-app/secrets/1","name":"cmdb-app db password","description":"cmdb database password","type":"opaque","key":"db_password"}}
+```
 
 #### Try atlas-contacts-app
 

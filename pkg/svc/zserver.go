@@ -87,6 +87,15 @@ func NewVersionTagsServer() (pb.VersionTagsServer, error) {
 	return &versionTagsServer{&pb.VersionTagsDefaultServer{}}, nil
 }
 
+type secretsServer struct {
+	*pb.SecretsDefaultServer
+}
+
+// NewRegionsServer returns an instance of the default regions server interface
+func NewSecretsServer() (pb.SecretsServer, error) {
+	return &secretsServer{&pb.SecretsDefaultServer{}}, nil
+}
+
 // List wraps default RegionsDefaultServer.List implementation by adding
 // application specific page token implementation.
 // Actually the service supports "composite" pagination in a specific way:

@@ -85,7 +85,7 @@ message Region {
       multi_account: true
   };
 
-  // The contact identifier.
+  // The region identifier.
   atlas.rpc.Identifier id = 1 [(gorm.field).tag = {type: "serial"  primary_key: true}];
 
   // The name of the region
@@ -199,7 +199,7 @@ message Container {
       multi_account: true
   };
 
-  // The contact identifier.
+  // The container identifier.
   atlas.rpc.Identifier id = 1 [(gorm.field).tag = {type: "serial"  primary_key: true}];
 
   // The name of the container
@@ -334,7 +334,7 @@ message VersionTag {
       multi_account: true
   };
 
-  // The contact identifier.
+  // The version_tag identifier.
   atlas.rpc.Identifier id = 1 [(gorm.field).tag = {type: "serial"  primary_key: true}];
 
   // The name of the container
@@ -452,6 +452,132 @@ service VersionTags {
     }
 
 }
+
+// -----------------------------------------------------------------------------------
+// Secret represents confidential data stored in the Vault
+// -----------------------------------------------------------------------------------
+message Secret {
+  option (gorm.opts) = {
+      ormable: true,
+      multi_account: true
+  };
+
+  // The secret identifier.
+  atlas.rpc.Identifier id = 1 [(gorm.field).tag = {type: "serial"  primary_key: true}];
+
+  // The name of the container
+  string name = 2;
+
+  // The description of the container
+  string description = 3;
+
+  // The type of secret (e.g. opaque, or tls)
+  string type = 4;
+
+  // The key value of secret (note: value is stored on kubernetes secret
+  string key = 5;
+}
+
+message CreateSecretRequest {
+    Secret payload = 1;
+}
+
+message CreateSecretResponse {
+    Secret result = 1;
+}
+
+message ReadSecretRequest {
+    atlas.rpc.Identifier id = 1;
+    infoblox.api.FieldSelection fields = 2;
+}
+
+message ReadSecretResponse {
+    Secret result = 1;
+}
+
+message UpdateSecretRequest {
+    Secret payload = 1;
+    google.protobuf.FieldMask fields = 2;
+}
+
+message UpdateSecretResponse {
+    Secret result = 1;
+}
+
+message DeleteSecretRequest {
+    atlas.rpc.Identifier id = 1;
+}
+
+message DeleteSecretResponse{}
+
+message ListSecretRequest {
+    infoblox.api.Filtering filter = 1;
+    infoblox.api.Sorting order_by = 2;
+    infoblox.api.FieldSelection fields = 3;
+    infoblox.api.Pagination paging = 4;
+}
+
+message ListSecretsResponse {
+    repeated Secret results = 1;
+    infoblox.api.PageInfo page = 2;
+}
+
+service Secrets {
+    option (gorm.server) = {
+      autogen: true,
+      txn_middleware: true,
+    };
+
+    option (atlas_validate.service).allow_unknown_fields = true;
+
+    // Use this method to create a container.
+    rpc Create (CreateSecretRequest) returns (CreateSecretResponse) {
+        option (google.api.http) = {
+            post: "/secrets"
+            body: "payload"
+        };
+
+        option (atlas_validate.method).allow_unknown_fields = false;
+    }
+
+    // Use this method to retrieve the particular container.
+    rpc Read (ReadSecretRequest) returns (ReadSecretResponse) {
+        option (google.api.http) = {
+            get: "/secrets/{id.resource_id}"
+        };
+    }
+
+    // Use this method to update container.
+    rpc Update (UpdateSecretRequest) returns (UpdateSecretResponse) {
+        option (google.api.http) = {
+            put: "/secrets/{payload.id.resource_id}"
+            body: "payload"
+            additional_bindings: {
+                patch: "/secrets/{payload.id.resource_id}"
+                body: "payload"
+            }
+        };
+
+        option (atlas_validate.method).allow_unknown_fields = false;
+    }
+
+    // Use this method to delete a container.
+    rpc Delete (DeleteSecretRequest) returns (DeleteSecretResponse) {
+        option (google.api.http) = {
+            delete: "/secrets/{id.resource_id}"
+        };
+        option (gorm.method).object_type = "Secret";
+    }
+
+    // Use this method to retrieve the list of containers.
+    rpc List (ListSecretRequest) returns (ListSecretsResponse) {
+        option (google.api.http) = {
+            get: "/secrets"
+        };
+    }
+
+}
+
 
 //// -----------------------------------------------------------------------------------
 //// Environment represents a particular resource that can own Applications in a Region

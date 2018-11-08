@@ -72,6 +72,12 @@ func NewGRPCServer(logger *logrus.Logger, db *gorm.DB) (*grpc.Server, error) {
 	}
 	pb.RegisterVersionTagsServer(grpcServer, vts)
 	
+	ss, err := svc.NewSecretsServer()
+	if err != nil {
+		return nil, err
+	}
+	pb.RegisterSecretsServer(grpcServer, ss)
+	
 	return grpcServer, nil
 }
 

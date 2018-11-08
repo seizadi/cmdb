@@ -2921,3 +2921,942 @@ var _ interface {
 	Cause() error
 	ErrorName() string
 } = ListVersionTagsResponseValidationError{}
+
+// Validate checks the field values on Secret with the rules defined in the
+// proto definition for this message. If any rules are violated, an error is returned.
+func (m *Secret) Validate() error {
+	if m == nil {
+		return nil
+	}
+
+	if v, ok := interface{}(m.GetId()).(interface {
+		Validate() error
+	}); ok {
+		if err := v.Validate(); err != nil {
+			return SecretValidationError{
+				field:  "Id",
+				reason: "embedded message failed validation",
+				cause:  err,
+			}
+		}
+	}
+
+	// no validation rules for Name
+
+	// no validation rules for Description
+
+	// no validation rules for Type
+
+	// no validation rules for Key
+
+	return nil
+}
+
+// SecretValidationError is the validation error returned by Secret.Validate if
+// the designated constraints aren't met.
+type SecretValidationError struct {
+	field  string
+	reason string
+	cause  error
+	key    bool
+}
+
+// Field function returns field value.
+func (e SecretValidationError) Field() string { return e.field }
+
+// Reason function returns reason value.
+func (e SecretValidationError) Reason() string { return e.reason }
+
+// Cause function returns cause value.
+func (e SecretValidationError) Cause() error { return e.cause }
+
+// Key function returns key value.
+func (e SecretValidationError) Key() bool { return e.key }
+
+// ErrorName returns error name.
+func (e SecretValidationError) ErrorName() string { return "SecretValidationError" }
+
+// Error satisfies the builtin error interface
+func (e SecretValidationError) Error() string {
+	cause := ""
+	if e.cause != nil {
+		cause = fmt.Sprintf(" | caused by: %v", e.cause)
+	}
+
+	key := ""
+	if e.key {
+		key = "key for "
+	}
+
+	return fmt.Sprintf(
+		"invalid %sSecret.%s: %s%s",
+		key,
+		e.field,
+		e.reason,
+		cause)
+}
+
+var _ error = SecretValidationError{}
+
+var _ interface {
+	Field() string
+	Reason() string
+	Key() bool
+	Cause() error
+	ErrorName() string
+} = SecretValidationError{}
+
+// Validate checks the field values on CreateSecretRequest with the rules
+// defined in the proto definition for this message. If any rules are
+// violated, an error is returned.
+func (m *CreateSecretRequest) Validate() error {
+	if m == nil {
+		return nil
+	}
+
+	if v, ok := interface{}(m.GetPayload()).(interface {
+		Validate() error
+	}); ok {
+		if err := v.Validate(); err != nil {
+			return CreateSecretRequestValidationError{
+				field:  "Payload",
+				reason: "embedded message failed validation",
+				cause:  err,
+			}
+		}
+	}
+
+	return nil
+}
+
+// CreateSecretRequestValidationError is the validation error returned by
+// CreateSecretRequest.Validate if the designated constraints aren't met.
+type CreateSecretRequestValidationError struct {
+	field  string
+	reason string
+	cause  error
+	key    bool
+}
+
+// Field function returns field value.
+func (e CreateSecretRequestValidationError) Field() string { return e.field }
+
+// Reason function returns reason value.
+func (e CreateSecretRequestValidationError) Reason() string { return e.reason }
+
+// Cause function returns cause value.
+func (e CreateSecretRequestValidationError) Cause() error { return e.cause }
+
+// Key function returns key value.
+func (e CreateSecretRequestValidationError) Key() bool { return e.key }
+
+// ErrorName returns error name.
+func (e CreateSecretRequestValidationError) ErrorName() string {
+	return "CreateSecretRequestValidationError"
+}
+
+// Error satisfies the builtin error interface
+func (e CreateSecretRequestValidationError) Error() string {
+	cause := ""
+	if e.cause != nil {
+		cause = fmt.Sprintf(" | caused by: %v", e.cause)
+	}
+
+	key := ""
+	if e.key {
+		key = "key for "
+	}
+
+	return fmt.Sprintf(
+		"invalid %sCreateSecretRequest.%s: %s%s",
+		key,
+		e.field,
+		e.reason,
+		cause)
+}
+
+var _ error = CreateSecretRequestValidationError{}
+
+var _ interface {
+	Field() string
+	Reason() string
+	Key() bool
+	Cause() error
+	ErrorName() string
+} = CreateSecretRequestValidationError{}
+
+// Validate checks the field values on CreateSecretResponse with the rules
+// defined in the proto definition for this message. If any rules are
+// violated, an error is returned.
+func (m *CreateSecretResponse) Validate() error {
+	if m == nil {
+		return nil
+	}
+
+	if v, ok := interface{}(m.GetResult()).(interface {
+		Validate() error
+	}); ok {
+		if err := v.Validate(); err != nil {
+			return CreateSecretResponseValidationError{
+				field:  "Result",
+				reason: "embedded message failed validation",
+				cause:  err,
+			}
+		}
+	}
+
+	return nil
+}
+
+// CreateSecretResponseValidationError is the validation error returned by
+// CreateSecretResponse.Validate if the designated constraints aren't met.
+type CreateSecretResponseValidationError struct {
+	field  string
+	reason string
+	cause  error
+	key    bool
+}
+
+// Field function returns field value.
+func (e CreateSecretResponseValidationError) Field() string { return e.field }
+
+// Reason function returns reason value.
+func (e CreateSecretResponseValidationError) Reason() string { return e.reason }
+
+// Cause function returns cause value.
+func (e CreateSecretResponseValidationError) Cause() error { return e.cause }
+
+// Key function returns key value.
+func (e CreateSecretResponseValidationError) Key() bool { return e.key }
+
+// ErrorName returns error name.
+func (e CreateSecretResponseValidationError) ErrorName() string {
+	return "CreateSecretResponseValidationError"
+}
+
+// Error satisfies the builtin error interface
+func (e CreateSecretResponseValidationError) Error() string {
+	cause := ""
+	if e.cause != nil {
+		cause = fmt.Sprintf(" | caused by: %v", e.cause)
+	}
+
+	key := ""
+	if e.key {
+		key = "key for "
+	}
+
+	return fmt.Sprintf(
+		"invalid %sCreateSecretResponse.%s: %s%s",
+		key,
+		e.field,
+		e.reason,
+		cause)
+}
+
+var _ error = CreateSecretResponseValidationError{}
+
+var _ interface {
+	Field() string
+	Reason() string
+	Key() bool
+	Cause() error
+	ErrorName() string
+} = CreateSecretResponseValidationError{}
+
+// Validate checks the field values on ReadSecretRequest with the rules defined
+// in the proto definition for this message. If any rules are violated, an
+// error is returned.
+func (m *ReadSecretRequest) Validate() error {
+	if m == nil {
+		return nil
+	}
+
+	if v, ok := interface{}(m.GetId()).(interface {
+		Validate() error
+	}); ok {
+		if err := v.Validate(); err != nil {
+			return ReadSecretRequestValidationError{
+				field:  "Id",
+				reason: "embedded message failed validation",
+				cause:  err,
+			}
+		}
+	}
+
+	if v, ok := interface{}(m.GetFields()).(interface {
+		Validate() error
+	}); ok {
+		if err := v.Validate(); err != nil {
+			return ReadSecretRequestValidationError{
+				field:  "Fields",
+				reason: "embedded message failed validation",
+				cause:  err,
+			}
+		}
+	}
+
+	return nil
+}
+
+// ReadSecretRequestValidationError is the validation error returned by
+// ReadSecretRequest.Validate if the designated constraints aren't met.
+type ReadSecretRequestValidationError struct {
+	field  string
+	reason string
+	cause  error
+	key    bool
+}
+
+// Field function returns field value.
+func (e ReadSecretRequestValidationError) Field() string { return e.field }
+
+// Reason function returns reason value.
+func (e ReadSecretRequestValidationError) Reason() string { return e.reason }
+
+// Cause function returns cause value.
+func (e ReadSecretRequestValidationError) Cause() error { return e.cause }
+
+// Key function returns key value.
+func (e ReadSecretRequestValidationError) Key() bool { return e.key }
+
+// ErrorName returns error name.
+func (e ReadSecretRequestValidationError) ErrorName() string {
+	return "ReadSecretRequestValidationError"
+}
+
+// Error satisfies the builtin error interface
+func (e ReadSecretRequestValidationError) Error() string {
+	cause := ""
+	if e.cause != nil {
+		cause = fmt.Sprintf(" | caused by: %v", e.cause)
+	}
+
+	key := ""
+	if e.key {
+		key = "key for "
+	}
+
+	return fmt.Sprintf(
+		"invalid %sReadSecretRequest.%s: %s%s",
+		key,
+		e.field,
+		e.reason,
+		cause)
+}
+
+var _ error = ReadSecretRequestValidationError{}
+
+var _ interface {
+	Field() string
+	Reason() string
+	Key() bool
+	Cause() error
+	ErrorName() string
+} = ReadSecretRequestValidationError{}
+
+// Validate checks the field values on ReadSecretResponse with the rules
+// defined in the proto definition for this message. If any rules are
+// violated, an error is returned.
+func (m *ReadSecretResponse) Validate() error {
+	if m == nil {
+		return nil
+	}
+
+	if v, ok := interface{}(m.GetResult()).(interface {
+		Validate() error
+	}); ok {
+		if err := v.Validate(); err != nil {
+			return ReadSecretResponseValidationError{
+				field:  "Result",
+				reason: "embedded message failed validation",
+				cause:  err,
+			}
+		}
+	}
+
+	return nil
+}
+
+// ReadSecretResponseValidationError is the validation error returned by
+// ReadSecretResponse.Validate if the designated constraints aren't met.
+type ReadSecretResponseValidationError struct {
+	field  string
+	reason string
+	cause  error
+	key    bool
+}
+
+// Field function returns field value.
+func (e ReadSecretResponseValidationError) Field() string { return e.field }
+
+// Reason function returns reason value.
+func (e ReadSecretResponseValidationError) Reason() string { return e.reason }
+
+// Cause function returns cause value.
+func (e ReadSecretResponseValidationError) Cause() error { return e.cause }
+
+// Key function returns key value.
+func (e ReadSecretResponseValidationError) Key() bool { return e.key }
+
+// ErrorName returns error name.
+func (e ReadSecretResponseValidationError) ErrorName() string {
+	return "ReadSecretResponseValidationError"
+}
+
+// Error satisfies the builtin error interface
+func (e ReadSecretResponseValidationError) Error() string {
+	cause := ""
+	if e.cause != nil {
+		cause = fmt.Sprintf(" | caused by: %v", e.cause)
+	}
+
+	key := ""
+	if e.key {
+		key = "key for "
+	}
+
+	return fmt.Sprintf(
+		"invalid %sReadSecretResponse.%s: %s%s",
+		key,
+		e.field,
+		e.reason,
+		cause)
+}
+
+var _ error = ReadSecretResponseValidationError{}
+
+var _ interface {
+	Field() string
+	Reason() string
+	Key() bool
+	Cause() error
+	ErrorName() string
+} = ReadSecretResponseValidationError{}
+
+// Validate checks the field values on UpdateSecretRequest with the rules
+// defined in the proto definition for this message. If any rules are
+// violated, an error is returned.
+func (m *UpdateSecretRequest) Validate() error {
+	if m == nil {
+		return nil
+	}
+
+	if v, ok := interface{}(m.GetPayload()).(interface {
+		Validate() error
+	}); ok {
+		if err := v.Validate(); err != nil {
+			return UpdateSecretRequestValidationError{
+				field:  "Payload",
+				reason: "embedded message failed validation",
+				cause:  err,
+			}
+		}
+	}
+
+	if v, ok := interface{}(m.GetFields()).(interface {
+		Validate() error
+	}); ok {
+		if err := v.Validate(); err != nil {
+			return UpdateSecretRequestValidationError{
+				field:  "Fields",
+				reason: "embedded message failed validation",
+				cause:  err,
+			}
+		}
+	}
+
+	return nil
+}
+
+// UpdateSecretRequestValidationError is the validation error returned by
+// UpdateSecretRequest.Validate if the designated constraints aren't met.
+type UpdateSecretRequestValidationError struct {
+	field  string
+	reason string
+	cause  error
+	key    bool
+}
+
+// Field function returns field value.
+func (e UpdateSecretRequestValidationError) Field() string { return e.field }
+
+// Reason function returns reason value.
+func (e UpdateSecretRequestValidationError) Reason() string { return e.reason }
+
+// Cause function returns cause value.
+func (e UpdateSecretRequestValidationError) Cause() error { return e.cause }
+
+// Key function returns key value.
+func (e UpdateSecretRequestValidationError) Key() bool { return e.key }
+
+// ErrorName returns error name.
+func (e UpdateSecretRequestValidationError) ErrorName() string {
+	return "UpdateSecretRequestValidationError"
+}
+
+// Error satisfies the builtin error interface
+func (e UpdateSecretRequestValidationError) Error() string {
+	cause := ""
+	if e.cause != nil {
+		cause = fmt.Sprintf(" | caused by: %v", e.cause)
+	}
+
+	key := ""
+	if e.key {
+		key = "key for "
+	}
+
+	return fmt.Sprintf(
+		"invalid %sUpdateSecretRequest.%s: %s%s",
+		key,
+		e.field,
+		e.reason,
+		cause)
+}
+
+var _ error = UpdateSecretRequestValidationError{}
+
+var _ interface {
+	Field() string
+	Reason() string
+	Key() bool
+	Cause() error
+	ErrorName() string
+} = UpdateSecretRequestValidationError{}
+
+// Validate checks the field values on UpdateSecretResponse with the rules
+// defined in the proto definition for this message. If any rules are
+// violated, an error is returned.
+func (m *UpdateSecretResponse) Validate() error {
+	if m == nil {
+		return nil
+	}
+
+	if v, ok := interface{}(m.GetResult()).(interface {
+		Validate() error
+	}); ok {
+		if err := v.Validate(); err != nil {
+			return UpdateSecretResponseValidationError{
+				field:  "Result",
+				reason: "embedded message failed validation",
+				cause:  err,
+			}
+		}
+	}
+
+	return nil
+}
+
+// UpdateSecretResponseValidationError is the validation error returned by
+// UpdateSecretResponse.Validate if the designated constraints aren't met.
+type UpdateSecretResponseValidationError struct {
+	field  string
+	reason string
+	cause  error
+	key    bool
+}
+
+// Field function returns field value.
+func (e UpdateSecretResponseValidationError) Field() string { return e.field }
+
+// Reason function returns reason value.
+func (e UpdateSecretResponseValidationError) Reason() string { return e.reason }
+
+// Cause function returns cause value.
+func (e UpdateSecretResponseValidationError) Cause() error { return e.cause }
+
+// Key function returns key value.
+func (e UpdateSecretResponseValidationError) Key() bool { return e.key }
+
+// ErrorName returns error name.
+func (e UpdateSecretResponseValidationError) ErrorName() string {
+	return "UpdateSecretResponseValidationError"
+}
+
+// Error satisfies the builtin error interface
+func (e UpdateSecretResponseValidationError) Error() string {
+	cause := ""
+	if e.cause != nil {
+		cause = fmt.Sprintf(" | caused by: %v", e.cause)
+	}
+
+	key := ""
+	if e.key {
+		key = "key for "
+	}
+
+	return fmt.Sprintf(
+		"invalid %sUpdateSecretResponse.%s: %s%s",
+		key,
+		e.field,
+		e.reason,
+		cause)
+}
+
+var _ error = UpdateSecretResponseValidationError{}
+
+var _ interface {
+	Field() string
+	Reason() string
+	Key() bool
+	Cause() error
+	ErrorName() string
+} = UpdateSecretResponseValidationError{}
+
+// Validate checks the field values on DeleteSecretRequest with the rules
+// defined in the proto definition for this message. If any rules are
+// violated, an error is returned.
+func (m *DeleteSecretRequest) Validate() error {
+	if m == nil {
+		return nil
+	}
+
+	if v, ok := interface{}(m.GetId()).(interface {
+		Validate() error
+	}); ok {
+		if err := v.Validate(); err != nil {
+			return DeleteSecretRequestValidationError{
+				field:  "Id",
+				reason: "embedded message failed validation",
+				cause:  err,
+			}
+		}
+	}
+
+	return nil
+}
+
+// DeleteSecretRequestValidationError is the validation error returned by
+// DeleteSecretRequest.Validate if the designated constraints aren't met.
+type DeleteSecretRequestValidationError struct {
+	field  string
+	reason string
+	cause  error
+	key    bool
+}
+
+// Field function returns field value.
+func (e DeleteSecretRequestValidationError) Field() string { return e.field }
+
+// Reason function returns reason value.
+func (e DeleteSecretRequestValidationError) Reason() string { return e.reason }
+
+// Cause function returns cause value.
+func (e DeleteSecretRequestValidationError) Cause() error { return e.cause }
+
+// Key function returns key value.
+func (e DeleteSecretRequestValidationError) Key() bool { return e.key }
+
+// ErrorName returns error name.
+func (e DeleteSecretRequestValidationError) ErrorName() string {
+	return "DeleteSecretRequestValidationError"
+}
+
+// Error satisfies the builtin error interface
+func (e DeleteSecretRequestValidationError) Error() string {
+	cause := ""
+	if e.cause != nil {
+		cause = fmt.Sprintf(" | caused by: %v", e.cause)
+	}
+
+	key := ""
+	if e.key {
+		key = "key for "
+	}
+
+	return fmt.Sprintf(
+		"invalid %sDeleteSecretRequest.%s: %s%s",
+		key,
+		e.field,
+		e.reason,
+		cause)
+}
+
+var _ error = DeleteSecretRequestValidationError{}
+
+var _ interface {
+	Field() string
+	Reason() string
+	Key() bool
+	Cause() error
+	ErrorName() string
+} = DeleteSecretRequestValidationError{}
+
+// Validate checks the field values on DeleteSecretResponse with the rules
+// defined in the proto definition for this message. If any rules are
+// violated, an error is returned.
+func (m *DeleteSecretResponse) Validate() error {
+	if m == nil {
+		return nil
+	}
+
+	return nil
+}
+
+// DeleteSecretResponseValidationError is the validation error returned by
+// DeleteSecretResponse.Validate if the designated constraints aren't met.
+type DeleteSecretResponseValidationError struct {
+	field  string
+	reason string
+	cause  error
+	key    bool
+}
+
+// Field function returns field value.
+func (e DeleteSecretResponseValidationError) Field() string { return e.field }
+
+// Reason function returns reason value.
+func (e DeleteSecretResponseValidationError) Reason() string { return e.reason }
+
+// Cause function returns cause value.
+func (e DeleteSecretResponseValidationError) Cause() error { return e.cause }
+
+// Key function returns key value.
+func (e DeleteSecretResponseValidationError) Key() bool { return e.key }
+
+// ErrorName returns error name.
+func (e DeleteSecretResponseValidationError) ErrorName() string {
+	return "DeleteSecretResponseValidationError"
+}
+
+// Error satisfies the builtin error interface
+func (e DeleteSecretResponseValidationError) Error() string {
+	cause := ""
+	if e.cause != nil {
+		cause = fmt.Sprintf(" | caused by: %v", e.cause)
+	}
+
+	key := ""
+	if e.key {
+		key = "key for "
+	}
+
+	return fmt.Sprintf(
+		"invalid %sDeleteSecretResponse.%s: %s%s",
+		key,
+		e.field,
+		e.reason,
+		cause)
+}
+
+var _ error = DeleteSecretResponseValidationError{}
+
+var _ interface {
+	Field() string
+	Reason() string
+	Key() bool
+	Cause() error
+	ErrorName() string
+} = DeleteSecretResponseValidationError{}
+
+// Validate checks the field values on ListSecretRequest with the rules defined
+// in the proto definition for this message. If any rules are violated, an
+// error is returned.
+func (m *ListSecretRequest) Validate() error {
+	if m == nil {
+		return nil
+	}
+
+	if v, ok := interface{}(m.GetFilter()).(interface {
+		Validate() error
+	}); ok {
+		if err := v.Validate(); err != nil {
+			return ListSecretRequestValidationError{
+				field:  "Filter",
+				reason: "embedded message failed validation",
+				cause:  err,
+			}
+		}
+	}
+
+	if v, ok := interface{}(m.GetOrderBy()).(interface {
+		Validate() error
+	}); ok {
+		if err := v.Validate(); err != nil {
+			return ListSecretRequestValidationError{
+				field:  "OrderBy",
+				reason: "embedded message failed validation",
+				cause:  err,
+			}
+		}
+	}
+
+	if v, ok := interface{}(m.GetFields()).(interface {
+		Validate() error
+	}); ok {
+		if err := v.Validate(); err != nil {
+			return ListSecretRequestValidationError{
+				field:  "Fields",
+				reason: "embedded message failed validation",
+				cause:  err,
+			}
+		}
+	}
+
+	if v, ok := interface{}(m.GetPaging()).(interface {
+		Validate() error
+	}); ok {
+		if err := v.Validate(); err != nil {
+			return ListSecretRequestValidationError{
+				field:  "Paging",
+				reason: "embedded message failed validation",
+				cause:  err,
+			}
+		}
+	}
+
+	return nil
+}
+
+// ListSecretRequestValidationError is the validation error returned by
+// ListSecretRequest.Validate if the designated constraints aren't met.
+type ListSecretRequestValidationError struct {
+	field  string
+	reason string
+	cause  error
+	key    bool
+}
+
+// Field function returns field value.
+func (e ListSecretRequestValidationError) Field() string { return e.field }
+
+// Reason function returns reason value.
+func (e ListSecretRequestValidationError) Reason() string { return e.reason }
+
+// Cause function returns cause value.
+func (e ListSecretRequestValidationError) Cause() error { return e.cause }
+
+// Key function returns key value.
+func (e ListSecretRequestValidationError) Key() bool { return e.key }
+
+// ErrorName returns error name.
+func (e ListSecretRequestValidationError) ErrorName() string {
+	return "ListSecretRequestValidationError"
+}
+
+// Error satisfies the builtin error interface
+func (e ListSecretRequestValidationError) Error() string {
+	cause := ""
+	if e.cause != nil {
+		cause = fmt.Sprintf(" | caused by: %v", e.cause)
+	}
+
+	key := ""
+	if e.key {
+		key = "key for "
+	}
+
+	return fmt.Sprintf(
+		"invalid %sListSecretRequest.%s: %s%s",
+		key,
+		e.field,
+		e.reason,
+		cause)
+}
+
+var _ error = ListSecretRequestValidationError{}
+
+var _ interface {
+	Field() string
+	Reason() string
+	Key() bool
+	Cause() error
+	ErrorName() string
+} = ListSecretRequestValidationError{}
+
+// Validate checks the field values on ListSecretsResponse with the rules
+// defined in the proto definition for this message. If any rules are
+// violated, an error is returned.
+func (m *ListSecretsResponse) Validate() error {
+	if m == nil {
+		return nil
+	}
+
+	for idx, item := range m.GetResults() {
+		_, _ = idx, item
+
+		if v, ok := interface{}(item).(interface {
+			Validate() error
+		}); ok {
+			if err := v.Validate(); err != nil {
+				return ListSecretsResponseValidationError{
+					field:  fmt.Sprintf("Results[%v]", idx),
+					reason: "embedded message failed validation",
+					cause:  err,
+				}
+			}
+		}
+
+	}
+
+	if v, ok := interface{}(m.GetPage()).(interface {
+		Validate() error
+	}); ok {
+		if err := v.Validate(); err != nil {
+			return ListSecretsResponseValidationError{
+				field:  "Page",
+				reason: "embedded message failed validation",
+				cause:  err,
+			}
+		}
+	}
+
+	return nil
+}
+
+// ListSecretsResponseValidationError is the validation error returned by
+// ListSecretsResponse.Validate if the designated constraints aren't met.
+type ListSecretsResponseValidationError struct {
+	field  string
+	reason string
+	cause  error
+	key    bool
+}
+
+// Field function returns field value.
+func (e ListSecretsResponseValidationError) Field() string { return e.field }
+
+// Reason function returns reason value.
+func (e ListSecretsResponseValidationError) Reason() string { return e.reason }
+
+// Cause function returns cause value.
+func (e ListSecretsResponseValidationError) Cause() error { return e.cause }
+
+// Key function returns key value.
+func (e ListSecretsResponseValidationError) Key() bool { return e.key }
+
+// ErrorName returns error name.
+func (e ListSecretsResponseValidationError) ErrorName() string {
+	return "ListSecretsResponseValidationError"
+}
+
+// Error satisfies the builtin error interface
+func (e ListSecretsResponseValidationError) Error() string {
+	cause := ""
+	if e.cause != nil {
+		cause = fmt.Sprintf(" | caused by: %v", e.cause)
+	}
+
+	key := ""
+	if e.key {
+		key = "key for "
+	}
+
+	return fmt.Sprintf(
+		"invalid %sListSecretsResponse.%s: %s%s",
+		key,
+		e.field,
+		e.reason,
+		cause)
+}
+
+var _ error = ListSecretsResponseValidationError{}
+
+var _ interface {
+	Field() string
+	Reason() string
+	Key() bool
+	Cause() error
+	ErrorName() string
+} = ListSecretsResponseValidationError{}
