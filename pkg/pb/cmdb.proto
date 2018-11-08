@@ -211,7 +211,7 @@ message Container {
   // The unique container name referenced helm charts
   string container_name = 4;
 
-  // The docker image repository (e.g. soheileizadi)
+  // The docker image repository (e.g. soheileizadi/cmdb-server)
   string image_repo = 5;
 
   // The docker image tag (e.g. latest)
@@ -320,6 +320,134 @@ service Containers {
     rpc List (ListContainerRequest) returns (ListContainersResponse) {
         option (google.api.http) = {
             get: "/containers"
+        };
+    }
+
+}
+
+// -----------------------------------------------------------------------------------
+// VersionTag represents a tag on git repo
+// -----------------------------------------------------------------------------------
+message VersionTag {
+  option (gorm.opts) = {
+      ormable: true,
+      multi_account: true
+  };
+
+  // The contact identifier.
+  atlas.rpc.Identifier id = 1 [(gorm.field).tag = {type: "serial"  primary_key: true}];
+
+  // The name of the container
+  string name = 2;
+
+  // The description of the container
+  string description = 3;
+
+  // The version based on SemVer (e.g. 0.0.4)
+  string version = 4;
+
+  // The git repo (e.g. https://github.com/seizadi/cmdb/releases/tag/v0.0.4)
+  string repo = 5;
+
+  // The git repo commit ID (e.g. 20ec77f5a8f8e260deb51e8d888a2597762184b6)
+  string commit = 6;
+}
+
+message CreateVersionTagRequest {
+    VersionTag payload = 1;
+}
+
+message CreateVersionTagResponse {
+    VersionTag result = 1;
+}
+
+message ReadVersionTagRequest {
+    atlas.rpc.Identifier id = 1;
+    infoblox.api.FieldSelection fields = 2;
+}
+
+message ReadVersionTagResponse {
+    VersionTag result = 1;
+}
+
+message UpdateVersionTagRequest {
+    VersionTag payload = 1;
+    google.protobuf.FieldMask fields = 2;
+}
+
+message UpdateVersionTagResponse {
+    VersionTag result = 1;
+}
+
+message DeleteVersionTagRequest {
+    atlas.rpc.Identifier id = 1;
+}
+
+message DeleteVersionTagResponse{}
+
+message ListVersionTagRequest {
+    infoblox.api.Filtering filter = 1;
+    infoblox.api.Sorting order_by = 2;
+    infoblox.api.FieldSelection fields = 3;
+    infoblox.api.Pagination paging = 4;
+}
+
+message ListVersionTagsResponse {
+    repeated VersionTag results = 1;
+    infoblox.api.PageInfo page = 2;
+}
+
+service VersionTags {
+    option (gorm.server) = {
+      autogen: true,
+      txn_middleware: true,
+    };
+
+    option (atlas_validate.service).allow_unknown_fields = true;
+
+    // Use this method to create a container.
+    rpc Create (CreateVersionTagRequest) returns (CreateVersionTagResponse) {
+        option (google.api.http) = {
+            post: "/version_tags"
+            body: "payload"
+        };
+
+        option (atlas_validate.method).allow_unknown_fields = false;
+    }
+
+    // Use this method to retrieve the particular container.
+    rpc Read (ReadVersionTagRequest) returns (ReadVersionTagResponse) {
+        option (google.api.http) = {
+            get: "/version_tags/{id.resource_id}"
+        };
+    }
+
+    // Use this method to update container.
+    rpc Update (UpdateVersionTagRequest) returns (UpdateVersionTagResponse) {
+        option (google.api.http) = {
+            put: "/version_tags/{payload.id.resource_id}"
+            body: "payload"
+            additional_bindings: {
+                patch: "/version_tags/{payload.id.resource_id}"
+                body: "payload"
+            }
+        };
+
+        option (atlas_validate.method).allow_unknown_fields = false;
+    }
+
+    // Use this method to delete a container.
+    rpc Delete (DeleteVersionTagRequest) returns (DeleteVersionTagResponse) {
+        option (google.api.http) = {
+            delete: "/version_tags/{id.resource_id}"
+        };
+        option (gorm.method).object_type = "VersionTag";
+    }
+
+    // Use this method to retrieve the list of containers.
+    rpc List (ListVersionTagRequest) returns (ListVersionTagsResponse) {
+        option (google.api.http) = {
+            get: "/version_tags"
         };
     }
 

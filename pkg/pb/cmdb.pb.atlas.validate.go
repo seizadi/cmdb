@@ -132,6 +132,51 @@ func validate_Containers_List_0(r json.RawMessage) (err error) {
 	return nil
 }
 
+// validate_VersionTags_Create_0 is an entrypoint for validating "POST" HTTP request
+// that match *.pb.gw.go/pattern_VersionTags_Create_0.
+func validate_VersionTags_Create_0(r json.RawMessage) (err error) {
+	return validate_Object_VersionTag(r, "", false)
+}
+
+// validate_VersionTags_Read_0 is an entrypoint for validating "GET" HTTP request
+// that match *.pb.gw.go/pattern_VersionTags_Read_0.
+func validate_VersionTags_Read_0(r json.RawMessage) (err error) {
+	if len(r) != 0 {
+		return fmt.Errorf("Body is not allowed")
+	}
+	return nil
+}
+
+// validate_VersionTags_Update_0 is an entrypoint for validating "PUT" HTTP request
+// that match *.pb.gw.go/pattern_VersionTags_Update_0.
+func validate_VersionTags_Update_0(r json.RawMessage) (err error) {
+	return validate_Object_VersionTag(r, "", false)
+}
+
+// validate_VersionTags_Update_1 is an entrypoint for validating "PATCH" HTTP request
+// that match *.pb.gw.go/pattern_VersionTags_Update_1.
+func validate_VersionTags_Update_1(r json.RawMessage) (err error) {
+	return validate_Object_VersionTag(r, "", false)
+}
+
+// validate_VersionTags_Delete_0 is an entrypoint for validating "DELETE" HTTP request
+// that match *.pb.gw.go/pattern_VersionTags_Delete_0.
+func validate_VersionTags_Delete_0(r json.RawMessage) (err error) {
+	if len(r) != 0 {
+		return fmt.Errorf("Body is not allowed")
+	}
+	return nil
+}
+
+// validate_VersionTags_List_0 is an entrypoint for validating "GET" HTTP request
+// that match *.pb.gw.go/pattern_VersionTags_List_0.
+func validate_VersionTags_List_0(r json.RawMessage) (err error) {
+	if len(r) != 0 {
+		return fmt.Errorf("Body is not allowed")
+	}
+	return nil
+}
+
 // validate_Object_VersionResponse function validates a JSON for a given object.
 func validate_Object_VersionResponse(r json.RawMessage, path string, allowUnknown bool) (err error) {
 	obj := &VersionResponse{}
@@ -1413,6 +1458,628 @@ func (o *ListContainersResponse) AtlasValidateJSON(r json.RawMessage, path strin
 	return validate_Object_ListContainersResponse(r, path, allowUnknown)
 }
 
+// validate_Object_VersionTag function validates a JSON for a given object.
+func validate_Object_VersionTag(r json.RawMessage, path string, allowUnknown bool) (err error) {
+	obj := &VersionTag{}
+	if hook, ok := interface{}(obj).(interface {
+		AtlasJSONValidate(json.RawMessage, string, bool) (json.RawMessage, error)
+	}); ok {
+		if r, err = hook.AtlasJSONValidate(r, path, allowUnknown); err != nil {
+			return err
+		}
+	}
+	var v map[string]json.RawMessage
+	if err = json.Unmarshal(r, &v); err != nil {
+		return fmt.Errorf("Invalid value for %q: expected object.", path)
+	}
+	for k, _ := range v {
+		switch k {
+		case "id":
+			if v[k] == nil {
+				continue
+			}
+			vv := v[k]
+			vvPath := validate_runtime.JoinPath(path, k)
+			validator, ok := interface{}(&google_protobuf1.Identifier{}).(interface {
+				AtlasValidateJSON(json.RawMessage, string, bool) error
+			})
+			if !ok {
+				continue
+			}
+			if err = validator.AtlasValidateJSON(vv, vvPath, allowUnknown); err != nil {
+				return err
+			}
+		case "name":
+		case "description":
+		case "version":
+		case "repo":
+		case "commit":
+		default:
+			if !allowUnknown {
+				return fmt.Errorf("Unknown field %q", validate_runtime.JoinPath(path, k))
+			}
+		}
+	}
+	return nil
+}
+
+// AtlasValidateJSON function validates a JSON for object VersionTag.
+func (o *VersionTag) AtlasValidateJSON(r json.RawMessage, path string, allowUnknown bool) (err error) {
+	if hook, ok := interface{}(o).(interface {
+		AtlasJSONValidate(json.RawMessage, string, bool) (json.RawMessage, error)
+	}); ok {
+		if r, err = hook.AtlasJSONValidate(r, path, allowUnknown); err != nil {
+			return err
+		}
+	}
+	return validate_Object_VersionTag(r, path, allowUnknown)
+}
+
+// validate_Object_CreateVersionTagRequest function validates a JSON for a given object.
+func validate_Object_CreateVersionTagRequest(r json.RawMessage, path string, allowUnknown bool) (err error) {
+	obj := &CreateVersionTagRequest{}
+	if hook, ok := interface{}(obj).(interface {
+		AtlasJSONValidate(json.RawMessage, string, bool) (json.RawMessage, error)
+	}); ok {
+		if r, err = hook.AtlasJSONValidate(r, path, allowUnknown); err != nil {
+			return err
+		}
+	}
+	var v map[string]json.RawMessage
+	if err = json.Unmarshal(r, &v); err != nil {
+		return fmt.Errorf("Invalid value for %q: expected object.", path)
+	}
+	for k, _ := range v {
+		switch k {
+		case "payload":
+			if v[k] == nil {
+				continue
+			}
+			vv := v[k]
+			vvPath := validate_runtime.JoinPath(path, k)
+			if err = validate_Object_VersionTag(vv, vvPath, allowUnknown); err != nil {
+				return err
+			}
+		default:
+			if !allowUnknown {
+				return fmt.Errorf("Unknown field %q", validate_runtime.JoinPath(path, k))
+			}
+		}
+	}
+	return nil
+}
+
+// AtlasValidateJSON function validates a JSON for object CreateVersionTagRequest.
+func (o *CreateVersionTagRequest) AtlasValidateJSON(r json.RawMessage, path string, allowUnknown bool) (err error) {
+	if hook, ok := interface{}(o).(interface {
+		AtlasJSONValidate(json.RawMessage, string, bool) (json.RawMessage, error)
+	}); ok {
+		if r, err = hook.AtlasJSONValidate(r, path, allowUnknown); err != nil {
+			return err
+		}
+	}
+	return validate_Object_CreateVersionTagRequest(r, path, allowUnknown)
+}
+
+// validate_Object_CreateVersionTagResponse function validates a JSON for a given object.
+func validate_Object_CreateVersionTagResponse(r json.RawMessage, path string, allowUnknown bool) (err error) {
+	obj := &CreateVersionTagResponse{}
+	if hook, ok := interface{}(obj).(interface {
+		AtlasJSONValidate(json.RawMessage, string, bool) (json.RawMessage, error)
+	}); ok {
+		if r, err = hook.AtlasJSONValidate(r, path, allowUnknown); err != nil {
+			return err
+		}
+	}
+	var v map[string]json.RawMessage
+	if err = json.Unmarshal(r, &v); err != nil {
+		return fmt.Errorf("Invalid value for %q: expected object.", path)
+	}
+	for k, _ := range v {
+		switch k {
+		case "result":
+			if v[k] == nil {
+				continue
+			}
+			vv := v[k]
+			vvPath := validate_runtime.JoinPath(path, k)
+			if err = validate_Object_VersionTag(vv, vvPath, allowUnknown); err != nil {
+				return err
+			}
+		default:
+			if !allowUnknown {
+				return fmt.Errorf("Unknown field %q", validate_runtime.JoinPath(path, k))
+			}
+		}
+	}
+	return nil
+}
+
+// AtlasValidateJSON function validates a JSON for object CreateVersionTagResponse.
+func (o *CreateVersionTagResponse) AtlasValidateJSON(r json.RawMessage, path string, allowUnknown bool) (err error) {
+	if hook, ok := interface{}(o).(interface {
+		AtlasJSONValidate(json.RawMessage, string, bool) (json.RawMessage, error)
+	}); ok {
+		if r, err = hook.AtlasJSONValidate(r, path, allowUnknown); err != nil {
+			return err
+		}
+	}
+	return validate_Object_CreateVersionTagResponse(r, path, allowUnknown)
+}
+
+// validate_Object_ReadVersionTagRequest function validates a JSON for a given object.
+func validate_Object_ReadVersionTagRequest(r json.RawMessage, path string, allowUnknown bool) (err error) {
+	obj := &ReadVersionTagRequest{}
+	if hook, ok := interface{}(obj).(interface {
+		AtlasJSONValidate(json.RawMessage, string, bool) (json.RawMessage, error)
+	}); ok {
+		if r, err = hook.AtlasJSONValidate(r, path, allowUnknown); err != nil {
+			return err
+		}
+	}
+	var v map[string]json.RawMessage
+	if err = json.Unmarshal(r, &v); err != nil {
+		return fmt.Errorf("Invalid value for %q: expected object.", path)
+	}
+	for k, _ := range v {
+		switch k {
+		case "id":
+			if v[k] == nil {
+				continue
+			}
+			vv := v[k]
+			vvPath := validate_runtime.JoinPath(path, k)
+			validator, ok := interface{}(&google_protobuf1.Identifier{}).(interface {
+				AtlasValidateJSON(json.RawMessage, string, bool) error
+			})
+			if !ok {
+				continue
+			}
+			if err = validator.AtlasValidateJSON(vv, vvPath, allowUnknown); err != nil {
+				return err
+			}
+		case "fields":
+			if v[k] == nil {
+				continue
+			}
+			vv := v[k]
+			vvPath := validate_runtime.JoinPath(path, k)
+			validator, ok := interface{}(&google_protobuf2.FieldSelection{}).(interface {
+				AtlasValidateJSON(json.RawMessage, string, bool) error
+			})
+			if !ok {
+				continue
+			}
+			if err = validator.AtlasValidateJSON(vv, vvPath, allowUnknown); err != nil {
+				return err
+			}
+		default:
+			if !allowUnknown {
+				return fmt.Errorf("Unknown field %q", validate_runtime.JoinPath(path, k))
+			}
+		}
+	}
+	return nil
+}
+
+// AtlasValidateJSON function validates a JSON for object ReadVersionTagRequest.
+func (o *ReadVersionTagRequest) AtlasValidateJSON(r json.RawMessage, path string, allowUnknown bool) (err error) {
+	if hook, ok := interface{}(o).(interface {
+		AtlasJSONValidate(json.RawMessage, string, bool) (json.RawMessage, error)
+	}); ok {
+		if r, err = hook.AtlasJSONValidate(r, path, allowUnknown); err != nil {
+			return err
+		}
+	}
+	return validate_Object_ReadVersionTagRequest(r, path, allowUnknown)
+}
+
+// validate_Object_ReadVersionTagResponse function validates a JSON for a given object.
+func validate_Object_ReadVersionTagResponse(r json.RawMessage, path string, allowUnknown bool) (err error) {
+	obj := &ReadVersionTagResponse{}
+	if hook, ok := interface{}(obj).(interface {
+		AtlasJSONValidate(json.RawMessage, string, bool) (json.RawMessage, error)
+	}); ok {
+		if r, err = hook.AtlasJSONValidate(r, path, allowUnknown); err != nil {
+			return err
+		}
+	}
+	var v map[string]json.RawMessage
+	if err = json.Unmarshal(r, &v); err != nil {
+		return fmt.Errorf("Invalid value for %q: expected object.", path)
+	}
+	for k, _ := range v {
+		switch k {
+		case "result":
+			if v[k] == nil {
+				continue
+			}
+			vv := v[k]
+			vvPath := validate_runtime.JoinPath(path, k)
+			if err = validate_Object_VersionTag(vv, vvPath, allowUnknown); err != nil {
+				return err
+			}
+		default:
+			if !allowUnknown {
+				return fmt.Errorf("Unknown field %q", validate_runtime.JoinPath(path, k))
+			}
+		}
+	}
+	return nil
+}
+
+// AtlasValidateJSON function validates a JSON for object ReadVersionTagResponse.
+func (o *ReadVersionTagResponse) AtlasValidateJSON(r json.RawMessage, path string, allowUnknown bool) (err error) {
+	if hook, ok := interface{}(o).(interface {
+		AtlasJSONValidate(json.RawMessage, string, bool) (json.RawMessage, error)
+	}); ok {
+		if r, err = hook.AtlasJSONValidate(r, path, allowUnknown); err != nil {
+			return err
+		}
+	}
+	return validate_Object_ReadVersionTagResponse(r, path, allowUnknown)
+}
+
+// validate_Object_UpdateVersionTagRequest function validates a JSON for a given object.
+func validate_Object_UpdateVersionTagRequest(r json.RawMessage, path string, allowUnknown bool) (err error) {
+	obj := &UpdateVersionTagRequest{}
+	if hook, ok := interface{}(obj).(interface {
+		AtlasJSONValidate(json.RawMessage, string, bool) (json.RawMessage, error)
+	}); ok {
+		if r, err = hook.AtlasJSONValidate(r, path, allowUnknown); err != nil {
+			return err
+		}
+	}
+	var v map[string]json.RawMessage
+	if err = json.Unmarshal(r, &v); err != nil {
+		return fmt.Errorf("Invalid value for %q: expected object.", path)
+	}
+	for k, _ := range v {
+		switch k {
+		case "payload":
+			if v[k] == nil {
+				continue
+			}
+			vv := v[k]
+			vvPath := validate_runtime.JoinPath(path, k)
+			if err = validate_Object_VersionTag(vv, vvPath, allowUnknown); err != nil {
+				return err
+			}
+		case "fields":
+			if v[k] == nil {
+				continue
+			}
+			vv := v[k]
+			vvPath := validate_runtime.JoinPath(path, k)
+			validator, ok := interface{}(&google_protobuf3.FieldMask{}).(interface {
+				AtlasValidateJSON(json.RawMessage, string, bool) error
+			})
+			if !ok {
+				continue
+			}
+			if err = validator.AtlasValidateJSON(vv, vvPath, allowUnknown); err != nil {
+				return err
+			}
+		default:
+			if !allowUnknown {
+				return fmt.Errorf("Unknown field %q", validate_runtime.JoinPath(path, k))
+			}
+		}
+	}
+	return nil
+}
+
+// AtlasValidateJSON function validates a JSON for object UpdateVersionTagRequest.
+func (o *UpdateVersionTagRequest) AtlasValidateJSON(r json.RawMessage, path string, allowUnknown bool) (err error) {
+	if hook, ok := interface{}(o).(interface {
+		AtlasJSONValidate(json.RawMessage, string, bool) (json.RawMessage, error)
+	}); ok {
+		if r, err = hook.AtlasJSONValidate(r, path, allowUnknown); err != nil {
+			return err
+		}
+	}
+	return validate_Object_UpdateVersionTagRequest(r, path, allowUnknown)
+}
+
+// validate_Object_UpdateVersionTagResponse function validates a JSON for a given object.
+func validate_Object_UpdateVersionTagResponse(r json.RawMessage, path string, allowUnknown bool) (err error) {
+	obj := &UpdateVersionTagResponse{}
+	if hook, ok := interface{}(obj).(interface {
+		AtlasJSONValidate(json.RawMessage, string, bool) (json.RawMessage, error)
+	}); ok {
+		if r, err = hook.AtlasJSONValidate(r, path, allowUnknown); err != nil {
+			return err
+		}
+	}
+	var v map[string]json.RawMessage
+	if err = json.Unmarshal(r, &v); err != nil {
+		return fmt.Errorf("Invalid value for %q: expected object.", path)
+	}
+	for k, _ := range v {
+		switch k {
+		case "result":
+			if v[k] == nil {
+				continue
+			}
+			vv := v[k]
+			vvPath := validate_runtime.JoinPath(path, k)
+			if err = validate_Object_VersionTag(vv, vvPath, allowUnknown); err != nil {
+				return err
+			}
+		default:
+			if !allowUnknown {
+				return fmt.Errorf("Unknown field %q", validate_runtime.JoinPath(path, k))
+			}
+		}
+	}
+	return nil
+}
+
+// AtlasValidateJSON function validates a JSON for object UpdateVersionTagResponse.
+func (o *UpdateVersionTagResponse) AtlasValidateJSON(r json.RawMessage, path string, allowUnknown bool) (err error) {
+	if hook, ok := interface{}(o).(interface {
+		AtlasJSONValidate(json.RawMessage, string, bool) (json.RawMessage, error)
+	}); ok {
+		if r, err = hook.AtlasJSONValidate(r, path, allowUnknown); err != nil {
+			return err
+		}
+	}
+	return validate_Object_UpdateVersionTagResponse(r, path, allowUnknown)
+}
+
+// validate_Object_DeleteVersionTagRequest function validates a JSON for a given object.
+func validate_Object_DeleteVersionTagRequest(r json.RawMessage, path string, allowUnknown bool) (err error) {
+	obj := &DeleteVersionTagRequest{}
+	if hook, ok := interface{}(obj).(interface {
+		AtlasJSONValidate(json.RawMessage, string, bool) (json.RawMessage, error)
+	}); ok {
+		if r, err = hook.AtlasJSONValidate(r, path, allowUnknown); err != nil {
+			return err
+		}
+	}
+	var v map[string]json.RawMessage
+	if err = json.Unmarshal(r, &v); err != nil {
+		return fmt.Errorf("Invalid value for %q: expected object.", path)
+	}
+	for k, _ := range v {
+		switch k {
+		case "id":
+			if v[k] == nil {
+				continue
+			}
+			vv := v[k]
+			vvPath := validate_runtime.JoinPath(path, k)
+			validator, ok := interface{}(&google_protobuf1.Identifier{}).(interface {
+				AtlasValidateJSON(json.RawMessage, string, bool) error
+			})
+			if !ok {
+				continue
+			}
+			if err = validator.AtlasValidateJSON(vv, vvPath, allowUnknown); err != nil {
+				return err
+			}
+		default:
+			if !allowUnknown {
+				return fmt.Errorf("Unknown field %q", validate_runtime.JoinPath(path, k))
+			}
+		}
+	}
+	return nil
+}
+
+// AtlasValidateJSON function validates a JSON for object DeleteVersionTagRequest.
+func (o *DeleteVersionTagRequest) AtlasValidateJSON(r json.RawMessage, path string, allowUnknown bool) (err error) {
+	if hook, ok := interface{}(o).(interface {
+		AtlasJSONValidate(json.RawMessage, string, bool) (json.RawMessage, error)
+	}); ok {
+		if r, err = hook.AtlasJSONValidate(r, path, allowUnknown); err != nil {
+			return err
+		}
+	}
+	return validate_Object_DeleteVersionTagRequest(r, path, allowUnknown)
+}
+
+// validate_Object_DeleteVersionTagResponse function validates a JSON for a given object.
+func validate_Object_DeleteVersionTagResponse(r json.RawMessage, path string, allowUnknown bool) (err error) {
+	obj := &DeleteVersionTagResponse{}
+	if hook, ok := interface{}(obj).(interface {
+		AtlasJSONValidate(json.RawMessage, string, bool) (json.RawMessage, error)
+	}); ok {
+		if r, err = hook.AtlasJSONValidate(r, path, allowUnknown); err != nil {
+			return err
+		}
+	}
+	var v map[string]json.RawMessage
+	if err = json.Unmarshal(r, &v); err != nil {
+		return fmt.Errorf("Invalid value for %q: expected object.", path)
+	}
+	for k, _ := range v {
+		switch k {
+		default:
+			if !allowUnknown {
+				return fmt.Errorf("Unknown field %q", validate_runtime.JoinPath(path, k))
+			}
+		}
+	}
+	return nil
+}
+
+// AtlasValidateJSON function validates a JSON for object DeleteVersionTagResponse.
+func (o *DeleteVersionTagResponse) AtlasValidateJSON(r json.RawMessage, path string, allowUnknown bool) (err error) {
+	if hook, ok := interface{}(o).(interface {
+		AtlasJSONValidate(json.RawMessage, string, bool) (json.RawMessage, error)
+	}); ok {
+		if r, err = hook.AtlasJSONValidate(r, path, allowUnknown); err != nil {
+			return err
+		}
+	}
+	return validate_Object_DeleteVersionTagResponse(r, path, allowUnknown)
+}
+
+// validate_Object_ListVersionTagRequest function validates a JSON for a given object.
+func validate_Object_ListVersionTagRequest(r json.RawMessage, path string, allowUnknown bool) (err error) {
+	obj := &ListVersionTagRequest{}
+	if hook, ok := interface{}(obj).(interface {
+		AtlasJSONValidate(json.RawMessage, string, bool) (json.RawMessage, error)
+	}); ok {
+		if r, err = hook.AtlasJSONValidate(r, path, allowUnknown); err != nil {
+			return err
+		}
+	}
+	var v map[string]json.RawMessage
+	if err = json.Unmarshal(r, &v); err != nil {
+		return fmt.Errorf("Invalid value for %q: expected object.", path)
+	}
+	for k, _ := range v {
+		switch k {
+		case "filter":
+			if v[k] == nil {
+				continue
+			}
+			vv := v[k]
+			vvPath := validate_runtime.JoinPath(path, k)
+			validator, ok := interface{}(&google_protobuf2.Filtering{}).(interface {
+				AtlasValidateJSON(json.RawMessage, string, bool) error
+			})
+			if !ok {
+				continue
+			}
+			if err = validator.AtlasValidateJSON(vv, vvPath, allowUnknown); err != nil {
+				return err
+			}
+		case "order_by":
+			if v[k] == nil {
+				continue
+			}
+			vv := v[k]
+			vvPath := validate_runtime.JoinPath(path, k)
+			validator, ok := interface{}(&google_protobuf2.Sorting{}).(interface {
+				AtlasValidateJSON(json.RawMessage, string, bool) error
+			})
+			if !ok {
+				continue
+			}
+			if err = validator.AtlasValidateJSON(vv, vvPath, allowUnknown); err != nil {
+				return err
+			}
+		case "fields":
+			if v[k] == nil {
+				continue
+			}
+			vv := v[k]
+			vvPath := validate_runtime.JoinPath(path, k)
+			validator, ok := interface{}(&google_protobuf2.FieldSelection{}).(interface {
+				AtlasValidateJSON(json.RawMessage, string, bool) error
+			})
+			if !ok {
+				continue
+			}
+			if err = validator.AtlasValidateJSON(vv, vvPath, allowUnknown); err != nil {
+				return err
+			}
+		case "paging":
+			if v[k] == nil {
+				continue
+			}
+			vv := v[k]
+			vvPath := validate_runtime.JoinPath(path, k)
+			validator, ok := interface{}(&google_protobuf2.Pagination{}).(interface {
+				AtlasValidateJSON(json.RawMessage, string, bool) error
+			})
+			if !ok {
+				continue
+			}
+			if err = validator.AtlasValidateJSON(vv, vvPath, allowUnknown); err != nil {
+				return err
+			}
+		default:
+			if !allowUnknown {
+				return fmt.Errorf("Unknown field %q", validate_runtime.JoinPath(path, k))
+			}
+		}
+	}
+	return nil
+}
+
+// AtlasValidateJSON function validates a JSON for object ListVersionTagRequest.
+func (o *ListVersionTagRequest) AtlasValidateJSON(r json.RawMessage, path string, allowUnknown bool) (err error) {
+	if hook, ok := interface{}(o).(interface {
+		AtlasJSONValidate(json.RawMessage, string, bool) (json.RawMessage, error)
+	}); ok {
+		if r, err = hook.AtlasJSONValidate(r, path, allowUnknown); err != nil {
+			return err
+		}
+	}
+	return validate_Object_ListVersionTagRequest(r, path, allowUnknown)
+}
+
+// validate_Object_ListVersionTagsResponse function validates a JSON for a given object.
+func validate_Object_ListVersionTagsResponse(r json.RawMessage, path string, allowUnknown bool) (err error) {
+	obj := &ListVersionTagsResponse{}
+	if hook, ok := interface{}(obj).(interface {
+		AtlasJSONValidate(json.RawMessage, string, bool) (json.RawMessage, error)
+	}); ok {
+		if r, err = hook.AtlasJSONValidate(r, path, allowUnknown); err != nil {
+			return err
+		}
+	}
+	var v map[string]json.RawMessage
+	if err = json.Unmarshal(r, &v); err != nil {
+		return fmt.Errorf("Invalid value for %q: expected object.", path)
+	}
+	for k, _ := range v {
+		switch k {
+		case "results":
+			if v[k] == nil {
+				continue
+			}
+			var vArr []json.RawMessage
+			vArrPath := validate_runtime.JoinPath(path, k)
+			if err = json.Unmarshal(v[k], &vArr); err != nil {
+				return fmt.Errorf("Invalid value for %q: expected array.", vArrPath)
+			}
+			for i, vv := range vArr {
+				vvPath := fmt.Sprintf("%s.[%d]", vArrPath, i)
+				if err = validate_Object_VersionTag(vv, vvPath, allowUnknown); err != nil {
+					return err
+				}
+			}
+		case "page":
+			if v[k] == nil {
+				continue
+			}
+			vv := v[k]
+			vvPath := validate_runtime.JoinPath(path, k)
+			validator, ok := interface{}(&google_protobuf2.PageInfo{}).(interface {
+				AtlasValidateJSON(json.RawMessage, string, bool) error
+			})
+			if !ok {
+				continue
+			}
+			if err = validator.AtlasValidateJSON(vv, vvPath, allowUnknown); err != nil {
+				return err
+			}
+		default:
+			if !allowUnknown {
+				return fmt.Errorf("Unknown field %q", validate_runtime.JoinPath(path, k))
+			}
+		}
+	}
+	return nil
+}
+
+// AtlasValidateJSON function validates a JSON for object ListVersionTagsResponse.
+func (o *ListVersionTagsResponse) AtlasValidateJSON(r json.RawMessage, path string, allowUnknown bool) (err error) {
+	if hook, ok := interface{}(o).(interface {
+		AtlasJSONValidate(json.RawMessage, string, bool) (json.RawMessage, error)
+	}); ok {
+		if r, err = hook.AtlasJSONValidate(r, path, allowUnknown); err != nil {
+			return err
+		}
+	}
+	return validate_Object_ListVersionTagsResponse(r, path, allowUnknown)
+}
+
 var validate_Patterns = []struct {
 	pattern    runtime.Pattern
 	httpMethod string
@@ -1496,6 +2163,42 @@ var validate_Patterns = []struct {
 		pattern:      pattern_Containers_List_0,
 		httpMethod:   "GET",
 		validator:    validate_Containers_List_0,
+		allowUnknown: true,
+	},
+	{
+		pattern:      pattern_VersionTags_Create_0,
+		httpMethod:   "POST",
+		validator:    validate_VersionTags_Create_0,
+		allowUnknown: false,
+	},
+	{
+		pattern:      pattern_VersionTags_Read_0,
+		httpMethod:   "GET",
+		validator:    validate_VersionTags_Read_0,
+		allowUnknown: true,
+	},
+	{
+		pattern:      pattern_VersionTags_Update_0,
+		httpMethod:   "PUT",
+		validator:    validate_VersionTags_Update_0,
+		allowUnknown: false,
+	},
+	{
+		pattern:      pattern_VersionTags_Update_1,
+		httpMethod:   "PATCH",
+		validator:    validate_VersionTags_Update_1,
+		allowUnknown: false,
+	},
+	{
+		pattern:      pattern_VersionTags_Delete_0,
+		httpMethod:   "DELETE",
+		validator:    validate_VersionTags_Delete_0,
+		allowUnknown: true,
+	},
+	{
+		pattern:      pattern_VersionTags_List_0,
+		httpMethod:   "GET",
+		validator:    validate_VersionTags_List_0,
 		allowUnknown: true,
 	},
 }

@@ -1980,3 +1980,944 @@ var _ interface {
 	Cause() error
 	ErrorName() string
 } = ListContainersResponseValidationError{}
+
+// Validate checks the field values on VersionTag with the rules defined in the
+// proto definition for this message. If any rules are violated, an error is returned.
+func (m *VersionTag) Validate() error {
+	if m == nil {
+		return nil
+	}
+
+	if v, ok := interface{}(m.GetId()).(interface {
+		Validate() error
+	}); ok {
+		if err := v.Validate(); err != nil {
+			return VersionTagValidationError{
+				field:  "Id",
+				reason: "embedded message failed validation",
+				cause:  err,
+			}
+		}
+	}
+
+	// no validation rules for Name
+
+	// no validation rules for Description
+
+	// no validation rules for Version
+
+	// no validation rules for Repo
+
+	// no validation rules for Commit
+
+	return nil
+}
+
+// VersionTagValidationError is the validation error returned by
+// VersionTag.Validate if the designated constraints aren't met.
+type VersionTagValidationError struct {
+	field  string
+	reason string
+	cause  error
+	key    bool
+}
+
+// Field function returns field value.
+func (e VersionTagValidationError) Field() string { return e.field }
+
+// Reason function returns reason value.
+func (e VersionTagValidationError) Reason() string { return e.reason }
+
+// Cause function returns cause value.
+func (e VersionTagValidationError) Cause() error { return e.cause }
+
+// Key function returns key value.
+func (e VersionTagValidationError) Key() bool { return e.key }
+
+// ErrorName returns error name.
+func (e VersionTagValidationError) ErrorName() string { return "VersionTagValidationError" }
+
+// Error satisfies the builtin error interface
+func (e VersionTagValidationError) Error() string {
+	cause := ""
+	if e.cause != nil {
+		cause = fmt.Sprintf(" | caused by: %v", e.cause)
+	}
+
+	key := ""
+	if e.key {
+		key = "key for "
+	}
+
+	return fmt.Sprintf(
+		"invalid %sVersionTag.%s: %s%s",
+		key,
+		e.field,
+		e.reason,
+		cause)
+}
+
+var _ error = VersionTagValidationError{}
+
+var _ interface {
+	Field() string
+	Reason() string
+	Key() bool
+	Cause() error
+	ErrorName() string
+} = VersionTagValidationError{}
+
+// Validate checks the field values on CreateVersionTagRequest with the rules
+// defined in the proto definition for this message. If any rules are
+// violated, an error is returned.
+func (m *CreateVersionTagRequest) Validate() error {
+	if m == nil {
+		return nil
+	}
+
+	if v, ok := interface{}(m.GetPayload()).(interface {
+		Validate() error
+	}); ok {
+		if err := v.Validate(); err != nil {
+			return CreateVersionTagRequestValidationError{
+				field:  "Payload",
+				reason: "embedded message failed validation",
+				cause:  err,
+			}
+		}
+	}
+
+	return nil
+}
+
+// CreateVersionTagRequestValidationError is the validation error returned by
+// CreateVersionTagRequest.Validate if the designated constraints aren't met.
+type CreateVersionTagRequestValidationError struct {
+	field  string
+	reason string
+	cause  error
+	key    bool
+}
+
+// Field function returns field value.
+func (e CreateVersionTagRequestValidationError) Field() string { return e.field }
+
+// Reason function returns reason value.
+func (e CreateVersionTagRequestValidationError) Reason() string { return e.reason }
+
+// Cause function returns cause value.
+func (e CreateVersionTagRequestValidationError) Cause() error { return e.cause }
+
+// Key function returns key value.
+func (e CreateVersionTagRequestValidationError) Key() bool { return e.key }
+
+// ErrorName returns error name.
+func (e CreateVersionTagRequestValidationError) ErrorName() string {
+	return "CreateVersionTagRequestValidationError"
+}
+
+// Error satisfies the builtin error interface
+func (e CreateVersionTagRequestValidationError) Error() string {
+	cause := ""
+	if e.cause != nil {
+		cause = fmt.Sprintf(" | caused by: %v", e.cause)
+	}
+
+	key := ""
+	if e.key {
+		key = "key for "
+	}
+
+	return fmt.Sprintf(
+		"invalid %sCreateVersionTagRequest.%s: %s%s",
+		key,
+		e.field,
+		e.reason,
+		cause)
+}
+
+var _ error = CreateVersionTagRequestValidationError{}
+
+var _ interface {
+	Field() string
+	Reason() string
+	Key() bool
+	Cause() error
+	ErrorName() string
+} = CreateVersionTagRequestValidationError{}
+
+// Validate checks the field values on CreateVersionTagResponse with the rules
+// defined in the proto definition for this message. If any rules are
+// violated, an error is returned.
+func (m *CreateVersionTagResponse) Validate() error {
+	if m == nil {
+		return nil
+	}
+
+	if v, ok := interface{}(m.GetResult()).(interface {
+		Validate() error
+	}); ok {
+		if err := v.Validate(); err != nil {
+			return CreateVersionTagResponseValidationError{
+				field:  "Result",
+				reason: "embedded message failed validation",
+				cause:  err,
+			}
+		}
+	}
+
+	return nil
+}
+
+// CreateVersionTagResponseValidationError is the validation error returned by
+// CreateVersionTagResponse.Validate if the designated constraints aren't met.
+type CreateVersionTagResponseValidationError struct {
+	field  string
+	reason string
+	cause  error
+	key    bool
+}
+
+// Field function returns field value.
+func (e CreateVersionTagResponseValidationError) Field() string { return e.field }
+
+// Reason function returns reason value.
+func (e CreateVersionTagResponseValidationError) Reason() string { return e.reason }
+
+// Cause function returns cause value.
+func (e CreateVersionTagResponseValidationError) Cause() error { return e.cause }
+
+// Key function returns key value.
+func (e CreateVersionTagResponseValidationError) Key() bool { return e.key }
+
+// ErrorName returns error name.
+func (e CreateVersionTagResponseValidationError) ErrorName() string {
+	return "CreateVersionTagResponseValidationError"
+}
+
+// Error satisfies the builtin error interface
+func (e CreateVersionTagResponseValidationError) Error() string {
+	cause := ""
+	if e.cause != nil {
+		cause = fmt.Sprintf(" | caused by: %v", e.cause)
+	}
+
+	key := ""
+	if e.key {
+		key = "key for "
+	}
+
+	return fmt.Sprintf(
+		"invalid %sCreateVersionTagResponse.%s: %s%s",
+		key,
+		e.field,
+		e.reason,
+		cause)
+}
+
+var _ error = CreateVersionTagResponseValidationError{}
+
+var _ interface {
+	Field() string
+	Reason() string
+	Key() bool
+	Cause() error
+	ErrorName() string
+} = CreateVersionTagResponseValidationError{}
+
+// Validate checks the field values on ReadVersionTagRequest with the rules
+// defined in the proto definition for this message. If any rules are
+// violated, an error is returned.
+func (m *ReadVersionTagRequest) Validate() error {
+	if m == nil {
+		return nil
+	}
+
+	if v, ok := interface{}(m.GetId()).(interface {
+		Validate() error
+	}); ok {
+		if err := v.Validate(); err != nil {
+			return ReadVersionTagRequestValidationError{
+				field:  "Id",
+				reason: "embedded message failed validation",
+				cause:  err,
+			}
+		}
+	}
+
+	if v, ok := interface{}(m.GetFields()).(interface {
+		Validate() error
+	}); ok {
+		if err := v.Validate(); err != nil {
+			return ReadVersionTagRequestValidationError{
+				field:  "Fields",
+				reason: "embedded message failed validation",
+				cause:  err,
+			}
+		}
+	}
+
+	return nil
+}
+
+// ReadVersionTagRequestValidationError is the validation error returned by
+// ReadVersionTagRequest.Validate if the designated constraints aren't met.
+type ReadVersionTagRequestValidationError struct {
+	field  string
+	reason string
+	cause  error
+	key    bool
+}
+
+// Field function returns field value.
+func (e ReadVersionTagRequestValidationError) Field() string { return e.field }
+
+// Reason function returns reason value.
+func (e ReadVersionTagRequestValidationError) Reason() string { return e.reason }
+
+// Cause function returns cause value.
+func (e ReadVersionTagRequestValidationError) Cause() error { return e.cause }
+
+// Key function returns key value.
+func (e ReadVersionTagRequestValidationError) Key() bool { return e.key }
+
+// ErrorName returns error name.
+func (e ReadVersionTagRequestValidationError) ErrorName() string {
+	return "ReadVersionTagRequestValidationError"
+}
+
+// Error satisfies the builtin error interface
+func (e ReadVersionTagRequestValidationError) Error() string {
+	cause := ""
+	if e.cause != nil {
+		cause = fmt.Sprintf(" | caused by: %v", e.cause)
+	}
+
+	key := ""
+	if e.key {
+		key = "key for "
+	}
+
+	return fmt.Sprintf(
+		"invalid %sReadVersionTagRequest.%s: %s%s",
+		key,
+		e.field,
+		e.reason,
+		cause)
+}
+
+var _ error = ReadVersionTagRequestValidationError{}
+
+var _ interface {
+	Field() string
+	Reason() string
+	Key() bool
+	Cause() error
+	ErrorName() string
+} = ReadVersionTagRequestValidationError{}
+
+// Validate checks the field values on ReadVersionTagResponse with the rules
+// defined in the proto definition for this message. If any rules are
+// violated, an error is returned.
+func (m *ReadVersionTagResponse) Validate() error {
+	if m == nil {
+		return nil
+	}
+
+	if v, ok := interface{}(m.GetResult()).(interface {
+		Validate() error
+	}); ok {
+		if err := v.Validate(); err != nil {
+			return ReadVersionTagResponseValidationError{
+				field:  "Result",
+				reason: "embedded message failed validation",
+				cause:  err,
+			}
+		}
+	}
+
+	return nil
+}
+
+// ReadVersionTagResponseValidationError is the validation error returned by
+// ReadVersionTagResponse.Validate if the designated constraints aren't met.
+type ReadVersionTagResponseValidationError struct {
+	field  string
+	reason string
+	cause  error
+	key    bool
+}
+
+// Field function returns field value.
+func (e ReadVersionTagResponseValidationError) Field() string { return e.field }
+
+// Reason function returns reason value.
+func (e ReadVersionTagResponseValidationError) Reason() string { return e.reason }
+
+// Cause function returns cause value.
+func (e ReadVersionTagResponseValidationError) Cause() error { return e.cause }
+
+// Key function returns key value.
+func (e ReadVersionTagResponseValidationError) Key() bool { return e.key }
+
+// ErrorName returns error name.
+func (e ReadVersionTagResponseValidationError) ErrorName() string {
+	return "ReadVersionTagResponseValidationError"
+}
+
+// Error satisfies the builtin error interface
+func (e ReadVersionTagResponseValidationError) Error() string {
+	cause := ""
+	if e.cause != nil {
+		cause = fmt.Sprintf(" | caused by: %v", e.cause)
+	}
+
+	key := ""
+	if e.key {
+		key = "key for "
+	}
+
+	return fmt.Sprintf(
+		"invalid %sReadVersionTagResponse.%s: %s%s",
+		key,
+		e.field,
+		e.reason,
+		cause)
+}
+
+var _ error = ReadVersionTagResponseValidationError{}
+
+var _ interface {
+	Field() string
+	Reason() string
+	Key() bool
+	Cause() error
+	ErrorName() string
+} = ReadVersionTagResponseValidationError{}
+
+// Validate checks the field values on UpdateVersionTagRequest with the rules
+// defined in the proto definition for this message. If any rules are
+// violated, an error is returned.
+func (m *UpdateVersionTagRequest) Validate() error {
+	if m == nil {
+		return nil
+	}
+
+	if v, ok := interface{}(m.GetPayload()).(interface {
+		Validate() error
+	}); ok {
+		if err := v.Validate(); err != nil {
+			return UpdateVersionTagRequestValidationError{
+				field:  "Payload",
+				reason: "embedded message failed validation",
+				cause:  err,
+			}
+		}
+	}
+
+	if v, ok := interface{}(m.GetFields()).(interface {
+		Validate() error
+	}); ok {
+		if err := v.Validate(); err != nil {
+			return UpdateVersionTagRequestValidationError{
+				field:  "Fields",
+				reason: "embedded message failed validation",
+				cause:  err,
+			}
+		}
+	}
+
+	return nil
+}
+
+// UpdateVersionTagRequestValidationError is the validation error returned by
+// UpdateVersionTagRequest.Validate if the designated constraints aren't met.
+type UpdateVersionTagRequestValidationError struct {
+	field  string
+	reason string
+	cause  error
+	key    bool
+}
+
+// Field function returns field value.
+func (e UpdateVersionTagRequestValidationError) Field() string { return e.field }
+
+// Reason function returns reason value.
+func (e UpdateVersionTagRequestValidationError) Reason() string { return e.reason }
+
+// Cause function returns cause value.
+func (e UpdateVersionTagRequestValidationError) Cause() error { return e.cause }
+
+// Key function returns key value.
+func (e UpdateVersionTagRequestValidationError) Key() bool { return e.key }
+
+// ErrorName returns error name.
+func (e UpdateVersionTagRequestValidationError) ErrorName() string {
+	return "UpdateVersionTagRequestValidationError"
+}
+
+// Error satisfies the builtin error interface
+func (e UpdateVersionTagRequestValidationError) Error() string {
+	cause := ""
+	if e.cause != nil {
+		cause = fmt.Sprintf(" | caused by: %v", e.cause)
+	}
+
+	key := ""
+	if e.key {
+		key = "key for "
+	}
+
+	return fmt.Sprintf(
+		"invalid %sUpdateVersionTagRequest.%s: %s%s",
+		key,
+		e.field,
+		e.reason,
+		cause)
+}
+
+var _ error = UpdateVersionTagRequestValidationError{}
+
+var _ interface {
+	Field() string
+	Reason() string
+	Key() bool
+	Cause() error
+	ErrorName() string
+} = UpdateVersionTagRequestValidationError{}
+
+// Validate checks the field values on UpdateVersionTagResponse with the rules
+// defined in the proto definition for this message. If any rules are
+// violated, an error is returned.
+func (m *UpdateVersionTagResponse) Validate() error {
+	if m == nil {
+		return nil
+	}
+
+	if v, ok := interface{}(m.GetResult()).(interface {
+		Validate() error
+	}); ok {
+		if err := v.Validate(); err != nil {
+			return UpdateVersionTagResponseValidationError{
+				field:  "Result",
+				reason: "embedded message failed validation",
+				cause:  err,
+			}
+		}
+	}
+
+	return nil
+}
+
+// UpdateVersionTagResponseValidationError is the validation error returned by
+// UpdateVersionTagResponse.Validate if the designated constraints aren't met.
+type UpdateVersionTagResponseValidationError struct {
+	field  string
+	reason string
+	cause  error
+	key    bool
+}
+
+// Field function returns field value.
+func (e UpdateVersionTagResponseValidationError) Field() string { return e.field }
+
+// Reason function returns reason value.
+func (e UpdateVersionTagResponseValidationError) Reason() string { return e.reason }
+
+// Cause function returns cause value.
+func (e UpdateVersionTagResponseValidationError) Cause() error { return e.cause }
+
+// Key function returns key value.
+func (e UpdateVersionTagResponseValidationError) Key() bool { return e.key }
+
+// ErrorName returns error name.
+func (e UpdateVersionTagResponseValidationError) ErrorName() string {
+	return "UpdateVersionTagResponseValidationError"
+}
+
+// Error satisfies the builtin error interface
+func (e UpdateVersionTagResponseValidationError) Error() string {
+	cause := ""
+	if e.cause != nil {
+		cause = fmt.Sprintf(" | caused by: %v", e.cause)
+	}
+
+	key := ""
+	if e.key {
+		key = "key for "
+	}
+
+	return fmt.Sprintf(
+		"invalid %sUpdateVersionTagResponse.%s: %s%s",
+		key,
+		e.field,
+		e.reason,
+		cause)
+}
+
+var _ error = UpdateVersionTagResponseValidationError{}
+
+var _ interface {
+	Field() string
+	Reason() string
+	Key() bool
+	Cause() error
+	ErrorName() string
+} = UpdateVersionTagResponseValidationError{}
+
+// Validate checks the field values on DeleteVersionTagRequest with the rules
+// defined in the proto definition for this message. If any rules are
+// violated, an error is returned.
+func (m *DeleteVersionTagRequest) Validate() error {
+	if m == nil {
+		return nil
+	}
+
+	if v, ok := interface{}(m.GetId()).(interface {
+		Validate() error
+	}); ok {
+		if err := v.Validate(); err != nil {
+			return DeleteVersionTagRequestValidationError{
+				field:  "Id",
+				reason: "embedded message failed validation",
+				cause:  err,
+			}
+		}
+	}
+
+	return nil
+}
+
+// DeleteVersionTagRequestValidationError is the validation error returned by
+// DeleteVersionTagRequest.Validate if the designated constraints aren't met.
+type DeleteVersionTagRequestValidationError struct {
+	field  string
+	reason string
+	cause  error
+	key    bool
+}
+
+// Field function returns field value.
+func (e DeleteVersionTagRequestValidationError) Field() string { return e.field }
+
+// Reason function returns reason value.
+func (e DeleteVersionTagRequestValidationError) Reason() string { return e.reason }
+
+// Cause function returns cause value.
+func (e DeleteVersionTagRequestValidationError) Cause() error { return e.cause }
+
+// Key function returns key value.
+func (e DeleteVersionTagRequestValidationError) Key() bool { return e.key }
+
+// ErrorName returns error name.
+func (e DeleteVersionTagRequestValidationError) ErrorName() string {
+	return "DeleteVersionTagRequestValidationError"
+}
+
+// Error satisfies the builtin error interface
+func (e DeleteVersionTagRequestValidationError) Error() string {
+	cause := ""
+	if e.cause != nil {
+		cause = fmt.Sprintf(" | caused by: %v", e.cause)
+	}
+
+	key := ""
+	if e.key {
+		key = "key for "
+	}
+
+	return fmt.Sprintf(
+		"invalid %sDeleteVersionTagRequest.%s: %s%s",
+		key,
+		e.field,
+		e.reason,
+		cause)
+}
+
+var _ error = DeleteVersionTagRequestValidationError{}
+
+var _ interface {
+	Field() string
+	Reason() string
+	Key() bool
+	Cause() error
+	ErrorName() string
+} = DeleteVersionTagRequestValidationError{}
+
+// Validate checks the field values on DeleteVersionTagResponse with the rules
+// defined in the proto definition for this message. If any rules are
+// violated, an error is returned.
+func (m *DeleteVersionTagResponse) Validate() error {
+	if m == nil {
+		return nil
+	}
+
+	return nil
+}
+
+// DeleteVersionTagResponseValidationError is the validation error returned by
+// DeleteVersionTagResponse.Validate if the designated constraints aren't met.
+type DeleteVersionTagResponseValidationError struct {
+	field  string
+	reason string
+	cause  error
+	key    bool
+}
+
+// Field function returns field value.
+func (e DeleteVersionTagResponseValidationError) Field() string { return e.field }
+
+// Reason function returns reason value.
+func (e DeleteVersionTagResponseValidationError) Reason() string { return e.reason }
+
+// Cause function returns cause value.
+func (e DeleteVersionTagResponseValidationError) Cause() error { return e.cause }
+
+// Key function returns key value.
+func (e DeleteVersionTagResponseValidationError) Key() bool { return e.key }
+
+// ErrorName returns error name.
+func (e DeleteVersionTagResponseValidationError) ErrorName() string {
+	return "DeleteVersionTagResponseValidationError"
+}
+
+// Error satisfies the builtin error interface
+func (e DeleteVersionTagResponseValidationError) Error() string {
+	cause := ""
+	if e.cause != nil {
+		cause = fmt.Sprintf(" | caused by: %v", e.cause)
+	}
+
+	key := ""
+	if e.key {
+		key = "key for "
+	}
+
+	return fmt.Sprintf(
+		"invalid %sDeleteVersionTagResponse.%s: %s%s",
+		key,
+		e.field,
+		e.reason,
+		cause)
+}
+
+var _ error = DeleteVersionTagResponseValidationError{}
+
+var _ interface {
+	Field() string
+	Reason() string
+	Key() bool
+	Cause() error
+	ErrorName() string
+} = DeleteVersionTagResponseValidationError{}
+
+// Validate checks the field values on ListVersionTagRequest with the rules
+// defined in the proto definition for this message. If any rules are
+// violated, an error is returned.
+func (m *ListVersionTagRequest) Validate() error {
+	if m == nil {
+		return nil
+	}
+
+	if v, ok := interface{}(m.GetFilter()).(interface {
+		Validate() error
+	}); ok {
+		if err := v.Validate(); err != nil {
+			return ListVersionTagRequestValidationError{
+				field:  "Filter",
+				reason: "embedded message failed validation",
+				cause:  err,
+			}
+		}
+	}
+
+	if v, ok := interface{}(m.GetOrderBy()).(interface {
+		Validate() error
+	}); ok {
+		if err := v.Validate(); err != nil {
+			return ListVersionTagRequestValidationError{
+				field:  "OrderBy",
+				reason: "embedded message failed validation",
+				cause:  err,
+			}
+		}
+	}
+
+	if v, ok := interface{}(m.GetFields()).(interface {
+		Validate() error
+	}); ok {
+		if err := v.Validate(); err != nil {
+			return ListVersionTagRequestValidationError{
+				field:  "Fields",
+				reason: "embedded message failed validation",
+				cause:  err,
+			}
+		}
+	}
+
+	if v, ok := interface{}(m.GetPaging()).(interface {
+		Validate() error
+	}); ok {
+		if err := v.Validate(); err != nil {
+			return ListVersionTagRequestValidationError{
+				field:  "Paging",
+				reason: "embedded message failed validation",
+				cause:  err,
+			}
+		}
+	}
+
+	return nil
+}
+
+// ListVersionTagRequestValidationError is the validation error returned by
+// ListVersionTagRequest.Validate if the designated constraints aren't met.
+type ListVersionTagRequestValidationError struct {
+	field  string
+	reason string
+	cause  error
+	key    bool
+}
+
+// Field function returns field value.
+func (e ListVersionTagRequestValidationError) Field() string { return e.field }
+
+// Reason function returns reason value.
+func (e ListVersionTagRequestValidationError) Reason() string { return e.reason }
+
+// Cause function returns cause value.
+func (e ListVersionTagRequestValidationError) Cause() error { return e.cause }
+
+// Key function returns key value.
+func (e ListVersionTagRequestValidationError) Key() bool { return e.key }
+
+// ErrorName returns error name.
+func (e ListVersionTagRequestValidationError) ErrorName() string {
+	return "ListVersionTagRequestValidationError"
+}
+
+// Error satisfies the builtin error interface
+func (e ListVersionTagRequestValidationError) Error() string {
+	cause := ""
+	if e.cause != nil {
+		cause = fmt.Sprintf(" | caused by: %v", e.cause)
+	}
+
+	key := ""
+	if e.key {
+		key = "key for "
+	}
+
+	return fmt.Sprintf(
+		"invalid %sListVersionTagRequest.%s: %s%s",
+		key,
+		e.field,
+		e.reason,
+		cause)
+}
+
+var _ error = ListVersionTagRequestValidationError{}
+
+var _ interface {
+	Field() string
+	Reason() string
+	Key() bool
+	Cause() error
+	ErrorName() string
+} = ListVersionTagRequestValidationError{}
+
+// Validate checks the field values on ListVersionTagsResponse with the rules
+// defined in the proto definition for this message. If any rules are
+// violated, an error is returned.
+func (m *ListVersionTagsResponse) Validate() error {
+	if m == nil {
+		return nil
+	}
+
+	for idx, item := range m.GetResults() {
+		_, _ = idx, item
+
+		if v, ok := interface{}(item).(interface {
+			Validate() error
+		}); ok {
+			if err := v.Validate(); err != nil {
+				return ListVersionTagsResponseValidationError{
+					field:  fmt.Sprintf("Results[%v]", idx),
+					reason: "embedded message failed validation",
+					cause:  err,
+				}
+			}
+		}
+
+	}
+
+	if v, ok := interface{}(m.GetPage()).(interface {
+		Validate() error
+	}); ok {
+		if err := v.Validate(); err != nil {
+			return ListVersionTagsResponseValidationError{
+				field:  "Page",
+				reason: "embedded message failed validation",
+				cause:  err,
+			}
+		}
+	}
+
+	return nil
+}
+
+// ListVersionTagsResponseValidationError is the validation error returned by
+// ListVersionTagsResponse.Validate if the designated constraints aren't met.
+type ListVersionTagsResponseValidationError struct {
+	field  string
+	reason string
+	cause  error
+	key    bool
+}
+
+// Field function returns field value.
+func (e ListVersionTagsResponseValidationError) Field() string { return e.field }
+
+// Reason function returns reason value.
+func (e ListVersionTagsResponseValidationError) Reason() string { return e.reason }
+
+// Cause function returns cause value.
+func (e ListVersionTagsResponseValidationError) Cause() error { return e.cause }
+
+// Key function returns key value.
+func (e ListVersionTagsResponseValidationError) Key() bool { return e.key }
+
+// ErrorName returns error name.
+func (e ListVersionTagsResponseValidationError) ErrorName() string {
+	return "ListVersionTagsResponseValidationError"
+}
+
+// Error satisfies the builtin error interface
+func (e ListVersionTagsResponseValidationError) Error() string {
+	cause := ""
+	if e.cause != nil {
+		cause = fmt.Sprintf(" | caused by: %v", e.cause)
+	}
+
+	key := ""
+	if e.key {
+		key = "key for "
+	}
+
+	return fmt.Sprintf(
+		"invalid %sListVersionTagsResponse.%s: %s%s",
+		key,
+		e.field,
+		e.reason,
+		cause)
+}
+
+var _ error = ListVersionTagsResponseValidationError{}
+
+var _ interface {
+	Field() string
+	Reason() string
+	Key() bool
+	Cause() error
+	ErrorName() string
+} = ListVersionTagsResponseValidationError{}

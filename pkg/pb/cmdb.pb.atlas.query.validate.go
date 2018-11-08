@@ -27,6 +27,14 @@ var CmdbMethodsRequireFilteringValidation = map[string]map[string]options.Filter
 		"image_pull_policy": options.FilteringOption{ValueType: options.QueryValidate_STRING},
 		"digest":            options.FilteringOption{ValueType: options.QueryValidate_STRING},
 	},
+	"/api.cmdb.VersionTags/List": map[string]options.FilteringOption{
+		"id":          options.FilteringOption{ValueType: options.QueryValidate_STRING},
+		"name":        options.FilteringOption{ValueType: options.QueryValidate_STRING},
+		"description": options.FilteringOption{ValueType: options.QueryValidate_STRING},
+		"version":     options.FilteringOption{ValueType: options.QueryValidate_STRING},
+		"repo":        options.FilteringOption{ValueType: options.QueryValidate_STRING},
+		"commit":      options.FilteringOption{ValueType: options.QueryValidate_STRING},
+	},
 }
 var CmdbMethodsRequireSortingValidation = map[string][]string{
 	"/api.cmdb.Regions/List": []string{
@@ -43,6 +51,14 @@ var CmdbMethodsRequireSortingValidation = map[string][]string{
 		"image_tag",
 		"image_pull_policy",
 		"digest",
+	},
+	"/api.cmdb.VersionTags/List": []string{
+		"id",
+		"name",
+		"description",
+		"version",
+		"repo",
+		"commit",
 	},
 }
 var CmdbMethodsRequireFieldSelectionValidation = map[string][]string{
@@ -75,6 +91,22 @@ var CmdbMethodsRequireFieldSelectionValidation = map[string][]string{
 		"image_tag",
 		"image_pull_policy",
 		"digest",
+	},
+	"/api.cmdb.VersionTags/Read": {
+		"id",
+		"name",
+		"description",
+		"version",
+		"repo",
+		"commit",
+	},
+	"/api.cmdb.VersionTags/List": {
+		"id",
+		"name",
+		"description",
+		"version",
+		"repo",
+		"commit",
 	},
 }
 

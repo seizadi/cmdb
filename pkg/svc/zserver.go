@@ -73,9 +73,18 @@ type containersServer struct {
 	*pb.ContainersDefaultServer
 }
 
-// NewRegionsServer returns an instance of the default regions server interface
+// NewContainersServer returns an instance of the default regions server interface
 func NewContainersServer() (pb.ContainersServer, error) {
 	return &containersServer{&pb.ContainersDefaultServer{}}, nil
+}
+
+type versionTagsServer struct {
+	*pb.VersionTagsDefaultServer
+}
+
+// NewRegionsServer returns an instance of the default regions server interface
+func NewVersionTagsServer() (pb.VersionTagsServer, error) {
+	return &versionTagsServer{&pb.VersionTagsDefaultServer{}}, nil
 }
 
 // List wraps default RegionsDefaultServer.List implementation by adding

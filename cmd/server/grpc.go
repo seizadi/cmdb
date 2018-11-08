@@ -66,6 +66,12 @@ func NewGRPCServer(logger *logrus.Logger, db *gorm.DB) (*grpc.Server, error) {
 	}
 	pb.RegisterContainersServer(grpcServer, cs)
 	
+	vts, err := svc.NewVersionTagsServer()
+	if err != nil {
+		return nil, err
+	}
+	pb.RegisterVersionTagsServer(grpcServer, vts)
+	
 	return grpcServer, nil
 }
 

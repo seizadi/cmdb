@@ -35,9 +35,6 @@ GO_BUILD_FLAGS ?= $(GO_CACHE) -i -v
 GO_TEST_FLAGS  ?= -v -cover
 GO_PACKAGES    := $(shell go list ./... | grep -v vendor)
 
-.PHONY: all
-all: vendor docker
-
 .PHONY: fmt
 fmt:
 	@go fmt $(GO_PACKAGES)

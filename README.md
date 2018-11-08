@@ -173,8 +173,15 @@ curl -H "Authorization: Bearer $JWT" http://localhost:8080/v1/regions -d '{"name
 
 Add Container:
 ```sh
-curl -H "Authorization: Bearer $JWT" http://localhost:8080/v1/containers -d '{"name": "contacts-app", "description": "sample contacts application", "container_name": "contacts-app", "image_repo": "soheileizadi", "image_tag": "latest", "image_pull_policy": "always"}'
-{"result":{"id":"cmdb-app/containers/1","name":"contacts-app","description":"sample contacts application","container_name":"contacts-app","image_repo":"soheileizadi","image_tag":"latest","image_pull_policy":"always"}}
+curl -H "Authorization: Bearer $JWT" http://localhost:8080/v1/containers -d '{"name": "cmdb-app", "description": "sample cmdb application", "container_name": "cmdb-app", "image_repo": "soheileizadi/cmdb-server", "image_tag": "latest", "image_pull_policy": "always"}'
+{"result":{"id":"cmdb-app/containers/1","name":"cmdb-app","description":"sample cmdb application","container_name":"cmdb-app","image_repo":"soheileizadi/cmdb-server","image_tag":"latest","image_pull_policy":"always"}}
+```
+
+Add VersionTag:
+```sh
+curl -H "Authorization: Bearer $JWT" http://localhost:8080/v1/version_tags -d '{"name": "cmdb-app", "description": "cmdb application version tag", "version": "v0.0.4", "repo": "https://github.com/seizadi/cmdb/releases/tag/v0.0.4", "commit": "20ec77f5a8f8e260deb51e8d888a2597762184b6"}'
+{"result":{"id":"cmdb-app/version_tags/1","name":"cmdb-app","description":"cmdb application version tag","version":"v0.0.4","repo":"https://github.com/seizadi/cmdb/releases/tag/v0.0.4","commit":"20ec77f5a8f8e260deb51e8d888a2597762184b6"}}sc-l-seizadi:cmdb seizadi$
+
 ```
 
 #### Try atlas-contacts-app
