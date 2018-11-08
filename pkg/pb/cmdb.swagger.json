@@ -226,7 +226,7 @@
         "tags": [
           "Regions"
         ],
-        "summary": "Use this method to retrieve all the contacts.",
+        "summary": "Use this method to retrieve all the regions.",
         "operationId": "RegionsList",
         "parameters": [
           {
@@ -279,7 +279,7 @@
         "tags": [
           "Regions"
         ],
-        "summary": "Use this method to create a contact information.",
+        "summary": "Use this method to create a region information.",
         "operationId": "RegionsCreate",
         "parameters": [
           {
@@ -306,7 +306,7 @@
         "tags": [
           "Regions"
         ],
-        "summary": "Use this method to read a contact information by identifier.",
+        "summary": "Use this method to read a region information by identifier.",
         "operationId": "RegionsRead",
         "parameters": [
           {
@@ -336,7 +336,7 @@
         "tags": [
           "Regions"
         ],
-        "summary": "Use this method to update a contact information.",
+        "summary": "Use this method to update a region information.",
         "operationId": "RegionsUpdate",
         "parameters": [
           {
@@ -368,7 +368,7 @@
         "tags": [
           "Regions"
         ],
-        "summary": "Use this method to delete a particular contact.",
+        "summary": "Use this method to delete a particular region.",
         "operationId": "RegionsDelete",
         "parameters": [
           {
@@ -392,7 +392,7 @@
         "tags": [
           "Regions"
         ],
-        "summary": "Use this method to update a contact information.",
+        "summary": "Use this method to update a region information.",
         "operationId": "RegionsUpdate2",
         "parameters": [
           {
@@ -426,7 +426,7 @@
         "tags": [
           "Secrets"
         ],
-        "summary": "Use this method to retrieve the list of containers.",
+        "summary": "Use this method to retrieve the list of secrets.",
         "operationId": "SecretsList",
         "parameters": [
           {
@@ -479,7 +479,7 @@
         "tags": [
           "Secrets"
         ],
-        "summary": "Use this method to create a container.",
+        "summary": "Use this method to create a secret.",
         "operationId": "SecretsCreate",
         "parameters": [
           {
@@ -536,7 +536,7 @@
         "tags": [
           "Secrets"
         ],
-        "summary": "Use this method to update container.",
+        "summary": "Use this method to update secret.",
         "operationId": "SecretsUpdate",
         "parameters": [
           {
@@ -568,7 +568,7 @@
         "tags": [
           "Secrets"
         ],
-        "summary": "Use this method to delete a container.",
+        "summary": "Use this method to delete a secret.",
         "operationId": "SecretsDelete",
         "parameters": [
           {
@@ -592,7 +592,7 @@
         "tags": [
           "Secrets"
         ],
-        "summary": "Use this method to update container.",
+        "summary": "Use this method to update secret.",
         "operationId": "SecretsUpdate2",
         "parameters": [
           {
@@ -621,6 +621,206 @@
         }
       }
     },
+    "/vaults": {
+      "get": {
+        "tags": [
+          "Vaults"
+        ],
+        "summary": "Use this method to retrieve the list of vaults.",
+        "operationId": "VaultsList",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "\n\nA collection of response resources can be filtered by a logical expression string that includes JSON tag references to values in each resource, literal values, and logical operators. If a resource does not have the specified tag, its value is assumed to be null.\n\nLiteral values include numbers (integer and floating-point), and quoted (both single- or double-quoted) literal strings, and 'null'. The following operators are commonly used in filter expressions:\n\n|  Op   |  Description               | \n|  --   |  -----------               | \n|  ==   |  Equal                     | \n|  !=   |  Not Equal                 | \n|  \u003e    |  Greater Than              | \n|   \u003e=  |  Greater Than or Equal To  | \n|  \u003c    |  Less Than                 | \n|  \u003c=   |  Less Than or Equal To     | \n|  and  |  Logical AND               | \n|  ~    |  Matches Regex             | \n|  !~   |  Does Not Match Regex      | \n|  or   |  Logical OR                | \n|  not  |  Logical NOT               | \n|  ()   |  Groupping Operators       |\n\n\t\t\t\t\t\t",
+            "name": "_filter",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "description": "\n\nA collection of response resources can be sorted by their JSON tags. For a 'flat' resource, the tag name is straightforward. If sorting is allowed on non-flat hierarchical resources, the service should implement a qualified naming scheme such as dot-qualification to reference data down the hierarchy. If a resource does not have the specified tag, its value is assumed to be null.)\n\nSpecify this parameter as a comma-separated list of JSON tag names. The sort direction can be specified by a suffix separated by whitespace before the tag name. The suffix 'asc' sorts the data in ascending order. The suffix 'desc' sorts the data in descending order. If no suffix is specified the data is sorted in ascending order.\n\n\t\t\t\t\t\t",
+            "name": "_order_by",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "description": "\n\nA collection of response resources can be transformed by specifying a set of JSON tags to be returned. For a “flat” resource, the tag name is straightforward. If field selection is allowed on non-flat hierarchical resources, the service should implement a qualified naming scheme such as dot-qualification to reference data down the hierarchy. If a resource does not have the specified tag, the tag does not appear in the output resource.\n\nSpecify this parameter as a comma-separated list of JSON tag names.\n\n\t\t\t\t\t\t",
+            "name": "_fields",
+            "in": "query"
+          },
+          {
+            "type": "integer",
+            "description": "\n\nThe integer index (zero-origin) of the offset into a collection of resources. If omitted or null the value is assumed to be '0'.\n\n\t\t\t\t\t\t\t",
+            "name": "_offset",
+            "in": "query"
+          },
+          {
+            "type": "integer",
+            "description": "\n\nThe integer number of resources to be returned in the response. The service may impose maximum value. If omitted the service may impose a default value.\n\n\t\t\t\t\t\t\t",
+            "name": "_limit",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "description": "\n\nThe service-defined string used to identify a page of resources. A null value indicates the first page.\n\n\t\t\t\t\t\t\t",
+            "name": "_page_token",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "GET operation response",
+            "schema": {
+              "$ref": "#/definitions/cmdbListVaultsResponse"
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Vaults"
+        ],
+        "summary": "Use this method to create a vault.",
+        "operationId": "VaultsCreate",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/cmdbVault"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "POST operation response",
+            "schema": {
+              "$ref": "#/definitions/cmdbCreateVaultResponse"
+            }
+          }
+        }
+      }
+    },
+    "/vaults/{id}": {
+      "get": {
+        "tags": [
+          "Vaults"
+        ],
+        "summary": "Use this method to retrieve the particular container.",
+        "operationId": "VaultsRead",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "An application specific resource identity of a resource",
+            "name": "id",
+            "in": "path",
+            "required": true
+          },
+          {
+            "type": "string",
+            "description": "\n\nA collection of response resources can be transformed by specifying a set of JSON tags to be returned. For a “flat” resource, the tag name is straightforward. If field selection is allowed on non-flat hierarchical resources, the service should implement a qualified naming scheme such as dot-qualification to reference data down the hierarchy. If a resource does not have the specified tag, the tag does not appear in the output resource.\n\nSpecify this parameter as a comma-separated list of JSON tag names.\n\n\t\t\t\t\t\t",
+            "name": "_fields",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "GET operation response",
+            "schema": {
+              "$ref": "#/definitions/cmdbReadVaultResponse"
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Vaults"
+        ],
+        "summary": "Use this method to update vault.",
+        "operationId": "VaultsUpdate",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "An application specific resource identity of a resource",
+            "name": "id",
+            "in": "path",
+            "required": true
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/cmdbVault"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "PUT operation response",
+            "schema": {
+              "$ref": "#/definitions/cmdbUpdateVaultResponse"
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Vaults"
+        ],
+        "summary": "Use this method to delete a vault.",
+        "operationId": "VaultsDelete",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "An application specific resource identity of a resource",
+            "name": "id",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "DELETE operation response",
+            "schema": {
+              "$ref": "#/definitions/cmdbDeleteVaultResponse"
+            }
+          }
+        }
+      },
+      "patch": {
+        "tags": [
+          "Vaults"
+        ],
+        "summary": "Use this method to update vault.",
+        "operationId": "VaultsUpdate2",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "An application specific resource identity of a resource",
+            "name": "id",
+            "in": "path",
+            "required": true
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/cmdbVault"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "PATCH operation response",
+            "schema": {
+              "$ref": "#/definitions/cmdbUpdateVaultResponse"
+            }
+          }
+        }
+      }
+    },
     "/version": {
       "get": {
         "tags": [
@@ -642,7 +842,7 @@
         "tags": [
           "VersionTags"
         ],
-        "summary": "Use this method to retrieve the list of containers.",
+        "summary": "Use this method to retrieve the list of version tags.",
         "operationId": "VersionTagsList",
         "parameters": [
           {
@@ -695,7 +895,7 @@
         "tags": [
           "VersionTags"
         ],
-        "summary": "Use this method to create a container.",
+        "summary": "Use this method to create a version tag.",
         "operationId": "VersionTagsCreate",
         "parameters": [
           {
@@ -722,7 +922,7 @@
         "tags": [
           "VersionTags"
         ],
-        "summary": "Use this method to retrieve the particular container.",
+        "summary": "Use this method to retrieve the particular version tag.",
         "operationId": "VersionTagsRead",
         "parameters": [
           {
@@ -752,7 +952,7 @@
         "tags": [
           "VersionTags"
         ],
-        "summary": "Use this method to update container.",
+        "summary": "Use this method to update version tag.",
         "operationId": "VersionTagsUpdate",
         "parameters": [
           {
@@ -784,7 +984,7 @@
         "tags": [
           "VersionTags"
         ],
-        "summary": "Use this method to delete a container.",
+        "summary": "Use this method to delete a version tag.",
         "operationId": "VersionTagsDelete",
         "parameters": [
           {
@@ -808,7 +1008,7 @@
         "tags": [
           "VersionTags"
         ],
-        "summary": "Use this method to update container.",
+        "summary": "Use this method to update version tag.",
         "operationId": "VersionTagsUpdate2",
         "parameters": [
           {
@@ -973,6 +1173,31 @@
         }
       }
     },
+    "cmdbCreateVaultResponse": {
+      "type": "object",
+      "properties": {
+        "result": {
+          "$ref": "#/definitions/cmdbVault"
+        },
+        "success": {
+          "properties": {
+            "code": {
+              "type": "integer",
+              "format": "int32",
+              "example": 201
+            },
+            "message": {
+              "type": "string",
+              "example": "\u003cresponse message\u003e"
+            },
+            "status": {
+              "type": "string",
+              "example": "CREATED"
+            }
+          }
+        }
+      }
+    },
     "cmdbCreateVersionTagResponse": {
       "type": "object",
       "properties": {
@@ -1043,6 +1268,28 @@
       }
     },
     "cmdbDeleteSecretResponse": {
+      "type": "object",
+      "properties": {
+        "success": {
+          "properties": {
+            "code": {
+              "type": "integer",
+              "format": "int32",
+              "example": 204
+            },
+            "message": {
+              "type": "string",
+              "example": "\u003cresponse message\u003e"
+            },
+            "status": {
+              "type": "string",
+              "example": "DELETED"
+            }
+          }
+        }
+      }
+    },
+    "cmdbDeleteVaultResponse": {
       "type": "object",
       "properties": {
         "success": {
@@ -1179,6 +1426,37 @@
         }
       }
     },
+    "cmdbListVaultsResponse": {
+      "type": "object",
+      "properties": {
+        "page": {
+          "$ref": "#/definitions/apiPageInfo"
+        },
+        "results": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/cmdbVault"
+          }
+        },
+        "success": {
+          "properties": {
+            "code": {
+              "type": "integer",
+              "format": "int32",
+              "example": 200
+            },
+            "message": {
+              "type": "string",
+              "example": "\u003cresponse message\u003e"
+            },
+            "status": {
+              "type": "string",
+              "example": "OK"
+            }
+          }
+        }
+      }
+    },
     "cmdbListVersionTagsResponse": {
       "type": "object",
       "properties": {
@@ -1265,6 +1543,31 @@
       "properties": {
         "result": {
           "$ref": "#/definitions/cmdbSecret"
+        },
+        "success": {
+          "properties": {
+            "code": {
+              "type": "integer",
+              "format": "int32",
+              "example": 200
+            },
+            "message": {
+              "type": "string",
+              "example": "\u003cresponse message\u003e"
+            },
+            "status": {
+              "type": "string",
+              "example": "OK"
+            }
+          }
+        }
+      }
+    },
+    "cmdbReadVaultResponse": {
+      "type": "object",
+      "properties": {
+        "result": {
+          "$ref": "#/definitions/cmdbVault"
         },
         "success": {
           "properties": {
@@ -1431,6 +1734,31 @@
         }
       }
     },
+    "cmdbUpdateVaultResponse": {
+      "type": "object",
+      "properties": {
+        "result": {
+          "$ref": "#/definitions/cmdbVault"
+        },
+        "success": {
+          "properties": {
+            "code": {
+              "type": "integer",
+              "format": "int32",
+              "example": 201
+            },
+            "message": {
+              "type": "string",
+              "example": "\u003cresponse message\u003e"
+            },
+            "status": {
+              "type": "string",
+              "example": "UPDATED"
+            }
+          }
+        }
+      }
+    },
     "cmdbUpdateVersionTagResponse": {
       "type": "object",
       "properties": {
@@ -1452,6 +1780,36 @@
               "type": "string",
               "example": "UPDATED"
             }
+          }
+        }
+      }
+    },
+    "cmdbVault": {
+      "type": "object",
+      "title": "-----------------------------------------------------------------------------------\nVault represents the store for keeping Secrets\n-----------------------------------------------------------------------------------",
+      "properties": {
+        "description": {
+          "type": "string",
+          "title": "The description of the container"
+        },
+        "id": {
+          "description": "The resource identifier.",
+          "type": "string",
+          "readOnly": true
+        },
+        "name": {
+          "type": "string",
+          "title": "The name of the container"
+        },
+        "path": {
+          "type": "string",
+          "title": "The path on vault for the Secrets (e.g. /qa0-secrets)"
+        },
+        "secrets": {
+          "type": "array",
+          "title": "The list of Secrets stored against the path on vault",
+          "items": {
+            "$ref": "#/definitions/cmdbSecret"
           }
         }
       }

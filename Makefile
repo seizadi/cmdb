@@ -102,6 +102,7 @@ nginx-down:
 .PHONY: migrate-up
 migrate-up:
 	@migrate -database 'postgres://$(DATABASE_HOST)/cmdb?sslmode=disable' -path ./db/migrations up
+#	@migrate -database 'postgres://$(DATABASE_HOST)/cmdb?sslmode=disable' -path ./db/migrations force 4
 
 .PHONY: migrate-down
 migrate-down:

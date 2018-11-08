@@ -78,6 +78,12 @@ func NewGRPCServer(logger *logrus.Logger, db *gorm.DB) (*grpc.Server, error) {
 	}
 	pb.RegisterSecretsServer(grpcServer, ss)
 	
+	vs, err := svc.NewVaultsServer()
+	if err != nil {
+		return nil, err
+	}
+	pb.RegisterVaultsServer(grpcServer, vs)
+	
 	return grpcServer, nil
 }
 

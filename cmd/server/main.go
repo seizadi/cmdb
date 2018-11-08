@@ -175,6 +175,7 @@ func ServeExternal(logger *logrus.Logger) error {
 				pb.RegisterContainersHandlerFromEndpoint,
 				pb.RegisterVersionTagsHandlerFromEndpoint,
 				pb.RegisterSecretsHandlerFromEndpoint,
+				pb.RegisterVaultsHandlerFromEndpoint,
 			),
 		),
 		// serve swagger at the root

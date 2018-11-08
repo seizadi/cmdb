@@ -145,7 +145,7 @@ service Regions {
       txn_middleware: true,
     };
 
-  // Use this method to create a contact information.
+  // Use this method to create a region information.
   rpc Create (CreateRegionRequest) returns (CreateRegionResponse) {
     option (google.api.http) = {
             post: "/regions"
@@ -153,14 +153,14 @@ service Regions {
         };
   }
 
-  // Use this method to read a contact information by identifier.
+  // Use this method to read a region information by identifier.
   rpc Read (ReadRegionRequest) returns (ReadRegionResponse) {
     option (google.api.http) = {
             get: "/regions/{id.resource_id}"
         };
   }
 
-  // Use this method to update a contact information.
+  // Use this method to update a region information.
   rpc Update (UpdateRegionRequest) returns (UpdateRegionResponse) {
     option (atlas_validate.method).allow_unknown_fields = false;
     option (google.api.http) = {
@@ -173,7 +173,7 @@ service Regions {
     };
   }
 
-  // Use this method to delete a particular contact.
+  // Use this method to delete a particular region.
   rpc Delete (DeleteRegionRequest) returns (DeleteRegionResponse) {
     option (google.api.http) = {
             delete: "/regions/{id.resource_id}"
@@ -181,7 +181,7 @@ service Regions {
     option (gorm.method).object_type = "Region";
   }
 
-  // Use this method to retrieve all the contacts.
+  // Use this method to retrieve all the regions.
   rpc List (ListRegionRequest) returns (ListRegionsResponse) {
     option (google.api.http) = {
             get: "/regions"
@@ -405,7 +405,7 @@ service VersionTags {
 
     option (atlas_validate.service).allow_unknown_fields = true;
 
-    // Use this method to create a container.
+    // Use this method to create a version tag.
     rpc Create (CreateVersionTagRequest) returns (CreateVersionTagResponse) {
         option (google.api.http) = {
             post: "/version_tags"
@@ -415,14 +415,14 @@ service VersionTags {
         option (atlas_validate.method).allow_unknown_fields = false;
     }
 
-    // Use this method to retrieve the particular container.
+    // Use this method to retrieve the particular version tag.
     rpc Read (ReadVersionTagRequest) returns (ReadVersionTagResponse) {
         option (google.api.http) = {
             get: "/version_tags/{id.resource_id}"
         };
     }
 
-    // Use this method to update container.
+    // Use this method to update version tag.
     rpc Update (UpdateVersionTagRequest) returns (UpdateVersionTagResponse) {
         option (google.api.http) = {
             put: "/version_tags/{payload.id.resource_id}"
@@ -436,7 +436,7 @@ service VersionTags {
         option (atlas_validate.method).allow_unknown_fields = false;
     }
 
-    // Use this method to delete a container.
+    // Use this method to delete a version tag.
     rpc Delete (DeleteVersionTagRequest) returns (DeleteVersionTagResponse) {
         option (google.api.http) = {
             delete: "/version_tags/{id.resource_id}"
@@ -444,7 +444,7 @@ service VersionTags {
         option (gorm.method).object_type = "VersionTag";
     }
 
-    // Use this method to retrieve the list of containers.
+    // Use this method to retrieve the list of version tags.
     rpc List (ListVersionTagRequest) returns (ListVersionTagsResponse) {
         option (google.api.http) = {
             get: "/version_tags"
@@ -530,7 +530,7 @@ service Secrets {
 
     option (atlas_validate.service).allow_unknown_fields = true;
 
-    // Use this method to create a container.
+    // Use this method to create a secret.
     rpc Create (CreateSecretRequest) returns (CreateSecretResponse) {
         option (google.api.http) = {
             post: "/secrets"
@@ -547,7 +547,7 @@ service Secrets {
         };
     }
 
-    // Use this method to update container.
+    // Use this method to update secret.
     rpc Update (UpdateSecretRequest) returns (UpdateSecretResponse) {
         option (google.api.http) = {
             put: "/secrets/{payload.id.resource_id}"
@@ -561,7 +561,7 @@ service Secrets {
         option (atlas_validate.method).allow_unknown_fields = false;
     }
 
-    // Use this method to delete a container.
+    // Use this method to delete a secret.
     rpc Delete (DeleteSecretRequest) returns (DeleteSecretResponse) {
         option (google.api.http) = {
             delete: "/secrets/{id.resource_id}"
@@ -569,7 +569,7 @@ service Secrets {
         option (gorm.method).object_type = "Secret";
     }
 
-    // Use this method to retrieve the list of containers.
+    // Use this method to retrieve the list of secrets.
     rpc List (ListSecretRequest) returns (ListSecretsResponse) {
         option (google.api.http) = {
             get: "/secrets"
@@ -578,6 +578,130 @@ service Secrets {
 
 }
 
+// -----------------------------------------------------------------------------------
+// Vault represents the store for keeping Secrets
+// -----------------------------------------------------------------------------------
+message Vault {
+    option (gorm.opts) = {
+      ormable: true,
+      multi_account: true
+  };
+
+    // The secret identifier.
+    atlas.rpc.Identifier id = 1 [(gorm.field).tag = {type: "serial"  primary_key: true}];
+
+    // The name of the container
+    string name = 2;
+
+    // The description of the container
+    string description = 3;
+
+    // The path on vault for the Secrets (e.g. /qa0-secrets)
+    string path = 4;
+
+    // The list of Secrets stored against the path on vault
+    repeated Secret secrets = 5;
+}
+
+message CreateVaultRequest {
+    Vault payload = 1;
+}
+
+message CreateVaultResponse {
+    Vault result = 1;
+}
+
+message ReadVaultRequest {
+    atlas.rpc.Identifier id = 1;
+    infoblox.api.FieldSelection fields = 2;
+}
+
+message ReadVaultResponse {
+    Vault result = 1;
+}
+
+message UpdateVaultRequest {
+    Vault payload = 1;
+    google.protobuf.FieldMask fields = 2;
+}
+
+message UpdateVaultResponse {
+    Vault result = 1;
+}
+
+message DeleteVaultRequest {
+    atlas.rpc.Identifier id = 1;
+}
+
+message DeleteVaultResponse{}
+
+message ListVaultRequest {
+    infoblox.api.Filtering filter = 1;
+    infoblox.api.Sorting order_by = 2;
+    infoblox.api.FieldSelection fields = 3;
+    infoblox.api.Pagination paging = 4;
+}
+
+message ListVaultsResponse {
+    repeated Vault results = 1;
+    infoblox.api.PageInfo page = 2;
+}
+
+service Vaults {
+    option (gorm.server) = {
+      autogen: true,
+      txn_middleware: true,
+    };
+
+    option (atlas_validate.service).allow_unknown_fields = true;
+
+    // Use this method to create a vault.
+    rpc Create (CreateVaultRequest) returns (CreateVaultResponse) {
+        option (google.api.http) = {
+            post: "/vaults"
+            body: "payload"
+        };
+
+        option (atlas_validate.method).allow_unknown_fields = false;
+    }
+
+    // Use this method to retrieve the particular container.
+    rpc Read (ReadVaultRequest) returns (ReadVaultResponse) {
+        option (google.api.http) = {
+            get: "/vaults/{id.resource_id}"
+        };
+    }
+
+    // Use this method to update vault.
+    rpc Update (UpdateVaultRequest) returns (UpdateVaultResponse) {
+        option (google.api.http) = {
+            put: "/vaults/{payload.id.resource_id}"
+            body: "payload"
+            additional_bindings: {
+                patch: "/vaults/{payload.id.resource_id}"
+                body: "payload"
+            }
+        };
+
+        option (atlas_validate.method).allow_unknown_fields = false;
+    }
+
+    // Use this method to delete a vault.
+    rpc Delete (DeleteVaultRequest) returns (DeleteVaultResponse) {
+        option (google.api.http) = {
+            delete: "/vaults/{id.resource_id}"
+        };
+        option (gorm.method).object_type = "Vault";
+    }
+
+    // Use this method to retrieve the list of vaults.
+    rpc List (ListVaultRequest) returns (ListVaultsResponse) {
+        option (google.api.http) = {
+            get: "/vaults"
+        };
+    }
+
+}
 
 //// -----------------------------------------------------------------------------------
 //// Environment represents a particular resource that can own Applications in a Region

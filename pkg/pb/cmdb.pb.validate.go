@@ -3860,3 +3860,953 @@ var _ interface {
 	Cause() error
 	ErrorName() string
 } = ListSecretsResponseValidationError{}
+
+// Validate checks the field values on Vault with the rules defined in the
+// proto definition for this message. If any rules are violated, an error is returned.
+func (m *Vault) Validate() error {
+	if m == nil {
+		return nil
+	}
+
+	if v, ok := interface{}(m.GetId()).(interface {
+		Validate() error
+	}); ok {
+		if err := v.Validate(); err != nil {
+			return VaultValidationError{
+				field:  "Id",
+				reason: "embedded message failed validation",
+				cause:  err,
+			}
+		}
+	}
+
+	// no validation rules for Name
+
+	// no validation rules for Description
+
+	// no validation rules for Path
+
+	for idx, item := range m.GetSecrets() {
+		_, _ = idx, item
+
+		if v, ok := interface{}(item).(interface {
+			Validate() error
+		}); ok {
+			if err := v.Validate(); err != nil {
+				return VaultValidationError{
+					field:  fmt.Sprintf("Secrets[%v]", idx),
+					reason: "embedded message failed validation",
+					cause:  err,
+				}
+			}
+		}
+
+	}
+
+	return nil
+}
+
+// VaultValidationError is the validation error returned by Vault.Validate if
+// the designated constraints aren't met.
+type VaultValidationError struct {
+	field  string
+	reason string
+	cause  error
+	key    bool
+}
+
+// Field function returns field value.
+func (e VaultValidationError) Field() string { return e.field }
+
+// Reason function returns reason value.
+func (e VaultValidationError) Reason() string { return e.reason }
+
+// Cause function returns cause value.
+func (e VaultValidationError) Cause() error { return e.cause }
+
+// Key function returns key value.
+func (e VaultValidationError) Key() bool { return e.key }
+
+// ErrorName returns error name.
+func (e VaultValidationError) ErrorName() string { return "VaultValidationError" }
+
+// Error satisfies the builtin error interface
+func (e VaultValidationError) Error() string {
+	cause := ""
+	if e.cause != nil {
+		cause = fmt.Sprintf(" | caused by: %v", e.cause)
+	}
+
+	key := ""
+	if e.key {
+		key = "key for "
+	}
+
+	return fmt.Sprintf(
+		"invalid %sVault.%s: %s%s",
+		key,
+		e.field,
+		e.reason,
+		cause)
+}
+
+var _ error = VaultValidationError{}
+
+var _ interface {
+	Field() string
+	Reason() string
+	Key() bool
+	Cause() error
+	ErrorName() string
+} = VaultValidationError{}
+
+// Validate checks the field values on CreateVaultRequest with the rules
+// defined in the proto definition for this message. If any rules are
+// violated, an error is returned.
+func (m *CreateVaultRequest) Validate() error {
+	if m == nil {
+		return nil
+	}
+
+	if v, ok := interface{}(m.GetPayload()).(interface {
+		Validate() error
+	}); ok {
+		if err := v.Validate(); err != nil {
+			return CreateVaultRequestValidationError{
+				field:  "Payload",
+				reason: "embedded message failed validation",
+				cause:  err,
+			}
+		}
+	}
+
+	return nil
+}
+
+// CreateVaultRequestValidationError is the validation error returned by
+// CreateVaultRequest.Validate if the designated constraints aren't met.
+type CreateVaultRequestValidationError struct {
+	field  string
+	reason string
+	cause  error
+	key    bool
+}
+
+// Field function returns field value.
+func (e CreateVaultRequestValidationError) Field() string { return e.field }
+
+// Reason function returns reason value.
+func (e CreateVaultRequestValidationError) Reason() string { return e.reason }
+
+// Cause function returns cause value.
+func (e CreateVaultRequestValidationError) Cause() error { return e.cause }
+
+// Key function returns key value.
+func (e CreateVaultRequestValidationError) Key() bool { return e.key }
+
+// ErrorName returns error name.
+func (e CreateVaultRequestValidationError) ErrorName() string {
+	return "CreateVaultRequestValidationError"
+}
+
+// Error satisfies the builtin error interface
+func (e CreateVaultRequestValidationError) Error() string {
+	cause := ""
+	if e.cause != nil {
+		cause = fmt.Sprintf(" | caused by: %v", e.cause)
+	}
+
+	key := ""
+	if e.key {
+		key = "key for "
+	}
+
+	return fmt.Sprintf(
+		"invalid %sCreateVaultRequest.%s: %s%s",
+		key,
+		e.field,
+		e.reason,
+		cause)
+}
+
+var _ error = CreateVaultRequestValidationError{}
+
+var _ interface {
+	Field() string
+	Reason() string
+	Key() bool
+	Cause() error
+	ErrorName() string
+} = CreateVaultRequestValidationError{}
+
+// Validate checks the field values on CreateVaultResponse with the rules
+// defined in the proto definition for this message. If any rules are
+// violated, an error is returned.
+func (m *CreateVaultResponse) Validate() error {
+	if m == nil {
+		return nil
+	}
+
+	if v, ok := interface{}(m.GetResult()).(interface {
+		Validate() error
+	}); ok {
+		if err := v.Validate(); err != nil {
+			return CreateVaultResponseValidationError{
+				field:  "Result",
+				reason: "embedded message failed validation",
+				cause:  err,
+			}
+		}
+	}
+
+	return nil
+}
+
+// CreateVaultResponseValidationError is the validation error returned by
+// CreateVaultResponse.Validate if the designated constraints aren't met.
+type CreateVaultResponseValidationError struct {
+	field  string
+	reason string
+	cause  error
+	key    bool
+}
+
+// Field function returns field value.
+func (e CreateVaultResponseValidationError) Field() string { return e.field }
+
+// Reason function returns reason value.
+func (e CreateVaultResponseValidationError) Reason() string { return e.reason }
+
+// Cause function returns cause value.
+func (e CreateVaultResponseValidationError) Cause() error { return e.cause }
+
+// Key function returns key value.
+func (e CreateVaultResponseValidationError) Key() bool { return e.key }
+
+// ErrorName returns error name.
+func (e CreateVaultResponseValidationError) ErrorName() string {
+	return "CreateVaultResponseValidationError"
+}
+
+// Error satisfies the builtin error interface
+func (e CreateVaultResponseValidationError) Error() string {
+	cause := ""
+	if e.cause != nil {
+		cause = fmt.Sprintf(" | caused by: %v", e.cause)
+	}
+
+	key := ""
+	if e.key {
+		key = "key for "
+	}
+
+	return fmt.Sprintf(
+		"invalid %sCreateVaultResponse.%s: %s%s",
+		key,
+		e.field,
+		e.reason,
+		cause)
+}
+
+var _ error = CreateVaultResponseValidationError{}
+
+var _ interface {
+	Field() string
+	Reason() string
+	Key() bool
+	Cause() error
+	ErrorName() string
+} = CreateVaultResponseValidationError{}
+
+// Validate checks the field values on ReadVaultRequest with the rules defined
+// in the proto definition for this message. If any rules are violated, an
+// error is returned.
+func (m *ReadVaultRequest) Validate() error {
+	if m == nil {
+		return nil
+	}
+
+	if v, ok := interface{}(m.GetId()).(interface {
+		Validate() error
+	}); ok {
+		if err := v.Validate(); err != nil {
+			return ReadVaultRequestValidationError{
+				field:  "Id",
+				reason: "embedded message failed validation",
+				cause:  err,
+			}
+		}
+	}
+
+	if v, ok := interface{}(m.GetFields()).(interface {
+		Validate() error
+	}); ok {
+		if err := v.Validate(); err != nil {
+			return ReadVaultRequestValidationError{
+				field:  "Fields",
+				reason: "embedded message failed validation",
+				cause:  err,
+			}
+		}
+	}
+
+	return nil
+}
+
+// ReadVaultRequestValidationError is the validation error returned by
+// ReadVaultRequest.Validate if the designated constraints aren't met.
+type ReadVaultRequestValidationError struct {
+	field  string
+	reason string
+	cause  error
+	key    bool
+}
+
+// Field function returns field value.
+func (e ReadVaultRequestValidationError) Field() string { return e.field }
+
+// Reason function returns reason value.
+func (e ReadVaultRequestValidationError) Reason() string { return e.reason }
+
+// Cause function returns cause value.
+func (e ReadVaultRequestValidationError) Cause() error { return e.cause }
+
+// Key function returns key value.
+func (e ReadVaultRequestValidationError) Key() bool { return e.key }
+
+// ErrorName returns error name.
+func (e ReadVaultRequestValidationError) ErrorName() string { return "ReadVaultRequestValidationError" }
+
+// Error satisfies the builtin error interface
+func (e ReadVaultRequestValidationError) Error() string {
+	cause := ""
+	if e.cause != nil {
+		cause = fmt.Sprintf(" | caused by: %v", e.cause)
+	}
+
+	key := ""
+	if e.key {
+		key = "key for "
+	}
+
+	return fmt.Sprintf(
+		"invalid %sReadVaultRequest.%s: %s%s",
+		key,
+		e.field,
+		e.reason,
+		cause)
+}
+
+var _ error = ReadVaultRequestValidationError{}
+
+var _ interface {
+	Field() string
+	Reason() string
+	Key() bool
+	Cause() error
+	ErrorName() string
+} = ReadVaultRequestValidationError{}
+
+// Validate checks the field values on ReadVaultResponse with the rules defined
+// in the proto definition for this message. If any rules are violated, an
+// error is returned.
+func (m *ReadVaultResponse) Validate() error {
+	if m == nil {
+		return nil
+	}
+
+	if v, ok := interface{}(m.GetResult()).(interface {
+		Validate() error
+	}); ok {
+		if err := v.Validate(); err != nil {
+			return ReadVaultResponseValidationError{
+				field:  "Result",
+				reason: "embedded message failed validation",
+				cause:  err,
+			}
+		}
+	}
+
+	return nil
+}
+
+// ReadVaultResponseValidationError is the validation error returned by
+// ReadVaultResponse.Validate if the designated constraints aren't met.
+type ReadVaultResponseValidationError struct {
+	field  string
+	reason string
+	cause  error
+	key    bool
+}
+
+// Field function returns field value.
+func (e ReadVaultResponseValidationError) Field() string { return e.field }
+
+// Reason function returns reason value.
+func (e ReadVaultResponseValidationError) Reason() string { return e.reason }
+
+// Cause function returns cause value.
+func (e ReadVaultResponseValidationError) Cause() error { return e.cause }
+
+// Key function returns key value.
+func (e ReadVaultResponseValidationError) Key() bool { return e.key }
+
+// ErrorName returns error name.
+func (e ReadVaultResponseValidationError) ErrorName() string {
+	return "ReadVaultResponseValidationError"
+}
+
+// Error satisfies the builtin error interface
+func (e ReadVaultResponseValidationError) Error() string {
+	cause := ""
+	if e.cause != nil {
+		cause = fmt.Sprintf(" | caused by: %v", e.cause)
+	}
+
+	key := ""
+	if e.key {
+		key = "key for "
+	}
+
+	return fmt.Sprintf(
+		"invalid %sReadVaultResponse.%s: %s%s",
+		key,
+		e.field,
+		e.reason,
+		cause)
+}
+
+var _ error = ReadVaultResponseValidationError{}
+
+var _ interface {
+	Field() string
+	Reason() string
+	Key() bool
+	Cause() error
+	ErrorName() string
+} = ReadVaultResponseValidationError{}
+
+// Validate checks the field values on UpdateVaultRequest with the rules
+// defined in the proto definition for this message. If any rules are
+// violated, an error is returned.
+func (m *UpdateVaultRequest) Validate() error {
+	if m == nil {
+		return nil
+	}
+
+	if v, ok := interface{}(m.GetPayload()).(interface {
+		Validate() error
+	}); ok {
+		if err := v.Validate(); err != nil {
+			return UpdateVaultRequestValidationError{
+				field:  "Payload",
+				reason: "embedded message failed validation",
+				cause:  err,
+			}
+		}
+	}
+
+	if v, ok := interface{}(m.GetFields()).(interface {
+		Validate() error
+	}); ok {
+		if err := v.Validate(); err != nil {
+			return UpdateVaultRequestValidationError{
+				field:  "Fields",
+				reason: "embedded message failed validation",
+				cause:  err,
+			}
+		}
+	}
+
+	return nil
+}
+
+// UpdateVaultRequestValidationError is the validation error returned by
+// UpdateVaultRequest.Validate if the designated constraints aren't met.
+type UpdateVaultRequestValidationError struct {
+	field  string
+	reason string
+	cause  error
+	key    bool
+}
+
+// Field function returns field value.
+func (e UpdateVaultRequestValidationError) Field() string { return e.field }
+
+// Reason function returns reason value.
+func (e UpdateVaultRequestValidationError) Reason() string { return e.reason }
+
+// Cause function returns cause value.
+func (e UpdateVaultRequestValidationError) Cause() error { return e.cause }
+
+// Key function returns key value.
+func (e UpdateVaultRequestValidationError) Key() bool { return e.key }
+
+// ErrorName returns error name.
+func (e UpdateVaultRequestValidationError) ErrorName() string {
+	return "UpdateVaultRequestValidationError"
+}
+
+// Error satisfies the builtin error interface
+func (e UpdateVaultRequestValidationError) Error() string {
+	cause := ""
+	if e.cause != nil {
+		cause = fmt.Sprintf(" | caused by: %v", e.cause)
+	}
+
+	key := ""
+	if e.key {
+		key = "key for "
+	}
+
+	return fmt.Sprintf(
+		"invalid %sUpdateVaultRequest.%s: %s%s",
+		key,
+		e.field,
+		e.reason,
+		cause)
+}
+
+var _ error = UpdateVaultRequestValidationError{}
+
+var _ interface {
+	Field() string
+	Reason() string
+	Key() bool
+	Cause() error
+	ErrorName() string
+} = UpdateVaultRequestValidationError{}
+
+// Validate checks the field values on UpdateVaultResponse with the rules
+// defined in the proto definition for this message. If any rules are
+// violated, an error is returned.
+func (m *UpdateVaultResponse) Validate() error {
+	if m == nil {
+		return nil
+	}
+
+	if v, ok := interface{}(m.GetResult()).(interface {
+		Validate() error
+	}); ok {
+		if err := v.Validate(); err != nil {
+			return UpdateVaultResponseValidationError{
+				field:  "Result",
+				reason: "embedded message failed validation",
+				cause:  err,
+			}
+		}
+	}
+
+	return nil
+}
+
+// UpdateVaultResponseValidationError is the validation error returned by
+// UpdateVaultResponse.Validate if the designated constraints aren't met.
+type UpdateVaultResponseValidationError struct {
+	field  string
+	reason string
+	cause  error
+	key    bool
+}
+
+// Field function returns field value.
+func (e UpdateVaultResponseValidationError) Field() string { return e.field }
+
+// Reason function returns reason value.
+func (e UpdateVaultResponseValidationError) Reason() string { return e.reason }
+
+// Cause function returns cause value.
+func (e UpdateVaultResponseValidationError) Cause() error { return e.cause }
+
+// Key function returns key value.
+func (e UpdateVaultResponseValidationError) Key() bool { return e.key }
+
+// ErrorName returns error name.
+func (e UpdateVaultResponseValidationError) ErrorName() string {
+	return "UpdateVaultResponseValidationError"
+}
+
+// Error satisfies the builtin error interface
+func (e UpdateVaultResponseValidationError) Error() string {
+	cause := ""
+	if e.cause != nil {
+		cause = fmt.Sprintf(" | caused by: %v", e.cause)
+	}
+
+	key := ""
+	if e.key {
+		key = "key for "
+	}
+
+	return fmt.Sprintf(
+		"invalid %sUpdateVaultResponse.%s: %s%s",
+		key,
+		e.field,
+		e.reason,
+		cause)
+}
+
+var _ error = UpdateVaultResponseValidationError{}
+
+var _ interface {
+	Field() string
+	Reason() string
+	Key() bool
+	Cause() error
+	ErrorName() string
+} = UpdateVaultResponseValidationError{}
+
+// Validate checks the field values on DeleteVaultRequest with the rules
+// defined in the proto definition for this message. If any rules are
+// violated, an error is returned.
+func (m *DeleteVaultRequest) Validate() error {
+	if m == nil {
+		return nil
+	}
+
+	if v, ok := interface{}(m.GetId()).(interface {
+		Validate() error
+	}); ok {
+		if err := v.Validate(); err != nil {
+			return DeleteVaultRequestValidationError{
+				field:  "Id",
+				reason: "embedded message failed validation",
+				cause:  err,
+			}
+		}
+	}
+
+	return nil
+}
+
+// DeleteVaultRequestValidationError is the validation error returned by
+// DeleteVaultRequest.Validate if the designated constraints aren't met.
+type DeleteVaultRequestValidationError struct {
+	field  string
+	reason string
+	cause  error
+	key    bool
+}
+
+// Field function returns field value.
+func (e DeleteVaultRequestValidationError) Field() string { return e.field }
+
+// Reason function returns reason value.
+func (e DeleteVaultRequestValidationError) Reason() string { return e.reason }
+
+// Cause function returns cause value.
+func (e DeleteVaultRequestValidationError) Cause() error { return e.cause }
+
+// Key function returns key value.
+func (e DeleteVaultRequestValidationError) Key() bool { return e.key }
+
+// ErrorName returns error name.
+func (e DeleteVaultRequestValidationError) ErrorName() string {
+	return "DeleteVaultRequestValidationError"
+}
+
+// Error satisfies the builtin error interface
+func (e DeleteVaultRequestValidationError) Error() string {
+	cause := ""
+	if e.cause != nil {
+		cause = fmt.Sprintf(" | caused by: %v", e.cause)
+	}
+
+	key := ""
+	if e.key {
+		key = "key for "
+	}
+
+	return fmt.Sprintf(
+		"invalid %sDeleteVaultRequest.%s: %s%s",
+		key,
+		e.field,
+		e.reason,
+		cause)
+}
+
+var _ error = DeleteVaultRequestValidationError{}
+
+var _ interface {
+	Field() string
+	Reason() string
+	Key() bool
+	Cause() error
+	ErrorName() string
+} = DeleteVaultRequestValidationError{}
+
+// Validate checks the field values on DeleteVaultResponse with the rules
+// defined in the proto definition for this message. If any rules are
+// violated, an error is returned.
+func (m *DeleteVaultResponse) Validate() error {
+	if m == nil {
+		return nil
+	}
+
+	return nil
+}
+
+// DeleteVaultResponseValidationError is the validation error returned by
+// DeleteVaultResponse.Validate if the designated constraints aren't met.
+type DeleteVaultResponseValidationError struct {
+	field  string
+	reason string
+	cause  error
+	key    bool
+}
+
+// Field function returns field value.
+func (e DeleteVaultResponseValidationError) Field() string { return e.field }
+
+// Reason function returns reason value.
+func (e DeleteVaultResponseValidationError) Reason() string { return e.reason }
+
+// Cause function returns cause value.
+func (e DeleteVaultResponseValidationError) Cause() error { return e.cause }
+
+// Key function returns key value.
+func (e DeleteVaultResponseValidationError) Key() bool { return e.key }
+
+// ErrorName returns error name.
+func (e DeleteVaultResponseValidationError) ErrorName() string {
+	return "DeleteVaultResponseValidationError"
+}
+
+// Error satisfies the builtin error interface
+func (e DeleteVaultResponseValidationError) Error() string {
+	cause := ""
+	if e.cause != nil {
+		cause = fmt.Sprintf(" | caused by: %v", e.cause)
+	}
+
+	key := ""
+	if e.key {
+		key = "key for "
+	}
+
+	return fmt.Sprintf(
+		"invalid %sDeleteVaultResponse.%s: %s%s",
+		key,
+		e.field,
+		e.reason,
+		cause)
+}
+
+var _ error = DeleteVaultResponseValidationError{}
+
+var _ interface {
+	Field() string
+	Reason() string
+	Key() bool
+	Cause() error
+	ErrorName() string
+} = DeleteVaultResponseValidationError{}
+
+// Validate checks the field values on ListVaultRequest with the rules defined
+// in the proto definition for this message. If any rules are violated, an
+// error is returned.
+func (m *ListVaultRequest) Validate() error {
+	if m == nil {
+		return nil
+	}
+
+	if v, ok := interface{}(m.GetFilter()).(interface {
+		Validate() error
+	}); ok {
+		if err := v.Validate(); err != nil {
+			return ListVaultRequestValidationError{
+				field:  "Filter",
+				reason: "embedded message failed validation",
+				cause:  err,
+			}
+		}
+	}
+
+	if v, ok := interface{}(m.GetOrderBy()).(interface {
+		Validate() error
+	}); ok {
+		if err := v.Validate(); err != nil {
+			return ListVaultRequestValidationError{
+				field:  "OrderBy",
+				reason: "embedded message failed validation",
+				cause:  err,
+			}
+		}
+	}
+
+	if v, ok := interface{}(m.GetFields()).(interface {
+		Validate() error
+	}); ok {
+		if err := v.Validate(); err != nil {
+			return ListVaultRequestValidationError{
+				field:  "Fields",
+				reason: "embedded message failed validation",
+				cause:  err,
+			}
+		}
+	}
+
+	if v, ok := interface{}(m.GetPaging()).(interface {
+		Validate() error
+	}); ok {
+		if err := v.Validate(); err != nil {
+			return ListVaultRequestValidationError{
+				field:  "Paging",
+				reason: "embedded message failed validation",
+				cause:  err,
+			}
+		}
+	}
+
+	return nil
+}
+
+// ListVaultRequestValidationError is the validation error returned by
+// ListVaultRequest.Validate if the designated constraints aren't met.
+type ListVaultRequestValidationError struct {
+	field  string
+	reason string
+	cause  error
+	key    bool
+}
+
+// Field function returns field value.
+func (e ListVaultRequestValidationError) Field() string { return e.field }
+
+// Reason function returns reason value.
+func (e ListVaultRequestValidationError) Reason() string { return e.reason }
+
+// Cause function returns cause value.
+func (e ListVaultRequestValidationError) Cause() error { return e.cause }
+
+// Key function returns key value.
+func (e ListVaultRequestValidationError) Key() bool { return e.key }
+
+// ErrorName returns error name.
+func (e ListVaultRequestValidationError) ErrorName() string { return "ListVaultRequestValidationError" }
+
+// Error satisfies the builtin error interface
+func (e ListVaultRequestValidationError) Error() string {
+	cause := ""
+	if e.cause != nil {
+		cause = fmt.Sprintf(" | caused by: %v", e.cause)
+	}
+
+	key := ""
+	if e.key {
+		key = "key for "
+	}
+
+	return fmt.Sprintf(
+		"invalid %sListVaultRequest.%s: %s%s",
+		key,
+		e.field,
+		e.reason,
+		cause)
+}
+
+var _ error = ListVaultRequestValidationError{}
+
+var _ interface {
+	Field() string
+	Reason() string
+	Key() bool
+	Cause() error
+	ErrorName() string
+} = ListVaultRequestValidationError{}
+
+// Validate checks the field values on ListVaultsResponse with the rules
+// defined in the proto definition for this message. If any rules are
+// violated, an error is returned.
+func (m *ListVaultsResponse) Validate() error {
+	if m == nil {
+		return nil
+	}
+
+	for idx, item := range m.GetResults() {
+		_, _ = idx, item
+
+		if v, ok := interface{}(item).(interface {
+			Validate() error
+		}); ok {
+			if err := v.Validate(); err != nil {
+				return ListVaultsResponseValidationError{
+					field:  fmt.Sprintf("Results[%v]", idx),
+					reason: "embedded message failed validation",
+					cause:  err,
+				}
+			}
+		}
+
+	}
+
+	if v, ok := interface{}(m.GetPage()).(interface {
+		Validate() error
+	}); ok {
+		if err := v.Validate(); err != nil {
+			return ListVaultsResponseValidationError{
+				field:  "Page",
+				reason: "embedded message failed validation",
+				cause:  err,
+			}
+		}
+	}
+
+	return nil
+}
+
+// ListVaultsResponseValidationError is the validation error returned by
+// ListVaultsResponse.Validate if the designated constraints aren't met.
+type ListVaultsResponseValidationError struct {
+	field  string
+	reason string
+	cause  error
+	key    bool
+}
+
+// Field function returns field value.
+func (e ListVaultsResponseValidationError) Field() string { return e.field }
+
+// Reason function returns reason value.
+func (e ListVaultsResponseValidationError) Reason() string { return e.reason }
+
+// Cause function returns cause value.
+func (e ListVaultsResponseValidationError) Cause() error { return e.cause }
+
+// Key function returns key value.
+func (e ListVaultsResponseValidationError) Key() bool { return e.key }
+
+// ErrorName returns error name.
+func (e ListVaultsResponseValidationError) ErrorName() string {
+	return "ListVaultsResponseValidationError"
+}
+
+// Error satisfies the builtin error interface
+func (e ListVaultsResponseValidationError) Error() string {
+	cause := ""
+	if e.cause != nil {
+		cause = fmt.Sprintf(" | caused by: %v", e.cause)
+	}
+
+	key := ""
+	if e.key {
+		key = "key for "
+	}
+
+	return fmt.Sprintf(
+		"invalid %sListVaultsResponse.%s: %s%s",
+		key,
+		e.field,
+		e.reason,
+		cause)
+}
+
+var _ error = ListVaultsResponseValidationError{}
+
+var _ interface {
+	Field() string
+	Reason() string
+	Key() bool
+	Cause() error
+	ErrorName() string
+} = ListVaultsResponseValidationError{}

@@ -222,6 +222,51 @@ func validate_Secrets_List_0(r json.RawMessage) (err error) {
 	return nil
 }
 
+// validate_Vaults_Create_0 is an entrypoint for validating "POST" HTTP request
+// that match *.pb.gw.go/pattern_Vaults_Create_0.
+func validate_Vaults_Create_0(r json.RawMessage) (err error) {
+	return validate_Object_Vault(r, "", false)
+}
+
+// validate_Vaults_Read_0 is an entrypoint for validating "GET" HTTP request
+// that match *.pb.gw.go/pattern_Vaults_Read_0.
+func validate_Vaults_Read_0(r json.RawMessage) (err error) {
+	if len(r) != 0 {
+		return fmt.Errorf("Body is not allowed")
+	}
+	return nil
+}
+
+// validate_Vaults_Update_0 is an entrypoint for validating "PUT" HTTP request
+// that match *.pb.gw.go/pattern_Vaults_Update_0.
+func validate_Vaults_Update_0(r json.RawMessage) (err error) {
+	return validate_Object_Vault(r, "", false)
+}
+
+// validate_Vaults_Update_1 is an entrypoint for validating "PATCH" HTTP request
+// that match *.pb.gw.go/pattern_Vaults_Update_1.
+func validate_Vaults_Update_1(r json.RawMessage) (err error) {
+	return validate_Object_Vault(r, "", false)
+}
+
+// validate_Vaults_Delete_0 is an entrypoint for validating "DELETE" HTTP request
+// that match *.pb.gw.go/pattern_Vaults_Delete_0.
+func validate_Vaults_Delete_0(r json.RawMessage) (err error) {
+	if len(r) != 0 {
+		return fmt.Errorf("Body is not allowed")
+	}
+	return nil
+}
+
+// validate_Vaults_List_0 is an entrypoint for validating "GET" HTTP request
+// that match *.pb.gw.go/pattern_Vaults_List_0.
+func validate_Vaults_List_0(r json.RawMessage) (err error) {
+	if len(r) != 0 {
+		return fmt.Errorf("Body is not allowed")
+	}
+	return nil
+}
+
 // validate_Object_VersionResponse function validates a JSON for a given object.
 func validate_Object_VersionResponse(r json.RawMessage, path string, allowUnknown bool) (err error) {
 	obj := &VersionResponse{}
@@ -2746,6 +2791,641 @@ func (o *ListSecretsResponse) AtlasValidateJSON(r json.RawMessage, path string, 
 	return validate_Object_ListSecretsResponse(r, path, allowUnknown)
 }
 
+// validate_Object_Vault function validates a JSON for a given object.
+func validate_Object_Vault(r json.RawMessage, path string, allowUnknown bool) (err error) {
+	obj := &Vault{}
+	if hook, ok := interface{}(obj).(interface {
+		AtlasJSONValidate(json.RawMessage, string, bool) (json.RawMessage, error)
+	}); ok {
+		if r, err = hook.AtlasJSONValidate(r, path, allowUnknown); err != nil {
+			return err
+		}
+	}
+	var v map[string]json.RawMessage
+	if err = json.Unmarshal(r, &v); err != nil {
+		return fmt.Errorf("Invalid value for %q: expected object.", path)
+	}
+	for k, _ := range v {
+		switch k {
+		case "id":
+			if v[k] == nil {
+				continue
+			}
+			vv := v[k]
+			vvPath := validate_runtime.JoinPath(path, k)
+			validator, ok := interface{}(&google_protobuf1.Identifier{}).(interface {
+				AtlasValidateJSON(json.RawMessage, string, bool) error
+			})
+			if !ok {
+				continue
+			}
+			if err = validator.AtlasValidateJSON(vv, vvPath, allowUnknown); err != nil {
+				return err
+			}
+		case "name":
+		case "description":
+		case "path":
+		case "secrets":
+			if v[k] == nil {
+				continue
+			}
+			var vArr []json.RawMessage
+			vArrPath := validate_runtime.JoinPath(path, k)
+			if err = json.Unmarshal(v[k], &vArr); err != nil {
+				return fmt.Errorf("Invalid value for %q: expected array.", vArrPath)
+			}
+			for i, vv := range vArr {
+				vvPath := fmt.Sprintf("%s.[%d]", vArrPath, i)
+				if err = validate_Object_Secret(vv, vvPath, allowUnknown); err != nil {
+					return err
+				}
+			}
+		default:
+			if !allowUnknown {
+				return fmt.Errorf("Unknown field %q", validate_runtime.JoinPath(path, k))
+			}
+		}
+	}
+	return nil
+}
+
+// AtlasValidateJSON function validates a JSON for object Vault.
+func (o *Vault) AtlasValidateJSON(r json.RawMessage, path string, allowUnknown bool) (err error) {
+	if hook, ok := interface{}(o).(interface {
+		AtlasJSONValidate(json.RawMessage, string, bool) (json.RawMessage, error)
+	}); ok {
+		if r, err = hook.AtlasJSONValidate(r, path, allowUnknown); err != nil {
+			return err
+		}
+	}
+	return validate_Object_Vault(r, path, allowUnknown)
+}
+
+// validate_Object_CreateVaultRequest function validates a JSON for a given object.
+func validate_Object_CreateVaultRequest(r json.RawMessage, path string, allowUnknown bool) (err error) {
+	obj := &CreateVaultRequest{}
+	if hook, ok := interface{}(obj).(interface {
+		AtlasJSONValidate(json.RawMessage, string, bool) (json.RawMessage, error)
+	}); ok {
+		if r, err = hook.AtlasJSONValidate(r, path, allowUnknown); err != nil {
+			return err
+		}
+	}
+	var v map[string]json.RawMessage
+	if err = json.Unmarshal(r, &v); err != nil {
+		return fmt.Errorf("Invalid value for %q: expected object.", path)
+	}
+	for k, _ := range v {
+		switch k {
+		case "payload":
+			if v[k] == nil {
+				continue
+			}
+			vv := v[k]
+			vvPath := validate_runtime.JoinPath(path, k)
+			if err = validate_Object_Vault(vv, vvPath, allowUnknown); err != nil {
+				return err
+			}
+		default:
+			if !allowUnknown {
+				return fmt.Errorf("Unknown field %q", validate_runtime.JoinPath(path, k))
+			}
+		}
+	}
+	return nil
+}
+
+// AtlasValidateJSON function validates a JSON for object CreateVaultRequest.
+func (o *CreateVaultRequest) AtlasValidateJSON(r json.RawMessage, path string, allowUnknown bool) (err error) {
+	if hook, ok := interface{}(o).(interface {
+		AtlasJSONValidate(json.RawMessage, string, bool) (json.RawMessage, error)
+	}); ok {
+		if r, err = hook.AtlasJSONValidate(r, path, allowUnknown); err != nil {
+			return err
+		}
+	}
+	return validate_Object_CreateVaultRequest(r, path, allowUnknown)
+}
+
+// validate_Object_CreateVaultResponse function validates a JSON for a given object.
+func validate_Object_CreateVaultResponse(r json.RawMessage, path string, allowUnknown bool) (err error) {
+	obj := &CreateVaultResponse{}
+	if hook, ok := interface{}(obj).(interface {
+		AtlasJSONValidate(json.RawMessage, string, bool) (json.RawMessage, error)
+	}); ok {
+		if r, err = hook.AtlasJSONValidate(r, path, allowUnknown); err != nil {
+			return err
+		}
+	}
+	var v map[string]json.RawMessage
+	if err = json.Unmarshal(r, &v); err != nil {
+		return fmt.Errorf("Invalid value for %q: expected object.", path)
+	}
+	for k, _ := range v {
+		switch k {
+		case "result":
+			if v[k] == nil {
+				continue
+			}
+			vv := v[k]
+			vvPath := validate_runtime.JoinPath(path, k)
+			if err = validate_Object_Vault(vv, vvPath, allowUnknown); err != nil {
+				return err
+			}
+		default:
+			if !allowUnknown {
+				return fmt.Errorf("Unknown field %q", validate_runtime.JoinPath(path, k))
+			}
+		}
+	}
+	return nil
+}
+
+// AtlasValidateJSON function validates a JSON for object CreateVaultResponse.
+func (o *CreateVaultResponse) AtlasValidateJSON(r json.RawMessage, path string, allowUnknown bool) (err error) {
+	if hook, ok := interface{}(o).(interface {
+		AtlasJSONValidate(json.RawMessage, string, bool) (json.RawMessage, error)
+	}); ok {
+		if r, err = hook.AtlasJSONValidate(r, path, allowUnknown); err != nil {
+			return err
+		}
+	}
+	return validate_Object_CreateVaultResponse(r, path, allowUnknown)
+}
+
+// validate_Object_ReadVaultRequest function validates a JSON for a given object.
+func validate_Object_ReadVaultRequest(r json.RawMessage, path string, allowUnknown bool) (err error) {
+	obj := &ReadVaultRequest{}
+	if hook, ok := interface{}(obj).(interface {
+		AtlasJSONValidate(json.RawMessage, string, bool) (json.RawMessage, error)
+	}); ok {
+		if r, err = hook.AtlasJSONValidate(r, path, allowUnknown); err != nil {
+			return err
+		}
+	}
+	var v map[string]json.RawMessage
+	if err = json.Unmarshal(r, &v); err != nil {
+		return fmt.Errorf("Invalid value for %q: expected object.", path)
+	}
+	for k, _ := range v {
+		switch k {
+		case "id":
+			if v[k] == nil {
+				continue
+			}
+			vv := v[k]
+			vvPath := validate_runtime.JoinPath(path, k)
+			validator, ok := interface{}(&google_protobuf1.Identifier{}).(interface {
+				AtlasValidateJSON(json.RawMessage, string, bool) error
+			})
+			if !ok {
+				continue
+			}
+			if err = validator.AtlasValidateJSON(vv, vvPath, allowUnknown); err != nil {
+				return err
+			}
+		case "fields":
+			if v[k] == nil {
+				continue
+			}
+			vv := v[k]
+			vvPath := validate_runtime.JoinPath(path, k)
+			validator, ok := interface{}(&google_protobuf2.FieldSelection{}).(interface {
+				AtlasValidateJSON(json.RawMessage, string, bool) error
+			})
+			if !ok {
+				continue
+			}
+			if err = validator.AtlasValidateJSON(vv, vvPath, allowUnknown); err != nil {
+				return err
+			}
+		default:
+			if !allowUnknown {
+				return fmt.Errorf("Unknown field %q", validate_runtime.JoinPath(path, k))
+			}
+		}
+	}
+	return nil
+}
+
+// AtlasValidateJSON function validates a JSON for object ReadVaultRequest.
+func (o *ReadVaultRequest) AtlasValidateJSON(r json.RawMessage, path string, allowUnknown bool) (err error) {
+	if hook, ok := interface{}(o).(interface {
+		AtlasJSONValidate(json.RawMessage, string, bool) (json.RawMessage, error)
+	}); ok {
+		if r, err = hook.AtlasJSONValidate(r, path, allowUnknown); err != nil {
+			return err
+		}
+	}
+	return validate_Object_ReadVaultRequest(r, path, allowUnknown)
+}
+
+// validate_Object_ReadVaultResponse function validates a JSON for a given object.
+func validate_Object_ReadVaultResponse(r json.RawMessage, path string, allowUnknown bool) (err error) {
+	obj := &ReadVaultResponse{}
+	if hook, ok := interface{}(obj).(interface {
+		AtlasJSONValidate(json.RawMessage, string, bool) (json.RawMessage, error)
+	}); ok {
+		if r, err = hook.AtlasJSONValidate(r, path, allowUnknown); err != nil {
+			return err
+		}
+	}
+	var v map[string]json.RawMessage
+	if err = json.Unmarshal(r, &v); err != nil {
+		return fmt.Errorf("Invalid value for %q: expected object.", path)
+	}
+	for k, _ := range v {
+		switch k {
+		case "result":
+			if v[k] == nil {
+				continue
+			}
+			vv := v[k]
+			vvPath := validate_runtime.JoinPath(path, k)
+			if err = validate_Object_Vault(vv, vvPath, allowUnknown); err != nil {
+				return err
+			}
+		default:
+			if !allowUnknown {
+				return fmt.Errorf("Unknown field %q", validate_runtime.JoinPath(path, k))
+			}
+		}
+	}
+	return nil
+}
+
+// AtlasValidateJSON function validates a JSON for object ReadVaultResponse.
+func (o *ReadVaultResponse) AtlasValidateJSON(r json.RawMessage, path string, allowUnknown bool) (err error) {
+	if hook, ok := interface{}(o).(interface {
+		AtlasJSONValidate(json.RawMessage, string, bool) (json.RawMessage, error)
+	}); ok {
+		if r, err = hook.AtlasJSONValidate(r, path, allowUnknown); err != nil {
+			return err
+		}
+	}
+	return validate_Object_ReadVaultResponse(r, path, allowUnknown)
+}
+
+// validate_Object_UpdateVaultRequest function validates a JSON for a given object.
+func validate_Object_UpdateVaultRequest(r json.RawMessage, path string, allowUnknown bool) (err error) {
+	obj := &UpdateVaultRequest{}
+	if hook, ok := interface{}(obj).(interface {
+		AtlasJSONValidate(json.RawMessage, string, bool) (json.RawMessage, error)
+	}); ok {
+		if r, err = hook.AtlasJSONValidate(r, path, allowUnknown); err != nil {
+			return err
+		}
+	}
+	var v map[string]json.RawMessage
+	if err = json.Unmarshal(r, &v); err != nil {
+		return fmt.Errorf("Invalid value for %q: expected object.", path)
+	}
+	for k, _ := range v {
+		switch k {
+		case "payload":
+			if v[k] == nil {
+				continue
+			}
+			vv := v[k]
+			vvPath := validate_runtime.JoinPath(path, k)
+			if err = validate_Object_Vault(vv, vvPath, allowUnknown); err != nil {
+				return err
+			}
+		case "fields":
+			if v[k] == nil {
+				continue
+			}
+			vv := v[k]
+			vvPath := validate_runtime.JoinPath(path, k)
+			validator, ok := interface{}(&google_protobuf3.FieldMask{}).(interface {
+				AtlasValidateJSON(json.RawMessage, string, bool) error
+			})
+			if !ok {
+				continue
+			}
+			if err = validator.AtlasValidateJSON(vv, vvPath, allowUnknown); err != nil {
+				return err
+			}
+		default:
+			if !allowUnknown {
+				return fmt.Errorf("Unknown field %q", validate_runtime.JoinPath(path, k))
+			}
+		}
+	}
+	return nil
+}
+
+// AtlasValidateJSON function validates a JSON for object UpdateVaultRequest.
+func (o *UpdateVaultRequest) AtlasValidateJSON(r json.RawMessage, path string, allowUnknown bool) (err error) {
+	if hook, ok := interface{}(o).(interface {
+		AtlasJSONValidate(json.RawMessage, string, bool) (json.RawMessage, error)
+	}); ok {
+		if r, err = hook.AtlasJSONValidate(r, path, allowUnknown); err != nil {
+			return err
+		}
+	}
+	return validate_Object_UpdateVaultRequest(r, path, allowUnknown)
+}
+
+// validate_Object_UpdateVaultResponse function validates a JSON for a given object.
+func validate_Object_UpdateVaultResponse(r json.RawMessage, path string, allowUnknown bool) (err error) {
+	obj := &UpdateVaultResponse{}
+	if hook, ok := interface{}(obj).(interface {
+		AtlasJSONValidate(json.RawMessage, string, bool) (json.RawMessage, error)
+	}); ok {
+		if r, err = hook.AtlasJSONValidate(r, path, allowUnknown); err != nil {
+			return err
+		}
+	}
+	var v map[string]json.RawMessage
+	if err = json.Unmarshal(r, &v); err != nil {
+		return fmt.Errorf("Invalid value for %q: expected object.", path)
+	}
+	for k, _ := range v {
+		switch k {
+		case "result":
+			if v[k] == nil {
+				continue
+			}
+			vv := v[k]
+			vvPath := validate_runtime.JoinPath(path, k)
+			if err = validate_Object_Vault(vv, vvPath, allowUnknown); err != nil {
+				return err
+			}
+		default:
+			if !allowUnknown {
+				return fmt.Errorf("Unknown field %q", validate_runtime.JoinPath(path, k))
+			}
+		}
+	}
+	return nil
+}
+
+// AtlasValidateJSON function validates a JSON for object UpdateVaultResponse.
+func (o *UpdateVaultResponse) AtlasValidateJSON(r json.RawMessage, path string, allowUnknown bool) (err error) {
+	if hook, ok := interface{}(o).(interface {
+		AtlasJSONValidate(json.RawMessage, string, bool) (json.RawMessage, error)
+	}); ok {
+		if r, err = hook.AtlasJSONValidate(r, path, allowUnknown); err != nil {
+			return err
+		}
+	}
+	return validate_Object_UpdateVaultResponse(r, path, allowUnknown)
+}
+
+// validate_Object_DeleteVaultRequest function validates a JSON for a given object.
+func validate_Object_DeleteVaultRequest(r json.RawMessage, path string, allowUnknown bool) (err error) {
+	obj := &DeleteVaultRequest{}
+	if hook, ok := interface{}(obj).(interface {
+		AtlasJSONValidate(json.RawMessage, string, bool) (json.RawMessage, error)
+	}); ok {
+		if r, err = hook.AtlasJSONValidate(r, path, allowUnknown); err != nil {
+			return err
+		}
+	}
+	var v map[string]json.RawMessage
+	if err = json.Unmarshal(r, &v); err != nil {
+		return fmt.Errorf("Invalid value for %q: expected object.", path)
+	}
+	for k, _ := range v {
+		switch k {
+		case "id":
+			if v[k] == nil {
+				continue
+			}
+			vv := v[k]
+			vvPath := validate_runtime.JoinPath(path, k)
+			validator, ok := interface{}(&google_protobuf1.Identifier{}).(interface {
+				AtlasValidateJSON(json.RawMessage, string, bool) error
+			})
+			if !ok {
+				continue
+			}
+			if err = validator.AtlasValidateJSON(vv, vvPath, allowUnknown); err != nil {
+				return err
+			}
+		default:
+			if !allowUnknown {
+				return fmt.Errorf("Unknown field %q", validate_runtime.JoinPath(path, k))
+			}
+		}
+	}
+	return nil
+}
+
+// AtlasValidateJSON function validates a JSON for object DeleteVaultRequest.
+func (o *DeleteVaultRequest) AtlasValidateJSON(r json.RawMessage, path string, allowUnknown bool) (err error) {
+	if hook, ok := interface{}(o).(interface {
+		AtlasJSONValidate(json.RawMessage, string, bool) (json.RawMessage, error)
+	}); ok {
+		if r, err = hook.AtlasJSONValidate(r, path, allowUnknown); err != nil {
+			return err
+		}
+	}
+	return validate_Object_DeleteVaultRequest(r, path, allowUnknown)
+}
+
+// validate_Object_DeleteVaultResponse function validates a JSON for a given object.
+func validate_Object_DeleteVaultResponse(r json.RawMessage, path string, allowUnknown bool) (err error) {
+	obj := &DeleteVaultResponse{}
+	if hook, ok := interface{}(obj).(interface {
+		AtlasJSONValidate(json.RawMessage, string, bool) (json.RawMessage, error)
+	}); ok {
+		if r, err = hook.AtlasJSONValidate(r, path, allowUnknown); err != nil {
+			return err
+		}
+	}
+	var v map[string]json.RawMessage
+	if err = json.Unmarshal(r, &v); err != nil {
+		return fmt.Errorf("Invalid value for %q: expected object.", path)
+	}
+	for k, _ := range v {
+		switch k {
+		default:
+			if !allowUnknown {
+				return fmt.Errorf("Unknown field %q", validate_runtime.JoinPath(path, k))
+			}
+		}
+	}
+	return nil
+}
+
+// AtlasValidateJSON function validates a JSON for object DeleteVaultResponse.
+func (o *DeleteVaultResponse) AtlasValidateJSON(r json.RawMessage, path string, allowUnknown bool) (err error) {
+	if hook, ok := interface{}(o).(interface {
+		AtlasJSONValidate(json.RawMessage, string, bool) (json.RawMessage, error)
+	}); ok {
+		if r, err = hook.AtlasJSONValidate(r, path, allowUnknown); err != nil {
+			return err
+		}
+	}
+	return validate_Object_DeleteVaultResponse(r, path, allowUnknown)
+}
+
+// validate_Object_ListVaultRequest function validates a JSON for a given object.
+func validate_Object_ListVaultRequest(r json.RawMessage, path string, allowUnknown bool) (err error) {
+	obj := &ListVaultRequest{}
+	if hook, ok := interface{}(obj).(interface {
+		AtlasJSONValidate(json.RawMessage, string, bool) (json.RawMessage, error)
+	}); ok {
+		if r, err = hook.AtlasJSONValidate(r, path, allowUnknown); err != nil {
+			return err
+		}
+	}
+	var v map[string]json.RawMessage
+	if err = json.Unmarshal(r, &v); err != nil {
+		return fmt.Errorf("Invalid value for %q: expected object.", path)
+	}
+	for k, _ := range v {
+		switch k {
+		case "filter":
+			if v[k] == nil {
+				continue
+			}
+			vv := v[k]
+			vvPath := validate_runtime.JoinPath(path, k)
+			validator, ok := interface{}(&google_protobuf2.Filtering{}).(interface {
+				AtlasValidateJSON(json.RawMessage, string, bool) error
+			})
+			if !ok {
+				continue
+			}
+			if err = validator.AtlasValidateJSON(vv, vvPath, allowUnknown); err != nil {
+				return err
+			}
+		case "order_by":
+			if v[k] == nil {
+				continue
+			}
+			vv := v[k]
+			vvPath := validate_runtime.JoinPath(path, k)
+			validator, ok := interface{}(&google_protobuf2.Sorting{}).(interface {
+				AtlasValidateJSON(json.RawMessage, string, bool) error
+			})
+			if !ok {
+				continue
+			}
+			if err = validator.AtlasValidateJSON(vv, vvPath, allowUnknown); err != nil {
+				return err
+			}
+		case "fields":
+			if v[k] == nil {
+				continue
+			}
+			vv := v[k]
+			vvPath := validate_runtime.JoinPath(path, k)
+			validator, ok := interface{}(&google_protobuf2.FieldSelection{}).(interface {
+				AtlasValidateJSON(json.RawMessage, string, bool) error
+			})
+			if !ok {
+				continue
+			}
+			if err = validator.AtlasValidateJSON(vv, vvPath, allowUnknown); err != nil {
+				return err
+			}
+		case "paging":
+			if v[k] == nil {
+				continue
+			}
+			vv := v[k]
+			vvPath := validate_runtime.JoinPath(path, k)
+			validator, ok := interface{}(&google_protobuf2.Pagination{}).(interface {
+				AtlasValidateJSON(json.RawMessage, string, bool) error
+			})
+			if !ok {
+				continue
+			}
+			if err = validator.AtlasValidateJSON(vv, vvPath, allowUnknown); err != nil {
+				return err
+			}
+		default:
+			if !allowUnknown {
+				return fmt.Errorf("Unknown field %q", validate_runtime.JoinPath(path, k))
+			}
+		}
+	}
+	return nil
+}
+
+// AtlasValidateJSON function validates a JSON for object ListVaultRequest.
+func (o *ListVaultRequest) AtlasValidateJSON(r json.RawMessage, path string, allowUnknown bool) (err error) {
+	if hook, ok := interface{}(o).(interface {
+		AtlasJSONValidate(json.RawMessage, string, bool) (json.RawMessage, error)
+	}); ok {
+		if r, err = hook.AtlasJSONValidate(r, path, allowUnknown); err != nil {
+			return err
+		}
+	}
+	return validate_Object_ListVaultRequest(r, path, allowUnknown)
+}
+
+// validate_Object_ListVaultsResponse function validates a JSON for a given object.
+func validate_Object_ListVaultsResponse(r json.RawMessage, path string, allowUnknown bool) (err error) {
+	obj := &ListVaultsResponse{}
+	if hook, ok := interface{}(obj).(interface {
+		AtlasJSONValidate(json.RawMessage, string, bool) (json.RawMessage, error)
+	}); ok {
+		if r, err = hook.AtlasJSONValidate(r, path, allowUnknown); err != nil {
+			return err
+		}
+	}
+	var v map[string]json.RawMessage
+	if err = json.Unmarshal(r, &v); err != nil {
+		return fmt.Errorf("Invalid value for %q: expected object.", path)
+	}
+	for k, _ := range v {
+		switch k {
+		case "results":
+			if v[k] == nil {
+				continue
+			}
+			var vArr []json.RawMessage
+			vArrPath := validate_runtime.JoinPath(path, k)
+			if err = json.Unmarshal(v[k], &vArr); err != nil {
+				return fmt.Errorf("Invalid value for %q: expected array.", vArrPath)
+			}
+			for i, vv := range vArr {
+				vvPath := fmt.Sprintf("%s.[%d]", vArrPath, i)
+				if err = validate_Object_Vault(vv, vvPath, allowUnknown); err != nil {
+					return err
+				}
+			}
+		case "page":
+			if v[k] == nil {
+				continue
+			}
+			vv := v[k]
+			vvPath := validate_runtime.JoinPath(path, k)
+			validator, ok := interface{}(&google_protobuf2.PageInfo{}).(interface {
+				AtlasValidateJSON(json.RawMessage, string, bool) error
+			})
+			if !ok {
+				continue
+			}
+			if err = validator.AtlasValidateJSON(vv, vvPath, allowUnknown); err != nil {
+				return err
+			}
+		default:
+			if !allowUnknown {
+				return fmt.Errorf("Unknown field %q", validate_runtime.JoinPath(path, k))
+			}
+		}
+	}
+	return nil
+}
+
+// AtlasValidateJSON function validates a JSON for object ListVaultsResponse.
+func (o *ListVaultsResponse) AtlasValidateJSON(r json.RawMessage, path string, allowUnknown bool) (err error) {
+	if hook, ok := interface{}(o).(interface {
+		AtlasJSONValidate(json.RawMessage, string, bool) (json.RawMessage, error)
+	}); ok {
+		if r, err = hook.AtlasJSONValidate(r, path, allowUnknown); err != nil {
+			return err
+		}
+	}
+	return validate_Object_ListVaultsResponse(r, path, allowUnknown)
+}
+
 var validate_Patterns = []struct {
 	pattern    runtime.Pattern
 	httpMethod string
@@ -2901,6 +3581,42 @@ var validate_Patterns = []struct {
 		pattern:      pattern_Secrets_List_0,
 		httpMethod:   "GET",
 		validator:    validate_Secrets_List_0,
+		allowUnknown: true,
+	},
+	{
+		pattern:      pattern_Vaults_Create_0,
+		httpMethod:   "POST",
+		validator:    validate_Vaults_Create_0,
+		allowUnknown: false,
+	},
+	{
+		pattern:      pattern_Vaults_Read_0,
+		httpMethod:   "GET",
+		validator:    validate_Vaults_Read_0,
+		allowUnknown: true,
+	},
+	{
+		pattern:      pattern_Vaults_Update_0,
+		httpMethod:   "PUT",
+		validator:    validate_Vaults_Update_0,
+		allowUnknown: false,
+	},
+	{
+		pattern:      pattern_Vaults_Update_1,
+		httpMethod:   "PATCH",
+		validator:    validate_Vaults_Update_1,
+		allowUnknown: false,
+	},
+	{
+		pattern:      pattern_Vaults_Delete_0,
+		httpMethod:   "DELETE",
+		validator:    validate_Vaults_Delete_0,
+		allowUnknown: true,
+	},
+	{
+		pattern:      pattern_Vaults_List_0,
+		httpMethod:   "GET",
+		validator:    validate_Vaults_List_0,
 		allowUnknown: true,
 	},
 }

@@ -189,6 +189,12 @@ curl -H "Authorization: Bearer $JWT" http://localhost:8080/v1/secrets -d '{"name
 {"result":{"id":"cmdb-app/secrets/1","name":"cmdb-app db password","description":"cmdb database password","type":"opaque","key":"db_password"}}
 ```
 
+Add Secrets:
+```sh
+curl -H "Authorization: Bearer $JWT" http://localhost:8080/v1/vaults -d '{"name": "vault for QA", "description": "Vault to store QA Secrets", "path": "k8s/qa0-secrets"}'
+{"result":{"id":"cmdb-app/vaults/1","name":"vault for QA","description":"Vault to store QA Secrets","path":"k8s/qa0-secrets"}}
+```
+
 #### Try atlas-contacts-app
 
 For Multi-Account environment, Authorization token (Bearer) is required. You can generate it using https://jwt.io/ with following Payload:
