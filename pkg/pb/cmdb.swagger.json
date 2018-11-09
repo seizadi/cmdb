@@ -1656,6 +1656,10 @@
         "type": {
           "type": "string",
           "title": "The type of secret (e.g. opaque, or tls)"
+        },
+        "vault_id": {
+          "description": "The resource identifier.",
+          "type": "string"
         }
       }
     },

@@ -13,3 +13,5 @@ CREATE TRIGGER vaults_updated_at
   BEFORE UPDATE OR INSERT ON vaults
   FOR EACH ROW
   EXECUTE PROCEDURE set_updated_at();
+
+ALTER TABLE secrets ADD COLUMN vault_id int REFERENCES vaults(id) ON DELETE CASCADE;

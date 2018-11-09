@@ -476,6 +476,9 @@ message Secret {
 
   // The key value of secret (note: value is stored on kubernetes secret
   string key = 5;
+
+  // The vault the secret belongs to.
+  atlas.rpc.Identifier vault_id = 6 [(gorm.field) = {reference_of: "Vault", tag: {type: "integer"}}];
 }
 
 message CreateSecretRequest {

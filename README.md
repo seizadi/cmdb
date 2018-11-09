@@ -189,11 +189,28 @@ curl -H "Authorization: Bearer $JWT" http://localhost:8080/v1/secrets -d '{"name
 {"result":{"id":"cmdb-app/secrets/1","name":"cmdb-app db password","description":"cmdb database password","type":"opaque","key":"db_password"}}
 ```
 
-Add Secrets:
+Add Vault:
 ```sh
 curl -H "Authorization: Bearer $JWT" http://localhost:8080/v1/vaults -d '{"name": "vault for QA", "description": "Vault to store QA Secrets", "path": "k8s/qa0-secrets"}'
 {"result":{"id":"cmdb-app/vaults/1","name":"vault for QA","description":"Vault to store QA Secrets","path":"k8s/qa0-secrets"}}
 ```
+Then once I had the two independent resources Vault and Secrets I
+created association for them in the migration:
+```sh
+ALTER TABLE secrets ADD COLUMN vault_id int REFERENCES vaults(id) ON DELETE CASCADE;
+```
+Now the API inerface for Vault and Secrets with associations looks like:
+```sh
+curl -H "Authorization: Bearer $JWT" http://localhost:8080/v1/vaults -d '{"name": "vault for QA", "description": "Vault to store QA Secrets", "path": "k8s/qa0-secrets"}'
+{"result":{"id":"cmdb-app/vaults/1","name":"vault for QA","description":"Vault to store QA Secrets","path":"k8s/qa0-secrets"}}
+
+curl -H "Authorization: Bearer $JWT" http://localhost:8080/v1/secrets -d '{"vault_id":"cmdb-app/vaults/1", "name": "cmdb-app db password", "description": "cmdb database password", "type": "opaque", "key": "db_password"}'
+{"result":{"id":"cmdb-app/secrets/1","name":"cmdb-app db password","description":"cmdb database password","type":"opaque","key":"db_password","vault_id":"cmdb-app/vaults/1"}}
+
+curl -H "Authorization: Bearer $JWT" http://localhost:8080/v1/vaults
+{"results":[{"id":"cmdb-app/vaults/1","name":"vault for QA","description":"Vault to store QA Secrets","path":"k8s/qa0-secrets","secrets":[{"id":"cmdb-app/secrets/1","name":"cmdb-app db password","description":"cmdb database password","type":"opaque","key":"db_password","vault_id":"cmdb-app/vaults/1"}]}]}
+```
+
 
 #### Try atlas-contacts-app
 

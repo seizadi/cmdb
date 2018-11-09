@@ -2949,6 +2949,18 @@ func (m *Secret) Validate() error {
 
 	// no validation rules for Key
 
+	if v, ok := interface{}(m.GetVaultId()).(interface {
+		Validate() error
+	}); ok {
+		if err := v.Validate(); err != nil {
+			return SecretValidationError{
+				field:  "VaultId",
+				reason: "embedded message failed validation",
+				cause:  err,
+			}
+		}
+	}
+
 	return nil
 }
 

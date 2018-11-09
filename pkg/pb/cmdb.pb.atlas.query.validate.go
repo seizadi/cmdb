@@ -41,6 +41,7 @@ var CmdbMethodsRequireFilteringValidation = map[string]map[string]options.Filter
 		"description": options.FilteringOption{ValueType: options.QueryValidate_STRING},
 		"type":        options.FilteringOption{ValueType: options.QueryValidate_STRING},
 		"key":         options.FilteringOption{ValueType: options.QueryValidate_STRING},
+		"vault_id":    options.FilteringOption{ValueType: options.QueryValidate_STRING},
 	},
 	"/api.cmdb.Vaults/List": map[string]options.FilteringOption{
 		"id":          options.FilteringOption{ValueType: options.QueryValidate_STRING},
@@ -79,6 +80,7 @@ var CmdbMethodsRequireSortingValidation = map[string][]string{
 		"description",
 		"type",
 		"key",
+		"vault_id",
 	},
 	"/api.cmdb.Vaults/List": []string{
 		"id",
@@ -140,6 +142,7 @@ var CmdbMethodsRequireFieldSelectionValidation = map[string][]string{
 		"description",
 		"type",
 		"key",
+		"vault_id",
 	},
 	"/api.cmdb.Secrets/List": {
 		"id",
@@ -147,6 +150,7 @@ var CmdbMethodsRequireFieldSelectionValidation = map[string][]string{
 		"description",
 		"type",
 		"key",
+		"vault_id",
 	},
 	"/api.cmdb.Vaults/Read": {
 		"id",
@@ -158,6 +162,7 @@ var CmdbMethodsRequireFieldSelectionValidation = map[string][]string{
 		"secrets.description",
 		"secrets.type",
 		"secrets.key",
+		"secrets.vault_id",
 		"secrets",
 	},
 	"/api.cmdb.Vaults/List": {
@@ -170,6 +175,7 @@ var CmdbMethodsRequireFieldSelectionValidation = map[string][]string{
 		"secrets.description",
 		"secrets.type",
 		"secrets.key",
+		"secrets.vault_id",
 		"secrets",
 	},
 }
