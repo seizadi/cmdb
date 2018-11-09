@@ -590,13 +590,13 @@ message Vault {
       multi_account: true
   };
 
-    // The secret identifier.
+    // The vault identifier.
     atlas.rpc.Identifier id = 1 [(gorm.field).tag = {type: "serial"  primary_key: true}];
 
-    // The name of the container
+    // The name of the vault
     string name = 2;
 
-    // The description of the container
+    // The description of the vault
     string description = 3;
 
     // The path on vault for the Secrets (e.g. /qa0-secrets)

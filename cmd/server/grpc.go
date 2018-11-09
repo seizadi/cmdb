@@ -4,7 +4,6 @@ import (
 	"context"
 	"io/ioutil"
 	
-	"github.com/grpc-ecosystem/go-grpc-middleware"
 	"github.com/grpc-ecosystem/go-grpc-middleware/logging/logrus"
 	"github.com/grpc-ecosystem/go-grpc-middleware/logging/logrus/ctxlogrus"
 	"github.com/jinzhu/gorm"
@@ -21,8 +20,6 @@ import (
 	"github.com/infobloxopen/atlas-app-toolkit/logging"
 	"github.com/infobloxopen/atlas-app-toolkit/query"
 	"github.com/infobloxopen/atlas-app-toolkit/requestid"
-	"github.com/seizadi/cmdb/pkg/pb"
-	"github.com/seizadi/cmdb/pkg/svc"
 )
 
 func NewGRPCServer(logger *logrus.Logger, db *gorm.DB) (*grpc.Server, error) {
@@ -44,47 +41,8 @@ func NewGRPCServer(logger *logrus.Logger, db *gorm.DB) (*grpc.Server, error) {
 		interceptors[1] = logging.LogLevelInterceptor(logger.Level)
 	}
 	
-	// create new gRPC grpcServer with middleware chain
-	grpcServer := grpc.NewServer(grpc.UnaryInterceptor(grpc_middleware.ChainUnaryServer(interceptors...)))
-	
-	// register all of our services into the grpcServer
-	s, err := svc.NewBasicServer(db)
-	if err != nil {
-		return nil, err
-	}
-	pb.RegisterCmdbServer(grpcServer, s)
-	
-	rs, err := svc.NewRegionsServer()
-	if err != nil {
-		return nil, err
-	}
-	pb.RegisterRegionsServer(grpcServer, rs)
-	
-	cs, err := svc.NewContainersServer()
-	if err != nil {
-		return nil, err
-	}
-	pb.RegisterContainersServer(grpcServer, cs)
-	
-	vts, err := svc.NewVersionTagsServer()
-	if err != nil {
-		return nil, err
-	}
-	pb.RegisterVersionTagsServer(grpcServer, vts)
-	
-	ss, err := svc.NewSecretsServer()
-	if err != nil {
-		return nil, err
-	}
-	pb.RegisterSecretsServer(grpcServer, ss)
-	
-	vs, err := svc.NewVaultsServer()
-	if err != nil {
-		return nil, err
-	}
-	pb.RegisterVaultsServer(grpcServer, vs)
-	
-	return grpcServer, nil
+	return CreateServer(logger, db, interceptors)
+
 }
 
 func UnaryServerInterceptor() grpc.UnaryServerInterceptor {

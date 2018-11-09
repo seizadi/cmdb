@@ -1,7 +1,11 @@
 package model
 
+import "time"
+
 type AwsService struct {
-	Model
+	ID        uint `gorm:"primary_key" json:"id"`
+	CreatedAt time.Time `json:"created_at"`
+	UpdatedAt time.Time `json:"updated_at"`
 	Name string
 	Description string
 	AwsRds []AwsRds `gorm:"many2many:aws_to_rds;association_foreignkey:id;foreignkey:id"`
