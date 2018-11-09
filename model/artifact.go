@@ -6,4 +6,5 @@ type Artifact struct {
 	Description string
 	Repo string
 	CommitId string
+	VersionTag VersionTag
 }
