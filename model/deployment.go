@@ -10,6 +10,6 @@ type Deployment struct {
 	Description  string
 	Artifact     Artifact `gorm:"foreignkey:ArtifactID"`
 	ArtifactID   uint
-	Kubernetes   Kubernetes `gorm:"foreignkey:KubernetesID"`
-	KubernetesID uint
+	KubeCluster   KubeCluster `gorm:"foreignkey:KubeClusterID"`
+	KubeClusterID uint
 }
