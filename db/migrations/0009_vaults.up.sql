@@ -1,3 +1,4 @@
+
 CREATE TABLE vaults
 (
   id serial primary key,
@@ -15,3 +16,4 @@ CREATE TRIGGER vaults_updated_at
   EXECUTE PROCEDURE set_updated_at();
 
 ALTER TABLE secrets ADD COLUMN vault_id int REFERENCES vaults(id) ON DELETE CASCADE;
+

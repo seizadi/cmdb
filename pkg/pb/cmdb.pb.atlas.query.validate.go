@@ -12,7 +12,7 @@ import _ "google.golang.org/genproto/protobuf/field_mask"
 // Reference imports to suppress errors if they are not otherwise used.
 
 var CmdbMethodsRequireFilteringValidation = map[string]map[string]options.FilteringOption{
-	"/api.cmdb.Regions/List": map[string]options.FilteringOption{
+	"/api.cmdb.AwsServices/List": map[string]options.FilteringOption{
 		"id":          options.FilteringOption{ValueType: options.QueryValidate_STRING},
 		"name":        options.FilteringOption{ValueType: options.QueryValidate_STRING},
 		"description": options.FilteringOption{ValueType: options.QueryValidate_STRING},
@@ -27,6 +27,11 @@ var CmdbMethodsRequireFilteringValidation = map[string]map[string]options.Filter
 		"image_pull_policy": options.FilteringOption{ValueType: options.QueryValidate_STRING},
 		"digest":            options.FilteringOption{ValueType: options.QueryValidate_STRING},
 	},
+	"/api.cmdb.Manifests/List": map[string]options.FilteringOption{
+		"id":          options.FilteringOption{ValueType: options.QueryValidate_STRING},
+		"name":        options.FilteringOption{ValueType: options.QueryValidate_STRING},
+		"description": options.FilteringOption{ValueType: options.QueryValidate_STRING},
+	},
 	"/api.cmdb.VersionTags/List": map[string]options.FilteringOption{
 		"id":          options.FilteringOption{ValueType: options.QueryValidate_STRING},
 		"name":        options.FilteringOption{ValueType: options.QueryValidate_STRING},
@@ -34,6 +39,36 @@ var CmdbMethodsRequireFilteringValidation = map[string]map[string]options.Filter
 		"version":     options.FilteringOption{ValueType: options.QueryValidate_STRING},
 		"repo":        options.FilteringOption{ValueType: options.QueryValidate_STRING},
 		"commit":      options.FilteringOption{ValueType: options.QueryValidate_STRING},
+	},
+	"/api.cmdb.Artifacts/List": map[string]options.FilteringOption{
+		"id":          options.FilteringOption{ValueType: options.QueryValidate_STRING},
+		"name":        options.FilteringOption{ValueType: options.QueryValidate_STRING},
+		"description": options.FilteringOption{ValueType: options.QueryValidate_STRING},
+	},
+	"/api.cmdb.AwsRdsInstances/List": map[string]options.FilteringOption{
+		"id":          options.FilteringOption{ValueType: options.QueryValidate_STRING},
+		"name":        options.FilteringOption{ValueType: options.QueryValidate_STRING},
+		"description": options.FilteringOption{ValueType: options.QueryValidate_STRING},
+	},
+	"/api.cmdb.Deployments/List": map[string]options.FilteringOption{
+		"id":          options.FilteringOption{ValueType: options.QueryValidate_STRING},
+		"name":        options.FilteringOption{ValueType: options.QueryValidate_STRING},
+		"description": options.FilteringOption{ValueType: options.QueryValidate_STRING},
+	},
+	"/api.cmdb.Environments/List": map[string]options.FilteringOption{
+		"id":          options.FilteringOption{ValueType: options.QueryValidate_STRING},
+		"name":        options.FilteringOption{ValueType: options.QueryValidate_STRING},
+		"description": options.FilteringOption{ValueType: options.QueryValidate_STRING},
+	},
+	"/api.cmdb.KubeClusters/List": map[string]options.FilteringOption{
+		"id":          options.FilteringOption{ValueType: options.QueryValidate_STRING},
+		"name":        options.FilteringOption{ValueType: options.QueryValidate_STRING},
+		"description": options.FilteringOption{ValueType: options.QueryValidate_STRING},
+	},
+	"/api.cmdb.Regions/List": map[string]options.FilteringOption{
+		"id":          options.FilteringOption{ValueType: options.QueryValidate_STRING},
+		"name":        options.FilteringOption{ValueType: options.QueryValidate_STRING},
+		"description": options.FilteringOption{ValueType: options.QueryValidate_STRING},
 	},
 	"/api.cmdb.Secrets/List": map[string]options.FilteringOption{
 		"id":          options.FilteringOption{ValueType: options.QueryValidate_STRING},
@@ -49,9 +84,14 @@ var CmdbMethodsRequireFilteringValidation = map[string]map[string]options.Filter
 		"description": options.FilteringOption{ValueType: options.QueryValidate_STRING},
 		"path":        options.FilteringOption{ValueType: options.QueryValidate_STRING},
 	},
+	"/api.cmdb.Applications/List": map[string]options.FilteringOption{
+		"id":          options.FilteringOption{ValueType: options.QueryValidate_STRING},
+		"name":        options.FilteringOption{ValueType: options.QueryValidate_STRING},
+		"description": options.FilteringOption{ValueType: options.QueryValidate_STRING},
+	},
 }
 var CmdbMethodsRequireSortingValidation = map[string][]string{
-	"/api.cmdb.Regions/List": []string{
+	"/api.cmdb.AwsServices/List": []string{
 		"id",
 		"name",
 		"description",
@@ -66,6 +106,11 @@ var CmdbMethodsRequireSortingValidation = map[string][]string{
 		"image_pull_policy",
 		"digest",
 	},
+	"/api.cmdb.Manifests/List": []string{
+		"id",
+		"name",
+		"description",
+	},
 	"/api.cmdb.VersionTags/List": []string{
 		"id",
 		"name",
@@ -73,6 +118,36 @@ var CmdbMethodsRequireSortingValidation = map[string][]string{
 		"version",
 		"repo",
 		"commit",
+	},
+	"/api.cmdb.Artifacts/List": []string{
+		"id",
+		"name",
+		"description",
+	},
+	"/api.cmdb.AwsRdsInstances/List": []string{
+		"id",
+		"name",
+		"description",
+	},
+	"/api.cmdb.Deployments/List": []string{
+		"id",
+		"name",
+		"description",
+	},
+	"/api.cmdb.Environments/List": []string{
+		"id",
+		"name",
+		"description",
+	},
+	"/api.cmdb.KubeClusters/List": []string{
+		"id",
+		"name",
+		"description",
+	},
+	"/api.cmdb.Regions/List": []string{
+		"id",
+		"name",
+		"description",
 	},
 	"/api.cmdb.Secrets/List": []string{
 		"id",
@@ -88,14 +163,19 @@ var CmdbMethodsRequireSortingValidation = map[string][]string{
 		"description",
 		"path",
 	},
-}
-var CmdbMethodsRequireFieldSelectionValidation = map[string][]string{
-	"/api.cmdb.Regions/Read": {
+	"/api.cmdb.Applications/List": []string{
 		"id",
 		"name",
 		"description",
 	},
-	"/api.cmdb.Regions/List": {
+}
+var CmdbMethodsRequireFieldSelectionValidation = map[string][]string{
+	"/api.cmdb.AwsServices/Read": {
+		"id",
+		"name",
+		"description",
+	},
+	"/api.cmdb.AwsServices/List": {
 		"id",
 		"name",
 		"description",
@@ -120,6 +200,16 @@ var CmdbMethodsRequireFieldSelectionValidation = map[string][]string{
 		"image_pull_policy",
 		"digest",
 	},
+	"/api.cmdb.Manifests/Read": {
+		"id",
+		"name",
+		"description",
+	},
+	"/api.cmdb.Manifests/List": {
+		"id",
+		"name",
+		"description",
+	},
 	"/api.cmdb.VersionTags/Read": {
 		"id",
 		"name",
@@ -135,6 +225,66 @@ var CmdbMethodsRequireFieldSelectionValidation = map[string][]string{
 		"version",
 		"repo",
 		"commit",
+	},
+	"/api.cmdb.Artifacts/Read": {
+		"id",
+		"name",
+		"description",
+	},
+	"/api.cmdb.Artifacts/List": {
+		"id",
+		"name",
+		"description",
+	},
+	"/api.cmdb.AwsRdsInstances/Read": {
+		"id",
+		"name",
+		"description",
+	},
+	"/api.cmdb.AwsRdsInstances/List": {
+		"id",
+		"name",
+		"description",
+	},
+	"/api.cmdb.Deployments/Read": {
+		"id",
+		"name",
+		"description",
+	},
+	"/api.cmdb.Deployments/List": {
+		"id",
+		"name",
+		"description",
+	},
+	"/api.cmdb.Environments/Read": {
+		"id",
+		"name",
+		"description",
+	},
+	"/api.cmdb.Environments/List": {
+		"id",
+		"name",
+		"description",
+	},
+	"/api.cmdb.KubeClusters/Read": {
+		"id",
+		"name",
+		"description",
+	},
+	"/api.cmdb.KubeClusters/List": {
+		"id",
+		"name",
+		"description",
+	},
+	"/api.cmdb.Regions/Read": {
+		"id",
+		"name",
+		"description",
+	},
+	"/api.cmdb.Regions/List": {
+		"id",
+		"name",
+		"description",
 	},
 	"/api.cmdb.Secrets/Read": {
 		"id",
@@ -177,6 +327,16 @@ var CmdbMethodsRequireFieldSelectionValidation = map[string][]string{
 		"secrets.key",
 		"secrets.vault_id",
 		"secrets",
+	},
+	"/api.cmdb.Applications/Read": {
+		"id",
+		"name",
+		"description",
+	},
+	"/api.cmdb.Applications/List": {
+		"id",
+		"name",
+		"description",
 	},
 }
 

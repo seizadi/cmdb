@@ -9,17 +9,17 @@ It is generated from these files:
 
 It has these top-level messages:
 	VersionResponse
-	Region
-	CreateRegionRequest
-	CreateRegionResponse
-	ReadRegionRequest
-	ReadRegionResponse
-	UpdateRegionRequest
-	UpdateRegionResponse
-	DeleteRegionRequest
-	DeleteRegionResponse
-	ListRegionRequest
-	ListRegionsResponse
+	AwsService
+	CreateAwsServiceRequest
+	CreateAwsServiceResponse
+	ReadAwsServiceRequest
+	ReadAwsServiceResponse
+	UpdateAwsServiceRequest
+	UpdateAwsServiceResponse
+	DeleteAwsServiceRequest
+	DeleteAwsServiceResponse
+	ListAwsServiceRequest
+	ListAwsServicesResponse
 	Container
 	CreateContainerRequest
 	CreateContainerResponse
@@ -31,6 +31,17 @@ It has these top-level messages:
 	DeleteContainerResponse
 	ListContainerRequest
 	ListContainersResponse
+	Manifest
+	CreateManifestRequest
+	CreateManifestResponse
+	ReadManifestRequest
+	ReadManifestResponse
+	UpdateManifestRequest
+	UpdateManifestResponse
+	DeleteManifestRequest
+	DeleteManifestResponse
+	ListManifestRequest
+	ListManifestsResponse
 	VersionTag
 	CreateVersionTagRequest
 	CreateVersionTagResponse
@@ -42,6 +53,72 @@ It has these top-level messages:
 	DeleteVersionTagResponse
 	ListVersionTagRequest
 	ListVersionTagsResponse
+	Artifact
+	CreateArtifactRequest
+	CreateArtifactResponse
+	ReadArtifactRequest
+	ReadArtifactResponse
+	UpdateArtifactRequest
+	UpdateArtifactResponse
+	DeleteArtifactRequest
+	DeleteArtifactResponse
+	ListArtifactRequest
+	ListArtifactsResponse
+	AwsRdsInstance
+	CreateAwsRdsInstanceRequest
+	CreateAwsRdsInstanceResponse
+	ReadAwsRdsInstanceRequest
+	ReadAwsRdsInstanceResponse
+	UpdateAwsRdsInstanceRequest
+	UpdateAwsRdsInstanceResponse
+	DeleteAwsRdsInstanceRequest
+	DeleteAwsRdsInstanceResponse
+	ListAwsRdsInstanceRequest
+	ListAwsRdsInstancesResponse
+	Deployment
+	CreateDeploymentRequest
+	CreateDeploymentResponse
+	ReadDeploymentRequest
+	ReadDeploymentResponse
+	UpdateDeploymentRequest
+	UpdateDeploymentResponse
+	DeleteDeploymentRequest
+	DeleteDeploymentResponse
+	ListDeploymentRequest
+	ListDeploymentsResponse
+	Environment
+	CreateEnvironmentRequest
+	CreateEnvironmentResponse
+	ReadEnvironmentRequest
+	ReadEnvironmentResponse
+	UpdateEnvironmentRequest
+	UpdateEnvironmentResponse
+	DeleteEnvironmentRequest
+	DeleteEnvironmentResponse
+	ListEnvironmentRequest
+	ListEnvironmentsResponse
+	KubeCluster
+	CreateKubeClusterRequest
+	CreateKubeClusterResponse
+	ReadKubeClusterRequest
+	ReadKubeClusterResponse
+	UpdateKubeClusterRequest
+	UpdateKubeClusterResponse
+	DeleteKubeClusterRequest
+	DeleteKubeClusterResponse
+	ListKubeClusterRequest
+	ListKubeClustersResponse
+	Region
+	CreateRegionRequest
+	CreateRegionResponse
+	ReadRegionRequest
+	ReadRegionResponse
+	UpdateRegionRequest
+	UpdateRegionResponse
+	DeleteRegionRequest
+	DeleteRegionResponse
+	ListRegionRequest
+	ListRegionsResponse
 	Secret
 	CreateSecretRequest
 	CreateSecretResponse
@@ -64,6 +141,17 @@ It has these top-level messages:
 	DeleteVaultResponse
 	ListVaultRequest
 	ListVaultsResponse
+	Application
+	CreateApplicationRequest
+	CreateApplicationResponse
+	ReadApplicationRequest
+	ReadApplicationResponse
+	UpdateApplicationRequest
+	UpdateApplicationResponse
+	DeleteApplicationRequest
+	DeleteApplicationResponse
+	ListApplicationRequest
+	ListApplicationsResponse
 */
 package pb
 
@@ -116,247 +204,247 @@ func (m *VersionResponse) GetVersion() string {
 	return ""
 }
 
-// ------------------------------------------
-// Region represents a particular AWS Region
-// ------------------------------------------
-type Region struct {
-	// The region identifier.
+// ------------------------------------------------------
+// AwsService represents a particular AWS Region
+// ------------------------------------------------------
+type AwsService struct {
+	// The AwsService identifier.
 	Id *atlas_rpc.Identifier `protobuf:"bytes,1,opt,name=id" json:"id,omitempty"`
-	// The name of the region
+	// The name of the AwsService
 	Name string `protobuf:"bytes,2,opt,name=name" json:"name,omitempty"`
-	// The description of the region
+	// The description of the AwsService
 	Description string `protobuf:"bytes,3,opt,name=description" json:"description,omitempty"`
 }
 
-func (m *Region) Reset()                    { *m = Region{} }
-func (m *Region) String() string            { return proto.CompactTextString(m) }
-func (*Region) ProtoMessage()               {}
-func (*Region) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{1} }
+func (m *AwsService) Reset()                    { *m = AwsService{} }
+func (m *AwsService) String() string            { return proto.CompactTextString(m) }
+func (*AwsService) ProtoMessage()               {}
+func (*AwsService) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{1} }
 
-func (m *Region) GetId() *atlas_rpc.Identifier {
+func (m *AwsService) GetId() *atlas_rpc.Identifier {
 	if m != nil {
 		return m.Id
 	}
 	return nil
 }
 
-func (m *Region) GetName() string {
+func (m *AwsService) GetName() string {
 	if m != nil {
 		return m.Name
 	}
 	return ""
 }
 
-func (m *Region) GetDescription() string {
+func (m *AwsService) GetDescription() string {
 	if m != nil {
 		return m.Description
 	}
 	return ""
 }
 
-type CreateRegionRequest struct {
-	Payload *Region `protobuf:"bytes,1,opt,name=payload" json:"payload,omitempty"`
+type CreateAwsServiceRequest struct {
+	Payload *AwsService `protobuf:"bytes,1,opt,name=payload" json:"payload,omitempty"`
 }
 
-func (m *CreateRegionRequest) Reset()                    { *m = CreateRegionRequest{} }
-func (m *CreateRegionRequest) String() string            { return proto.CompactTextString(m) }
-func (*CreateRegionRequest) ProtoMessage()               {}
-func (*CreateRegionRequest) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{2} }
+func (m *CreateAwsServiceRequest) Reset()                    { *m = CreateAwsServiceRequest{} }
+func (m *CreateAwsServiceRequest) String() string            { return proto.CompactTextString(m) }
+func (*CreateAwsServiceRequest) ProtoMessage()               {}
+func (*CreateAwsServiceRequest) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{2} }
 
-func (m *CreateRegionRequest) GetPayload() *Region {
+func (m *CreateAwsServiceRequest) GetPayload() *AwsService {
 	if m != nil {
 		return m.Payload
 	}
 	return nil
 }
 
-type CreateRegionResponse struct {
-	Result *Region `protobuf:"bytes,1,opt,name=result" json:"result,omitempty"`
+type CreateAwsServiceResponse struct {
+	Result *AwsService `protobuf:"bytes,1,opt,name=result" json:"result,omitempty"`
 }
 
-func (m *CreateRegionResponse) Reset()                    { *m = CreateRegionResponse{} }
-func (m *CreateRegionResponse) String() string            { return proto.CompactTextString(m) }
-func (*CreateRegionResponse) ProtoMessage()               {}
-func (*CreateRegionResponse) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{3} }
+func (m *CreateAwsServiceResponse) Reset()                    { *m = CreateAwsServiceResponse{} }
+func (m *CreateAwsServiceResponse) String() string            { return proto.CompactTextString(m) }
+func (*CreateAwsServiceResponse) ProtoMessage()               {}
+func (*CreateAwsServiceResponse) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{3} }
 
-func (m *CreateRegionResponse) GetResult() *Region {
+func (m *CreateAwsServiceResponse) GetResult() *AwsService {
 	if m != nil {
 		return m.Result
 	}
 	return nil
 }
 
-type ReadRegionRequest struct {
+type ReadAwsServiceRequest struct {
 	Id     *atlas_rpc.Identifier        `protobuf:"bytes,1,opt,name=id" json:"id,omitempty"`
 	Fields *infoblox_api.FieldSelection `protobuf:"bytes,2,opt,name=fields" json:"fields,omitempty"`
 }
 
-func (m *ReadRegionRequest) Reset()                    { *m = ReadRegionRequest{} }
-func (m *ReadRegionRequest) String() string            { return proto.CompactTextString(m) }
-func (*ReadRegionRequest) ProtoMessage()               {}
-func (*ReadRegionRequest) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{4} }
+func (m *ReadAwsServiceRequest) Reset()                    { *m = ReadAwsServiceRequest{} }
+func (m *ReadAwsServiceRequest) String() string            { return proto.CompactTextString(m) }
+func (*ReadAwsServiceRequest) ProtoMessage()               {}
+func (*ReadAwsServiceRequest) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{4} }
 
-func (m *ReadRegionRequest) GetId() *atlas_rpc.Identifier {
+func (m *ReadAwsServiceRequest) GetId() *atlas_rpc.Identifier {
 	if m != nil {
 		return m.Id
 	}
 	return nil
 }
 
-func (m *ReadRegionRequest) GetFields() *infoblox_api.FieldSelection {
+func (m *ReadAwsServiceRequest) GetFields() *infoblox_api.FieldSelection {
 	if m != nil {
 		return m.Fields
 	}
 	return nil
 }
 
-type ReadRegionResponse struct {
-	Result *Region `protobuf:"bytes,1,opt,name=result" json:"result,omitempty"`
+type ReadAwsServiceResponse struct {
+	Result *AwsService `protobuf:"bytes,1,opt,name=result" json:"result,omitempty"`
 }
 
-func (m *ReadRegionResponse) Reset()                    { *m = ReadRegionResponse{} }
-func (m *ReadRegionResponse) String() string            { return proto.CompactTextString(m) }
-func (*ReadRegionResponse) ProtoMessage()               {}
-func (*ReadRegionResponse) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{5} }
+func (m *ReadAwsServiceResponse) Reset()                    { *m = ReadAwsServiceResponse{} }
+func (m *ReadAwsServiceResponse) String() string            { return proto.CompactTextString(m) }
+func (*ReadAwsServiceResponse) ProtoMessage()               {}
+func (*ReadAwsServiceResponse) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{5} }
 
-func (m *ReadRegionResponse) GetResult() *Region {
+func (m *ReadAwsServiceResponse) GetResult() *AwsService {
 	if m != nil {
 		return m.Result
 	}
 	return nil
 }
 
-type UpdateRegionRequest struct {
-	Payload *Region                     `protobuf:"bytes,1,opt,name=payload" json:"payload,omitempty"`
+type UpdateAwsServiceRequest struct {
+	Payload *AwsService                 `protobuf:"bytes,1,opt,name=payload" json:"payload,omitempty"`
 	Fields  *google_protobuf1.FieldMask `protobuf:"bytes,2,opt,name=fields" json:"fields,omitempty"`
 }
 
-func (m *UpdateRegionRequest) Reset()                    { *m = UpdateRegionRequest{} }
-func (m *UpdateRegionRequest) String() string            { return proto.CompactTextString(m) }
-func (*UpdateRegionRequest) ProtoMessage()               {}
-func (*UpdateRegionRequest) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{6} }
+func (m *UpdateAwsServiceRequest) Reset()                    { *m = UpdateAwsServiceRequest{} }
+func (m *UpdateAwsServiceRequest) String() string            { return proto.CompactTextString(m) }
+func (*UpdateAwsServiceRequest) ProtoMessage()               {}
+func (*UpdateAwsServiceRequest) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{6} }
 
-func (m *UpdateRegionRequest) GetPayload() *Region {
+func (m *UpdateAwsServiceRequest) GetPayload() *AwsService {
 	if m != nil {
 		return m.Payload
 	}
 	return nil
 }
 
-func (m *UpdateRegionRequest) GetFields() *google_protobuf1.FieldMask {
+func (m *UpdateAwsServiceRequest) GetFields() *google_protobuf1.FieldMask {
 	if m != nil {
 		return m.Fields
 	}
 	return nil
 }
 
-type UpdateRegionResponse struct {
+type UpdateAwsServiceResponse struct {
 	Result *Region `protobuf:"bytes,1,opt,name=result" json:"result,omitempty"`
 }
 
-func (m *UpdateRegionResponse) Reset()                    { *m = UpdateRegionResponse{} }
-func (m *UpdateRegionResponse) String() string            { return proto.CompactTextString(m) }
-func (*UpdateRegionResponse) ProtoMessage()               {}
-func (*UpdateRegionResponse) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{7} }
+func (m *UpdateAwsServiceResponse) Reset()                    { *m = UpdateAwsServiceResponse{} }
+func (m *UpdateAwsServiceResponse) String() string            { return proto.CompactTextString(m) }
+func (*UpdateAwsServiceResponse) ProtoMessage()               {}
+func (*UpdateAwsServiceResponse) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{7} }
 
-func (m *UpdateRegionResponse) GetResult() *Region {
+func (m *UpdateAwsServiceResponse) GetResult() *Region {
 	if m != nil {
 		return m.Result
 	}
 	return nil
 }
 
-type DeleteRegionRequest struct {
+type DeleteAwsServiceRequest struct {
 	Id *atlas_rpc.Identifier `protobuf:"bytes,1,opt,name=id" json:"id,omitempty"`
 }
 
-func (m *DeleteRegionRequest) Reset()                    { *m = DeleteRegionRequest{} }
-func (m *DeleteRegionRequest) String() string            { return proto.CompactTextString(m) }
-func (*DeleteRegionRequest) ProtoMessage()               {}
-func (*DeleteRegionRequest) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{8} }
+func (m *DeleteAwsServiceRequest) Reset()                    { *m = DeleteAwsServiceRequest{} }
+func (m *DeleteAwsServiceRequest) String() string            { return proto.CompactTextString(m) }
+func (*DeleteAwsServiceRequest) ProtoMessage()               {}
+func (*DeleteAwsServiceRequest) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{8} }
 
-func (m *DeleteRegionRequest) GetId() *atlas_rpc.Identifier {
+func (m *DeleteAwsServiceRequest) GetId() *atlas_rpc.Identifier {
 	if m != nil {
 		return m.Id
 	}
 	return nil
 }
 
-type DeleteRegionResponse struct {
+type DeleteAwsServiceResponse struct {
 }
 
-func (m *DeleteRegionResponse) Reset()                    { *m = DeleteRegionResponse{} }
-func (m *DeleteRegionResponse) String() string            { return proto.CompactTextString(m) }
-func (*DeleteRegionResponse) ProtoMessage()               {}
-func (*DeleteRegionResponse) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{9} }
+func (m *DeleteAwsServiceResponse) Reset()                    { *m = DeleteAwsServiceResponse{} }
+func (m *DeleteAwsServiceResponse) String() string            { return proto.CompactTextString(m) }
+func (*DeleteAwsServiceResponse) ProtoMessage()               {}
+func (*DeleteAwsServiceResponse) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{9} }
 
-type ListRegionRequest struct {
+type ListAwsServiceRequest struct {
 	Filter  *infoblox_api.Filtering      `protobuf:"bytes,1,opt,name=filter" json:"filter,omitempty"`
 	OrderBy *infoblox_api.Sorting        `protobuf:"bytes,2,opt,name=order_by,json=orderBy" json:"order_by,omitempty"`
 	Fields  *infoblox_api.FieldSelection `protobuf:"bytes,3,opt,name=fields" json:"fields,omitempty"`
 	Paging  *infoblox_api.Pagination     `protobuf:"bytes,4,opt,name=paging" json:"paging,omitempty"`
 }
 
-func (m *ListRegionRequest) Reset()                    { *m = ListRegionRequest{} }
-func (m *ListRegionRequest) String() string            { return proto.CompactTextString(m) }
-func (*ListRegionRequest) ProtoMessage()               {}
-func (*ListRegionRequest) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{10} }
+func (m *ListAwsServiceRequest) Reset()                    { *m = ListAwsServiceRequest{} }
+func (m *ListAwsServiceRequest) String() string            { return proto.CompactTextString(m) }
+func (*ListAwsServiceRequest) ProtoMessage()               {}
+func (*ListAwsServiceRequest) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{10} }
 
-func (m *ListRegionRequest) GetFilter() *infoblox_api.Filtering {
+func (m *ListAwsServiceRequest) GetFilter() *infoblox_api.Filtering {
 	if m != nil {
 		return m.Filter
 	}
 	return nil
 }
 
-func (m *ListRegionRequest) GetOrderBy() *infoblox_api.Sorting {
+func (m *ListAwsServiceRequest) GetOrderBy() *infoblox_api.Sorting {
 	if m != nil {
 		return m.OrderBy
 	}
 	return nil
 }
 
-func (m *ListRegionRequest) GetFields() *infoblox_api.FieldSelection {
+func (m *ListAwsServiceRequest) GetFields() *infoblox_api.FieldSelection {
 	if m != nil {
 		return m.Fields
 	}
 	return nil
 }
 
-func (m *ListRegionRequest) GetPaging() *infoblox_api.Pagination {
+func (m *ListAwsServiceRequest) GetPaging() *infoblox_api.Pagination {
 	if m != nil {
 		return m.Paging
 	}
 	return nil
 }
 
-type ListRegionsResponse struct {
-	Results []*Region              `protobuf:"bytes,1,rep,name=results" json:"results,omitempty"`
+type ListAwsServicesResponse struct {
+	Results []*AwsService          `protobuf:"bytes,1,rep,name=results" json:"results,omitempty"`
 	Page    *infoblox_api.PageInfo `protobuf:"bytes,2,opt,name=page" json:"page,omitempty"`
 }
 
-func (m *ListRegionsResponse) Reset()                    { *m = ListRegionsResponse{} }
-func (m *ListRegionsResponse) String() string            { return proto.CompactTextString(m) }
-func (*ListRegionsResponse) ProtoMessage()               {}
-func (*ListRegionsResponse) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{11} }
+func (m *ListAwsServicesResponse) Reset()                    { *m = ListAwsServicesResponse{} }
+func (m *ListAwsServicesResponse) String() string            { return proto.CompactTextString(m) }
+func (*ListAwsServicesResponse) ProtoMessage()               {}
+func (*ListAwsServicesResponse) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{11} }
 
-func (m *ListRegionsResponse) GetResults() []*Region {
+func (m *ListAwsServicesResponse) GetResults() []*AwsService {
 	if m != nil {
 		return m.Results
 	}
 	return nil
 }
 
-func (m *ListRegionsResponse) GetPage() *infoblox_api.PageInfo {
+func (m *ListAwsServicesResponse) GetPage() *infoblox_api.PageInfo {
 	if m != nil {
 		return m.Page
 	}
 	return nil
 }
 
-// -----------------------------------------------------------------------------------
+// ------------------------------------------------------------------------
 // Container represents a Docker Image that has been loaded to a Registry
-// -----------------------------------------------------------------------------------
+// ------------------------------------------------------------------------
 type Container struct {
 	// The container identifier.
 	Id *atlas_rpc.Identifier `protobuf:"bytes,1,opt,name=id" json:"id,omitempty"`
@@ -534,7 +622,7 @@ func (m *UpdateContainerRequest) GetFields() *google_protobuf1.FieldMask {
 }
 
 type UpdateContainerResponse struct {
-	Result *Container `protobuf:"bytes,1,opt,name=result" json:"result,omitempty"`
+	Result *Region `protobuf:"bytes,1,opt,name=result" json:"result,omitempty"`
 }
 
 func (m *UpdateContainerResponse) Reset()                    { *m = UpdateContainerResponse{} }
@@ -542,7 +630,7 @@ func (m *UpdateContainerResponse) String() string            { return proto.Comp
 func (*UpdateContainerResponse) ProtoMessage()               {}
 func (*UpdateContainerResponse) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{18} }
 
-func (m *UpdateContainerResponse) GetResult() *Container {
+func (m *UpdateContainerResponse) GetResult() *Region {
 	if m != nil {
 		return m.Result
 	}
@@ -637,9 +725,247 @@ func (m *ListContainersResponse) GetPage() *infoblox_api.PageInfo {
 	return nil
 }
 
-// -----------------------------------------------------------------------------------
+// ------------------------------------------------------
+// Manifest represents a particular AWS Region
+// ------------------------------------------------------
+type Manifest struct {
+	// The Manifest identifier.
+	Id *atlas_rpc.Identifier `protobuf:"bytes,1,opt,name=id" json:"id,omitempty"`
+	// The name of the Manifest
+	Name string `protobuf:"bytes,2,opt,name=name" json:"name,omitempty"`
+	// The description of the Manifest
+	Description string `protobuf:"bytes,3,opt,name=description" json:"description,omitempty"`
+}
+
+func (m *Manifest) Reset()                    { *m = Manifest{} }
+func (m *Manifest) String() string            { return proto.CompactTextString(m) }
+func (*Manifest) ProtoMessage()               {}
+func (*Manifest) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{23} }
+
+func (m *Manifest) GetId() *atlas_rpc.Identifier {
+	if m != nil {
+		return m.Id
+	}
+	return nil
+}
+
+func (m *Manifest) GetName() string {
+	if m != nil {
+		return m.Name
+	}
+	return ""
+}
+
+func (m *Manifest) GetDescription() string {
+	if m != nil {
+		return m.Description
+	}
+	return ""
+}
+
+type CreateManifestRequest struct {
+	Payload *Manifest `protobuf:"bytes,1,opt,name=payload" json:"payload,omitempty"`
+}
+
+func (m *CreateManifestRequest) Reset()                    { *m = CreateManifestRequest{} }
+func (m *CreateManifestRequest) String() string            { return proto.CompactTextString(m) }
+func (*CreateManifestRequest) ProtoMessage()               {}
+func (*CreateManifestRequest) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{24} }
+
+func (m *CreateManifestRequest) GetPayload() *Manifest {
+	if m != nil {
+		return m.Payload
+	}
+	return nil
+}
+
+type CreateManifestResponse struct {
+	Result *Manifest `protobuf:"bytes,1,opt,name=result" json:"result,omitempty"`
+}
+
+func (m *CreateManifestResponse) Reset()                    { *m = CreateManifestResponse{} }
+func (m *CreateManifestResponse) String() string            { return proto.CompactTextString(m) }
+func (*CreateManifestResponse) ProtoMessage()               {}
+func (*CreateManifestResponse) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{25} }
+
+func (m *CreateManifestResponse) GetResult() *Manifest {
+	if m != nil {
+		return m.Result
+	}
+	return nil
+}
+
+type ReadManifestRequest struct {
+	Id     *atlas_rpc.Identifier        `protobuf:"bytes,1,opt,name=id" json:"id,omitempty"`
+	Fields *infoblox_api.FieldSelection `protobuf:"bytes,2,opt,name=fields" json:"fields,omitempty"`
+}
+
+func (m *ReadManifestRequest) Reset()                    { *m = ReadManifestRequest{} }
+func (m *ReadManifestRequest) String() string            { return proto.CompactTextString(m) }
+func (*ReadManifestRequest) ProtoMessage()               {}
+func (*ReadManifestRequest) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{26} }
+
+func (m *ReadManifestRequest) GetId() *atlas_rpc.Identifier {
+	if m != nil {
+		return m.Id
+	}
+	return nil
+}
+
+func (m *ReadManifestRequest) GetFields() *infoblox_api.FieldSelection {
+	if m != nil {
+		return m.Fields
+	}
+	return nil
+}
+
+type ReadManifestResponse struct {
+	Result *Manifest `protobuf:"bytes,1,opt,name=result" json:"result,omitempty"`
+}
+
+func (m *ReadManifestResponse) Reset()                    { *m = ReadManifestResponse{} }
+func (m *ReadManifestResponse) String() string            { return proto.CompactTextString(m) }
+func (*ReadManifestResponse) ProtoMessage()               {}
+func (*ReadManifestResponse) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{27} }
+
+func (m *ReadManifestResponse) GetResult() *Manifest {
+	if m != nil {
+		return m.Result
+	}
+	return nil
+}
+
+type UpdateManifestRequest struct {
+	Payload *Manifest                   `protobuf:"bytes,1,opt,name=payload" json:"payload,omitempty"`
+	Fields  *google_protobuf1.FieldMask `protobuf:"bytes,2,opt,name=fields" json:"fields,omitempty"`
+}
+
+func (m *UpdateManifestRequest) Reset()                    { *m = UpdateManifestRequest{} }
+func (m *UpdateManifestRequest) String() string            { return proto.CompactTextString(m) }
+func (*UpdateManifestRequest) ProtoMessage()               {}
+func (*UpdateManifestRequest) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{28} }
+
+func (m *UpdateManifestRequest) GetPayload() *Manifest {
+	if m != nil {
+		return m.Payload
+	}
+	return nil
+}
+
+func (m *UpdateManifestRequest) GetFields() *google_protobuf1.FieldMask {
+	if m != nil {
+		return m.Fields
+	}
+	return nil
+}
+
+type UpdateManifestResponse struct {
+	Result *Region `protobuf:"bytes,1,opt,name=result" json:"result,omitempty"`
+}
+
+func (m *UpdateManifestResponse) Reset()                    { *m = UpdateManifestResponse{} }
+func (m *UpdateManifestResponse) String() string            { return proto.CompactTextString(m) }
+func (*UpdateManifestResponse) ProtoMessage()               {}
+func (*UpdateManifestResponse) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{29} }
+
+func (m *UpdateManifestResponse) GetResult() *Region {
+	if m != nil {
+		return m.Result
+	}
+	return nil
+}
+
+type DeleteManifestRequest struct {
+	Id *atlas_rpc.Identifier `protobuf:"bytes,1,opt,name=id" json:"id,omitempty"`
+}
+
+func (m *DeleteManifestRequest) Reset()                    { *m = DeleteManifestRequest{} }
+func (m *DeleteManifestRequest) String() string            { return proto.CompactTextString(m) }
+func (*DeleteManifestRequest) ProtoMessage()               {}
+func (*DeleteManifestRequest) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{30} }
+
+func (m *DeleteManifestRequest) GetId() *atlas_rpc.Identifier {
+	if m != nil {
+		return m.Id
+	}
+	return nil
+}
+
+type DeleteManifestResponse struct {
+}
+
+func (m *DeleteManifestResponse) Reset()                    { *m = DeleteManifestResponse{} }
+func (m *DeleteManifestResponse) String() string            { return proto.CompactTextString(m) }
+func (*DeleteManifestResponse) ProtoMessage()               {}
+func (*DeleteManifestResponse) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{31} }
+
+type ListManifestRequest struct {
+	Filter  *infoblox_api.Filtering      `protobuf:"bytes,1,opt,name=filter" json:"filter,omitempty"`
+	OrderBy *infoblox_api.Sorting        `protobuf:"bytes,2,opt,name=order_by,json=orderBy" json:"order_by,omitempty"`
+	Fields  *infoblox_api.FieldSelection `protobuf:"bytes,3,opt,name=fields" json:"fields,omitempty"`
+	Paging  *infoblox_api.Pagination     `protobuf:"bytes,4,opt,name=paging" json:"paging,omitempty"`
+}
+
+func (m *ListManifestRequest) Reset()                    { *m = ListManifestRequest{} }
+func (m *ListManifestRequest) String() string            { return proto.CompactTextString(m) }
+func (*ListManifestRequest) ProtoMessage()               {}
+func (*ListManifestRequest) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{32} }
+
+func (m *ListManifestRequest) GetFilter() *infoblox_api.Filtering {
+	if m != nil {
+		return m.Filter
+	}
+	return nil
+}
+
+func (m *ListManifestRequest) GetOrderBy() *infoblox_api.Sorting {
+	if m != nil {
+		return m.OrderBy
+	}
+	return nil
+}
+
+func (m *ListManifestRequest) GetFields() *infoblox_api.FieldSelection {
+	if m != nil {
+		return m.Fields
+	}
+	return nil
+}
+
+func (m *ListManifestRequest) GetPaging() *infoblox_api.Pagination {
+	if m != nil {
+		return m.Paging
+	}
+	return nil
+}
+
+type ListManifestsResponse struct {
+	Results []*Manifest            `protobuf:"bytes,1,rep,name=results" json:"results,omitempty"`
+	Page    *infoblox_api.PageInfo `protobuf:"bytes,2,opt,name=page" json:"page,omitempty"`
+}
+
+func (m *ListManifestsResponse) Reset()                    { *m = ListManifestsResponse{} }
+func (m *ListManifestsResponse) String() string            { return proto.CompactTextString(m) }
+func (*ListManifestsResponse) ProtoMessage()               {}
+func (*ListManifestsResponse) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{33} }
+
+func (m *ListManifestsResponse) GetResults() []*Manifest {
+	if m != nil {
+		return m.Results
+	}
+	return nil
+}
+
+func (m *ListManifestsResponse) GetPage() *infoblox_api.PageInfo {
+	if m != nil {
+		return m.Page
+	}
+	return nil
+}
+
+// ------------------------------------------------------
 // VersionTag represents a tag on git repo
-// -----------------------------------------------------------------------------------
+// ------------------------------------------------------
 type VersionTag struct {
 	// The version_tag identifier.
 	Id *atlas_rpc.Identifier `protobuf:"bytes,1,opt,name=id" json:"id,omitempty"`
@@ -658,7 +984,7 @@ type VersionTag struct {
 func (m *VersionTag) Reset()                    { *m = VersionTag{} }
 func (m *VersionTag) String() string            { return proto.CompactTextString(m) }
 func (*VersionTag) ProtoMessage()               {}
-func (*VersionTag) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{23} }
+func (*VersionTag) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{34} }
 
 func (m *VersionTag) GetId() *atlas_rpc.Identifier {
 	if m != nil {
@@ -709,7 +1035,7 @@ type CreateVersionTagRequest struct {
 func (m *CreateVersionTagRequest) Reset()                    { *m = CreateVersionTagRequest{} }
 func (m *CreateVersionTagRequest) String() string            { return proto.CompactTextString(m) }
 func (*CreateVersionTagRequest) ProtoMessage()               {}
-func (*CreateVersionTagRequest) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{24} }
+func (*CreateVersionTagRequest) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{35} }
 
 func (m *CreateVersionTagRequest) GetPayload() *VersionTag {
 	if m != nil {
@@ -725,7 +1051,7 @@ type CreateVersionTagResponse struct {
 func (m *CreateVersionTagResponse) Reset()                    { *m = CreateVersionTagResponse{} }
 func (m *CreateVersionTagResponse) String() string            { return proto.CompactTextString(m) }
 func (*CreateVersionTagResponse) ProtoMessage()               {}
-func (*CreateVersionTagResponse) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{25} }
+func (*CreateVersionTagResponse) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{36} }
 
 func (m *CreateVersionTagResponse) GetResult() *VersionTag {
 	if m != nil {
@@ -742,7 +1068,7 @@ type ReadVersionTagRequest struct {
 func (m *ReadVersionTagRequest) Reset()                    { *m = ReadVersionTagRequest{} }
 func (m *ReadVersionTagRequest) String() string            { return proto.CompactTextString(m) }
 func (*ReadVersionTagRequest) ProtoMessage()               {}
-func (*ReadVersionTagRequest) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{26} }
+func (*ReadVersionTagRequest) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{37} }
 
 func (m *ReadVersionTagRequest) GetId() *atlas_rpc.Identifier {
 	if m != nil {
@@ -765,7 +1091,7 @@ type ReadVersionTagResponse struct {
 func (m *ReadVersionTagResponse) Reset()                    { *m = ReadVersionTagResponse{} }
 func (m *ReadVersionTagResponse) String() string            { return proto.CompactTextString(m) }
 func (*ReadVersionTagResponse) ProtoMessage()               {}
-func (*ReadVersionTagResponse) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{27} }
+func (*ReadVersionTagResponse) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{38} }
 
 func (m *ReadVersionTagResponse) GetResult() *VersionTag {
 	if m != nil {
@@ -782,7 +1108,7 @@ type UpdateVersionTagRequest struct {
 func (m *UpdateVersionTagRequest) Reset()                    { *m = UpdateVersionTagRequest{} }
 func (m *UpdateVersionTagRequest) String() string            { return proto.CompactTextString(m) }
 func (*UpdateVersionTagRequest) ProtoMessage()               {}
-func (*UpdateVersionTagRequest) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{28} }
+func (*UpdateVersionTagRequest) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{39} }
 
 func (m *UpdateVersionTagRequest) GetPayload() *VersionTag {
 	if m != nil {
@@ -799,15 +1125,15 @@ func (m *UpdateVersionTagRequest) GetFields() *google_protobuf1.FieldMask {
 }
 
 type UpdateVersionTagResponse struct {
-	Result *VersionTag `protobuf:"bytes,1,opt,name=result" json:"result,omitempty"`
+	Result *Region `protobuf:"bytes,1,opt,name=result" json:"result,omitempty"`
 }
 
 func (m *UpdateVersionTagResponse) Reset()                    { *m = UpdateVersionTagResponse{} }
 func (m *UpdateVersionTagResponse) String() string            { return proto.CompactTextString(m) }
 func (*UpdateVersionTagResponse) ProtoMessage()               {}
-func (*UpdateVersionTagResponse) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{29} }
+func (*UpdateVersionTagResponse) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{40} }
 
-func (m *UpdateVersionTagResponse) GetResult() *VersionTag {
+func (m *UpdateVersionTagResponse) GetResult() *Region {
 	if m != nil {
 		return m.Result
 	}
@@ -821,7 +1147,7 @@ type DeleteVersionTagRequest struct {
 func (m *DeleteVersionTagRequest) Reset()                    { *m = DeleteVersionTagRequest{} }
 func (m *DeleteVersionTagRequest) String() string            { return proto.CompactTextString(m) }
 func (*DeleteVersionTagRequest) ProtoMessage()               {}
-func (*DeleteVersionTagRequest) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{30} }
+func (*DeleteVersionTagRequest) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{41} }
 
 func (m *DeleteVersionTagRequest) GetId() *atlas_rpc.Identifier {
 	if m != nil {
@@ -836,7 +1162,7 @@ type DeleteVersionTagResponse struct {
 func (m *DeleteVersionTagResponse) Reset()                    { *m = DeleteVersionTagResponse{} }
 func (m *DeleteVersionTagResponse) String() string            { return proto.CompactTextString(m) }
 func (*DeleteVersionTagResponse) ProtoMessage()               {}
-func (*DeleteVersionTagResponse) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{31} }
+func (*DeleteVersionTagResponse) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{42} }
 
 type ListVersionTagRequest struct {
 	Filter  *infoblox_api.Filtering      `protobuf:"bytes,1,opt,name=filter" json:"filter,omitempty"`
@@ -848,7 +1174,7 @@ type ListVersionTagRequest struct {
 func (m *ListVersionTagRequest) Reset()                    { *m = ListVersionTagRequest{} }
 func (m *ListVersionTagRequest) String() string            { return proto.CompactTextString(m) }
 func (*ListVersionTagRequest) ProtoMessage()               {}
-func (*ListVersionTagRequest) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{32} }
+func (*ListVersionTagRequest) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{43} }
 
 func (m *ListVersionTagRequest) GetFilter() *infoblox_api.Filtering {
 	if m != nil {
@@ -886,7 +1212,7 @@ type ListVersionTagsResponse struct {
 func (m *ListVersionTagsResponse) Reset()                    { *m = ListVersionTagsResponse{} }
 func (m *ListVersionTagsResponse) String() string            { return proto.CompactTextString(m) }
 func (*ListVersionTagsResponse) ProtoMessage()               {}
-func (*ListVersionTagsResponse) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{33} }
+func (*ListVersionTagsResponse) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{44} }
 
 func (m *ListVersionTagsResponse) GetResults() []*VersionTag {
 	if m != nil {
@@ -902,9 +1228,1437 @@ func (m *ListVersionTagsResponse) GetPage() *infoblox_api.PageInfo {
 	return nil
 }
 
-// -----------------------------------------------------------------------------------
+// ------------------------------------------------------
+// Artifact represents a particular AWS Region
+// ------------------------------------------------------
+type Artifact struct {
+	// The Artifact identifier.
+	Id *atlas_rpc.Identifier `protobuf:"bytes,1,opt,name=id" json:"id,omitempty"`
+	// The name of the Artifact
+	Name string `protobuf:"bytes,2,opt,name=name" json:"name,omitempty"`
+	// The description of the Artifact
+	Description string `protobuf:"bytes,3,opt,name=description" json:"description,omitempty"`
+}
+
+func (m *Artifact) Reset()                    { *m = Artifact{} }
+func (m *Artifact) String() string            { return proto.CompactTextString(m) }
+func (*Artifact) ProtoMessage()               {}
+func (*Artifact) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{45} }
+
+func (m *Artifact) GetId() *atlas_rpc.Identifier {
+	if m != nil {
+		return m.Id
+	}
+	return nil
+}
+
+func (m *Artifact) GetName() string {
+	if m != nil {
+		return m.Name
+	}
+	return ""
+}
+
+func (m *Artifact) GetDescription() string {
+	if m != nil {
+		return m.Description
+	}
+	return ""
+}
+
+type CreateArtifactRequest struct {
+	Payload *Artifact `protobuf:"bytes,1,opt,name=payload" json:"payload,omitempty"`
+}
+
+func (m *CreateArtifactRequest) Reset()                    { *m = CreateArtifactRequest{} }
+func (m *CreateArtifactRequest) String() string            { return proto.CompactTextString(m) }
+func (*CreateArtifactRequest) ProtoMessage()               {}
+func (*CreateArtifactRequest) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{46} }
+
+func (m *CreateArtifactRequest) GetPayload() *Artifact {
+	if m != nil {
+		return m.Payload
+	}
+	return nil
+}
+
+type CreateArtifactResponse struct {
+	Result *Artifact `protobuf:"bytes,1,opt,name=result" json:"result,omitempty"`
+}
+
+func (m *CreateArtifactResponse) Reset()                    { *m = CreateArtifactResponse{} }
+func (m *CreateArtifactResponse) String() string            { return proto.CompactTextString(m) }
+func (*CreateArtifactResponse) ProtoMessage()               {}
+func (*CreateArtifactResponse) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{47} }
+
+func (m *CreateArtifactResponse) GetResult() *Artifact {
+	if m != nil {
+		return m.Result
+	}
+	return nil
+}
+
+type ReadArtifactRequest struct {
+	Id     *atlas_rpc.Identifier        `protobuf:"bytes,1,opt,name=id" json:"id,omitempty"`
+	Fields *infoblox_api.FieldSelection `protobuf:"bytes,2,opt,name=fields" json:"fields,omitempty"`
+}
+
+func (m *ReadArtifactRequest) Reset()                    { *m = ReadArtifactRequest{} }
+func (m *ReadArtifactRequest) String() string            { return proto.CompactTextString(m) }
+func (*ReadArtifactRequest) ProtoMessage()               {}
+func (*ReadArtifactRequest) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{48} }
+
+func (m *ReadArtifactRequest) GetId() *atlas_rpc.Identifier {
+	if m != nil {
+		return m.Id
+	}
+	return nil
+}
+
+func (m *ReadArtifactRequest) GetFields() *infoblox_api.FieldSelection {
+	if m != nil {
+		return m.Fields
+	}
+	return nil
+}
+
+type ReadArtifactResponse struct {
+	Result *Artifact `protobuf:"bytes,1,opt,name=result" json:"result,omitempty"`
+}
+
+func (m *ReadArtifactResponse) Reset()                    { *m = ReadArtifactResponse{} }
+func (m *ReadArtifactResponse) String() string            { return proto.CompactTextString(m) }
+func (*ReadArtifactResponse) ProtoMessage()               {}
+func (*ReadArtifactResponse) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{49} }
+
+func (m *ReadArtifactResponse) GetResult() *Artifact {
+	if m != nil {
+		return m.Result
+	}
+	return nil
+}
+
+type UpdateArtifactRequest struct {
+	Payload *Artifact                   `protobuf:"bytes,1,opt,name=payload" json:"payload,omitempty"`
+	Fields  *google_protobuf1.FieldMask `protobuf:"bytes,2,opt,name=fields" json:"fields,omitempty"`
+}
+
+func (m *UpdateArtifactRequest) Reset()                    { *m = UpdateArtifactRequest{} }
+func (m *UpdateArtifactRequest) String() string            { return proto.CompactTextString(m) }
+func (*UpdateArtifactRequest) ProtoMessage()               {}
+func (*UpdateArtifactRequest) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{50} }
+
+func (m *UpdateArtifactRequest) GetPayload() *Artifact {
+	if m != nil {
+		return m.Payload
+	}
+	return nil
+}
+
+func (m *UpdateArtifactRequest) GetFields() *google_protobuf1.FieldMask {
+	if m != nil {
+		return m.Fields
+	}
+	return nil
+}
+
+type UpdateArtifactResponse struct {
+	Result *Region `protobuf:"bytes,1,opt,name=result" json:"result,omitempty"`
+}
+
+func (m *UpdateArtifactResponse) Reset()                    { *m = UpdateArtifactResponse{} }
+func (m *UpdateArtifactResponse) String() string            { return proto.CompactTextString(m) }
+func (*UpdateArtifactResponse) ProtoMessage()               {}
+func (*UpdateArtifactResponse) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{51} }
+
+func (m *UpdateArtifactResponse) GetResult() *Region {
+	if m != nil {
+		return m.Result
+	}
+	return nil
+}
+
+type DeleteArtifactRequest struct {
+	Id *atlas_rpc.Identifier `protobuf:"bytes,1,opt,name=id" json:"id,omitempty"`
+}
+
+func (m *DeleteArtifactRequest) Reset()                    { *m = DeleteArtifactRequest{} }
+func (m *DeleteArtifactRequest) String() string            { return proto.CompactTextString(m) }
+func (*DeleteArtifactRequest) ProtoMessage()               {}
+func (*DeleteArtifactRequest) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{52} }
+
+func (m *DeleteArtifactRequest) GetId() *atlas_rpc.Identifier {
+	if m != nil {
+		return m.Id
+	}
+	return nil
+}
+
+type DeleteArtifactResponse struct {
+}
+
+func (m *DeleteArtifactResponse) Reset()                    { *m = DeleteArtifactResponse{} }
+func (m *DeleteArtifactResponse) String() string            { return proto.CompactTextString(m) }
+func (*DeleteArtifactResponse) ProtoMessage()               {}
+func (*DeleteArtifactResponse) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{53} }
+
+type ListArtifactRequest struct {
+	Filter  *infoblox_api.Filtering      `protobuf:"bytes,1,opt,name=filter" json:"filter,omitempty"`
+	OrderBy *infoblox_api.Sorting        `protobuf:"bytes,2,opt,name=order_by,json=orderBy" json:"order_by,omitempty"`
+	Fields  *infoblox_api.FieldSelection `protobuf:"bytes,3,opt,name=fields" json:"fields,omitempty"`
+	Paging  *infoblox_api.Pagination     `protobuf:"bytes,4,opt,name=paging" json:"paging,omitempty"`
+}
+
+func (m *ListArtifactRequest) Reset()                    { *m = ListArtifactRequest{} }
+func (m *ListArtifactRequest) String() string            { return proto.CompactTextString(m) }
+func (*ListArtifactRequest) ProtoMessage()               {}
+func (*ListArtifactRequest) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{54} }
+
+func (m *ListArtifactRequest) GetFilter() *infoblox_api.Filtering {
+	if m != nil {
+		return m.Filter
+	}
+	return nil
+}
+
+func (m *ListArtifactRequest) GetOrderBy() *infoblox_api.Sorting {
+	if m != nil {
+		return m.OrderBy
+	}
+	return nil
+}
+
+func (m *ListArtifactRequest) GetFields() *infoblox_api.FieldSelection {
+	if m != nil {
+		return m.Fields
+	}
+	return nil
+}
+
+func (m *ListArtifactRequest) GetPaging() *infoblox_api.Pagination {
+	if m != nil {
+		return m.Paging
+	}
+	return nil
+}
+
+type ListArtifactsResponse struct {
+	Results []*Artifact            `protobuf:"bytes,1,rep,name=results" json:"results,omitempty"`
+	Page    *infoblox_api.PageInfo `protobuf:"bytes,2,opt,name=page" json:"page,omitempty"`
+}
+
+func (m *ListArtifactsResponse) Reset()                    { *m = ListArtifactsResponse{} }
+func (m *ListArtifactsResponse) String() string            { return proto.CompactTextString(m) }
+func (*ListArtifactsResponse) ProtoMessage()               {}
+func (*ListArtifactsResponse) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{55} }
+
+func (m *ListArtifactsResponse) GetResults() []*Artifact {
+	if m != nil {
+		return m.Results
+	}
+	return nil
+}
+
+func (m *ListArtifactsResponse) GetPage() *infoblox_api.PageInfo {
+	if m != nil {
+		return m.Page
+	}
+	return nil
+}
+
+// ------------------------------------------------------
+// AwsRdsInstance represents a particular AWS Region
+// ------------------------------------------------------
+type AwsRdsInstance struct {
+	// The AwsRdsInstance identifier.
+	Id *atlas_rpc.Identifier `protobuf:"bytes,1,opt,name=id" json:"id,omitempty"`
+	// The name of the AwsRdsInstance
+	Name string `protobuf:"bytes,2,opt,name=name" json:"name,omitempty"`
+	// The description of the AwsRdsInstance
+	Description string `protobuf:"bytes,3,opt,name=description" json:"description,omitempty"`
+}
+
+func (m *AwsRdsInstance) Reset()                    { *m = AwsRdsInstance{} }
+func (m *AwsRdsInstance) String() string            { return proto.CompactTextString(m) }
+func (*AwsRdsInstance) ProtoMessage()               {}
+func (*AwsRdsInstance) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{56} }
+
+func (m *AwsRdsInstance) GetId() *atlas_rpc.Identifier {
+	if m != nil {
+		return m.Id
+	}
+	return nil
+}
+
+func (m *AwsRdsInstance) GetName() string {
+	if m != nil {
+		return m.Name
+	}
+	return ""
+}
+
+func (m *AwsRdsInstance) GetDescription() string {
+	if m != nil {
+		return m.Description
+	}
+	return ""
+}
+
+type CreateAwsRdsInstanceRequest struct {
+	Payload *AwsRdsInstance `protobuf:"bytes,1,opt,name=payload" json:"payload,omitempty"`
+}
+
+func (m *CreateAwsRdsInstanceRequest) Reset()                    { *m = CreateAwsRdsInstanceRequest{} }
+func (m *CreateAwsRdsInstanceRequest) String() string            { return proto.CompactTextString(m) }
+func (*CreateAwsRdsInstanceRequest) ProtoMessage()               {}
+func (*CreateAwsRdsInstanceRequest) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{57} }
+
+func (m *CreateAwsRdsInstanceRequest) GetPayload() *AwsRdsInstance {
+	if m != nil {
+		return m.Payload
+	}
+	return nil
+}
+
+type CreateAwsRdsInstanceResponse struct {
+	Result *AwsRdsInstance `protobuf:"bytes,1,opt,name=result" json:"result,omitempty"`
+}
+
+func (m *CreateAwsRdsInstanceResponse) Reset()                    { *m = CreateAwsRdsInstanceResponse{} }
+func (m *CreateAwsRdsInstanceResponse) String() string            { return proto.CompactTextString(m) }
+func (*CreateAwsRdsInstanceResponse) ProtoMessage()               {}
+func (*CreateAwsRdsInstanceResponse) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{58} }
+
+func (m *CreateAwsRdsInstanceResponse) GetResult() *AwsRdsInstance {
+	if m != nil {
+		return m.Result
+	}
+	return nil
+}
+
+type ReadAwsRdsInstanceRequest struct {
+	Id     *atlas_rpc.Identifier        `protobuf:"bytes,1,opt,name=id" json:"id,omitempty"`
+	Fields *infoblox_api.FieldSelection `protobuf:"bytes,2,opt,name=fields" json:"fields,omitempty"`
+}
+
+func (m *ReadAwsRdsInstanceRequest) Reset()                    { *m = ReadAwsRdsInstanceRequest{} }
+func (m *ReadAwsRdsInstanceRequest) String() string            { return proto.CompactTextString(m) }
+func (*ReadAwsRdsInstanceRequest) ProtoMessage()               {}
+func (*ReadAwsRdsInstanceRequest) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{59} }
+
+func (m *ReadAwsRdsInstanceRequest) GetId() *atlas_rpc.Identifier {
+	if m != nil {
+		return m.Id
+	}
+	return nil
+}
+
+func (m *ReadAwsRdsInstanceRequest) GetFields() *infoblox_api.FieldSelection {
+	if m != nil {
+		return m.Fields
+	}
+	return nil
+}
+
+type ReadAwsRdsInstanceResponse struct {
+	Result *AwsRdsInstance `protobuf:"bytes,1,opt,name=result" json:"result,omitempty"`
+}
+
+func (m *ReadAwsRdsInstanceResponse) Reset()                    { *m = ReadAwsRdsInstanceResponse{} }
+func (m *ReadAwsRdsInstanceResponse) String() string            { return proto.CompactTextString(m) }
+func (*ReadAwsRdsInstanceResponse) ProtoMessage()               {}
+func (*ReadAwsRdsInstanceResponse) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{60} }
+
+func (m *ReadAwsRdsInstanceResponse) GetResult() *AwsRdsInstance {
+	if m != nil {
+		return m.Result
+	}
+	return nil
+}
+
+type UpdateAwsRdsInstanceRequest struct {
+	Payload *AwsRdsInstance             `protobuf:"bytes,1,opt,name=payload" json:"payload,omitempty"`
+	Fields  *google_protobuf1.FieldMask `protobuf:"bytes,2,opt,name=fields" json:"fields,omitempty"`
+}
+
+func (m *UpdateAwsRdsInstanceRequest) Reset()                    { *m = UpdateAwsRdsInstanceRequest{} }
+func (m *UpdateAwsRdsInstanceRequest) String() string            { return proto.CompactTextString(m) }
+func (*UpdateAwsRdsInstanceRequest) ProtoMessage()               {}
+func (*UpdateAwsRdsInstanceRequest) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{61} }
+
+func (m *UpdateAwsRdsInstanceRequest) GetPayload() *AwsRdsInstance {
+	if m != nil {
+		return m.Payload
+	}
+	return nil
+}
+
+func (m *UpdateAwsRdsInstanceRequest) GetFields() *google_protobuf1.FieldMask {
+	if m != nil {
+		return m.Fields
+	}
+	return nil
+}
+
+type UpdateAwsRdsInstanceResponse struct {
+	Result *Region `protobuf:"bytes,1,opt,name=result" json:"result,omitempty"`
+}
+
+func (m *UpdateAwsRdsInstanceResponse) Reset()                    { *m = UpdateAwsRdsInstanceResponse{} }
+func (m *UpdateAwsRdsInstanceResponse) String() string            { return proto.CompactTextString(m) }
+func (*UpdateAwsRdsInstanceResponse) ProtoMessage()               {}
+func (*UpdateAwsRdsInstanceResponse) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{62} }
+
+func (m *UpdateAwsRdsInstanceResponse) GetResult() *Region {
+	if m != nil {
+		return m.Result
+	}
+	return nil
+}
+
+type DeleteAwsRdsInstanceRequest struct {
+	Id *atlas_rpc.Identifier `protobuf:"bytes,1,opt,name=id" json:"id,omitempty"`
+}
+
+func (m *DeleteAwsRdsInstanceRequest) Reset()                    { *m = DeleteAwsRdsInstanceRequest{} }
+func (m *DeleteAwsRdsInstanceRequest) String() string            { return proto.CompactTextString(m) }
+func (*DeleteAwsRdsInstanceRequest) ProtoMessage()               {}
+func (*DeleteAwsRdsInstanceRequest) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{63} }
+
+func (m *DeleteAwsRdsInstanceRequest) GetId() *atlas_rpc.Identifier {
+	if m != nil {
+		return m.Id
+	}
+	return nil
+}
+
+type DeleteAwsRdsInstanceResponse struct {
+}
+
+func (m *DeleteAwsRdsInstanceResponse) Reset()                    { *m = DeleteAwsRdsInstanceResponse{} }
+func (m *DeleteAwsRdsInstanceResponse) String() string            { return proto.CompactTextString(m) }
+func (*DeleteAwsRdsInstanceResponse) ProtoMessage()               {}
+func (*DeleteAwsRdsInstanceResponse) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{64} }
+
+type ListAwsRdsInstanceRequest struct {
+	Filter  *infoblox_api.Filtering      `protobuf:"bytes,1,opt,name=filter" json:"filter,omitempty"`
+	OrderBy *infoblox_api.Sorting        `protobuf:"bytes,2,opt,name=order_by,json=orderBy" json:"order_by,omitempty"`
+	Fields  *infoblox_api.FieldSelection `protobuf:"bytes,3,opt,name=fields" json:"fields,omitempty"`
+	Paging  *infoblox_api.Pagination     `protobuf:"bytes,4,opt,name=paging" json:"paging,omitempty"`
+}
+
+func (m *ListAwsRdsInstanceRequest) Reset()                    { *m = ListAwsRdsInstanceRequest{} }
+func (m *ListAwsRdsInstanceRequest) String() string            { return proto.CompactTextString(m) }
+func (*ListAwsRdsInstanceRequest) ProtoMessage()               {}
+func (*ListAwsRdsInstanceRequest) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{65} }
+
+func (m *ListAwsRdsInstanceRequest) GetFilter() *infoblox_api.Filtering {
+	if m != nil {
+		return m.Filter
+	}
+	return nil
+}
+
+func (m *ListAwsRdsInstanceRequest) GetOrderBy() *infoblox_api.Sorting {
+	if m != nil {
+		return m.OrderBy
+	}
+	return nil
+}
+
+func (m *ListAwsRdsInstanceRequest) GetFields() *infoblox_api.FieldSelection {
+	if m != nil {
+		return m.Fields
+	}
+	return nil
+}
+
+func (m *ListAwsRdsInstanceRequest) GetPaging() *infoblox_api.Pagination {
+	if m != nil {
+		return m.Paging
+	}
+	return nil
+}
+
+type ListAwsRdsInstancesResponse struct {
+	Results []*AwsRdsInstance      `protobuf:"bytes,1,rep,name=results" json:"results,omitempty"`
+	Page    *infoblox_api.PageInfo `protobuf:"bytes,2,opt,name=page" json:"page,omitempty"`
+}
+
+func (m *ListAwsRdsInstancesResponse) Reset()                    { *m = ListAwsRdsInstancesResponse{} }
+func (m *ListAwsRdsInstancesResponse) String() string            { return proto.CompactTextString(m) }
+func (*ListAwsRdsInstancesResponse) ProtoMessage()               {}
+func (*ListAwsRdsInstancesResponse) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{66} }
+
+func (m *ListAwsRdsInstancesResponse) GetResults() []*AwsRdsInstance {
+	if m != nil {
+		return m.Results
+	}
+	return nil
+}
+
+func (m *ListAwsRdsInstancesResponse) GetPage() *infoblox_api.PageInfo {
+	if m != nil {
+		return m.Page
+	}
+	return nil
+}
+
+// ------------------------------------------------------
+// Deployment represents a particular AWS Region
+// ------------------------------------------------------
+type Deployment struct {
+	// The Deployment identifier.
+	Id *atlas_rpc.Identifier `protobuf:"bytes,1,opt,name=id" json:"id,omitempty"`
+	// The name of the Deployment
+	Name string `protobuf:"bytes,2,opt,name=name" json:"name,omitempty"`
+	// The description of the Deployment
+	Description string `protobuf:"bytes,3,opt,name=description" json:"description,omitempty"`
+}
+
+func (m *Deployment) Reset()                    { *m = Deployment{} }
+func (m *Deployment) String() string            { return proto.CompactTextString(m) }
+func (*Deployment) ProtoMessage()               {}
+func (*Deployment) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{67} }
+
+func (m *Deployment) GetId() *atlas_rpc.Identifier {
+	if m != nil {
+		return m.Id
+	}
+	return nil
+}
+
+func (m *Deployment) GetName() string {
+	if m != nil {
+		return m.Name
+	}
+	return ""
+}
+
+func (m *Deployment) GetDescription() string {
+	if m != nil {
+		return m.Description
+	}
+	return ""
+}
+
+type CreateDeploymentRequest struct {
+	Payload *Deployment `protobuf:"bytes,1,opt,name=payload" json:"payload,omitempty"`
+}
+
+func (m *CreateDeploymentRequest) Reset()                    { *m = CreateDeploymentRequest{} }
+func (m *CreateDeploymentRequest) String() string            { return proto.CompactTextString(m) }
+func (*CreateDeploymentRequest) ProtoMessage()               {}
+func (*CreateDeploymentRequest) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{68} }
+
+func (m *CreateDeploymentRequest) GetPayload() *Deployment {
+	if m != nil {
+		return m.Payload
+	}
+	return nil
+}
+
+type CreateDeploymentResponse struct {
+	Result *Deployment `protobuf:"bytes,1,opt,name=result" json:"result,omitempty"`
+}
+
+func (m *CreateDeploymentResponse) Reset()                    { *m = CreateDeploymentResponse{} }
+func (m *CreateDeploymentResponse) String() string            { return proto.CompactTextString(m) }
+func (*CreateDeploymentResponse) ProtoMessage()               {}
+func (*CreateDeploymentResponse) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{69} }
+
+func (m *CreateDeploymentResponse) GetResult() *Deployment {
+	if m != nil {
+		return m.Result
+	}
+	return nil
+}
+
+type ReadDeploymentRequest struct {
+	Id     *atlas_rpc.Identifier        `protobuf:"bytes,1,opt,name=id" json:"id,omitempty"`
+	Fields *infoblox_api.FieldSelection `protobuf:"bytes,2,opt,name=fields" json:"fields,omitempty"`
+}
+
+func (m *ReadDeploymentRequest) Reset()                    { *m = ReadDeploymentRequest{} }
+func (m *ReadDeploymentRequest) String() string            { return proto.CompactTextString(m) }
+func (*ReadDeploymentRequest) ProtoMessage()               {}
+func (*ReadDeploymentRequest) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{70} }
+
+func (m *ReadDeploymentRequest) GetId() *atlas_rpc.Identifier {
+	if m != nil {
+		return m.Id
+	}
+	return nil
+}
+
+func (m *ReadDeploymentRequest) GetFields() *infoblox_api.FieldSelection {
+	if m != nil {
+		return m.Fields
+	}
+	return nil
+}
+
+type ReadDeploymentResponse struct {
+	Result *Deployment `protobuf:"bytes,1,opt,name=result" json:"result,omitempty"`
+}
+
+func (m *ReadDeploymentResponse) Reset()                    { *m = ReadDeploymentResponse{} }
+func (m *ReadDeploymentResponse) String() string            { return proto.CompactTextString(m) }
+func (*ReadDeploymentResponse) ProtoMessage()               {}
+func (*ReadDeploymentResponse) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{71} }
+
+func (m *ReadDeploymentResponse) GetResult() *Deployment {
+	if m != nil {
+		return m.Result
+	}
+	return nil
+}
+
+type UpdateDeploymentRequest struct {
+	Payload *Deployment                 `protobuf:"bytes,1,opt,name=payload" json:"payload,omitempty"`
+	Fields  *google_protobuf1.FieldMask `protobuf:"bytes,2,opt,name=fields" json:"fields,omitempty"`
+}
+
+func (m *UpdateDeploymentRequest) Reset()                    { *m = UpdateDeploymentRequest{} }
+func (m *UpdateDeploymentRequest) String() string            { return proto.CompactTextString(m) }
+func (*UpdateDeploymentRequest) ProtoMessage()               {}
+func (*UpdateDeploymentRequest) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{72} }
+
+func (m *UpdateDeploymentRequest) GetPayload() *Deployment {
+	if m != nil {
+		return m.Payload
+	}
+	return nil
+}
+
+func (m *UpdateDeploymentRequest) GetFields() *google_protobuf1.FieldMask {
+	if m != nil {
+		return m.Fields
+	}
+	return nil
+}
+
+type UpdateDeploymentResponse struct {
+	Result *Region `protobuf:"bytes,1,opt,name=result" json:"result,omitempty"`
+}
+
+func (m *UpdateDeploymentResponse) Reset()                    { *m = UpdateDeploymentResponse{} }
+func (m *UpdateDeploymentResponse) String() string            { return proto.CompactTextString(m) }
+func (*UpdateDeploymentResponse) ProtoMessage()               {}
+func (*UpdateDeploymentResponse) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{73} }
+
+func (m *UpdateDeploymentResponse) GetResult() *Region {
+	if m != nil {
+		return m.Result
+	}
+	return nil
+}
+
+type DeleteDeploymentRequest struct {
+	Id *atlas_rpc.Identifier `protobuf:"bytes,1,opt,name=id" json:"id,omitempty"`
+}
+
+func (m *DeleteDeploymentRequest) Reset()                    { *m = DeleteDeploymentRequest{} }
+func (m *DeleteDeploymentRequest) String() string            { return proto.CompactTextString(m) }
+func (*DeleteDeploymentRequest) ProtoMessage()               {}
+func (*DeleteDeploymentRequest) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{74} }
+
+func (m *DeleteDeploymentRequest) GetId() *atlas_rpc.Identifier {
+	if m != nil {
+		return m.Id
+	}
+	return nil
+}
+
+type DeleteDeploymentResponse struct {
+}
+
+func (m *DeleteDeploymentResponse) Reset()                    { *m = DeleteDeploymentResponse{} }
+func (m *DeleteDeploymentResponse) String() string            { return proto.CompactTextString(m) }
+func (*DeleteDeploymentResponse) ProtoMessage()               {}
+func (*DeleteDeploymentResponse) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{75} }
+
+type ListDeploymentRequest struct {
+	Filter  *infoblox_api.Filtering      `protobuf:"bytes,1,opt,name=filter" json:"filter,omitempty"`
+	OrderBy *infoblox_api.Sorting        `protobuf:"bytes,2,opt,name=order_by,json=orderBy" json:"order_by,omitempty"`
+	Fields  *infoblox_api.FieldSelection `protobuf:"bytes,3,opt,name=fields" json:"fields,omitempty"`
+	Paging  *infoblox_api.Pagination     `protobuf:"bytes,4,opt,name=paging" json:"paging,omitempty"`
+}
+
+func (m *ListDeploymentRequest) Reset()                    { *m = ListDeploymentRequest{} }
+func (m *ListDeploymentRequest) String() string            { return proto.CompactTextString(m) }
+func (*ListDeploymentRequest) ProtoMessage()               {}
+func (*ListDeploymentRequest) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{76} }
+
+func (m *ListDeploymentRequest) GetFilter() *infoblox_api.Filtering {
+	if m != nil {
+		return m.Filter
+	}
+	return nil
+}
+
+func (m *ListDeploymentRequest) GetOrderBy() *infoblox_api.Sorting {
+	if m != nil {
+		return m.OrderBy
+	}
+	return nil
+}
+
+func (m *ListDeploymentRequest) GetFields() *infoblox_api.FieldSelection {
+	if m != nil {
+		return m.Fields
+	}
+	return nil
+}
+
+func (m *ListDeploymentRequest) GetPaging() *infoblox_api.Pagination {
+	if m != nil {
+		return m.Paging
+	}
+	return nil
+}
+
+type ListDeploymentsResponse struct {
+	Results []*Deployment          `protobuf:"bytes,1,rep,name=results" json:"results,omitempty"`
+	Page    *infoblox_api.PageInfo `protobuf:"bytes,2,opt,name=page" json:"page,omitempty"`
+}
+
+func (m *ListDeploymentsResponse) Reset()                    { *m = ListDeploymentsResponse{} }
+func (m *ListDeploymentsResponse) String() string            { return proto.CompactTextString(m) }
+func (*ListDeploymentsResponse) ProtoMessage()               {}
+func (*ListDeploymentsResponse) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{77} }
+
+func (m *ListDeploymentsResponse) GetResults() []*Deployment {
+	if m != nil {
+		return m.Results
+	}
+	return nil
+}
+
+func (m *ListDeploymentsResponse) GetPage() *infoblox_api.PageInfo {
+	if m != nil {
+		return m.Page
+	}
+	return nil
+}
+
+// ------------------------------------------------------
+// Environment represents a particular AWS Region
+// ------------------------------------------------------
+type Environment struct {
+	// The Environment identifier.
+	Id *atlas_rpc.Identifier `protobuf:"bytes,1,opt,name=id" json:"id,omitempty"`
+	// The name of the Environment
+	Name string `protobuf:"bytes,2,opt,name=name" json:"name,omitempty"`
+	// The description of the Environment
+	Description string `protobuf:"bytes,3,opt,name=description" json:"description,omitempty"`
+}
+
+func (m *Environment) Reset()                    { *m = Environment{} }
+func (m *Environment) String() string            { return proto.CompactTextString(m) }
+func (*Environment) ProtoMessage()               {}
+func (*Environment) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{78} }
+
+func (m *Environment) GetId() *atlas_rpc.Identifier {
+	if m != nil {
+		return m.Id
+	}
+	return nil
+}
+
+func (m *Environment) GetName() string {
+	if m != nil {
+		return m.Name
+	}
+	return ""
+}
+
+func (m *Environment) GetDescription() string {
+	if m != nil {
+		return m.Description
+	}
+	return ""
+}
+
+type CreateEnvironmentRequest struct {
+	Payload *Environment `protobuf:"bytes,1,opt,name=payload" json:"payload,omitempty"`
+}
+
+func (m *CreateEnvironmentRequest) Reset()                    { *m = CreateEnvironmentRequest{} }
+func (m *CreateEnvironmentRequest) String() string            { return proto.CompactTextString(m) }
+func (*CreateEnvironmentRequest) ProtoMessage()               {}
+func (*CreateEnvironmentRequest) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{79} }
+
+func (m *CreateEnvironmentRequest) GetPayload() *Environment {
+	if m != nil {
+		return m.Payload
+	}
+	return nil
+}
+
+type CreateEnvironmentResponse struct {
+	Result *Environment `protobuf:"bytes,1,opt,name=result" json:"result,omitempty"`
+}
+
+func (m *CreateEnvironmentResponse) Reset()                    { *m = CreateEnvironmentResponse{} }
+func (m *CreateEnvironmentResponse) String() string            { return proto.CompactTextString(m) }
+func (*CreateEnvironmentResponse) ProtoMessage()               {}
+func (*CreateEnvironmentResponse) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{80} }
+
+func (m *CreateEnvironmentResponse) GetResult() *Environment {
+	if m != nil {
+		return m.Result
+	}
+	return nil
+}
+
+type ReadEnvironmentRequest struct {
+	Id     *atlas_rpc.Identifier        `protobuf:"bytes,1,opt,name=id" json:"id,omitempty"`
+	Fields *infoblox_api.FieldSelection `protobuf:"bytes,2,opt,name=fields" json:"fields,omitempty"`
+}
+
+func (m *ReadEnvironmentRequest) Reset()                    { *m = ReadEnvironmentRequest{} }
+func (m *ReadEnvironmentRequest) String() string            { return proto.CompactTextString(m) }
+func (*ReadEnvironmentRequest) ProtoMessage()               {}
+func (*ReadEnvironmentRequest) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{81} }
+
+func (m *ReadEnvironmentRequest) GetId() *atlas_rpc.Identifier {
+	if m != nil {
+		return m.Id
+	}
+	return nil
+}
+
+func (m *ReadEnvironmentRequest) GetFields() *infoblox_api.FieldSelection {
+	if m != nil {
+		return m.Fields
+	}
+	return nil
+}
+
+type ReadEnvironmentResponse struct {
+	Result *Environment `protobuf:"bytes,1,opt,name=result" json:"result,omitempty"`
+}
+
+func (m *ReadEnvironmentResponse) Reset()                    { *m = ReadEnvironmentResponse{} }
+func (m *ReadEnvironmentResponse) String() string            { return proto.CompactTextString(m) }
+func (*ReadEnvironmentResponse) ProtoMessage()               {}
+func (*ReadEnvironmentResponse) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{82} }
+
+func (m *ReadEnvironmentResponse) GetResult() *Environment {
+	if m != nil {
+		return m.Result
+	}
+	return nil
+}
+
+type UpdateEnvironmentRequest struct {
+	Payload *Environment                `protobuf:"bytes,1,opt,name=payload" json:"payload,omitempty"`
+	Fields  *google_protobuf1.FieldMask `protobuf:"bytes,2,opt,name=fields" json:"fields,omitempty"`
+}
+
+func (m *UpdateEnvironmentRequest) Reset()                    { *m = UpdateEnvironmentRequest{} }
+func (m *UpdateEnvironmentRequest) String() string            { return proto.CompactTextString(m) }
+func (*UpdateEnvironmentRequest) ProtoMessage()               {}
+func (*UpdateEnvironmentRequest) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{83} }
+
+func (m *UpdateEnvironmentRequest) GetPayload() *Environment {
+	if m != nil {
+		return m.Payload
+	}
+	return nil
+}
+
+func (m *UpdateEnvironmentRequest) GetFields() *google_protobuf1.FieldMask {
+	if m != nil {
+		return m.Fields
+	}
+	return nil
+}
+
+type UpdateEnvironmentResponse struct {
+	Result *Region `protobuf:"bytes,1,opt,name=result" json:"result,omitempty"`
+}
+
+func (m *UpdateEnvironmentResponse) Reset()                    { *m = UpdateEnvironmentResponse{} }
+func (m *UpdateEnvironmentResponse) String() string            { return proto.CompactTextString(m) }
+func (*UpdateEnvironmentResponse) ProtoMessage()               {}
+func (*UpdateEnvironmentResponse) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{84} }
+
+func (m *UpdateEnvironmentResponse) GetResult() *Region {
+	if m != nil {
+		return m.Result
+	}
+	return nil
+}
+
+type DeleteEnvironmentRequest struct {
+	Id *atlas_rpc.Identifier `protobuf:"bytes,1,opt,name=id" json:"id,omitempty"`
+}
+
+func (m *DeleteEnvironmentRequest) Reset()                    { *m = DeleteEnvironmentRequest{} }
+func (m *DeleteEnvironmentRequest) String() string            { return proto.CompactTextString(m) }
+func (*DeleteEnvironmentRequest) ProtoMessage()               {}
+func (*DeleteEnvironmentRequest) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{85} }
+
+func (m *DeleteEnvironmentRequest) GetId() *atlas_rpc.Identifier {
+	if m != nil {
+		return m.Id
+	}
+	return nil
+}
+
+type DeleteEnvironmentResponse struct {
+}
+
+func (m *DeleteEnvironmentResponse) Reset()                    { *m = DeleteEnvironmentResponse{} }
+func (m *DeleteEnvironmentResponse) String() string            { return proto.CompactTextString(m) }
+func (*DeleteEnvironmentResponse) ProtoMessage()               {}
+func (*DeleteEnvironmentResponse) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{86} }
+
+type ListEnvironmentRequest struct {
+	Filter  *infoblox_api.Filtering      `protobuf:"bytes,1,opt,name=filter" json:"filter,omitempty"`
+	OrderBy *infoblox_api.Sorting        `protobuf:"bytes,2,opt,name=order_by,json=orderBy" json:"order_by,omitempty"`
+	Fields  *infoblox_api.FieldSelection `protobuf:"bytes,3,opt,name=fields" json:"fields,omitempty"`
+	Paging  *infoblox_api.Pagination     `protobuf:"bytes,4,opt,name=paging" json:"paging,omitempty"`
+}
+
+func (m *ListEnvironmentRequest) Reset()                    { *m = ListEnvironmentRequest{} }
+func (m *ListEnvironmentRequest) String() string            { return proto.CompactTextString(m) }
+func (*ListEnvironmentRequest) ProtoMessage()               {}
+func (*ListEnvironmentRequest) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{87} }
+
+func (m *ListEnvironmentRequest) GetFilter() *infoblox_api.Filtering {
+	if m != nil {
+		return m.Filter
+	}
+	return nil
+}
+
+func (m *ListEnvironmentRequest) GetOrderBy() *infoblox_api.Sorting {
+	if m != nil {
+		return m.OrderBy
+	}
+	return nil
+}
+
+func (m *ListEnvironmentRequest) GetFields() *infoblox_api.FieldSelection {
+	if m != nil {
+		return m.Fields
+	}
+	return nil
+}
+
+func (m *ListEnvironmentRequest) GetPaging() *infoblox_api.Pagination {
+	if m != nil {
+		return m.Paging
+	}
+	return nil
+}
+
+type ListEnvironmentsResponse struct {
+	Results []*Environment         `protobuf:"bytes,1,rep,name=results" json:"results,omitempty"`
+	Page    *infoblox_api.PageInfo `protobuf:"bytes,2,opt,name=page" json:"page,omitempty"`
+}
+
+func (m *ListEnvironmentsResponse) Reset()                    { *m = ListEnvironmentsResponse{} }
+func (m *ListEnvironmentsResponse) String() string            { return proto.CompactTextString(m) }
+func (*ListEnvironmentsResponse) ProtoMessage()               {}
+func (*ListEnvironmentsResponse) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{88} }
+
+func (m *ListEnvironmentsResponse) GetResults() []*Environment {
+	if m != nil {
+		return m.Results
+	}
+	return nil
+}
+
+func (m *ListEnvironmentsResponse) GetPage() *infoblox_api.PageInfo {
+	if m != nil {
+		return m.Page
+	}
+	return nil
+}
+
+// ------------------------------------------------------
+// KubeCluster represents a particular AWS Region
+// ------------------------------------------------------
+type KubeCluster struct {
+	// The KubeCluster identifier.
+	Id *atlas_rpc.Identifier `protobuf:"bytes,1,opt,name=id" json:"id,omitempty"`
+	// The name of the KubeCluster
+	Name string `protobuf:"bytes,2,opt,name=name" json:"name,omitempty"`
+	// The description of the KubeCluster
+	Description string `protobuf:"bytes,3,opt,name=description" json:"description,omitempty"`
+}
+
+func (m *KubeCluster) Reset()                    { *m = KubeCluster{} }
+func (m *KubeCluster) String() string            { return proto.CompactTextString(m) }
+func (*KubeCluster) ProtoMessage()               {}
+func (*KubeCluster) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{89} }
+
+func (m *KubeCluster) GetId() *atlas_rpc.Identifier {
+	if m != nil {
+		return m.Id
+	}
+	return nil
+}
+
+func (m *KubeCluster) GetName() string {
+	if m != nil {
+		return m.Name
+	}
+	return ""
+}
+
+func (m *KubeCluster) GetDescription() string {
+	if m != nil {
+		return m.Description
+	}
+	return ""
+}
+
+type CreateKubeClusterRequest struct {
+	Payload *KubeCluster `protobuf:"bytes,1,opt,name=payload" json:"payload,omitempty"`
+}
+
+func (m *CreateKubeClusterRequest) Reset()                    { *m = CreateKubeClusterRequest{} }
+func (m *CreateKubeClusterRequest) String() string            { return proto.CompactTextString(m) }
+func (*CreateKubeClusterRequest) ProtoMessage()               {}
+func (*CreateKubeClusterRequest) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{90} }
+
+func (m *CreateKubeClusterRequest) GetPayload() *KubeCluster {
+	if m != nil {
+		return m.Payload
+	}
+	return nil
+}
+
+type CreateKubeClusterResponse struct {
+	Result *KubeCluster `protobuf:"bytes,1,opt,name=result" json:"result,omitempty"`
+}
+
+func (m *CreateKubeClusterResponse) Reset()                    { *m = CreateKubeClusterResponse{} }
+func (m *CreateKubeClusterResponse) String() string            { return proto.CompactTextString(m) }
+func (*CreateKubeClusterResponse) ProtoMessage()               {}
+func (*CreateKubeClusterResponse) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{91} }
+
+func (m *CreateKubeClusterResponse) GetResult() *KubeCluster {
+	if m != nil {
+		return m.Result
+	}
+	return nil
+}
+
+type ReadKubeClusterRequest struct {
+	Id     *atlas_rpc.Identifier        `protobuf:"bytes,1,opt,name=id" json:"id,omitempty"`
+	Fields *infoblox_api.FieldSelection `protobuf:"bytes,2,opt,name=fields" json:"fields,omitempty"`
+}
+
+func (m *ReadKubeClusterRequest) Reset()                    { *m = ReadKubeClusterRequest{} }
+func (m *ReadKubeClusterRequest) String() string            { return proto.CompactTextString(m) }
+func (*ReadKubeClusterRequest) ProtoMessage()               {}
+func (*ReadKubeClusterRequest) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{92} }
+
+func (m *ReadKubeClusterRequest) GetId() *atlas_rpc.Identifier {
+	if m != nil {
+		return m.Id
+	}
+	return nil
+}
+
+func (m *ReadKubeClusterRequest) GetFields() *infoblox_api.FieldSelection {
+	if m != nil {
+		return m.Fields
+	}
+	return nil
+}
+
+type ReadKubeClusterResponse struct {
+	Result *KubeCluster `protobuf:"bytes,1,opt,name=result" json:"result,omitempty"`
+}
+
+func (m *ReadKubeClusterResponse) Reset()                    { *m = ReadKubeClusterResponse{} }
+func (m *ReadKubeClusterResponse) String() string            { return proto.CompactTextString(m) }
+func (*ReadKubeClusterResponse) ProtoMessage()               {}
+func (*ReadKubeClusterResponse) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{93} }
+
+func (m *ReadKubeClusterResponse) GetResult() *KubeCluster {
+	if m != nil {
+		return m.Result
+	}
+	return nil
+}
+
+type UpdateKubeClusterRequest struct {
+	Payload *KubeCluster                `protobuf:"bytes,1,opt,name=payload" json:"payload,omitempty"`
+	Fields  *google_protobuf1.FieldMask `protobuf:"bytes,2,opt,name=fields" json:"fields,omitempty"`
+}
+
+func (m *UpdateKubeClusterRequest) Reset()                    { *m = UpdateKubeClusterRequest{} }
+func (m *UpdateKubeClusterRequest) String() string            { return proto.CompactTextString(m) }
+func (*UpdateKubeClusterRequest) ProtoMessage()               {}
+func (*UpdateKubeClusterRequest) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{94} }
+
+func (m *UpdateKubeClusterRequest) GetPayload() *KubeCluster {
+	if m != nil {
+		return m.Payload
+	}
+	return nil
+}
+
+func (m *UpdateKubeClusterRequest) GetFields() *google_protobuf1.FieldMask {
+	if m != nil {
+		return m.Fields
+	}
+	return nil
+}
+
+type UpdateKubeClusterResponse struct {
+	Result *Region `protobuf:"bytes,1,opt,name=result" json:"result,omitempty"`
+}
+
+func (m *UpdateKubeClusterResponse) Reset()                    { *m = UpdateKubeClusterResponse{} }
+func (m *UpdateKubeClusterResponse) String() string            { return proto.CompactTextString(m) }
+func (*UpdateKubeClusterResponse) ProtoMessage()               {}
+func (*UpdateKubeClusterResponse) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{95} }
+
+func (m *UpdateKubeClusterResponse) GetResult() *Region {
+	if m != nil {
+		return m.Result
+	}
+	return nil
+}
+
+type DeleteKubeClusterRequest struct {
+	Id *atlas_rpc.Identifier `protobuf:"bytes,1,opt,name=id" json:"id,omitempty"`
+}
+
+func (m *DeleteKubeClusterRequest) Reset()                    { *m = DeleteKubeClusterRequest{} }
+func (m *DeleteKubeClusterRequest) String() string            { return proto.CompactTextString(m) }
+func (*DeleteKubeClusterRequest) ProtoMessage()               {}
+func (*DeleteKubeClusterRequest) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{96} }
+
+func (m *DeleteKubeClusterRequest) GetId() *atlas_rpc.Identifier {
+	if m != nil {
+		return m.Id
+	}
+	return nil
+}
+
+type DeleteKubeClusterResponse struct {
+}
+
+func (m *DeleteKubeClusterResponse) Reset()                    { *m = DeleteKubeClusterResponse{} }
+func (m *DeleteKubeClusterResponse) String() string            { return proto.CompactTextString(m) }
+func (*DeleteKubeClusterResponse) ProtoMessage()               {}
+func (*DeleteKubeClusterResponse) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{97} }
+
+type ListKubeClusterRequest struct {
+	Filter  *infoblox_api.Filtering      `protobuf:"bytes,1,opt,name=filter" json:"filter,omitempty"`
+	OrderBy *infoblox_api.Sorting        `protobuf:"bytes,2,opt,name=order_by,json=orderBy" json:"order_by,omitempty"`
+	Fields  *infoblox_api.FieldSelection `protobuf:"bytes,3,opt,name=fields" json:"fields,omitempty"`
+	Paging  *infoblox_api.Pagination     `protobuf:"bytes,4,opt,name=paging" json:"paging,omitempty"`
+}
+
+func (m *ListKubeClusterRequest) Reset()                    { *m = ListKubeClusterRequest{} }
+func (m *ListKubeClusterRequest) String() string            { return proto.CompactTextString(m) }
+func (*ListKubeClusterRequest) ProtoMessage()               {}
+func (*ListKubeClusterRequest) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{98} }
+
+func (m *ListKubeClusterRequest) GetFilter() *infoblox_api.Filtering {
+	if m != nil {
+		return m.Filter
+	}
+	return nil
+}
+
+func (m *ListKubeClusterRequest) GetOrderBy() *infoblox_api.Sorting {
+	if m != nil {
+		return m.OrderBy
+	}
+	return nil
+}
+
+func (m *ListKubeClusterRequest) GetFields() *infoblox_api.FieldSelection {
+	if m != nil {
+		return m.Fields
+	}
+	return nil
+}
+
+func (m *ListKubeClusterRequest) GetPaging() *infoblox_api.Pagination {
+	if m != nil {
+		return m.Paging
+	}
+	return nil
+}
+
+type ListKubeClustersResponse struct {
+	Results []*KubeCluster         `protobuf:"bytes,1,rep,name=results" json:"results,omitempty"`
+	Page    *infoblox_api.PageInfo `protobuf:"bytes,2,opt,name=page" json:"page,omitempty"`
+}
+
+func (m *ListKubeClustersResponse) Reset()                    { *m = ListKubeClustersResponse{} }
+func (m *ListKubeClustersResponse) String() string            { return proto.CompactTextString(m) }
+func (*ListKubeClustersResponse) ProtoMessage()               {}
+func (*ListKubeClustersResponse) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{99} }
+
+func (m *ListKubeClustersResponse) GetResults() []*KubeCluster {
+	if m != nil {
+		return m.Results
+	}
+	return nil
+}
+
+func (m *ListKubeClustersResponse) GetPage() *infoblox_api.PageInfo {
+	if m != nil {
+		return m.Page
+	}
+	return nil
+}
+
+// ------------------------------------------------------
+// Region represents a particular AWS Region
+// ------------------------------------------------------
+type Region struct {
+	// The Region identifier.
+	Id *atlas_rpc.Identifier `protobuf:"bytes,1,opt,name=id" json:"id,omitempty"`
+	// The name of the Region
+	Name string `protobuf:"bytes,2,opt,name=name" json:"name,omitempty"`
+	// The description of the Region
+	Description string `protobuf:"bytes,3,opt,name=description" json:"description,omitempty"`
+}
+
+func (m *Region) Reset()                    { *m = Region{} }
+func (m *Region) String() string            { return proto.CompactTextString(m) }
+func (*Region) ProtoMessage()               {}
+func (*Region) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{100} }
+
+func (m *Region) GetId() *atlas_rpc.Identifier {
+	if m != nil {
+		return m.Id
+	}
+	return nil
+}
+
+func (m *Region) GetName() string {
+	if m != nil {
+		return m.Name
+	}
+	return ""
+}
+
+func (m *Region) GetDescription() string {
+	if m != nil {
+		return m.Description
+	}
+	return ""
+}
+
+type CreateRegionRequest struct {
+	Payload *Region `protobuf:"bytes,1,opt,name=payload" json:"payload,omitempty"`
+}
+
+func (m *CreateRegionRequest) Reset()                    { *m = CreateRegionRequest{} }
+func (m *CreateRegionRequest) String() string            { return proto.CompactTextString(m) }
+func (*CreateRegionRequest) ProtoMessage()               {}
+func (*CreateRegionRequest) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{101} }
+
+func (m *CreateRegionRequest) GetPayload() *Region {
+	if m != nil {
+		return m.Payload
+	}
+	return nil
+}
+
+type CreateRegionResponse struct {
+	Result *Region `protobuf:"bytes,1,opt,name=result" json:"result,omitempty"`
+}
+
+func (m *CreateRegionResponse) Reset()                    { *m = CreateRegionResponse{} }
+func (m *CreateRegionResponse) String() string            { return proto.CompactTextString(m) }
+func (*CreateRegionResponse) ProtoMessage()               {}
+func (*CreateRegionResponse) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{102} }
+
+func (m *CreateRegionResponse) GetResult() *Region {
+	if m != nil {
+		return m.Result
+	}
+	return nil
+}
+
+type ReadRegionRequest struct {
+	Id     *atlas_rpc.Identifier        `protobuf:"bytes,1,opt,name=id" json:"id,omitempty"`
+	Fields *infoblox_api.FieldSelection `protobuf:"bytes,2,opt,name=fields" json:"fields,omitempty"`
+}
+
+func (m *ReadRegionRequest) Reset()                    { *m = ReadRegionRequest{} }
+func (m *ReadRegionRequest) String() string            { return proto.CompactTextString(m) }
+func (*ReadRegionRequest) ProtoMessage()               {}
+func (*ReadRegionRequest) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{103} }
+
+func (m *ReadRegionRequest) GetId() *atlas_rpc.Identifier {
+	if m != nil {
+		return m.Id
+	}
+	return nil
+}
+
+func (m *ReadRegionRequest) GetFields() *infoblox_api.FieldSelection {
+	if m != nil {
+		return m.Fields
+	}
+	return nil
+}
+
+type ReadRegionResponse struct {
+	Result *Region `protobuf:"bytes,1,opt,name=result" json:"result,omitempty"`
+}
+
+func (m *ReadRegionResponse) Reset()                    { *m = ReadRegionResponse{} }
+func (m *ReadRegionResponse) String() string            { return proto.CompactTextString(m) }
+func (*ReadRegionResponse) ProtoMessage()               {}
+func (*ReadRegionResponse) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{104} }
+
+func (m *ReadRegionResponse) GetResult() *Region {
+	if m != nil {
+		return m.Result
+	}
+	return nil
+}
+
+type UpdateRegionRequest struct {
+	Payload *Region                     `protobuf:"bytes,1,opt,name=payload" json:"payload,omitempty"`
+	Fields  *google_protobuf1.FieldMask `protobuf:"bytes,2,opt,name=fields" json:"fields,omitempty"`
+}
+
+func (m *UpdateRegionRequest) Reset()                    { *m = UpdateRegionRequest{} }
+func (m *UpdateRegionRequest) String() string            { return proto.CompactTextString(m) }
+func (*UpdateRegionRequest) ProtoMessage()               {}
+func (*UpdateRegionRequest) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{105} }
+
+func (m *UpdateRegionRequest) GetPayload() *Region {
+	if m != nil {
+		return m.Payload
+	}
+	return nil
+}
+
+func (m *UpdateRegionRequest) GetFields() *google_protobuf1.FieldMask {
+	if m != nil {
+		return m.Fields
+	}
+	return nil
+}
+
+type UpdateRegionResponse struct {
+	Result *Region `protobuf:"bytes,1,opt,name=result" json:"result,omitempty"`
+}
+
+func (m *UpdateRegionResponse) Reset()                    { *m = UpdateRegionResponse{} }
+func (m *UpdateRegionResponse) String() string            { return proto.CompactTextString(m) }
+func (*UpdateRegionResponse) ProtoMessage()               {}
+func (*UpdateRegionResponse) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{106} }
+
+func (m *UpdateRegionResponse) GetResult() *Region {
+	if m != nil {
+		return m.Result
+	}
+	return nil
+}
+
+type DeleteRegionRequest struct {
+	Id *atlas_rpc.Identifier `protobuf:"bytes,1,opt,name=id" json:"id,omitempty"`
+}
+
+func (m *DeleteRegionRequest) Reset()                    { *m = DeleteRegionRequest{} }
+func (m *DeleteRegionRequest) String() string            { return proto.CompactTextString(m) }
+func (*DeleteRegionRequest) ProtoMessage()               {}
+func (*DeleteRegionRequest) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{107} }
+
+func (m *DeleteRegionRequest) GetId() *atlas_rpc.Identifier {
+	if m != nil {
+		return m.Id
+	}
+	return nil
+}
+
+type DeleteRegionResponse struct {
+}
+
+func (m *DeleteRegionResponse) Reset()                    { *m = DeleteRegionResponse{} }
+func (m *DeleteRegionResponse) String() string            { return proto.CompactTextString(m) }
+func (*DeleteRegionResponse) ProtoMessage()               {}
+func (*DeleteRegionResponse) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{108} }
+
+type ListRegionRequest struct {
+	Filter  *infoblox_api.Filtering      `protobuf:"bytes,1,opt,name=filter" json:"filter,omitempty"`
+	OrderBy *infoblox_api.Sorting        `protobuf:"bytes,2,opt,name=order_by,json=orderBy" json:"order_by,omitempty"`
+	Fields  *infoblox_api.FieldSelection `protobuf:"bytes,3,opt,name=fields" json:"fields,omitempty"`
+	Paging  *infoblox_api.Pagination     `protobuf:"bytes,4,opt,name=paging" json:"paging,omitempty"`
+}
+
+func (m *ListRegionRequest) Reset()                    { *m = ListRegionRequest{} }
+func (m *ListRegionRequest) String() string            { return proto.CompactTextString(m) }
+func (*ListRegionRequest) ProtoMessage()               {}
+func (*ListRegionRequest) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{109} }
+
+func (m *ListRegionRequest) GetFilter() *infoblox_api.Filtering {
+	if m != nil {
+		return m.Filter
+	}
+	return nil
+}
+
+func (m *ListRegionRequest) GetOrderBy() *infoblox_api.Sorting {
+	if m != nil {
+		return m.OrderBy
+	}
+	return nil
+}
+
+func (m *ListRegionRequest) GetFields() *infoblox_api.FieldSelection {
+	if m != nil {
+		return m.Fields
+	}
+	return nil
+}
+
+func (m *ListRegionRequest) GetPaging() *infoblox_api.Pagination {
+	if m != nil {
+		return m.Paging
+	}
+	return nil
+}
+
+type ListRegionsResponse struct {
+	Results []*Region              `protobuf:"bytes,1,rep,name=results" json:"results,omitempty"`
+	Page    *infoblox_api.PageInfo `protobuf:"bytes,2,opt,name=page" json:"page,omitempty"`
+}
+
+func (m *ListRegionsResponse) Reset()                    { *m = ListRegionsResponse{} }
+func (m *ListRegionsResponse) String() string            { return proto.CompactTextString(m) }
+func (*ListRegionsResponse) ProtoMessage()               {}
+func (*ListRegionsResponse) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{110} }
+
+func (m *ListRegionsResponse) GetResults() []*Region {
+	if m != nil {
+		return m.Results
+	}
+	return nil
+}
+
+func (m *ListRegionsResponse) GetPage() *infoblox_api.PageInfo {
+	if m != nil {
+		return m.Page
+	}
+	return nil
+}
+
+// --------------------------------------------------------
 // Secret represents confidential data stored in the Vault
-// -----------------------------------------------------------------------------------
+// --------------------------------------------------------
 type Secret struct {
 	// The secret identifier.
 	Id *atlas_rpc.Identifier `protobuf:"bytes,1,opt,name=id" json:"id,omitempty"`
@@ -923,7 +2677,7 @@ type Secret struct {
 func (m *Secret) Reset()                    { *m = Secret{} }
 func (m *Secret) String() string            { return proto.CompactTextString(m) }
 func (*Secret) ProtoMessage()               {}
-func (*Secret) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{34} }
+func (*Secret) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{111} }
 
 func (m *Secret) GetId() *atlas_rpc.Identifier {
 	if m != nil {
@@ -974,7 +2728,7 @@ type CreateSecretRequest struct {
 func (m *CreateSecretRequest) Reset()                    { *m = CreateSecretRequest{} }
 func (m *CreateSecretRequest) String() string            { return proto.CompactTextString(m) }
 func (*CreateSecretRequest) ProtoMessage()               {}
-func (*CreateSecretRequest) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{35} }
+func (*CreateSecretRequest) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{112} }
 
 func (m *CreateSecretRequest) GetPayload() *Secret {
 	if m != nil {
@@ -990,7 +2744,7 @@ type CreateSecretResponse struct {
 func (m *CreateSecretResponse) Reset()                    { *m = CreateSecretResponse{} }
 func (m *CreateSecretResponse) String() string            { return proto.CompactTextString(m) }
 func (*CreateSecretResponse) ProtoMessage()               {}
-func (*CreateSecretResponse) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{36} }
+func (*CreateSecretResponse) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{113} }
 
 func (m *CreateSecretResponse) GetResult() *Secret {
 	if m != nil {
@@ -1007,7 +2761,7 @@ type ReadSecretRequest struct {
 func (m *ReadSecretRequest) Reset()                    { *m = ReadSecretRequest{} }
 func (m *ReadSecretRequest) String() string            { return proto.CompactTextString(m) }
 func (*ReadSecretRequest) ProtoMessage()               {}
-func (*ReadSecretRequest) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{37} }
+func (*ReadSecretRequest) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{114} }
 
 func (m *ReadSecretRequest) GetId() *atlas_rpc.Identifier {
 	if m != nil {
@@ -1030,7 +2784,7 @@ type ReadSecretResponse struct {
 func (m *ReadSecretResponse) Reset()                    { *m = ReadSecretResponse{} }
 func (m *ReadSecretResponse) String() string            { return proto.CompactTextString(m) }
 func (*ReadSecretResponse) ProtoMessage()               {}
-func (*ReadSecretResponse) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{38} }
+func (*ReadSecretResponse) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{115} }
 
 func (m *ReadSecretResponse) GetResult() *Secret {
 	if m != nil {
@@ -1047,7 +2801,7 @@ type UpdateSecretRequest struct {
 func (m *UpdateSecretRequest) Reset()                    { *m = UpdateSecretRequest{} }
 func (m *UpdateSecretRequest) String() string            { return proto.CompactTextString(m) }
 func (*UpdateSecretRequest) ProtoMessage()               {}
-func (*UpdateSecretRequest) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{39} }
+func (*UpdateSecretRequest) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{116} }
 
 func (m *UpdateSecretRequest) GetPayload() *Secret {
 	if m != nil {
@@ -1064,15 +2818,15 @@ func (m *UpdateSecretRequest) GetFields() *google_protobuf1.FieldMask {
 }
 
 type UpdateSecretResponse struct {
-	Result *Secret `protobuf:"bytes,1,opt,name=result" json:"result,omitempty"`
+	Result *Region `protobuf:"bytes,1,opt,name=result" json:"result,omitempty"`
 }
 
 func (m *UpdateSecretResponse) Reset()                    { *m = UpdateSecretResponse{} }
 func (m *UpdateSecretResponse) String() string            { return proto.CompactTextString(m) }
 func (*UpdateSecretResponse) ProtoMessage()               {}
-func (*UpdateSecretResponse) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{40} }
+func (*UpdateSecretResponse) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{117} }
 
-func (m *UpdateSecretResponse) GetResult() *Secret {
+func (m *UpdateSecretResponse) GetResult() *Region {
 	if m != nil {
 		return m.Result
 	}
@@ -1086,7 +2840,7 @@ type DeleteSecretRequest struct {
 func (m *DeleteSecretRequest) Reset()                    { *m = DeleteSecretRequest{} }
 func (m *DeleteSecretRequest) String() string            { return proto.CompactTextString(m) }
 func (*DeleteSecretRequest) ProtoMessage()               {}
-func (*DeleteSecretRequest) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{41} }
+func (*DeleteSecretRequest) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{118} }
 
 func (m *DeleteSecretRequest) GetId() *atlas_rpc.Identifier {
 	if m != nil {
@@ -1101,7 +2855,7 @@ type DeleteSecretResponse struct {
 func (m *DeleteSecretResponse) Reset()                    { *m = DeleteSecretResponse{} }
 func (m *DeleteSecretResponse) String() string            { return proto.CompactTextString(m) }
 func (*DeleteSecretResponse) ProtoMessage()               {}
-func (*DeleteSecretResponse) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{42} }
+func (*DeleteSecretResponse) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{119} }
 
 type ListSecretRequest struct {
 	Filter  *infoblox_api.Filtering      `protobuf:"bytes,1,opt,name=filter" json:"filter,omitempty"`
@@ -1113,7 +2867,7 @@ type ListSecretRequest struct {
 func (m *ListSecretRequest) Reset()                    { *m = ListSecretRequest{} }
 func (m *ListSecretRequest) String() string            { return proto.CompactTextString(m) }
 func (*ListSecretRequest) ProtoMessage()               {}
-func (*ListSecretRequest) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{43} }
+func (*ListSecretRequest) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{120} }
 
 func (m *ListSecretRequest) GetFilter() *infoblox_api.Filtering {
 	if m != nil {
@@ -1151,7 +2905,7 @@ type ListSecretsResponse struct {
 func (m *ListSecretsResponse) Reset()                    { *m = ListSecretsResponse{} }
 func (m *ListSecretsResponse) String() string            { return proto.CompactTextString(m) }
 func (*ListSecretsResponse) ProtoMessage()               {}
-func (*ListSecretsResponse) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{44} }
+func (*ListSecretsResponse) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{121} }
 
 func (m *ListSecretsResponse) GetResults() []*Secret {
 	if m != nil {
@@ -1167,15 +2921,15 @@ func (m *ListSecretsResponse) GetPage() *infoblox_api.PageInfo {
 	return nil
 }
 
-// -----------------------------------------------------------------------------------
+// ------------------------------------------------------
 // Vault represents the store for keeping Secrets
-// -----------------------------------------------------------------------------------
+// ------------------------------------------------------
 type Vault struct {
-	// The secret identifier.
+	// The vault identifier.
 	Id *atlas_rpc.Identifier `protobuf:"bytes,1,opt,name=id" json:"id,omitempty"`
-	// The name of the container
+	// The name of the vault
 	Name string `protobuf:"bytes,2,opt,name=name" json:"name,omitempty"`
-	// The description of the container
+	// The description of the vault
 	Description string `protobuf:"bytes,3,opt,name=description" json:"description,omitempty"`
 	// The path on vault for the Secrets (e.g. /qa0-secrets)
 	Path string `protobuf:"bytes,4,opt,name=path" json:"path,omitempty"`
@@ -1186,7 +2940,7 @@ type Vault struct {
 func (m *Vault) Reset()                    { *m = Vault{} }
 func (m *Vault) String() string            { return proto.CompactTextString(m) }
 func (*Vault) ProtoMessage()               {}
-func (*Vault) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{45} }
+func (*Vault) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{122} }
 
 func (m *Vault) GetId() *atlas_rpc.Identifier {
 	if m != nil {
@@ -1230,7 +2984,7 @@ type CreateVaultRequest struct {
 func (m *CreateVaultRequest) Reset()                    { *m = CreateVaultRequest{} }
 func (m *CreateVaultRequest) String() string            { return proto.CompactTextString(m) }
 func (*CreateVaultRequest) ProtoMessage()               {}
-func (*CreateVaultRequest) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{46} }
+func (*CreateVaultRequest) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{123} }
 
 func (m *CreateVaultRequest) GetPayload() *Vault {
 	if m != nil {
@@ -1246,7 +3000,7 @@ type CreateVaultResponse struct {
 func (m *CreateVaultResponse) Reset()                    { *m = CreateVaultResponse{} }
 func (m *CreateVaultResponse) String() string            { return proto.CompactTextString(m) }
 func (*CreateVaultResponse) ProtoMessage()               {}
-func (*CreateVaultResponse) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{47} }
+func (*CreateVaultResponse) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{124} }
 
 func (m *CreateVaultResponse) GetResult() *Vault {
 	if m != nil {
@@ -1263,7 +3017,7 @@ type ReadVaultRequest struct {
 func (m *ReadVaultRequest) Reset()                    { *m = ReadVaultRequest{} }
 func (m *ReadVaultRequest) String() string            { return proto.CompactTextString(m) }
 func (*ReadVaultRequest) ProtoMessage()               {}
-func (*ReadVaultRequest) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{48} }
+func (*ReadVaultRequest) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{125} }
 
 func (m *ReadVaultRequest) GetId() *atlas_rpc.Identifier {
 	if m != nil {
@@ -1286,7 +3040,7 @@ type ReadVaultResponse struct {
 func (m *ReadVaultResponse) Reset()                    { *m = ReadVaultResponse{} }
 func (m *ReadVaultResponse) String() string            { return proto.CompactTextString(m) }
 func (*ReadVaultResponse) ProtoMessage()               {}
-func (*ReadVaultResponse) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{49} }
+func (*ReadVaultResponse) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{126} }
 
 func (m *ReadVaultResponse) GetResult() *Vault {
 	if m != nil {
@@ -1303,7 +3057,7 @@ type UpdateVaultRequest struct {
 func (m *UpdateVaultRequest) Reset()                    { *m = UpdateVaultRequest{} }
 func (m *UpdateVaultRequest) String() string            { return proto.CompactTextString(m) }
 func (*UpdateVaultRequest) ProtoMessage()               {}
-func (*UpdateVaultRequest) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{50} }
+func (*UpdateVaultRequest) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{127} }
 
 func (m *UpdateVaultRequest) GetPayload() *Vault {
 	if m != nil {
@@ -1320,15 +3074,15 @@ func (m *UpdateVaultRequest) GetFields() *google_protobuf1.FieldMask {
 }
 
 type UpdateVaultResponse struct {
-	Result *Vault `protobuf:"bytes,1,opt,name=result" json:"result,omitempty"`
+	Result *Region `protobuf:"bytes,1,opt,name=result" json:"result,omitempty"`
 }
 
 func (m *UpdateVaultResponse) Reset()                    { *m = UpdateVaultResponse{} }
 func (m *UpdateVaultResponse) String() string            { return proto.CompactTextString(m) }
 func (*UpdateVaultResponse) ProtoMessage()               {}
-func (*UpdateVaultResponse) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{51} }
+func (*UpdateVaultResponse) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{128} }
 
-func (m *UpdateVaultResponse) GetResult() *Vault {
+func (m *UpdateVaultResponse) GetResult() *Region {
 	if m != nil {
 		return m.Result
 	}
@@ -1342,7 +3096,7 @@ type DeleteVaultRequest struct {
 func (m *DeleteVaultRequest) Reset()                    { *m = DeleteVaultRequest{} }
 func (m *DeleteVaultRequest) String() string            { return proto.CompactTextString(m) }
 func (*DeleteVaultRequest) ProtoMessage()               {}
-func (*DeleteVaultRequest) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{52} }
+func (*DeleteVaultRequest) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{129} }
 
 func (m *DeleteVaultRequest) GetId() *atlas_rpc.Identifier {
 	if m != nil {
@@ -1357,7 +3111,7 @@ type DeleteVaultResponse struct {
 func (m *DeleteVaultResponse) Reset()                    { *m = DeleteVaultResponse{} }
 func (m *DeleteVaultResponse) String() string            { return proto.CompactTextString(m) }
 func (*DeleteVaultResponse) ProtoMessage()               {}
-func (*DeleteVaultResponse) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{53} }
+func (*DeleteVaultResponse) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{130} }
 
 type ListVaultRequest struct {
 	Filter  *infoblox_api.Filtering      `protobuf:"bytes,1,opt,name=filter" json:"filter,omitempty"`
@@ -1369,7 +3123,7 @@ type ListVaultRequest struct {
 func (m *ListVaultRequest) Reset()                    { *m = ListVaultRequest{} }
 func (m *ListVaultRequest) String() string            { return proto.CompactTextString(m) }
 func (*ListVaultRequest) ProtoMessage()               {}
-func (*ListVaultRequest) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{54} }
+func (*ListVaultRequest) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{131} }
 
 func (m *ListVaultRequest) GetFilter() *infoblox_api.Filtering {
 	if m != nil {
@@ -1407,7 +3161,7 @@ type ListVaultsResponse struct {
 func (m *ListVaultsResponse) Reset()                    { *m = ListVaultsResponse{} }
 func (m *ListVaultsResponse) String() string            { return proto.CompactTextString(m) }
 func (*ListVaultsResponse) ProtoMessage()               {}
-func (*ListVaultsResponse) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{55} }
+func (*ListVaultsResponse) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{132} }
 
 func (m *ListVaultsResponse) GetResults() []*Vault {
 	if m != nil {
@@ -1423,19 +3177,257 @@ func (m *ListVaultsResponse) GetPage() *infoblox_api.PageInfo {
 	return nil
 }
 
+// ------------------------------------------------------
+// Application represents a particular AWS Region
+// ------------------------------------------------------
+type Application struct {
+	// The Application identifier.
+	Id *atlas_rpc.Identifier `protobuf:"bytes,1,opt,name=id" json:"id,omitempty"`
+	// The name of the Application
+	Name string `protobuf:"bytes,2,opt,name=name" json:"name,omitempty"`
+	// The description of the Application
+	Description string `protobuf:"bytes,3,opt,name=description" json:"description,omitempty"`
+}
+
+func (m *Application) Reset()                    { *m = Application{} }
+func (m *Application) String() string            { return proto.CompactTextString(m) }
+func (*Application) ProtoMessage()               {}
+func (*Application) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{133} }
+
+func (m *Application) GetId() *atlas_rpc.Identifier {
+	if m != nil {
+		return m.Id
+	}
+	return nil
+}
+
+func (m *Application) GetName() string {
+	if m != nil {
+		return m.Name
+	}
+	return ""
+}
+
+func (m *Application) GetDescription() string {
+	if m != nil {
+		return m.Description
+	}
+	return ""
+}
+
+type CreateApplicationRequest struct {
+	Payload *Application `protobuf:"bytes,1,opt,name=payload" json:"payload,omitempty"`
+}
+
+func (m *CreateApplicationRequest) Reset()                    { *m = CreateApplicationRequest{} }
+func (m *CreateApplicationRequest) String() string            { return proto.CompactTextString(m) }
+func (*CreateApplicationRequest) ProtoMessage()               {}
+func (*CreateApplicationRequest) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{134} }
+
+func (m *CreateApplicationRequest) GetPayload() *Application {
+	if m != nil {
+		return m.Payload
+	}
+	return nil
+}
+
+type CreateApplicationResponse struct {
+	Result *Application `protobuf:"bytes,1,opt,name=result" json:"result,omitempty"`
+}
+
+func (m *CreateApplicationResponse) Reset()                    { *m = CreateApplicationResponse{} }
+func (m *CreateApplicationResponse) String() string            { return proto.CompactTextString(m) }
+func (*CreateApplicationResponse) ProtoMessage()               {}
+func (*CreateApplicationResponse) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{135} }
+
+func (m *CreateApplicationResponse) GetResult() *Application {
+	if m != nil {
+		return m.Result
+	}
+	return nil
+}
+
+type ReadApplicationRequest struct {
+	Id     *atlas_rpc.Identifier        `protobuf:"bytes,1,opt,name=id" json:"id,omitempty"`
+	Fields *infoblox_api.FieldSelection `protobuf:"bytes,2,opt,name=fields" json:"fields,omitempty"`
+}
+
+func (m *ReadApplicationRequest) Reset()                    { *m = ReadApplicationRequest{} }
+func (m *ReadApplicationRequest) String() string            { return proto.CompactTextString(m) }
+func (*ReadApplicationRequest) ProtoMessage()               {}
+func (*ReadApplicationRequest) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{136} }
+
+func (m *ReadApplicationRequest) GetId() *atlas_rpc.Identifier {
+	if m != nil {
+		return m.Id
+	}
+	return nil
+}
+
+func (m *ReadApplicationRequest) GetFields() *infoblox_api.FieldSelection {
+	if m != nil {
+		return m.Fields
+	}
+	return nil
+}
+
+type ReadApplicationResponse struct {
+	Result *Application `protobuf:"bytes,1,opt,name=result" json:"result,omitempty"`
+}
+
+func (m *ReadApplicationResponse) Reset()                    { *m = ReadApplicationResponse{} }
+func (m *ReadApplicationResponse) String() string            { return proto.CompactTextString(m) }
+func (*ReadApplicationResponse) ProtoMessage()               {}
+func (*ReadApplicationResponse) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{137} }
+
+func (m *ReadApplicationResponse) GetResult() *Application {
+	if m != nil {
+		return m.Result
+	}
+	return nil
+}
+
+type UpdateApplicationRequest struct {
+	Payload *Application                `protobuf:"bytes,1,opt,name=payload" json:"payload,omitempty"`
+	Fields  *google_protobuf1.FieldMask `protobuf:"bytes,2,opt,name=fields" json:"fields,omitempty"`
+}
+
+func (m *UpdateApplicationRequest) Reset()                    { *m = UpdateApplicationRequest{} }
+func (m *UpdateApplicationRequest) String() string            { return proto.CompactTextString(m) }
+func (*UpdateApplicationRequest) ProtoMessage()               {}
+func (*UpdateApplicationRequest) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{138} }
+
+func (m *UpdateApplicationRequest) GetPayload() *Application {
+	if m != nil {
+		return m.Payload
+	}
+	return nil
+}
+
+func (m *UpdateApplicationRequest) GetFields() *google_protobuf1.FieldMask {
+	if m != nil {
+		return m.Fields
+	}
+	return nil
+}
+
+type UpdateApplicationResponse struct {
+	Result *Region `protobuf:"bytes,1,opt,name=result" json:"result,omitempty"`
+}
+
+func (m *UpdateApplicationResponse) Reset()                    { *m = UpdateApplicationResponse{} }
+func (m *UpdateApplicationResponse) String() string            { return proto.CompactTextString(m) }
+func (*UpdateApplicationResponse) ProtoMessage()               {}
+func (*UpdateApplicationResponse) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{139} }
+
+func (m *UpdateApplicationResponse) GetResult() *Region {
+	if m != nil {
+		return m.Result
+	}
+	return nil
+}
+
+type DeleteApplicationRequest struct {
+	Id *atlas_rpc.Identifier `protobuf:"bytes,1,opt,name=id" json:"id,omitempty"`
+}
+
+func (m *DeleteApplicationRequest) Reset()                    { *m = DeleteApplicationRequest{} }
+func (m *DeleteApplicationRequest) String() string            { return proto.CompactTextString(m) }
+func (*DeleteApplicationRequest) ProtoMessage()               {}
+func (*DeleteApplicationRequest) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{140} }
+
+func (m *DeleteApplicationRequest) GetId() *atlas_rpc.Identifier {
+	if m != nil {
+		return m.Id
+	}
+	return nil
+}
+
+type DeleteApplicationResponse struct {
+}
+
+func (m *DeleteApplicationResponse) Reset()                    { *m = DeleteApplicationResponse{} }
+func (m *DeleteApplicationResponse) String() string            { return proto.CompactTextString(m) }
+func (*DeleteApplicationResponse) ProtoMessage()               {}
+func (*DeleteApplicationResponse) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{141} }
+
+type ListApplicationRequest struct {
+	Filter  *infoblox_api.Filtering      `protobuf:"bytes,1,opt,name=filter" json:"filter,omitempty"`
+	OrderBy *infoblox_api.Sorting        `protobuf:"bytes,2,opt,name=order_by,json=orderBy" json:"order_by,omitempty"`
+	Fields  *infoblox_api.FieldSelection `protobuf:"bytes,3,opt,name=fields" json:"fields,omitempty"`
+	Paging  *infoblox_api.Pagination     `protobuf:"bytes,4,opt,name=paging" json:"paging,omitempty"`
+}
+
+func (m *ListApplicationRequest) Reset()                    { *m = ListApplicationRequest{} }
+func (m *ListApplicationRequest) String() string            { return proto.CompactTextString(m) }
+func (*ListApplicationRequest) ProtoMessage()               {}
+func (*ListApplicationRequest) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{142} }
+
+func (m *ListApplicationRequest) GetFilter() *infoblox_api.Filtering {
+	if m != nil {
+		return m.Filter
+	}
+	return nil
+}
+
+func (m *ListApplicationRequest) GetOrderBy() *infoblox_api.Sorting {
+	if m != nil {
+		return m.OrderBy
+	}
+	return nil
+}
+
+func (m *ListApplicationRequest) GetFields() *infoblox_api.FieldSelection {
+	if m != nil {
+		return m.Fields
+	}
+	return nil
+}
+
+func (m *ListApplicationRequest) GetPaging() *infoblox_api.Pagination {
+	if m != nil {
+		return m.Paging
+	}
+	return nil
+}
+
+type ListApplicationsResponse struct {
+	Results []*Application         `protobuf:"bytes,1,rep,name=results" json:"results,omitempty"`
+	Page    *infoblox_api.PageInfo `protobuf:"bytes,2,opt,name=page" json:"page,omitempty"`
+}
+
+func (m *ListApplicationsResponse) Reset()                    { *m = ListApplicationsResponse{} }
+func (m *ListApplicationsResponse) String() string            { return proto.CompactTextString(m) }
+func (*ListApplicationsResponse) ProtoMessage()               {}
+func (*ListApplicationsResponse) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{143} }
+
+func (m *ListApplicationsResponse) GetResults() []*Application {
+	if m != nil {
+		return m.Results
+	}
+	return nil
+}
+
+func (m *ListApplicationsResponse) GetPage() *infoblox_api.PageInfo {
+	if m != nil {
+		return m.Page
+	}
+	return nil
+}
+
 func init() {
 	proto.RegisterType((*VersionResponse)(nil), "api.cmdb.VersionResponse")
-	proto.RegisterType((*Region)(nil), "api.cmdb.Region")
-	proto.RegisterType((*CreateRegionRequest)(nil), "api.cmdb.CreateRegionRequest")
-	proto.RegisterType((*CreateRegionResponse)(nil), "api.cmdb.CreateRegionResponse")
-	proto.RegisterType((*ReadRegionRequest)(nil), "api.cmdb.ReadRegionRequest")
-	proto.RegisterType((*ReadRegionResponse)(nil), "api.cmdb.ReadRegionResponse")
-	proto.RegisterType((*UpdateRegionRequest)(nil), "api.cmdb.UpdateRegionRequest")
-	proto.RegisterType((*UpdateRegionResponse)(nil), "api.cmdb.UpdateRegionResponse")
-	proto.RegisterType((*DeleteRegionRequest)(nil), "api.cmdb.DeleteRegionRequest")
-	proto.RegisterType((*DeleteRegionResponse)(nil), "api.cmdb.DeleteRegionResponse")
-	proto.RegisterType((*ListRegionRequest)(nil), "api.cmdb.ListRegionRequest")
-	proto.RegisterType((*ListRegionsResponse)(nil), "api.cmdb.ListRegionsResponse")
+	proto.RegisterType((*AwsService)(nil), "api.cmdb.AwsService")
+	proto.RegisterType((*CreateAwsServiceRequest)(nil), "api.cmdb.CreateAwsServiceRequest")
+	proto.RegisterType((*CreateAwsServiceResponse)(nil), "api.cmdb.CreateAwsServiceResponse")
+	proto.RegisterType((*ReadAwsServiceRequest)(nil), "api.cmdb.ReadAwsServiceRequest")
+	proto.RegisterType((*ReadAwsServiceResponse)(nil), "api.cmdb.ReadAwsServiceResponse")
+	proto.RegisterType((*UpdateAwsServiceRequest)(nil), "api.cmdb.UpdateAwsServiceRequest")
+	proto.RegisterType((*UpdateAwsServiceResponse)(nil), "api.cmdb.UpdateAwsServiceResponse")
+	proto.RegisterType((*DeleteAwsServiceRequest)(nil), "api.cmdb.DeleteAwsServiceRequest")
+	proto.RegisterType((*DeleteAwsServiceResponse)(nil), "api.cmdb.DeleteAwsServiceResponse")
+	proto.RegisterType((*ListAwsServiceRequest)(nil), "api.cmdb.ListAwsServiceRequest")
+	proto.RegisterType((*ListAwsServicesResponse)(nil), "api.cmdb.ListAwsServicesResponse")
 	proto.RegisterType((*Container)(nil), "api.cmdb.Container")
 	proto.RegisterType((*CreateContainerRequest)(nil), "api.cmdb.CreateContainerRequest")
 	proto.RegisterType((*CreateContainerResponse)(nil), "api.cmdb.CreateContainerResponse")
@@ -1447,6 +3439,17 @@ func init() {
 	proto.RegisterType((*DeleteContainerResponse)(nil), "api.cmdb.DeleteContainerResponse")
 	proto.RegisterType((*ListContainerRequest)(nil), "api.cmdb.ListContainerRequest")
 	proto.RegisterType((*ListContainersResponse)(nil), "api.cmdb.ListContainersResponse")
+	proto.RegisterType((*Manifest)(nil), "api.cmdb.Manifest")
+	proto.RegisterType((*CreateManifestRequest)(nil), "api.cmdb.CreateManifestRequest")
+	proto.RegisterType((*CreateManifestResponse)(nil), "api.cmdb.CreateManifestResponse")
+	proto.RegisterType((*ReadManifestRequest)(nil), "api.cmdb.ReadManifestRequest")
+	proto.RegisterType((*ReadManifestResponse)(nil), "api.cmdb.ReadManifestResponse")
+	proto.RegisterType((*UpdateManifestRequest)(nil), "api.cmdb.UpdateManifestRequest")
+	proto.RegisterType((*UpdateManifestResponse)(nil), "api.cmdb.UpdateManifestResponse")
+	proto.RegisterType((*DeleteManifestRequest)(nil), "api.cmdb.DeleteManifestRequest")
+	proto.RegisterType((*DeleteManifestResponse)(nil), "api.cmdb.DeleteManifestResponse")
+	proto.RegisterType((*ListManifestRequest)(nil), "api.cmdb.ListManifestRequest")
+	proto.RegisterType((*ListManifestsResponse)(nil), "api.cmdb.ListManifestsResponse")
 	proto.RegisterType((*VersionTag)(nil), "api.cmdb.VersionTag")
 	proto.RegisterType((*CreateVersionTagRequest)(nil), "api.cmdb.CreateVersionTagRequest")
 	proto.RegisterType((*CreateVersionTagResponse)(nil), "api.cmdb.CreateVersionTagResponse")
@@ -1458,6 +3461,72 @@ func init() {
 	proto.RegisterType((*DeleteVersionTagResponse)(nil), "api.cmdb.DeleteVersionTagResponse")
 	proto.RegisterType((*ListVersionTagRequest)(nil), "api.cmdb.ListVersionTagRequest")
 	proto.RegisterType((*ListVersionTagsResponse)(nil), "api.cmdb.ListVersionTagsResponse")
+	proto.RegisterType((*Artifact)(nil), "api.cmdb.Artifact")
+	proto.RegisterType((*CreateArtifactRequest)(nil), "api.cmdb.CreateArtifactRequest")
+	proto.RegisterType((*CreateArtifactResponse)(nil), "api.cmdb.CreateArtifactResponse")
+	proto.RegisterType((*ReadArtifactRequest)(nil), "api.cmdb.ReadArtifactRequest")
+	proto.RegisterType((*ReadArtifactResponse)(nil), "api.cmdb.ReadArtifactResponse")
+	proto.RegisterType((*UpdateArtifactRequest)(nil), "api.cmdb.UpdateArtifactRequest")
+	proto.RegisterType((*UpdateArtifactResponse)(nil), "api.cmdb.UpdateArtifactResponse")
+	proto.RegisterType((*DeleteArtifactRequest)(nil), "api.cmdb.DeleteArtifactRequest")
+	proto.RegisterType((*DeleteArtifactResponse)(nil), "api.cmdb.DeleteArtifactResponse")
+	proto.RegisterType((*ListArtifactRequest)(nil), "api.cmdb.ListArtifactRequest")
+	proto.RegisterType((*ListArtifactsResponse)(nil), "api.cmdb.ListArtifactsResponse")
+	proto.RegisterType((*AwsRdsInstance)(nil), "api.cmdb.AwsRdsInstance")
+	proto.RegisterType((*CreateAwsRdsInstanceRequest)(nil), "api.cmdb.CreateAwsRdsInstanceRequest")
+	proto.RegisterType((*CreateAwsRdsInstanceResponse)(nil), "api.cmdb.CreateAwsRdsInstanceResponse")
+	proto.RegisterType((*ReadAwsRdsInstanceRequest)(nil), "api.cmdb.ReadAwsRdsInstanceRequest")
+	proto.RegisterType((*ReadAwsRdsInstanceResponse)(nil), "api.cmdb.ReadAwsRdsInstanceResponse")
+	proto.RegisterType((*UpdateAwsRdsInstanceRequest)(nil), "api.cmdb.UpdateAwsRdsInstanceRequest")
+	proto.RegisterType((*UpdateAwsRdsInstanceResponse)(nil), "api.cmdb.UpdateAwsRdsInstanceResponse")
+	proto.RegisterType((*DeleteAwsRdsInstanceRequest)(nil), "api.cmdb.DeleteAwsRdsInstanceRequest")
+	proto.RegisterType((*DeleteAwsRdsInstanceResponse)(nil), "api.cmdb.DeleteAwsRdsInstanceResponse")
+	proto.RegisterType((*ListAwsRdsInstanceRequest)(nil), "api.cmdb.ListAwsRdsInstanceRequest")
+	proto.RegisterType((*ListAwsRdsInstancesResponse)(nil), "api.cmdb.ListAwsRdsInstancesResponse")
+	proto.RegisterType((*Deployment)(nil), "api.cmdb.Deployment")
+	proto.RegisterType((*CreateDeploymentRequest)(nil), "api.cmdb.CreateDeploymentRequest")
+	proto.RegisterType((*CreateDeploymentResponse)(nil), "api.cmdb.CreateDeploymentResponse")
+	proto.RegisterType((*ReadDeploymentRequest)(nil), "api.cmdb.ReadDeploymentRequest")
+	proto.RegisterType((*ReadDeploymentResponse)(nil), "api.cmdb.ReadDeploymentResponse")
+	proto.RegisterType((*UpdateDeploymentRequest)(nil), "api.cmdb.UpdateDeploymentRequest")
+	proto.RegisterType((*UpdateDeploymentResponse)(nil), "api.cmdb.UpdateDeploymentResponse")
+	proto.RegisterType((*DeleteDeploymentRequest)(nil), "api.cmdb.DeleteDeploymentRequest")
+	proto.RegisterType((*DeleteDeploymentResponse)(nil), "api.cmdb.DeleteDeploymentResponse")
+	proto.RegisterType((*ListDeploymentRequest)(nil), "api.cmdb.ListDeploymentRequest")
+	proto.RegisterType((*ListDeploymentsResponse)(nil), "api.cmdb.ListDeploymentsResponse")
+	proto.RegisterType((*Environment)(nil), "api.cmdb.Environment")
+	proto.RegisterType((*CreateEnvironmentRequest)(nil), "api.cmdb.CreateEnvironmentRequest")
+	proto.RegisterType((*CreateEnvironmentResponse)(nil), "api.cmdb.CreateEnvironmentResponse")
+	proto.RegisterType((*ReadEnvironmentRequest)(nil), "api.cmdb.ReadEnvironmentRequest")
+	proto.RegisterType((*ReadEnvironmentResponse)(nil), "api.cmdb.ReadEnvironmentResponse")
+	proto.RegisterType((*UpdateEnvironmentRequest)(nil), "api.cmdb.UpdateEnvironmentRequest")
+	proto.RegisterType((*UpdateEnvironmentResponse)(nil), "api.cmdb.UpdateEnvironmentResponse")
+	proto.RegisterType((*DeleteEnvironmentRequest)(nil), "api.cmdb.DeleteEnvironmentRequest")
+	proto.RegisterType((*DeleteEnvironmentResponse)(nil), "api.cmdb.DeleteEnvironmentResponse")
+	proto.RegisterType((*ListEnvironmentRequest)(nil), "api.cmdb.ListEnvironmentRequest")
+	proto.RegisterType((*ListEnvironmentsResponse)(nil), "api.cmdb.ListEnvironmentsResponse")
+	proto.RegisterType((*KubeCluster)(nil), "api.cmdb.KubeCluster")
+	proto.RegisterType((*CreateKubeClusterRequest)(nil), "api.cmdb.CreateKubeClusterRequest")
+	proto.RegisterType((*CreateKubeClusterResponse)(nil), "api.cmdb.CreateKubeClusterResponse")
+	proto.RegisterType((*ReadKubeClusterRequest)(nil), "api.cmdb.ReadKubeClusterRequest")
+	proto.RegisterType((*ReadKubeClusterResponse)(nil), "api.cmdb.ReadKubeClusterResponse")
+	proto.RegisterType((*UpdateKubeClusterRequest)(nil), "api.cmdb.UpdateKubeClusterRequest")
+	proto.RegisterType((*UpdateKubeClusterResponse)(nil), "api.cmdb.UpdateKubeClusterResponse")
+	proto.RegisterType((*DeleteKubeClusterRequest)(nil), "api.cmdb.DeleteKubeClusterRequest")
+	proto.RegisterType((*DeleteKubeClusterResponse)(nil), "api.cmdb.DeleteKubeClusterResponse")
+	proto.RegisterType((*ListKubeClusterRequest)(nil), "api.cmdb.ListKubeClusterRequest")
+	proto.RegisterType((*ListKubeClustersResponse)(nil), "api.cmdb.ListKubeClustersResponse")
+	proto.RegisterType((*Region)(nil), "api.cmdb.Region")
+	proto.RegisterType((*CreateRegionRequest)(nil), "api.cmdb.CreateRegionRequest")
+	proto.RegisterType((*CreateRegionResponse)(nil), "api.cmdb.CreateRegionResponse")
+	proto.RegisterType((*ReadRegionRequest)(nil), "api.cmdb.ReadRegionRequest")
+	proto.RegisterType((*ReadRegionResponse)(nil), "api.cmdb.ReadRegionResponse")
+	proto.RegisterType((*UpdateRegionRequest)(nil), "api.cmdb.UpdateRegionRequest")
+	proto.RegisterType((*UpdateRegionResponse)(nil), "api.cmdb.UpdateRegionResponse")
+	proto.RegisterType((*DeleteRegionRequest)(nil), "api.cmdb.DeleteRegionRequest")
+	proto.RegisterType((*DeleteRegionResponse)(nil), "api.cmdb.DeleteRegionResponse")
+	proto.RegisterType((*ListRegionRequest)(nil), "api.cmdb.ListRegionRequest")
+	proto.RegisterType((*ListRegionsResponse)(nil), "api.cmdb.ListRegionsResponse")
 	proto.RegisterType((*Secret)(nil), "api.cmdb.Secret")
 	proto.RegisterType((*CreateSecretRequest)(nil), "api.cmdb.CreateSecretRequest")
 	proto.RegisterType((*CreateSecretResponse)(nil), "api.cmdb.CreateSecretResponse")
@@ -1480,6 +3549,17 @@ func init() {
 	proto.RegisterType((*DeleteVaultResponse)(nil), "api.cmdb.DeleteVaultResponse")
 	proto.RegisterType((*ListVaultRequest)(nil), "api.cmdb.ListVaultRequest")
 	proto.RegisterType((*ListVaultsResponse)(nil), "api.cmdb.ListVaultsResponse")
+	proto.RegisterType((*Application)(nil), "api.cmdb.Application")
+	proto.RegisterType((*CreateApplicationRequest)(nil), "api.cmdb.CreateApplicationRequest")
+	proto.RegisterType((*CreateApplicationResponse)(nil), "api.cmdb.CreateApplicationResponse")
+	proto.RegisterType((*ReadApplicationRequest)(nil), "api.cmdb.ReadApplicationRequest")
+	proto.RegisterType((*ReadApplicationResponse)(nil), "api.cmdb.ReadApplicationResponse")
+	proto.RegisterType((*UpdateApplicationRequest)(nil), "api.cmdb.UpdateApplicationRequest")
+	proto.RegisterType((*UpdateApplicationResponse)(nil), "api.cmdb.UpdateApplicationResponse")
+	proto.RegisterType((*DeleteApplicationRequest)(nil), "api.cmdb.DeleteApplicationRequest")
+	proto.RegisterType((*DeleteApplicationResponse)(nil), "api.cmdb.DeleteApplicationResponse")
+	proto.RegisterType((*ListApplicationRequest)(nil), "api.cmdb.ListApplicationRequest")
+	proto.RegisterType((*ListApplicationsResponse)(nil), "api.cmdb.ListApplicationsResponse")
 }
 
 // Reference imports to suppress errors if they are not otherwise used.
@@ -1554,206 +3634,206 @@ var _Cmdb_serviceDesc = grpc.ServiceDesc{
 	Metadata: "github.com/seizadi/cmdb/pkg/pb/cmdb.proto",
 }
 
-// Client API for Regions service
+// Client API for AwsServices service
 
-type RegionsClient interface {
-	// Use this method to create a region information.
-	Create(ctx context.Context, in *CreateRegionRequest, opts ...grpc.CallOption) (*CreateRegionResponse, error)
-	// Use this method to read a region information by identifier.
-	Read(ctx context.Context, in *ReadRegionRequest, opts ...grpc.CallOption) (*ReadRegionResponse, error)
-	// Use this method to update a region information.
-	Update(ctx context.Context, in *UpdateRegionRequest, opts ...grpc.CallOption) (*UpdateRegionResponse, error)
-	// Use this method to delete a particular region.
-	Delete(ctx context.Context, in *DeleteRegionRequest, opts ...grpc.CallOption) (*DeleteRegionResponse, error)
-	// Use this method to retrieve all the regions.
-	List(ctx context.Context, in *ListRegionRequest, opts ...grpc.CallOption) (*ListRegionsResponse, error)
+type AwsServicesClient interface {
+	// Use this method to create a AwsService information.
+	Create(ctx context.Context, in *CreateAwsServiceRequest, opts ...grpc.CallOption) (*CreateAwsServiceResponse, error)
+	// Use this method to read a AwsService information by identifier.
+	Read(ctx context.Context, in *ReadAwsServiceRequest, opts ...grpc.CallOption) (*ReadAwsServiceResponse, error)
+	// Use this method to update a AwsService information.
+	Update(ctx context.Context, in *UpdateAwsServiceRequest, opts ...grpc.CallOption) (*UpdateAwsServiceResponse, error)
+	// Use this method to delete a particular AwsService.
+	Delete(ctx context.Context, in *DeleteAwsServiceRequest, opts ...grpc.CallOption) (*DeleteAwsServiceResponse, error)
+	// Use this method to retrieve all the AwsServices.
+	List(ctx context.Context, in *ListAwsServiceRequest, opts ...grpc.CallOption) (*ListAwsServicesResponse, error)
 }
 
-type regionsClient struct {
+type awsServicesClient struct {
 	cc *grpc.ClientConn
 }
 
-func NewRegionsClient(cc *grpc.ClientConn) RegionsClient {
-	return &regionsClient{cc}
+func NewAwsServicesClient(cc *grpc.ClientConn) AwsServicesClient {
+	return &awsServicesClient{cc}
 }
 
-func (c *regionsClient) Create(ctx context.Context, in *CreateRegionRequest, opts ...grpc.CallOption) (*CreateRegionResponse, error) {
-	out := new(CreateRegionResponse)
-	err := grpc.Invoke(ctx, "/api.cmdb.Regions/Create", in, out, c.cc, opts...)
+func (c *awsServicesClient) Create(ctx context.Context, in *CreateAwsServiceRequest, opts ...grpc.CallOption) (*CreateAwsServiceResponse, error) {
+	out := new(CreateAwsServiceResponse)
+	err := grpc.Invoke(ctx, "/api.cmdb.AwsServices/Create", in, out, c.cc, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *regionsClient) Read(ctx context.Context, in *ReadRegionRequest, opts ...grpc.CallOption) (*ReadRegionResponse, error) {
-	out := new(ReadRegionResponse)
-	err := grpc.Invoke(ctx, "/api.cmdb.Regions/Read", in, out, c.cc, opts...)
+func (c *awsServicesClient) Read(ctx context.Context, in *ReadAwsServiceRequest, opts ...grpc.CallOption) (*ReadAwsServiceResponse, error) {
+	out := new(ReadAwsServiceResponse)
+	err := grpc.Invoke(ctx, "/api.cmdb.AwsServices/Read", in, out, c.cc, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *regionsClient) Update(ctx context.Context, in *UpdateRegionRequest, opts ...grpc.CallOption) (*UpdateRegionResponse, error) {
-	out := new(UpdateRegionResponse)
-	err := grpc.Invoke(ctx, "/api.cmdb.Regions/Update", in, out, c.cc, opts...)
+func (c *awsServicesClient) Update(ctx context.Context, in *UpdateAwsServiceRequest, opts ...grpc.CallOption) (*UpdateAwsServiceResponse, error) {
+	out := new(UpdateAwsServiceResponse)
+	err := grpc.Invoke(ctx, "/api.cmdb.AwsServices/Update", in, out, c.cc, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *regionsClient) Delete(ctx context.Context, in *DeleteRegionRequest, opts ...grpc.CallOption) (*DeleteRegionResponse, error) {
-	out := new(DeleteRegionResponse)
-	err := grpc.Invoke(ctx, "/api.cmdb.Regions/Delete", in, out, c.cc, opts...)
+func (c *awsServicesClient) Delete(ctx context.Context, in *DeleteAwsServiceRequest, opts ...grpc.CallOption) (*DeleteAwsServiceResponse, error) {
+	out := new(DeleteAwsServiceResponse)
+	err := grpc.Invoke(ctx, "/api.cmdb.AwsServices/Delete", in, out, c.cc, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *regionsClient) List(ctx context.Context, in *ListRegionRequest, opts ...grpc.CallOption) (*ListRegionsResponse, error) {
-	out := new(ListRegionsResponse)
-	err := grpc.Invoke(ctx, "/api.cmdb.Regions/List", in, out, c.cc, opts...)
+func (c *awsServicesClient) List(ctx context.Context, in *ListAwsServiceRequest, opts ...grpc.CallOption) (*ListAwsServicesResponse, error) {
+	out := new(ListAwsServicesResponse)
+	err := grpc.Invoke(ctx, "/api.cmdb.AwsServices/List", in, out, c.cc, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-// Server API for Regions service
+// Server API for AwsServices service
 
-type RegionsServer interface {
-	// Use this method to create a region information.
-	Create(context.Context, *CreateRegionRequest) (*CreateRegionResponse, error)
-	// Use this method to read a region information by identifier.
-	Read(context.Context, *ReadRegionRequest) (*ReadRegionResponse, error)
-	// Use this method to update a region information.
-	Update(context.Context, *UpdateRegionRequest) (*UpdateRegionResponse, error)
-	// Use this method to delete a particular region.
-	Delete(context.Context, *DeleteRegionRequest) (*DeleteRegionResponse, error)
-	// Use this method to retrieve all the regions.
-	List(context.Context, *ListRegionRequest) (*ListRegionsResponse, error)
+type AwsServicesServer interface {
+	// Use this method to create a AwsService information.
+	Create(context.Context, *CreateAwsServiceRequest) (*CreateAwsServiceResponse, error)
+	// Use this method to read a AwsService information by identifier.
+	Read(context.Context, *ReadAwsServiceRequest) (*ReadAwsServiceResponse, error)
+	// Use this method to update a AwsService information.
+	Update(context.Context, *UpdateAwsServiceRequest) (*UpdateAwsServiceResponse, error)
+	// Use this method to delete a particular AwsService.
+	Delete(context.Context, *DeleteAwsServiceRequest) (*DeleteAwsServiceResponse, error)
+	// Use this method to retrieve all the AwsServices.
+	List(context.Context, *ListAwsServiceRequest) (*ListAwsServicesResponse, error)
 }
 
-func RegisterRegionsServer(s *grpc.Server, srv RegionsServer) {
-	s.RegisterService(&_Regions_serviceDesc, srv)
+func RegisterAwsServicesServer(s *grpc.Server, srv AwsServicesServer) {
+	s.RegisterService(&_AwsServices_serviceDesc, srv)
 }
 
-func _Regions_Create_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(CreateRegionRequest)
+func _AwsServices_Create_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CreateAwsServiceRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(RegionsServer).Create(ctx, in)
+		return srv.(AwsServicesServer).Create(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/api.cmdb.Regions/Create",
+		FullMethod: "/api.cmdb.AwsServices/Create",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(RegionsServer).Create(ctx, req.(*CreateRegionRequest))
+		return srv.(AwsServicesServer).Create(ctx, req.(*CreateAwsServiceRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Regions_Read_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(ReadRegionRequest)
+func _AwsServices_Read_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ReadAwsServiceRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(RegionsServer).Read(ctx, in)
+		return srv.(AwsServicesServer).Read(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/api.cmdb.Regions/Read",
+		FullMethod: "/api.cmdb.AwsServices/Read",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(RegionsServer).Read(ctx, req.(*ReadRegionRequest))
+		return srv.(AwsServicesServer).Read(ctx, req.(*ReadAwsServiceRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Regions_Update_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(UpdateRegionRequest)
+func _AwsServices_Update_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UpdateAwsServiceRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(RegionsServer).Update(ctx, in)
+		return srv.(AwsServicesServer).Update(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/api.cmdb.Regions/Update",
+		FullMethod: "/api.cmdb.AwsServices/Update",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(RegionsServer).Update(ctx, req.(*UpdateRegionRequest))
+		return srv.(AwsServicesServer).Update(ctx, req.(*UpdateAwsServiceRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Regions_Delete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(DeleteRegionRequest)
+func _AwsServices_Delete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DeleteAwsServiceRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(RegionsServer).Delete(ctx, in)
+		return srv.(AwsServicesServer).Delete(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/api.cmdb.Regions/Delete",
+		FullMethod: "/api.cmdb.AwsServices/Delete",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(RegionsServer).Delete(ctx, req.(*DeleteRegionRequest))
+		return srv.(AwsServicesServer).Delete(ctx, req.(*DeleteAwsServiceRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Regions_List_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(ListRegionRequest)
+func _AwsServices_List_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListAwsServiceRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(RegionsServer).List(ctx, in)
+		return srv.(AwsServicesServer).List(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/api.cmdb.Regions/List",
+		FullMethod: "/api.cmdb.AwsServices/List",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(RegionsServer).List(ctx, req.(*ListRegionRequest))
+		return srv.(AwsServicesServer).List(ctx, req.(*ListAwsServiceRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-var _Regions_serviceDesc = grpc.ServiceDesc{
-	ServiceName: "api.cmdb.Regions",
-	HandlerType: (*RegionsServer)(nil),
+var _AwsServices_serviceDesc = grpc.ServiceDesc{
+	ServiceName: "api.cmdb.AwsServices",
+	HandlerType: (*AwsServicesServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
 			MethodName: "Create",
-			Handler:    _Regions_Create_Handler,
+			Handler:    _AwsServices_Create_Handler,
 		},
 		{
 			MethodName: "Read",
-			Handler:    _Regions_Read_Handler,
+			Handler:    _AwsServices_Read_Handler,
 		},
 		{
 			MethodName: "Update",
-			Handler:    _Regions_Update_Handler,
+			Handler:    _AwsServices_Update_Handler,
 		},
 		{
 			MethodName: "Delete",
-			Handler:    _Regions_Delete_Handler,
+			Handler:    _AwsServices_Delete_Handler,
 		},
 		{
 			MethodName: "List",
-			Handler:    _Regions_List_Handler,
+			Handler:    _AwsServices_List_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
@@ -1763,15 +3843,15 @@ var _Regions_serviceDesc = grpc.ServiceDesc{
 // Client API for Containers service
 
 type ContainersClient interface {
-	// Use this method to create a container.
+	// Use this method to create a Container information.
 	Create(ctx context.Context, in *CreateContainerRequest, opts ...grpc.CallOption) (*CreateContainerResponse, error)
-	// Use this method to retrieve the particular container.
+	// Use this method to read a Container information by identifier.
 	Read(ctx context.Context, in *ReadContainerRequest, opts ...grpc.CallOption) (*ReadContainerResponse, error)
-	// Use this method to update container.
+	// Use this method to update a Container information.
 	Update(ctx context.Context, in *UpdateContainerRequest, opts ...grpc.CallOption) (*UpdateContainerResponse, error)
-	// Use this method to delete a container.
+	// Use this method to delete a particular Container.
 	Delete(ctx context.Context, in *DeleteContainerRequest, opts ...grpc.CallOption) (*DeleteContainerResponse, error)
-	// Use this method to retrieve the list of containers.
+	// Use this method to retrieve all the Containers.
 	List(ctx context.Context, in *ListContainerRequest, opts ...grpc.CallOption) (*ListContainersResponse, error)
 }
 
@@ -1831,15 +3911,15 @@ func (c *containersClient) List(ctx context.Context, in *ListContainerRequest, o
 // Server API for Containers service
 
 type ContainersServer interface {
-	// Use this method to create a container.
+	// Use this method to create a Container information.
 	Create(context.Context, *CreateContainerRequest) (*CreateContainerResponse, error)
-	// Use this method to retrieve the particular container.
+	// Use this method to read a Container information by identifier.
 	Read(context.Context, *ReadContainerRequest) (*ReadContainerResponse, error)
-	// Use this method to update container.
+	// Use this method to update a Container information.
 	Update(context.Context, *UpdateContainerRequest) (*UpdateContainerResponse, error)
-	// Use this method to delete a container.
+	// Use this method to delete a particular Container.
 	Delete(context.Context, *DeleteContainerRequest) (*DeleteContainerResponse, error)
-	// Use this method to retrieve the list of containers.
+	// Use this method to retrieve all the Containers.
 	List(context.Context, *ListContainerRequest) (*ListContainersResponse, error)
 }
 
@@ -1966,18 +4046,224 @@ var _Containers_serviceDesc = grpc.ServiceDesc{
 	Metadata: "github.com/seizadi/cmdb/pkg/pb/cmdb.proto",
 }
 
+// Client API for Manifests service
+
+type ManifestsClient interface {
+	// Use this method to create a Manifest information.
+	Create(ctx context.Context, in *CreateManifestRequest, opts ...grpc.CallOption) (*CreateManifestResponse, error)
+	// Use this method to read a Manifest information by identifier.
+	Read(ctx context.Context, in *ReadManifestRequest, opts ...grpc.CallOption) (*ReadManifestResponse, error)
+	// Use this method to update a Manifest information.
+	Update(ctx context.Context, in *UpdateManifestRequest, opts ...grpc.CallOption) (*UpdateManifestResponse, error)
+	// Use this method to delete a particular Manifest.
+	Delete(ctx context.Context, in *DeleteManifestRequest, opts ...grpc.CallOption) (*DeleteManifestResponse, error)
+	// Use this method to retrieve all the Manifests.
+	List(ctx context.Context, in *ListManifestRequest, opts ...grpc.CallOption) (*ListManifestsResponse, error)
+}
+
+type manifestsClient struct {
+	cc *grpc.ClientConn
+}
+
+func NewManifestsClient(cc *grpc.ClientConn) ManifestsClient {
+	return &manifestsClient{cc}
+}
+
+func (c *manifestsClient) Create(ctx context.Context, in *CreateManifestRequest, opts ...grpc.CallOption) (*CreateManifestResponse, error) {
+	out := new(CreateManifestResponse)
+	err := grpc.Invoke(ctx, "/api.cmdb.Manifests/Create", in, out, c.cc, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *manifestsClient) Read(ctx context.Context, in *ReadManifestRequest, opts ...grpc.CallOption) (*ReadManifestResponse, error) {
+	out := new(ReadManifestResponse)
+	err := grpc.Invoke(ctx, "/api.cmdb.Manifests/Read", in, out, c.cc, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *manifestsClient) Update(ctx context.Context, in *UpdateManifestRequest, opts ...grpc.CallOption) (*UpdateManifestResponse, error) {
+	out := new(UpdateManifestResponse)
+	err := grpc.Invoke(ctx, "/api.cmdb.Manifests/Update", in, out, c.cc, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *manifestsClient) Delete(ctx context.Context, in *DeleteManifestRequest, opts ...grpc.CallOption) (*DeleteManifestResponse, error) {
+	out := new(DeleteManifestResponse)
+	err := grpc.Invoke(ctx, "/api.cmdb.Manifests/Delete", in, out, c.cc, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *manifestsClient) List(ctx context.Context, in *ListManifestRequest, opts ...grpc.CallOption) (*ListManifestsResponse, error) {
+	out := new(ListManifestsResponse)
+	err := grpc.Invoke(ctx, "/api.cmdb.Manifests/List", in, out, c.cc, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+// Server API for Manifests service
+
+type ManifestsServer interface {
+	// Use this method to create a Manifest information.
+	Create(context.Context, *CreateManifestRequest) (*CreateManifestResponse, error)
+	// Use this method to read a Manifest information by identifier.
+	Read(context.Context, *ReadManifestRequest) (*ReadManifestResponse, error)
+	// Use this method to update a Manifest information.
+	Update(context.Context, *UpdateManifestRequest) (*UpdateManifestResponse, error)
+	// Use this method to delete a particular Manifest.
+	Delete(context.Context, *DeleteManifestRequest) (*DeleteManifestResponse, error)
+	// Use this method to retrieve all the Manifests.
+	List(context.Context, *ListManifestRequest) (*ListManifestsResponse, error)
+}
+
+func RegisterManifestsServer(s *grpc.Server, srv ManifestsServer) {
+	s.RegisterService(&_Manifests_serviceDesc, srv)
+}
+
+func _Manifests_Create_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CreateManifestRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ManifestsServer).Create(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/api.cmdb.Manifests/Create",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ManifestsServer).Create(ctx, req.(*CreateManifestRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Manifests_Read_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ReadManifestRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ManifestsServer).Read(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/api.cmdb.Manifests/Read",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ManifestsServer).Read(ctx, req.(*ReadManifestRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Manifests_Update_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UpdateManifestRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ManifestsServer).Update(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/api.cmdb.Manifests/Update",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ManifestsServer).Update(ctx, req.(*UpdateManifestRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Manifests_Delete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DeleteManifestRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ManifestsServer).Delete(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/api.cmdb.Manifests/Delete",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ManifestsServer).Delete(ctx, req.(*DeleteManifestRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Manifests_List_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListManifestRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ManifestsServer).List(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/api.cmdb.Manifests/List",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ManifestsServer).List(ctx, req.(*ListManifestRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+var _Manifests_serviceDesc = grpc.ServiceDesc{
+	ServiceName: "api.cmdb.Manifests",
+	HandlerType: (*ManifestsServer)(nil),
+	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "Create",
+			Handler:    _Manifests_Create_Handler,
+		},
+		{
+			MethodName: "Read",
+			Handler:    _Manifests_Read_Handler,
+		},
+		{
+			MethodName: "Update",
+			Handler:    _Manifests_Update_Handler,
+		},
+		{
+			MethodName: "Delete",
+			Handler:    _Manifests_Delete_Handler,
+		},
+		{
+			MethodName: "List",
+			Handler:    _Manifests_List_Handler,
+		},
+	},
+	Streams:  []grpc.StreamDesc{},
+	Metadata: "github.com/seizadi/cmdb/pkg/pb/cmdb.proto",
+}
+
 // Client API for VersionTags service
 
 type VersionTagsClient interface {
-	// Use this method to create a version tag.
+	// Use this method to create a VersionTag information.
 	Create(ctx context.Context, in *CreateVersionTagRequest, opts ...grpc.CallOption) (*CreateVersionTagResponse, error)
-	// Use this method to retrieve the particular version tag.
+	// Use this method to read a VersionTag information by identifier.
 	Read(ctx context.Context, in *ReadVersionTagRequest, opts ...grpc.CallOption) (*ReadVersionTagResponse, error)
-	// Use this method to update version tag.
+	// Use this method to update a VersionTag information.
 	Update(ctx context.Context, in *UpdateVersionTagRequest, opts ...grpc.CallOption) (*UpdateVersionTagResponse, error)
-	// Use this method to delete a version tag.
+	// Use this method to delete a particular VersionTag.
 	Delete(ctx context.Context, in *DeleteVersionTagRequest, opts ...grpc.CallOption) (*DeleteVersionTagResponse, error)
-	// Use this method to retrieve the list of version tags.
+	// Use this method to retrieve all the VersionTags.
 	List(ctx context.Context, in *ListVersionTagRequest, opts ...grpc.CallOption) (*ListVersionTagsResponse, error)
 }
 
@@ -2037,15 +4323,15 @@ func (c *versionTagsClient) List(ctx context.Context, in *ListVersionTagRequest,
 // Server API for VersionTags service
 
 type VersionTagsServer interface {
-	// Use this method to create a version tag.
+	// Use this method to create a VersionTag information.
 	Create(context.Context, *CreateVersionTagRequest) (*CreateVersionTagResponse, error)
-	// Use this method to retrieve the particular version tag.
+	// Use this method to read a VersionTag information by identifier.
 	Read(context.Context, *ReadVersionTagRequest) (*ReadVersionTagResponse, error)
-	// Use this method to update version tag.
+	// Use this method to update a VersionTag information.
 	Update(context.Context, *UpdateVersionTagRequest) (*UpdateVersionTagResponse, error)
-	// Use this method to delete a version tag.
+	// Use this method to delete a particular VersionTag.
 	Delete(context.Context, *DeleteVersionTagRequest) (*DeleteVersionTagResponse, error)
-	// Use this method to retrieve the list of version tags.
+	// Use this method to retrieve all the VersionTags.
 	List(context.Context, *ListVersionTagRequest) (*ListVersionTagsResponse, error)
 }
 
@@ -2172,18 +4458,1254 @@ var _VersionTags_serviceDesc = grpc.ServiceDesc{
 	Metadata: "github.com/seizadi/cmdb/pkg/pb/cmdb.proto",
 }
 
+// Client API for Artifacts service
+
+type ArtifactsClient interface {
+	// Use this method to create a Artifact information.
+	Create(ctx context.Context, in *CreateArtifactRequest, opts ...grpc.CallOption) (*CreateArtifactResponse, error)
+	// Use this method to read a Artifact information by identifier.
+	Read(ctx context.Context, in *ReadArtifactRequest, opts ...grpc.CallOption) (*ReadArtifactResponse, error)
+	// Use this method to update a Artifact information.
+	Update(ctx context.Context, in *UpdateArtifactRequest, opts ...grpc.CallOption) (*UpdateArtifactResponse, error)
+	// Use this method to delete a particular Artifact.
+	Delete(ctx context.Context, in *DeleteArtifactRequest, opts ...grpc.CallOption) (*DeleteArtifactResponse, error)
+	// Use this method to retrieve all the Artifacts.
+	List(ctx context.Context, in *ListArtifactRequest, opts ...grpc.CallOption) (*ListArtifactsResponse, error)
+}
+
+type artifactsClient struct {
+	cc *grpc.ClientConn
+}
+
+func NewArtifactsClient(cc *grpc.ClientConn) ArtifactsClient {
+	return &artifactsClient{cc}
+}
+
+func (c *artifactsClient) Create(ctx context.Context, in *CreateArtifactRequest, opts ...grpc.CallOption) (*CreateArtifactResponse, error) {
+	out := new(CreateArtifactResponse)
+	err := grpc.Invoke(ctx, "/api.cmdb.Artifacts/Create", in, out, c.cc, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *artifactsClient) Read(ctx context.Context, in *ReadArtifactRequest, opts ...grpc.CallOption) (*ReadArtifactResponse, error) {
+	out := new(ReadArtifactResponse)
+	err := grpc.Invoke(ctx, "/api.cmdb.Artifacts/Read", in, out, c.cc, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *artifactsClient) Update(ctx context.Context, in *UpdateArtifactRequest, opts ...grpc.CallOption) (*UpdateArtifactResponse, error) {
+	out := new(UpdateArtifactResponse)
+	err := grpc.Invoke(ctx, "/api.cmdb.Artifacts/Update", in, out, c.cc, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *artifactsClient) Delete(ctx context.Context, in *DeleteArtifactRequest, opts ...grpc.CallOption) (*DeleteArtifactResponse, error) {
+	out := new(DeleteArtifactResponse)
+	err := grpc.Invoke(ctx, "/api.cmdb.Artifacts/Delete", in, out, c.cc, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *artifactsClient) List(ctx context.Context, in *ListArtifactRequest, opts ...grpc.CallOption) (*ListArtifactsResponse, error) {
+	out := new(ListArtifactsResponse)
+	err := grpc.Invoke(ctx, "/api.cmdb.Artifacts/List", in, out, c.cc, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+// Server API for Artifacts service
+
+type ArtifactsServer interface {
+	// Use this method to create a Artifact information.
+	Create(context.Context, *CreateArtifactRequest) (*CreateArtifactResponse, error)
+	// Use this method to read a Artifact information by identifier.
+	Read(context.Context, *ReadArtifactRequest) (*ReadArtifactResponse, error)
+	// Use this method to update a Artifact information.
+	Update(context.Context, *UpdateArtifactRequest) (*UpdateArtifactResponse, error)
+	// Use this method to delete a particular Artifact.
+	Delete(context.Context, *DeleteArtifactRequest) (*DeleteArtifactResponse, error)
+	// Use this method to retrieve all the Artifacts.
+	List(context.Context, *ListArtifactRequest) (*ListArtifactsResponse, error)
+}
+
+func RegisterArtifactsServer(s *grpc.Server, srv ArtifactsServer) {
+	s.RegisterService(&_Artifacts_serviceDesc, srv)
+}
+
+func _Artifacts_Create_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CreateArtifactRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ArtifactsServer).Create(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/api.cmdb.Artifacts/Create",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ArtifactsServer).Create(ctx, req.(*CreateArtifactRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Artifacts_Read_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ReadArtifactRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ArtifactsServer).Read(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/api.cmdb.Artifacts/Read",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ArtifactsServer).Read(ctx, req.(*ReadArtifactRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Artifacts_Update_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UpdateArtifactRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ArtifactsServer).Update(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/api.cmdb.Artifacts/Update",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ArtifactsServer).Update(ctx, req.(*UpdateArtifactRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Artifacts_Delete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DeleteArtifactRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ArtifactsServer).Delete(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/api.cmdb.Artifacts/Delete",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ArtifactsServer).Delete(ctx, req.(*DeleteArtifactRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Artifacts_List_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListArtifactRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ArtifactsServer).List(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/api.cmdb.Artifacts/List",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ArtifactsServer).List(ctx, req.(*ListArtifactRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+var _Artifacts_serviceDesc = grpc.ServiceDesc{
+	ServiceName: "api.cmdb.Artifacts",
+	HandlerType: (*ArtifactsServer)(nil),
+	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "Create",
+			Handler:    _Artifacts_Create_Handler,
+		},
+		{
+			MethodName: "Read",
+			Handler:    _Artifacts_Read_Handler,
+		},
+		{
+			MethodName: "Update",
+			Handler:    _Artifacts_Update_Handler,
+		},
+		{
+			MethodName: "Delete",
+			Handler:    _Artifacts_Delete_Handler,
+		},
+		{
+			MethodName: "List",
+			Handler:    _Artifacts_List_Handler,
+		},
+	},
+	Streams:  []grpc.StreamDesc{},
+	Metadata: "github.com/seizadi/cmdb/pkg/pb/cmdb.proto",
+}
+
+// Client API for AwsRdsInstances service
+
+type AwsRdsInstancesClient interface {
+	// Use this method to create a AwsRdsInstance information.
+	Create(ctx context.Context, in *CreateAwsRdsInstanceRequest, opts ...grpc.CallOption) (*CreateAwsRdsInstanceResponse, error)
+	// Use this method to read a AwsRdsInstance information by identifier.
+	Read(ctx context.Context, in *ReadAwsRdsInstanceRequest, opts ...grpc.CallOption) (*ReadAwsRdsInstanceResponse, error)
+	// Use this method to update a AwsRdsInstance information.
+	Update(ctx context.Context, in *UpdateAwsRdsInstanceRequest, opts ...grpc.CallOption) (*UpdateAwsRdsInstanceResponse, error)
+	// Use this method to delete a particular AwsRdsInstance.
+	Delete(ctx context.Context, in *DeleteAwsRdsInstanceRequest, opts ...grpc.CallOption) (*DeleteAwsRdsInstanceResponse, error)
+	// Use this method to retrieve all the AwsRdsInstances.
+	List(ctx context.Context, in *ListAwsRdsInstanceRequest, opts ...grpc.CallOption) (*ListAwsRdsInstancesResponse, error)
+}
+
+type awsRdsInstancesClient struct {
+	cc *grpc.ClientConn
+}
+
+func NewAwsRdsInstancesClient(cc *grpc.ClientConn) AwsRdsInstancesClient {
+	return &awsRdsInstancesClient{cc}
+}
+
+func (c *awsRdsInstancesClient) Create(ctx context.Context, in *CreateAwsRdsInstanceRequest, opts ...grpc.CallOption) (*CreateAwsRdsInstanceResponse, error) {
+	out := new(CreateAwsRdsInstanceResponse)
+	err := grpc.Invoke(ctx, "/api.cmdb.AwsRdsInstances/Create", in, out, c.cc, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *awsRdsInstancesClient) Read(ctx context.Context, in *ReadAwsRdsInstanceRequest, opts ...grpc.CallOption) (*ReadAwsRdsInstanceResponse, error) {
+	out := new(ReadAwsRdsInstanceResponse)
+	err := grpc.Invoke(ctx, "/api.cmdb.AwsRdsInstances/Read", in, out, c.cc, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *awsRdsInstancesClient) Update(ctx context.Context, in *UpdateAwsRdsInstanceRequest, opts ...grpc.CallOption) (*UpdateAwsRdsInstanceResponse, error) {
+	out := new(UpdateAwsRdsInstanceResponse)
+	err := grpc.Invoke(ctx, "/api.cmdb.AwsRdsInstances/Update", in, out, c.cc, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *awsRdsInstancesClient) Delete(ctx context.Context, in *DeleteAwsRdsInstanceRequest, opts ...grpc.CallOption) (*DeleteAwsRdsInstanceResponse, error) {
+	out := new(DeleteAwsRdsInstanceResponse)
+	err := grpc.Invoke(ctx, "/api.cmdb.AwsRdsInstances/Delete", in, out, c.cc, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *awsRdsInstancesClient) List(ctx context.Context, in *ListAwsRdsInstanceRequest, opts ...grpc.CallOption) (*ListAwsRdsInstancesResponse, error) {
+	out := new(ListAwsRdsInstancesResponse)
+	err := grpc.Invoke(ctx, "/api.cmdb.AwsRdsInstances/List", in, out, c.cc, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+// Server API for AwsRdsInstances service
+
+type AwsRdsInstancesServer interface {
+	// Use this method to create a AwsRdsInstance information.
+	Create(context.Context, *CreateAwsRdsInstanceRequest) (*CreateAwsRdsInstanceResponse, error)
+	// Use this method to read a AwsRdsInstance information by identifier.
+	Read(context.Context, *ReadAwsRdsInstanceRequest) (*ReadAwsRdsInstanceResponse, error)
+	// Use this method to update a AwsRdsInstance information.
+	Update(context.Context, *UpdateAwsRdsInstanceRequest) (*UpdateAwsRdsInstanceResponse, error)
+	// Use this method to delete a particular AwsRdsInstance.
+	Delete(context.Context, *DeleteAwsRdsInstanceRequest) (*DeleteAwsRdsInstanceResponse, error)
+	// Use this method to retrieve all the AwsRdsInstances.
+	List(context.Context, *ListAwsRdsInstanceRequest) (*ListAwsRdsInstancesResponse, error)
+}
+
+func RegisterAwsRdsInstancesServer(s *grpc.Server, srv AwsRdsInstancesServer) {
+	s.RegisterService(&_AwsRdsInstances_serviceDesc, srv)
+}
+
+func _AwsRdsInstances_Create_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CreateAwsRdsInstanceRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AwsRdsInstancesServer).Create(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/api.cmdb.AwsRdsInstances/Create",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AwsRdsInstancesServer).Create(ctx, req.(*CreateAwsRdsInstanceRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AwsRdsInstances_Read_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ReadAwsRdsInstanceRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AwsRdsInstancesServer).Read(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/api.cmdb.AwsRdsInstances/Read",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AwsRdsInstancesServer).Read(ctx, req.(*ReadAwsRdsInstanceRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AwsRdsInstances_Update_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UpdateAwsRdsInstanceRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AwsRdsInstancesServer).Update(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/api.cmdb.AwsRdsInstances/Update",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AwsRdsInstancesServer).Update(ctx, req.(*UpdateAwsRdsInstanceRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AwsRdsInstances_Delete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DeleteAwsRdsInstanceRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AwsRdsInstancesServer).Delete(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/api.cmdb.AwsRdsInstances/Delete",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AwsRdsInstancesServer).Delete(ctx, req.(*DeleteAwsRdsInstanceRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AwsRdsInstances_List_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListAwsRdsInstanceRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AwsRdsInstancesServer).List(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/api.cmdb.AwsRdsInstances/List",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AwsRdsInstancesServer).List(ctx, req.(*ListAwsRdsInstanceRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+var _AwsRdsInstances_serviceDesc = grpc.ServiceDesc{
+	ServiceName: "api.cmdb.AwsRdsInstances",
+	HandlerType: (*AwsRdsInstancesServer)(nil),
+	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "Create",
+			Handler:    _AwsRdsInstances_Create_Handler,
+		},
+		{
+			MethodName: "Read",
+			Handler:    _AwsRdsInstances_Read_Handler,
+		},
+		{
+			MethodName: "Update",
+			Handler:    _AwsRdsInstances_Update_Handler,
+		},
+		{
+			MethodName: "Delete",
+			Handler:    _AwsRdsInstances_Delete_Handler,
+		},
+		{
+			MethodName: "List",
+			Handler:    _AwsRdsInstances_List_Handler,
+		},
+	},
+	Streams:  []grpc.StreamDesc{},
+	Metadata: "github.com/seizadi/cmdb/pkg/pb/cmdb.proto",
+}
+
+// Client API for Deployments service
+
+type DeploymentsClient interface {
+	// Use this method to create a Deployment information.
+	Create(ctx context.Context, in *CreateDeploymentRequest, opts ...grpc.CallOption) (*CreateDeploymentResponse, error)
+	// Use this method to read a Deployment information by identifier.
+	Read(ctx context.Context, in *ReadDeploymentRequest, opts ...grpc.CallOption) (*ReadDeploymentResponse, error)
+	// Use this method to update a Deployment information.
+	Update(ctx context.Context, in *UpdateDeploymentRequest, opts ...grpc.CallOption) (*UpdateDeploymentResponse, error)
+	// Use this method to delete a particular Deployment.
+	Delete(ctx context.Context, in *DeleteDeploymentRequest, opts ...grpc.CallOption) (*DeleteDeploymentResponse, error)
+	// Use this method to retrieve all the Deployments.
+	List(ctx context.Context, in *ListDeploymentRequest, opts ...grpc.CallOption) (*ListDeploymentsResponse, error)
+}
+
+type deploymentsClient struct {
+	cc *grpc.ClientConn
+}
+
+func NewDeploymentsClient(cc *grpc.ClientConn) DeploymentsClient {
+	return &deploymentsClient{cc}
+}
+
+func (c *deploymentsClient) Create(ctx context.Context, in *CreateDeploymentRequest, opts ...grpc.CallOption) (*CreateDeploymentResponse, error) {
+	out := new(CreateDeploymentResponse)
+	err := grpc.Invoke(ctx, "/api.cmdb.Deployments/Create", in, out, c.cc, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *deploymentsClient) Read(ctx context.Context, in *ReadDeploymentRequest, opts ...grpc.CallOption) (*ReadDeploymentResponse, error) {
+	out := new(ReadDeploymentResponse)
+	err := grpc.Invoke(ctx, "/api.cmdb.Deployments/Read", in, out, c.cc, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *deploymentsClient) Update(ctx context.Context, in *UpdateDeploymentRequest, opts ...grpc.CallOption) (*UpdateDeploymentResponse, error) {
+	out := new(UpdateDeploymentResponse)
+	err := grpc.Invoke(ctx, "/api.cmdb.Deployments/Update", in, out, c.cc, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *deploymentsClient) Delete(ctx context.Context, in *DeleteDeploymentRequest, opts ...grpc.CallOption) (*DeleteDeploymentResponse, error) {
+	out := new(DeleteDeploymentResponse)
+	err := grpc.Invoke(ctx, "/api.cmdb.Deployments/Delete", in, out, c.cc, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *deploymentsClient) List(ctx context.Context, in *ListDeploymentRequest, opts ...grpc.CallOption) (*ListDeploymentsResponse, error) {
+	out := new(ListDeploymentsResponse)
+	err := grpc.Invoke(ctx, "/api.cmdb.Deployments/List", in, out, c.cc, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+// Server API for Deployments service
+
+type DeploymentsServer interface {
+	// Use this method to create a Deployment information.
+	Create(context.Context, *CreateDeploymentRequest) (*CreateDeploymentResponse, error)
+	// Use this method to read a Deployment information by identifier.
+	Read(context.Context, *ReadDeploymentRequest) (*ReadDeploymentResponse, error)
+	// Use this method to update a Deployment information.
+	Update(context.Context, *UpdateDeploymentRequest) (*UpdateDeploymentResponse, error)
+	// Use this method to delete a particular Deployment.
+	Delete(context.Context, *DeleteDeploymentRequest) (*DeleteDeploymentResponse, error)
+	// Use this method to retrieve all the Deployments.
+	List(context.Context, *ListDeploymentRequest) (*ListDeploymentsResponse, error)
+}
+
+func RegisterDeploymentsServer(s *grpc.Server, srv DeploymentsServer) {
+	s.RegisterService(&_Deployments_serviceDesc, srv)
+}
+
+func _Deployments_Create_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CreateDeploymentRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DeploymentsServer).Create(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/api.cmdb.Deployments/Create",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DeploymentsServer).Create(ctx, req.(*CreateDeploymentRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Deployments_Read_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ReadDeploymentRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DeploymentsServer).Read(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/api.cmdb.Deployments/Read",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DeploymentsServer).Read(ctx, req.(*ReadDeploymentRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Deployments_Update_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UpdateDeploymentRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DeploymentsServer).Update(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/api.cmdb.Deployments/Update",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DeploymentsServer).Update(ctx, req.(*UpdateDeploymentRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Deployments_Delete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DeleteDeploymentRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DeploymentsServer).Delete(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/api.cmdb.Deployments/Delete",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DeploymentsServer).Delete(ctx, req.(*DeleteDeploymentRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Deployments_List_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListDeploymentRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DeploymentsServer).List(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/api.cmdb.Deployments/List",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DeploymentsServer).List(ctx, req.(*ListDeploymentRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+var _Deployments_serviceDesc = grpc.ServiceDesc{
+	ServiceName: "api.cmdb.Deployments",
+	HandlerType: (*DeploymentsServer)(nil),
+	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "Create",
+			Handler:    _Deployments_Create_Handler,
+		},
+		{
+			MethodName: "Read",
+			Handler:    _Deployments_Read_Handler,
+		},
+		{
+			MethodName: "Update",
+			Handler:    _Deployments_Update_Handler,
+		},
+		{
+			MethodName: "Delete",
+			Handler:    _Deployments_Delete_Handler,
+		},
+		{
+			MethodName: "List",
+			Handler:    _Deployments_List_Handler,
+		},
+	},
+	Streams:  []grpc.StreamDesc{},
+	Metadata: "github.com/seizadi/cmdb/pkg/pb/cmdb.proto",
+}
+
+// Client API for Environments service
+
+type EnvironmentsClient interface {
+	// Use this method to create a Environment information.
+	Create(ctx context.Context, in *CreateEnvironmentRequest, opts ...grpc.CallOption) (*CreateEnvironmentResponse, error)
+	// Use this method to read a Environment information by identifier.
+	Read(ctx context.Context, in *ReadEnvironmentRequest, opts ...grpc.CallOption) (*ReadEnvironmentResponse, error)
+	// Use this method to update a Environment information.
+	Update(ctx context.Context, in *UpdateEnvironmentRequest, opts ...grpc.CallOption) (*UpdateEnvironmentResponse, error)
+	// Use this method to delete a particular Environment.
+	Delete(ctx context.Context, in *DeleteEnvironmentRequest, opts ...grpc.CallOption) (*DeleteEnvironmentResponse, error)
+	// Use this method to retrieve all the Environments.
+	List(ctx context.Context, in *ListEnvironmentRequest, opts ...grpc.CallOption) (*ListEnvironmentsResponse, error)
+}
+
+type environmentsClient struct {
+	cc *grpc.ClientConn
+}
+
+func NewEnvironmentsClient(cc *grpc.ClientConn) EnvironmentsClient {
+	return &environmentsClient{cc}
+}
+
+func (c *environmentsClient) Create(ctx context.Context, in *CreateEnvironmentRequest, opts ...grpc.CallOption) (*CreateEnvironmentResponse, error) {
+	out := new(CreateEnvironmentResponse)
+	err := grpc.Invoke(ctx, "/api.cmdb.Environments/Create", in, out, c.cc, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *environmentsClient) Read(ctx context.Context, in *ReadEnvironmentRequest, opts ...grpc.CallOption) (*ReadEnvironmentResponse, error) {
+	out := new(ReadEnvironmentResponse)
+	err := grpc.Invoke(ctx, "/api.cmdb.Environments/Read", in, out, c.cc, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *environmentsClient) Update(ctx context.Context, in *UpdateEnvironmentRequest, opts ...grpc.CallOption) (*UpdateEnvironmentResponse, error) {
+	out := new(UpdateEnvironmentResponse)
+	err := grpc.Invoke(ctx, "/api.cmdb.Environments/Update", in, out, c.cc, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *environmentsClient) Delete(ctx context.Context, in *DeleteEnvironmentRequest, opts ...grpc.CallOption) (*DeleteEnvironmentResponse, error) {
+	out := new(DeleteEnvironmentResponse)
+	err := grpc.Invoke(ctx, "/api.cmdb.Environments/Delete", in, out, c.cc, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *environmentsClient) List(ctx context.Context, in *ListEnvironmentRequest, opts ...grpc.CallOption) (*ListEnvironmentsResponse, error) {
+	out := new(ListEnvironmentsResponse)
+	err := grpc.Invoke(ctx, "/api.cmdb.Environments/List", in, out, c.cc, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+// Server API for Environments service
+
+type EnvironmentsServer interface {
+	// Use this method to create a Environment information.
+	Create(context.Context, *CreateEnvironmentRequest) (*CreateEnvironmentResponse, error)
+	// Use this method to read a Environment information by identifier.
+	Read(context.Context, *ReadEnvironmentRequest) (*ReadEnvironmentResponse, error)
+	// Use this method to update a Environment information.
+	Update(context.Context, *UpdateEnvironmentRequest) (*UpdateEnvironmentResponse, error)
+	// Use this method to delete a particular Environment.
+	Delete(context.Context, *DeleteEnvironmentRequest) (*DeleteEnvironmentResponse, error)
+	// Use this method to retrieve all the Environments.
+	List(context.Context, *ListEnvironmentRequest) (*ListEnvironmentsResponse, error)
+}
+
+func RegisterEnvironmentsServer(s *grpc.Server, srv EnvironmentsServer) {
+	s.RegisterService(&_Environments_serviceDesc, srv)
+}
+
+func _Environments_Create_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CreateEnvironmentRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(EnvironmentsServer).Create(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/api.cmdb.Environments/Create",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(EnvironmentsServer).Create(ctx, req.(*CreateEnvironmentRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Environments_Read_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ReadEnvironmentRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(EnvironmentsServer).Read(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/api.cmdb.Environments/Read",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(EnvironmentsServer).Read(ctx, req.(*ReadEnvironmentRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Environments_Update_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UpdateEnvironmentRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(EnvironmentsServer).Update(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/api.cmdb.Environments/Update",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(EnvironmentsServer).Update(ctx, req.(*UpdateEnvironmentRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Environments_Delete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DeleteEnvironmentRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(EnvironmentsServer).Delete(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/api.cmdb.Environments/Delete",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(EnvironmentsServer).Delete(ctx, req.(*DeleteEnvironmentRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Environments_List_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListEnvironmentRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(EnvironmentsServer).List(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/api.cmdb.Environments/List",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(EnvironmentsServer).List(ctx, req.(*ListEnvironmentRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+var _Environments_serviceDesc = grpc.ServiceDesc{
+	ServiceName: "api.cmdb.Environments",
+	HandlerType: (*EnvironmentsServer)(nil),
+	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "Create",
+			Handler:    _Environments_Create_Handler,
+		},
+		{
+			MethodName: "Read",
+			Handler:    _Environments_Read_Handler,
+		},
+		{
+			MethodName: "Update",
+			Handler:    _Environments_Update_Handler,
+		},
+		{
+			MethodName: "Delete",
+			Handler:    _Environments_Delete_Handler,
+		},
+		{
+			MethodName: "List",
+			Handler:    _Environments_List_Handler,
+		},
+	},
+	Streams:  []grpc.StreamDesc{},
+	Metadata: "github.com/seizadi/cmdb/pkg/pb/cmdb.proto",
+}
+
+// Client API for KubeClusters service
+
+type KubeClustersClient interface {
+	// Use this method to create a KubeCluster information.
+	Create(ctx context.Context, in *CreateKubeClusterRequest, opts ...grpc.CallOption) (*CreateKubeClusterResponse, error)
+	// Use this method to read a KubeCluster information by identifier.
+	Read(ctx context.Context, in *ReadKubeClusterRequest, opts ...grpc.CallOption) (*ReadKubeClusterResponse, error)
+	// Use this method to update a KubeCluster information.
+	Update(ctx context.Context, in *UpdateKubeClusterRequest, opts ...grpc.CallOption) (*UpdateKubeClusterResponse, error)
+	// Use this method to delete a particular KubeCluster.
+	Delete(ctx context.Context, in *DeleteKubeClusterRequest, opts ...grpc.CallOption) (*DeleteKubeClusterResponse, error)
+	// Use this method to retrieve all the KubeClusters.
+	List(ctx context.Context, in *ListKubeClusterRequest, opts ...grpc.CallOption) (*ListKubeClustersResponse, error)
+}
+
+type kubeClustersClient struct {
+	cc *grpc.ClientConn
+}
+
+func NewKubeClustersClient(cc *grpc.ClientConn) KubeClustersClient {
+	return &kubeClustersClient{cc}
+}
+
+func (c *kubeClustersClient) Create(ctx context.Context, in *CreateKubeClusterRequest, opts ...grpc.CallOption) (*CreateKubeClusterResponse, error) {
+	out := new(CreateKubeClusterResponse)
+	err := grpc.Invoke(ctx, "/api.cmdb.KubeClusters/Create", in, out, c.cc, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *kubeClustersClient) Read(ctx context.Context, in *ReadKubeClusterRequest, opts ...grpc.CallOption) (*ReadKubeClusterResponse, error) {
+	out := new(ReadKubeClusterResponse)
+	err := grpc.Invoke(ctx, "/api.cmdb.KubeClusters/Read", in, out, c.cc, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *kubeClustersClient) Update(ctx context.Context, in *UpdateKubeClusterRequest, opts ...grpc.CallOption) (*UpdateKubeClusterResponse, error) {
+	out := new(UpdateKubeClusterResponse)
+	err := grpc.Invoke(ctx, "/api.cmdb.KubeClusters/Update", in, out, c.cc, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *kubeClustersClient) Delete(ctx context.Context, in *DeleteKubeClusterRequest, opts ...grpc.CallOption) (*DeleteKubeClusterResponse, error) {
+	out := new(DeleteKubeClusterResponse)
+	err := grpc.Invoke(ctx, "/api.cmdb.KubeClusters/Delete", in, out, c.cc, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *kubeClustersClient) List(ctx context.Context, in *ListKubeClusterRequest, opts ...grpc.CallOption) (*ListKubeClustersResponse, error) {
+	out := new(ListKubeClustersResponse)
+	err := grpc.Invoke(ctx, "/api.cmdb.KubeClusters/List", in, out, c.cc, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+// Server API for KubeClusters service
+
+type KubeClustersServer interface {
+	// Use this method to create a KubeCluster information.
+	Create(context.Context, *CreateKubeClusterRequest) (*CreateKubeClusterResponse, error)
+	// Use this method to read a KubeCluster information by identifier.
+	Read(context.Context, *ReadKubeClusterRequest) (*ReadKubeClusterResponse, error)
+	// Use this method to update a KubeCluster information.
+	Update(context.Context, *UpdateKubeClusterRequest) (*UpdateKubeClusterResponse, error)
+	// Use this method to delete a particular KubeCluster.
+	Delete(context.Context, *DeleteKubeClusterRequest) (*DeleteKubeClusterResponse, error)
+	// Use this method to retrieve all the KubeClusters.
+	List(context.Context, *ListKubeClusterRequest) (*ListKubeClustersResponse, error)
+}
+
+func RegisterKubeClustersServer(s *grpc.Server, srv KubeClustersServer) {
+	s.RegisterService(&_KubeClusters_serviceDesc, srv)
+}
+
+func _KubeClusters_Create_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CreateKubeClusterRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(KubeClustersServer).Create(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/api.cmdb.KubeClusters/Create",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(KubeClustersServer).Create(ctx, req.(*CreateKubeClusterRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _KubeClusters_Read_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ReadKubeClusterRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(KubeClustersServer).Read(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/api.cmdb.KubeClusters/Read",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(KubeClustersServer).Read(ctx, req.(*ReadKubeClusterRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _KubeClusters_Update_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UpdateKubeClusterRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(KubeClustersServer).Update(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/api.cmdb.KubeClusters/Update",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(KubeClustersServer).Update(ctx, req.(*UpdateKubeClusterRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _KubeClusters_Delete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DeleteKubeClusterRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(KubeClustersServer).Delete(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/api.cmdb.KubeClusters/Delete",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(KubeClustersServer).Delete(ctx, req.(*DeleteKubeClusterRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _KubeClusters_List_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListKubeClusterRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(KubeClustersServer).List(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/api.cmdb.KubeClusters/List",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(KubeClustersServer).List(ctx, req.(*ListKubeClusterRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+var _KubeClusters_serviceDesc = grpc.ServiceDesc{
+	ServiceName: "api.cmdb.KubeClusters",
+	HandlerType: (*KubeClustersServer)(nil),
+	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "Create",
+			Handler:    _KubeClusters_Create_Handler,
+		},
+		{
+			MethodName: "Read",
+			Handler:    _KubeClusters_Read_Handler,
+		},
+		{
+			MethodName: "Update",
+			Handler:    _KubeClusters_Update_Handler,
+		},
+		{
+			MethodName: "Delete",
+			Handler:    _KubeClusters_Delete_Handler,
+		},
+		{
+			MethodName: "List",
+			Handler:    _KubeClusters_List_Handler,
+		},
+	},
+	Streams:  []grpc.StreamDesc{},
+	Metadata: "github.com/seizadi/cmdb/pkg/pb/cmdb.proto",
+}
+
+// Client API for Regions service
+
+type RegionsClient interface {
+	// Use this method to create a Region information.
+	Create(ctx context.Context, in *CreateRegionRequest, opts ...grpc.CallOption) (*CreateRegionResponse, error)
+	// Use this method to read a Region information by identifier.
+	Read(ctx context.Context, in *ReadRegionRequest, opts ...grpc.CallOption) (*ReadRegionResponse, error)
+	// Use this method to update a Region information.
+	Update(ctx context.Context, in *UpdateRegionRequest, opts ...grpc.CallOption) (*UpdateRegionResponse, error)
+	// Use this method to delete a particular Region.
+	Delete(ctx context.Context, in *DeleteRegionRequest, opts ...grpc.CallOption) (*DeleteRegionResponse, error)
+	// Use this method to retrieve all the Regions.
+	List(ctx context.Context, in *ListRegionRequest, opts ...grpc.CallOption) (*ListRegionsResponse, error)
+}
+
+type regionsClient struct {
+	cc *grpc.ClientConn
+}
+
+func NewRegionsClient(cc *grpc.ClientConn) RegionsClient {
+	return &regionsClient{cc}
+}
+
+func (c *regionsClient) Create(ctx context.Context, in *CreateRegionRequest, opts ...grpc.CallOption) (*CreateRegionResponse, error) {
+	out := new(CreateRegionResponse)
+	err := grpc.Invoke(ctx, "/api.cmdb.Regions/Create", in, out, c.cc, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *regionsClient) Read(ctx context.Context, in *ReadRegionRequest, opts ...grpc.CallOption) (*ReadRegionResponse, error) {
+	out := new(ReadRegionResponse)
+	err := grpc.Invoke(ctx, "/api.cmdb.Regions/Read", in, out, c.cc, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *regionsClient) Update(ctx context.Context, in *UpdateRegionRequest, opts ...grpc.CallOption) (*UpdateRegionResponse, error) {
+	out := new(UpdateRegionResponse)
+	err := grpc.Invoke(ctx, "/api.cmdb.Regions/Update", in, out, c.cc, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *regionsClient) Delete(ctx context.Context, in *DeleteRegionRequest, opts ...grpc.CallOption) (*DeleteRegionResponse, error) {
+	out := new(DeleteRegionResponse)
+	err := grpc.Invoke(ctx, "/api.cmdb.Regions/Delete", in, out, c.cc, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *regionsClient) List(ctx context.Context, in *ListRegionRequest, opts ...grpc.CallOption) (*ListRegionsResponse, error) {
+	out := new(ListRegionsResponse)
+	err := grpc.Invoke(ctx, "/api.cmdb.Regions/List", in, out, c.cc, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+// Server API for Regions service
+
+type RegionsServer interface {
+	// Use this method to create a Region information.
+	Create(context.Context, *CreateRegionRequest) (*CreateRegionResponse, error)
+	// Use this method to read a Region information by identifier.
+	Read(context.Context, *ReadRegionRequest) (*ReadRegionResponse, error)
+	// Use this method to update a Region information.
+	Update(context.Context, *UpdateRegionRequest) (*UpdateRegionResponse, error)
+	// Use this method to delete a particular Region.
+	Delete(context.Context, *DeleteRegionRequest) (*DeleteRegionResponse, error)
+	// Use this method to retrieve all the Regions.
+	List(context.Context, *ListRegionRequest) (*ListRegionsResponse, error)
+}
+
+func RegisterRegionsServer(s *grpc.Server, srv RegionsServer) {
+	s.RegisterService(&_Regions_serviceDesc, srv)
+}
+
+func _Regions_Create_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CreateRegionRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(RegionsServer).Create(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/api.cmdb.Regions/Create",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(RegionsServer).Create(ctx, req.(*CreateRegionRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Regions_Read_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ReadRegionRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(RegionsServer).Read(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/api.cmdb.Regions/Read",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(RegionsServer).Read(ctx, req.(*ReadRegionRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Regions_Update_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UpdateRegionRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(RegionsServer).Update(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/api.cmdb.Regions/Update",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(RegionsServer).Update(ctx, req.(*UpdateRegionRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Regions_Delete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DeleteRegionRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(RegionsServer).Delete(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/api.cmdb.Regions/Delete",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(RegionsServer).Delete(ctx, req.(*DeleteRegionRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Regions_List_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListRegionRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(RegionsServer).List(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/api.cmdb.Regions/List",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(RegionsServer).List(ctx, req.(*ListRegionRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+var _Regions_serviceDesc = grpc.ServiceDesc{
+	ServiceName: "api.cmdb.Regions",
+	HandlerType: (*RegionsServer)(nil),
+	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "Create",
+			Handler:    _Regions_Create_Handler,
+		},
+		{
+			MethodName: "Read",
+			Handler:    _Regions_Read_Handler,
+		},
+		{
+			MethodName: "Update",
+			Handler:    _Regions_Update_Handler,
+		},
+		{
+			MethodName: "Delete",
+			Handler:    _Regions_Delete_Handler,
+		},
+		{
+			MethodName: "List",
+			Handler:    _Regions_List_Handler,
+		},
+	},
+	Streams:  []grpc.StreamDesc{},
+	Metadata: "github.com/seizadi/cmdb/pkg/pb/cmdb.proto",
+}
+
 // Client API for Secrets service
 
 type SecretsClient interface {
-	// Use this method to create a secret.
+	// Use this method to create a Secret information.
 	Create(ctx context.Context, in *CreateSecretRequest, opts ...grpc.CallOption) (*CreateSecretResponse, error)
-	// Use this method to retrieve the particular container.
+	// Use this method to read a Secret information by identifier.
 	Read(ctx context.Context, in *ReadSecretRequest, opts ...grpc.CallOption) (*ReadSecretResponse, error)
-	// Use this method to update secret.
+	// Use this method to update a Secret information.
 	Update(ctx context.Context, in *UpdateSecretRequest, opts ...grpc.CallOption) (*UpdateSecretResponse, error)
-	// Use this method to delete a secret.
+	// Use this method to delete a particular Secret.
 	Delete(ctx context.Context, in *DeleteSecretRequest, opts ...grpc.CallOption) (*DeleteSecretResponse, error)
-	// Use this method to retrieve the list of secrets.
+	// Use this method to retrieve all the Secrets.
 	List(ctx context.Context, in *ListSecretRequest, opts ...grpc.CallOption) (*ListSecretsResponse, error)
 }
 
@@ -2243,15 +5765,15 @@ func (c *secretsClient) List(ctx context.Context, in *ListSecretRequest, opts ..
 // Server API for Secrets service
 
 type SecretsServer interface {
-	// Use this method to create a secret.
+	// Use this method to create a Secret information.
 	Create(context.Context, *CreateSecretRequest) (*CreateSecretResponse, error)
-	// Use this method to retrieve the particular container.
+	// Use this method to read a Secret information by identifier.
 	Read(context.Context, *ReadSecretRequest) (*ReadSecretResponse, error)
-	// Use this method to update secret.
+	// Use this method to update a Secret information.
 	Update(context.Context, *UpdateSecretRequest) (*UpdateSecretResponse, error)
-	// Use this method to delete a secret.
+	// Use this method to delete a particular Secret.
 	Delete(context.Context, *DeleteSecretRequest) (*DeleteSecretResponse, error)
-	// Use this method to retrieve the list of secrets.
+	// Use this method to retrieve all the Secrets.
 	List(context.Context, *ListSecretRequest) (*ListSecretsResponse, error)
 }
 
@@ -2381,15 +5903,15 @@ var _Secrets_serviceDesc = grpc.ServiceDesc{
 // Client API for Vaults service
 
 type VaultsClient interface {
-	// Use this method to create a vault.
+	// Use this method to create a Vault information.
 	Create(ctx context.Context, in *CreateVaultRequest, opts ...grpc.CallOption) (*CreateVaultResponse, error)
-	// Use this method to retrieve the particular container.
+	// Use this method to read a Vault information by identifier.
 	Read(ctx context.Context, in *ReadVaultRequest, opts ...grpc.CallOption) (*ReadVaultResponse, error)
-	// Use this method to update vault.
+	// Use this method to update a Vault information.
 	Update(ctx context.Context, in *UpdateVaultRequest, opts ...grpc.CallOption) (*UpdateVaultResponse, error)
-	// Use this method to delete a vault.
+	// Use this method to delete a particular Vault.
 	Delete(ctx context.Context, in *DeleteVaultRequest, opts ...grpc.CallOption) (*DeleteVaultResponse, error)
-	// Use this method to retrieve the list of vaults.
+	// Use this method to retrieve all the Vaults.
 	List(ctx context.Context, in *ListVaultRequest, opts ...grpc.CallOption) (*ListVaultsResponse, error)
 }
 
@@ -2449,15 +5971,15 @@ func (c *vaultsClient) List(ctx context.Context, in *ListVaultRequest, opts ...g
 // Server API for Vaults service
 
 type VaultsServer interface {
-	// Use this method to create a vault.
+	// Use this method to create a Vault information.
 	Create(context.Context, *CreateVaultRequest) (*CreateVaultResponse, error)
-	// Use this method to retrieve the particular container.
+	// Use this method to read a Vault information by identifier.
 	Read(context.Context, *ReadVaultRequest) (*ReadVaultResponse, error)
-	// Use this method to update vault.
+	// Use this method to update a Vault information.
 	Update(context.Context, *UpdateVaultRequest) (*UpdateVaultResponse, error)
-	// Use this method to delete a vault.
+	// Use this method to delete a particular Vault.
 	Delete(context.Context, *DeleteVaultRequest) (*DeleteVaultResponse, error)
-	// Use this method to retrieve the list of vaults.
+	// Use this method to retrieve all the Vaults.
 	List(context.Context, *ListVaultRequest) (*ListVaultsResponse, error)
 }
 
@@ -2584,144 +6106,453 @@ var _Vaults_serviceDesc = grpc.ServiceDesc{
 	Metadata: "github.com/seizadi/cmdb/pkg/pb/cmdb.proto",
 }
 
+// Client API for Applications service
+
+type ApplicationsClient interface {
+	// Use this method to create a Application information.
+	Create(ctx context.Context, in *CreateApplicationRequest, opts ...grpc.CallOption) (*CreateApplicationResponse, error)
+	// Use this method to read a Application information by identifier.
+	Read(ctx context.Context, in *ReadApplicationRequest, opts ...grpc.CallOption) (*ReadApplicationResponse, error)
+	// Use this method to update a Application information.
+	Update(ctx context.Context, in *UpdateApplicationRequest, opts ...grpc.CallOption) (*UpdateApplicationResponse, error)
+	// Use this method to delete a particular Application.
+	Delete(ctx context.Context, in *DeleteApplicationRequest, opts ...grpc.CallOption) (*DeleteApplicationResponse, error)
+	// Use this method to retrieve all the Applications.
+	List(ctx context.Context, in *ListApplicationRequest, opts ...grpc.CallOption) (*ListApplicationsResponse, error)
+}
+
+type applicationsClient struct {
+	cc *grpc.ClientConn
+}
+
+func NewApplicationsClient(cc *grpc.ClientConn) ApplicationsClient {
+	return &applicationsClient{cc}
+}
+
+func (c *applicationsClient) Create(ctx context.Context, in *CreateApplicationRequest, opts ...grpc.CallOption) (*CreateApplicationResponse, error) {
+	out := new(CreateApplicationResponse)
+	err := grpc.Invoke(ctx, "/api.cmdb.Applications/Create", in, out, c.cc, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *applicationsClient) Read(ctx context.Context, in *ReadApplicationRequest, opts ...grpc.CallOption) (*ReadApplicationResponse, error) {
+	out := new(ReadApplicationResponse)
+	err := grpc.Invoke(ctx, "/api.cmdb.Applications/Read", in, out, c.cc, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *applicationsClient) Update(ctx context.Context, in *UpdateApplicationRequest, opts ...grpc.CallOption) (*UpdateApplicationResponse, error) {
+	out := new(UpdateApplicationResponse)
+	err := grpc.Invoke(ctx, "/api.cmdb.Applications/Update", in, out, c.cc, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *applicationsClient) Delete(ctx context.Context, in *DeleteApplicationRequest, opts ...grpc.CallOption) (*DeleteApplicationResponse, error) {
+	out := new(DeleteApplicationResponse)
+	err := grpc.Invoke(ctx, "/api.cmdb.Applications/Delete", in, out, c.cc, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *applicationsClient) List(ctx context.Context, in *ListApplicationRequest, opts ...grpc.CallOption) (*ListApplicationsResponse, error) {
+	out := new(ListApplicationsResponse)
+	err := grpc.Invoke(ctx, "/api.cmdb.Applications/List", in, out, c.cc, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+// Server API for Applications service
+
+type ApplicationsServer interface {
+	// Use this method to create a Application information.
+	Create(context.Context, *CreateApplicationRequest) (*CreateApplicationResponse, error)
+	// Use this method to read a Application information by identifier.
+	Read(context.Context, *ReadApplicationRequest) (*ReadApplicationResponse, error)
+	// Use this method to update a Application information.
+	Update(context.Context, *UpdateApplicationRequest) (*UpdateApplicationResponse, error)
+	// Use this method to delete a particular Application.
+	Delete(context.Context, *DeleteApplicationRequest) (*DeleteApplicationResponse, error)
+	// Use this method to retrieve all the Applications.
+	List(context.Context, *ListApplicationRequest) (*ListApplicationsResponse, error)
+}
+
+func RegisterApplicationsServer(s *grpc.Server, srv ApplicationsServer) {
+	s.RegisterService(&_Applications_serviceDesc, srv)
+}
+
+func _Applications_Create_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CreateApplicationRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ApplicationsServer).Create(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/api.cmdb.Applications/Create",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ApplicationsServer).Create(ctx, req.(*CreateApplicationRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Applications_Read_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ReadApplicationRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ApplicationsServer).Read(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/api.cmdb.Applications/Read",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ApplicationsServer).Read(ctx, req.(*ReadApplicationRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Applications_Update_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UpdateApplicationRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ApplicationsServer).Update(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/api.cmdb.Applications/Update",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ApplicationsServer).Update(ctx, req.(*UpdateApplicationRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Applications_Delete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DeleteApplicationRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ApplicationsServer).Delete(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/api.cmdb.Applications/Delete",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ApplicationsServer).Delete(ctx, req.(*DeleteApplicationRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Applications_List_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListApplicationRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ApplicationsServer).List(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/api.cmdb.Applications/List",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ApplicationsServer).List(ctx, req.(*ListApplicationRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+var _Applications_serviceDesc = grpc.ServiceDesc{
+	ServiceName: "api.cmdb.Applications",
+	HandlerType: (*ApplicationsServer)(nil),
+	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "Create",
+			Handler:    _Applications_Create_Handler,
+		},
+		{
+			MethodName: "Read",
+			Handler:    _Applications_Read_Handler,
+		},
+		{
+			MethodName: "Update",
+			Handler:    _Applications_Update_Handler,
+		},
+		{
+			MethodName: "Delete",
+			Handler:    _Applications_Delete_Handler,
+		},
+		{
+			MethodName: "List",
+			Handler:    _Applications_List_Handler,
+		},
+	},
+	Streams:  []grpc.StreamDesc{},
+	Metadata: "github.com/seizadi/cmdb/pkg/pb/cmdb.proto",
+}
+
 func init() { proto.RegisterFile("github.com/seizadi/cmdb/pkg/pb/cmdb.proto", fileDescriptor0) }
 
 var fileDescriptor0 = []byte{
-	// 2172 bytes of a gzipped FileDescriptorProto
-	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xdc, 0x5a, 0x4f, 0x6f, 0xdb, 0xc8,
-	0x15, 0x5f, 0xca, 0xb2, 0x24, 0x3f, 0xd7, 0xb1, 0x33, 0xb6, 0x65, 0x89, 0xfe, 0x13, 0x99, 0xdd,
-	0xdd, 0x26, 0x4e, 0x2c, 0x26, 0xda, 0xa2, 0x05, 0x9c, 0x45, 0x36, 0x89, 0x93, 0x6c, 0xd2, 0x76,
-	0x17, 0x59, 0x25, 0x5d, 0xb4, 0x01, 0x0a, 0x95, 0x12, 0xc7, 0x34, 0x6b, 0x8a, 0x64, 0x48, 0xca,
-	0xad, 0x76, 0xb1, 0x87, 0xee, 0xa5, 0xf7, 0xf6, 0x0b, 0xf4, 0xbe, 0x87, 0x1e, 0x5b, 0xbb, 0x87,
-	0xb6, 0xe7, 0x1e, 0x7b, 0x28, 0x50, 0x60, 0x03, 0xb4, 0xe8, 0xa5, 0xc7, 0x7e, 0x83, 0x82, 0xc3,
-	0x21, 0x39, 0xe4, 0x90, 0xb2, 0xcc, 0x20, 0x29, 0x90, 0x1b, 0xc9, 0xf7, 0xe6, 0xfd, 0x9b, 0xdf,
-	0xfc, 0x66, 0xde, 0x48, 0x70, 0x45, 0xd3, 0xbd, 0xc3, 0x51, 0xbf, 0x3d, 0xb0, 0x86, 0xb2, 0x8b,
-	0xf5, 0xcf, 0x14, 0x55, 0x97, 0x07, 0x43, 0xb5, 0x2f, 0xdb, 0x47, 0x9a, 0x6c, 0xf7, 0xc9, 0x73,
-	0xdb, 0x76, 0x2c, 0xcf, 0x42, 0x35, 0xc5, 0xd6, 0xdb, 0xfe, 0xbb, 0xb8, 0xae, 0x59, 0x96, 0x66,
-	0x60, 0x99, 0x7c, 0xef, 0x8f, 0x0e, 0x64, 0x3c, 0xb4, 0xbd, 0x71, 0xa0, 0x26, 0xb6, 0xd2, 0xc2,
-	0x03, 0x1d, 0x1b, 0x6a, 0x6f, 0xa8, 0xb8, 0x47, 0x54, 0x63, 0x83, 0x6a, 0x28, 0xb6, 0x2e, 0x2b,
-	0xa6, 0x69, 0x79, 0x8a, 0xa7, 0x5b, 0xa6, 0x4b, 0xa5, 0x37, 0x99, 0x88, 0x8c, 0xf1, 0x81, 0x17,
-	0x18, 0x1a, 0xec, 0x6a, 0xd8, 0xdc, 0x3d, 0x56, 0x0c, 0x5d, 0x55, 0x3c, 0x2c, 0x73, 0x0f, 0x74,
-	0xf0, 0x35, 0x46, 0xd9, 0xfd, 0xb9, 0xa2, 0x69, 0xd8, 0x91, 0x2d, 0x9b, 0x98, 0xcf, 0x70, 0xb5,
-	0xc7, 0xb8, 0xd2, 0xcd, 0x03, 0xab, 0x6f, 0x58, 0xbf, 0xb0, 0x6c, 0x6c, 0xb2, 0x2e, 0x35, 0xcb,
-	0x19, 0x46, 0x26, 0xfc, 0x17, 0x3a, 0xf6, 0x7b, 0x79, 0x63, 0x15, 0xcf, 0x50, 0xdc, 0x5d, 0xc5,
-	0xb6, 0x77, 0x3d, 0xcb, 0x32, 0x8e, 0x74, 0x4f, 0x7e, 0x3e, 0xc2, 0xce, 0x58, 0x1e, 0x58, 0x86,
-	0x81, 0x07, 0xbe, 0x9d, 0x9e, 0x65, 0x63, 0x47, 0xf1, 0x2c, 0x27, 0x8c, 0xe3, 0xfe, 0xf4, 0xb6,
-	0x1c, 0x7b, 0x20, 0x3b, 0xd8, 0xb5, 0x46, 0xce, 0x00, 0x47, 0x0f, 0xd4, 0xcc, 0xd3, 0x29, 0xd2,
-	0x09, 0x2c, 0x92, 0x88, 0xe2, 0x6a, 0x86, 0xe9, 0x91, 0xcf, 0xbd, 0x54, 0x49, 0x3f, 0x9e, 0xda,
-	0x2a, 0x67, 0x8f, 0x7c, 0x4e, 0xd9, 0x93, 0xae, 0xc2, 0xe2, 0xa7, 0xd8, 0x71, 0x75, 0xcb, 0xec,
-	0x62, 0xd7, 0xb6, 0x4c, 0x17, 0xa3, 0x06, 0x54, 0x8f, 0x83, 0x4f, 0x0d, 0xa1, 0x25, 0x5c, 0x9e,
-	0xeb, 0x86, 0xaf, 0xd2, 0x2f, 0x05, 0xa8, 0x74, 0xb1, 0xa6, 0x5b, 0x26, 0xfa, 0x2e, 0x94, 0x74,
-	0x95, 0xc8, 0xe7, 0x3b, 0xab, 0x6d, 0x62, 0xba, 0xed, 0xd8, 0x83, 0xf6, 0x23, 0x15, 0x9b, 0x9e,
-	0x7e, 0xa0, 0x63, 0xe7, 0xee, 0xd2, 0xe9, 0x49, 0xf3, 0x1b, 0x00, 0xa8, 0xe2, 0x62, 0x47, 0x57,
-	0x8c, 0xcb, 0x42, 0xb7, 0xa4, 0xab, 0x08, 0x41, 0xd9, 0x54, 0x86, 0xb8, 0x51, 0x22, 0xa6, 0xc9,
-	0x33, 0x6a, 0xc1, 0xbc, 0x8a, 0xdd, 0x81, 0xa3, 0x93, 0x48, 0x1b, 0x33, 0x44, 0xc4, 0x7e, 0xda,
-	0xab, 0x9d, 0x9e, 0x34, 0xcb, 0x35, 0xa1, 0x25, 0x48, 0x77, 0x60, 0x79, 0xdf, 0xc1, 0x8a, 0x87,
-	0x83, 0x40, 0xba, 0xf8, 0xf9, 0x08, 0xbb, 0x1e, 0xda, 0x81, 0xaa, 0xad, 0x8c, 0x0d, 0x4b, 0x09,
-	0x83, 0x5a, 0x6a, 0x87, 0x0b, 0xa4, 0x4d, 0x35, 0x43, 0x05, 0xe9, 0x36, 0xac, 0x24, 0x4d, 0xd0,
-	0xc4, 0x2f, 0x43, 0xc5, 0xc1, 0xee, 0xc8, 0xf0, 0x72, 0x4d, 0x50, 0xb9, 0x64, 0xc3, 0xc5, 0x2e,
-	0x56, 0xd4, 0x64, 0x08, 0xef, 0x9c, 0x59, 0x12, 0x52, 0x80, 0x6f, 0x43, 0x85, 0xac, 0x41, 0x97,
-	0x94, 0x60, 0xbe, 0xb3, 0xd1, 0x0e, 0xe7, 0x91, 0xb8, 0x7b, 0xe0, 0xcb, 0x9e, 0x60, 0x0a, 0xce,
-	0x2e, 0xd5, 0x95, 0x6e, 0x01, 0x62, 0x3d, 0x9e, 0x3b, 0xe2, 0x11, 0x2c, 0xff, 0xd0, 0x56, 0x5f,
-	0xa6, 0x6c, 0xa8, 0x93, 0x0a, 0x5c, 0x6c, 0x07, 0xcc, 0xd1, 0x0e, 0xb9, 0x25, 0x88, 0xfd, 0x23,
-	0xc5, 0x3d, 0x8a, 0xc2, 0xbe, 0x0d, 0x2b, 0x49, 0xb7, 0xe7, 0x0e, 0xfc, 0x7d, 0x58, 0xbe, 0x87,
-	0x0d, 0x9c, 0x0e, 0x7c, 0xba, 0x62, 0x4b, 0x75, 0x58, 0x49, 0x8e, 0x0e, 0xfc, 0x4b, 0x2f, 0x04,
-	0xb8, 0xf8, 0x03, 0xdd, 0xf5, 0x92, 0x46, 0x65, 0x3f, 0x43, 0xc3, 0xc3, 0x0e, 0x35, 0xbc, 0x96,
-	0x9e, 0x1a, 0x5f, 0xa6, 0x9b, 0x5a, 0x97, 0xaa, 0xa1, 0xeb, 0x50, 0xb3, 0x1c, 0x15, 0x3b, 0xbd,
-	0xfe, 0x98, 0x16, 0x65, 0x35, 0x39, 0xe4, 0x89, 0xe5, 0x78, 0xfe, 0x80, 0x2a, 0x51, 0xbb, 0x3b,
-	0x66, 0x66, 0x7f, 0x66, 0xfa, 0xd9, 0x47, 0xd7, 0xa1, 0x62, 0x2b, 0x9a, 0x6e, 0x6a, 0x8d, 0x32,
-	0x19, 0xd5, 0x48, 0x8e, 0x7a, 0xec, 0xcb, 0x94, 0x60, 0x44, 0xa0, 0x27, 0x0d, 0x61, 0x39, 0xce,
-	0xcf, 0x8d, 0xea, 0xbe, 0x03, 0xd5, 0xa0, 0xae, 0x6e, 0x43, 0x68, 0xcd, 0x64, 0xcf, 0x37, 0x55,
-	0x40, 0x3b, 0x50, 0xb6, 0x15, 0x0d, 0xd3, 0xc4, 0xea, 0x9c, 0x4b, 0xfc, 0xc8, 0x3c, 0xb0, 0xba,
-	0x44, 0x47, 0xfa, 0xaa, 0x04, 0x73, 0xfb, 0x96, 0xe9, 0x29, 0xba, 0x89, 0x9d, 0xd7, 0x4c, 0x0e,
-	0xe8, 0x1d, 0xb8, 0x30, 0x08, 0x7d, 0xf7, 0xc8, 0xf8, 0x32, 0x51, 0x5a, 0x88, 0xbe, 0x7e, 0xec,
-	0x1b, 0xda, 0x04, 0xd0, 0x87, 0x8a, 0x86, 0x7b, 0x0e, 0xb6, 0xad, 0xc6, 0x2c, 0x51, 0x99, 0x23,
-	0x5f, 0xba, 0xd8, 0xb6, 0xd0, 0x3a, 0x04, 0x2f, 0x3d, 0x4f, 0xd1, 0x1a, 0x15, 0x22, 0xad, 0x91,
-	0x0f, 0x4f, 0x15, 0x0d, 0xed, 0xc0, 0xc5, 0x40, 0x68, 0x8f, 0x0c, 0xa3, 0x67, 0x5b, 0x86, 0x3e,
-	0x18, 0x37, 0xaa, 0x44, 0x69, 0x91, 0x08, 0x1e, 0x8f, 0x0c, 0xe3, 0x31, 0xf9, 0x8c, 0xea, 0x50,
-	0x51, 0x75, 0x0d, 0xbb, 0x5e, 0xa3, 0x46, 0x14, 0xe8, 0x1b, 0xc3, 0x61, 0x1f, 0x42, 0x3d, 0x20,
-	0xa0, 0xa8, 0x64, 0x21, 0x02, 0x77, 0xd3, 0xeb, 0x71, 0x39, 0x9e, 0x9f, 0x58, 0x39, 0x62, 0xb2,
-	0x07, 0xb0, 0xc6, 0x19, 0xa2, 0x33, 0x7d, 0x35, 0xb5, 0xc2, 0x32, 0x0d, 0x85, 0x8b, 0xcc, 0x85,
-	0x15, 0x9f, 0x5d, 0xb8, 0x70, 0x5e, 0x29, 0xa5, 0xdd, 0x83, 0xd5, 0x94, 0xd3, 0x22, 0xa1, 0x7f,
-	0x0e, 0xf5, 0x80, 0x61, 0x5e, 0xb2, 0x96, 0x85, 0xe8, 0xed, 0x01, 0xac, 0x71, 0xce, 0x8b, 0x24,
-	0xf1, 0x01, 0xd4, 0x03, 0x9a, 0x2a, 0x38, 0x03, 0x52, 0x13, 0xd6, 0x38, 0x03, 0x94, 0xea, 0xfe,
-	0x29, 0xc0, 0x8a, 0x4f, 0x05, 0x9c, 0xe9, 0x37, 0x88, 0xed, 0x5c, 0xa8, 0x27, 0x52, 0x8c, 0x09,
-	0x6f, 0x37, 0x4d, 0x78, 0xd9, 0x20, 0x28, 0xc2, 0x79, 0x7f, 0x15, 0x00, 0xe8, 0xd9, 0xc9, 0xa7,
-	0x88, 0xd7, 0x4c, 0x7a, 0xcc, 0x29, 0xad, 0x9c, 0x38, 0xa5, 0xf9, 0xf6, 0x18, 0x86, 0x23, 0xcf,
-	0x3e, 0x27, 0x0d, 0xac, 0xe1, 0x50, 0xf7, 0x28, 0xb3, 0xd1, 0x37, 0x86, 0x93, 0x1e, 0x85, 0x54,
-	0x12, 0xa7, 0x14, 0x02, 0xa5, 0x9d, 0x5e, 0x48, 0x2b, 0x71, 0x0d, 0x19, 0xed, 0x88, 0x95, 0x1e,
-	0x42, 0x83, 0x37, 0x45, 0xe7, 0xe3, 0x5a, 0x6a, 0x59, 0x64, 0x9b, 0x0a, 0xd7, 0x85, 0x17, 0x50,
-	0x04, 0x1f, 0xd2, 0x2b, 0x25, 0xa6, 0x07, 0x50, 0x4f, 0x7b, 0x2d, 0x14, 0xfd, 0x17, 0x21, 0x3b,
-	0xbc, 0x74, 0x49, 0x0b, 0x91, 0xd3, 0x43, 0x68, 0xf0, 0xee, 0x0b, 0x25, 0x72, 0x3b, 0x64, 0x97,
-	0xa2, 0x13, 0x21, 0x89, 0xd0, 0xe0, 0x2d, 0x50, 0x82, 0xfa, 0x97, 0x00, 0xab, 0xfe, 0xea, 0xe5,
-	0x8d, 0xbf, 0x41, 0x0c, 0x35, 0x82, 0xb5, 0x64, 0x8e, 0x31, 0x45, 0xb5, 0xd3, 0x14, 0x95, 0x83,
-	0x85, 0x22, 0x1c, 0xf5, 0x5f, 0x01, 0x2a, 0x4f, 0xf0, 0xc0, 0xc1, 0xde, 0xeb, 0xe6, 0x27, 0x04,
-	0x65, 0x6f, 0x6c, 0x87, 0x47, 0x31, 0xf2, 0x8c, 0x96, 0x60, 0xe6, 0x08, 0x8f, 0x29, 0x31, 0xf9,
-	0x8f, 0xe8, 0x21, 0xd4, 0x8e, 0x95, 0x91, 0xe1, 0xf5, 0x74, 0x95, 0x30, 0x53, 0x6e, 0x68, 0xf5,
-	0xd3, 0x93, 0x26, 0x82, 0x39, 0x54, 0xd5, 0x4d, 0x0f, 0x6b, 0xd8, 0xd9, 0x9b, 0xfd, 0xd4, 0x1f,
-	0xd7, 0xad, 0x92, 0xe1, 0x8f, 0xd4, 0xac, 0x0e, 0x31, 0x48, 0x7c, 0x9a, 0x56, 0x87, 0x6a, 0xf2,
-	0x1d, 0x62, 0x68, 0xe2, 0xec, 0xb6, 0x85, 0x6a, 0xa6, 0x3a, 0xc4, 0x64, 0x08, 0xaf, 0xa3, 0x43,
-	0x2c, 0x1c, 0x71, 0xd4, 0x21, 0x16, 0x2e, 0xdb, 0xcb, 0x75, 0x88, 0x85, 0x03, 0x8f, 0x3a, 0xc4,
-	0x22, 0xc5, 0x8e, 0x3b, 0xc4, 0xa4, 0xff, 0xa8, 0x43, 0x4c, 0x1a, 0x7d, 0xf3, 0x3a, 0xc4, 0x20,
-	0xbf, 0xe9, 0x3a, 0xc4, 0x70, 0xbe, 0x8b, 0x30, 0xd1, 0x9f, 0x05, 0x08, 0x96, 0xec, 0xff, 0x81,
-	0x88, 0x6c, 0xc5, 0x3b, 0x0c, 0x89, 0xc8, 0x7f, 0xf6, 0x93, 0x74, 0x83, 0xbc, 0x1b, 0xb3, 0x79,
-	0x49, 0x52, 0x05, 0x86, 0x58, 0x3e, 0x00, 0x44, 0xcf, 0x35, 0x84, 0x7a, 0x28, 0x24, 0xae, 0xa4,
-	0x17, 0xc8, 0x22, 0x43, 0xdf, 0x01, 0x47, 0x85, 0xb4, 0x72, 0x2b, 0x64, 0x26, 0x6a, 0x80, 0x96,
-	0xfc, 0x5b, 0x29, 0xa8, 0x73, 0x06, 0x42, 0xa4, 0x5b, 0xb0, 0x44, 0x0e, 0x26, 0xac, 0xfb, 0x57,
-	0xca, 0x29, 0xef, 0x07, 0x2c, 0x56, 0x30, 0x5c, 0x17, 0x10, 0x3d, 0x80, 0x14, 0xab, 0x57, 0x21,
-	0x3e, 0xb9, 0x15, 0xd2, 0x58, 0xc1, 0xa0, 0x6f, 0x02, 0xa2, 0x27, 0x95, 0xf3, 0x57, 0x59, 0x5a,
-	0x0d, 0xa9, 0x28, 0xe1, 0x5c, 0xfa, 0x5a, 0x80, 0x25, 0xb2, 0xfb, 0xb3, 0x26, 0xdf, 0x20, 0x2a,
-	0x39, 0x02, 0x14, 0xa5, 0x17, 0x33, 0xc9, 0x95, 0x34, 0x93, 0xf0, 0x13, 0x5d, 0x80, 0x48, 0x3a,
-	0x3f, 0x86, 0xf2, 0xfe, 0x50, 0xed, 0xa3, 0x4f, 0x00, 0x3e, 0xc4, 0xe1, 0x81, 0x0a, 0xd5, 0x39,
-	0x68, 0xdc, 0x1f, 0xda, 0xde, 0x58, 0x6c, 0x72, 0x67, 0xa9, 0x68, 0x56, 0x96, 0xbe, 0xfc, 0xdb,
-	0xbf, 0x7f, 0x53, 0x02, 0x54, 0x93, 0x69, 0xe7, 0xd4, 0xf9, 0xba, 0x0c, 0x55, 0x7a, 0x63, 0x86,
-	0xfa, 0x50, 0x09, 0xd6, 0x2a, 0xda, 0x64, 0x3a, 0x46, 0xfe, 0xe6, 0x59, 0xdc, 0xca, 0x13, 0x53,
-	0x37, 0x4d, 0xe2, 0x66, 0x59, 0xaa, 0xc9, 0x4e, 0x60, 0x7a, 0x2f, 0xc2, 0xb7, 0x0a, 0x65, 0x7f,
-	0x79, 0xa1, 0x75, 0xf6, 0x12, 0x2e, 0x75, 0xad, 0x2c, 0x6e, 0x64, 0x0b, 0xa9, 0xf5, 0x6d, 0x62,
-	0x7d, 0x1d, 0x35, 0x43, 0xeb, 0xf2, 0xe7, 0xba, 0xda, 0x0e, 0x7f, 0x8a, 0xe8, 0xe9, 0xea, 0x17,
-	0xe8, 0x77, 0x02, 0x54, 0x82, 0x25, 0xc1, 0xa6, 0x92, 0x71, 0x1b, 0xcc, 0xa6, 0x92, 0x75, 0x6b,
-	0x2b, 0x1d, 0xfc, 0xe3, 0x4f, 0xcd, 0x52, 0xed, 0x2d, 0xe2, 0xf2, 0x99, 0xb8, 0x1d, 0xbb, 0xa4,
-	0x09, 0xb5, 0x53, 0xae, 0xa3, 0x4c, 0x9f, 0x5d, 0xeb, 0x9c, 0x43, 0x1b, 0x1d, 0x43, 0x25, 0x58,
-	0x46, 0x6c, 0xc0, 0x19, 0xb7, 0xc0, 0x6c, 0xc0, 0x99, 0xd7, 0xbc, 0xbb, 0xa7, 0x27, 0xcd, 0x5a,
-	0xf8, 0x9b, 0x45, 0x50, 0xa9, 0x9d, 0x09, 0x95, 0x7a, 0x0a, 0x65, 0x1f, 0xc7, 0xec, 0x7c, 0x70,
-	0x97, 0xc4, 0xe2, 0x66, 0x96, 0xd0, 0xcd, 0x40, 0x15, 0x75, 0x23, 0xd2, 0x0d, 0x64, 0x49, 0xe8,
-	0xfc, 0x76, 0x16, 0x20, 0xbe, 0xa3, 0x40, 0xcf, 0x23, 0x88, 0xb5, 0xd2, 0x18, 0x4a, 0x5f, 0xd6,
-	0x88, 0xdb, 0x13, 0x34, 0xa8, 0x67, 0x89, 0x99, 0x9d, 0xba, 0x34, 0x2f, 0x47, 0xb7, 0x9f, 0x0c,
-	0xe2, 0x86, 0x14, 0x71, 0x5b, 0x49, 0x50, 0x71, 0xee, 0x2e, 0xe5, 0xca, 0xa9, 0xb3, 0xb7, 0x89,
-	0x9b, 0x2d, 0xb4, 0xc1, 0xb8, 0xe1, 0x0b, 0xfa, 0xc7, 0x18, 0x7a, 0xad, 0x34, 0xb6, 0x26, 0xa5,
-	0x98, 0x73, 0xa9, 0x26, 0x19, 0x4c, 0x8a, 0x3f, 0x15, 0xdf, 0x4e, 0xf8, 0x3e, 0x13, 0x83, 0x72,
-	0xe7, 0x7c, 0x03, 0xd0, 0x97, 0x42, 0x84, 0xc3, 0x56, 0x1a, 0x68, 0x93, 0xa2, 0xcf, 0xbb, 0x89,
-	0x7b, 0xef, 0xf4, 0xa4, 0x39, 0xcf, 0xdc, 0x93, 0x07, 0x25, 0xdc, 0x99, 0x5c, 0xc2, 0x9f, 0x50,
-	0x4c, 0x6e, 0x25, 0x61, 0xc7, 0xf9, 0x6f, 0xe5, 0xc8, 0x63, 0x64, 0x2e, 0x13, 0x7f, 0x0b, 0x88,
-	0x45, 0x86, 0x78, 0x21, 0x04, 0x27, 0xa9, 0xac, 0xd0, 0xf9, 0xc3, 0x2c, 0xcc, 0x33, 0x4d, 0x2a,
-	0x1a, 0x45, 0x18, 0xe5, 0x10, 0xc8, 0xf5, 0xeb, 0xa2, 0x34, 0x49, 0x25, 0x04, 0x0e, 0x33, 0x85,
-	0x0d, 0x69, 0x21, 0xe4, 0xde, 0x9e, 0xa7, 0x68, 0x0c, 0x4e, 0x9f, 0x53, 0x9c, 0xa6, 0x70, 0xc8,
-	0xbb, 0x6c, 0xe5, 0x2b, 0x50, 0x87, 0xef, 0x12, 0x57, 0x2d, 0xb4, 0x95, 0x70, 0xc5, 0x17, 0xfa,
-	0x2f, 0x31, 0x56, 0x39, 0x24, 0x4e, 0x4c, 0x35, 0xef, 0x92, 0x45, 0xb2, 0x99, 0x54, 0x55, 0xf1,
-	0xdd, 0x94, 0xff, 0x33, 0xf1, 0x7a, 0xa3, 0x73, 0xde, 0x21, 0xe8, 0x57, 0x31, 0x62, 0x39, 0x3c,
-	0x4e, 0xcc, 0x21, 0xf7, 0x72, 0xe6, 0x3b, 0xc1, 0x49, 0x3c, 0x96, 0x04, 0xd5, 0xdc, 0x39, 0xab,
-	0x9a, 0x0a, 0x85, 0xed, 0xa5, 0x24, 0x2c, 0xf9, 0x20, 0xb6, 0xf3, 0x14, 0x62, 0xe0, 0xae, 0x12,
-	0x9f, 0x8b, 0x28, 0x09, 0x16, 0x0e, 0xba, 0xff, 0x29, 0x43, 0x95, 0x76, 0x33, 0xe8, 0x30, 0x7f,
-	0xf7, 0x4e, 0x34, 0x74, 0xfc, 0xee, 0x9d, 0x6a, 0x03, 0x2f, 0x31, 0x73, 0xe8, 0xef, 0xe1, 0x61,
-	0x57, 0x70, 0xd6, 0x1e, 0x9e, 0xf4, 0xb2, 0x91, 0x2d, 0xe4, 0xf6, 0x70, 0x6a, 0xfd, 0x7c, 0x7b,
-	0x78, 0x6e, 0x42, 0x59, 0x7d, 0x35, 0xb7, 0x87, 0x47, 0x2e, 0xa7, 0xda, 0xc3, 0xa7, 0xd6, 0x9e,
-	0xb4, 0x87, 0xe7, 0x06, 0x9c, 0xd9, 0x88, 0xd3, 0x3d, 0x3c, 0xf8, 0x1a, 0xed, 0xe1, 0xb9, 0x95,
-	0xca, 0xd9, 0xc3, 0x93, 0x3e, 0x37, 0xb3, 0x84, 0x59, 0x7b, 0x38, 0x75, 0xc3, 0x61, 0xed, 0xef,
-	0x65, 0xa8, 0x04, 0xc7, 0x5d, 0x84, 0x23, 0xa8, 0x6d, 0x70, 0xf4, 0xc7, 0x9c, 0xf7, 0xc5, 0xcd,
-	0x1c, 0x29, 0xf5, 0xb9, 0xc5, 0xcc, 0x0b, 0x92, 0xaa, 0x32, 0xb9, 0xd7, 0x62, 0x70, 0xa6, 0x50,
-	0x9c, 0x89, 0x29, 0xc2, 0x63, 0x5d, 0xac, 0x67, 0xca, 0xa8, 0x83, 0x16, 0x31, 0x2d, 0xa2, 0x06,
-	0x35, 0xcd, 0x97, 0xee, 0xab, 0x18, 0x64, 0x1b, 0x1c, 0xbd, 0xe5, 0xa4, 0x92, 0xd1, 0x6b, 0x49,
-	0x2a, 0x93, 0xca, 0x8f, 0xc4, 0x56, 0xe4, 0xef, 0x4c, 0x84, 0x5d, 0xed, 0x4c, 0xaf, 0x8c, 0x9c,
-	0x08, 0x60, 0x1b, 0x1c, 0x8f, 0xe5, 0x04, 0x9b, 0xd5, 0x9b, 0x5d, 0x3d, 0x3d, 0x69, 0x56, 0xe9,
-	0xd5, 0x44, 0x50, 0xa1, 0x9d, 0xfc, 0x0a, 0x7d, 0x42, 0xc1, 0x25, 0xa6, 0x48, 0x8b, 0xf5, 0xb7,
-	0x91, 0x21, 0x8b, 0xa1, 0xb5, 0x48, 0x7c, 0xcc, 0xa1, 0x70, 0x82, 0xd3, 0xc8, 0xba, 0xfb, 0x42,
-	0xf8, 0xf5, 0x9d, 0xdf, 0x0b, 0xe8, 0x31, 0x94, 0xf7, 0x3f, 0xba, 0x77, 0x57, 0xda, 0x87, 0x85,
-	0x27, 0xd6, 0x21, 0xd6, 0x8d, 0xd6, 0x7d, 0xf2, 0x77, 0x30, 0x74, 0xe9, 0xd0, 0xf3, 0x6c, 0x77,
-	0x4f, 0x96, 0x73, 0xfe, 0x2a, 0x26, 0x5e, 0xa4, 0x6f, 0xb7, 0xb5, 0xa1, 0xa2, 0x1b, 0xbe, 0xbc,
-	0x33, 0x73, 0xa3, 0x7d, 0x5d, 0x2a, 0xcb, 0xc7, 0x37, 0xe4, 0x9d, 0x92, 0x50, 0xea, 0x2c, 0x29,
-	0xb6, 0x6d, 0xe8, 0x03, 0xd2, 0xc3, 0xc9, 0x3f, 0x73, 0x2d, 0x73, 0x8f, 0xfb, 0xf2, 0xec, 0x9b,
-	0xb0, 0x0d, 0x70, 0xc7, 0xd6, 0xbf, 0x8f, 0xc7, 0x77, 0x46, 0xde, 0x21, 0x5a, 0xae, 0x95, 0xc4,
-	0x05, 0xff, 0xc9, 0x72, 0xf4, 0xcf, 0x88, 0x5e, 0xab, 0xd4, 0x5f, 0x82, 0x0b, 0x09, 0xa5, 0xb7,
-	0x9e, 0x6d, 0x4f, 0xfe, 0x03, 0xdb, 0x4d, 0xbb, 0xdf, 0xaf, 0x90, 0x0e, 0xed, 0xbd, 0xff, 0x05,
-	0x00, 0x00, 0xff, 0xff, 0x4d, 0xcb, 0xb6, 0x94, 0xec, 0x26, 0x00, 0x00,
+	// 3819 bytes of a gzipped FileDescriptorProto
+	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xdc, 0x5c, 0xdb, 0x6f, 0xdc, 0xc6,
+	0xb9, 0x0f, 0x65, 0xdd, 0xfc, 0xc9, 0x17, 0x79, 0x74, 0xf1, 0x2e, 0x75, 0x5b, 0xd1, 0x51, 0x2e,
+	0xb2, 0xbd, 0xb4, 0x37, 0xe7, 0x24, 0x07, 0x4e, 0x10, 0x5b, 0xbe, 0x24, 0x76, 0x72, 0x12, 0x38,
+	0x72, 0x4e, 0x70, 0x6a, 0xa0, 0x55, 0xa8, 0x5d, 0x6a, 0xcd, 0x68, 0x77, 0x49, 0x93, 0x5c, 0x3b,
+	0x4a, 0x9a, 0x16, 0x49, 0x91, 0x14, 0x6d, 0xdf, 0xda, 0x3e, 0xf4, 0x2f, 0xe8, 0x4b, 0x0a, 0xf4,
+	0x31, 0x95, 0x0a, 0x34, 0x2d, 0x8a, 0x3e, 0xe5, 0x31, 0x6f, 0x05, 0x12, 0xf4, 0x86, 0xbe, 0xf7,
+	0xb5, 0x4f, 0x05, 0x87, 0x43, 0xce, 0x70, 0x66, 0xc8, 0xe5, 0x72, 0x6d, 0x39, 0xd0, 0xdb, 0x8a,
+	0xf3, 0xcd, 0x77, 0x9b, 0xdf, 0xfc, 0x38, 0x33, 0xfc, 0x46, 0xf0, 0x74, 0xd3, 0xf2, 0xef, 0x74,
+	0x37, 0xab, 0x75, 0xbb, 0xad, 0x7b, 0xa6, 0xf5, 0x9e, 0xd1, 0xb0, 0xf4, 0x7a, 0xbb, 0xb1, 0xa9,
+	0x3b, 0xdb, 0x4d, 0xdd, 0xd9, 0xc4, 0xbf, 0xab, 0x8e, 0x6b, 0xfb, 0x36, 0x1a, 0x37, 0x1c, 0xab,
+	0x1a, 0xfc, 0xad, 0xce, 0x35, 0x6d, 0xbb, 0xd9, 0x32, 0x75, 0xfc, 0x7c, 0xb3, 0xbb, 0xa5, 0x9b,
+	0x6d, 0xc7, 0xdf, 0x09, 0xc5, 0xd4, 0x0a, 0xdf, 0xb8, 0x65, 0x99, 0xad, 0xc6, 0x46, 0xdb, 0xf0,
+	0xb6, 0x89, 0xc4, 0x3c, 0x91, 0x30, 0x1c, 0x4b, 0x37, 0x3a, 0x1d, 0xdb, 0x37, 0x7c, 0xcb, 0xee,
+	0x78, 0xa4, 0xf5, 0x79, 0xc6, 0xa3, 0xd6, 0xce, 0x96, 0x1f, 0x2a, 0xaa, 0x9f, 0x6d, 0x9a, 0x9d,
+	0xb3, 0xf7, 0x8c, 0x96, 0xd5, 0x30, 0x7c, 0x53, 0x17, 0x7e, 0x90, 0xce, 0x67, 0x18, 0x61, 0xef,
+	0xbe, 0xd1, 0x6c, 0x9a, 0xae, 0x6e, 0x3b, 0x58, 0xbd, 0xc4, 0xd4, 0x05, 0xc6, 0x94, 0xd5, 0xd9,
+	0xb2, 0x37, 0x5b, 0xf6, 0xbb, 0xb6, 0x63, 0x76, 0x58, 0x93, 0x4d, 0xdb, 0x6d, 0xc7, 0x2a, 0x82,
+	0x3f, 0x48, 0xdf, 0x57, 0xd2, 0xfa, 0x1a, 0x7e, 0xcb, 0xf0, 0xce, 0x1a, 0x8e, 0x73, 0xd6, 0xb7,
+	0xed, 0xd6, 0xb6, 0xe5, 0xeb, 0x77, 0xbb, 0xa6, 0xbb, 0xa3, 0xd7, 0xed, 0x56, 0xcb, 0xac, 0x07,
+	0x7a, 0x36, 0x6c, 0xc7, 0x74, 0x0d, 0xdf, 0x76, 0x23, 0x3f, 0xae, 0xe5, 0xd7, 0xe5, 0x3a, 0x75,
+	0xdd, 0x35, 0x3d, 0xbb, 0xeb, 0xd6, 0xcd, 0xf8, 0x07, 0x51, 0xf3, 0x66, 0x8e, 0x70, 0x42, 0x8d,
+	0xd8, 0x23, 0x9a, 0xcd, 0x28, 0x3c, 0xfc, 0x78, 0x83, 0x4b, 0xe9, 0xeb, 0xb9, 0xb5, 0x0a, 0xfa,
+	0xf0, 0x63, 0x4e, 0x9f, 0x76, 0x1a, 0x8e, 0xbf, 0x65, 0xba, 0x9e, 0x65, 0x77, 0xd6, 0x4d, 0xcf,
+	0xb1, 0x3b, 0x9e, 0x89, 0x4a, 0x30, 0x76, 0x2f, 0x7c, 0x54, 0x52, 0x2a, 0xca, 0x53, 0x87, 0xd7,
+	0xa3, 0x3f, 0xb5, 0x8f, 0x15, 0x80, 0xb5, 0xfb, 0xde, 0x2d, 0xd3, 0xbd, 0x67, 0xd5, 0x4d, 0xf4,
+	0x1c, 0x0c, 0x59, 0x0d, 0x2c, 0x33, 0x51, 0x9b, 0xa9, 0x62, 0xf5, 0x55, 0xd7, 0xa9, 0x57, 0x6f,
+	0x34, 0xcc, 0x8e, 0x6f, 0x6d, 0x59, 0xa6, 0x7b, 0x79, 0x72, 0x6f, 0xb7, 0x7c, 0x04, 0x00, 0x8d,
+	0x7a, 0xa6, 0x6b, 0x19, 0xad, 0xa7, 0x94, 0xf5, 0x21, 0xab, 0x81, 0x10, 0x0c, 0x77, 0x8c, 0xb6,
+	0x59, 0x1a, 0xc2, 0xea, 0xf1, 0x6f, 0x54, 0x81, 0x89, 0x86, 0xe9, 0xd5, 0x5d, 0x0b, 0x7b, 0x5b,
+	0x3a, 0x84, 0x9b, 0xd8, 0x47, 0x17, 0xc6, 0xf7, 0x76, 0xcb, 0xc3, 0xe3, 0x4a, 0x45, 0xd1, 0x6e,
+	0xc0, 0xc9, 0x2b, 0xae, 0x69, 0xf8, 0x26, 0x75, 0x66, 0xdd, 0xbc, 0xdb, 0x35, 0x3d, 0x1f, 0x55,
+	0x61, 0xcc, 0x31, 0x76, 0x5a, 0xb6, 0x11, 0x39, 0x36, 0x5d, 0x8d, 0x26, 0x4a, 0x95, 0x91, 0x8e,
+	0x84, 0xb4, 0xeb, 0x50, 0x12, 0x55, 0x91, 0x44, 0x9c, 0x81, 0x51, 0xd7, 0xf4, 0xba, 0x2d, 0x3f,
+	0x53, 0x15, 0x91, 0xd1, 0x7c, 0x98, 0x59, 0x37, 0x8d, 0x86, 0xe8, 0xd2, 0x4a, 0xcf, 0x34, 0xe1,
+	0xa4, 0xfc, 0x17, 0x8c, 0xe2, 0xb9, 0xe9, 0xe1, 0xb4, 0x4c, 0xd4, 0xe6, 0xab, 0xd1, 0xf8, 0x62,
+	0xb3, 0x2f, 0x05, 0x6d, 0xb7, 0x4c, 0x02, 0xda, 0x75, 0x22, 0xab, 0xbd, 0x04, 0xb3, 0xbc, 0xd5,
+	0x42, 0xde, 0x7f, 0x00, 0x27, 0xff, 0xcf, 0x69, 0x3c, 0x88, 0x94, 0xa2, 0x1a, 0x17, 0x88, 0x5a,
+	0x0d, 0x19, 0xa6, 0x1a, 0x71, 0x50, 0x18, 0xcb, 0x6b, 0x86, 0xb7, 0x1d, 0x87, 0x71, 0x15, 0x4a,
+	0xa2, 0x79, 0x12, 0xc8, 0x53, 0x5c, 0x20, 0x93, 0xd4, 0xfc, 0xba, 0xd9, 0xc4, 0xc9, 0x20, 0x41,
+	0x5c, 0x82, 0x93, 0x57, 0xcd, 0x96, 0x29, 0x0b, 0x22, 0xdf, 0x20, 0x68, 0x2a, 0x94, 0x44, 0x0d,
+	0xa1, 0x1f, 0xda, 0xdf, 0x14, 0x98, 0xf9, 0x5f, 0xcb, 0xf3, 0x45, 0xe5, 0x7a, 0x10, 0x71, 0xcb,
+	0x37, 0x5d, 0x62, 0xe0, 0x24, 0x3f, 0x74, 0x41, 0x9b, 0xd5, 0x69, 0xae, 0x13, 0x31, 0x74, 0x0e,
+	0xc6, 0x6d, 0xb7, 0x61, 0xba, 0x1b, 0x9b, 0x3b, 0x24, 0x49, 0x33, 0xc9, 0x2e, 0xb7, 0x6c, 0xd7,
+	0x0f, 0x3a, 0x8c, 0x61, 0xb1, 0xcb, 0x3b, 0x0c, 0x3a, 0x0e, 0xe5, 0x47, 0x07, 0x3a, 0x07, 0xa3,
+	0x8e, 0xd1, 0xb4, 0x3a, 0xcd, 0xd2, 0x30, 0xee, 0x55, 0x4a, 0xf6, 0xba, 0x19, 0xb4, 0x19, 0x61,
+	0x8f, 0x50, 0x4e, 0xeb, 0xc2, 0xc9, 0x64, 0x8c, 0x5e, 0x3c, 0x0e, 0x55, 0x18, 0x0b, 0xf3, 0xec,
+	0x95, 0x94, 0xca, 0xa1, 0x74, 0x1c, 0x10, 0x21, 0xb4, 0x0a, 0xc3, 0x8e, 0xd1, 0x34, 0x49, 0x80,
+	0xb3, 0x82, 0x69, 0xf3, 0x46, 0x67, 0xcb, 0x5e, 0xc7, 0x32, 0xda, 0xa7, 0x43, 0x70, 0xf8, 0x8a,
+	0xdd, 0xf1, 0x0d, 0xab, 0x63, 0xba, 0xfb, 0x4c, 0x2c, 0x68, 0x05, 0x8e, 0xd5, 0x23, 0xdb, 0x1b,
+	0xb8, 0xff, 0x30, 0x16, 0x3a, 0x1a, 0x3f, 0x7d, 0x3d, 0x50, 0xb4, 0x00, 0x60, 0xb5, 0x8d, 0xa6,
+	0xb9, 0xe1, 0x9a, 0x8e, 0x5d, 0x1a, 0xc1, 0x22, 0x87, 0xf1, 0x93, 0x75, 0xd3, 0xb1, 0xd1, 0x1c,
+	0x84, 0x7f, 0x6c, 0xf8, 0x46, 0xb3, 0x34, 0x8a, 0x5b, 0xc7, 0xf1, 0x83, 0x37, 0x8d, 0x26, 0x5a,
+	0x85, 0x13, 0x61, 0xa3, 0xd3, 0x6d, 0xb5, 0x36, 0x1c, 0xbb, 0x65, 0xd5, 0x77, 0x4a, 0x63, 0x58,
+	0xe8, 0x38, 0x6e, 0xb8, 0xd9, 0x6d, 0xb5, 0x6e, 0xe2, 0xc7, 0x68, 0x16, 0x46, 0x1b, 0x56, 0xd3,
+	0xf4, 0xfc, 0xd2, 0x38, 0x16, 0x20, 0x7f, 0x31, 0xfc, 0xf7, 0x32, 0xcc, 0x86, 0xa4, 0x15, 0xa7,
+	0x2c, 0x42, 0xe2, 0x59, 0x7e, 0xae, 0x4e, 0xd1, 0x31, 0xa2, 0xc2, 0x31, 0xfb, 0xbd, 0x14, 0x11,
+	0x29, 0xa3, 0x88, 0x8c, 0xf6, 0x69, 0x6e, 0xd6, 0x49, 0x15, 0x45, 0x13, 0xcf, 0x83, 0xe9, 0x80,
+	0x85, 0x04, 0x77, 0x1e, 0x2a, 0xf5, 0x5d, 0x0d, 0x09, 0x77, 0x40, 0xd7, 0xdf, 0x87, 0xd9, 0x90,
+	0x79, 0x06, 0xcc, 0x65, 0x21, 0xda, 0xbb, 0x12, 0xb1, 0xae, 0x18, 0x44, 0x7e, 0xd6, 0xbb, 0x08,
+	0xb3, 0x21, 0x67, 0x15, 0x4c, 0xbf, 0x56, 0x8e, 0x68, 0x53, 0xf0, 0x42, 0xfb, 0xab, 0x02, 0xd3,
+	0x01, 0x1f, 0x08, 0xaa, 0x0f, 0x10, 0xe5, 0x79, 0x30, 0x9b, 0x08, 0x91, 0x32, 0xde, 0x59, 0x9e,
+	0xf1, 0xe4, 0x08, 0x28, 0x42, 0x78, 0x3f, 0x50, 0x60, 0xfc, 0x35, 0xa3, 0x63, 0x6d, 0x05, 0xc9,
+	0x7c, 0x64, 0x0b, 0xa9, 0x6b, 0x30, 0x13, 0xce, 0xff, 0xc8, 0x95, 0x68, 0x78, 0xcf, 0xf0, 0xd8,
+	0x47, 0x34, 0xf2, 0x58, 0x36, 0xa6, 0x91, 0xab, 0x11, 0x1f, 0x51, 0x35, 0x24, 0x83, 0xab, 0x1c,
+	0x8a, 0x65, 0x6a, 0x22, 0x1c, 0xbb, 0x30, 0x15, 0xcc, 0x67, 0xde, 0x95, 0x87, 0xca, 0x21, 0x97,
+	0x43, 0xe2, 0x1a, 0xc8, 0xef, 0x1d, 0x98, 0x09, 0x27, 0xf1, 0x40, 0x49, 0x2c, 0xc4, 0x1f, 0x97,
+	0x23, 0xf2, 0x12, 0x02, 0xc8, 0x4f, 0x1f, 0x2f, 0xc2, 0x4c, 0x38, 0xfb, 0x8b, 0x25, 0x5e, 0x2b,
+	0x45, 0xf4, 0xc3, 0xfb, 0xa0, 0xfd, 0x45, 0x81, 0xa9, 0x60, 0x66, 0xf1, 0x8a, 0x0f, 0x10, 0x77,
+	0xdc, 0x0d, 0x97, 0x84, 0x51, 0x84, 0x1e, 0xb3, 0xfa, 0xe6, 0xa8, 0x43, 0x3a, 0xf6, 0x45, 0x98,
+	0xe3, 0x0b, 0x05, 0x80, 0x6c, 0xd9, 0x82, 0x95, 0xc5, 0x3e, 0xaf, 0x95, 0x98, 0xcd, 0xe1, 0x70,
+	0x62, 0x73, 0x18, 0xe8, 0x63, 0x16, 0x46, 0xf8, 0x77, 0xb0, 0x94, 0xa9, 0xdb, 0xed, 0xb6, 0xe5,
+	0x93, 0x05, 0x11, 0xf9, 0x4b, 0xb6, 0x95, 0xa3, 0x21, 0xe5, 0xd9, 0x77, 0x30, 0xd2, 0xe2, 0x56,
+	0x8e, 0x55, 0xd5, 0x7b, 0x33, 0xc4, 0x48, 0x73, 0x5b, 0x39, 0xd1, 0xa5, 0xfd, 0xd8, 0xca, 0x0d,
+	0xec, 0x7d, 0xbc, 0x95, 0x1b, 0x38, 0xa5, 0x83, 0x6d, 0xe5, 0x24, 0x81, 0x14, 0xd8, 0xca, 0x15,
+	0x1d, 0x04, 0xba, 0x95, 0x13, 0xfd, 0x88, 0xb7, 0x72, 0xa2, 0xf2, 0x83, 0xb7, 0x95, 0xa3, 0x31,
+	0xe6, 0xdb, 0xca, 0xb1, 0x38, 0x28, 0xba, 0xb2, 0x59, 0x73, 0x7d, 0x6b, 0xcb, 0xa8, 0x7f, 0x13,
+	0x56, 0x36, 0x91, 0x2b, 0x79, 0x5e, 0xca, 0xb1, 0xac, 0xb8, 0xb2, 0xa1, 0x6a, 0x7a, 0xaf, 0x10,
+	0x62, 0x59, 0x6e, 0x65, 0xc3, 0xbb, 0xb2, 0x1f, 0x2b, 0x9b, 0x81, 0xfc, 0x8e, 0x57, 0x36, 0x03,
+	0x25, 0x71, 0xb0, 0x95, 0x8d, 0x10, 0x40, 0x81, 0x95, 0x4d, 0xb1, 0xc4, 0xd3, 0x95, 0x0d, 0xef,
+	0x43, 0xbc, 0xb2, 0xe1, 0x15, 0x1f, 0xbc, 0x95, 0x4d, 0x14, 0x61, 0xbe, 0x95, 0x0d, 0x1d, 0xfb,
+	0x22, 0xcc, 0xf1, 0x23, 0x05, 0x8e, 0xad, 0xdd, 0xf7, 0xd6, 0x1b, 0xde, 0x8d, 0x8e, 0xe7, 0x1b,
+	0x9d, 0x47, 0x79, 0xc4, 0xfc, 0x06, 0xcc, 0xc5, 0xe7, 0xc2, 0x8c, 0x43, 0xd1, 0x40, 0xd7, 0xf8,
+	0x09, 0x50, 0x4a, 0x9c, 0x85, 0xb1, 0x3d, 0x62, 0x2e, 0xb9, 0x09, 0xf3, 0x72, 0x95, 0x24, 0xb1,
+	0xe7, 0x38, 0x60, 0xa7, 0xab, 0x8c, 0x00, 0xfe, 0x2e, 0x94, 0xc9, 0xe1, 0xaf, 0xc4, 0xc5, 0x87,
+	0xca, 0x2e, 0xaf, 0x83, 0x2a, 0xb3, 0x5c, 0x38, 0x92, 0x8f, 0x15, 0x98, 0x8b, 0x0f, 0x80, 0x1f,
+	0x4c, 0xbe, 0x0b, 0xd1, 0xce, 0x75, 0x98, 0x97, 0xbb, 0xd1, 0x37, 0xf9, 0x5c, 0x85, 0xb9, 0xf8,
+	0x24, 0xb9, 0xf0, 0xe8, 0x68, 0x8b, 0x30, 0x2f, 0xd7, 0x42, 0x88, 0xe8, 0x9f, 0x0a, 0x94, 0xc9,
+	0x79, 0xad, 0xc4, 0xc8, 0x01, 0xa2, 0xa3, 0x0f, 0x60, 0x4e, 0x8c, 0x93, 0x92, 0x52, 0x8d, 0x27,
+	0xa5, 0x0c, 0x7c, 0x14, 0xa1, 0xa6, 0x8f, 0x15, 0x80, 0xab, 0xa6, 0xd3, 0xb2, 0x77, 0xda, 0x66,
+	0xc7, 0xff, 0x06, 0x7c, 0xf9, 0xa2, 0xce, 0xe4, 0x59, 0xdb, 0x33, 0xd2, 0xe2, 0x76, 0x89, 0x55,
+	0xd5, 0x7b, 0xc3, 0xc1, 0x48, 0x73, 0xdb, 0x25, 0xd1, 0xa5, 0xfd, 0xd8, 0x2e, 0x0d, 0xec, 0x7d,
+	0xbc, 0x5d, 0x1a, 0x38, 0xa5, 0x83, 0x6d, 0x97, 0x24, 0x81, 0x14, 0xd8, 0x2e, 0x15, 0x1d, 0x04,
+	0xba, 0x5d, 0x12, 0xfd, 0x88, 0xb7, 0x4b, 0xa2, 0xf2, 0x83, 0xb7, 0x5d, 0xa2, 0x31, 0xe6, 0xdb,
+	0x2e, 0xb1, 0x38, 0x28, 0xc2, 0x2c, 0x9f, 0x28, 0x30, 0x71, 0xad, 0x73, 0xcf, 0x72, 0xed, 0xce,
+	0xa3, 0xa5, 0x96, 0x57, 0x23, 0x3e, 0x60, 0xbc, 0xa1, 0xc3, 0xcc, 0x4d, 0x84, 0x19, 0x9a, 0x00,
+	0x56, 0x3c, 0x26, 0x97, 0x57, 0xa0, 0x2c, 0x51, 0x16, 0x1f, 0xab, 0x27, 0x61, 0x9d, 0xa2, 0x2c,
+	0xc2, 0x76, 0x37, 0x9c, 0xe8, 0x12, 0xb7, 0x1e, 0x2a, 0xbf, 0x5c, 0x87, 0x93, 0x82, 0xd9, 0x62,
+	0x01, 0x7c, 0x3f, 0x9a, 0xe2, 0x0f, 0x20, 0xb3, 0x85, 0x38, 0xe6, 0x1a, 0x94, 0x25, 0x0e, 0xf4,
+	0x4d, 0x32, 0x6b, 0x11, 0x45, 0x14, 0x1e, 0x0a, 0x6d, 0x0e, 0xca, 0x12, 0x15, 0x84, 0x66, 0xfe,
+	0xae, 0x84, 0x5f, 0x62, 0xa4, 0x69, 0x3a, 0x30, 0x3c, 0x73, 0x1f, 0x4a, 0x5c, 0x90, 0x94, 0x68,
+	0x74, 0x9e, 0x68, 0xd2, 0xd0, 0x50, 0x94, 0x69, 0x5e, 0xed, 0x6e, 0x9a, 0x57, 0x5a, 0x5d, 0xcf,
+	0xdf, 0xf7, 0xaf, 0xec, 0x32, 0xa6, 0x61, 0xbc, 0xc9, 0x33, 0x1f, 0x58, 0x71, 0x91, 0x69, 0x12,
+	0xca, 0x7a, 0x4f, 0x54, 0x56, 0x9c, 0x63, 0x1a, 0x89, 0x5b, 0xfb, 0xc1, 0x34, 0x0f, 0x20, 0x80,
+	0x98, 0x69, 0x1e, 0x40, 0x66, 0x07, 0x63, 0x1a, 0x59, 0x30, 0x05, 0x98, 0xa6, 0xf0, 0x50, 0x50,
+	0xa6, 0x91, 0x78, 0x12, 0x33, 0x8d, 0x34, 0x4d, 0x07, 0x8d, 0x69, 0x98, 0x20, 0xf3, 0x31, 0x4d,
+	0x02, 0x0d, 0x45, 0x98, 0xe6, 0x43, 0x05, 0x46, 0xc3, 0x11, 0x7d, 0x74, 0x24, 0xb3, 0x06, 0x53,
+	0x21, 0x2f, 0x10, 0x68, 0x91, 0xe1, 0x5d, 0xe5, 0x67, 0x81, 0x08, 0xc2, 0x98, 0x5a, 0x2e, 0xc1,
+	0x74, 0x52, 0x45, 0xdf, 0x38, 0x76, 0xe0, 0x44, 0x30, 0xb3, 0x93, 0x2e, 0x3c, 0x54, 0x2e, 0x79,
+	0x11, 0x10, 0x6b, 0xb1, 0x6f, 0x8f, 0xbb, 0x30, 0x15, 0x4e, 0xe0, 0xc2, 0x69, 0x2b, 0xc4, 0x1b,
+	0x97, 0x60, 0x3a, 0x69, 0xb6, 0x6f, 0xc7, 0x5f, 0x80, 0xa9, 0x70, 0xbe, 0x17, 0x49, 0xb6, 0x36,
+	0x0b, 0xd3, 0xc9, 0xde, 0x84, 0x28, 0xbe, 0x56, 0xe0, 0x44, 0x30, 0x87, 0x92, 0x4a, 0x0f, 0x10,
+	0x47, 0xb4, 0xc3, 0x83, 0xec, 0x30, 0x3e, 0x8f, 0xf9, 0x4a, 0xc0, 0xd1, 0x83, 0x64, 0xbc, 0x8b,
+	0x30, 0xc3, 0xbf, 0x14, 0x18, 0xbd, 0x65, 0xd6, 0x5d, 0x73, 0xbf, 0x37, 0x3a, 0x41, 0x2f, 0x7f,
+	0xc7, 0x89, 0x4a, 0xfb, 0xf0, 0x6f, 0x34, 0x09, 0x87, 0xb6, 0xcd, 0x1d, 0xf2, 0xc5, 0x3a, 0xf8,
+	0x89, 0xae, 0xc3, 0xf8, 0x3d, 0xa3, 0xdb, 0xf2, 0x37, 0xac, 0x06, 0xfe, 0x64, 0x9d, 0xea, 0xda,
+	0xec, 0xde, 0x6e, 0x19, 0xc1, 0x61, 0x34, 0x66, 0x75, 0x7c, 0xb3, 0x69, 0xba, 0x17, 0x46, 0xde,
+	0x0a, 0xfa, 0xad, 0x8f, 0xe1, 0xee, 0x37, 0x1a, 0x32, 0x26, 0x0a, 0x03, 0xcf, 0x33, 0xa5, 0x88,
+	0xa4, 0xc8, 0x44, 0x91, 0x8a, 0xde, 0xd3, 0x83, 0x48, 0x72, 0x4c, 0x94, 0x74, 0x61, 0x3f, 0x98,
+	0xa8, 0xb0, 0xc7, 0x31, 0x13, 0x15, 0x4e, 0xdb, 0x60, 0x4c, 0x94, 0xdf, 0xf1, 0x34, 0x26, 0x2a,
+	0x92, 0x6c, 0xca, 0x44, 0x49, 0xfb, 0x31, 0x13, 0x25, 0x95, 0x1e, 0x3c, 0x26, 0x0a, 0xe3, 0xcb,
+	0xc7, 0x44, 0xd1, 0x78, 0x17, 0x61, 0xa2, 0xdf, 0x2b, 0x10, 0x4e, 0xd9, 0x47, 0x40, 0x44, 0x8e,
+	0xe1, 0xdf, 0x89, 0x88, 0x28, 0xf8, 0x1d, 0x04, 0xe9, 0x85, 0x71, 0x97, 0x46, 0xd2, 0x82, 0x24,
+	0x02, 0x0c, 0xb1, 0x5c, 0x04, 0x44, 0x0a, 0x5e, 0x30, 0xf5, 0x10, 0x48, 0x3c, 0xcd, 0x4f, 0x90,
+	0xe3, 0xcc, 0xb7, 0xfd, 0x90, 0xa3, 0x22, 0x5a, 0x79, 0x31, 0x62, 0x26, 0xa2, 0x80, 0xa4, 0xfc,
+	0x49, 0x0e, 0xea, 0x82, 0x82, 0x08, 0xe9, 0x36, 0x4c, 0xe2, 0x8a, 0x15, 0xd6, 0xfc, 0x43, 0xe5,
+	0x94, 0x17, 0x42, 0x16, 0x2b, 0xe8, 0xae, 0x07, 0x88, 0x54, 0xa6, 0x14, 0xcb, 0x57, 0x21, 0x3e,
+	0xb9, 0x18, 0xd1, 0x58, 0xd2, 0xe9, 0xfc, 0x74, 0xf2, 0x3c, 0x20, 0x52, 0xc7, 0xd2, 0x7f, 0x9a,
+	0xb5, 0x99, 0x88, 0x8b, 0x12, 0xd6, 0xb5, 0xaf, 0x14, 0x98, 0xc4, 0xb5, 0x21, 0xac, 0xca, 0x03,
+	0xc4, 0x25, 0xdb, 0x80, 0xe2, 0xf0, 0x28, 0x95, 0x3c, 0xcd, 0x53, 0x89, 0x38, 0xd2, 0x45, 0xcf,
+	0x55, 0xd6, 0x1c, 0xa7, 0x65, 0xd5, 0xb1, 0x13, 0xdf, 0x80, 0x73, 0x15, 0xc6, 0x9b, 0x3c, 0xbb,
+	0x7f, 0x56, 0x5c, 0x3c, 0x57, 0x49, 0x28, 0xeb, 0x7d, 0x2c, 0xc1, 0x8a, 0x73, 0xe7, 0x2a, 0x12,
+	0xb7, 0xf6, 0xe3, 0x5c, 0xe5, 0x01, 0x04, 0x10, 0x9f, 0xab, 0x3c, 0x80, 0xcc, 0x0e, 0x76, 0xae,
+	0x22, 0x0b, 0xa6, 0xc0, 0xb9, 0x4a, 0xe1, 0xa1, 0xa0, 0xe7, 0x2a, 0x12, 0x4f, 0xe2, 0x73, 0x15,
+	0x69, 0x9a, 0x0e, 0xda, 0xb9, 0x0a, 0x13, 0x64, 0xbe, 0x73, 0x95, 0x04, 0x1a, 0x0a, 0x30, 0x4d,
+	0xed, 0x5b, 0x30, 0x7c, 0xa5, 0xdd, 0xd8, 0x44, 0x6f, 0x00, 0xbc, 0x6c, 0x46, 0x85, 0x7d, 0x68,
+	0x56, 0xc0, 0xcf, 0xb5, 0xb6, 0xe3, 0xef, 0xa8, 0x65, 0xa1, 0xa6, 0x2f, 0x1e, 0xa7, 0xc9, 0x8f,
+	0xbe, 0xfc, 0xc7, 0xcf, 0x86, 0x00, 0x8d, 0xeb, 0xa4, 0x7a, 0xb7, 0xf6, 0xab, 0x11, 0x98, 0x60,
+	0x2e, 0x7d, 0x21, 0x1b, 0x46, 0xc3, 0xe9, 0x8f, 0x96, 0x99, 0x3b, 0x0f, 0xf2, 0x4b, 0x97, 0xaa,
+	0x96, 0x25, 0x42, 0x4c, 0x2e, 0x62, 0x93, 0x25, 0xed, 0xa8, 0x6e, 0xdc, 0xf7, 0x36, 0x3c, 0x62,
+	0xe7, 0x42, 0x3c, 0x2b, 0xee, 0xc2, 0x70, 0x30, 0x59, 0xd1, 0x12, 0x0b, 0x5e, 0xc9, 0x75, 0x4a,
+	0xb5, 0x92, 0x2e, 0x40, 0x4c, 0x3d, 0x81, 0x4d, 0x55, 0xd0, 0x62, 0xc2, 0x94, 0xfe, 0xbe, 0xd5,
+	0xa8, 0x46, 0x77, 0x74, 0x37, 0xac, 0xc6, 0x07, 0xe8, 0x0f, 0x0a, 0x8c, 0x86, 0xb3, 0x8a, 0x0d,
+	0x32, 0xe5, 0x1a, 0x24, 0x1b, 0x64, 0xda, 0x55, 0x45, 0xcd, 0xf9, 0xf3, 0xe7, 0xe5, 0xa1, 0xf1,
+	0xc7, 0xb0, 0xfd, 0x86, 0xfa, 0x04, 0x67, 0x9f, 0x84, 0x5a, 0xe5, 0xfc, 0x88, 0x73, 0x70, 0xfb,
+	0x7c, 0xad, 0xdf, 0x2e, 0xe8, 0x87, 0x0a, 0x8c, 0x86, 0xf3, 0x91, 0x8d, 0x21, 0xe5, 0x16, 0x24,
+	0x1b, 0x43, 0xea, 0x35, 0xc7, 0x67, 0xc3, 0x77, 0x13, 0x6d, 0x09, 0xb3, 0xb9, 0xda, 0x2b, 0x9b,
+	0x06, 0x0c, 0x07, 0xb3, 0x82, 0x1d, 0x40, 0xe9, 0x6d, 0x49, 0x75, 0x39, 0x4d, 0x20, 0x9e, 0x45,
+	0xda, 0x0c, 0xb6, 0x79, 0x1c, 0x25, 0xc1, 0xa2, 0x92, 0x57, 0xdd, 0xa4, 0x52, 0xfb, 0xf9, 0x08,
+	0x00, 0xbd, 0xb0, 0x83, 0xb6, 0x63, 0xb4, 0x56, 0x78, 0x28, 0xf2, 0x37, 0x97, 0xd4, 0xe5, 0x0c,
+	0x09, 0x62, 0x7e, 0x1e, 0x9b, 0x9f, 0xd5, 0x26, 0xf4, 0xf8, 0x06, 0x20, 0x83, 0xd4, 0x36, 0x41,
+	0xea, 0x62, 0x12, 0x88, 0x82, 0xa1, 0xa5, 0xd4, 0x76, 0x62, 0xe6, 0x71, 0x6c, 0x66, 0x11, 0xcd,
+	0x33, 0x66, 0xc4, 0xbc, 0xfe, 0x96, 0xa2, 0xb4, 0xc2, 0x43, 0x30, 0x2b, 0xb8, 0x94, 0x8b, 0x65,
+	0x5a, 0x8b, 0xc1, 0xe8, 0xdb, 0xea, 0xe3, 0x09, 0xdb, 0x3d, 0x11, 0xaa, 0xd7, 0xfa, 0xeb, 0x80,
+	0x3e, 0xa2, 0xf8, 0xac, 0xf0, 0xe0, 0xcb, 0xf2, 0x3e, 0xed, 0x42, 0xda, 0x33, 0x7b, 0xbb, 0xe5,
+	0x09, 0xe6, 0xae, 0x68, 0x98, 0xc2, 0xd5, 0xec, 0x14, 0x7e, 0x9b, 0x40, 0x73, 0x31, 0x89, 0x3c,
+	0xc1, 0x7e, 0x25, 0xa5, 0x9d, 0x02, 0x73, 0x0a, 0xdb, 0x3b, 0x8a, 0x58, 0x64, 0x30, 0xb0, 0xfc,
+	0x70, 0x04, 0x0e, 0xc7, 0x77, 0x41, 0xd0, 0x9d, 0x18, 0x95, 0x4b, 0x3c, 0xe6, 0xb8, 0x2b, 0x31,
+	0x6a, 0x25, 0x5d, 0x80, 0x58, 0x9e, 0xc3, 0x96, 0x67, 0x34, 0xd0, 0xdb, 0x91, 0x01, 0x9a, 0xe5,
+	0x77, 0x08, 0x24, 0x17, 0x92, 0x90, 0xe3, 0xad, 0x2c, 0xa6, 0x35, 0x13, 0x1b, 0xa7, 0xb0, 0x8d,
+	0x05, 0x34, 0x47, 0x6d, 0x88, 0xc9, 0xfc, 0x8c, 0xe2, 0x71, 0x89, 0x47, 0x5b, 0x46, 0x58, 0xf2,
+	0x7b, 0x4a, 0xda, 0x3b, 0x0c, 0x1a, 0xbf, 0xa3, 0x9e, 0x62, 0x0d, 0xf7, 0x04, 0x63, 0xb5, 0xd6,
+	0x97, 0x3c, 0xfa, 0x5e, 0x0c, 0xc5, 0x25, 0x1e, 0x68, 0x19, 0x8e, 0xa7, 0x5c, 0x6e, 0x3a, 0xbf,
+	0xb7, 0x5b, 0x06, 0x7a, 0x87, 0x2f, 0xcc, 0xdc, 0x6a, 0x66, 0xe6, 0x6e, 0x13, 0x18, 0x2e, 0x24,
+	0x61, 0xc6, 0xdb, 0x5e, 0x92, 0x37, 0x53, 0x10, 0x22, 0x6c, 0xec, 0x08, 0x62, 0xa0, 0xc0, 0x60,
+	0x30, 0x78, 0x93, 0x33, 0x35, 0xff, 0x59, 0x6f, 0x72, 0xe1, 0xfa, 0x83, 0xf8, 0x26, 0x97, 0x5c,
+	0x9e, 0xa0, 0x6f, 0x72, 0xb2, 0x78, 0xd8, 0xf0, 0x8d, 0x66, 0xef, 0x37, 0xb9, 0x68, 0xac, 0x92,
+	0x2e, 0x20, 0xbc, 0xc9, 0x59, 0x53, 0xfd, 0xbd, 0xc9, 0x33, 0x83, 0x4c, 0xbb, 0xa9, 0x22, 0xbc,
+	0xc9, 0x93, 0xf6, 0x73, 0xbd, 0xc9, 0xfb, 0xeb, 0x92, 0xf9, 0x26, 0xcf, 0x8c, 0x21, 0xf5, 0x96,
+	0x0b, 0x79, 0x93, 0xd3, 0x96, 0xf8, 0x4d, 0x9e, 0x9d, 0xcd, 0x94, 0x37, 0xb9, 0xe8, 0xc4, 0x72,
+	0x9a, 0x80, 0xec, 0x4d, 0xce, 0xda, 0xe4, 0x28, 0x33, 0x2e, 0x32, 0xcf, 0xa2, 0x4c, 0xae, 0xd6,
+	0x5e, 0xa4, 0x4c, 0xa1, 0x4a, 0x9f, 0x52, 0xa6, 0x11, 0x19, 0xe8, 0x49, 0x99, 0xbc, 0x95, 0xc5,
+	0xb4, 0x66, 0x81, 0x32, 0x63, 0x1b, 0xfd, 0x51, 0x66, 0x46, 0x58, 0xf2, 0x0b, 0x10, 0x02, 0x65,
+	0x32, 0x86, 0x73, 0x51, 0x66, 0x1f, 0xf2, 0x59, 0x94, 0x99, 0xe1, 0x78, 0xca, 0xad, 0x09, 0x42,
+	0x99, 0xd1, 0xf3, 0x98, 0x32, 0x33, 0x32, 0x97, 0x42, 0x99, 0xbc, 0xed, 0x25, 0x79, 0xb3, 0x8c,
+	0x32, 0x63, 0x63, 0x0c, 0x06, 0xff, 0x3d, 0x02, 0xc7, 0xb9, 0xca, 0x62, 0xf4, 0xdd, 0x18, 0x89,
+	0x2b, 0x92, 0xdd, 0x8d, 0x58, 0x6c, 0xad, 0x3e, 0xd1, 0x4b, 0x2c, 0x89, 0x18, 0x0d, 0xe1, 0xb5,
+	0xad, 0xdb, 0xf0, 0x36, 0xac, 0xc8, 0x28, 0x9b, 0xf7, 0x10, 0x9d, 0xa7, 0x84, 0xcd, 0x8e, 0xc4,
+	0xf2, 0xe3, 0xd9, 0x42, 0xc4, 0xee, 0x69, 0x6c, 0x77, 0x05, 0x9d, 0x12, 0xed, 0x8a, 0x79, 0xff,
+	0x92, 0x22, 0x76, 0x45, 0xb2, 0xef, 0xc9, 0x0e, 0x3f, 0xab, 0x82, 0x5e, 0x7b, 0x8f, 0x41, 0x6f,
+	0x47, 0x3d, 0x2d, 0x73, 0xa6, 0x27, 0x8a, 0x9f, 0xad, 0x15, 0xea, 0x87, 0x7e, 0x41, 0x29, 0x76,
+	0x45, 0xb2, 0x13, 0xca, 0x8e, 0x2a, 0xb3, 0x0e, 0xff, 0xe2, 0xde, 0x6e, 0x79, 0x92, 0xbf, 0xbd,
+	0x12, 0x26, 0x7c, 0x35, 0x57, 0xc2, 0x3b, 0x04, 0xe8, 0xa7, 0x84, 0xcd, 0x91, 0xc4, 0xab, 0x95,
+	0x2c, 0x21, 0x0a, 0x7a, 0x15, 0x3b, 0x30, 0x8d, 0x24, 0x48, 0x63, 0xc0, 0xff, 0xcb, 0x11, 0x98,
+	0x60, 0x8a, 0x5e, 0x51, 0x27, 0x7d, 0xbd, 0x20, 0xd4, 0xff, 0x8a, 0xeb, 0x05, 0x49, 0xf5, 0xf0,
+	0x02, 0x76, 0xe3, 0xa4, 0x76, 0x44, 0x6f, 0x50, 0x33, 0x74, 0x50, 0x1c, 0xf9, 0x72, 0x41, 0xb4,
+	0x55, 0x49, 0x17, 0x20, 0x96, 0x56, 0xb0, 0xa5, 0x25, 0xb4, 0xc0, 0x5a, 0x12, 0x73, 0xfd, 0x79,
+	0xc6, 0x6a, 0x21, 0x33, 0xc4, 0xb4, 0x42, 0x6d, 0xad, 0xc3, 0x80, 0x7a, 0x53, 0x5d, 0x49, 0x9a,
+	0xef, 0x09, 0xe7, 0x73, 0xb5, 0x3e, 0x7b, 0xa0, 0x4f, 0x32, 0xd6, 0x0a, 0x99, 0x11, 0xa4, 0x96,
+	0x78, 0xff, 0x77, 0xb8, 0x56, 0xa0, 0x2d, 0x61, 0x2a, 0x57, 0x7b, 0xa4, 0xf2, 0x6d, 0xf9, 0x52,
+	0x41, 0xf4, 0x61, 0x39, 0x4d, 0x80, 0xc2, 0x75, 0x1a, 0x9b, 0x3c, 0x86, 0x12, 0x38, 0x61, 0x80,
+	0xfa, 0x9b, 0x11, 0x38, 0xc2, 0x56, 0x4d, 0xa2, 0xbb, 0x31, 0x52, 0x05, 0x18, 0x8a, 0x25, 0xa4,
+	0xea, 0xa9, 0x4c, 0x19, 0x61, 0x6d, 0x6b, 0x32, 0x96, 0x68, 0xe2, 0x3d, 0x02, 0x56, 0x0e, 0x8b,
+	0x12, 0x73, 0xcb, 0x19, 0x12, 0xc2, 0xea, 0x96, 0x35, 0x26, 0x26, 0xf9, 0x8f, 0x14, 0xaf, 0x02,
+	0x18, 0xb3, 0x03, 0x4d, 0xad, 0xfa, 0x15, 0xd6, 0xb7, 0x49, 0x0f, 0x72, 0xad, 0x6f, 0xfb, 0xeb,
+	0x82, 0x7e, 0x4c, 0x31, 0x2b, 0x00, 0x32, 0x3b, 0x8a, 0xf4, 0x8a, 0xe1, 0xe7, 0xf6, 0x76, 0xcb,
+	0x47, 0x13, 0xf5, 0xf3, 0xf1, 0x12, 0x37, 0x3b, 0xa5, 0x75, 0x82, 0x5b, 0x6e, 0xc7, 0x2f, 0xf1,
+	0x43, 0x4b, 0x95, 0x90, 0x2d, 0x72, 0x59, 0xab, 0x0c, 0x74, 0x7f, 0x37, 0x02, 0x47, 0xd8, 0x32,
+	0x3c, 0xe4, 0xa6, 0x43, 0x57, 0xac, 0x49, 0x14, 0xa1, 0x2b, 0xab, 0x69, 0x5c, 0xc2, 0x4e, 0x94,
+	0xb5, 0x63, 0xfa, 0x76, 0x77, 0xd3, 0xdc, 0xa8, 0x13, 0x53, 0x74, 0x00, 0x7c, 0x39, 0x76, 0x25,
+	0xf6, 0x96, 0x33, 0x24, 0x88, 0xb5, 0x27, 0xb1, 0xb5, 0x65, 0xb4, 0x94, 0xb4, 0x26, 0x66, 0xfa,
+	0x4f, 0x19, 0xe0, 0xcd, 0x0e, 0x35, 0xb5, 0x90, 0x54, 0x73, 0x19, 0xf0, 0x6e, 0xa9, 0x4f, 0xf2,
+	0x2e, 0xf4, 0x44, 0x6f, 0xad, 0xd6, 0x77, 0x1f, 0xf4, 0x93, 0x0c, 0xf8, 0x66, 0xc7, 0x91, 0x5e,
+	0x86, 0xfa, 0x3f, 0x21, 0x7c, 0x99, 0xa6, 0x30, 0xab, 0xab, 0x3d, 0xb3, 0xda, 0x90, 0xe3, 0x57,
+	0xe2, 0x88, 0x96, 0x2a, 0x41, 0xf1, 0x3b, 0x8b, 0xcd, 0x4e, 0x22, 0x0e, 0x3a, 0x0c, 0x80, 0xbf,
+	0x1a, 0x86, 0x31, 0x52, 0x23, 0x86, 0x36, 0x63, 0xec, 0x2e, 0xf0, 0xb8, 0x4c, 0x94, 0xc9, 0xb1,
+	0x7b, 0x27, 0x59, 0x1d, 0xa5, 0x56, 0xc6, 0x66, 0xa7, 0xb4, 0x71, 0xdd, 0x0d, 0x55, 0xd3, 0x6c,
+	0x37, 0x08, 0x56, 0xe7, 0x92, 0x48, 0x4c, 0xea, 0x9f, 0x97, 0x37, 0x12, 0xed, 0xcb, 0x58, 0xfb,
+	0x1c, 0x2a, 0x47, 0xda, 0xc5, 0x2c, 0xfe, 0x9a, 0x62, 0x73, 0x81, 0xc7, 0x5d, 0x6a, 0x28, 0xb2,
+	0x3a, 0x45, 0x6d, 0x8b, 0x41, 0xe4, 0x6d, 0x75, 0x99, 0x9a, 0xec, 0x89, 0xc5, 0x33, 0xb5, 0x3e,
+	0xa4, 0xd1, 0xbd, 0x18, 0x84, 0x0b, 0x3c, 0xc0, 0x52, 0x1d, 0x96, 0x16, 0x36, 0x9e, 0xdd, 0xdb,
+	0x2d, 0x8f, 0x47, 0x55, 0xba, 0x61, 0xa6, 0x56, 0x33, 0x32, 0xf5, 0x26, 0xc1, 0xdb, 0x5c, 0x12,
+	0x4d, 0x49, 0x9b, 0x0b, 0xb2, 0x46, 0x4f, 0xf2, 0xd1, 0x89, 0x98, 0xe1, 0xf0, 0x45, 0x2a, 0x7f,
+	0xb2, 0xf0, 0x95, 0x28, 0x7e, 0x12, 0xf1, 0xc5, 0x95, 0x4c, 0x51, 0x7c, 0x45, 0xb5, 0x33, 0xbd,
+	0xf0, 0x95, 0xd4, 0x3f, 0x2f, 0x6f, 0x14, 0xf0, 0x45, 0xb4, 0xf7, 0x87, 0xaf, 0xd4, 0x50, 0x64,
+	0xd5, 0x67, 0x02, 0xbe, 0x62, 0x93, 0xb9, 0xf0, 0x95, 0x5b, 0x3a, 0x0b, 0x5f, 0xa9, 0x0e, 0x4b,
+	0xcb, 0xd5, 0x08, 0xbe, 0xc2, 0xa7, 0x31, 0xbe, 0x52, 0x33, 0x95, 0x82, 0xaf, 0xa4, 0xcd, 0x05,
+	0x59, 0xa3, 0x0c, 0x5f, 0xc4, 0x0c, 0x83, 0xaf, 0x2f, 0x86, 0x61, 0x34, 0xac, 0x06, 0x41, 0x1b,
+	0x31, 0xbc, 0xe6, 0x85, 0xc3, 0x4e, 0xa6, 0x1c, 0x46, 0x5d, 0x48, 0x69, 0x25, 0xd6, 0x4a, 0xd8,
+	0x1a, 0xd2, 0xc6, 0x74, 0x5c, 0xf1, 0xc9, 0x60, 0xcb, 0x20, 0xd8, 0x52, 0xb9, 0xe3, 0x4d, 0x56,
+	0xf9, 0x9c, 0xb4, 0x8d, 0xa8, 0xae, 0x60, 0xd5, 0x2a, 0x2a, 0x11, 0xd5, 0x62, 0xba, 0x3e, 0xa5,
+	0xc0, 0x9a, 0x17, 0x0e, 0x33, 0x53, 0x82, 0x90, 0x54, 0x21, 0x69, 0x0d, 0x06, 0x56, 0xff, 0xaf,
+	0x56, 0x62, 0x7b, 0x3d, 0x51, 0x75, 0xba, 0x96, 0x5f, 0x38, 0x58, 0xec, 0x10, 0x50, 0xcd, 0x0b,
+	0xa7, 0x96, 0x29, 0xce, 0xca, 0x8a, 0x96, 0x4e, 0xef, 0xed, 0x96, 0xc7, 0x48, 0xd1, 0x5e, 0x98,
+	0xa1, 0xd5, 0xf4, 0x0c, 0xbd, 0x41, 0x00, 0xa5, 0x72, 0x47, 0x94, 0xac, 0xbd, 0x79, 0x49, 0x1b,
+	0x85, 0xd3, 0x71, 0x6c, 0xe3, 0x30, 0x8a, 0x06, 0x98, 0xdb, 0x89, 0xb0, 0x5f, 0xff, 0xb3, 0x76,
+	0x22, 0x62, 0x29, 0x84, 0xb8, 0x9c, 0x93, 0x95, 0x52, 0x30, 0xdf, 0xcb, 0x19, 0x4b, 0x3d, 0x77,
+	0x22, 0x12, 0x73, 0xcb, 0x19, 0x12, 0xe2, 0x17, 0x73, 0xc6, 0x58, 0x7f, 0x3b, 0x91, 0xec, 0x40,
+	0x53, 0xab, 0x57, 0xc4, 0x6f, 0xe6, 0x09, 0x0f, 0xf2, 0x7d, 0x33, 0xef, 0xab, 0x4b, 0xe6, 0x4e,
+	0x24, 0x3b, 0x8a, 0xf4, 0xca, 0x17, 0xb2, 0x13, 0x61, 0x9a, 0xe8, 0x67, 0xf3, 0xcc, 0x94, 0xa6,
+	0xec, 0x44, 0x24, 0x7e, 0x68, 0xa9, 0x12, 0xd2, 0x0f, 0xe7, 0x4c, 0x33, 0x85, 0xee, 0xe5, 0xaf,
+	0x95, 0x9f, 0xae, 0x7d, 0xa6, 0xa0, 0x9b, 0x30, 0x7c, 0xe5, 0xb5, 0xab, 0x97, 0xb5, 0x2b, 0x70,
+	0xf4, 0x96, 0x7d, 0xc7, 0xb4, 0x5a, 0x95, 0x6b, 0xf8, 0xbf, 0xcd, 0xa3, 0xa5, 0x3b, 0xbe, 0xef,
+	0x78, 0x17, 0x74, 0x3d, 0xe5, 0x3f, 0xd1, 0xab, 0x27, 0xc8, 0x5f, 0x97, 0x9a, 0x6d, 0xc3, 0x6a,
+	0x05, 0xed, 0xb5, 0x43, 0xe7, 0xab, 0xe7, 0xb4, 0x61, 0xfd, 0xde, 0x79, 0x7d, 0x75, 0x48, 0x19,
+	0xaa, 0x4d, 0x32, 0xa6, 0xf5, 0x77, 0x3c, 0xbb, 0x73, 0x41, 0x78, 0x72, 0xfb, 0x14, 0x2c, 0x03,
+	0xac, 0x39, 0xd6, 0xab, 0xe6, 0xce, 0x5a, 0xd7, 0xbf, 0x83, 0xa6, 0xc6, 0x87, 0xd4, 0xa3, 0xc1,
+	0x2f, 0xdb, 0xb5, 0xde, 0xc3, 0x72, 0x95, 0xa1, 0xcd, 0x49, 0x38, 0x96, 0x10, 0x7a, 0xec, 0xf6,
+	0x72, 0xf6, 0xff, 0xc7, 0x7f, 0xde, 0xd9, 0xdc, 0x1c, 0xc5, 0x55, 0x30, 0xcf, 0xfc, 0x27, 0x00,
+	0x00, 0xff, 0xff, 0xab, 0xed, 0xb4, 0xfd, 0x4b, 0x5f, 0x00, 0x00,
 }

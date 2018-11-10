@@ -65,80 +65,6 @@ createdb cmdb
 make migrate-up
 ```
 
-***Steps for container deployment***
-1. The service container is modified to include migration files in `/db/migrations/` directory.
-2. Then `initContainers` are leveraged to copy the migration files from service image to migration image as outlined in `deploy/migrations.yaml`.
-3. To create migrations update `migrations.yaml` with **database details** and run:
-```
-  # Modify database details in migrations.yaml (database name, user, password, address)
-  kubectl apply -f deploy/migration.yaml
-```
-
-#### Schema
-The database schema will have following tables:
-```bash
-postgres-# \dt
-                 List of relations
- Schema |          Name           | Type  |  Owner
---------+-------------------------+-------+---------
- public | application_container   | table | seizadi
- public | applications            | table | seizadi
- public | artifacts               | table | seizadi
- public | kubernetes              | table | seizadi
- public | aws_rds                 | table | seizadi
- public | aws_services            | table | seizadi
- public | aws_to_rds              | table | seizadi
- public | containers              | table | seizadi
- public | deployments             | table | seizadi
- public | environment_application | table | seizadi
- public | environments            | table | seizadi
- public | manifests               | table | seizadi
- public | region_environment      | table | seizadi
- public | regions                 | table | seizadi
- public | secrets                 | table | seizadi
- public | vault_secret            | table | seizadi
- public | vaults                  | table | seizadi
- public | version_tags            | table | seizadi
-(18 rows)
-```
-Here is the general format for one of the tables:
-```bash
-postgres-# \d+ applications
-                                                             Table "public.applications"
-     Column     |           Type           | Collation | Nullable |                 Default                  | Storage  | Stats target | Description
-----------------+--------------------------+-----------+----------+------------------------------------------+----------+--------------+-------------
- id             | integer                  |           | not null | nextval('applications_id_seq'::regclass) | plain    |              |
- created_at     | timestamp with time zone |           |          |                                          | plain    |              |
- updated_at     | timestamp with time zone |           |          |                                          | plain    |              |
- name           | text                     |           |          |                                          | extended |              |
- description    | text                     |           |          |                                          | extended |              |
- code           | text                     |           |          |                                          | extended |              |
- version_tag_id | integer                  |           |          |                                          | plain    |              |
- manifest_id    | integer                  |           |          |                                          | plain    |              |
-Indexes:
-    "applications_pkey" PRIMARY KEY, btree (id)
-```
-You should reference the migration files (./db/migrations) for more detail on the Tables.
-***Steps***
-1. The service container is modified to include migration files in `/db/migrations/` directory.
-2. Then `initContainers` are leveraged to copy the migration files from service image to migration image as outlined in `deploy/migrations.yaml`.
-3. To create migrations update `migrations.yaml` with **database details** and run:
-
-```
-  # Modify database details in migrations.yaml (database name, user, password, address)
-  kubectl apply -f deploy/migration.yaml
-```
-
-***Docker Usage***
-
-In case you don't want to follow the kubernetes deployment; build service image following Step 1 and run
-```
-docker create --name init-container1 -v migrations:/db/migrations infobloxcto/contacts-server:latest
-docker run --name contacts-app-migration --volumes-from init-container1 --network host infoblox/migrate:latest --verbose --path=/db/migrations/ --database.host=postgres.contacts:5432 --database.user=postgres --database.password=postgres --database.name=atlas_contacts_app up
-```
-
-**NOTE**: migrate support database connection string (passed as --database.dsn) as well as individual parameters (passed as --database.driver, --database.host, --database.name, --database.user, --database.password and --database.ssl)
-
 ### Local development setup
 
 Table creation should be done manually by running the migrations scripts or following the steps defined in database migration section. Scripts can be found at `./db/migrations/`
@@ -211,6 +137,41 @@ curl -H "Authorization: Bearer $JWT" http://localhost:8080/v1/vaults
 {"results":[{"id":"cmdb-app/vaults/1","name":"vault for QA","description":"Vault to store QA Secrets","path":"k8s/qa0-secrets","secrets":[{"id":"cmdb-app/secrets/1","name":"cmdb-app db password","description":"cmdb database password","type":"opaque","key":"db_password","vault_id":"cmdb-app/vaults/1"}]}]}
 ```
 
+I added 5 services and their associated migrations, the process was
+very repetitive and since I was cut and pasting code it was errorprone
+I decided to create a project to automate much of the code and migration
+process,
+[see atlas-template](https://github.com/seizadi/atlas-template)
+
+I did the remaining 9 service and migration using that tool. In
+order to test the new project I did
+```sh
+dropdb cmdb
+createdb cmdb
+make migrate-up
+make protobuf
+go run ./cmd/server/*.go
+```
+Now testing the new environment test the old interfaces
+```sh
+curl http://localhost:8080/v1/version
+export JWT="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJBY2NvdW50SUQiOjF9.GsXyFDDARjXe1t9DPo2LIBKHEal3O7t3vLI3edA7dGU"
+curl -H "Authorization: Bearer $JWT" http://localhost:8080/v1/containers -d '{"name": "cmdb-app", "description": "sample cmdb application", "container_name": "cmdb-app", "image_repo": "soheileizadi/cmdb-server", "image_tag": "latest", "image_pull_policy": "always"}'
+curl -H "Authorization: Bearer $JWT" http://localhost:8080/v1/version_tags -d '{"name": "cmdb-app", "description": "cmdb application version tag", "version": "v0.0.4", "repo": "https://github.com/seizadi/cmdb/releases/tag/v0.0.4", "commit": "20ec77f5a8f8e260deb51e8d888a2597762184b6"}'
+curl -H "Authorization: Bearer $JWT" http://localhost:8080/v1/vaults -d '{"name": "vault for QA", "description": "Vault to store QA Secrets", "path": "k8s/qa0-secrets"}'
+curl -H "Authorization: Bearer $JWT" http://localhost:8080/v1/secrets -d '{"vault_id":"cmdb-app/vaults/1", "name": "cmdb-app db password", "description": "cmdb database password", "type": "opaque", "key": "db_password"}'
+curl -H "Authorization: Bearer $JWT" http://localhost:8080/v1/vaults
+```
+Then test some of the new ones:
+```
+curl -H "Authorization: Bearer $JWT" http://localhost:8080/v1/applications
+{}
+
+curl -H "Authorization: Bearer $JWT" http://localhost:8080/v1/kube_clusters
+{}
+```
+Now I can go to the proto file and customize the resources based on
+my data model.
 
 #### Try atlas-contacts-app
 

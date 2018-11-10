@@ -1,5 +1,5 @@
 
-CREATE TABLE regions (
+CREATE TABLE kube_clusters (
   id serial primary key,
   account_id varchar(255),
   created_at timestamptz DEFAULT current_timestamp,
@@ -8,14 +8,8 @@ CREATE TABLE regions (
   description varchar(255) DEFAULT NULL
 );
 
-CREATE FUNCTION set_updated_at()
-  RETURNS trigger as $$
-  BEGIN
-    NEW.updated_at := current_timestamp;
-    RETURN NEW;
-  END $$ language plpgsql;
-
-CREATE TRIGGER regions_updated_at
-  BEFORE UPDATE OR INSERT ON regions
+CREATE TRIGGER kube_clusters_updated_at
+  BEFORE UPDATE OR INSERT ON kube_clusters
   FOR EACH ROW
   EXECUTE PROCEDURE set_updated_at();
+
