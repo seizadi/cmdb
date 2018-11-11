@@ -157,15 +157,15 @@ Now testing the new environment test the old interfaces
 curl http://localhost:8080/v1/version
 export JWT="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJBY2NvdW50SUQiOjF9.GsXyFDDARjXe1t9DPo2LIBKHEal3O7t3vLI3edA7dGU"
 curl -H "Authorization: Bearer $JWT" http://localhost:8080/v1/containers -d '{"name": "cmdb-app", "description": "sample cmdb application", "container_name": "cmdb-app", "image_repo": "soheileizadi/cmdb-server", "image_tag": "latest", "image_pull_policy": "always"}'
-curl -H "Authorization: Bearer $JWT" http://localhost:8080/v1/version_tags -d '{"name": "cmdb-app", "description": "cmdb application version tag", "version": "v0.0.4", "repo": "https://github.com/seizadi/cmdb/releases/tag/v0.0.4", "commit": "20ec77f5a8f8e260deb51e8d888a2597762184b6"}'
 curl -H "Authorization: Bearer $JWT" http://localhost:8080/v1/vaults -d '{"name": "vault for QA", "description": "Vault to store QA Secrets", "path": "k8s/qa0-secrets"}'
 curl -H "Authorization: Bearer $JWT" http://localhost:8080/v1/secrets -d '{"vault_id":"cmdb-app/vaults/1", "name": "cmdb-app db password", "description": "cmdb database password", "type": "opaque", "key": "db_password"}'
 curl -H "Authorization: Bearer $JWT" http://localhost:8080/v1/vaults
+curl -H "Authorization: Bearer $JWT" http://localhost:8080/v1/version_tags -d '{"name": "cmdb-app", "description": "cmdb application version tag", "version": "v0.0.4", "repo": "https://github.com/seizadi/cmdb/releases/tag/v0.0.4", "commit": "20ec77f5a8f8e260deb51e8d888a2597762184b6"}'
 ```
 Then test some of the new ones:
 ```
-curl -H "Authorization: Bearer $JWT" http://localhost:8080/v1/applications
-{}
+curl -H "Authorization: Bearer $JWT" http://localhost:8080/v1/artifacts -d '{"version_tag_id":"cmdb-app/version_tags/1", "name": "cmdb-app dev manifest", "description": "cmdb manifest for development", "repo": "https://github.com/seizadi/deploy/cmdb_manifest.yaml", "commit": "50ec74f5a8f8e260deb51e8d888a2597762184b6"}'
+{"result":{"id":"cmdb-app/artifacts/1","name":"cmdb-app dev manifest","description":"cmdb manifest for development","repo":"https://github.com/seizadi/deploy/cmdb_manifest.yaml","commit":"50ec74f5a8f8e260deb51e8d888a2597762184b6","version_tag_id":"cmdb-app/version_tags/1"}}sc-l-seizadi:cmdb seizadi$
 
 curl -H "Authorization: Bearer $JWT" http://localhost:8080/v1/kube_clusters
 {}

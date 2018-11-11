@@ -5,7 +5,9 @@ CREATE TABLE artifacts (
   created_at timestamptz DEFAULT current_timestamp,
   updated_at timestamptz DEFAULT NULL,
   name varchar(255) DEFAULT NULL,
-  description varchar(255) DEFAULT NULL
+  description varchar(255) DEFAULT NULL,
+  repo varchar(255) DEFAULT NULL,
+  commit varchar(255) DEFAULT NULL
 );
 
 CREATE TRIGGER artifacts_updated_at

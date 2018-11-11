@@ -338,6 +338,9 @@ message VersionTag {
 
   // The git repo commit ID (e.g. 20ec77f5a8f8e260deb51e8d888a2597762184b6)
   string commit = 6;
+
+  // The list of Artifacts that are versioned by this tag
+  repeated Artifact artifacts = 7;
 }
 
 message CreateVersionTagRequest {
@@ -1144,10 +1147,9 @@ service Secrets {
   }
 }
 
-
-// ------------------------------------------------------
-// Artifact represents a particular AWS Region
-// ------------------------------------------------------
+// ---------------------------------------------------------------------
+// Artifact represents an element built by CI (e.g. resolved manifest)
+// ---------------------------------------------------------------------
 message Artifact {
   option (gorm.opts) = {
       ormable: true,
@@ -1162,6 +1164,15 @@ message Artifact {
 
   // The description of the Artifact
   string description = 3;
+
+  // The repo which stores the Artifact
+  string repo = 4;
+
+  // The commit Id of the Artifact in repo
+  string commit = 5;
+
+  // The version tag the artifact belongs to.
+  atlas.rpc.Identifier version_tag_id = 6 [(gorm.field) = {reference_of: "VersionTag", tag: {type: "integer"}}];
 }
 
 message CreateArtifactRequest {

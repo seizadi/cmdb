@@ -2680,8 +2680,12 @@
     },
     "cmdbArtifact": {
       "type": "object",
-      "title": "------------------------------------------------------\nArtifact represents a particular AWS Region\n------------------------------------------------------",
+      "title": "---------------------------------------------------------------------\nArtifact represents an element built by CI (e.g. resolved manifest)\n---------------------------------------------------------------------",
       "properties": {
+        "commit": {
+          "type": "string",
+          "title": "The commit Id of the Artifact in repo"
+        },
         "description": {
           "type": "string",
           "title": "The description of the Artifact"
@@ -2694,6 +2698,14 @@
         "name": {
           "type": "string",
           "title": "The name of the Artifact"
+        },
+        "repo": {
+          "type": "string",
+          "title": "The repo which stores the Artifact"
+        },
+        "version_tag_id": {
+          "description": "The resource identifier.",
+          "type": "string"
         }
       }
     },
@@ -4243,7 +4255,7 @@
       "type": "object",
       "properties": {
         "result": {
-          "$ref": "#/definitions/cmdbRegion"
+          "$ref": "#/definitions/cmdbApplication"
         },
         "success": {
           "properties": {
@@ -4268,7 +4280,7 @@
       "type": "object",
       "properties": {
         "result": {
-          "$ref": "#/definitions/cmdbRegion"
+          "$ref": "#/definitions/cmdbArtifact"
         },
         "success": {
           "properties": {
@@ -4293,7 +4305,7 @@
       "type": "object",
       "properties": {
         "result": {
-          "$ref": "#/definitions/cmdbRegion"
+          "$ref": "#/definitions/cmdbAwsRdsInstance"
         },
         "success": {
           "properties": {
@@ -4318,7 +4330,7 @@
       "type": "object",
       "properties": {
         "result": {
-          "$ref": "#/definitions/cmdbRegion"
+          "$ref": "#/definitions/cmdbAwsService"
         },
         "success": {
           "properties": {
@@ -4343,7 +4355,7 @@
       "type": "object",
       "properties": {
         "result": {
-          "$ref": "#/definitions/cmdbRegion"
+          "$ref": "#/definitions/cmdbContainer"
         },
         "success": {
           "properties": {
@@ -4368,7 +4380,7 @@
       "type": "object",
       "properties": {
         "result": {
-          "$ref": "#/definitions/cmdbRegion"
+          "$ref": "#/definitions/cmdbDeployment"
         },
         "success": {
           "properties": {
@@ -4393,7 +4405,7 @@
       "type": "object",
       "properties": {
         "result": {
-          "$ref": "#/definitions/cmdbRegion"
+          "$ref": "#/definitions/cmdbEnvironment"
         },
         "success": {
           "properties": {
@@ -4418,7 +4430,7 @@
       "type": "object",
       "properties": {
         "result": {
-          "$ref": "#/definitions/cmdbRegion"
+          "$ref": "#/definitions/cmdbKubeCluster"
         },
         "success": {
           "properties": {
@@ -4443,7 +4455,7 @@
       "type": "object",
       "properties": {
         "result": {
-          "$ref": "#/definitions/cmdbRegion"
+          "$ref": "#/definitions/cmdbManifest"
         },
         "success": {
           "properties": {
@@ -4493,7 +4505,7 @@
       "type": "object",
       "properties": {
         "result": {
-          "$ref": "#/definitions/cmdbRegion"
+          "$ref": "#/definitions/cmdbSecret"
         },
         "success": {
           "properties": {
@@ -4518,7 +4530,7 @@
       "type": "object",
       "properties": {
         "result": {
-          "$ref": "#/definitions/cmdbRegion"
+          "$ref": "#/definitions/cmdbVault"
         },
         "success": {
           "properties": {
@@ -4543,7 +4555,7 @@
       "type": "object",
       "properties": {
         "result": {
-          "$ref": "#/definitions/cmdbRegion"
+          "$ref": "#/definitions/cmdbVersionTag"
         },
         "success": {
           "properties": {
@@ -4624,6 +4636,13 @@
       "type": "object",
       "title": "------------------------------------------------------\nVersionTag represents a tag on git repo\n------------------------------------------------------",
       "properties": {
+        "artifacts": {
+          "type": "array",
+          "title": "The list of Artifacts that are versioned by this tag",
+          "items": {
+            "$ref": "#/definitions/cmdbArtifact"
+          }
+        },
         "commit": {
           "type": "string",
           "title": "The git repo commit ID (e.g. 20ec77f5a8f8e260deb51e8d888a2597762184b6)"
