@@ -3208,6 +3208,18 @@ func validate_Object_AwsRdsInstance(r json.RawMessage, path string, allowUnknown
 			}
 		case "name":
 		case "description":
+		case "database_host":
+		case "database_name":
+		case "database_user":
+		case "database_password":
+			if v[k] == nil {
+				continue
+			}
+			vv := v[k]
+			vvPath := validate_runtime.JoinPath(path, k)
+			if err = validate_Object_Secret(vv, vvPath, allowUnknown); err != nil {
+				return err
+			}
 		default:
 			if !allowUnknown {
 				return fmt.Errorf("Unknown field %q", validate_runtime.JoinPath(path, k))
@@ -5692,6 +5704,21 @@ func validate_Object_Secret(r json.RawMessage, path string, allowUnknown bool) (
 		case "type":
 		case "key":
 		case "vault_id":
+			if v[k] == nil {
+				continue
+			}
+			vv := v[k]
+			vvPath := validate_runtime.JoinPath(path, k)
+			validator, ok := interface{}(&google_protobuf1.Identifier{}).(interface {
+				AtlasValidateJSON(json.RawMessage, string, bool) error
+			})
+			if !ok {
+				continue
+			}
+			if err = validator.AtlasValidateJSON(vv, vvPath, allowUnknown); err != nil {
+				return err
+			}
+		case "aws_rds_instance_id":
 			if v[k] == nil {
 				continue
 			}

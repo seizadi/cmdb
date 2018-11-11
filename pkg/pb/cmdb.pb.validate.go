@@ -3904,6 +3904,24 @@ func (m *AwsRdsInstance) Validate() error {
 
 	// no validation rules for Description
 
+	// no validation rules for DatabaseHost
+
+	// no validation rules for DatabaseName
+
+	// no validation rules for DatabaseUser
+
+	if v, ok := interface{}(m.GetDatabasePassword()).(interface {
+		Validate() error
+	}); ok {
+		if err := v.Validate(); err != nil {
+			return AwsRdsInstanceValidationError{
+				field:  "DatabasePassword",
+				reason: "embedded message failed validation",
+				cause:  err,
+			}
+		}
+	}
+
 	return nil
 }
 
@@ -7672,6 +7690,18 @@ func (m *Secret) Validate() error {
 		if err := v.Validate(); err != nil {
 			return SecretValidationError{
 				field:  "VaultId",
+				reason: "embedded message failed validation",
+				cause:  err,
+			}
+		}
+	}
+
+	if v, ok := interface{}(m.GetAwsRdsInstanceId()).(interface {
+		Validate() error
+	}); ok {
+		if err := v.Validate(); err != nil {
+			return SecretValidationError{
+				field:  "AwsRdsInstanceId",
 				reason: "embedded message failed validation",
 				cause:  err,
 			}

@@ -161,17 +161,28 @@ curl -H "Authorization: Bearer $JWT" http://localhost:8080/v1/vaults -d '{"name"
 curl -H "Authorization: Bearer $JWT" http://localhost:8080/v1/secrets -d '{"vault_id":"cmdb-app/vaults/1", "name": "cmdb-app db password", "description": "cmdb database password", "type": "opaque", "key": "db_password"}'
 curl -H "Authorization: Bearer $JWT" http://localhost:8080/v1/vaults
 curl -H "Authorization: Bearer $JWT" http://localhost:8080/v1/version_tags -d '{"name": "cmdb-app", "description": "cmdb application version tag", "version": "v0.0.4", "repo": "https://github.com/seizadi/cmdb/releases/tag/v0.0.4", "commit": "20ec77f5a8f8e260deb51e8d888a2597762184b6"}'
+
 ```
 Then test some of the new ones:
 ```
+curl -H "Authorization: Bearer $JWT" http://localhost:8080/v1/kube_clusters -d '{"name": "cluster-10", "description": "kubernetes cluster for development"}'
+{"result":{"id":"cmdb-app/kube_clusters/1","name":"cluster-10","description":"kubernetes cluster for development"}}
+
 curl -H "Authorization: Bearer $JWT" http://localhost:8080/v1/artifacts -d '{"version_tag_id":"cmdb-app/version_tags/1", "name": "cmdb-app dev manifest", "description": "cmdb manifest for development", "repo": "https://github.com/seizadi/deploy/cmdb_manifest.yaml", "commit": "50ec74f5a8f8e260deb51e8d888a2597762184b6"}'
 {"result":{"id":"cmdb-app/artifacts/1","name":"cmdb-app dev manifest","description":"cmdb manifest for development","repo":"https://github.com/seizadi/deploy/cmdb_manifest.yaml","commit":"50ec74f5a8f8e260deb51e8d888a2597762184b6","version_tag_id":"cmdb-app/version_tags/1"}}sc-l-seizadi:cmdb seizadi$
 
-curl -H "Authorization: Bearer $JWT" http://localhost:8080/v1/kube_clusters
-{}
+curl -H "Authorization: Bearer $JWT" http://localhost:8080/v1/aws_rds_instances -d '{"name": "cmdb rds", "description": "cmdb rds database", "database_host": "cmdb.cf1k7otqh6nf.us-east-1.rds.amazonaws.com", "database_name": "cmdb", "database_user": "cmdb", "database_secret": {"vault_id":"cmdb-app/vaults/1", "name": "cmdb db password", "description": "cmdb rds database password", "type": "opaque", "key": "DATABASE_PASSWORD"}}'
+{"result":{"id":"cmdb-app/aws_rds_instances/1","name":"cmdb rds","description":"cmdb rds database","database_host":"cmdb.cf1k7otqh6nf.us-east-1.rds.amazonaws.com","database_name":"cmdb","database_user":"cmdb","database_password":{"id":"cmdb-app/secrets/2","name":"cmdb db password","description":"cmdb rds database password","type":"opaque","key":"DATABASE_PASSWORD","vault_id":"cmdb-app/vaults/1","aws_rds_instance_id":"cmdb-app/aws_rds_instances/1"}}}
+
 ```
 Now I can go to the proto file and customize the resources based on
-my data model.
+my data model. Here is the sample of the 9 new APIs
+```sh
+curl -H "Authorization: Bearer $JWT" http://localhost:8080/v1/kube_clusters -d '{"name": "cluster-10", "description": "kubernetes cluster for development"}'
+curl -H "Authorization: Bearer $JWT" http://localhost:8080/v1/artifacts -d '{"version_tag_id":"cmdb-app/version_tags/1", "name": "cmdb-app dev manifest", "description": "cmdb manifest for development", "repo": "https://github.com/seizadi/deploy/cmdb_manifest.yaml", "commit": "50ec74f5a8f8e260deb51e8d888a2597762184b6"}'
+curl -H "Authorization: Bearer $JWT" http://localhost:8080/v1/aws_rds_instances -d '{"name": "cmdb rds", "description": "cmdb rds database", "database_host": "cmdb.cf1k7otqh6nf.us-east-1.rds.amazonaws.com", "database_name": "cmdb", "database_user": "cmdb", "database_password": {"vault_id":"cmdb-app/vaults/1", "name": "cmdb db password", "description": "cmdb rds database password", "type": "opaque", "key": "DATABASE_PASSWORD"}}'
+
+```
 
 #### Try atlas-contacts-app
 

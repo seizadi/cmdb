@@ -551,10 +551,9 @@ service Applications {
   }
 }
 
-
-// ------------------------------------------------------
-// AwsRdsInstance represents a particular AWS Region
-// ------------------------------------------------------
+// --------------------------------------------------------
+// AwsRdsInstance represents a particular AWS RDS Instance
+// --------------------------------------------------------
 message AwsRdsInstance {
   option (gorm.opts) = {
       ormable: true,
@@ -569,6 +568,18 @@ message AwsRdsInstance {
 
   // The description of the AwsRdsInstance
   string description = 3;
+
+  // Host URL of the AwsRdsInstance (e.g. cmdb.cf1k7otqh6nf.us-east-1.rds.amazonaws.com)
+  string database_host = 4;
+
+  // Name of the database created for use by the application
+  string database_name = 5;
+
+  // User credentials for access to the database
+  string database_user = 6;
+
+  // Secret database password which must be with the user credentials to access database
+  Secret database_password = 7;
 }
 
 message CreateAwsRdsInstanceRequest {
@@ -1050,6 +1061,9 @@ message Secret {
 
   // The vault the secret belongs to.
   atlas.rpc.Identifier vault_id = 6 [(gorm.field) = {reference_of: "Vault", tag: {type: "integer"}}];
+
+  // The AWS RDS Instance Id if this is a database password
+  atlas.rpc.Identifier aws_rds_instance_id = 7;
 }
 
 

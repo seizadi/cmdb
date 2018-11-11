@@ -2711,8 +2711,24 @@
     },
     "cmdbAwsRdsInstance": {
       "type": "object",
-      "title": "------------------------------------------------------\nAwsRdsInstance represents a particular AWS Region\n------------------------------------------------------",
+      "title": "--------------------------------------------------------\nAwsRdsInstance represents a particular AWS RDS Instance\n--------------------------------------------------------",
       "properties": {
+        "database_host": {
+          "type": "string",
+          "title": "Host URL of the AwsRdsInstance (e.g. cmdb.cf1k7otqh6nf.us-east-1.rds.amazonaws.com)"
+        },
+        "database_name": {
+          "type": "string",
+          "title": "Name of the database created for use by the application"
+        },
+        "database_password": {
+          "title": "Secret database password which must be with the user credentials to access database",
+          "$ref": "#/definitions/cmdbSecret"
+        },
+        "database_user": {
+          "type": "string",
+          "title": "User credentials for access to the database"
+        },
         "description": {
           "type": "string",
           "title": "The description of the AwsRdsInstance"
@@ -4224,6 +4240,10 @@
       "type": "object",
       "title": "--------------------------------------------------------\nSecret represents confidential data stored in the Vault\n--------------------------------------------------------",
       "properties": {
+        "aws_rds_instance_id": {
+          "description": "The resource identifier.",
+          "type": "string"
+        },
         "description": {
           "type": "string",
           "title": "The description of the container"
