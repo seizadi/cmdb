@@ -3415,8 +3415,16 @@
     },
     "cmdbDeployment": {
       "type": "object",
-      "title": "------------------------------------------------------\nDeployment represents a particular AWS Region\n------------------------------------------------------",
+      "title": "---------------------------------------------------------------------\nDeployment represents a particular Application running on Kubernetes\n---------------------------------------------------------------------",
       "properties": {
+        "artifact": {
+          "title": "Artifact for resolved manifest used for the Application",
+          "$ref": "#/definitions/cmdbArtifact"
+        },
+        "artifact_id": {
+          "description": "The resource identifier.",
+          "type": "string"
+        },
         "description": {
           "type": "string",
           "title": "The description of the Deployment"
@@ -3425,6 +3433,14 @@
           "description": "The resource identifier.",
           "type": "string",
           "readOnly": true
+        },
+        "kube_cluster": {
+          "title": "Kubernetes Cluster on which the Application is deployed",
+          "$ref": "#/definitions/cmdbKubeCluster"
+        },
+        "kube_cluster_id": {
+          "description": "The resource identifier.",
+          "type": "string"
         },
         "name": {
           "type": "string",

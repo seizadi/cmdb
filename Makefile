@@ -82,31 +82,25 @@ clean:
 
 .PHONY: up
 up:
-	kubectl apply -f deploy/ns.yaml
-	kubectl apply -f deploy/database.yaml
-	kubectl apply -f deploy/migration.yaml
-	kubectl apply -f deploy/kube.yaml
+	cd repo/cmdb; helm install -f minikube.yaml -n cmdb .
 
 .PHONY: down
 down:
-	kubectl delete -f deploy/ns.yaml
+	helm delete cmdb
 
-.PHONY: nginx-up
-nginx-up:
-	kubectl apply -f deploy/nginx.yaml
-
-.PHONY: nginx-down
-nginx-down:
-	kubectl delete -f deploy/nginx.yaml
 
 .PHONY: migrate-up
 migrate-up:
-	@migrate -database 'postgres://$(DATABASE_HOST)/cmdb?sslmode=disable' -path ./db/migrations up 8
+	@migrate -database 'postgres://$(DATABASE_HOST)/cmdb?sslmode=disable' -path ./db/migrations up
 #	@migrate -database 'postgres://$(DATABASE_HOST)/cmdb?sslmode=disable' -path ./db/migrations force 6
+
+.PHONY: migrate-goto
+migrate-goto:
+	@migrate -database 'postgres://$(DATABASE_HOST)/cmdb?sslmode=disable' -path ./db/migrations goto 9
 
 .PHONY: migrate-down
 migrate-down:
-	@migrate -database 'postgres://$(DATABASE_HOST):5432/cmdb?sslmode=disable' -path ./db/migrations down
+	@migrate -database 'postgres://$(DATABASE_HOST)/cmdb?sslmode=disable' -path ./db/migrations down
 
 .PHONY: erd
 erd:

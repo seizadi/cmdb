@@ -1397,10 +1397,9 @@ service AwsServices {
   }
 }
 
-
-// ------------------------------------------------------
-// Deployment represents a particular AWS Region
-// ------------------------------------------------------
+// ---------------------------------------------------------------------
+// Deployment represents a particular Application running on Kubernetes
+// ---------------------------------------------------------------------
 message Deployment {
   option (gorm.opts) = {
       ormable: true,
@@ -1415,6 +1414,18 @@ message Deployment {
 
   // The description of the Deployment
   string description = 3;
+
+  // Artifact for resolved manifest used for the Application
+  Artifact artifact = 4 [(gorm.field).belongs_to = {}];
+
+  // Reference to Artifact
+  atlas.rpc.Identifier artifact_id = 5;
+
+  // Kubernetes Cluster on which the Application is deployed
+  KubeCluster kube_cluster = 6 [(gorm.field).belongs_to = {}];
+
+  // Reference to Kubernetes Cluster
+  atlas.rpc.Identifier kube_cluster_id = 7;
 }
 
 message CreateDeploymentRequest {

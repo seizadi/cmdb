@@ -85,7 +85,34 @@ curl http://localhost:8080/v1/version
 {"version":"0.0.1"}
 ```
 
-Now try a REST call that requires authentication:
+CMDB supports Multi-Account environment, Authorization token (Bearer) is required. You can generate it using https://jwt.io/ with following Payload:
+```
+{
+  "AccountID": YourAccountID
+}
+```
+
+Example:
+```
+{
+  "AccountID": 1
+}
+```
+Bearer
+``` sh
+export JWT="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJBY2NvdW50SUQiOjF9.GsXyFDDARjXe1t9DPo2LIBKHEal3O7t3vLI3edA7dGU"
+```
+
+Request example:
+``` sh
+curl -H "Authorization: Bearer $JWT" \
+http://localhost:8080/v1/kube_clusters \
+-d '{"name": "cluster-10", "description": "kubernetes cluster for development"}'
+```
+
+Note, `JWT` contains AccountID field.
+
+Now try a REST calls that requires authentication:
 ```sh
 export JWT="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJBY2NvdW50SUQiOjF9.GsXyFDDARjXe1t9DPo2LIBKHEal3O7t3vLI3edA7dGU"
 curl -H "Authorization: Bearer $JWT" http://localhost:8080/v1/regions
@@ -138,9 +165,9 @@ curl -H "Authorization: Bearer $JWT" http://localhost:8080/v1/vaults
 ```
 
 I added 5 services and their associated migrations, the process was
-very repetitive and since I was cut and pasting code it was errorprone
-I decided to create a project to automate much of the code and migration
-process,
+very repetitive and since I was cutting and pasting code it was an error
+prone. I decided to create a project to automate much of the code and
+migration process,
 [see atlas-template](https://github.com/seizadi/atlas-template)
 
 I did the remaining 9 service and migration using that tool. In
@@ -152,7 +179,7 @@ make migrate-up
 make protobuf
 go run ./cmd/server/*.go
 ```
-Now testing the new environment test the old interfaces
+Now testing the new environment and testing the old interfaces all passed:
 ```sh
 curl http://localhost:8080/v1/version
 export JWT="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJBY2NvdW50SUQiOjF9.GsXyFDDARjXe1t9DPo2LIBKHEal3O7t3vLI3edA7dGU"
@@ -163,20 +190,40 @@ curl -H "Authorization: Bearer $JWT" http://localhost:8080/v1/vaults
 curl -H "Authorization: Bearer $JWT" http://localhost:8080/v1/version_tags -d '{"name": "cmdb-app", "description": "cmdb application version tag", "version": "v0.0.4", "repo": "https://github.com/seizadi/cmdb/releases/tag/v0.0.4", "commit": "20ec77f5a8f8e260deb51e8d888a2597762184b6"}'
 
 ```
-Then test some of the new ones:
+Now I can go to the proto file and customize the resources based on
+my data model for the remaining resources:
+
+Add Kubernetes Cluster:
 ```
 curl -H "Authorization: Bearer $JWT" http://localhost:8080/v1/kube_clusters -d '{"name": "cluster-10", "description": "kubernetes cluster for development"}'
 {"result":{"id":"cmdb-app/kube_clusters/1","name":"cluster-10","description":"kubernetes cluster for development"}}
+```
 
+Add Artifact:
+```sh
 curl -H "Authorization: Bearer $JWT" http://localhost:8080/v1/artifacts -d '{"version_tag_id":"cmdb-app/version_tags/1", "name": "cmdb-app dev manifest", "description": "cmdb manifest for development", "repo": "https://github.com/seizadi/deploy/cmdb_manifest.yaml", "commit": "50ec74f5a8f8e260deb51e8d888a2597762184b6"}'
 {"result":{"id":"cmdb-app/artifacts/1","name":"cmdb-app dev manifest","description":"cmdb manifest for development","repo":"https://github.com/seizadi/deploy/cmdb_manifest.yaml","commit":"50ec74f5a8f8e260deb51e8d888a2597762184b6","version_tag_id":"cmdb-app/version_tags/1"}}sc-l-seizadi:cmdb seizadi$
+```
 
+Add AWS RDS Instance:
+```sh
 curl -H "Authorization: Bearer $JWT" http://localhost:8080/v1/aws_rds_instances -d '{"name": "cmdb rds", "description": "cmdb rds database", "database_host": "cmdb.cf1k7otqh6nf.us-east-1.rds.amazonaws.com", "database_name": "cmdb", "database_user": "cmdb", "database_secret": {"vault_id":"cmdb-app/vaults/1", "name": "cmdb db password", "description": "cmdb rds database password", "type": "opaque", "key": "DATABASE_PASSWORD"}}'
 {"result":{"id":"cmdb-app/aws_rds_instances/1","name":"cmdb rds","description":"cmdb rds database","database_host":"cmdb.cf1k7otqh6nf.us-east-1.rds.amazonaws.com","database_name":"cmdb","database_user":"cmdb","database_password":{"id":"cmdb-app/secrets/2","name":"cmdb db password","description":"cmdb rds database password","type":"opaque","key":"DATABASE_PASSWORD","vault_id":"cmdb-app/vaults/1","aws_rds_instance_id":"cmdb-app/aws_rds_instances/1"}}}
 
 ```
-Now I can go to the proto file and customize the resources based on
-my data model. Here is the sample of the 9 new APIs
+
+Add Deployment:
+```sh
+curl -H "Authorization: Bearer $JWT" http://localhost:8080/v1/deployments -d '{"kube_cluster_id":"cmdb-app/kube_clusters/1", "artifact_id":"cmdb-app/artifacts/1", "name": "cmdb dev deploy", "description": "cmdb deployment for development"}'
+{"result":{"id":"cmdb-app/deployments/1","name":"cmdb dev deploy","description":"cmdb deployment for development","artifact_id":"cmdb-app/artifacts/1","kube_cluster_id":"cmdb-app/kube_clusters/1"}}
+
+curl -H "Authorization: Bearer $JWT" http://localhost:8080/v1/deployments
+{"results":[{"id":"cmdb-app/deployments/1","name":"cmdb dev deploy","description":"cmdb deployment for development","artifact":{"id":"cmdb-app/artifacts/1","name":"cmdb-app dev manifest","description":"cmdb manifest for development","repo":"https://github.com/seizadi/deploy/cmdb_manifest.yaml","commit":"50ec74f5a8f8e260deb51e8d888a2597762184b6","version_tag_id":"cmdb-app/version_tags/1"},"artifact_id":"cmdb-app/artifacts/1","kube_cluster":{"id":"cmdb-app/kube_clusters/1","name":"cluster-10","description":"kubernetes cluster for development"},"kube_cluster_id":"cmdb-app/kube_clusters/1"}]}
+
+```
+
+
+Here is the sample of the 9 new APIs
 ```sh
 curl -H "Authorization: Bearer $JWT" http://localhost:8080/v1/kube_clusters -d '{"name": "cluster-10", "description": "kubernetes cluster for development"}'
 curl -H "Authorization: Bearer $JWT" http://localhost:8080/v1/artifacts -d '{"version_tag_id":"cmdb-app/version_tags/1", "name": "cmdb-app dev manifest", "description": "cmdb manifest for development", "repo": "https://github.com/seizadi/deploy/cmdb_manifest.yaml", "commit": "50ec74f5a8f8e260deb51e8d888a2597762184b6"}'
@@ -184,43 +231,7 @@ curl -H "Authorization: Bearer $JWT" http://localhost:8080/v1/aws_rds_instances 
 
 ```
 
-#### Try atlas-contacts-app
 
-For Multi-Account environment, Authorization token (Bearer) is required. You can generate it using https://jwt.io/ with following Payload:
-```
-{
-  "AccountID": YourAccountID
-}
-```
-
-Example:
-```
-{
-  "AccountID": 1
-}
-```
-Bearer
-``` sh
-export JWT="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJBY2NvdW50SUQiOjF9.GsXyFDDARjXe1t9DPo2LIBKHEal3O7t3vLI3edA7dGU"
-```
-
-Request examples:
-``` sh
-curl -H "Authorization: Bearer $JWT" \
-http://localhost:8080/v1/contacts -d '{"first_name": "Mike", "primary_email": "mike@example.com"}'
-```
-
-``` sh
-curl -H "Authorization: Bearer $JWT" \
-http://localhost:8080/v1/contacts -d \
-'{"first_name": "Robert", "primary_email": "robert@example.com", "nicknames": ["bob", "robbie"]}'
-```
-
-``` sh
-curl -H "Authorization: Bearer $JWT" \
-http://localhost:8080/v1/contacts?_filter='first_name=="Mike"'
-```
-Note, that `JWT` should contain AccountID field.
 
 #### Build docker images
 

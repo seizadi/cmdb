@@ -7607,6 +7607,54 @@ func validate_Object_Deployment(r json.RawMessage, path string, allowUnknown boo
 			}
 		case "name":
 		case "description":
+		case "artifact":
+			if v[k] == nil {
+				continue
+			}
+			vv := v[k]
+			vvPath := validate_runtime.JoinPath(path, k)
+			if err = validate_Object_Artifact(vv, vvPath, allowUnknown); err != nil {
+				return err
+			}
+		case "artifact_id":
+			if v[k] == nil {
+				continue
+			}
+			vv := v[k]
+			vvPath := validate_runtime.JoinPath(path, k)
+			validator, ok := interface{}(&google_protobuf1.Identifier{}).(interface {
+				AtlasValidateJSON(json.RawMessage, string, bool) error
+			})
+			if !ok {
+				continue
+			}
+			if err = validator.AtlasValidateJSON(vv, vvPath, allowUnknown); err != nil {
+				return err
+			}
+		case "kube_cluster":
+			if v[k] == nil {
+				continue
+			}
+			vv := v[k]
+			vvPath := validate_runtime.JoinPath(path, k)
+			if err = validate_Object_KubeCluster(vv, vvPath, allowUnknown); err != nil {
+				return err
+			}
+		case "kube_cluster_id":
+			if v[k] == nil {
+				continue
+			}
+			vv := v[k]
+			vvPath := validate_runtime.JoinPath(path, k)
+			validator, ok := interface{}(&google_protobuf1.Identifier{}).(interface {
+				AtlasValidateJSON(json.RawMessage, string, bool) error
+			})
+			if !ok {
+				continue
+			}
+			if err = validator.AtlasValidateJSON(vv, vvPath, allowUnknown); err != nil {
+				return err
+			}
 		default:
 			if !allowUnknown {
 				return fmt.Errorf("Unknown field %q", validate_runtime.JoinPath(path, k))
