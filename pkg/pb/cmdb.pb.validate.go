@@ -3033,6 +3033,18 @@ func (m *Application) Validate() error {
 
 	}
 
+	if v, ok := interface{}(m.GetEnvironmentId()).(interface {
+		Validate() error
+	}); ok {
+		if err := v.Validate(); err != nil {
+			return ApplicationValidationError{
+				field:  "EnvironmentId",
+				reason: "embedded message failed validation",
+				cause:  err,
+			}
+		}
+	}
+
 	return nil
 }
 
@@ -5900,6 +5912,23 @@ func (m *Environment) Validate() error {
 	// no validation rules for Description
 
 	// no validation rules for Code
+
+	for idx, item := range m.GetApplications() {
+		_, _ = idx, item
+
+		if v, ok := interface{}(item).(interface {
+			Validate() error
+		}); ok {
+			if err := v.Validate(); err != nil {
+				return EnvironmentValidationError{
+					field:  fmt.Sprintf("Applications[%v]", idx),
+					reason: "embedded message failed validation",
+					cause:  err,
+				}
+			}
+		}
+
+	}
 
 	return nil
 }

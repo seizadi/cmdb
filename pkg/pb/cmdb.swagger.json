@@ -2674,6 +2674,10 @@
           "type": "string",
           "title": "The description of the Application"
         },
+        "environment_id": {
+          "description": "The resource identifier.",
+          "type": "string"
+        },
         "id": {
           "description": "The resource identifier.",
           "type": "string",
@@ -3490,6 +3494,13 @@
       "type": "object",
       "title": "------------------------------------------------------\nEnvironment represents a particular AWS Region\n------------------------------------------------------",
       "properties": {
+        "applications": {
+          "type": "array",
+          "title": "Applications in this Environment",
+          "items": {
+            "$ref": "#/definitions/cmdbApplication"
+          }
+        },
         "code": {
           "title": "Code defines the various stages e.g. dev, qa, preprod, prod",
           "$ref": "#/definitions/cmdbStage"

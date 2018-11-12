@@ -469,6 +469,9 @@ message Application {
 
   // Containers used by this Application
   repeated Container containers = 8;
+
+  // Reference to Environment
+  atlas.rpc.Identifier environment_id = 9;
 }
 
 message CreateApplicationRequest {
@@ -856,6 +859,9 @@ message Environment {
 
   // Code defines the various stages e.g. dev, qa, preprod, prod
   Stage code = 4;
+
+  // Applications in this Environment
+  repeated Application applications = 5;
 }
 
 message CreateEnvironmentRequest {

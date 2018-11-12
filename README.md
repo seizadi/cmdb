@@ -256,6 +256,19 @@ curl -H "Authorization: Bearer $JWT" http://localhost:8080/v1/applications/1
 
 ```
 
+Add Environment:
+```sh
+curl -H "Authorization: Bearer $JWT" http://localhost:8080/v1/environments -d '{"name": "seizadi dev", "description": "seizadi dev environment", "code":1}'
+{"result":{"id":"cmdb-app/environments/1","name":"seizadi dev","description":"seizadi dev environment","code":"DEV"}}
+
+curl -X PATCH -H "Authorization: Bearer $JWT" http://localhost:8080/v1/applications/1 -d '{"environment_id": "cmdb-app/environments/1"}'
+```
+
+Add Region:
+```sh
+```
+
+
 Here is the sample of the 9 new APIs
 ```sh
 curl -H "Authorization: Bearer $JWT" http://localhost:8080/v1/kube_clusters -d '{"name": "cluster-10", "description": "kubernetes cluster for development"}'
