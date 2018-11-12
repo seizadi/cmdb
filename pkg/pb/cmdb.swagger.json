@@ -3902,8 +3902,28 @@
     },
     "cmdbManifest": {
       "type": "object",
-      "title": "------------------------------------------------------\nManifest represents a particular AWS Region\n------------------------------------------------------",
+      "title": "--------------------------------------------------------------------------\nManifest represents all the elements needed for running Application\n--------------------------------------------------------------------------",
       "properties": {
+        "artifact": {
+          "title": "Artifact used by this Mainifest",
+          "$ref": "#/definitions/cmdbArtifact"
+        },
+        "artifact_id": {
+          "description": "The resource identifier.",
+          "type": "string"
+        },
+        "aws_service": {
+          "title": "AWS Service used by this Mainifest",
+          "$ref": "#/definitions/cmdbAwsService"
+        },
+        "aws_service_id": {
+          "description": "The resource identifier.",
+          "type": "string"
+        },
+        "commit": {
+          "type": "string",
+          "title": "repo commit Id"
+        },
         "description": {
           "type": "string",
           "title": "The description of the Manifest"
@@ -3913,9 +3933,33 @@
           "type": "string",
           "readOnly": true
         },
+        "ingress": {
+          "description": "The resource identifier.",
+          "type": "string"
+        },
         "name": {
           "type": "string",
           "title": "The name of the Manifest"
+        },
+        "repo": {
+          "type": "string",
+          "title": "repo holding Values, Services and Ingress elements"
+        },
+        "service": {
+          "description": "The resource identifier.",
+          "type": "string"
+        },
+        "values": {
+          "description": "The resource identifier.",
+          "type": "string"
+        },
+        "vault": {
+          "title": "Vault used by this Mainifest",
+          "$ref": "#/definitions/cmdbVault"
+        },
+        "vault_id": {
+          "description": "The resource identifier.",
+          "type": "string"
         }
       }
     },

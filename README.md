@@ -235,6 +235,33 @@ curl -H "Authorization: Bearer $JWT" http://localhost:8080/v1/aws_services
 
 ```
 
+Add Manifest:
+```sh
+curl -H "Authorization: Bearer $JWT" http://localhost:8080/v1/manifests -d '{"name": "cmdb dev manifest", "description": "cmdb manifest for development", "repo": "https://github.com/seizadi/deploy/cmdb_manifest.yaml", "commit": "50ec74f5a8f8e260deb51e8d888a2597762184b6", "values": {"SSL_PORT": "3443"}, "service": {"Name": "cmdb", "Type": "ClusterIP", "ServiceName": "cmdb", "Ports": [{"Name": "http", "Protocol": "TCP", "Port": "3000"}, {"Name": "https", "Protocol": "TCP", "Port": "3443"}]}, "ingress": {"Enabled": "true", "Annotations": [ {"ingress.kubernetes.io/secure-backends": "true"}, {"kubernetes.io/ingress.class": "nginx"}, {"ingress.kubernetes.io/limit-rps": "300"}, {"ingress.kubernetes.io/proxy-read-timeout": "300"}], "Hosts": ["test.infoblox.com"], "Path": ""}, "artifact_id":"cmdb-app/artifacts/1", "vault_id":"cmdb-app/vaults/1", "aws_service_id": "cmdb-app/aws_services/1"}'
+{"result":{"id":"cmdb-app/manifests/2","name":"cmdb dev manifest","description":"cmdb manifest for development","repo":"https://github.com/seizadi/deploy/cmdb_manifest.yaml","commit":"50ec74f5a8f8e260deb51e8d888a2597762184b6","values":"cmdb-app/{"SSL_PORT": "3443"}","service":"cmdb-app/{"Name": "cmdb", "Type": "ClusterIP", "ServiceName": "cmdb", "Ports": [{"Name": "http", "Protocol": "TCP", "Port": "3000"}, {"Name": "https", "Protocol": "TCP", "Port": "3443"}]}","ingress":"{"Enabled": "true", "Annotations": [ {"ingress.kubernetes.io/secure-backends": "true"}, {"kubernetes.io/ingress.class": "nginx"}, {"ingress.kubernetes.io/limit-rps": "300"}, {"ingress.kubernetes.io/proxy-read-timeout": "300"}], "Hosts": ["test.infoblox.com"], "Path": ""}","artifact_id":"cmdb-app/artifacts/1","vault_id":"cmdb-app/vaults/1","aws_service_id":"cmdb-app/aws_services/1"}}
+
+```
+
+```sh
+curl -H "Authorization: Bearer $JWT" \
+http://localhost:8080/v1/manifests \
+ -d '{"name": "cmdb dev manifest", "description": "cmdb manifest for development", \
+ "repo": "https://github.com/seizadi/deploy/cmdb_manifest.yaml", "commit": "50ec74f5a8f8e260deb51e8d888a2597762184b6", \
+ "artifact_id":"cmdb-app/artifacts/1", \
+ "vault_id":"cmdb-app/vaults/1", \
+ "aws_service_id": "cmdb-app/aws_services/1"}'
+
+```
+
+```sh
+curl -H "Authorization: Bearer $JWT" \
+http://localhost:8080/v1/manifests \
+ -d '{"name": "cmdb dev manifest", "description": "cmdb manifest for development",
+  "values": "{"SSL_PORT": "3443"}", "service": "{}", "ingress": "{}" \
+}'
+
+```
+
 Here is the sample of the 9 new APIs
 ```sh
 curl -H "Authorization: Bearer $JWT" http://localhost:8080/v1/kube_clusters -d '{"name": "cluster-10", "description": "kubernetes cluster for development"}'

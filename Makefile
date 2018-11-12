@@ -96,7 +96,7 @@ migrate-up:
 
 .PHONY: migrate-goto
 migrate-goto:
-	@migrate -database 'postgres://$(DATABASE_HOST)/cmdb?sslmode=disable' -path ./db/migrations goto 10
+	@migrate -database 'postgres://$(DATABASE_HOST)/cmdb?sslmode=disable' -path ./db/migrations goto 11
 
 .PHONY: migrate-down
 migrate-down:

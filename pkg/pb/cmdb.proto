@@ -923,10 +923,9 @@ service Environments {
   }
 }
 
-
-// ------------------------------------------------------
-// Manifest represents a particular AWS Region
-// ------------------------------------------------------
+// --------------------------------------------------------------------------
+// Manifest represents all the elements needed for running Application
+// --------------------------------------------------------------------------
 message Manifest {
   option (gorm.opts) = {
       ormable: true,
@@ -941,6 +940,39 @@ message Manifest {
 
   // The description of the Manifest
   string description = 3;
+
+  // repo holding Values, Services and Ingress elements
+  string repo = 4;
+
+  // repo commit Id
+  string commit = 5;
+
+  // Values used for Kubernetes ConfigMap YAML
+  atlas.rpc.Identifier values = 6 [(gorm.field).tag = {type: "jsonb"}];
+
+  // Services used for Kubernetes Service YAML
+  atlas.rpc.Identifier service = 7 [(gorm.field).tag = {type: "jsonb"}];
+
+  // Ingress used for Kubernetes Ingress YAML
+  atlas.rpc.Identifier ingress = 8 [(gorm.field).tag = {type: "jsonb"}];
+
+  // Artifact used by this Mainifest
+  Artifact artifact = 9 [(gorm.field).belongs_to = {}];
+
+  // Reference to Artifact
+  atlas.rpc.Identifier artifact_id = 10;
+
+  // Vault used by this Mainifest
+  Vault vault = 11 [(gorm.field).belongs_to = {}];
+
+  // Reference to Vault
+  atlas.rpc.Identifier vault_id = 12;
+
+  // AWS Service used by this Mainifest
+  AwsService aws_service = 13 [(gorm.field).belongs_to = {}];
+
+  // Reference to AWS Service
+  atlas.rpc.Identifier aws_service_id = 14;
 }
 
 message CreateManifestRequest {

@@ -5097,6 +5097,125 @@ func validate_Object_Manifest(r json.RawMessage, path string, allowUnknown bool)
 			}
 		case "name":
 		case "description":
+		case "repo":
+		case "commit":
+		case "values":
+			if v[k] == nil {
+				continue
+			}
+			vv := v[k]
+			vvPath := validate_runtime.JoinPath(path, k)
+			validator, ok := interface{}(&google_protobuf1.Identifier{}).(interface {
+				AtlasValidateJSON(json.RawMessage, string, bool) error
+			})
+			if !ok {
+				continue
+			}
+			if err = validator.AtlasValidateJSON(vv, vvPath, allowUnknown); err != nil {
+				return err
+			}
+		case "service":
+			if v[k] == nil {
+				continue
+			}
+			vv := v[k]
+			vvPath := validate_runtime.JoinPath(path, k)
+			validator, ok := interface{}(&google_protobuf1.Identifier{}).(interface {
+				AtlasValidateJSON(json.RawMessage, string, bool) error
+			})
+			if !ok {
+				continue
+			}
+			if err = validator.AtlasValidateJSON(vv, vvPath, allowUnknown); err != nil {
+				return err
+			}
+		case "ingress":
+			if v[k] == nil {
+				continue
+			}
+			vv := v[k]
+			vvPath := validate_runtime.JoinPath(path, k)
+			validator, ok := interface{}(&google_protobuf1.Identifier{}).(interface {
+				AtlasValidateJSON(json.RawMessage, string, bool) error
+			})
+			if !ok {
+				continue
+			}
+			if err = validator.AtlasValidateJSON(vv, vvPath, allowUnknown); err != nil {
+				return err
+			}
+		case "artifact":
+			if v[k] == nil {
+				continue
+			}
+			vv := v[k]
+			vvPath := validate_runtime.JoinPath(path, k)
+			if err = validate_Object_Artifact(vv, vvPath, allowUnknown); err != nil {
+				return err
+			}
+		case "artifact_id":
+			if v[k] == nil {
+				continue
+			}
+			vv := v[k]
+			vvPath := validate_runtime.JoinPath(path, k)
+			validator, ok := interface{}(&google_protobuf1.Identifier{}).(interface {
+				AtlasValidateJSON(json.RawMessage, string, bool) error
+			})
+			if !ok {
+				continue
+			}
+			if err = validator.AtlasValidateJSON(vv, vvPath, allowUnknown); err != nil {
+				return err
+			}
+		case "vault":
+			if v[k] == nil {
+				continue
+			}
+			vv := v[k]
+			vvPath := validate_runtime.JoinPath(path, k)
+			if err = validate_Object_Vault(vv, vvPath, allowUnknown); err != nil {
+				return err
+			}
+		case "vault_id":
+			if v[k] == nil {
+				continue
+			}
+			vv := v[k]
+			vvPath := validate_runtime.JoinPath(path, k)
+			validator, ok := interface{}(&google_protobuf1.Identifier{}).(interface {
+				AtlasValidateJSON(json.RawMessage, string, bool) error
+			})
+			if !ok {
+				continue
+			}
+			if err = validator.AtlasValidateJSON(vv, vvPath, allowUnknown); err != nil {
+				return err
+			}
+		case "aws_service":
+			if v[k] == nil {
+				continue
+			}
+			vv := v[k]
+			vvPath := validate_runtime.JoinPath(path, k)
+			if err = validate_Object_AwsService(vv, vvPath, allowUnknown); err != nil {
+				return err
+			}
+		case "aws_service_id":
+			if v[k] == nil {
+				continue
+			}
+			vv := v[k]
+			vvPath := validate_runtime.JoinPath(path, k)
+			validator, ok := interface{}(&google_protobuf1.Identifier{}).(interface {
+				AtlasValidateJSON(json.RawMessage, string, bool) error
+			})
+			if !ok {
+				continue
+			}
+			if err = validator.AtlasValidateJSON(vv, vvPath, allowUnknown); err != nil {
+				return err
+			}
 		default:
 			if !allowUnknown {
 				return fmt.Errorf("Unknown field %q", validate_runtime.JoinPath(path, k))
