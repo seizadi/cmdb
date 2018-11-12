@@ -698,6 +698,7 @@ func validate_Object_Region(r json.RawMessage, path string, allowUnknown bool) (
 			}
 		case "name":
 		case "description":
+		case "account":
 		default:
 			if !allowUnknown {
 				return fmt.Errorf("Unknown field %q", validate_runtime.JoinPath(path, k))
@@ -4586,6 +4587,21 @@ func validate_Object_Environment(r json.RawMessage, path string, allowUnknown bo
 				if err = validate_Object_Application(vv, vvPath, allowUnknown); err != nil {
 					return err
 				}
+			}
+		case "region_id":
+			if v[k] == nil {
+				continue
+			}
+			vv := v[k]
+			vvPath := validate_runtime.JoinPath(path, k)
+			validator, ok := interface{}(&google_protobuf1.Identifier{}).(interface {
+				AtlasValidateJSON(json.RawMessage, string, bool) error
+			})
+			if !ok {
+				continue
+			}
+			if err = validator.AtlasValidateJSON(vv, vvPath, allowUnknown); err != nil {
+				return err
 			}
 		default:
 			if !allowUnknown {

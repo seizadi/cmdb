@@ -95,6 +95,9 @@ message Region {
 
   // The description of the Region
   string description = 3;
+
+  // AWS Account
+  string account = 4;
 }
 
 message CreateRegionRequest {
@@ -862,6 +865,9 @@ message Environment {
 
   // Applications in this Environment
   repeated Application applications = 5;
+
+  // Region used by this Environment
+  atlas.rpc.Identifier region_id = 6;
 }
 
 message CreateEnvironmentRequest {

@@ -266,6 +266,12 @@ curl -X PATCH -H "Authorization: Bearer $JWT" http://localhost:8080/v1/applicati
 
 Add Region:
 ```sh
+curl -H "Authorization: Bearer $JWT" http://localhost:8080/v1/regions -d '{"name": "us-east-1", "description": "us-east-1 for dev, qa and preprod", "account":"43509870"}'
+{"result":{"id":"cmdb-app/regions/1","name":"us-east-1","description":"us-east-1 for dev, qa and preprod","account":"43509870"}}
+
+curl -X PATCH -H "Authorization: Bearer $JWT" http://localhost:8080/v1/environments/1 -d '{"region_id":1}'
+{"result":{"id":"cmdb-app/environments/1","name":"seizadi dev","description":"seizadi dev environment","code":"DEV","region_id":"cmdb-app/1"}}
+
 ```
 
 

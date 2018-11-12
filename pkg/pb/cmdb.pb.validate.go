@@ -124,6 +124,8 @@ func (m *Region) Validate() error {
 
 	// no validation rules for Description
 
+	// no validation rules for Account
+
 	return nil
 }
 
@@ -5928,6 +5930,18 @@ func (m *Environment) Validate() error {
 			}
 		}
 
+	}
+
+	if v, ok := interface{}(m.GetRegionId()).(interface {
+		Validate() error
+	}); ok {
+		if err := v.Validate(); err != nil {
+			return EnvironmentValidationError{
+				field:  "RegionId",
+				reason: "embedded message failed validation",
+				cause:  err,
+			}
+		}
 	}
 
 	return nil

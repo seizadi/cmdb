@@ -16,6 +16,7 @@ var CmdbMethodsRequireFilteringValidation = map[string]map[string]options.Filter
 		"id":          options.FilteringOption{ValueType: options.QueryValidate_STRING},
 		"name":        options.FilteringOption{ValueType: options.QueryValidate_STRING},
 		"description": options.FilteringOption{ValueType: options.QueryValidate_STRING},
+		"account":     options.FilteringOption{ValueType: options.QueryValidate_STRING},
 	},
 	"/api.cmdb.Vaults/List": map[string]options.FilteringOption{
 		"id":          options.FilteringOption{ValueType: options.QueryValidate_STRING},
@@ -64,6 +65,7 @@ var CmdbMethodsRequireFilteringValidation = map[string]map[string]options.Filter
 		"name":        options.FilteringOption{ValueType: options.QueryValidate_STRING},
 		"description": options.FilteringOption{ValueType: options.QueryValidate_STRING},
 		"code":        options.FilteringOption{ValueType: options.QueryValidate_STRING},
+		"region_id":   options.FilteringOption{ValueType: options.QueryValidate_STRING},
 	},
 	"/api.cmdb.Manifests/List": map[string]options.FilteringOption{
 		"id":             options.FilteringOption{ValueType: options.QueryValidate_STRING},
@@ -118,6 +120,7 @@ var CmdbMethodsRequireSortingValidation = map[string][]string{
 		"id",
 		"name",
 		"description",
+		"account",
 	},
 	"/api.cmdb.Vaults/List": []string{
 		"id",
@@ -166,6 +169,7 @@ var CmdbMethodsRequireSortingValidation = map[string][]string{
 		"name",
 		"description",
 		"code",
+		"region_id",
 	},
 	"/api.cmdb.Manifests/List": []string{
 		"id",
@@ -220,11 +224,13 @@ var CmdbMethodsRequireFieldSelectionValidation = map[string][]string{
 		"id",
 		"name",
 		"description",
+		"account",
 	},
 	"/api.cmdb.Regions/List": {
 		"id",
 		"name",
 		"description",
+		"account",
 	},
 	"/api.cmdb.Vaults/Read": {
 		"id",
@@ -596,6 +602,7 @@ var CmdbMethodsRequireFieldSelectionValidation = map[string][]string{
 		"applications.containers",
 		"applications.environment_id",
 		"applications",
+		"region_id",
 	},
 	"/api.cmdb.Environments/List": {
 		"id",
@@ -685,6 +692,7 @@ var CmdbMethodsRequireFieldSelectionValidation = map[string][]string{
 		"applications.containers",
 		"applications.environment_id",
 		"applications",
+		"region_id",
 	},
 	"/api.cmdb.Manifests/Read": {
 		"id",
