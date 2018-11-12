@@ -207,7 +207,7 @@ curl -H "Authorization: Bearer $JWT" http://localhost:8080/v1/artifacts -d '{"ve
 
 Add AWS RDS Instance:
 ```sh
-curl -H "Authorization: Bearer $JWT" http://localhost:8080/v1/aws_rds_instances -d '{"name": "cmdb rds", "description": "cmdb rds database", "database_host": "cmdb.cf1k7otqh6nf.us-east-1.rds.amazonaws.com", "database_name": "cmdb", "database_user": "cmdb", "database_secret": {"vault_id":"cmdb-app/vaults/1", "name": "cmdb db password", "description": "cmdb rds database password", "type": "opaque", "key": "DATABASE_PASSWORD"}}'
+curl -H "Authorization: Bearer $JWT" http://localhost:8080/v1/aws_rds_instances -d '{"name": "cmdb rds", "description": "cmdb rds database", "database_host": "cmdb.cf1k7otqh6nf.us-east-1.rds.amazonaws.com", "database_name": "cmdb", "database_user": "cmdb", "database_password": {"vault_id":"cmdb-app/vaults/1", "name": "cmdb db password", "description": "cmdb rds database password", "type": "opaque", "key": "DATABASE_PASSWORD"}}'
 {"result":{"id":"cmdb-app/aws_rds_instances/1","name":"cmdb rds","description":"cmdb rds database","database_host":"cmdb.cf1k7otqh6nf.us-east-1.rds.amazonaws.com","database_name":"cmdb","database_user":"cmdb","database_password":{"id":"cmdb-app/secrets/2","name":"cmdb db password","description":"cmdb rds database password","type":"opaque","key":"DATABASE_PASSWORD","vault_id":"cmdb-app/vaults/1","aws_rds_instance_id":"cmdb-app/aws_rds_instances/1"}}}
 
 ```
@@ -222,6 +222,18 @@ curl -H "Authorization: Bearer $JWT" http://localhost:8080/v1/deployments
 
 ```
 
+Add AWS Service:
+```sh
+curl -H "Authorization: Bearer $JWT" http://localhost:8080/v1/aws_services -d '{"name": "cmdb dev AWS Service", "description": "cmdb AWS Services for development"}'
+{"result":{"id":"cmdb-app/aws_services/1","name":"cmdb dev AWS Service","description":"cmdb AWS Services for development"}}
+
+curl -X PATCH -H "Authorization: Bearer $JWT" http://localhost:8080/v1/aws_rds_instances/2 -d '{"aws_service_id": "cmdb-app/aws_services/1"}'
+{"result":{"id":"cmdb-app/aws_rds_instances/2","name":"cmdb rds","description":"cmdb rds database","database_host":"cmdb.cf1k7otqh6nf.us-east-1.rds.amazonaws.com","database_name":"cmdb","database_user":"cmdb","database_password":{"id":"cmdb-app/secrets/3","name":"cmdb db password","description":"cmdb rds database password","type":"opaque","key":"DATABASE_PASSWORD","vault_id":"cmdb-app/vaults/1","aws_rds_instance_id":"cmdb-app/aws_rds_instances/2"},"aws_service_id":"cmdb-app/aws_services/1"}}
+
+curl -H "Authorization: Bearer $JWT" http://localhost:8080/v1/aws_services
+{"results":[{"id":"cmdb-app/aws_services/1","name":"cmdb dev AWS Service","description":"cmdb AWS Services for development","aws_rds_instances":[{"id":"cmdb-app/aws_rds_instances/1","aws_service_id":"cmdb-app/aws_services/1"},{"id":"cmdb-app/aws_rds_instances/2","name":"cmdb rds","description":"cmdb rds database","database_host":"cmdb.cf1k7otqh6nf.us-east-1.rds.amazonaws.com","database_name":"cmdb","database_user":"cmdb","database_password":{"id":"cmdb-app/secrets/3","name":"cmdb db password","description":"cmdb rds database password","type":"opaque","key":"DATABASE_PASSWORD","vault_id":"cmdb-app/vaults/1","aws_rds_instance_id":"cmdb-app/aws_rds_instances/2"},"aws_service_id":"cmdb-app/aws_services/1"}]}]}
+
+```
 
 Here is the sample of the 9 new APIs
 ```sh

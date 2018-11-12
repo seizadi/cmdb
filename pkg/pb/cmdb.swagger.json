@@ -2713,6 +2713,10 @@
       "type": "object",
       "title": "--------------------------------------------------------\nAwsRdsInstance represents a particular AWS RDS Instance\n--------------------------------------------------------",
       "properties": {
+        "aws_service_id": {
+          "description": "The resource identifier.",
+          "type": "string"
+        },
         "database_host": {
           "type": "string",
           "title": "Host URL of the AwsRdsInstance (e.g. cmdb.cf1k7otqh6nf.us-east-1.rds.amazonaws.com)"
@@ -2746,8 +2750,15 @@
     },
     "cmdbAwsService": {
       "type": "object",
-      "title": "------------------------------------------------------\nAwsService represents a particular AWS Region\n------------------------------------------------------",
+      "title": "------------------------------------------------------\nAwsService represents a set of AWS Services used by the Application\n------------------------------------------------------",
       "properties": {
+        "aws_rds_instances": {
+          "type": "array",
+          "title": "Reference to the AwsRds Instances",
+          "items": {
+            "$ref": "#/definitions/cmdbAwsRdsInstance"
+          }
+        },
         "description": {
           "type": "string",
           "title": "The description of the AwsService"

@@ -3922,6 +3922,18 @@ func (m *AwsRdsInstance) Validate() error {
 		}
 	}
 
+	if v, ok := interface{}(m.GetAwsServiceId()).(interface {
+		Validate() error
+	}); ok {
+		if err := v.Validate(); err != nil {
+			return AwsRdsInstanceValidationError{
+				field:  "AwsServiceId",
+				reason: "embedded message failed validation",
+				cause:  err,
+			}
+		}
+	}
+
 	return nil
 }
 
@@ -9593,6 +9605,23 @@ func (m *AwsService) Validate() error {
 	// no validation rules for Name
 
 	// no validation rules for Description
+
+	for idx, item := range m.GetAwsRdsInstances() {
+		_, _ = idx, item
+
+		if v, ok := interface{}(item).(interface {
+			Validate() error
+		}); ok {
+			if err := v.Validate(); err != nil {
+				return AwsServiceValidationError{
+					field:  fmt.Sprintf("AwsRdsInstances[%v]", idx),
+					reason: "embedded message failed validation",
+					cause:  err,
+				}
+			}
+		}
+
+	}
 
 	return nil
 }

@@ -13,3 +13,4 @@ CREATE TRIGGER aws_services_updated_at
   FOR EACH ROW
   EXECUTE PROCEDURE set_updated_at();
 
+ALTER TABLE aws_rds_instances ADD COLUMN aws_service_id int REFERENCES aws_services(id) ON DELETE CASCADE;

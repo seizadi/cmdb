@@ -580,6 +580,9 @@ message AwsRdsInstance {
 
   // Secret database password which must be with the user credentials to access database
   Secret database_password = 7;
+
+  // Reference to the AWS Service this RDS Instance belongs to
+  atlas.rpc.Identifier aws_service_id = 8;
 }
 
 message CreateAwsRdsInstanceRequest {
@@ -1285,7 +1288,7 @@ service Artifacts {
 
 
 // ------------------------------------------------------
-// AwsService represents a particular AWS Region
+// AwsService represents a set of AWS Services used by the Application
 // ------------------------------------------------------
 message AwsService {
   option (gorm.opts) = {
@@ -1301,6 +1304,9 @@ message AwsService {
 
   // The description of the AwsService
   string description = 3;
+
+  // Reference to the AwsRds Instances
+  repeated AwsRdsInstance aws_rds_instances = 4;
 }
 
 message CreateAwsServiceRequest {
