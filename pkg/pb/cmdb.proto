@@ -437,10 +437,9 @@ service VersionTags {
   }
 }
 
-
-// ------------------------------------------------------
-// Application represents a particular AWS Region
-// ------------------------------------------------------
+// -----------------------------------------------------------------------
+// Application represents application definition used by an Environment
+// -----------------------------------------------------------------------
 message Application {
   option (gorm.opts) = {
       ormable: true,
@@ -455,6 +454,21 @@ message Application {
 
   // The description of the Application
   string description = 3;
+
+  // VersionTag setting of this Application
+  VersionTag version_tag = 4 [(gorm.field).belongs_to = {}];
+
+  // Reference to VersionTag
+  atlas.rpc.Identifier version_tag_id = 5;
+
+  // Manifest used by this Application
+  Manifest manifest = 6 [(gorm.field).belongs_to = {}];
+
+  // Reference to Manifest
+  atlas.rpc.Identifier manifest_id = 7;
+
+  // Containers used by this Application
+  repeated Container containers = 8;
 }
 
 message CreateApplicationRequest {
@@ -713,6 +727,9 @@ message Container {
   // The digest of the image to check integrity (e.g. digest: sha256:9bf4971079f0ddf3f4ed8681dc96c2610804007359643809165f94a95bc5c3b6)
   string digest = 8;
 
+  // Reference to Application
+  atlas.rpc.Identifier application_id = 9;
+
 }
 
 message CreateContainerRequest {
@@ -809,6 +826,15 @@ service Containers {
   }
 }
 
+enum Stage {
+  UNKNOWN = 0;
+  DEV = 1;
+  QA = 2;
+  QAFUNC = 3;
+  QAPERF = 4;
+  PREPROD = 5;
+  PROD = 6;
+}
 
 // ------------------------------------------------------
 // Environment represents a particular AWS Region
@@ -827,6 +853,9 @@ message Environment {
 
   // The description of the Environment
   string description = 3;
+
+  // Code defines the various stages e.g. dev, qa, preprod, prod
+  Stage code = 4;
 }
 
 message CreateEnvironmentRequest {
@@ -956,19 +985,19 @@ message Manifest {
   // Ingress used for Kubernetes Ingress YAML
   atlas.rpc.Identifier ingress = 8 [(gorm.field).tag = {type: "jsonb"}];
 
-  // Artifact used by this Mainifest
+  // Artifact used by this Manifest
   Artifact artifact = 9 [(gorm.field).belongs_to = {}];
 
   // Reference to Artifact
   atlas.rpc.Identifier artifact_id = 10;
 
-  // Vault used by this Mainifest
+  // Vault used by this Manifest
   Vault vault = 11 [(gorm.field).belongs_to = {}];
 
   // Reference to Vault
   atlas.rpc.Identifier vault_id = 12;
 
-  // AWS Service used by this Mainifest
+  // AWS Service used by this Manifest
   AwsService aws_service = 13 [(gorm.field).belongs_to = {}];
 
   // Reference to AWS Service

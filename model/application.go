@@ -8,7 +8,6 @@ type Application struct {
 	UpdatedAt time.Time `json:"updated_at"`
 	Name         string
 	Description  string
-	Code         string
 	VersionTag   VersionTag `gorm:"foreignkey:VersionTagID"`
 	VersionTagID uint
 	Manifest     Manifest    `gorm:"foreignkey:ManifestID"`

@@ -2968,6 +2968,71 @@ func (m *Application) Validate() error {
 
 	// no validation rules for Description
 
+	if v, ok := interface{}(m.GetVersionTag()).(interface {
+		Validate() error
+	}); ok {
+		if err := v.Validate(); err != nil {
+			return ApplicationValidationError{
+				field:  "VersionTag",
+				reason: "embedded message failed validation",
+				cause:  err,
+			}
+		}
+	}
+
+	if v, ok := interface{}(m.GetVersionTagId()).(interface {
+		Validate() error
+	}); ok {
+		if err := v.Validate(); err != nil {
+			return ApplicationValidationError{
+				field:  "VersionTagId",
+				reason: "embedded message failed validation",
+				cause:  err,
+			}
+		}
+	}
+
+	if v, ok := interface{}(m.GetManifest()).(interface {
+		Validate() error
+	}); ok {
+		if err := v.Validate(); err != nil {
+			return ApplicationValidationError{
+				field:  "Manifest",
+				reason: "embedded message failed validation",
+				cause:  err,
+			}
+		}
+	}
+
+	if v, ok := interface{}(m.GetManifestId()).(interface {
+		Validate() error
+	}); ok {
+		if err := v.Validate(); err != nil {
+			return ApplicationValidationError{
+				field:  "ManifestId",
+				reason: "embedded message failed validation",
+				cause:  err,
+			}
+		}
+	}
+
+	for idx, item := range m.GetContainers() {
+		_, _ = idx, item
+
+		if v, ok := interface{}(item).(interface {
+			Validate() error
+		}); ok {
+			if err := v.Validate(); err != nil {
+				return ApplicationValidationError{
+					field:  fmt.Sprintf("Containers[%v]", idx),
+					reason: "embedded message failed validation",
+					cause:  err,
+				}
+			}
+		}
+
+	}
+
 	return nil
 }
 
@@ -4886,6 +4951,18 @@ func (m *Container) Validate() error {
 
 	// no validation rules for Digest
 
+	if v, ok := interface{}(m.GetApplicationId()).(interface {
+		Validate() error
+	}); ok {
+		if err := v.Validate(); err != nil {
+			return ContainerValidationError{
+				field:  "ApplicationId",
+				reason: "embedded message failed validation",
+				cause:  err,
+			}
+		}
+	}
+
 	return nil
 }
 
@@ -5821,6 +5898,8 @@ func (m *Environment) Validate() error {
 	// no validation rules for Name
 
 	// no validation rules for Description
+
+	// no validation rules for Code
 
 	return nil
 }

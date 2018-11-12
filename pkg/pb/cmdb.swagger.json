@@ -2661,8 +2661,15 @@
     },
     "cmdbApplication": {
       "type": "object",
-      "title": "------------------------------------------------------\nApplication represents a particular AWS Region\n------------------------------------------------------",
+      "title": "-----------------------------------------------------------------------\nApplication represents application definition used by an Environment\n-----------------------------------------------------------------------",
       "properties": {
+        "containers": {
+          "type": "array",
+          "title": "Containers used by this Application",
+          "items": {
+            "$ref": "#/definitions/cmdbContainer"
+          }
+        },
         "description": {
           "type": "string",
           "title": "The description of the Application"
@@ -2672,9 +2679,25 @@
           "type": "string",
           "readOnly": true
         },
+        "manifest": {
+          "title": "Manifest used by this Application",
+          "$ref": "#/definitions/cmdbManifest"
+        },
+        "manifest_id": {
+          "description": "The resource identifier.",
+          "type": "string"
+        },
         "name": {
           "type": "string",
           "title": "The name of the Application"
+        },
+        "version_tag": {
+          "title": "VersionTag setting of this Application",
+          "$ref": "#/definitions/cmdbVersionTag"
+        },
+        "version_tag_id": {
+          "description": "The resource identifier.",
+          "type": "string"
         }
       }
     },
@@ -2778,6 +2801,10 @@
       "type": "object",
       "title": "------------------------------------------------------------------------\nContainer represents a Docker Image that has been loaded to a Registry\n------------------------------------------------------------------------",
       "properties": {
+        "application_id": {
+          "description": "The resource identifier.",
+          "type": "string"
+        },
         "container_name": {
           "type": "string",
           "title": "The unique container name referenced helm charts"
@@ -3463,6 +3490,10 @@
       "type": "object",
       "title": "------------------------------------------------------\nEnvironment represents a particular AWS Region\n------------------------------------------------------",
       "properties": {
+        "code": {
+          "title": "Code defines the various stages e.g. dev, qa, preprod, prod",
+          "$ref": "#/definitions/cmdbStage"
+        },
         "description": {
           "type": "string",
           "title": "The description of the Environment"
@@ -3905,7 +3936,7 @@
       "title": "--------------------------------------------------------------------------\nManifest represents all the elements needed for running Application\n--------------------------------------------------------------------------",
       "properties": {
         "artifact": {
-          "title": "Artifact used by this Mainifest",
+          "title": "Artifact used by this Manifest",
           "$ref": "#/definitions/cmdbArtifact"
         },
         "artifact_id": {
@@ -3913,7 +3944,7 @@
           "type": "string"
         },
         "aws_service": {
-          "title": "AWS Service used by this Mainifest",
+          "title": "AWS Service used by this Manifest",
           "$ref": "#/definitions/cmdbAwsService"
         },
         "aws_service_id": {
@@ -3954,7 +3985,7 @@
           "type": "string"
         },
         "vault": {
-          "title": "Vault used by this Mainifest",
+          "title": "Vault used by this Manifest",
           "$ref": "#/definitions/cmdbVault"
         },
         "vault_id": {
@@ -4341,6 +4372,19 @@
           "type": "string"
         }
       }
+    },
+    "cmdbStage": {
+      "type": "string",
+      "default": "UNKNOWN",
+      "enum": [
+        "UNKNOWN",
+        "DEV",
+        "QA",
+        "QAFUNC",
+        "QAPERF",
+        "PREPROD",
+        "PROD"
+      ]
     },
     "cmdbUpdateApplicationResponse": {
       "type": "object",
