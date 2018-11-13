@@ -15,6 +15,7 @@ import validate_runtime "github.com/infobloxopen/protoc-gen-atlas-validate/runti
 import google_protobuf1 "github.com/infobloxopen/atlas-app-toolkit/rpc/resource"
 import google_protobuf2 "github.com/infobloxopen/atlas-app-toolkit/query"
 import google_protobuf3 "google.golang.org/genproto/protobuf/field_mask"
+import google_protobuf4 "github.com/infobloxopen/protoc-gen-gorm/types"
 import proto "github.com/gogo/protobuf/proto"
 import math "math"
 import _ "github.com/golang/protobuf/ptypes/empty"
@@ -24,6 +25,7 @@ import _ "github.com/infobloxopen/atlas-app-toolkit/rpc/resource"
 import _ "github.com/infobloxopen/protoc-gen-atlas-query-validate/options"
 import _ "github.com/infobloxopen/protoc-gen-atlas-validate/options"
 import _ "github.com/infobloxopen/protoc-gen-gorm/options"
+import _ "github.com/infobloxopen/protoc-gen-gorm/types"
 import _ "github.com/lyft/protoc-gen-validate/validate"
 import _ "google.golang.org/genproto/googleapis/api/annotations"
 import _ "google.golang.org/genproto/protobuf/field_mask"
@@ -5240,8 +5242,50 @@ func validate_Object_Manifest(r json.RawMessage, path string, allowUnknown bool)
 		case "repo":
 		case "commit":
 		case "values":
+			if v[k] == nil {
+				continue
+			}
+			vv := v[k]
+			vvPath := validate_runtime.JoinPath(path, k)
+			validator, ok := interface{}(&google_protobuf4.JSONValue{}).(interface {
+				AtlasValidateJSON(json.RawMessage, string, bool) error
+			})
+			if !ok {
+				continue
+			}
+			if err = validator.AtlasValidateJSON(vv, vvPath, allowUnknown); err != nil {
+				return err
+			}
 		case "service":
+			if v[k] == nil {
+				continue
+			}
+			vv := v[k]
+			vvPath := validate_runtime.JoinPath(path, k)
+			validator, ok := interface{}(&google_protobuf4.JSONValue{}).(interface {
+				AtlasValidateJSON(json.RawMessage, string, bool) error
+			})
+			if !ok {
+				continue
+			}
+			if err = validator.AtlasValidateJSON(vv, vvPath, allowUnknown); err != nil {
+				return err
+			}
 		case "ingress":
+			if v[k] == nil {
+				continue
+			}
+			vv := v[k]
+			vvPath := validate_runtime.JoinPath(path, k)
+			validator, ok := interface{}(&google_protobuf4.JSONValue{}).(interface {
+				AtlasValidateJSON(json.RawMessage, string, bool) error
+			})
+			if !ok {
+				continue
+			}
+			if err = validator.AtlasValidateJSON(vv, vvPath, allowUnknown); err != nil {
+				return err
+			}
 		case "artifact":
 			if v[k] == nil {
 				continue

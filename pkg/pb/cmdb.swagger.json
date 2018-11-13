@@ -3980,8 +3980,8 @@
           "readOnly": true
         },
         "ingress": {
-          "type": "string",
-          "title": "Ingress used for Kubernetes Ingress YAML"
+          "title": "Ingress used for Kubernetes Ingress YAML",
+          "$ref": "#/definitions/typesJSONValue"
         },
         "name": {
           "type": "string",
@@ -3992,12 +3992,12 @@
           "title": "repo holding Values, Services and Ingress elements"
         },
         "service": {
-          "type": "string",
-          "title": "Services used for Kubernetes Service YAML"
+          "title": "Services used for Kubernetes Service YAML",
+          "$ref": "#/definitions/typesJSONValue"
         },
         "values": {
-          "type": "string",
-          "title": "Values used for Kubernetes ConfigMap YAML"
+          "title": "Values used for Kubernetes ConfigMap YAML",
+          "$ref": "#/definitions/typesJSONValue"
         },
         "vault": {
           "title": "Vault used by this Manifest",
@@ -4828,6 +4828,14 @@
         "version": {
           "type": "string",
           "title": "The version based on SemVer (e.g. 0.0.4)"
+        }
+      }
+    },
+    "typesJSONValue": {
+      "type": "object",
+      "properties": {
+        "value": {
+          "type": "string"
         }
       }
     }

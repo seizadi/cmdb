@@ -8,7 +8,7 @@ import "google/api/annotations.proto";
 import "github.com/lyft/protoc-gen-validate/validate/validate.proto";
 import "protoc-gen-swagger/options/annotations.proto";
 import "github.com/infobloxopen/protoc-gen-gorm/options/gorm.proto";
-//import "github.com/infobloxopen/protoc-gen-gorm/types/types.proto";
+import "github.com/infobloxopen/protoc-gen-gorm/types/types.proto";
 import "github.com/infobloxopen/atlas-app-toolkit/query/collection_operators.proto";
 import "github.com/infobloxopen/atlas-app-toolkit/rpc/resource/resource.proto";
 import "github.com/infobloxopen/protoc-gen-atlas-query-validate/options/query_validate.proto";
@@ -992,13 +992,13 @@ message Manifest {
   string commit = 5;
 
   // Values used for Kubernetes ConfigMap YAML
-  string values = 6 [(gorm.field).tag = {type: "jsonb"}];
+  gorm.types.JSONValue values = 6 [(gorm.field).tag = {type: "jsonb"}];
 
   // Services used for Kubernetes Service YAML
-  string service = 7 [(gorm.field).tag = {type: "jsonb"}];
+  gorm.types.JSONValue service = 7 [(gorm.field).tag = {type: "jsonb"}];
 
   // Ingress used for Kubernetes Ingress YAML
-  string ingress = 8 [(gorm.field).tag = {type: "jsonb"}];
+  gorm.types.JSONValue ingress = 8 [(gorm.field).tag = {type: "jsonb"}];
 
   // Artifact used by this Manifest
   Artifact artifact = 9 [(gorm.field).belongs_to = {}];

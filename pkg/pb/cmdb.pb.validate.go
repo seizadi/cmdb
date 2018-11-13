@@ -6900,11 +6900,41 @@ func (m *Manifest) Validate() error {
 
 	// no validation rules for Commit
 
-	// no validation rules for Values
+	if v, ok := interface{}(m.GetValues()).(interface {
+		Validate() error
+	}); ok {
+		if err := v.Validate(); err != nil {
+			return ManifestValidationError{
+				field:  "Values",
+				reason: "embedded message failed validation",
+				cause:  err,
+			}
+		}
+	}
 
-	// no validation rules for Service
+	if v, ok := interface{}(m.GetService()).(interface {
+		Validate() error
+	}); ok {
+		if err := v.Validate(); err != nil {
+			return ManifestValidationError{
+				field:  "Service",
+				reason: "embedded message failed validation",
+				cause:  err,
+			}
+		}
+	}
 
-	// no validation rules for Ingress
+	if v, ok := interface{}(m.GetIngress()).(interface {
+		Validate() error
+	}); ok {
+		if err := v.Validate(); err != nil {
+			return ManifestValidationError{
+				field:  "Ingress",
+				reason: "embedded message failed validation",
+				cause:  err,
+			}
+		}
+	}
 
 	if v, ok := interface{}(m.GetArtifact()).(interface {
 		Validate() error

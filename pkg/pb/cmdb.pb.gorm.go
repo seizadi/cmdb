@@ -167,8 +167,10 @@ import field_mask1 "google.golang.org/genproto/protobuf/field_mask"
 import gateway1 "github.com/infobloxopen/atlas-app-toolkit/gateway"
 import gorm1 "github.com/jinzhu/gorm"
 import gorm2 "github.com/infobloxopen/atlas-app-toolkit/gorm"
+import postgres1 "github.com/jinzhu/gorm/dialects/postgres"
 import query1 "github.com/infobloxopen/atlas-app-toolkit/query"
 import resource1 "github.com/infobloxopen/atlas-app-toolkit/gorm/resource"
+import types1 "github.com/infobloxopen/protoc-gen-gorm/types"
 
 import fmt "fmt"
 import math "math"
@@ -1088,13 +1090,13 @@ type ManifestORM struct {
 	AwsServiceId *int64
 	Commit       string
 	Description  string
-	Id           int64  `gorm:"type:serial;primary_key"`
-	Ingress      string `gorm:"type:jsonb"`
+	Id           int64            `gorm:"type:serial;primary_key"`
+	Ingress      *postgres1.Jsonb `gorm:"type:jsonb"`
 	Name         string
 	Repo         string
-	Service      string    `gorm:"type:jsonb"`
-	Values       string    `gorm:"type:jsonb"`
-	Vault        *VaultORM `gorm:"foreignkey:VaultId;association_foreignkey:Id"`
+	Service      *postgres1.Jsonb `gorm:"type:jsonb"`
+	Values       *postgres1.Jsonb `gorm:"type:jsonb"`
+	Vault        *VaultORM        `gorm:"foreignkey:VaultId;association_foreignkey:Id"`
 	VaultId      *int64
 }
 
@@ -1122,9 +1124,15 @@ func (m *Manifest) ToORM(ctx context.Context) (ManifestORM, error) {
 	to.Description = m.Description
 	to.Repo = m.Repo
 	to.Commit = m.Commit
-	to.Values = m.Values
-	to.Service = m.Service
-	to.Ingress = m.Ingress
+	if m.Values != nil {
+		to.Values = &postgres1.Jsonb{[]byte(m.Values.Value)}
+	}
+	if m.Service != nil {
+		to.Service = &postgres1.Jsonb{[]byte(m.Service.Value)}
+	}
+	if m.Ingress != nil {
+		to.Ingress = &postgres1.Jsonb{[]byte(m.Ingress.Value)}
+	}
 	if m.Artifact != nil {
 		tempArtifact, err := m.Artifact.ToORM(ctx)
 		if err != nil {
@@ -1197,9 +1205,15 @@ func (m *ManifestORM) ToPB(ctx context.Context) (Manifest, error) {
 	to.Description = m.Description
 	to.Repo = m.Repo
 	to.Commit = m.Commit
-	to.Values = m.Values
-	to.Service = m.Service
-	to.Ingress = m.Ingress
+	if m.Values != nil {
+		to.Values = &types1.JSONValue{Value: string(m.Values.RawMessage)}
+	}
+	if m.Service != nil {
+		to.Service = &types1.JSONValue{Value: string(m.Service.RawMessage)}
+	}
+	if m.Ingress != nil {
+		to.Ingress = &types1.JSONValue{Value: string(m.Ingress.RawMessage)}
+	}
 	if m.Artifact != nil {
 		tempArtifact, err := m.Artifact.ToPB(ctx)
 		if err != nil {
