@@ -3980,8 +3980,8 @@
           "readOnly": true
         },
         "ingress": {
-          "description": "The resource identifier.",
-          "type": "string"
+          "type": "string",
+          "title": "Ingress used for Kubernetes Ingress YAML"
         },
         "name": {
           "type": "string",
@@ -3992,12 +3992,12 @@
           "title": "repo holding Values, Services and Ingress elements"
         },
         "service": {
-          "description": "The resource identifier.",
-          "type": "string"
+          "type": "string",
+          "title": "Services used for Kubernetes Service YAML"
         },
         "values": {
-          "description": "The resource identifier.",
-          "type": "string"
+          "type": "string",
+          "title": "Values used for Kubernetes ConfigMap YAML"
         },
         "vault": {
           "title": "Vault used by this Manifest",
@@ -4345,6 +4345,13 @@
         "description": {
           "type": "string",
           "title": "The description of the Region"
+        },
+        "environments": {
+          "type": "array",
+          "title": "Environment",
+          "items": {
+            "$ref": "#/definitions/cmdbEnvironment"
+          }
         },
         "id": {
           "description": "The resource identifier.",

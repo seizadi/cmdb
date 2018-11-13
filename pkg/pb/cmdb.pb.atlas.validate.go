@@ -699,6 +699,21 @@ func validate_Object_Region(r json.RawMessage, path string, allowUnknown bool) (
 		case "name":
 		case "description":
 		case "account":
+		case "environments":
+			if v[k] == nil {
+				continue
+			}
+			var vArr []json.RawMessage
+			vArrPath := validate_runtime.JoinPath(path, k)
+			if err = json.Unmarshal(v[k], &vArr); err != nil {
+				return fmt.Errorf("Invalid value for %q: expected array.", vArrPath)
+			}
+			for i, vv := range vArr {
+				vvPath := fmt.Sprintf("%s.[%d]", vArrPath, i)
+				if err = validate_Object_Environment(vv, vvPath, allowUnknown); err != nil {
+					return err
+				}
+			}
 		default:
 			if !allowUnknown {
 				return fmt.Errorf("Unknown field %q", validate_runtime.JoinPath(path, k))
@@ -5225,50 +5240,8 @@ func validate_Object_Manifest(r json.RawMessage, path string, allowUnknown bool)
 		case "repo":
 		case "commit":
 		case "values":
-			if v[k] == nil {
-				continue
-			}
-			vv := v[k]
-			vvPath := validate_runtime.JoinPath(path, k)
-			validator, ok := interface{}(&google_protobuf1.Identifier{}).(interface {
-				AtlasValidateJSON(json.RawMessage, string, bool) error
-			})
-			if !ok {
-				continue
-			}
-			if err = validator.AtlasValidateJSON(vv, vvPath, allowUnknown); err != nil {
-				return err
-			}
 		case "service":
-			if v[k] == nil {
-				continue
-			}
-			vv := v[k]
-			vvPath := validate_runtime.JoinPath(path, k)
-			validator, ok := interface{}(&google_protobuf1.Identifier{}).(interface {
-				AtlasValidateJSON(json.RawMessage, string, bool) error
-			})
-			if !ok {
-				continue
-			}
-			if err = validator.AtlasValidateJSON(vv, vvPath, allowUnknown); err != nil {
-				return err
-			}
 		case "ingress":
-			if v[k] == nil {
-				continue
-			}
-			vv := v[k]
-			vvPath := validate_runtime.JoinPath(path, k)
-			validator, ok := interface{}(&google_protobuf1.Identifier{}).(interface {
-				AtlasValidateJSON(json.RawMessage, string, bool) error
-			})
-			if !ok {
-				continue
-			}
-			if err = validator.AtlasValidateJSON(vv, vvPath, allowUnknown); err != nil {
-				return err
-			}
 		case "artifact":
 			if v[k] == nil {
 				continue

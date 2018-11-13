@@ -98,6 +98,9 @@ message Region {
 
   // AWS Account
   string account = 4;
+
+  // Environment
+  repeated Environment environments = 5;
 }
 
 message CreateRegionRequest {
@@ -989,13 +992,13 @@ message Manifest {
   string commit = 5;
 
   // Values used for Kubernetes ConfigMap YAML
-  atlas.rpc.Identifier values = 6 [(gorm.field).tag = {type: "jsonb"}];
+  string values = 6 [(gorm.field).tag = {type: "jsonb"}];
 
   // Services used for Kubernetes Service YAML
-  atlas.rpc.Identifier service = 7 [(gorm.field).tag = {type: "jsonb"}];
+  string service = 7 [(gorm.field).tag = {type: "jsonb"}];
 
   // Ingress used for Kubernetes Ingress YAML
-  atlas.rpc.Identifier ingress = 8 [(gorm.field).tag = {type: "jsonb"}];
+  string ingress = 8 [(gorm.field).tag = {type: "jsonb"}];
 
   // Artifact used by this Manifest
   Artifact artifact = 9 [(gorm.field).belongs_to = {}];

@@ -126,6 +126,23 @@ func (m *Region) Validate() error {
 
 	// no validation rules for Account
 
+	for idx, item := range m.GetEnvironments() {
+		_, _ = idx, item
+
+		if v, ok := interface{}(item).(interface {
+			Validate() error
+		}); ok {
+			if err := v.Validate(); err != nil {
+				return RegionValidationError{
+					field:  fmt.Sprintf("Environments[%v]", idx),
+					reason: "embedded message failed validation",
+					cause:  err,
+				}
+			}
+		}
+
+	}
+
 	return nil
 }
 
@@ -6883,41 +6900,11 @@ func (m *Manifest) Validate() error {
 
 	// no validation rules for Commit
 
-	if v, ok := interface{}(m.GetValues()).(interface {
-		Validate() error
-	}); ok {
-		if err := v.Validate(); err != nil {
-			return ManifestValidationError{
-				field:  "Values",
-				reason: "embedded message failed validation",
-				cause:  err,
-			}
-		}
-	}
+	// no validation rules for Values
 
-	if v, ok := interface{}(m.GetService()).(interface {
-		Validate() error
-	}); ok {
-		if err := v.Validate(); err != nil {
-			return ManifestValidationError{
-				field:  "Service",
-				reason: "embedded message failed validation",
-				cause:  err,
-			}
-		}
-	}
+	// no validation rules for Service
 
-	if v, ok := interface{}(m.GetIngress()).(interface {
-		Validate() error
-	}); ok {
-		if err := v.Validate(); err != nil {
-			return ManifestValidationError{
-				field:  "Ingress",
-				reason: "embedded message failed validation",
-				cause:  err,
-			}
-		}
-	}
+	// no validation rules for Ingress
 
 	if v, ok := interface{}(m.GetArtifact()).(interface {
 		Validate() error
