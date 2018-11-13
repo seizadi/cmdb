@@ -159,9 +159,12 @@
   revision = "9c77857916f43a2167aff8cd455b7ac58cdc9454"
 
 [[projects]]
-  digest = "1:447ff45708e10b03748c3e2c32e82ddce6b692b87ef36516b68a7527e1ac0e02"
+  digest = "1:a2dfc715f1be1972052d1b0f8eb05a733821a13bb0aca465691f12f2a2d85cb9"
   name = "github.com/infobloxopen/protoc-gen-gorm"
-  packages = ["options"]
+  packages = [
+    "options",
+    "types",
+  ]
   pruneopts = "UT"
   revision = "713bb1f858a807cee6ddd278f27ebe47a84564fc"
   version = "v0.13.0"
@@ -434,6 +437,7 @@
     "github.com/infobloxopen/protoc-gen-atlas-validate/options",
     "github.com/infobloxopen/protoc-gen-atlas-validate/runtime",
     "github.com/infobloxopen/protoc-gen-gorm/options",
+    "github.com/infobloxopen/protoc-gen-gorm/types",
     "github.com/jinzhu/gorm",
     "github.com/jinzhu/gorm/dialects/postgres",
     "github.com/lyft/protoc-gen-validate/validate",
