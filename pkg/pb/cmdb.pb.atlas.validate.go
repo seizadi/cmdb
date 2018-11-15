@@ -2607,6 +2607,8 @@ func validate_Object_Application(r json.RawMessage, path string, allowUnknown bo
 			}
 		case "name":
 		case "description":
+		case "app_name":
+		case "repo":
 		case "version_tag":
 			if v[k] == nil {
 				continue
@@ -5256,7 +5258,7 @@ func validate_Object_Manifest(r json.RawMessage, path string, allowUnknown bool)
 			if err = validator.AtlasValidateJSON(vv, vvPath, allowUnknown); err != nil {
 				return err
 			}
-		case "service":
+		case "services":
 			if v[k] == nil {
 				continue
 			}

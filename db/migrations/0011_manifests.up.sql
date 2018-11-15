@@ -9,7 +9,7 @@ CREATE TABLE manifests (
   repo varchar(255) DEFAULT NULL,
   commit varchar(255) DEFAULT NULL,
   values jsonb not null default '{}',
-  service jsonb not null default '{}',
+  services jsonb not null default '{}',
   ingress jsonb not null default '{}',
   artifact_id int REFERENCES artifacts(id) ON DELETE SET NULL,
   vault_id int REFERENCES vaults(id) ON DELETE SET NULL,

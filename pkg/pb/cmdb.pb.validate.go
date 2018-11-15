@@ -2987,6 +2987,10 @@ func (m *Application) Validate() error {
 
 	// no validation rules for Description
 
+	// no validation rules for AppName
+
+	// no validation rules for Repo
+
 	if v, ok := interface{}(m.GetVersionTag()).(interface {
 		Validate() error
 	}); ok {
@@ -6912,12 +6916,12 @@ func (m *Manifest) Validate() error {
 		}
 	}
 
-	if v, ok := interface{}(m.GetService()).(interface {
+	if v, ok := interface{}(m.GetServices()).(interface {
 		Validate() error
 	}); ok {
 		if err := v.Validate(); err != nil {
 			return ManifestValidationError{
-				field:  "Service",
+				field:  "Services",
 				reason: "embedded message failed validation",
 				cause:  err,
 			}

@@ -461,23 +461,29 @@ message Application {
   // The description of the Application
   string description = 3;
 
+  // The Application Name
+  string app_name = 4;
+
+  // Application Repository URL
+  string repo = 5;
+
   // VersionTag setting of this Application
-  VersionTag version_tag = 4 [(gorm.field).belongs_to = {}];
+  VersionTag version_tag = 6 [(gorm.field).belongs_to = {}];
 
   // Reference to VersionTag
-  atlas.rpc.Identifier version_tag_id = 5;
+  atlas.rpc.Identifier version_tag_id = 7;
 
   // Manifest used by this Application
-  Manifest manifest = 6 [(gorm.field).belongs_to = {}];
+  Manifest manifest = 8 [(gorm.field).belongs_to = {}];
 
   // Reference to Manifest
-  atlas.rpc.Identifier manifest_id = 7;
+  atlas.rpc.Identifier manifest_id = 9;
 
   // Containers used by this Application
-  repeated Container containers = 8;
+  repeated Container containers = 10;
 
   // Reference to Environment
-  atlas.rpc.Identifier environment_id = 9;
+  atlas.rpc.Identifier environment_id = 11;
 }
 
 message CreateApplicationRequest {
@@ -845,9 +851,10 @@ enum Stage {
   PROD = 6;
 }
 
-// ------------------------------------------------------
-// Environment represents a particular AWS Region
-// ------------------------------------------------------
+// -------------------------------------------------------------
+// Environment owns a set of Applications for Deployment
+// see Code for whether it is in Dev, Preprod or Prod Stages
+// -------------------------------------------------------------
 message Environment {
   option (gorm.opts) = {
       ormable: true,
@@ -995,7 +1002,7 @@ message Manifest {
   gorm.types.JSONValue values = 6 [(gorm.field).tag = {type: "jsonb"}];
 
   // Services used for Kubernetes Service YAML
-  gorm.types.JSONValue service = 7 [(gorm.field).tag = {type: "jsonb"}];
+  gorm.types.JSONValue services = 7 [(gorm.field).tag = {type: "jsonb"}];
 
   // Ingress used for Kubernetes Ingress YAML
   gorm.types.JSONValue ingress = 8 [(gorm.field).tag = {type: "jsonb"}];

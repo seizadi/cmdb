@@ -2663,6 +2663,10 @@
       "type": "object",
       "title": "-----------------------------------------------------------------------\nApplication represents application definition used by an Environment\n-----------------------------------------------------------------------",
       "properties": {
+        "app_name": {
+          "type": "string",
+          "title": "The Application Name"
+        },
         "containers": {
           "type": "array",
           "title": "Containers used by this Application",
@@ -2694,6 +2698,10 @@
         "name": {
           "type": "string",
           "title": "The name of the Application"
+        },
+        "repo": {
+          "type": "string",
+          "title": "Application Repository URL"
         },
         "version_tag": {
           "title": "VersionTag setting of this Application",
@@ -3492,7 +3500,7 @@
     },
     "cmdbEnvironment": {
       "type": "object",
-      "title": "------------------------------------------------------\nEnvironment represents a particular AWS Region\n------------------------------------------------------",
+      "title": "-------------------------------------------------------------\nEnvironment owns a set of Applications for Deployment\nsee Code for whether it is in Dev, Preprod or Prod Stages\n-------------------------------------------------------------",
       "properties": {
         "applications": {
           "type": "array",
@@ -3991,7 +3999,7 @@
           "type": "string",
           "title": "repo holding Values, Services and Ingress elements"
         },
-        "service": {
+        "services": {
           "title": "Services used for Kubernetes Service YAML",
           "$ref": "#/definitions/typesJSONValue"
         },

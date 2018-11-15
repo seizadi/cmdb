@@ -532,6 +532,7 @@ type VersionTagWithAfterToPB interface {
 
 type ApplicationORM struct {
 	AccountID     string
+	AppName       string
 	Containers    []*ContainerORM `gorm:"foreignkey:ApplicationId;association_foreignkey:Id"`
 	Description   string
 	EnvironmentId *int64
@@ -539,6 +540,7 @@ type ApplicationORM struct {
 	Manifest      *ManifestORM `gorm:"foreignkey:ManifestId;association_foreignkey:Id"`
 	ManifestId    *int64
 	Name          string
+	Repo          string
 	VersionTag    *VersionTagORM `gorm:"foreignkey:VersionTagId;association_foreignkey:Id"`
 	VersionTagId  *int64
 }
@@ -565,6 +567,8 @@ func (m *Application) ToORM(ctx context.Context) (ApplicationORM, error) {
 	}
 	to.Name = m.Name
 	to.Description = m.Description
+	to.AppName = m.AppName
+	to.Repo = m.Repo
 	if m.VersionTag != nil {
 		tempVersionTag, err := m.VersionTag.ToORM(ctx)
 		if err != nil {
@@ -639,6 +643,8 @@ func (m *ApplicationORM) ToPB(ctx context.Context) (Application, error) {
 	}
 	to.Name = m.Name
 	to.Description = m.Description
+	to.AppName = m.AppName
+	to.Repo = m.Repo
 	if m.VersionTag != nil {
 		tempVersionTag, err := m.VersionTag.ToPB(ctx)
 		if err != nil {
@@ -1094,7 +1100,7 @@ type ManifestORM struct {
 	Ingress      *postgres1.Jsonb `gorm:"type:jsonb"`
 	Name         string
 	Repo         string
-	Service      *postgres1.Jsonb `gorm:"type:jsonb"`
+	Services     *postgres1.Jsonb `gorm:"type:jsonb"`
 	Values       *postgres1.Jsonb `gorm:"type:jsonb"`
 	Vault        *VaultORM        `gorm:"foreignkey:VaultId;association_foreignkey:Id"`
 	VaultId      *int64
@@ -1127,8 +1133,8 @@ func (m *Manifest) ToORM(ctx context.Context) (ManifestORM, error) {
 	if m.Values != nil {
 		to.Values = &postgres1.Jsonb{[]byte(m.Values.Value)}
 	}
-	if m.Service != nil {
-		to.Service = &postgres1.Jsonb{[]byte(m.Service.Value)}
+	if m.Services != nil {
+		to.Services = &postgres1.Jsonb{[]byte(m.Services.Value)}
 	}
 	if m.Ingress != nil {
 		to.Ingress = &postgres1.Jsonb{[]byte(m.Ingress.Value)}
@@ -1208,8 +1214,8 @@ func (m *ManifestORM) ToPB(ctx context.Context) (Manifest, error) {
 	if m.Values != nil {
 		to.Values = &types1.JSONValue{Value: string(m.Values.RawMessage)}
 	}
-	if m.Service != nil {
-		to.Service = &types1.JSONValue{Value: string(m.Service.RawMessage)}
+	if m.Services != nil {
+		to.Services = &types1.JSONValue{Value: string(m.Services.RawMessage)}
 	}
 	if m.Ingress != nil {
 		to.Ingress = &types1.JSONValue{Value: string(m.Ingress.RawMessage)}
@@ -3085,6 +3091,14 @@ func DefaultApplyFieldMaskApplication(ctx context.Context, patchee *Application,
 			patchee.Description = patcher.Description
 			continue
 		}
+		if f == prefix+"AppName" {
+			patchee.AppName = patcher.AppName
+			continue
+		}
+		if f == prefix+"Repo" {
+			patchee.Repo = patcher.Repo
+			continue
+		}
 		if strings.HasPrefix(f, prefix+"VersionTag.") && !updatedVersionTag {
 			updatedVersionTag = true
 			if patcher.VersionTag == nil {
@@ -4470,8 +4484,8 @@ func DefaultApplyFieldMaskManifest(ctx context.Context, patchee *Manifest, patch
 			patchee.Values = patcher.Values
 			continue
 		}
-		if f == prefix+"Service" {
-			patchee.Service = patcher.Service
+		if f == prefix+"Services" {
+			patchee.Services = patcher.Services
 			continue
 		}
 		if f == prefix+"Ingress" {

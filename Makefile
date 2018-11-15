@@ -92,7 +92,7 @@ down:
 .PHONY: migrate-up
 migrate-up:
 	@migrate -database 'postgres://$(DATABASE_HOST)/cmdb?sslmode=disable' -path ./db/migrations up
-#	@migrate -database 'postgres://$(DATABASE_HOST)/cmdb?sslmode=disable' -path ./db/migrations force 6
+#	@migrate -database 'postgres://$(DATABASE_HOST)/cmdb?sslmode=disable' -path ./db/migrations force 14
 
 .PHONY: migrate-goto
 migrate-goto:
