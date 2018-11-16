@@ -20,11 +20,23 @@ func CreateServer(logger *logrus.Logger, db *gorm.DB, interceptors []grpc.UnaryS
 	}
 	pb.RegisterCmdbServer(grpcServer, s)
 
-	artifact, err := svc.NewArtifactsServer()
+	application, err := svc.NewApplicationsServer()
 	if err != nil {
 		return nil, err
 	}
-	pb.RegisterArtifactsServer(grpcServer, artifact)
+	pb.RegisterApplicationsServer(grpcServer, application)
+
+	aws_service, err := svc.NewAwsServicesServer()
+	if err != nil {
+		return nil, err
+	}
+	pb.RegisterAwsServicesServer(grpcServer, aws_service)
+
+	region, err := svc.NewRegionsServer()
+	if err != nil {
+		return nil, err
+	}
+	pb.RegisterRegionsServer(grpcServer, region)
 
 	vault, err := svc.NewVaultsServer()
 	if err != nil {
@@ -32,23 +44,29 @@ func CreateServer(logger *logrus.Logger, db *gorm.DB, interceptors []grpc.UnaryS
 	}
 	pb.RegisterVaultsServer(grpcServer, vault)
 
-	version_tag, err := svc.NewVersionTagsServer()
+	artifact, err := svc.NewArtifactsServer()
 	if err != nil {
 		return nil, err
 	}
-	pb.RegisterVersionTagsServer(grpcServer, version_tag)
+	pb.RegisterArtifactsServer(grpcServer, artifact)
+
+	secret, err := svc.NewSecretsServer()
+	if err != nil {
+		return nil, err
+	}
+	pb.RegisterSecretsServer(grpcServer, secret)
+
+	aws_rds_instance, err := svc.NewAwsRdsInstancesServer()
+	if err != nil {
+		return nil, err
+	}
+	pb.RegisterAwsRdsInstancesServer(grpcServer, aws_rds_instance)
 
 	deployment, err := svc.NewDeploymentsServer()
 	if err != nil {
 		return nil, err
 	}
 	pb.RegisterDeploymentsServer(grpcServer, deployment)
-
-	environment, err := svc.NewEnvironmentsServer()
-	if err != nil {
-		return nil, err
-	}
-	pb.RegisterEnvironmentsServer(grpcServer, environment)
 
 	kube_cluster, err := svc.NewKubeClustersServer()
 	if err != nil {
@@ -62,23 +80,11 @@ func CreateServer(logger *logrus.Logger, db *gorm.DB, interceptors []grpc.UnaryS
 	}
 	pb.RegisterManifestsServer(grpcServer, manifest)
 
-	application, err := svc.NewApplicationsServer()
+	version_tag, err := svc.NewVersionTagsServer()
 	if err != nil {
 		return nil, err
 	}
-	pb.RegisterApplicationsServer(grpcServer, application)
-
-	aws_rds_instance, err := svc.NewAwsRdsInstancesServer()
-	if err != nil {
-		return nil, err
-	}
-	pb.RegisterAwsRdsInstancesServer(grpcServer, aws_rds_instance)
-
-	aws_service, err := svc.NewAwsServicesServer()
-	if err != nil {
-		return nil, err
-	}
-	pb.RegisterAwsServicesServer(grpcServer, aws_service)
+	pb.RegisterVersionTagsServer(grpcServer, version_tag)
 
 	container, err := svc.NewContainersServer()
 	if err != nil {
@@ -86,17 +92,17 @@ func CreateServer(logger *logrus.Logger, db *gorm.DB, interceptors []grpc.UnaryS
 	}
 	pb.RegisterContainersServer(grpcServer, container)
 
-	region, err := svc.NewRegionsServer()
+	environment, err := svc.NewEnvironmentsServer()
 	if err != nil {
 		return nil, err
 	}
-	pb.RegisterRegionsServer(grpcServer, region)
+	pb.RegisterEnvironmentsServer(grpcServer, environment)
 
-	secret, err := svc.NewSecretsServer()
+	cloud_provider, err := svc.NewCloudProvidersServer()
 	if err != nil {
 		return nil, err
 	}
-	pb.RegisterSecretsServer(grpcServer, secret)
+	pb.RegisterCloudProvidersServer(grpcServer, cloud_provider)
 
 	return grpcServer, nil
 }

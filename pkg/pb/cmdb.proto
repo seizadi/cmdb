@@ -77,127 +77,6 @@ service Cmdb {
   }
 }
 
-
-// ------------------------------------------------------
-// Region represents a particular AWS Region
-// ------------------------------------------------------
-message Region {
-  option (gorm.opts) = {
-      ormable: true,
-      multi_account: true
-  };
-
-  // The Region identifier.
-  atlas.rpc.Identifier id = 1 [(gorm.field).tag = {type: "serial"  primary_key: true}];
-
-  // The name of the Region
-  string name = 2;
-
-  // The description of the Region
-  string description = 3;
-
-  // AWS Account
-  string account = 4;
-
-  // Environment
-  repeated Environment environments = 5;
-}
-
-message CreateRegionRequest {
-  Region payload = 1;
-}
-
-message CreateRegionResponse {
-  Region result = 1;
-}
-
-message ReadRegionRequest {
-  atlas.rpc.Identifier id = 1;
-  infoblox.api.FieldSelection fields = 2;
-}
-
-message ReadRegionResponse {
-  Region result = 1;
-}
-
-message UpdateRegionRequest {
-  Region payload = 1;
-  google.protobuf.FieldMask fields = 2;
-}
-
-message UpdateRegionResponse {
-  Region result = 1;
-}
-
-message DeleteRegionRequest {
-  atlas.rpc.Identifier id = 1;
-}
-
-message DeleteRegionResponse {}
-
-message ListRegionRequest {
-  infoblox.api.Filtering filter = 1;
-  infoblox.api.Sorting order_by = 2;
-  infoblox.api.FieldSelection fields = 3;
-  infoblox.api.Pagination paging = 4;
-}
-
-message ListRegionsResponse {
-  repeated Region results = 1;
-  infoblox.api.PageInfo page = 2;
-}
-
-service Regions {
-  option (gorm.server) = {
-      autogen: true,
-      txn_middleware: true,
-    };
-
-  // Use this method to create a Region information.
-  rpc Create (CreateRegionRequest) returns (CreateRegionResponse) {
-    option (google.api.http) = {
-            post: "/regions"
-            body: "payload"
-        };
-  }
-
-  // Use this method to read a Region information by identifier.
-  rpc Read (ReadRegionRequest) returns (ReadRegionResponse) {
-    option (google.api.http) = {
-            get: "/regions/{id.resource_id}"
-        };
-  }
-
-  // Use this method to update a Region information.
-  rpc Update (UpdateRegionRequest) returns (UpdateRegionResponse) {
-    option (atlas_validate.method).allow_unknown_fields = false;
-    option (google.api.http) = {
-            put: "/regions/{payload.id.resource_id}"
-            body: "payload"
-            additional_bindings: {
-                patch: "/regions/{payload.id.resource_id}"
-                body: "payload"
-            }
-    };
-  }
-
-  // Use this method to delete a particular Region.
-  rpc Delete (DeleteRegionRequest) returns (DeleteRegionResponse) {
-    option (google.api.http) = {
-            delete: "/regions/{id.resource_id}"
-        };
-    option (gorm.method).object_type = "Region";
-  }
-
-  // Use this method to retrieve all the Regions.
-  rpc List (ListRegionRequest) returns (ListRegionsResponse) {
-    option (google.api.http) = {
-            get: "/regions"
-        };
-  }
-}
-
-
 // ------------------------------------------------------
 // Vault represents the store for keeping Secrets
 // ------------------------------------------------------
@@ -842,7 +721,7 @@ service Containers {
 }
 
 enum Stage {
-  UNKNOWN = 0;
+  UNKNOWN_STAGE = 0;
   DEV = 1;
   QA = 2;
   QAFUNC = 3;
@@ -1725,3 +1604,251 @@ service KubeClusters {
   }
 }
 
+enum Provider {
+  UNKNOWN_PROVIDER = 0;
+  AWS = 1;
+  AZURE = 2;
+  GCP = 3;
+  EQUINIX = 4;
+}
+
+// ------------------------------------------------------------------------
+// CloudProvider represents a particular Cloud Provider e.g. AWS or Azure
+// ------------------------------------------------------------------------
+message CloudProvider {
+  option (gorm.opts) = {
+      ormable: true,
+      multi_account: true
+  };
+
+  // The CloudProvider identifier.
+  atlas.rpc.Identifier id = 1 [(gorm.field).tag = {type: "serial"  primary_key: true}];
+
+  // The name of the CloudProvider
+  string name = 2;
+
+  // The description of the CloudProvider
+  string description = 3;
+
+  // The Provider
+  Provider provider = 4;
+
+  // Cloud Provider Account Number
+  string account = 5;
+
+  // Regions for the CloudProvider
+  repeated Region regions = 6;
+}
+
+message CreateCloudProviderRequest {
+  CloudProvider payload = 1;
+}
+
+message CreateCloudProviderResponse {
+  CloudProvider result = 1;
+}
+
+message ReadCloudProviderRequest {
+  atlas.rpc.Identifier id = 1;
+  infoblox.api.FieldSelection fields = 2;
+}
+
+message ReadCloudProviderResponse {
+  CloudProvider result = 1;
+}
+
+message UpdateCloudProviderRequest {
+  CloudProvider payload = 1;
+  google.protobuf.FieldMask fields = 2;
+}
+
+message UpdateCloudProviderResponse {
+  CloudProvider result = 1;
+}
+
+message DeleteCloudProviderRequest {
+  atlas.rpc.Identifier id = 1;
+}
+
+message DeleteCloudProviderResponse {}
+
+message ListCloudProviderRequest {
+  infoblox.api.Filtering filter = 1;
+  infoblox.api.Sorting order_by = 2;
+  infoblox.api.FieldSelection fields = 3;
+  infoblox.api.Pagination paging = 4;
+}
+
+message ListCloudProvidersResponse {
+  repeated CloudProvider results = 1;
+  infoblox.api.PageInfo page = 2;
+}
+
+service CloudProviders {
+  option (gorm.server) = {
+      autogen: true,
+      txn_middleware: true,
+    };
+
+  // Use this method to create a CloudProvider information.
+  rpc Create (CreateCloudProviderRequest) returns (CreateCloudProviderResponse) {
+    option (google.api.http) = {
+            post: "/cloud_providers"
+            body: "payload"
+        };
+  }
+
+  // Use this method to read a CloudProvider information by identifier.
+  rpc Read (ReadCloudProviderRequest) returns (ReadCloudProviderResponse) {
+    option (google.api.http) = {
+            get: "/cloud_providers/{id.resource_id}"
+        };
+  }
+
+  // Use this method to update a CloudProvider information.
+  rpc Update (UpdateCloudProviderRequest) returns (UpdateCloudProviderResponse) {
+    option (atlas_validate.method).allow_unknown_fields = false;
+    option (google.api.http) = {
+            put: "/cloud_providers/{payload.id.resource_id}"
+            body: "payload"
+            additional_bindings: {
+                patch: "/cloud_providers/{payload.id.resource_id}"
+                body: "payload"
+            }
+    };
+  }
+
+  // Use this method to delete a particular CloudProvider.
+  rpc Delete (DeleteCloudProviderRequest) returns (DeleteCloudProviderResponse) {
+    option (google.api.http) = {
+            delete: "/cloud_providers/{id.resource_id}"
+        };
+    option (gorm.method).object_type = "CloudProvider";
+  }
+
+  // Use this method to retrieve all the CloudProviders.
+  rpc List (ListCloudProviderRequest) returns (ListCloudProvidersResponse) {
+    option (google.api.http) = {
+            get: "/cloud_providers"
+        };
+  }
+}
+
+// --------------------------------------------------------------------
+// Region represents a particular Geo for Cloud Provier e.g. us-east-1
+// --------------------------------------------------------------------
+message Region {
+  option (gorm.opts) = {
+      ormable: true,
+      multi_account: true
+  };
+
+  // The Region identifier.
+  atlas.rpc.Identifier id = 1 [(gorm.field).tag = {type: "serial"  primary_key: true}];
+
+  // The name of the Region
+  string name = 2;
+
+  // The description of the Region
+  string description = 3;
+
+  // Environment
+  repeated Environment environments = 4;
+
+  // Reference to Cloud Provider
+  atlas.rpc.Identifier cloud_provider_id = 5;
+}
+
+message CreateRegionRequest {
+  Region payload = 1;
+}
+
+message CreateRegionResponse {
+  Region result = 1;
+}
+
+message ReadRegionRequest {
+  atlas.rpc.Identifier id = 1;
+  infoblox.api.FieldSelection fields = 2;
+}
+
+message ReadRegionResponse {
+  Region result = 1;
+}
+
+message UpdateRegionRequest {
+  Region payload = 1;
+  google.protobuf.FieldMask fields = 2;
+}
+
+message UpdateRegionResponse {
+  Region result = 1;
+}
+
+message DeleteRegionRequest {
+  atlas.rpc.Identifier id = 1;
+}
+
+message DeleteRegionResponse {}
+
+message ListRegionRequest {
+  infoblox.api.Filtering filter = 1;
+  infoblox.api.Sorting order_by = 2;
+  infoblox.api.FieldSelection fields = 3;
+  infoblox.api.Pagination paging = 4;
+}
+
+message ListRegionsResponse {
+  repeated Region results = 1;
+  infoblox.api.PageInfo page = 2;
+}
+
+service Regions {
+  option (gorm.server) = {
+      autogen: true,
+      txn_middleware: true,
+    };
+
+  // Use this method to create a Region information.
+  rpc Create (CreateRegionRequest) returns (CreateRegionResponse) {
+    option (google.api.http) = {
+            post: "/regions"
+            body: "payload"
+        };
+  }
+
+  // Use this method to read a Region information by identifier.
+  rpc Read (ReadRegionRequest) returns (ReadRegionResponse) {
+    option (google.api.http) = {
+            get: "/regions/{id.resource_id}"
+        };
+  }
+
+  // Use this method to update a Region information.
+  rpc Update (UpdateRegionRequest) returns (UpdateRegionResponse) {
+    option (atlas_validate.method).allow_unknown_fields = false;
+    option (google.api.http) = {
+            put: "/regions/{payload.id.resource_id}"
+            body: "payload"
+            additional_bindings: {
+                patch: "/regions/{payload.id.resource_id}"
+                body: "payload"
+            }
+    };
+  }
+
+  // Use this method to delete a particular Region.
+  rpc Delete (DeleteRegionRequest) returns (DeleteRegionResponse) {
+    option (google.api.http) = {
+            delete: "/regions/{id.resource_id}"
+        };
+    option (gorm.method).object_type = "Region";
+  }
+
+  // Use this method to retrieve all the Regions.
+  rpc List (ListRegionRequest) returns (ListRegionsResponse) {
+    option (google.api.http) = {
+            get: "/regions"
+        };
+  }
+}

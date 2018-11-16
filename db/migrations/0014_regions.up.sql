@@ -5,8 +5,7 @@ CREATE TABLE regions (
   created_at timestamptz DEFAULT current_timestamp,
   updated_at timestamptz DEFAULT NULL,
   name varchar(255) DEFAULT NULL,
-  description varchar(255) DEFAULT NULL,
-  account varchar(255) DEFAULT NULL
+  description varchar(255) DEFAULT NULL
 );
 
 CREATE TRIGGER regions_updated_at

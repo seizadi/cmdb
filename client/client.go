@@ -10,24 +10,62 @@ import (
 
 )
 
-func GetConn(host string) (*grpc.ClientConn, error){
-	// First we create the connection:
-	conn, err := grpc.Dial(host, grpc.WithInsecure())
+type CmdbClient struct {
+	// The CMDB Server
+	Host string
+	// The CMDB Server Connection
+	Conn *grpc.ClientConn
+	// The CMDB Server API Key
+	ApiKey string
+}
+
+func NewCmdbClient(host string, apiKey string) (*CmdbClient, error) {
+	c := CmdbClient{}
+	
+	err := c.GetConn(host)
 	if err != nil {
 		return nil, err
 	}
 	
-	return conn, nil
+	c.ApiKey = apiKey
+	return &c,nil
 }
 
-func GetRegions(conn *grpc.ClientConn) (*pb.ListRegionsResponse, error) {
+func (m *CmdbClient) GetConn(host string) error{
+	// First we create the connection:
+	conn, err := grpc.Dial(host, grpc.WithInsecure())
+	if err != nil {
+		return err
+	}
+	m.Conn = conn
+	return nil
+}
+
+func (m *CmdbClient) GetCloudProviders() (*pb.ListCloudProvidersResponse, error) {
 	
 	// We can now create stubs that wrap conn:
-	stub := pb.NewRegionsClient(conn)
+	stub := pb.NewCloudProvidersClient(m.Conn)
 	
 	// Now we can use the stub to make RPCs
 	ctx := metadata.NewOutgoingContext(context.Background(),
-		metadata.Pairs("Authorization", "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJBY2NvdW50SUQiOjF9.GsXyFDDARjXe1t9DPo2LIBKHEal3O7t3vLI3edA7dGU"))
+		metadata.Pairs("Authorization", "Bearer " + m.ApiKey))
+	reqProviders := &pb.ListCloudProviderRequest{}
+	respProviders, err := stub.List(ctx, reqProviders)
+	if err != nil {
+		return nil, err
+	}
+	
+	return respProviders, nil
+}
+
+func (m *CmdbClient) GetRegions() (*pb.ListRegionsResponse, error) {
+	
+	// We can now create stubs that wrap conn:
+	stub := pb.NewRegionsClient(m.Conn)
+	
+	// Now we can use the stub to make RPCs
+	ctx := metadata.NewOutgoingContext(context.Background(),
+		metadata.Pairs("Authorization", "Bearer " + m.ApiKey))
 	reqList := &pb.ListRegionRequest{}
 	respList, err := stub.List(ctx, reqList)
 	if err != nil {
@@ -37,11 +75,11 @@ func GetRegions(conn *grpc.ClientConn) (*pb.ListRegionsResponse, error) {
 	return respList, nil
 }
 
-func GetRegion(conn *grpc.ClientConn, id string) (*pb.ReadRegionResponse, error) {
+func (m *CmdbClient) GetRegion(id string) (*pb.ReadRegionResponse, error) {
 	
-	stub := pb.NewRegionsClient(conn)
+	stub := pb.NewRegionsClient(m.Conn)
 	ctx := metadata.NewOutgoingContext(context.Background(),
-		metadata.Pairs("Authorization", "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJBY2NvdW50SUQiOjF9.GsXyFDDARjXe1t9DPo2LIBKHEal3O7t3vLI3edA7dGU"))
+		metadata.Pairs("Authorization", "Bearer " + m.ApiKey))
 
 	resourceId := atlas_rpc.Identifier{ResourceId: id}
 	fields := infoblox_api.FieldSelection{}

@@ -278,7 +278,8 @@ finally one Application.
 ```sh
 curl http://localhost:8080/v1/version
 export JWT="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJBY2NvdW50SUQiOjF9.GsXyFDDARjXe1t9DPo2LIBKHEal3O7t3vLI3edA7dGU"
-curl -H "Authorization: Bearer $JWT" http://localhost:8080/v1/regions -d '{"name": "us-east-1", "description": "us-east-1 for dev, qa and preprod", "account":"43509870"}'
+curl -H "Authorization: Bearer $JWT" http://localhost:8080/v1/cloud_providers -d '{"name": "aws-dev", "description": "AWS account for dev, qa and preprod", "provider":1, "account":"43509870"}'
+curl -H "Authorization: Bearer $JWT" http://localhost:8080/v1/regions -d '{"name": "us-east-1", "description": "us-east-1 for dev, qa and preprod", "cloud_provider_id": "cmdb-app/cloud_providers/1"}'
 curl -H "Authorization: Bearer $JWT" http://localhost:8080/v1/environments -d '{"name": "seizadi dev", "description": "seizadi dev environment", "code":1}'
 curl -X PATCH -H "Authorization: Bearer $JWT" http://localhost:8080/v1/environments/1 -d '{"region_id":"cmdb-app/regions/1"}'
 curl -H "Authorization: Bearer $JWT" http://localhost:8080/v1/applications -d '{"name": "cmdb app", "description": "cmdb application", "app_name": "cmdb", "repo":"https://github.com/seizadi/cmdb"}'
