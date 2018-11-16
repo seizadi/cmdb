@@ -268,16 +268,23 @@ curl -H "Authorization: Bearer $JWT" http://localhost:8080/v1/regions -d '{"name
 
 curl -X PATCH -H "Authorization: Bearer $JWT" http://localhost:8080/v1/environments/1 -d '{"region_id":1}'
 {"result":{"id":"cmdb-app/environments/1","name":"seizadi dev","description":"seizadi dev environment","code":"DEV","region_id":"cmdb-app/1"}}
+curl -H "Authorization: Bearer $JWT" http://localhost:8080/v1/environments
 
 ```
 
 
-Here is the sample of all the APIs
-```sh
+Here is the sample of all the APIs Starting with Region, Environment,
+finally one Application.
 ```sh
 curl http://localhost:8080/v1/version
 export JWT="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJBY2NvdW50SUQiOjF9.GsXyFDDARjXe1t9DPo2LIBKHEal3O7t3vLI3edA7dGU"
+curl -H "Authorization: Bearer $JWT" http://localhost:8080/v1/regions -d '{"name": "us-east-1", "description": "us-east-1 for dev, qa and preprod", "account":"43509870"}'
+curl -H "Authorization: Bearer $JWT" http://localhost:8080/v1/environments -d '{"name": "seizadi dev", "description": "seizadi dev environment", "code":1}'
+curl -X PATCH -H "Authorization: Bearer $JWT" http://localhost:8080/v1/environments/1 -d '{"region_id":"cmdb-app/regions/1"}'
+curl -H "Authorization: Bearer $JWT" http://localhost:8080/v1/applications -d '{"name": "cmdb app", "description": "cmdb application", "app_name": "cmdb", "repo":"https://github.com/seizadi/cmdb"}'
+curl -X PATCH -H "Authorization: Bearer $JWT" http://localhost:8080/v1/applications/1 -d '{"environment_id": "cmdb-app/environments/1"}'
 curl -H "Authorization: Bearer $JWT" http://localhost:8080/v1/containers -d '{"name": "cmdb-app", "description": "sample cmdb application", "container_name": "cmdb-app", "image_repo": "soheileizadi/cmdb-server", "image_tag": "latest", "image_pull_policy": "always"}'
+curl -X PATCH -H "Authorization: Bearer $JWT" http://localhost:8080/v1/containers/1 -d '{"application_id": "cmdb-app/applications/1"}'
 curl -H "Authorization: Bearer $JWT" http://localhost:8080/v1/vaults -d '{"name": "vault for QA", "description": "Vault to store QA Secrets", "path": "k8s/qa0-secrets"}'
 curl -H "Authorization: Bearer $JWT" http://localhost:8080/v1/version_tags -d '{"name": "cmdb-app", "description": "cmdb application version tag", "version": "v0.0.4", "repo": "https://github.com/seizadi/cmdb/archive", "commit": "20ec77f5a8f8e260deb51e8d888a2597762184b6"}'
 curl -H "Authorization: Bearer $JWT" http://localhost:8080/v1/kube_clusters -d '{"name": "cluster-10", "description": "kubernetes cluster for development"}'
@@ -285,13 +292,9 @@ curl -H "Authorization: Bearer $JWT" http://localhost:8080/v1/artifacts -d '{"ve
 curl -H "Authorization: Bearer $JWT" http://localhost:8080/v1/aws_rds_instances -d '{"name": "cmdb rds", "description": "cmdb rds database", "database_host": "cmdb.cf1k7otqh6nf.us-east-1.rds.amazonaws.com", "database_name": "cmdb", "database_user": "cmdb", "database_password": {"vault_id":"cmdb-app/vaults/1", "name": "cmdb db password", "description": "cmdb rds database password", "type": "opaque", "key": "DATABASE_PASSWORD"}}'
 curl -H "Authorization: Bearer $JWT" http://localhost:8080/v1/aws_services -d '{"name": "cmdb dev AWS Service", "description": "cmdb AWS Services for development"}'
 curl -X PATCH -H "Authorization: Bearer $JWT" http://localhost:8080/v1/aws_rds_instances/1 -d '{"aws_service_id": "cmdb-app/aws_services/1"}'
-curl -H "Authorization: Bearer $JWT" http://localhost:8080/v1/manifests -d '{"name": "cmdb dev manifest", "description": "cmdb manifest for development", "repo": "https://github.com/seizadi/deploy/cmdb_manifest.yaml", "commit": "50ec74f5a8f8e260deb51e8d888a2597762184b6", "values": {"SSL_PORT": "3443"}, "services": [{"Name": "cmdb", "Type": "ClusterIP", "ServiceName": "cmdb", "Ports": [{"Name": "http", "Protocol": "TCP", "Port": "3000"}, {"Name": "https", "Protocol": "TCP", "Port": "3443"}]}], "ingress": {"Enabled": "true", "Annotations": [ {"ingress.kubernetes.io/secure-backends": "true"}, {"kubernetes.io/ingress.class": "nginx"}, {"ingress.kubernetes.io/limit-rps": "300"}, {"ingress.kubernetes.io/proxy-read-timeout": "300"}], "Hosts": ["test.infoblox.com"], "Path": ""}, "artifact_id":"cmdb-app/artifacts/1", "vault_id":"cmdb-app/vaults/1", "aws_service_id": "cmdb-app/aws_services/1"}'
-curl -H "Authorization: Bearer $JWT" http://localhost:8080/v1/environments -d '{"name": "seizadi dev", "description": "seizadi dev environment", "code":1}'
-curl -H "Authorization: Bearer $JWT" http://localhost:8080/v1/applications -d '{"name": "cmdb app", "description": "cmdb application", "app_name": "cmdb", "repo":"https://github.com/seizadi/cmdb", "version_tag_id":"cmdb-app/version_tags/1", "manifest_id":"cmdb-app/manifests/1"}'
-curl -X PATCH -H "Authorization: Bearer $JWT" http://localhost:8080/v1/containers/1 -d '{"application_id": "cmdb-app/applications/1"}'
-curl -X PATCH -H "Authorization: Bearer $JWT" http://localhost:8080/v1/applications/1 -d '{"environment_id": "cmdb-app/environments/1"}'
-curl -H "Authorization: Bearer $JWT" http://localhost:8080/v1/regions -d '{"name": "us-east-1", "description": "us-east-1 for dev, qa and preprod", "account":"43509870"}'
-curl -X PATCH -H "Authorization: Bearer $JWT" http://localhost:8080/v1/environments/1 -d '{"region_id":"cmdb-app/regions/1"}'
+curl -H "Authorization: Bearer $JWT" http://localhost:8080/v1/manifests -d '{"name": "cmdb dev manifest", "description": "cmdb manifest for development", "repo": "https://github.com/seizadi/deploy/cmdb_manifest.yaml", "commit": "50ec74f5a8f8e260deb51e8d888a2597762184b6", "values": {"values":{"SSL_PORT": "3443"}}, "services": [{"name": "cmdb", "type": "clusterIP", "serviceName": "cmdb", "ports": [{"name": "http", "protocol": "tcp", "port": 3000}, {"name": "https", "protocol": "tcp", "port": 3443}]}], "ingress": {"enabled": true, "annotations": [ {"ingress.kubernetes.io/secure-backends": "true"}, {"kubernetes.io/ingress.class": "nginx"}, {"ingress.kubernetes.io/limit-rps": "300"}, {"ingress.kubernetes.io/proxy-read-timeout": "300"}], "hosts": ["test.infoblox.com"], "path": ""}, "artifact_id":"cmdb-app/artifacts/1", "vault_id":"cmdb-app/vaults/1", "aws_service_id": "cmdb-app/aws_services/1"}'
+curl -X PATCH -H "Authorization: Bearer $JWT" http://localhost:8080/v1/applications/1 -d '{"version_tag_id":"cmdb-app/version_tags/1", "manifest_id":"cmdb-app/manifests/1"}'
+curl -X PUT -H "Authorization: Bearer $JWT" http://localhost:8080/v1/manifests/1 -d '{"name": "cmdb dev manifest", "description": "cmdb manifest for development", "repo": "https://github.com/seizadi/deploy/cmdb_manifest.yaml", "commit": "50ec74f5a8f8e260deb51e8d888a2597762184b6", "values": {"values":{"SSL_PORT": "3443"}}, "services": [{"name": "cmdb", "type": "clusterIP", "serviceName": "cmdb", "ports": [{"name": "http", "protocol": "tcp", "port": 3000}, {"name": "https", "protocol": "tcp", "port": 3443}]}], "ingress": {"enabled": true, "annotations": [ {"ingress.kubernetes.io/secure-backends": "true"}, {"kubernetes.io/ingress.class": "nginx"}, {"ingress.kubernetes.io/limit-rps": "300"}, {"ingress.kubernetes.io/proxy-read-timeout": "300"}], "hosts": ["test.infoblox.com"], "path": ""}, "artifact_id":"cmdb-app/artifacts/1", "vault_id":"cmdb-app/vaults/1", "aws_service_id": "cmdb-app/aws_services/1"}'
 
 ```
 
