@@ -11,5 +11,6 @@ type VersionTag struct {
 	Version string
 	Repo string
 	CommitId string
+	Artifacts []Artifact
 }
 

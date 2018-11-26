@@ -11,8 +11,7 @@ type AwsRdsInstance struct {
 	DatabaseHost     string
 	DatabaseName     string
 	DatabaseUser     string
-	DatabasePassword Secret `gorm:"foreignkey:AwsRdsSecretID"`
-	AwsRdsSecretID   uint
+	DatabasePassword Secret
 }
 
 
