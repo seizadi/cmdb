@@ -1,14 +1,14 @@
 
 CREATE TABLE aws_rds_instances (
   id serial primary key,
-  account_id varchar(255),
+  account_id text,
   created_at timestamptz DEFAULT current_timestamp,
   updated_at timestamptz DEFAULT NULL,
-  name varchar(255) DEFAULT NULL,
-  description varchar(255) DEFAULT NULL,
-  database_host varchar(255) DEFAULT NULL,
-  database_name varchar(255) DEFAULT NULL,
-  database_user varchar(255) DEFAULT NULL
+  name text DEFAULT NULL,
+  description text DEFAULT NULL,
+  database_host text DEFAULT NULL,
+  database_name text DEFAULT NULL,
+  database_user text DEFAULT NULL
 );
 
 CREATE TRIGGER aws_rds_instances_updated_at

@@ -899,13 +899,13 @@ index 934b4fc..1d095dd 100644
 
 +.PHONY: migrate-up
 +migrate-up:
-+        @migrate -database 'postgres://$(DATABASE_HOST)/atlas_contacts_app?sslmode=disable' -path ./db/migrations up
++        @migrate -database 'postgres://$(DATABASE_HOST)/cmdb?sslmode=disable' -path ./db/migrations up
 +
 +.PHONY: migrate-down
 +migrate-down:
-+        @migrate -database 'postgres://$(DATABASE_HOST):5432/atlas_contacts_app?sslmode=disable' -path ./db/migrations down
++        @migrate -database 'postgres://$(DATABASE_HOST):5432/cmdb?sslmode=disable' -path ./db/migrations down
 
-$ createdb atlas_contacts_app
+$ createdb cmdb
 $ make migrate-up
 1/u contacts (22.234579ms)
 2/u emails (34.376535ms)

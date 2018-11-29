@@ -9,7 +9,7 @@ type Manifest struct {
 	Name         string
 	Description  string
 	Repo         string
-	CommitId     string
+	Commit     string
 	Values       string
 	Services     string
 	Ingress      string

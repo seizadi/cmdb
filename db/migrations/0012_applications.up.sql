@@ -1,13 +1,13 @@
 
 CREATE TABLE applications (
   id serial primary key,
-  account_id varchar(255),
+  account_id text,
   created_at timestamptz DEFAULT current_timestamp,
   updated_at timestamptz DEFAULT NULL,
-  name varchar(255) DEFAULT NULL,
-  description varchar(255) DEFAULT NULL,
-  app_name varchar(255) DEFAULT NULL,
-  repo varchar(255) DEFAULT NULL,
+  name text DEFAULT NULL,
+  description text DEFAULT NULL,
+  app_name text DEFAULT NULL,
+  repo text DEFAULT NULL,
   version_tag_id int REFERENCES version_tags(id) ON DELETE SET NULL,
   manifest_id int REFERENCES manifests(id) ON DELETE SET NULL
 );
