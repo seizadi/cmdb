@@ -9,6 +9,5 @@ type Environment struct {
 	Name string `json:"name"`
 	Description string
 	Code int
-	Applications []Application `gorm:"many2many:environment_application";association_foreignkey:id;foreignkey:id`
+	Applications []Application
 }
-
