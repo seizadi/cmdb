@@ -363,6 +363,9 @@ message Application {
 
   // Reference to Environment
   atlas.rpc.Identifier environment_id = 11;
+
+  // Deployment of this Application
+  Deployment deployment = 12;
 }
 
 message CreateApplicationRequest {
@@ -1394,6 +1397,9 @@ message Deployment {
 
   // Reference to Kubernetes Cluster
   atlas.rpc.Identifier kube_cluster_id = 7;
+
+  // Reference to Application
+  atlas.rpc.Identifier application_id = 8;
 }
 
 message CreateDeploymentRequest {

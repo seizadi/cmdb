@@ -2114,6 +2114,18 @@ func (m *Application) Validate() error {
 		}
 	}
 
+	if v, ok := interface{}(m.GetDeployment()).(interface {
+		Validate() error
+	}); ok {
+		if err := v.Validate(); err != nil {
+			return ApplicationValidationError{
+				field:  "Deployment",
+				reason: "embedded message failed validation",
+				cause:  err,
+			}
+		}
+	}
+
 	return nil
 }
 
@@ -9901,6 +9913,18 @@ func (m *Deployment) Validate() error {
 		if err := v.Validate(); err != nil {
 			return DeploymentValidationError{
 				field:  "KubeClusterId",
+				reason: "embedded message failed validation",
+				cause:  err,
+			}
+		}
+	}
+
+	if v, ok := interface{}(m.GetApplicationId()).(interface {
+		Validate() error
+	}); ok {
+		if err := v.Validate(); err != nil {
+			return DeploymentValidationError{
+				field:  "ApplicationId",
 				reason: "embedded message failed validation",
 				cause:  err,
 			}

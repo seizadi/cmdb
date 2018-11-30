@@ -433,6 +433,7 @@ type ApplicationORM struct {
 	AccountID     string
 	AppName       string
 	Containers    []*ContainerORM `gorm:"foreignkey:ApplicationId;association_foreignkey:Id"`
+	Deployment    *DeploymentORM  `gorm:"foreignkey:ApplicationId;association_foreignkey:Id"`
 	Description   string
 	EnvironmentId *int64
 	Id            int64        `gorm:"type:serial;primary_key"`
@@ -514,6 +515,13 @@ func (m *Application) ToORM(ctx context.Context) (ApplicationORM, error) {
 			to.EnvironmentId = &v
 		}
 	}
+	if m.Deployment != nil {
+		tempDeployment, err := m.Deployment.ToORM(ctx)
+		if err != nil {
+			return to, err
+		}
+		to.Deployment = &tempDeployment
+	}
 	accountID, err := auth1.GetAccountID(ctx, nil)
 	if err != nil {
 		return to, err
@@ -589,6 +597,13 @@ func (m *ApplicationORM) ToPB(ctx context.Context) (Application, error) {
 		} else {
 			to.EnvironmentId = v
 		}
+	}
+	if m.Deployment != nil {
+		tempDeployment, err := m.Deployment.ToPB(ctx)
+		if err != nil {
+			return to, err
+		}
+		to.Deployment = &tempDeployment
 	}
 	if posthook, ok := interface{}(m).(ApplicationWithAfterToPB); ok {
 		err = posthook.AfterToPB(ctx, &to)
@@ -1530,6 +1545,7 @@ type AwsServiceWithAfterToPB interface {
 
 type DeploymentORM struct {
 	AccountID     string
+	ApplicationId *int64
 	Artifact      *ArtifactORM `gorm:"foreignkey:ArtifactId;association_foreignkey:Id"`
 	ArtifactId    *int64
 	Description   string
@@ -1589,6 +1605,13 @@ func (m *Deployment) ToORM(ctx context.Context) (DeploymentORM, error) {
 			to.KubeClusterId = &v
 		}
 	}
+	if m.ApplicationId != nil {
+		if v, err := resource1.DecodeInt64(&Application{}, m.ApplicationId); err != nil {
+			return to, err
+		} else {
+			to.ApplicationId = &v
+		}
+	}
 	accountID, err := auth1.GetAccountID(ctx, nil)
 	if err != nil {
 		return to, err
@@ -1643,6 +1666,13 @@ func (m *DeploymentORM) ToPB(ctx context.Context) (Deployment, error) {
 			return to, err
 		} else {
 			to.KubeClusterId = v
+		}
+	}
+	if m.ApplicationId != nil {
+		if v, err := resource1.Encode(&Application{}, *m.ApplicationId); err != nil {
+			return to, err
+		} else {
+			to.ApplicationId = v
 		}
 	}
 	if posthook, ok := interface{}(m).(DeploymentWithAfterToPB); ok {
@@ -2796,6 +2826,15 @@ func DefaultStrictUpdateApplication(ctx context.Context, in *Application, db *go
 	if err = db.Where(filterContainers).Delete(ContainerORM{}).Error; err != nil {
 		return nil, err
 	}
+	filterDeployment := DeploymentORM{}
+	if ormObj.Id == 0 {
+		return nil, errors.New("Can't do overwriting update with no Id value for ApplicationORM")
+	}
+	filterDeployment.ApplicationId = new(int64)
+	*filterDeployment.ApplicationId = ormObj.Id
+	if err = db.Where(filterDeployment).Delete(DeploymentORM{}).Error; err != nil {
+		return nil, err
+	}
 	if hook, ok := interface{}(&ormObj).(ApplicationORMWithBeforeStrictUpdateSave); ok {
 		if db, err = hook.BeforeStrictUpdateSave(ctx, db); err != nil {
 			return nil, err
@@ -2894,6 +2933,7 @@ func DefaultApplyFieldMaskApplication(ctx context.Context, patchee *Application,
 	var err error
 	var updatedVersionTag bool
 	var updatedManifest bool
+	var updatedDeployment bool
 	for i, f := range updateMask.Paths {
 		if f == prefix+"Id" {
 			patchee.Id = patcher.Id
@@ -2971,6 +3011,27 @@ func DefaultApplyFieldMaskApplication(ctx context.Context, patchee *Application,
 		}
 		if f == prefix+"EnvironmentId" {
 			patchee.EnvironmentId = patcher.EnvironmentId
+			continue
+		}
+		if strings.HasPrefix(f, prefix+"Deployment.") && !updatedDeployment {
+			updatedDeployment = true
+			if patcher.Deployment == nil {
+				patchee.Deployment = nil
+				continue
+			}
+			if patchee.Deployment == nil {
+				patchee.Deployment = &Deployment{}
+			}
+			if o, err := DefaultApplyFieldMaskDeployment(ctx, patchee.Deployment, patcher.Deployment, &field_mask1.FieldMask{Paths: updateMask.Paths[i:]}, prefix+"Deployment.", db); err != nil {
+				return nil, err
+			} else {
+				patchee.Deployment = o
+			}
+			continue
+		}
+		if f == prefix+"Deployment" {
+			updatedDeployment = true
+			patchee.Deployment = patcher.Deployment
 			continue
 		}
 	}
@@ -5694,6 +5755,10 @@ func DefaultApplyFieldMaskDeployment(ctx context.Context, patchee *Deployment, p
 		}
 		if f == prefix+"KubeClusterId" {
 			patchee.KubeClusterId = patcher.KubeClusterId
+			continue
+		}
+		if f == prefix+"ApplicationId" {
+			patchee.ApplicationId = patcher.ApplicationId
 			continue
 		}
 	}

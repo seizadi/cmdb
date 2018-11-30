@@ -2874,6 +2874,10 @@
             "$ref": "#/definitions/cmdbContainer"
           }
         },
+        "deployment": {
+          "title": "Deployment of this Application",
+          "$ref": "#/definitions/cmdbDeployment"
+        },
         "description": {
           "type": "string",
           "title": "The description of the Application"
@@ -3748,6 +3752,10 @@
       "type": "object",
       "title": "---------------------------------------------------------------------\nDeployment represents a particular Application running on Kubernetes\n---------------------------------------------------------------------",
       "properties": {
+        "application_id": {
+          "description": "The resource identifier.",
+          "type": "string"
+        },
         "artifact": {
           "title": "Artifact for resolved manifest used for the Application",
           "$ref": "#/definitions/cmdbArtifact"
