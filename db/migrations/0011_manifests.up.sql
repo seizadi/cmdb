@@ -11,6 +11,10 @@ CREATE TABLE manifests (
   values jsonb not null default '{}',
   services jsonb not null default '{}',
   ingress jsonb not null default '{}',
+  resources jsonb not null default '{}',
+  node_selector jsonb not null default '{}',
+  tolerations jsonb not null default '[]',
+  affinity jsonb not null default '{}',
   artifact_id int REFERENCES artifacts(id) ON DELETE SET NULL,
   vault_id int REFERENCES vaults(id) ON DELETE SET NULL,
   aws_service_id int REFERENCES aws_services(id) ON DELETE SET NULL

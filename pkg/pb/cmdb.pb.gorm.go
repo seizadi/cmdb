@@ -1004,7 +1004,8 @@ type EnvironmentWithAfterToPB interface {
 
 type ManifestORM struct {
 	AccountID    string
-	Artifact     *ArtifactORM `gorm:"foreignkey:ArtifactId;association_foreignkey:Id"`
+	Affinity     *postgres1.Jsonb `gorm:"type:jsonb"`
+	Artifact     *ArtifactORM     `gorm:"foreignkey:ArtifactId;association_foreignkey:Id"`
 	ArtifactId   *int64
 	AwsService   *AwsServiceORM `gorm:"foreignkey:AwsServiceId;association_foreignkey:Id"`
 	AwsServiceId *int64
@@ -1013,8 +1014,11 @@ type ManifestORM struct {
 	Id           int64            `gorm:"type:serial;primary_key"`
 	Ingress      *postgres1.Jsonb `gorm:"type:jsonb"`
 	Name         string
+	NodeSelector *postgres1.Jsonb `gorm:"type:jsonb"`
 	Repo         string
+	Resources    *postgres1.Jsonb `gorm:"type:jsonb"`
 	Services     *postgres1.Jsonb `gorm:"type:jsonb"`
+	Tolerations  *postgres1.Jsonb `gorm:"type:jsonb"`
 	Values       *postgres1.Jsonb `gorm:"type:jsonb"`
 	Vault        *VaultORM        `gorm:"foreignkey:VaultId;association_foreignkey:Id"`
 	VaultId      *int64
@@ -1052,6 +1056,18 @@ func (m *Manifest) ToORM(ctx context.Context) (ManifestORM, error) {
 	}
 	if m.Ingress != nil {
 		to.Ingress = &postgres1.Jsonb{[]byte(m.Ingress.Value)}
+	}
+	if m.Resources != nil {
+		to.Resources = &postgres1.Jsonb{[]byte(m.Resources.Value)}
+	}
+	if m.NodeSelector != nil {
+		to.NodeSelector = &postgres1.Jsonb{[]byte(m.NodeSelector.Value)}
+	}
+	if m.Tolerations != nil {
+		to.Tolerations = &postgres1.Jsonb{[]byte(m.Tolerations.Value)}
+	}
+	if m.Affinity != nil {
+		to.Affinity = &postgres1.Jsonb{[]byte(m.Affinity.Value)}
 	}
 	if m.Artifact != nil {
 		tempArtifact, err := m.Artifact.ToORM(ctx)
@@ -1133,6 +1149,18 @@ func (m *ManifestORM) ToPB(ctx context.Context) (Manifest, error) {
 	}
 	if m.Ingress != nil {
 		to.Ingress = &types1.JSONValue{Value: string(m.Ingress.RawMessage)}
+	}
+	if m.Resources != nil {
+		to.Resources = &types1.JSONValue{Value: string(m.Resources.RawMessage)}
+	}
+	if m.NodeSelector != nil {
+		to.NodeSelector = &types1.JSONValue{Value: string(m.NodeSelector.RawMessage)}
+	}
+	if m.Tolerations != nil {
+		to.Tolerations = &types1.JSONValue{Value: string(m.Tolerations.RawMessage)}
+	}
+	if m.Affinity != nil {
+		to.Affinity = &types1.JSONValue{Value: string(m.Affinity.RawMessage)}
 	}
 	if m.Artifact != nil {
 		tempArtifact, err := m.Artifact.ToPB(ctx)
@@ -4367,6 +4395,22 @@ func DefaultApplyFieldMaskManifest(ctx context.Context, patchee *Manifest, patch
 		}
 		if f == prefix+"Ingress" {
 			patchee.Ingress = patcher.Ingress
+			continue
+		}
+		if f == prefix+"Resources" {
+			patchee.Resources = patcher.Resources
+			continue
+		}
+		if f == prefix+"NodeSelector" {
+			patchee.NodeSelector = patcher.NodeSelector
+			continue
+		}
+		if f == prefix+"Tolerations" {
+			patchee.Tolerations = patcher.Tolerations
+			continue
+		}
+		if f == prefix+"Affinity" {
+			patchee.Affinity = patcher.Affinity
 			continue
 		}
 		if strings.HasPrefix(f, prefix+"Artifact.") && !updatedArtifact {

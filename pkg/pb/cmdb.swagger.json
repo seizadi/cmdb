@@ -4278,6 +4278,10 @@
       "type": "object",
       "title": "--------------------------------------------------------------------------\nManifest represents all the elements needed for running Application\n--------------------------------------------------------------------------",
       "properties": {
+        "affinity": {
+          "title": "Affinity used for Kubernetes Deployment YAML",
+          "$ref": "#/definitions/typesJSONValue"
+        },
         "artifact": {
           "title": "Artifact used by this Manifest",
           "$ref": "#/definitions/cmdbArtifact"
@@ -4315,12 +4319,24 @@
           "type": "string",
           "title": "The name of the Manifest"
         },
+        "node_selector": {
+          "title": "NodeSelector used for Kubernetes Deployment YAML",
+          "$ref": "#/definitions/typesJSONValue"
+        },
         "repo": {
           "type": "string",
           "title": "repo holding Values, Services and Ingress elements"
         },
+        "resources": {
+          "title": "Resources used for Kubernetes Deployment YAML",
+          "$ref": "#/definitions/typesJSONValue"
+        },
         "services": {
           "title": "Services used for Kubernetes Service YAML",
+          "$ref": "#/definitions/typesJSONValue"
+        },
+        "tolerations": {
+          "title": "Tolerations used for Kubernetes Deployment YAML",
           "$ref": "#/definitions/typesJSONValue"
         },
         "values": {

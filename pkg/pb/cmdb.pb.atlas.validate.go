@@ -4707,6 +4707,66 @@ func validate_Object_Manifest(r json.RawMessage, path string, allowUnknown bool)
 			if err = validator.AtlasValidateJSON(vv, vvPath, allowUnknown); err != nil {
 				return err
 			}
+		case "resources":
+			if v[k] == nil {
+				continue
+			}
+			vv := v[k]
+			vvPath := validate_runtime.JoinPath(path, k)
+			validator, ok := interface{}(&google_protobuf4.JSONValue{}).(interface {
+				AtlasValidateJSON(json.RawMessage, string, bool) error
+			})
+			if !ok {
+				continue
+			}
+			if err = validator.AtlasValidateJSON(vv, vvPath, allowUnknown); err != nil {
+				return err
+			}
+		case "node_selector":
+			if v[k] == nil {
+				continue
+			}
+			vv := v[k]
+			vvPath := validate_runtime.JoinPath(path, k)
+			validator, ok := interface{}(&google_protobuf4.JSONValue{}).(interface {
+				AtlasValidateJSON(json.RawMessage, string, bool) error
+			})
+			if !ok {
+				continue
+			}
+			if err = validator.AtlasValidateJSON(vv, vvPath, allowUnknown); err != nil {
+				return err
+			}
+		case "tolerations":
+			if v[k] == nil {
+				continue
+			}
+			vv := v[k]
+			vvPath := validate_runtime.JoinPath(path, k)
+			validator, ok := interface{}(&google_protobuf4.JSONValue{}).(interface {
+				AtlasValidateJSON(json.RawMessage, string, bool) error
+			})
+			if !ok {
+				continue
+			}
+			if err = validator.AtlasValidateJSON(vv, vvPath, allowUnknown); err != nil {
+				return err
+			}
+		case "affinity":
+			if v[k] == nil {
+				continue
+			}
+			vv := v[k]
+			vvPath := validate_runtime.JoinPath(path, k)
+			validator, ok := interface{}(&google_protobuf4.JSONValue{}).(interface {
+				AtlasValidateJSON(json.RawMessage, string, bool) error
+			})
+			if !ok {
+				continue
+			}
+			if err = validator.AtlasValidateJSON(vv, vvPath, allowUnknown); err != nil {
+				return err
+			}
 		case "artifact":
 			if v[k] == nil {
 				continue

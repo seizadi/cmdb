@@ -9,8 +9,6 @@ type VersionTag struct {
 	Name string
 	Description string
 	Version string
-	Repo string
-	Commit string
 	Artifacts []Artifact
 }
 

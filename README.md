@@ -307,7 +307,6 @@ curl -H "Authorization: Bearer $JWT" http://localhost:8080/v1/deployments -d '{"
 ``` sh
 make
 ```
-Will be created docker images 'infoblox/contacts-gateway' and 'infoblox/contacts-server'.
 
 If this process finished with errors it's likely that docker doesn't allow to mount host directory in its container.
 Therefore you are proposed to run `su -c "setenforce 0"` command to fix this issue.
@@ -318,86 +317,20 @@ Therefore you are proposed to run `su -c "setenforce 0"` command to fix this iss
 
 Make sure nginx is deployed in your K8s. Otherwise you can deploy it using
 
-``` sh
-make nginx-up
-```
 
 ##### Deployment
-To deploy atlas-contacts-app use
+To deploy cmdb on minikube use
 
 ``` sh
-make up
-```
-Will be used latest Docker Hub images: 'infoblox/contacts-gateway:latest', 'infoblox/contacts-server:latest'.
-
-To deploy authN stub, clone atlas-stubs repo (https://github.com/infobloxopen/atlas-stubs.git) and then execute deployment script inside authn-stub package or:
-
-``` sh
-curl https://raw.githubusercontent.com/infobloxopen/atlas-stubs/master/authn-stub/deploy/authn-stub.yaml | kubectl apply -f -
+cd repo/cmdb
+helm install -f minikube.yaml .
 ```
 
-This will start AuthN stub that maps `User-And-Pass` header on JWT tokens, with following meaning:
-
-```
-admin1:admin -> AccountID=1
-admin2:admin -> AccountID=2
-```
 
 ##### Usage
 
 Try it out by executing following curl commands:
 
-``` sh
-# Create some profiles
-curl -k -H "User-And-Pass: admin1:admin" \
-http://minkube/cmdb/v1/profiles -d '{"name": "personal", "notes": "Used for personal aims"}' | jq
-
-curl -k -H "User-And-Pass: admin1:admin" \
-http://minkube/cmdb/v1/profiles -d '{"name": "work", "notes": "Used for work aims"}' | jq
-
-# Create some groups assigned to profiles
-curl -k -H "User-And-Pass: admin1:admin" \
-http://minkube/cmdb/v1/groups -d '{"name": "schoolmates", "profile_id": "atlas-contacts-app/profiles/1"}' | jq
-
-curl -k -H "User-And-Pass: admin1:admin" \
-http://minkube/cmdb/v1/groups -d '{"name": "family", "profile_id": "atlas-contacts-app/profiles/1"}' | jq
-
-curl -k -H "User-And-Pass: admin1:admin" \
-http://minkube/cmdb/v1/groups -d '{"name": "accountants", "profile_id": "atlas-contacts-app/profiles/2"}' | jq
-
-# Add some contacts assigned to profiles and groups
-curl -k -H "User-And-Pass: admin1:admin" \
-http://minkube/cmdb/v1/contacts -d '{"first_name": "Mike", "primary_email": "mike@gmail.com", "profile_id": "atlas-contacts-app/profiles/1", "groups": ["atlas-contacts-app/groups/1", "atlas-contacts-app/groups/2"], "home_address": {"city": "Minneapolis", "state": "Minnesota", "country": "US"}}' | jq
-
-curl -k -H "User-And-Pass: admin1:admin" \
-http://minkube/cmdb/v1/contacts -d '{"first_name": "John", "primary_email": "john@gmail.com", "profile_id": "atlas-contacts-app/profiles/2", "work_address": {"city": "St.Paul", "state": "Minnesota", "country": "US"}}' | jq
-
-# Patch zip value for a particular contact
-curl -k -H "User-And-Pass: admin1:admin" -X PATCH \
-http://minkube/cmdb/v1/contacts/{contact_id} -d '{"work_address": {"zip": "161"}}' | jq
-
-# Read created resources
-curl -k -H "User-And-Pass: admin1:admin" \
-http://minkube/cmdb/v1/profiles  | jq
-
-curl -k -H "User-And-Pass: admin1:admin" \
-http://minkube/cmdb/v1/groups | jq
-
-curl -k -H "User-And-Pass: admin1:admin" \
-http://minkube/cmdb/v1/contacts | jq
-
-# Read groups which belong to a profile
-curl -k -H "User-And-Pass: admin1:admin" \
-http://minkube/cmdb/v1/profiles/1/groups  | jq
-
-# Read contacts which belong to a profile
-curl -k -H "User-And-Pass: admin1:admin" \
-http://minkube/cmdb/v1/profiles/1/contacts  | jq
-
-# Read contacts which belong to a group
-curl -k -H "User-And-Pass: admin1:admin" \
-http://minkube/cmdb/v1/groups/1/contacts  | jq
-```
 
 ##### API documentation
 
@@ -405,175 +338,6 @@ API documentation in k8s deployment could be found on following link, note that 
 
 ```
 https://<minikube address>/cmdb/apidoc/index
-```
-
-NOTE: This documentation page is only for demo purposes, do not copy and use it in your own production due to risk of injections.
-
-##### Pagination (page token)
-
-**DISCLAIMER**: it is intended only for demonstration purposes and should not be emulated.
-
-Contacts App implements pagination in by adding application **specific** page token implementation.
-
-Actually the service supports "composite" pagination in a specific way:
-
-- limit and offset are still supported but without page token
-
-- if an user requests page token and provides limit then limit value will be used as a step for all further requests
-		`page_token = null & limit = 2 -> page_token=base64(offset=2:limit=2)`
-
-- if an user requests page token and provides offset then only first time the provided offset is applied
-		`page_token = null & offset = 2 & limit = 2 -> page_token=base64(offset=4:limit=2)`
-
-Get all contacts: `GET http://localhost:8080/v1/contacts`
-```json
-{
-  "results": [
-    {
-      "emails": [
-        {
-          "address": "one@mail.com",
-          "id": "1"
-        }
-      ],
-      "first_name": "Mike",
-      "id": "1",
-      "primary_email": "one@mail.com"
-    },
-    {
-      "emails": [
-        {
-          "address": "two@mail.com",
-          "id": "2"
-        }
-      ],
-      "first_name": "Mike",
-      "id": "2",
-      "primary_email": "two@mail.com"
-    },
-    {
-      "emails": [
-        {
-          "address": "three@mail.com",
-          "id": "3"
-        }
-      ],
-      "first_name": "Mike",
-      "id": "3",
-      "primary_email": "three@mail.com"
-    }
-  ],
-  "success": {
-    "status": 200,
-    "code": "OK"
-  }
-}
-```
-
-Default pagination (supported by atlas-app-toolkit): `GET http://localhost:8080/v1/contacts?_limit=1&_offset=1`
-```json
-{
-  "results": [
-    {
-      "emails": [
-        {
-          "address": "two@mail.com",
-          "id": "2"
-        }
-      ],
-      "first_name": "Mike",
-      "id": "2",
-      "primary_email": "two@mail.com"
-    }
-  ],
-  "success": {
-    "status": 200,
-    "code": "OK"
-  }
-}
-```
-
-Request **specific** page token: `GET http://localhost:8080/v1/contacts?_page_token=null&_limit=2`
-```json
-{
-  "results": [
-    {
-      "emails": [
-        {
-          "address": "one@mail.com",
-          "id": "1"
-        }
-      ],
-      "first_name": "Mike",
-      "id": "1",
-      "primary_email": "one@mail.com"
-    },
-    {
-      "emails": [
-        {
-          "address": "two@mail.com",
-          "id": "2"
-        }
-      ],
-      "first_name": "Mike",
-      "id": "2",
-      "primary_email": "two@mail.com"
-    }
-  ],
-  "success": {
-    "status": 200,
-    "code": "OK",
-    "_page_token": "NDo0"
-  }
-}
-```
-
-Get next page via page token: `GET http://localhost:8080/v1/contacts?_page_token=NDo0`
-```json
-{
-  "results": [
-    {
-      "emails": [
-        {
-          "address": "three@mail.com",
-          "id": "3"
-        }
-      ],
-      "first_name": "Mike",
-      "id": "3",
-      "primary_email": "three@mail.com"
-    }
-  ],
-  "success": {
-    "status": 200,
-    "code": "OK",
-    "_page_token": "NTo0"
-  }
-}
-```
-
-Get next page: `GET http://localhost:8080/v1/contacts?_page_token=NTo0`
-The `"_page_token": "null"` means there are no more pages
-```json
-{
-  "success": {
-    "status": 200,
-    "code": "OK",
-    "_page_token": "null"
-  }
-}
-```
-
-## Deployment
-
-Add additional notes about how to deploy this application. Maybe list some common pitfalls or debugging strategies.
-
-## Running the tests
-
-Explain how to run the automated tests for this system.
-
-```
-Give an example
 ```
 
 ## Versioning

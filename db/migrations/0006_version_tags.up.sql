@@ -6,9 +6,7 @@ CREATE TABLE version_tags
   updated_at timestamptz DEFAULT NULL,
   name text DEFAULT NULL,
   description text DEFAULT NULL,
-  version text DEFAULT NULL,
-  repo text DEFAULT NULL,
-  commit text DEFAULT NULL
+  version text DEFAULT NULL
 );
 
 CREATE TRIGGER version_tags_updated_at

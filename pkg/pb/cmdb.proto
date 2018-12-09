@@ -218,14 +218,8 @@ message VersionTag {
   // The version based on SemVer (e.g. 0.0.4)
   string version = 4;
 
-  // The git repo (e.g. https://github.com/seizadi/cmdb/releases/tag/v0.0.4)
-  string repo = 5;
-
-  // The git repo commit ID (e.g. 20ec77f5a8f8e260deb51e8d888a2597762184b6)
-  string commit = 6;
-
   // The list of Artifacts that are versioned by this tag
-  repeated Artifact artifacts = 7;
+  repeated Artifact artifacts = 5;
 }
 
 message CreateVersionTagRequest {
@@ -889,23 +883,35 @@ message Manifest {
   // Ingress used for Kubernetes Ingress YAML
   gorm.types.JSONValue ingress = 8 [(gorm.field).tag = {type: "jsonb"}];
 
+  // Resources used for Kubernetes Deployment YAML
+  gorm.types.JSONValue resources = 9 [(gorm.field).tag = {type: "jsonb"}];
+
+  // NodeSelector used for Kubernetes Deployment YAML
+  gorm.types.JSONValue node_selector = 10 [(gorm.field).tag = {type: "jsonb"}];
+
+  // Tolerations used for Kubernetes Deployment YAML
+  gorm.types.JSONValue tolerations = 11 [(gorm.field).tag = {type: "jsonb"}];
+
+  // Affinity used for Kubernetes Deployment YAML
+  gorm.types.JSONValue affinity = 12 [(gorm.field).tag = {type: "jsonb"}];
+
   // Artifact used by this Manifest
-  Artifact artifact = 9 [(gorm.field).belongs_to = {}];
+  Artifact artifact = 13 [(gorm.field).belongs_to = {}];
 
   // Reference to Artifact
-  atlas.rpc.Identifier artifact_id = 10;
+  atlas.rpc.Identifier artifact_id = 14;
 
   // Vault used by this Manifest
-  Vault vault = 11 [(gorm.field).belongs_to = {}];
+  Vault vault = 15 [(gorm.field).belongs_to = {}];
 
   // Reference to Vault
-  atlas.rpc.Identifier vault_id = 12;
+  atlas.rpc.Identifier vault_id = 16;
 
   // AWS Service used by this Manifest
-  AwsService aws_service = 13 [(gorm.field).belongs_to = {}];
+  AwsService aws_service = 17 [(gorm.field).belongs_to = {}];
 
   // Reference to AWS Service
-  atlas.rpc.Identifier aws_service_id = 14;
+  atlas.rpc.Identifier aws_service_id = 18;
 }
 
 message CreateManifestRequest {
