@@ -321,15 +321,54 @@ Make sure nginx is deployed in your K8s. Otherwise you can deploy it using
 ##### Deployment
 To deploy cmdb on minikube use
 
-``` sh
+```sh
 cd repo/cmdb
+$ helm dependency update .
 helm install -f minikube.yaml .
 ```
+If needed you can validate that the migration is applied:
+```sh
+kubectl get pods
+NAME                                       READY     STATUS    RESTARTS   AGE
+altered-swan-cmdb-7c48b7b76-jcfc2          1/1       Running   0          55s
+altered-swan-postgresql-77f87976ff-s2fwk   1/1       Running   0          55s
 
+kubectl exec -it altered-swan-postgresql-77f87976ff-s2fwk /bin/sh
+# psql cmdb
+psql (9.6.2)
+Type "help" for help.
+
+cmdb=# \dt
+               List of relations
+ Schema |       Name        | Type  |  Owner   
+--------+-------------------+-------+----------
+ public | applications      | table | postgres
+ public | artifacts         | table | postgres
+ public | aws_rds_instances | table | postgres
+ public | aws_services      | table | postgres
+ public | cloud_providers   | table | postgres
+ public | containers        | table | postgres
+ public | deployments       | table | postgres
+ public | environments      | table | postgres
+ public | kube_clusters     | table | postgres
+ public | manifests         | table | postgres
+ public | regions           | table | postgres
+ public | schema_migrations | table | postgres
+ public | secrets           | table | postgres
+ public | vaults            | table | postgres
+ public | version_tags      | table | postgres
+(15 rows)
+
+```
 
 ##### Usage
 
 Try it out by executing following curl commands:
+```sh
+export JWT="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJBY2NvdW50SUQiOjF9.GsXyFDDARjXe1t9DPo2LIBKHEal3O7t3vLI3edA7dGU"
+curl http://minikube/cmdb/v1/version
+curl -H "Authorization: Bearer $JWT" http://minikube/cmdb/v1/regions
+```
 
 
 ##### API documentation
@@ -337,7 +376,12 @@ Try it out by executing following curl commands:
 API documentation in k8s deployment could be found on following link, note that no credentials needed to access it:
 
 ```
-https://<minikube address>/cmdb/apidoc/index
+open http://minikube/cmdb/apidoc
+```
+
+The Swagger JSON file here:
+```bash
+curl http://minikube/cmdb/swagger
 ```
 
 ## Versioning
