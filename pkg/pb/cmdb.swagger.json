@@ -5209,10 +5209,6 @@
             "$ref": "#/definitions/cmdbArtifact"
           }
         },
-        "commit": {
-          "type": "string",
-          "title": "The git repo commit ID (e.g. 20ec77f5a8f8e260deb51e8d888a2597762184b6)"
-        },
         "description": {
           "type": "string",
           "title": "The description of the container"
@@ -5225,10 +5221,6 @@
         "name": {
           "type": "string",
           "title": "The name of the container"
-        },
-        "repo": {
-          "type": "string",
-          "title": "The git repo (e.g. https://github.com/seizadi/cmdb/releases/tag/v0.0.4)"
         },
         "version": {
           "type": "string",

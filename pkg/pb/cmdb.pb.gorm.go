@@ -314,11 +314,9 @@ type VaultWithAfterToPB interface {
 type VersionTagORM struct {
 	AccountID   string
 	Artifacts   []*ArtifactORM `gorm:"foreignkey:VersionTagId;association_foreignkey:Id"`
-	Commit      string
 	Description string
 	Id          int64 `gorm:"type:serial;primary_key"`
 	Name        string
-	Repo        string
 	Version     string
 }
 
@@ -345,8 +343,6 @@ func (m *VersionTag) ToORM(ctx context.Context) (VersionTagORM, error) {
 	to.Name = m.Name
 	to.Description = m.Description
 	to.Version = m.Version
-	to.Repo = m.Repo
-	to.Commit = m.Commit
 	for _, v := range m.Artifacts {
 		if v != nil {
 			if tempArtifacts, cErr := v.ToORM(ctx); cErr == nil {
@@ -387,8 +383,6 @@ func (m *VersionTagORM) ToPB(ctx context.Context) (VersionTag, error) {
 	to.Name = m.Name
 	to.Description = m.Description
 	to.Version = m.Version
-	to.Repo = m.Repo
-	to.Commit = m.Commit
 	for _, v := range m.Artifacts {
 		if v != nil {
 			if tempArtifacts, cErr := v.ToPB(ctx); cErr == nil {
@@ -2635,14 +2629,6 @@ func DefaultApplyFieldMaskVersionTag(ctx context.Context, patchee *VersionTag, p
 		}
 		if f == prefix+"Version" {
 			patchee.Version = patcher.Version
-			continue
-		}
-		if f == prefix+"Repo" {
-			patchee.Repo = patcher.Repo
-			continue
-		}
-		if f == prefix+"Commit" {
-			patchee.Commit = patcher.Commit
 			continue
 		}
 		if f == prefix+"Artifacts" {

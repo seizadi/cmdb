@@ -1381,8 +1381,6 @@ func validate_Object_VersionTag(r json.RawMessage, path string, allowUnknown boo
 		case "name":
 		case "description":
 		case "version":
-		case "repo":
-		case "commit":
 		case "artifacts":
 			if v[k] == nil {
 				continue

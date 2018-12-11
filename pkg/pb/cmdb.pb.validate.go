@@ -1076,10 +1076,6 @@ func (m *VersionTag) Validate() error {
 
 	// no validation rules for Version
 
-	// no validation rules for Repo
-
-	// no validation rules for Commit
-
 	for idx, item := range m.GetArtifacts() {
 		_, _ = idx, item
 
