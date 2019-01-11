@@ -3,6 +3,7 @@
 {{- $appName := include "chart-app.name" . -}}
 {{- $service := index .Values.services 0 -}}
 {{- $servicePort := include "portspec" (dict "ports" $service.ports "portname" "http") -}}
+{{- $serviceGrpcPort := include "portspec" (dict "ports" $service.ports "portname" "grpc") -}}
 {{- $ingressPath := .Values.ingress.path -}}
 apiVersion: extensions/v1beta1
 kind: Ingress

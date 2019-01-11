@@ -48,6 +48,7 @@ spec:
           - containerPort: 8081
             protocol: TCP
           - containerPort: 9090
+            name: grpc
             protocol: TCP
           livenessProbe:
             httpGet:

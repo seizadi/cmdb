@@ -28,10 +28,15 @@ services:
   servicename: cmdb
   type: NodePort
   ports:
+  - name: grpc
+    port: 9090
+    targetport: grpc
+    nodePort: 30090
+    protocol: TCP
   - name: http
     port: 8080
     targetport: http
-    nodeport: 31500
+    nodePort: 30080
     protocol: TCP
 
 ingress:
