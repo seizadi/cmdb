@@ -315,7 +315,7 @@ Therefore you are proposed to run `su -c "setenforce 0"` command to fix this iss
 
 ##### Prerequisites
 
-Make sure nginx is deployed in your K8s. Otherwise you can deploy it using
+Make sure nginx is deployed in your K8s.
 
 
 ##### Deployment
