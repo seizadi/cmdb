@@ -108,9 +108,7 @@ func (m *Vault) Validate() error {
 		return nil
 	}
 
-	if v, ok := interface{}(m.GetId()).(interface {
-		Validate() error
-	}); ok {
+	if v, ok := interface{}(m.GetId()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
 			return VaultValidationError{
 				field:  "Id",
@@ -129,9 +127,7 @@ func (m *Vault) Validate() error {
 	for idx, item := range m.GetSecrets() {
 		_, _ = idx, item
 
-		if v, ok := interface{}(item).(interface {
-			Validate() error
-		}); ok {
+		if v, ok := interface{}(item).(interface{ Validate() error }); ok {
 			if err := v.Validate(); err != nil {
 				return VaultValidationError{
 					field:  fmt.Sprintf("Secrets[%v]", idx),
@@ -208,9 +204,7 @@ func (m *CreateVaultRequest) Validate() error {
 		return nil
 	}
 
-	if v, ok := interface{}(m.GetPayload()).(interface {
-		Validate() error
-	}); ok {
+	if v, ok := interface{}(m.GetPayload()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
 			return CreateVaultRequestValidationError{
 				field:  "Payload",
@@ -287,9 +281,7 @@ func (m *CreateVaultResponse) Validate() error {
 		return nil
 	}
 
-	if v, ok := interface{}(m.GetResult()).(interface {
-		Validate() error
-	}); ok {
+	if v, ok := interface{}(m.GetResult()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
 			return CreateVaultResponseValidationError{
 				field:  "Result",
@@ -366,9 +358,7 @@ func (m *ReadVaultRequest) Validate() error {
 		return nil
 	}
 
-	if v, ok := interface{}(m.GetId()).(interface {
-		Validate() error
-	}); ok {
+	if v, ok := interface{}(m.GetId()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
 			return ReadVaultRequestValidationError{
 				field:  "Id",
@@ -378,9 +368,7 @@ func (m *ReadVaultRequest) Validate() error {
 		}
 	}
 
-	if v, ok := interface{}(m.GetFields()).(interface {
-		Validate() error
-	}); ok {
+	if v, ok := interface{}(m.GetFields()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
 			return ReadVaultRequestValidationError{
 				field:  "Fields",
@@ -455,9 +443,7 @@ func (m *ReadVaultResponse) Validate() error {
 		return nil
 	}
 
-	if v, ok := interface{}(m.GetResult()).(interface {
-		Validate() error
-	}); ok {
+	if v, ok := interface{}(m.GetResult()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
 			return ReadVaultResponseValidationError{
 				field:  "Result",
@@ -534,9 +520,7 @@ func (m *UpdateVaultRequest) Validate() error {
 		return nil
 	}
 
-	if v, ok := interface{}(m.GetPayload()).(interface {
-		Validate() error
-	}); ok {
+	if v, ok := interface{}(m.GetPayload()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
 			return UpdateVaultRequestValidationError{
 				field:  "Payload",
@@ -546,9 +530,7 @@ func (m *UpdateVaultRequest) Validate() error {
 		}
 	}
 
-	if v, ok := interface{}(m.GetFields()).(interface {
-		Validate() error
-	}); ok {
+	if v, ok := interface{}(m.GetFields()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
 			return UpdateVaultRequestValidationError{
 				field:  "Fields",
@@ -625,9 +607,7 @@ func (m *UpdateVaultResponse) Validate() error {
 		return nil
 	}
 
-	if v, ok := interface{}(m.GetResult()).(interface {
-		Validate() error
-	}); ok {
+	if v, ok := interface{}(m.GetResult()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
 			return UpdateVaultResponseValidationError{
 				field:  "Result",
@@ -704,9 +684,7 @@ func (m *DeleteVaultRequest) Validate() error {
 		return nil
 	}
 
-	if v, ok := interface{}(m.GetId()).(interface {
-		Validate() error
-	}); ok {
+	if v, ok := interface{}(m.GetId()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
 			return DeleteVaultRequestValidationError{
 				field:  "Id",
@@ -850,9 +828,7 @@ func (m *ListVaultRequest) Validate() error {
 		return nil
 	}
 
-	if v, ok := interface{}(m.GetFilter()).(interface {
-		Validate() error
-	}); ok {
+	if v, ok := interface{}(m.GetFilter()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
 			return ListVaultRequestValidationError{
 				field:  "Filter",
@@ -862,9 +838,7 @@ func (m *ListVaultRequest) Validate() error {
 		}
 	}
 
-	if v, ok := interface{}(m.GetOrderBy()).(interface {
-		Validate() error
-	}); ok {
+	if v, ok := interface{}(m.GetOrderBy()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
 			return ListVaultRequestValidationError{
 				field:  "OrderBy",
@@ -874,9 +848,7 @@ func (m *ListVaultRequest) Validate() error {
 		}
 	}
 
-	if v, ok := interface{}(m.GetFields()).(interface {
-		Validate() error
-	}); ok {
+	if v, ok := interface{}(m.GetFields()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
 			return ListVaultRequestValidationError{
 				field:  "Fields",
@@ -886,9 +858,7 @@ func (m *ListVaultRequest) Validate() error {
 		}
 	}
 
-	if v, ok := interface{}(m.GetPaging()).(interface {
-		Validate() error
-	}); ok {
+	if v, ok := interface{}(m.GetPaging()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
 			return ListVaultRequestValidationError{
 				field:  "Paging",
@@ -966,9 +936,7 @@ func (m *ListVaultsResponse) Validate() error {
 	for idx, item := range m.GetResults() {
 		_, _ = idx, item
 
-		if v, ok := interface{}(item).(interface {
-			Validate() error
-		}); ok {
+		if v, ok := interface{}(item).(interface{ Validate() error }); ok {
 			if err := v.Validate(); err != nil {
 				return ListVaultsResponseValidationError{
 					field:  fmt.Sprintf("Results[%v]", idx),
@@ -980,9 +948,7 @@ func (m *ListVaultsResponse) Validate() error {
 
 	}
 
-	if v, ok := interface{}(m.GetPage()).(interface {
-		Validate() error
-	}); ok {
+	if v, ok := interface{}(m.GetPage()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
 			return ListVaultsResponseValidationError{
 				field:  "Page",
@@ -1058,9 +1024,7 @@ func (m *VersionTag) Validate() error {
 		return nil
 	}
 
-	if v, ok := interface{}(m.GetId()).(interface {
-		Validate() error
-	}); ok {
+	if v, ok := interface{}(m.GetId()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
 			return VersionTagValidationError{
 				field:  "Id",
@@ -1079,9 +1043,7 @@ func (m *VersionTag) Validate() error {
 	for idx, item := range m.GetArtifacts() {
 		_, _ = idx, item
 
-		if v, ok := interface{}(item).(interface {
-			Validate() error
-		}); ok {
+		if v, ok := interface{}(item).(interface{ Validate() error }); ok {
 			if err := v.Validate(); err != nil {
 				return VersionTagValidationError{
 					field:  fmt.Sprintf("Artifacts[%v]", idx),
@@ -1158,9 +1120,7 @@ func (m *CreateVersionTagRequest) Validate() error {
 		return nil
 	}
 
-	if v, ok := interface{}(m.GetPayload()).(interface {
-		Validate() error
-	}); ok {
+	if v, ok := interface{}(m.GetPayload()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
 			return CreateVersionTagRequestValidationError{
 				field:  "Payload",
@@ -1237,9 +1197,7 @@ func (m *CreateVersionTagResponse) Validate() error {
 		return nil
 	}
 
-	if v, ok := interface{}(m.GetResult()).(interface {
-		Validate() error
-	}); ok {
+	if v, ok := interface{}(m.GetResult()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
 			return CreateVersionTagResponseValidationError{
 				field:  "Result",
@@ -1316,9 +1274,7 @@ func (m *ReadVersionTagRequest) Validate() error {
 		return nil
 	}
 
-	if v, ok := interface{}(m.GetId()).(interface {
-		Validate() error
-	}); ok {
+	if v, ok := interface{}(m.GetId()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
 			return ReadVersionTagRequestValidationError{
 				field:  "Id",
@@ -1328,9 +1284,7 @@ func (m *ReadVersionTagRequest) Validate() error {
 		}
 	}
 
-	if v, ok := interface{}(m.GetFields()).(interface {
-		Validate() error
-	}); ok {
+	if v, ok := interface{}(m.GetFields()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
 			return ReadVersionTagRequestValidationError{
 				field:  "Fields",
@@ -1407,9 +1361,7 @@ func (m *ReadVersionTagResponse) Validate() error {
 		return nil
 	}
 
-	if v, ok := interface{}(m.GetResult()).(interface {
-		Validate() error
-	}); ok {
+	if v, ok := interface{}(m.GetResult()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
 			return ReadVersionTagResponseValidationError{
 				field:  "Result",
@@ -1486,9 +1438,7 @@ func (m *UpdateVersionTagRequest) Validate() error {
 		return nil
 	}
 
-	if v, ok := interface{}(m.GetPayload()).(interface {
-		Validate() error
-	}); ok {
+	if v, ok := interface{}(m.GetPayload()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
 			return UpdateVersionTagRequestValidationError{
 				field:  "Payload",
@@ -1498,9 +1448,7 @@ func (m *UpdateVersionTagRequest) Validate() error {
 		}
 	}
 
-	if v, ok := interface{}(m.GetFields()).(interface {
-		Validate() error
-	}); ok {
+	if v, ok := interface{}(m.GetFields()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
 			return UpdateVersionTagRequestValidationError{
 				field:  "Fields",
@@ -1577,9 +1525,7 @@ func (m *UpdateVersionTagResponse) Validate() error {
 		return nil
 	}
 
-	if v, ok := interface{}(m.GetResult()).(interface {
-		Validate() error
-	}); ok {
+	if v, ok := interface{}(m.GetResult()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
 			return UpdateVersionTagResponseValidationError{
 				field:  "Result",
@@ -1656,9 +1602,7 @@ func (m *DeleteVersionTagRequest) Validate() error {
 		return nil
 	}
 
-	if v, ok := interface{}(m.GetId()).(interface {
-		Validate() error
-	}); ok {
+	if v, ok := interface{}(m.GetId()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
 			return DeleteVersionTagRequestValidationError{
 				field:  "Id",
@@ -1802,9 +1746,7 @@ func (m *ListVersionTagRequest) Validate() error {
 		return nil
 	}
 
-	if v, ok := interface{}(m.GetFilter()).(interface {
-		Validate() error
-	}); ok {
+	if v, ok := interface{}(m.GetFilter()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
 			return ListVersionTagRequestValidationError{
 				field:  "Filter",
@@ -1814,9 +1756,7 @@ func (m *ListVersionTagRequest) Validate() error {
 		}
 	}
 
-	if v, ok := interface{}(m.GetOrderBy()).(interface {
-		Validate() error
-	}); ok {
+	if v, ok := interface{}(m.GetOrderBy()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
 			return ListVersionTagRequestValidationError{
 				field:  "OrderBy",
@@ -1826,9 +1766,7 @@ func (m *ListVersionTagRequest) Validate() error {
 		}
 	}
 
-	if v, ok := interface{}(m.GetFields()).(interface {
-		Validate() error
-	}); ok {
+	if v, ok := interface{}(m.GetFields()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
 			return ListVersionTagRequestValidationError{
 				field:  "Fields",
@@ -1838,9 +1776,7 @@ func (m *ListVersionTagRequest) Validate() error {
 		}
 	}
 
-	if v, ok := interface{}(m.GetPaging()).(interface {
-		Validate() error
-	}); ok {
+	if v, ok := interface{}(m.GetPaging()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
 			return ListVersionTagRequestValidationError{
 				field:  "Paging",
@@ -1920,9 +1856,7 @@ func (m *ListVersionTagsResponse) Validate() error {
 	for idx, item := range m.GetResults() {
 		_, _ = idx, item
 
-		if v, ok := interface{}(item).(interface {
-			Validate() error
-		}); ok {
+		if v, ok := interface{}(item).(interface{ Validate() error }); ok {
 			if err := v.Validate(); err != nil {
 				return ListVersionTagsResponseValidationError{
 					field:  fmt.Sprintf("Results[%v]", idx),
@@ -1934,9 +1868,7 @@ func (m *ListVersionTagsResponse) Validate() error {
 
 	}
 
-	if v, ok := interface{}(m.GetPage()).(interface {
-		Validate() error
-	}); ok {
+	if v, ok := interface{}(m.GetPage()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
 			return ListVersionTagsResponseValidationError{
 				field:  "Page",
@@ -2013,9 +1945,7 @@ func (m *Application) Validate() error {
 		return nil
 	}
 
-	if v, ok := interface{}(m.GetId()).(interface {
-		Validate() error
-	}); ok {
+	if v, ok := interface{}(m.GetId()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
 			return ApplicationValidationError{
 				field:  "Id",
@@ -2033,9 +1963,7 @@ func (m *Application) Validate() error {
 
 	// no validation rules for Repo
 
-	if v, ok := interface{}(m.GetVersionTag()).(interface {
-		Validate() error
-	}); ok {
+	if v, ok := interface{}(m.GetVersionTag()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
 			return ApplicationValidationError{
 				field:  "VersionTag",
@@ -2045,9 +1973,7 @@ func (m *Application) Validate() error {
 		}
 	}
 
-	if v, ok := interface{}(m.GetVersionTagId()).(interface {
-		Validate() error
-	}); ok {
+	if v, ok := interface{}(m.GetVersionTagId()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
 			return ApplicationValidationError{
 				field:  "VersionTagId",
@@ -2057,9 +1983,7 @@ func (m *Application) Validate() error {
 		}
 	}
 
-	if v, ok := interface{}(m.GetManifest()).(interface {
-		Validate() error
-	}); ok {
+	if v, ok := interface{}(m.GetManifest()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
 			return ApplicationValidationError{
 				field:  "Manifest",
@@ -2069,9 +1993,7 @@ func (m *Application) Validate() error {
 		}
 	}
 
-	if v, ok := interface{}(m.GetManifestId()).(interface {
-		Validate() error
-	}); ok {
+	if v, ok := interface{}(m.GetManifestId()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
 			return ApplicationValidationError{
 				field:  "ManifestId",
@@ -2084,9 +2006,7 @@ func (m *Application) Validate() error {
 	for idx, item := range m.GetContainers() {
 		_, _ = idx, item
 
-		if v, ok := interface{}(item).(interface {
-			Validate() error
-		}); ok {
+		if v, ok := interface{}(item).(interface{ Validate() error }); ok {
 			if err := v.Validate(); err != nil {
 				return ApplicationValidationError{
 					field:  fmt.Sprintf("Containers[%v]", idx),
@@ -2098,9 +2018,7 @@ func (m *Application) Validate() error {
 
 	}
 
-	if v, ok := interface{}(m.GetEnvironmentId()).(interface {
-		Validate() error
-	}); ok {
+	if v, ok := interface{}(m.GetEnvironmentId()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
 			return ApplicationValidationError{
 				field:  "EnvironmentId",
@@ -2110,9 +2028,7 @@ func (m *Application) Validate() error {
 		}
 	}
 
-	if v, ok := interface{}(m.GetDeployment()).(interface {
-		Validate() error
-	}); ok {
+	if v, ok := interface{}(m.GetDeployment()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
 			return ApplicationValidationError{
 				field:  "Deployment",
@@ -2187,9 +2103,7 @@ func (m *CreateApplicationRequest) Validate() error {
 		return nil
 	}
 
-	if v, ok := interface{}(m.GetPayload()).(interface {
-		Validate() error
-	}); ok {
+	if v, ok := interface{}(m.GetPayload()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
 			return CreateApplicationRequestValidationError{
 				field:  "Payload",
@@ -2266,9 +2180,7 @@ func (m *CreateApplicationResponse) Validate() error {
 		return nil
 	}
 
-	if v, ok := interface{}(m.GetResult()).(interface {
-		Validate() error
-	}); ok {
+	if v, ok := interface{}(m.GetResult()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
 			return CreateApplicationResponseValidationError{
 				field:  "Result",
@@ -2345,9 +2257,7 @@ func (m *ReadApplicationRequest) Validate() error {
 		return nil
 	}
 
-	if v, ok := interface{}(m.GetId()).(interface {
-		Validate() error
-	}); ok {
+	if v, ok := interface{}(m.GetId()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
 			return ReadApplicationRequestValidationError{
 				field:  "Id",
@@ -2357,9 +2267,7 @@ func (m *ReadApplicationRequest) Validate() error {
 		}
 	}
 
-	if v, ok := interface{}(m.GetFields()).(interface {
-		Validate() error
-	}); ok {
+	if v, ok := interface{}(m.GetFields()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
 			return ReadApplicationRequestValidationError{
 				field:  "Fields",
@@ -2436,9 +2344,7 @@ func (m *ReadApplicationResponse) Validate() error {
 		return nil
 	}
 
-	if v, ok := interface{}(m.GetResult()).(interface {
-		Validate() error
-	}); ok {
+	if v, ok := interface{}(m.GetResult()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
 			return ReadApplicationResponseValidationError{
 				field:  "Result",
@@ -2515,9 +2421,7 @@ func (m *UpdateApplicationRequest) Validate() error {
 		return nil
 	}
 
-	if v, ok := interface{}(m.GetPayload()).(interface {
-		Validate() error
-	}); ok {
+	if v, ok := interface{}(m.GetPayload()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
 			return UpdateApplicationRequestValidationError{
 				field:  "Payload",
@@ -2527,9 +2431,7 @@ func (m *UpdateApplicationRequest) Validate() error {
 		}
 	}
 
-	if v, ok := interface{}(m.GetFields()).(interface {
-		Validate() error
-	}); ok {
+	if v, ok := interface{}(m.GetFields()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
 			return UpdateApplicationRequestValidationError{
 				field:  "Fields",
@@ -2606,9 +2508,7 @@ func (m *UpdateApplicationResponse) Validate() error {
 		return nil
 	}
 
-	if v, ok := interface{}(m.GetResult()).(interface {
-		Validate() error
-	}); ok {
+	if v, ok := interface{}(m.GetResult()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
 			return UpdateApplicationResponseValidationError{
 				field:  "Result",
@@ -2685,9 +2585,7 @@ func (m *DeleteApplicationRequest) Validate() error {
 		return nil
 	}
 
-	if v, ok := interface{}(m.GetId()).(interface {
-		Validate() error
-	}); ok {
+	if v, ok := interface{}(m.GetId()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
 			return DeleteApplicationRequestValidationError{
 				field:  "Id",
@@ -2831,9 +2729,7 @@ func (m *ListApplicationRequest) Validate() error {
 		return nil
 	}
 
-	if v, ok := interface{}(m.GetFilter()).(interface {
-		Validate() error
-	}); ok {
+	if v, ok := interface{}(m.GetFilter()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
 			return ListApplicationRequestValidationError{
 				field:  "Filter",
@@ -2843,9 +2739,7 @@ func (m *ListApplicationRequest) Validate() error {
 		}
 	}
 
-	if v, ok := interface{}(m.GetOrderBy()).(interface {
-		Validate() error
-	}); ok {
+	if v, ok := interface{}(m.GetOrderBy()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
 			return ListApplicationRequestValidationError{
 				field:  "OrderBy",
@@ -2855,9 +2749,7 @@ func (m *ListApplicationRequest) Validate() error {
 		}
 	}
 
-	if v, ok := interface{}(m.GetFields()).(interface {
-		Validate() error
-	}); ok {
+	if v, ok := interface{}(m.GetFields()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
 			return ListApplicationRequestValidationError{
 				field:  "Fields",
@@ -2867,9 +2759,7 @@ func (m *ListApplicationRequest) Validate() error {
 		}
 	}
 
-	if v, ok := interface{}(m.GetPaging()).(interface {
-		Validate() error
-	}); ok {
+	if v, ok := interface{}(m.GetPaging()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
 			return ListApplicationRequestValidationError{
 				field:  "Paging",
@@ -2949,9 +2839,7 @@ func (m *ListApplicationsResponse) Validate() error {
 	for idx, item := range m.GetResults() {
 		_, _ = idx, item
 
-		if v, ok := interface{}(item).(interface {
-			Validate() error
-		}); ok {
+		if v, ok := interface{}(item).(interface{ Validate() error }); ok {
 			if err := v.Validate(); err != nil {
 				return ListApplicationsResponseValidationError{
 					field:  fmt.Sprintf("Results[%v]", idx),
@@ -2963,9 +2851,7 @@ func (m *ListApplicationsResponse) Validate() error {
 
 	}
 
-	if v, ok := interface{}(m.GetPage()).(interface {
-		Validate() error
-	}); ok {
+	if v, ok := interface{}(m.GetPage()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
 			return ListApplicationsResponseValidationError{
 				field:  "Page",
@@ -3042,9 +2928,7 @@ func (m *AwsRdsInstance) Validate() error {
 		return nil
 	}
 
-	if v, ok := interface{}(m.GetId()).(interface {
-		Validate() error
-	}); ok {
+	if v, ok := interface{}(m.GetId()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
 			return AwsRdsInstanceValidationError{
 				field:  "Id",
@@ -3064,9 +2948,7 @@ func (m *AwsRdsInstance) Validate() error {
 
 	// no validation rules for DatabaseUser
 
-	if v, ok := interface{}(m.GetDatabasePassword()).(interface {
-		Validate() error
-	}); ok {
+	if v, ok := interface{}(m.GetDatabasePassword()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
 			return AwsRdsInstanceValidationError{
 				field:  "DatabasePassword",
@@ -3076,9 +2958,7 @@ func (m *AwsRdsInstance) Validate() error {
 		}
 	}
 
-	if v, ok := interface{}(m.GetAwsServiceId()).(interface {
-		Validate() error
-	}); ok {
+	if v, ok := interface{}(m.GetAwsServiceId()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
 			return AwsRdsInstanceValidationError{
 				field:  "AwsServiceId",
@@ -3153,9 +3033,7 @@ func (m *CreateAwsRdsInstanceRequest) Validate() error {
 		return nil
 	}
 
-	if v, ok := interface{}(m.GetPayload()).(interface {
-		Validate() error
-	}); ok {
+	if v, ok := interface{}(m.GetPayload()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
 			return CreateAwsRdsInstanceRequestValidationError{
 				field:  "Payload",
@@ -3233,9 +3111,7 @@ func (m *CreateAwsRdsInstanceResponse) Validate() error {
 		return nil
 	}
 
-	if v, ok := interface{}(m.GetResult()).(interface {
-		Validate() error
-	}); ok {
+	if v, ok := interface{}(m.GetResult()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
 			return CreateAwsRdsInstanceResponseValidationError{
 				field:  "Result",
@@ -3313,9 +3189,7 @@ func (m *ReadAwsRdsInstanceRequest) Validate() error {
 		return nil
 	}
 
-	if v, ok := interface{}(m.GetId()).(interface {
-		Validate() error
-	}); ok {
+	if v, ok := interface{}(m.GetId()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
 			return ReadAwsRdsInstanceRequestValidationError{
 				field:  "Id",
@@ -3325,9 +3199,7 @@ func (m *ReadAwsRdsInstanceRequest) Validate() error {
 		}
 	}
 
-	if v, ok := interface{}(m.GetFields()).(interface {
-		Validate() error
-	}); ok {
+	if v, ok := interface{}(m.GetFields()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
 			return ReadAwsRdsInstanceRequestValidationError{
 				field:  "Fields",
@@ -3404,9 +3276,7 @@ func (m *ReadAwsRdsInstanceResponse) Validate() error {
 		return nil
 	}
 
-	if v, ok := interface{}(m.GetResult()).(interface {
-		Validate() error
-	}); ok {
+	if v, ok := interface{}(m.GetResult()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
 			return ReadAwsRdsInstanceResponseValidationError{
 				field:  "Result",
@@ -3483,9 +3353,7 @@ func (m *UpdateAwsRdsInstanceRequest) Validate() error {
 		return nil
 	}
 
-	if v, ok := interface{}(m.GetPayload()).(interface {
-		Validate() error
-	}); ok {
+	if v, ok := interface{}(m.GetPayload()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
 			return UpdateAwsRdsInstanceRequestValidationError{
 				field:  "Payload",
@@ -3495,9 +3363,7 @@ func (m *UpdateAwsRdsInstanceRequest) Validate() error {
 		}
 	}
 
-	if v, ok := interface{}(m.GetFields()).(interface {
-		Validate() error
-	}); ok {
+	if v, ok := interface{}(m.GetFields()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
 			return UpdateAwsRdsInstanceRequestValidationError{
 				field:  "Fields",
@@ -3575,9 +3441,7 @@ func (m *UpdateAwsRdsInstanceResponse) Validate() error {
 		return nil
 	}
 
-	if v, ok := interface{}(m.GetResult()).(interface {
-		Validate() error
-	}); ok {
+	if v, ok := interface{}(m.GetResult()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
 			return UpdateAwsRdsInstanceResponseValidationError{
 				field:  "Result",
@@ -3655,9 +3519,7 @@ func (m *DeleteAwsRdsInstanceRequest) Validate() error {
 		return nil
 	}
 
-	if v, ok := interface{}(m.GetId()).(interface {
-		Validate() error
-	}); ok {
+	if v, ok := interface{}(m.GetId()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
 			return DeleteAwsRdsInstanceRequestValidationError{
 				field:  "Id",
@@ -3803,9 +3665,7 @@ func (m *ListAwsRdsInstanceRequest) Validate() error {
 		return nil
 	}
 
-	if v, ok := interface{}(m.GetFilter()).(interface {
-		Validate() error
-	}); ok {
+	if v, ok := interface{}(m.GetFilter()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
 			return ListAwsRdsInstanceRequestValidationError{
 				field:  "Filter",
@@ -3815,9 +3675,7 @@ func (m *ListAwsRdsInstanceRequest) Validate() error {
 		}
 	}
 
-	if v, ok := interface{}(m.GetOrderBy()).(interface {
-		Validate() error
-	}); ok {
+	if v, ok := interface{}(m.GetOrderBy()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
 			return ListAwsRdsInstanceRequestValidationError{
 				field:  "OrderBy",
@@ -3827,9 +3685,7 @@ func (m *ListAwsRdsInstanceRequest) Validate() error {
 		}
 	}
 
-	if v, ok := interface{}(m.GetFields()).(interface {
-		Validate() error
-	}); ok {
+	if v, ok := interface{}(m.GetFields()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
 			return ListAwsRdsInstanceRequestValidationError{
 				field:  "Fields",
@@ -3839,9 +3695,7 @@ func (m *ListAwsRdsInstanceRequest) Validate() error {
 		}
 	}
 
-	if v, ok := interface{}(m.GetPaging()).(interface {
-		Validate() error
-	}); ok {
+	if v, ok := interface{}(m.GetPaging()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
 			return ListAwsRdsInstanceRequestValidationError{
 				field:  "Paging",
@@ -3921,9 +3775,7 @@ func (m *ListAwsRdsInstancesResponse) Validate() error {
 	for idx, item := range m.GetResults() {
 		_, _ = idx, item
 
-		if v, ok := interface{}(item).(interface {
-			Validate() error
-		}); ok {
+		if v, ok := interface{}(item).(interface{ Validate() error }); ok {
 			if err := v.Validate(); err != nil {
 				return ListAwsRdsInstancesResponseValidationError{
 					field:  fmt.Sprintf("Results[%v]", idx),
@@ -3935,9 +3787,7 @@ func (m *ListAwsRdsInstancesResponse) Validate() error {
 
 	}
 
-	if v, ok := interface{}(m.GetPage()).(interface {
-		Validate() error
-	}); ok {
+	if v, ok := interface{}(m.GetPage()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
 			return ListAwsRdsInstancesResponseValidationError{
 				field:  "Page",
@@ -4014,9 +3864,7 @@ func (m *Container) Validate() error {
 		return nil
 	}
 
-	if v, ok := interface{}(m.GetId()).(interface {
-		Validate() error
-	}); ok {
+	if v, ok := interface{}(m.GetId()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
 			return ContainerValidationError{
 				field:  "Id",
@@ -4040,9 +3888,7 @@ func (m *Container) Validate() error {
 
 	// no validation rules for Digest
 
-	if v, ok := interface{}(m.GetApplicationId()).(interface {
-		Validate() error
-	}); ok {
+	if v, ok := interface{}(m.GetApplicationId()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
 			return ContainerValidationError{
 				field:  "ApplicationId",
@@ -4117,9 +3963,7 @@ func (m *CreateContainerRequest) Validate() error {
 		return nil
 	}
 
-	if v, ok := interface{}(m.GetPayload()).(interface {
-		Validate() error
-	}); ok {
+	if v, ok := interface{}(m.GetPayload()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
 			return CreateContainerRequestValidationError{
 				field:  "Payload",
@@ -4196,9 +4040,7 @@ func (m *CreateContainerResponse) Validate() error {
 		return nil
 	}
 
-	if v, ok := interface{}(m.GetResult()).(interface {
-		Validate() error
-	}); ok {
+	if v, ok := interface{}(m.GetResult()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
 			return CreateContainerResponseValidationError{
 				field:  "Result",
@@ -4275,9 +4117,7 @@ func (m *ReadContainerRequest) Validate() error {
 		return nil
 	}
 
-	if v, ok := interface{}(m.GetId()).(interface {
-		Validate() error
-	}); ok {
+	if v, ok := interface{}(m.GetId()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
 			return ReadContainerRequestValidationError{
 				field:  "Id",
@@ -4287,9 +4127,7 @@ func (m *ReadContainerRequest) Validate() error {
 		}
 	}
 
-	if v, ok := interface{}(m.GetFields()).(interface {
-		Validate() error
-	}); ok {
+	if v, ok := interface{}(m.GetFields()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
 			return ReadContainerRequestValidationError{
 				field:  "Fields",
@@ -4366,9 +4204,7 @@ func (m *ReadContainerResponse) Validate() error {
 		return nil
 	}
 
-	if v, ok := interface{}(m.GetResult()).(interface {
-		Validate() error
-	}); ok {
+	if v, ok := interface{}(m.GetResult()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
 			return ReadContainerResponseValidationError{
 				field:  "Result",
@@ -4445,9 +4281,7 @@ func (m *UpdateContainerRequest) Validate() error {
 		return nil
 	}
 
-	if v, ok := interface{}(m.GetPayload()).(interface {
-		Validate() error
-	}); ok {
+	if v, ok := interface{}(m.GetPayload()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
 			return UpdateContainerRequestValidationError{
 				field:  "Payload",
@@ -4457,9 +4291,7 @@ func (m *UpdateContainerRequest) Validate() error {
 		}
 	}
 
-	if v, ok := interface{}(m.GetFields()).(interface {
-		Validate() error
-	}); ok {
+	if v, ok := interface{}(m.GetFields()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
 			return UpdateContainerRequestValidationError{
 				field:  "Fields",
@@ -4536,9 +4368,7 @@ func (m *UpdateContainerResponse) Validate() error {
 		return nil
 	}
 
-	if v, ok := interface{}(m.GetResult()).(interface {
-		Validate() error
-	}); ok {
+	if v, ok := interface{}(m.GetResult()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
 			return UpdateContainerResponseValidationError{
 				field:  "Result",
@@ -4615,9 +4445,7 @@ func (m *DeleteContainerRequest) Validate() error {
 		return nil
 	}
 
-	if v, ok := interface{}(m.GetId()).(interface {
-		Validate() error
-	}); ok {
+	if v, ok := interface{}(m.GetId()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
 			return DeleteContainerRequestValidationError{
 				field:  "Id",
@@ -4761,9 +4589,7 @@ func (m *ListContainerRequest) Validate() error {
 		return nil
 	}
 
-	if v, ok := interface{}(m.GetFilter()).(interface {
-		Validate() error
-	}); ok {
+	if v, ok := interface{}(m.GetFilter()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
 			return ListContainerRequestValidationError{
 				field:  "Filter",
@@ -4773,9 +4599,7 @@ func (m *ListContainerRequest) Validate() error {
 		}
 	}
 
-	if v, ok := interface{}(m.GetOrderBy()).(interface {
-		Validate() error
-	}); ok {
+	if v, ok := interface{}(m.GetOrderBy()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
 			return ListContainerRequestValidationError{
 				field:  "OrderBy",
@@ -4785,9 +4609,7 @@ func (m *ListContainerRequest) Validate() error {
 		}
 	}
 
-	if v, ok := interface{}(m.GetFields()).(interface {
-		Validate() error
-	}); ok {
+	if v, ok := interface{}(m.GetFields()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
 			return ListContainerRequestValidationError{
 				field:  "Fields",
@@ -4797,9 +4619,7 @@ func (m *ListContainerRequest) Validate() error {
 		}
 	}
 
-	if v, ok := interface{}(m.GetPaging()).(interface {
-		Validate() error
-	}); ok {
+	if v, ok := interface{}(m.GetPaging()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
 			return ListContainerRequestValidationError{
 				field:  "Paging",
@@ -4879,9 +4699,7 @@ func (m *ListContainersResponse) Validate() error {
 	for idx, item := range m.GetResults() {
 		_, _ = idx, item
 
-		if v, ok := interface{}(item).(interface {
-			Validate() error
-		}); ok {
+		if v, ok := interface{}(item).(interface{ Validate() error }); ok {
 			if err := v.Validate(); err != nil {
 				return ListContainersResponseValidationError{
 					field:  fmt.Sprintf("Results[%v]", idx),
@@ -4893,9 +4711,7 @@ func (m *ListContainersResponse) Validate() error {
 
 	}
 
-	if v, ok := interface{}(m.GetPage()).(interface {
-		Validate() error
-	}); ok {
+	if v, ok := interface{}(m.GetPage()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
 			return ListContainersResponseValidationError{
 				field:  "Page",
@@ -4972,9 +4788,7 @@ func (m *Environment) Validate() error {
 		return nil
 	}
 
-	if v, ok := interface{}(m.GetId()).(interface {
-		Validate() error
-	}); ok {
+	if v, ok := interface{}(m.GetId()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
 			return EnvironmentValidationError{
 				field:  "Id",
@@ -4993,9 +4807,7 @@ func (m *Environment) Validate() error {
 	for idx, item := range m.GetApplications() {
 		_, _ = idx, item
 
-		if v, ok := interface{}(item).(interface {
-			Validate() error
-		}); ok {
+		if v, ok := interface{}(item).(interface{ Validate() error }); ok {
 			if err := v.Validate(); err != nil {
 				return EnvironmentValidationError{
 					field:  fmt.Sprintf("Applications[%v]", idx),
@@ -5007,9 +4819,7 @@ func (m *Environment) Validate() error {
 
 	}
 
-	if v, ok := interface{}(m.GetRegionId()).(interface {
-		Validate() error
-	}); ok {
+	if v, ok := interface{}(m.GetRegionId()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
 			return EnvironmentValidationError{
 				field:  "RegionId",
@@ -5084,9 +4894,7 @@ func (m *CreateEnvironmentRequest) Validate() error {
 		return nil
 	}
 
-	if v, ok := interface{}(m.GetPayload()).(interface {
-		Validate() error
-	}); ok {
+	if v, ok := interface{}(m.GetPayload()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
 			return CreateEnvironmentRequestValidationError{
 				field:  "Payload",
@@ -5163,9 +4971,7 @@ func (m *CreateEnvironmentResponse) Validate() error {
 		return nil
 	}
 
-	if v, ok := interface{}(m.GetResult()).(interface {
-		Validate() error
-	}); ok {
+	if v, ok := interface{}(m.GetResult()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
 			return CreateEnvironmentResponseValidationError{
 				field:  "Result",
@@ -5242,9 +5048,7 @@ func (m *ReadEnvironmentRequest) Validate() error {
 		return nil
 	}
 
-	if v, ok := interface{}(m.GetId()).(interface {
-		Validate() error
-	}); ok {
+	if v, ok := interface{}(m.GetId()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
 			return ReadEnvironmentRequestValidationError{
 				field:  "Id",
@@ -5254,9 +5058,7 @@ func (m *ReadEnvironmentRequest) Validate() error {
 		}
 	}
 
-	if v, ok := interface{}(m.GetFields()).(interface {
-		Validate() error
-	}); ok {
+	if v, ok := interface{}(m.GetFields()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
 			return ReadEnvironmentRequestValidationError{
 				field:  "Fields",
@@ -5333,9 +5135,7 @@ func (m *ReadEnvironmentResponse) Validate() error {
 		return nil
 	}
 
-	if v, ok := interface{}(m.GetResult()).(interface {
-		Validate() error
-	}); ok {
+	if v, ok := interface{}(m.GetResult()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
 			return ReadEnvironmentResponseValidationError{
 				field:  "Result",
@@ -5412,9 +5212,7 @@ func (m *UpdateEnvironmentRequest) Validate() error {
 		return nil
 	}
 
-	if v, ok := interface{}(m.GetPayload()).(interface {
-		Validate() error
-	}); ok {
+	if v, ok := interface{}(m.GetPayload()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
 			return UpdateEnvironmentRequestValidationError{
 				field:  "Payload",
@@ -5424,9 +5222,7 @@ func (m *UpdateEnvironmentRequest) Validate() error {
 		}
 	}
 
-	if v, ok := interface{}(m.GetFields()).(interface {
-		Validate() error
-	}); ok {
+	if v, ok := interface{}(m.GetFields()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
 			return UpdateEnvironmentRequestValidationError{
 				field:  "Fields",
@@ -5503,9 +5299,7 @@ func (m *UpdateEnvironmentResponse) Validate() error {
 		return nil
 	}
 
-	if v, ok := interface{}(m.GetResult()).(interface {
-		Validate() error
-	}); ok {
+	if v, ok := interface{}(m.GetResult()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
 			return UpdateEnvironmentResponseValidationError{
 				field:  "Result",
@@ -5582,9 +5376,7 @@ func (m *DeleteEnvironmentRequest) Validate() error {
 		return nil
 	}
 
-	if v, ok := interface{}(m.GetId()).(interface {
-		Validate() error
-	}); ok {
+	if v, ok := interface{}(m.GetId()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
 			return DeleteEnvironmentRequestValidationError{
 				field:  "Id",
@@ -5728,9 +5520,7 @@ func (m *ListEnvironmentRequest) Validate() error {
 		return nil
 	}
 
-	if v, ok := interface{}(m.GetFilter()).(interface {
-		Validate() error
-	}); ok {
+	if v, ok := interface{}(m.GetFilter()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
 			return ListEnvironmentRequestValidationError{
 				field:  "Filter",
@@ -5740,9 +5530,7 @@ func (m *ListEnvironmentRequest) Validate() error {
 		}
 	}
 
-	if v, ok := interface{}(m.GetOrderBy()).(interface {
-		Validate() error
-	}); ok {
+	if v, ok := interface{}(m.GetOrderBy()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
 			return ListEnvironmentRequestValidationError{
 				field:  "OrderBy",
@@ -5752,9 +5540,7 @@ func (m *ListEnvironmentRequest) Validate() error {
 		}
 	}
 
-	if v, ok := interface{}(m.GetFields()).(interface {
-		Validate() error
-	}); ok {
+	if v, ok := interface{}(m.GetFields()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
 			return ListEnvironmentRequestValidationError{
 				field:  "Fields",
@@ -5764,9 +5550,7 @@ func (m *ListEnvironmentRequest) Validate() error {
 		}
 	}
 
-	if v, ok := interface{}(m.GetPaging()).(interface {
-		Validate() error
-	}); ok {
+	if v, ok := interface{}(m.GetPaging()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
 			return ListEnvironmentRequestValidationError{
 				field:  "Paging",
@@ -5846,9 +5630,7 @@ func (m *ListEnvironmentsResponse) Validate() error {
 	for idx, item := range m.GetResults() {
 		_, _ = idx, item
 
-		if v, ok := interface{}(item).(interface {
-			Validate() error
-		}); ok {
+		if v, ok := interface{}(item).(interface{ Validate() error }); ok {
 			if err := v.Validate(); err != nil {
 				return ListEnvironmentsResponseValidationError{
 					field:  fmt.Sprintf("Results[%v]", idx),
@@ -5860,9 +5642,7 @@ func (m *ListEnvironmentsResponse) Validate() error {
 
 	}
 
-	if v, ok := interface{}(m.GetPage()).(interface {
-		Validate() error
-	}); ok {
+	if v, ok := interface{}(m.GetPage()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
 			return ListEnvironmentsResponseValidationError{
 				field:  "Page",
@@ -5938,9 +5718,7 @@ func (m *Manifest) Validate() error {
 		return nil
 	}
 
-	if v, ok := interface{}(m.GetId()).(interface {
-		Validate() error
-	}); ok {
+	if v, ok := interface{}(m.GetId()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
 			return ManifestValidationError{
 				field:  "Id",
@@ -5958,9 +5736,7 @@ func (m *Manifest) Validate() error {
 
 	// no validation rules for Commit
 
-	if v, ok := interface{}(m.GetValues()).(interface {
-		Validate() error
-	}); ok {
+	if v, ok := interface{}(m.GetValues()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
 			return ManifestValidationError{
 				field:  "Values",
@@ -5970,9 +5746,7 @@ func (m *Manifest) Validate() error {
 		}
 	}
 
-	if v, ok := interface{}(m.GetServices()).(interface {
-		Validate() error
-	}); ok {
+	if v, ok := interface{}(m.GetServices()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
 			return ManifestValidationError{
 				field:  "Services",
@@ -5982,9 +5756,7 @@ func (m *Manifest) Validate() error {
 		}
 	}
 
-	if v, ok := interface{}(m.GetIngress()).(interface {
-		Validate() error
-	}); ok {
+	if v, ok := interface{}(m.GetIngress()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
 			return ManifestValidationError{
 				field:  "Ingress",
@@ -5994,9 +5766,7 @@ func (m *Manifest) Validate() error {
 		}
 	}
 
-	if v, ok := interface{}(m.GetResources()).(interface {
-		Validate() error
-	}); ok {
+	if v, ok := interface{}(m.GetResources()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
 			return ManifestValidationError{
 				field:  "Resources",
@@ -6006,9 +5776,7 @@ func (m *Manifest) Validate() error {
 		}
 	}
 
-	if v, ok := interface{}(m.GetNodeSelector()).(interface {
-		Validate() error
-	}); ok {
+	if v, ok := interface{}(m.GetNodeSelector()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
 			return ManifestValidationError{
 				field:  "NodeSelector",
@@ -6018,9 +5786,7 @@ func (m *Manifest) Validate() error {
 		}
 	}
 
-	if v, ok := interface{}(m.GetTolerations()).(interface {
-		Validate() error
-	}); ok {
+	if v, ok := interface{}(m.GetTolerations()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
 			return ManifestValidationError{
 				field:  "Tolerations",
@@ -6030,9 +5796,7 @@ func (m *Manifest) Validate() error {
 		}
 	}
 
-	if v, ok := interface{}(m.GetAffinity()).(interface {
-		Validate() error
-	}); ok {
+	if v, ok := interface{}(m.GetAffinity()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
 			return ManifestValidationError{
 				field:  "Affinity",
@@ -6042,9 +5806,7 @@ func (m *Manifest) Validate() error {
 		}
 	}
 
-	if v, ok := interface{}(m.GetArtifact()).(interface {
-		Validate() error
-	}); ok {
+	if v, ok := interface{}(m.GetArtifact()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
 			return ManifestValidationError{
 				field:  "Artifact",
@@ -6054,9 +5816,7 @@ func (m *Manifest) Validate() error {
 		}
 	}
 
-	if v, ok := interface{}(m.GetArtifactId()).(interface {
-		Validate() error
-	}); ok {
+	if v, ok := interface{}(m.GetArtifactId()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
 			return ManifestValidationError{
 				field:  "ArtifactId",
@@ -6066,9 +5826,7 @@ func (m *Manifest) Validate() error {
 		}
 	}
 
-	if v, ok := interface{}(m.GetVault()).(interface {
-		Validate() error
-	}); ok {
+	if v, ok := interface{}(m.GetVault()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
 			return ManifestValidationError{
 				field:  "Vault",
@@ -6078,9 +5836,7 @@ func (m *Manifest) Validate() error {
 		}
 	}
 
-	if v, ok := interface{}(m.GetVaultId()).(interface {
-		Validate() error
-	}); ok {
+	if v, ok := interface{}(m.GetVaultId()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
 			return ManifestValidationError{
 				field:  "VaultId",
@@ -6090,9 +5846,7 @@ func (m *Manifest) Validate() error {
 		}
 	}
 
-	if v, ok := interface{}(m.GetAwsService()).(interface {
-		Validate() error
-	}); ok {
+	if v, ok := interface{}(m.GetAwsService()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
 			return ManifestValidationError{
 				field:  "AwsService",
@@ -6102,9 +5856,7 @@ func (m *Manifest) Validate() error {
 		}
 	}
 
-	if v, ok := interface{}(m.GetAwsServiceId()).(interface {
-		Validate() error
-	}); ok {
+	if v, ok := interface{}(m.GetAwsServiceId()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
 			return ManifestValidationError{
 				field:  "AwsServiceId",
@@ -6179,9 +5931,7 @@ func (m *CreateManifestRequest) Validate() error {
 		return nil
 	}
 
-	if v, ok := interface{}(m.GetPayload()).(interface {
-		Validate() error
-	}); ok {
+	if v, ok := interface{}(m.GetPayload()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
 			return CreateManifestRequestValidationError{
 				field:  "Payload",
@@ -6258,9 +6008,7 @@ func (m *CreateManifestResponse) Validate() error {
 		return nil
 	}
 
-	if v, ok := interface{}(m.GetResult()).(interface {
-		Validate() error
-	}); ok {
+	if v, ok := interface{}(m.GetResult()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
 			return CreateManifestResponseValidationError{
 				field:  "Result",
@@ -6337,9 +6085,7 @@ func (m *ReadManifestRequest) Validate() error {
 		return nil
 	}
 
-	if v, ok := interface{}(m.GetId()).(interface {
-		Validate() error
-	}); ok {
+	if v, ok := interface{}(m.GetId()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
 			return ReadManifestRequestValidationError{
 				field:  "Id",
@@ -6349,9 +6095,7 @@ func (m *ReadManifestRequest) Validate() error {
 		}
 	}
 
-	if v, ok := interface{}(m.GetFields()).(interface {
-		Validate() error
-	}); ok {
+	if v, ok := interface{}(m.GetFields()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
 			return ReadManifestRequestValidationError{
 				field:  "Fields",
@@ -6428,9 +6172,7 @@ func (m *ReadManifestResponse) Validate() error {
 		return nil
 	}
 
-	if v, ok := interface{}(m.GetResult()).(interface {
-		Validate() error
-	}); ok {
+	if v, ok := interface{}(m.GetResult()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
 			return ReadManifestResponseValidationError{
 				field:  "Result",
@@ -6507,9 +6249,7 @@ func (m *UpdateManifestRequest) Validate() error {
 		return nil
 	}
 
-	if v, ok := interface{}(m.GetPayload()).(interface {
-		Validate() error
-	}); ok {
+	if v, ok := interface{}(m.GetPayload()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
 			return UpdateManifestRequestValidationError{
 				field:  "Payload",
@@ -6519,9 +6259,7 @@ func (m *UpdateManifestRequest) Validate() error {
 		}
 	}
 
-	if v, ok := interface{}(m.GetFields()).(interface {
-		Validate() error
-	}); ok {
+	if v, ok := interface{}(m.GetFields()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
 			return UpdateManifestRequestValidationError{
 				field:  "Fields",
@@ -6598,9 +6336,7 @@ func (m *UpdateManifestResponse) Validate() error {
 		return nil
 	}
 
-	if v, ok := interface{}(m.GetResult()).(interface {
-		Validate() error
-	}); ok {
+	if v, ok := interface{}(m.GetResult()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
 			return UpdateManifestResponseValidationError{
 				field:  "Result",
@@ -6677,9 +6413,7 @@ func (m *DeleteManifestRequest) Validate() error {
 		return nil
 	}
 
-	if v, ok := interface{}(m.GetId()).(interface {
-		Validate() error
-	}); ok {
+	if v, ok := interface{}(m.GetId()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
 			return DeleteManifestRequestValidationError{
 				field:  "Id",
@@ -6823,9 +6557,7 @@ func (m *ListManifestRequest) Validate() error {
 		return nil
 	}
 
-	if v, ok := interface{}(m.GetFilter()).(interface {
-		Validate() error
-	}); ok {
+	if v, ok := interface{}(m.GetFilter()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
 			return ListManifestRequestValidationError{
 				field:  "Filter",
@@ -6835,9 +6567,7 @@ func (m *ListManifestRequest) Validate() error {
 		}
 	}
 
-	if v, ok := interface{}(m.GetOrderBy()).(interface {
-		Validate() error
-	}); ok {
+	if v, ok := interface{}(m.GetOrderBy()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
 			return ListManifestRequestValidationError{
 				field:  "OrderBy",
@@ -6847,9 +6577,7 @@ func (m *ListManifestRequest) Validate() error {
 		}
 	}
 
-	if v, ok := interface{}(m.GetFields()).(interface {
-		Validate() error
-	}); ok {
+	if v, ok := interface{}(m.GetFields()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
 			return ListManifestRequestValidationError{
 				field:  "Fields",
@@ -6859,9 +6587,7 @@ func (m *ListManifestRequest) Validate() error {
 		}
 	}
 
-	if v, ok := interface{}(m.GetPaging()).(interface {
-		Validate() error
-	}); ok {
+	if v, ok := interface{}(m.GetPaging()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
 			return ListManifestRequestValidationError{
 				field:  "Paging",
@@ -6941,9 +6667,7 @@ func (m *ListManifestsResponse) Validate() error {
 	for idx, item := range m.GetResults() {
 		_, _ = idx, item
 
-		if v, ok := interface{}(item).(interface {
-			Validate() error
-		}); ok {
+		if v, ok := interface{}(item).(interface{ Validate() error }); ok {
 			if err := v.Validate(); err != nil {
 				return ListManifestsResponseValidationError{
 					field:  fmt.Sprintf("Results[%v]", idx),
@@ -6955,9 +6679,7 @@ func (m *ListManifestsResponse) Validate() error {
 
 	}
 
-	if v, ok := interface{}(m.GetPage()).(interface {
-		Validate() error
-	}); ok {
+	if v, ok := interface{}(m.GetPage()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
 			return ListManifestsResponseValidationError{
 				field:  "Page",
@@ -7033,9 +6755,7 @@ func (m *Secret) Validate() error {
 		return nil
 	}
 
-	if v, ok := interface{}(m.GetId()).(interface {
-		Validate() error
-	}); ok {
+	if v, ok := interface{}(m.GetId()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
 			return SecretValidationError{
 				field:  "Id",
@@ -7053,9 +6773,7 @@ func (m *Secret) Validate() error {
 
 	// no validation rules for Key
 
-	if v, ok := interface{}(m.GetVaultId()).(interface {
-		Validate() error
-	}); ok {
+	if v, ok := interface{}(m.GetVaultId()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
 			return SecretValidationError{
 				field:  "VaultId",
@@ -7065,9 +6783,7 @@ func (m *Secret) Validate() error {
 		}
 	}
 
-	if v, ok := interface{}(m.GetAwsRdsInstanceId()).(interface {
-		Validate() error
-	}); ok {
+	if v, ok := interface{}(m.GetAwsRdsInstanceId()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
 			return SecretValidationError{
 				field:  "AwsRdsInstanceId",
@@ -7142,9 +6858,7 @@ func (m *CreateSecretRequest) Validate() error {
 		return nil
 	}
 
-	if v, ok := interface{}(m.GetPayload()).(interface {
-		Validate() error
-	}); ok {
+	if v, ok := interface{}(m.GetPayload()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
 			return CreateSecretRequestValidationError{
 				field:  "Payload",
@@ -7221,9 +6935,7 @@ func (m *CreateSecretResponse) Validate() error {
 		return nil
 	}
 
-	if v, ok := interface{}(m.GetResult()).(interface {
-		Validate() error
-	}); ok {
+	if v, ok := interface{}(m.GetResult()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
 			return CreateSecretResponseValidationError{
 				field:  "Result",
@@ -7300,9 +7012,7 @@ func (m *ReadSecretRequest) Validate() error {
 		return nil
 	}
 
-	if v, ok := interface{}(m.GetId()).(interface {
-		Validate() error
-	}); ok {
+	if v, ok := interface{}(m.GetId()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
 			return ReadSecretRequestValidationError{
 				field:  "Id",
@@ -7312,9 +7022,7 @@ func (m *ReadSecretRequest) Validate() error {
 		}
 	}
 
-	if v, ok := interface{}(m.GetFields()).(interface {
-		Validate() error
-	}); ok {
+	if v, ok := interface{}(m.GetFields()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
 			return ReadSecretRequestValidationError{
 				field:  "Fields",
@@ -7391,9 +7099,7 @@ func (m *ReadSecretResponse) Validate() error {
 		return nil
 	}
 
-	if v, ok := interface{}(m.GetResult()).(interface {
-		Validate() error
-	}); ok {
+	if v, ok := interface{}(m.GetResult()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
 			return ReadSecretResponseValidationError{
 				field:  "Result",
@@ -7470,9 +7176,7 @@ func (m *UpdateSecretRequest) Validate() error {
 		return nil
 	}
 
-	if v, ok := interface{}(m.GetPayload()).(interface {
-		Validate() error
-	}); ok {
+	if v, ok := interface{}(m.GetPayload()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
 			return UpdateSecretRequestValidationError{
 				field:  "Payload",
@@ -7482,9 +7186,7 @@ func (m *UpdateSecretRequest) Validate() error {
 		}
 	}
 
-	if v, ok := interface{}(m.GetFields()).(interface {
-		Validate() error
-	}); ok {
+	if v, ok := interface{}(m.GetFields()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
 			return UpdateSecretRequestValidationError{
 				field:  "Fields",
@@ -7561,9 +7263,7 @@ func (m *UpdateSecretResponse) Validate() error {
 		return nil
 	}
 
-	if v, ok := interface{}(m.GetResult()).(interface {
-		Validate() error
-	}); ok {
+	if v, ok := interface{}(m.GetResult()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
 			return UpdateSecretResponseValidationError{
 				field:  "Result",
@@ -7640,9 +7340,7 @@ func (m *DeleteSecretRequest) Validate() error {
 		return nil
 	}
 
-	if v, ok := interface{}(m.GetId()).(interface {
-		Validate() error
-	}); ok {
+	if v, ok := interface{}(m.GetId()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
 			return DeleteSecretRequestValidationError{
 				field:  "Id",
@@ -7786,9 +7484,7 @@ func (m *ListSecretRequest) Validate() error {
 		return nil
 	}
 
-	if v, ok := interface{}(m.GetFilter()).(interface {
-		Validate() error
-	}); ok {
+	if v, ok := interface{}(m.GetFilter()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
 			return ListSecretRequestValidationError{
 				field:  "Filter",
@@ -7798,9 +7494,7 @@ func (m *ListSecretRequest) Validate() error {
 		}
 	}
 
-	if v, ok := interface{}(m.GetOrderBy()).(interface {
-		Validate() error
-	}); ok {
+	if v, ok := interface{}(m.GetOrderBy()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
 			return ListSecretRequestValidationError{
 				field:  "OrderBy",
@@ -7810,9 +7504,7 @@ func (m *ListSecretRequest) Validate() error {
 		}
 	}
 
-	if v, ok := interface{}(m.GetFields()).(interface {
-		Validate() error
-	}); ok {
+	if v, ok := interface{}(m.GetFields()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
 			return ListSecretRequestValidationError{
 				field:  "Fields",
@@ -7822,9 +7514,7 @@ func (m *ListSecretRequest) Validate() error {
 		}
 	}
 
-	if v, ok := interface{}(m.GetPaging()).(interface {
-		Validate() error
-	}); ok {
+	if v, ok := interface{}(m.GetPaging()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
 			return ListSecretRequestValidationError{
 				field:  "Paging",
@@ -7904,9 +7594,7 @@ func (m *ListSecretsResponse) Validate() error {
 	for idx, item := range m.GetResults() {
 		_, _ = idx, item
 
-		if v, ok := interface{}(item).(interface {
-			Validate() error
-		}); ok {
+		if v, ok := interface{}(item).(interface{ Validate() error }); ok {
 			if err := v.Validate(); err != nil {
 				return ListSecretsResponseValidationError{
 					field:  fmt.Sprintf("Results[%v]", idx),
@@ -7918,9 +7606,7 @@ func (m *ListSecretsResponse) Validate() error {
 
 	}
 
-	if v, ok := interface{}(m.GetPage()).(interface {
-		Validate() error
-	}); ok {
+	if v, ok := interface{}(m.GetPage()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
 			return ListSecretsResponseValidationError{
 				field:  "Page",
@@ -7996,9 +7682,7 @@ func (m *Artifact) Validate() error {
 		return nil
 	}
 
-	if v, ok := interface{}(m.GetId()).(interface {
-		Validate() error
-	}); ok {
+	if v, ok := interface{}(m.GetId()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
 			return ArtifactValidationError{
 				field:  "Id",
@@ -8016,9 +7700,7 @@ func (m *Artifact) Validate() error {
 
 	// no validation rules for Commit
 
-	if v, ok := interface{}(m.GetVersionTagId()).(interface {
-		Validate() error
-	}); ok {
+	if v, ok := interface{}(m.GetVersionTagId()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
 			return ArtifactValidationError{
 				field:  "VersionTagId",
@@ -8093,9 +7775,7 @@ func (m *CreateArtifactRequest) Validate() error {
 		return nil
 	}
 
-	if v, ok := interface{}(m.GetPayload()).(interface {
-		Validate() error
-	}); ok {
+	if v, ok := interface{}(m.GetPayload()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
 			return CreateArtifactRequestValidationError{
 				field:  "Payload",
@@ -8172,9 +7852,7 @@ func (m *CreateArtifactResponse) Validate() error {
 		return nil
 	}
 
-	if v, ok := interface{}(m.GetResult()).(interface {
-		Validate() error
-	}); ok {
+	if v, ok := interface{}(m.GetResult()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
 			return CreateArtifactResponseValidationError{
 				field:  "Result",
@@ -8251,9 +7929,7 @@ func (m *ReadArtifactRequest) Validate() error {
 		return nil
 	}
 
-	if v, ok := interface{}(m.GetId()).(interface {
-		Validate() error
-	}); ok {
+	if v, ok := interface{}(m.GetId()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
 			return ReadArtifactRequestValidationError{
 				field:  "Id",
@@ -8263,9 +7939,7 @@ func (m *ReadArtifactRequest) Validate() error {
 		}
 	}
 
-	if v, ok := interface{}(m.GetFields()).(interface {
-		Validate() error
-	}); ok {
+	if v, ok := interface{}(m.GetFields()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
 			return ReadArtifactRequestValidationError{
 				field:  "Fields",
@@ -8342,9 +8016,7 @@ func (m *ReadArtifactResponse) Validate() error {
 		return nil
 	}
 
-	if v, ok := interface{}(m.GetResult()).(interface {
-		Validate() error
-	}); ok {
+	if v, ok := interface{}(m.GetResult()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
 			return ReadArtifactResponseValidationError{
 				field:  "Result",
@@ -8421,9 +8093,7 @@ func (m *UpdateArtifactRequest) Validate() error {
 		return nil
 	}
 
-	if v, ok := interface{}(m.GetPayload()).(interface {
-		Validate() error
-	}); ok {
+	if v, ok := interface{}(m.GetPayload()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
 			return UpdateArtifactRequestValidationError{
 				field:  "Payload",
@@ -8433,9 +8103,7 @@ func (m *UpdateArtifactRequest) Validate() error {
 		}
 	}
 
-	if v, ok := interface{}(m.GetFields()).(interface {
-		Validate() error
-	}); ok {
+	if v, ok := interface{}(m.GetFields()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
 			return UpdateArtifactRequestValidationError{
 				field:  "Fields",
@@ -8512,9 +8180,7 @@ func (m *UpdateArtifactResponse) Validate() error {
 		return nil
 	}
 
-	if v, ok := interface{}(m.GetResult()).(interface {
-		Validate() error
-	}); ok {
+	if v, ok := interface{}(m.GetResult()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
 			return UpdateArtifactResponseValidationError{
 				field:  "Result",
@@ -8591,9 +8257,7 @@ func (m *DeleteArtifactRequest) Validate() error {
 		return nil
 	}
 
-	if v, ok := interface{}(m.GetId()).(interface {
-		Validate() error
-	}); ok {
+	if v, ok := interface{}(m.GetId()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
 			return DeleteArtifactRequestValidationError{
 				field:  "Id",
@@ -8737,9 +8401,7 @@ func (m *ListArtifactRequest) Validate() error {
 		return nil
 	}
 
-	if v, ok := interface{}(m.GetFilter()).(interface {
-		Validate() error
-	}); ok {
+	if v, ok := interface{}(m.GetFilter()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
 			return ListArtifactRequestValidationError{
 				field:  "Filter",
@@ -8749,9 +8411,7 @@ func (m *ListArtifactRequest) Validate() error {
 		}
 	}
 
-	if v, ok := interface{}(m.GetOrderBy()).(interface {
-		Validate() error
-	}); ok {
+	if v, ok := interface{}(m.GetOrderBy()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
 			return ListArtifactRequestValidationError{
 				field:  "OrderBy",
@@ -8761,9 +8421,7 @@ func (m *ListArtifactRequest) Validate() error {
 		}
 	}
 
-	if v, ok := interface{}(m.GetFields()).(interface {
-		Validate() error
-	}); ok {
+	if v, ok := interface{}(m.GetFields()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
 			return ListArtifactRequestValidationError{
 				field:  "Fields",
@@ -8773,9 +8431,7 @@ func (m *ListArtifactRequest) Validate() error {
 		}
 	}
 
-	if v, ok := interface{}(m.GetPaging()).(interface {
-		Validate() error
-	}); ok {
+	if v, ok := interface{}(m.GetPaging()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
 			return ListArtifactRequestValidationError{
 				field:  "Paging",
@@ -8855,9 +8511,7 @@ func (m *ListArtifactsResponse) Validate() error {
 	for idx, item := range m.GetResults() {
 		_, _ = idx, item
 
-		if v, ok := interface{}(item).(interface {
-			Validate() error
-		}); ok {
+		if v, ok := interface{}(item).(interface{ Validate() error }); ok {
 			if err := v.Validate(); err != nil {
 				return ListArtifactsResponseValidationError{
 					field:  fmt.Sprintf("Results[%v]", idx),
@@ -8869,9 +8523,7 @@ func (m *ListArtifactsResponse) Validate() error {
 
 	}
 
-	if v, ok := interface{}(m.GetPage()).(interface {
-		Validate() error
-	}); ok {
+	if v, ok := interface{}(m.GetPage()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
 			return ListArtifactsResponseValidationError{
 				field:  "Page",
@@ -8947,9 +8599,7 @@ func (m *AwsService) Validate() error {
 		return nil
 	}
 
-	if v, ok := interface{}(m.GetId()).(interface {
-		Validate() error
-	}); ok {
+	if v, ok := interface{}(m.GetId()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
 			return AwsServiceValidationError{
 				field:  "Id",
@@ -8966,9 +8616,7 @@ func (m *AwsService) Validate() error {
 	for idx, item := range m.GetAwsRdsInstances() {
 		_, _ = idx, item
 
-		if v, ok := interface{}(item).(interface {
-			Validate() error
-		}); ok {
+		if v, ok := interface{}(item).(interface{ Validate() error }); ok {
 			if err := v.Validate(); err != nil {
 				return AwsServiceValidationError{
 					field:  fmt.Sprintf("AwsRdsInstances[%v]", idx),
@@ -9045,9 +8693,7 @@ func (m *CreateAwsServiceRequest) Validate() error {
 		return nil
 	}
 
-	if v, ok := interface{}(m.GetPayload()).(interface {
-		Validate() error
-	}); ok {
+	if v, ok := interface{}(m.GetPayload()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
 			return CreateAwsServiceRequestValidationError{
 				field:  "Payload",
@@ -9124,9 +8770,7 @@ func (m *CreateAwsServiceResponse) Validate() error {
 		return nil
 	}
 
-	if v, ok := interface{}(m.GetResult()).(interface {
-		Validate() error
-	}); ok {
+	if v, ok := interface{}(m.GetResult()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
 			return CreateAwsServiceResponseValidationError{
 				field:  "Result",
@@ -9203,9 +8847,7 @@ func (m *ReadAwsServiceRequest) Validate() error {
 		return nil
 	}
 
-	if v, ok := interface{}(m.GetId()).(interface {
-		Validate() error
-	}); ok {
+	if v, ok := interface{}(m.GetId()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
 			return ReadAwsServiceRequestValidationError{
 				field:  "Id",
@@ -9215,9 +8857,7 @@ func (m *ReadAwsServiceRequest) Validate() error {
 		}
 	}
 
-	if v, ok := interface{}(m.GetFields()).(interface {
-		Validate() error
-	}); ok {
+	if v, ok := interface{}(m.GetFields()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
 			return ReadAwsServiceRequestValidationError{
 				field:  "Fields",
@@ -9294,9 +8934,7 @@ func (m *ReadAwsServiceResponse) Validate() error {
 		return nil
 	}
 
-	if v, ok := interface{}(m.GetResult()).(interface {
-		Validate() error
-	}); ok {
+	if v, ok := interface{}(m.GetResult()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
 			return ReadAwsServiceResponseValidationError{
 				field:  "Result",
@@ -9373,9 +9011,7 @@ func (m *UpdateAwsServiceRequest) Validate() error {
 		return nil
 	}
 
-	if v, ok := interface{}(m.GetPayload()).(interface {
-		Validate() error
-	}); ok {
+	if v, ok := interface{}(m.GetPayload()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
 			return UpdateAwsServiceRequestValidationError{
 				field:  "Payload",
@@ -9385,9 +9021,7 @@ func (m *UpdateAwsServiceRequest) Validate() error {
 		}
 	}
 
-	if v, ok := interface{}(m.GetFields()).(interface {
-		Validate() error
-	}); ok {
+	if v, ok := interface{}(m.GetFields()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
 			return UpdateAwsServiceRequestValidationError{
 				field:  "Fields",
@@ -9464,9 +9098,7 @@ func (m *UpdateAwsServiceResponse) Validate() error {
 		return nil
 	}
 
-	if v, ok := interface{}(m.GetResult()).(interface {
-		Validate() error
-	}); ok {
+	if v, ok := interface{}(m.GetResult()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
 			return UpdateAwsServiceResponseValidationError{
 				field:  "Result",
@@ -9543,9 +9175,7 @@ func (m *DeleteAwsServiceRequest) Validate() error {
 		return nil
 	}
 
-	if v, ok := interface{}(m.GetId()).(interface {
-		Validate() error
-	}); ok {
+	if v, ok := interface{}(m.GetId()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
 			return DeleteAwsServiceRequestValidationError{
 				field:  "Id",
@@ -9689,9 +9319,7 @@ func (m *ListAwsServiceRequest) Validate() error {
 		return nil
 	}
 
-	if v, ok := interface{}(m.GetFilter()).(interface {
-		Validate() error
-	}); ok {
+	if v, ok := interface{}(m.GetFilter()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
 			return ListAwsServiceRequestValidationError{
 				field:  "Filter",
@@ -9701,9 +9329,7 @@ func (m *ListAwsServiceRequest) Validate() error {
 		}
 	}
 
-	if v, ok := interface{}(m.GetOrderBy()).(interface {
-		Validate() error
-	}); ok {
+	if v, ok := interface{}(m.GetOrderBy()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
 			return ListAwsServiceRequestValidationError{
 				field:  "OrderBy",
@@ -9713,9 +9339,7 @@ func (m *ListAwsServiceRequest) Validate() error {
 		}
 	}
 
-	if v, ok := interface{}(m.GetFields()).(interface {
-		Validate() error
-	}); ok {
+	if v, ok := interface{}(m.GetFields()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
 			return ListAwsServiceRequestValidationError{
 				field:  "Fields",
@@ -9725,9 +9349,7 @@ func (m *ListAwsServiceRequest) Validate() error {
 		}
 	}
 
-	if v, ok := interface{}(m.GetPaging()).(interface {
-		Validate() error
-	}); ok {
+	if v, ok := interface{}(m.GetPaging()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
 			return ListAwsServiceRequestValidationError{
 				field:  "Paging",
@@ -9807,9 +9429,7 @@ func (m *ListAwsServicesResponse) Validate() error {
 	for idx, item := range m.GetResults() {
 		_, _ = idx, item
 
-		if v, ok := interface{}(item).(interface {
-			Validate() error
-		}); ok {
+		if v, ok := interface{}(item).(interface{ Validate() error }); ok {
 			if err := v.Validate(); err != nil {
 				return ListAwsServicesResponseValidationError{
 					field:  fmt.Sprintf("Results[%v]", idx),
@@ -9821,9 +9441,7 @@ func (m *ListAwsServicesResponse) Validate() error {
 
 	}
 
-	if v, ok := interface{}(m.GetPage()).(interface {
-		Validate() error
-	}); ok {
+	if v, ok := interface{}(m.GetPage()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
 			return ListAwsServicesResponseValidationError{
 				field:  "Page",
@@ -9899,9 +9517,7 @@ func (m *Deployment) Validate() error {
 		return nil
 	}
 
-	if v, ok := interface{}(m.GetId()).(interface {
-		Validate() error
-	}); ok {
+	if v, ok := interface{}(m.GetId()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
 			return DeploymentValidationError{
 				field:  "Id",
@@ -9915,9 +9531,7 @@ func (m *Deployment) Validate() error {
 
 	// no validation rules for Description
 
-	if v, ok := interface{}(m.GetArtifact()).(interface {
-		Validate() error
-	}); ok {
+	if v, ok := interface{}(m.GetArtifact()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
 			return DeploymentValidationError{
 				field:  "Artifact",
@@ -9927,9 +9541,7 @@ func (m *Deployment) Validate() error {
 		}
 	}
 
-	if v, ok := interface{}(m.GetArtifactId()).(interface {
-		Validate() error
-	}); ok {
+	if v, ok := interface{}(m.GetArtifactId()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
 			return DeploymentValidationError{
 				field:  "ArtifactId",
@@ -9939,9 +9551,7 @@ func (m *Deployment) Validate() error {
 		}
 	}
 
-	if v, ok := interface{}(m.GetKubeCluster()).(interface {
-		Validate() error
-	}); ok {
+	if v, ok := interface{}(m.GetKubeCluster()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
 			return DeploymentValidationError{
 				field:  "KubeCluster",
@@ -9951,9 +9561,7 @@ func (m *Deployment) Validate() error {
 		}
 	}
 
-	if v, ok := interface{}(m.GetKubeClusterId()).(interface {
-		Validate() error
-	}); ok {
+	if v, ok := interface{}(m.GetKubeClusterId()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
 			return DeploymentValidationError{
 				field:  "KubeClusterId",
@@ -9963,9 +9571,7 @@ func (m *Deployment) Validate() error {
 		}
 	}
 
-	if v, ok := interface{}(m.GetApplicationId()).(interface {
-		Validate() error
-	}); ok {
+	if v, ok := interface{}(m.GetApplicationId()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
 			return DeploymentValidationError{
 				field:  "ApplicationId",
@@ -10040,9 +9646,7 @@ func (m *CreateDeploymentRequest) Validate() error {
 		return nil
 	}
 
-	if v, ok := interface{}(m.GetPayload()).(interface {
-		Validate() error
-	}); ok {
+	if v, ok := interface{}(m.GetPayload()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
 			return CreateDeploymentRequestValidationError{
 				field:  "Payload",
@@ -10119,9 +9723,7 @@ func (m *CreateDeploymentResponse) Validate() error {
 		return nil
 	}
 
-	if v, ok := interface{}(m.GetResult()).(interface {
-		Validate() error
-	}); ok {
+	if v, ok := interface{}(m.GetResult()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
 			return CreateDeploymentResponseValidationError{
 				field:  "Result",
@@ -10198,9 +9800,7 @@ func (m *ReadDeploymentRequest) Validate() error {
 		return nil
 	}
 
-	if v, ok := interface{}(m.GetId()).(interface {
-		Validate() error
-	}); ok {
+	if v, ok := interface{}(m.GetId()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
 			return ReadDeploymentRequestValidationError{
 				field:  "Id",
@@ -10210,9 +9810,7 @@ func (m *ReadDeploymentRequest) Validate() error {
 		}
 	}
 
-	if v, ok := interface{}(m.GetFields()).(interface {
-		Validate() error
-	}); ok {
+	if v, ok := interface{}(m.GetFields()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
 			return ReadDeploymentRequestValidationError{
 				field:  "Fields",
@@ -10289,9 +9887,7 @@ func (m *ReadDeploymentResponse) Validate() error {
 		return nil
 	}
 
-	if v, ok := interface{}(m.GetResult()).(interface {
-		Validate() error
-	}); ok {
+	if v, ok := interface{}(m.GetResult()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
 			return ReadDeploymentResponseValidationError{
 				field:  "Result",
@@ -10368,9 +9964,7 @@ func (m *UpdateDeploymentRequest) Validate() error {
 		return nil
 	}
 
-	if v, ok := interface{}(m.GetPayload()).(interface {
-		Validate() error
-	}); ok {
+	if v, ok := interface{}(m.GetPayload()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
 			return UpdateDeploymentRequestValidationError{
 				field:  "Payload",
@@ -10380,9 +9974,7 @@ func (m *UpdateDeploymentRequest) Validate() error {
 		}
 	}
 
-	if v, ok := interface{}(m.GetFields()).(interface {
-		Validate() error
-	}); ok {
+	if v, ok := interface{}(m.GetFields()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
 			return UpdateDeploymentRequestValidationError{
 				field:  "Fields",
@@ -10459,9 +10051,7 @@ func (m *UpdateDeploymentResponse) Validate() error {
 		return nil
 	}
 
-	if v, ok := interface{}(m.GetResult()).(interface {
-		Validate() error
-	}); ok {
+	if v, ok := interface{}(m.GetResult()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
 			return UpdateDeploymentResponseValidationError{
 				field:  "Result",
@@ -10538,9 +10128,7 @@ func (m *DeleteDeploymentRequest) Validate() error {
 		return nil
 	}
 
-	if v, ok := interface{}(m.GetId()).(interface {
-		Validate() error
-	}); ok {
+	if v, ok := interface{}(m.GetId()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
 			return DeleteDeploymentRequestValidationError{
 				field:  "Id",
@@ -10684,9 +10272,7 @@ func (m *ListDeploymentRequest) Validate() error {
 		return nil
 	}
 
-	if v, ok := interface{}(m.GetFilter()).(interface {
-		Validate() error
-	}); ok {
+	if v, ok := interface{}(m.GetFilter()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
 			return ListDeploymentRequestValidationError{
 				field:  "Filter",
@@ -10696,9 +10282,7 @@ func (m *ListDeploymentRequest) Validate() error {
 		}
 	}
 
-	if v, ok := interface{}(m.GetOrderBy()).(interface {
-		Validate() error
-	}); ok {
+	if v, ok := interface{}(m.GetOrderBy()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
 			return ListDeploymentRequestValidationError{
 				field:  "OrderBy",
@@ -10708,9 +10292,7 @@ func (m *ListDeploymentRequest) Validate() error {
 		}
 	}
 
-	if v, ok := interface{}(m.GetFields()).(interface {
-		Validate() error
-	}); ok {
+	if v, ok := interface{}(m.GetFields()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
 			return ListDeploymentRequestValidationError{
 				field:  "Fields",
@@ -10720,9 +10302,7 @@ func (m *ListDeploymentRequest) Validate() error {
 		}
 	}
 
-	if v, ok := interface{}(m.GetPaging()).(interface {
-		Validate() error
-	}); ok {
+	if v, ok := interface{}(m.GetPaging()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
 			return ListDeploymentRequestValidationError{
 				field:  "Paging",
@@ -10802,9 +10382,7 @@ func (m *ListDeploymentsResponse) Validate() error {
 	for idx, item := range m.GetResults() {
 		_, _ = idx, item
 
-		if v, ok := interface{}(item).(interface {
-			Validate() error
-		}); ok {
+		if v, ok := interface{}(item).(interface{ Validate() error }); ok {
 			if err := v.Validate(); err != nil {
 				return ListDeploymentsResponseValidationError{
 					field:  fmt.Sprintf("Results[%v]", idx),
@@ -10816,9 +10394,7 @@ func (m *ListDeploymentsResponse) Validate() error {
 
 	}
 
-	if v, ok := interface{}(m.GetPage()).(interface {
-		Validate() error
-	}); ok {
+	if v, ok := interface{}(m.GetPage()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
 			return ListDeploymentsResponseValidationError{
 				field:  "Page",
@@ -10895,9 +10471,7 @@ func (m *KubeCluster) Validate() error {
 		return nil
 	}
 
-	if v, ok := interface{}(m.GetId()).(interface {
-		Validate() error
-	}); ok {
+	if v, ok := interface{}(m.GetId()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
 			return KubeClusterValidationError{
 				field:  "Id",
@@ -10976,9 +10550,7 @@ func (m *CreateKubeClusterRequest) Validate() error {
 		return nil
 	}
 
-	if v, ok := interface{}(m.GetPayload()).(interface {
-		Validate() error
-	}); ok {
+	if v, ok := interface{}(m.GetPayload()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
 			return CreateKubeClusterRequestValidationError{
 				field:  "Payload",
@@ -11055,9 +10627,7 @@ func (m *CreateKubeClusterResponse) Validate() error {
 		return nil
 	}
 
-	if v, ok := interface{}(m.GetResult()).(interface {
-		Validate() error
-	}); ok {
+	if v, ok := interface{}(m.GetResult()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
 			return CreateKubeClusterResponseValidationError{
 				field:  "Result",
@@ -11134,9 +10704,7 @@ func (m *ReadKubeClusterRequest) Validate() error {
 		return nil
 	}
 
-	if v, ok := interface{}(m.GetId()).(interface {
-		Validate() error
-	}); ok {
+	if v, ok := interface{}(m.GetId()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
 			return ReadKubeClusterRequestValidationError{
 				field:  "Id",
@@ -11146,9 +10714,7 @@ func (m *ReadKubeClusterRequest) Validate() error {
 		}
 	}
 
-	if v, ok := interface{}(m.GetFields()).(interface {
-		Validate() error
-	}); ok {
+	if v, ok := interface{}(m.GetFields()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
 			return ReadKubeClusterRequestValidationError{
 				field:  "Fields",
@@ -11225,9 +10791,7 @@ func (m *ReadKubeClusterResponse) Validate() error {
 		return nil
 	}
 
-	if v, ok := interface{}(m.GetResult()).(interface {
-		Validate() error
-	}); ok {
+	if v, ok := interface{}(m.GetResult()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
 			return ReadKubeClusterResponseValidationError{
 				field:  "Result",
@@ -11304,9 +10868,7 @@ func (m *UpdateKubeClusterRequest) Validate() error {
 		return nil
 	}
 
-	if v, ok := interface{}(m.GetPayload()).(interface {
-		Validate() error
-	}); ok {
+	if v, ok := interface{}(m.GetPayload()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
 			return UpdateKubeClusterRequestValidationError{
 				field:  "Payload",
@@ -11316,9 +10878,7 @@ func (m *UpdateKubeClusterRequest) Validate() error {
 		}
 	}
 
-	if v, ok := interface{}(m.GetFields()).(interface {
-		Validate() error
-	}); ok {
+	if v, ok := interface{}(m.GetFields()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
 			return UpdateKubeClusterRequestValidationError{
 				field:  "Fields",
@@ -11395,9 +10955,7 @@ func (m *UpdateKubeClusterResponse) Validate() error {
 		return nil
 	}
 
-	if v, ok := interface{}(m.GetResult()).(interface {
-		Validate() error
-	}); ok {
+	if v, ok := interface{}(m.GetResult()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
 			return UpdateKubeClusterResponseValidationError{
 				field:  "Result",
@@ -11474,9 +11032,7 @@ func (m *DeleteKubeClusterRequest) Validate() error {
 		return nil
 	}
 
-	if v, ok := interface{}(m.GetId()).(interface {
-		Validate() error
-	}); ok {
+	if v, ok := interface{}(m.GetId()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
 			return DeleteKubeClusterRequestValidationError{
 				field:  "Id",
@@ -11620,9 +11176,7 @@ func (m *ListKubeClusterRequest) Validate() error {
 		return nil
 	}
 
-	if v, ok := interface{}(m.GetFilter()).(interface {
-		Validate() error
-	}); ok {
+	if v, ok := interface{}(m.GetFilter()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
 			return ListKubeClusterRequestValidationError{
 				field:  "Filter",
@@ -11632,9 +11186,7 @@ func (m *ListKubeClusterRequest) Validate() error {
 		}
 	}
 
-	if v, ok := interface{}(m.GetOrderBy()).(interface {
-		Validate() error
-	}); ok {
+	if v, ok := interface{}(m.GetOrderBy()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
 			return ListKubeClusterRequestValidationError{
 				field:  "OrderBy",
@@ -11644,9 +11196,7 @@ func (m *ListKubeClusterRequest) Validate() error {
 		}
 	}
 
-	if v, ok := interface{}(m.GetFields()).(interface {
-		Validate() error
-	}); ok {
+	if v, ok := interface{}(m.GetFields()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
 			return ListKubeClusterRequestValidationError{
 				field:  "Fields",
@@ -11656,9 +11206,7 @@ func (m *ListKubeClusterRequest) Validate() error {
 		}
 	}
 
-	if v, ok := interface{}(m.GetPaging()).(interface {
-		Validate() error
-	}); ok {
+	if v, ok := interface{}(m.GetPaging()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
 			return ListKubeClusterRequestValidationError{
 				field:  "Paging",
@@ -11738,9 +11286,7 @@ func (m *ListKubeClustersResponse) Validate() error {
 	for idx, item := range m.GetResults() {
 		_, _ = idx, item
 
-		if v, ok := interface{}(item).(interface {
-			Validate() error
-		}); ok {
+		if v, ok := interface{}(item).(interface{ Validate() error }); ok {
 			if err := v.Validate(); err != nil {
 				return ListKubeClustersResponseValidationError{
 					field:  fmt.Sprintf("Results[%v]", idx),
@@ -11752,9 +11298,7 @@ func (m *ListKubeClustersResponse) Validate() error {
 
 	}
 
-	if v, ok := interface{}(m.GetPage()).(interface {
-		Validate() error
-	}); ok {
+	if v, ok := interface{}(m.GetPage()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
 			return ListKubeClustersResponseValidationError{
 				field:  "Page",
@@ -11831,9 +11375,7 @@ func (m *CloudProvider) Validate() error {
 		return nil
 	}
 
-	if v, ok := interface{}(m.GetId()).(interface {
-		Validate() error
-	}); ok {
+	if v, ok := interface{}(m.GetId()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
 			return CloudProviderValidationError{
 				field:  "Id",
@@ -11854,9 +11396,7 @@ func (m *CloudProvider) Validate() error {
 	for idx, item := range m.GetRegions() {
 		_, _ = idx, item
 
-		if v, ok := interface{}(item).(interface {
-			Validate() error
-		}); ok {
+		if v, ok := interface{}(item).(interface{ Validate() error }); ok {
 			if err := v.Validate(); err != nil {
 				return CloudProviderValidationError{
 					field:  fmt.Sprintf("Regions[%v]", idx),
@@ -11933,9 +11473,7 @@ func (m *CreateCloudProviderRequest) Validate() error {
 		return nil
 	}
 
-	if v, ok := interface{}(m.GetPayload()).(interface {
-		Validate() error
-	}); ok {
+	if v, ok := interface{}(m.GetPayload()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
 			return CreateCloudProviderRequestValidationError{
 				field:  "Payload",
@@ -12012,9 +11550,7 @@ func (m *CreateCloudProviderResponse) Validate() error {
 		return nil
 	}
 
-	if v, ok := interface{}(m.GetResult()).(interface {
-		Validate() error
-	}); ok {
+	if v, ok := interface{}(m.GetResult()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
 			return CreateCloudProviderResponseValidationError{
 				field:  "Result",
@@ -12092,9 +11628,7 @@ func (m *ReadCloudProviderRequest) Validate() error {
 		return nil
 	}
 
-	if v, ok := interface{}(m.GetId()).(interface {
-		Validate() error
-	}); ok {
+	if v, ok := interface{}(m.GetId()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
 			return ReadCloudProviderRequestValidationError{
 				field:  "Id",
@@ -12104,9 +11638,7 @@ func (m *ReadCloudProviderRequest) Validate() error {
 		}
 	}
 
-	if v, ok := interface{}(m.GetFields()).(interface {
-		Validate() error
-	}); ok {
+	if v, ok := interface{}(m.GetFields()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
 			return ReadCloudProviderRequestValidationError{
 				field:  "Fields",
@@ -12183,9 +11715,7 @@ func (m *ReadCloudProviderResponse) Validate() error {
 		return nil
 	}
 
-	if v, ok := interface{}(m.GetResult()).(interface {
-		Validate() error
-	}); ok {
+	if v, ok := interface{}(m.GetResult()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
 			return ReadCloudProviderResponseValidationError{
 				field:  "Result",
@@ -12262,9 +11792,7 @@ func (m *UpdateCloudProviderRequest) Validate() error {
 		return nil
 	}
 
-	if v, ok := interface{}(m.GetPayload()).(interface {
-		Validate() error
-	}); ok {
+	if v, ok := interface{}(m.GetPayload()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
 			return UpdateCloudProviderRequestValidationError{
 				field:  "Payload",
@@ -12274,9 +11802,7 @@ func (m *UpdateCloudProviderRequest) Validate() error {
 		}
 	}
 
-	if v, ok := interface{}(m.GetFields()).(interface {
-		Validate() error
-	}); ok {
+	if v, ok := interface{}(m.GetFields()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
 			return UpdateCloudProviderRequestValidationError{
 				field:  "Fields",
@@ -12353,9 +11879,7 @@ func (m *UpdateCloudProviderResponse) Validate() error {
 		return nil
 	}
 
-	if v, ok := interface{}(m.GetResult()).(interface {
-		Validate() error
-	}); ok {
+	if v, ok := interface{}(m.GetResult()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
 			return UpdateCloudProviderResponseValidationError{
 				field:  "Result",
@@ -12433,9 +11957,7 @@ func (m *DeleteCloudProviderRequest) Validate() error {
 		return nil
 	}
 
-	if v, ok := interface{}(m.GetId()).(interface {
-		Validate() error
-	}); ok {
+	if v, ok := interface{}(m.GetId()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
 			return DeleteCloudProviderRequestValidationError{
 				field:  "Id",
@@ -12580,9 +12102,7 @@ func (m *ListCloudProviderRequest) Validate() error {
 		return nil
 	}
 
-	if v, ok := interface{}(m.GetFilter()).(interface {
-		Validate() error
-	}); ok {
+	if v, ok := interface{}(m.GetFilter()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
 			return ListCloudProviderRequestValidationError{
 				field:  "Filter",
@@ -12592,9 +12112,7 @@ func (m *ListCloudProviderRequest) Validate() error {
 		}
 	}
 
-	if v, ok := interface{}(m.GetOrderBy()).(interface {
-		Validate() error
-	}); ok {
+	if v, ok := interface{}(m.GetOrderBy()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
 			return ListCloudProviderRequestValidationError{
 				field:  "OrderBy",
@@ -12604,9 +12122,7 @@ func (m *ListCloudProviderRequest) Validate() error {
 		}
 	}
 
-	if v, ok := interface{}(m.GetFields()).(interface {
-		Validate() error
-	}); ok {
+	if v, ok := interface{}(m.GetFields()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
 			return ListCloudProviderRequestValidationError{
 				field:  "Fields",
@@ -12616,9 +12132,7 @@ func (m *ListCloudProviderRequest) Validate() error {
 		}
 	}
 
-	if v, ok := interface{}(m.GetPaging()).(interface {
-		Validate() error
-	}); ok {
+	if v, ok := interface{}(m.GetPaging()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
 			return ListCloudProviderRequestValidationError{
 				field:  "Paging",
@@ -12698,9 +12212,7 @@ func (m *ListCloudProvidersResponse) Validate() error {
 	for idx, item := range m.GetResults() {
 		_, _ = idx, item
 
-		if v, ok := interface{}(item).(interface {
-			Validate() error
-		}); ok {
+		if v, ok := interface{}(item).(interface{ Validate() error }); ok {
 			if err := v.Validate(); err != nil {
 				return ListCloudProvidersResponseValidationError{
 					field:  fmt.Sprintf("Results[%v]", idx),
@@ -12712,9 +12224,7 @@ func (m *ListCloudProvidersResponse) Validate() error {
 
 	}
 
-	if v, ok := interface{}(m.GetPage()).(interface {
-		Validate() error
-	}); ok {
+	if v, ok := interface{}(m.GetPage()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
 			return ListCloudProvidersResponseValidationError{
 				field:  "Page",
@@ -12790,9 +12300,7 @@ func (m *Region) Validate() error {
 		return nil
 	}
 
-	if v, ok := interface{}(m.GetId()).(interface {
-		Validate() error
-	}); ok {
+	if v, ok := interface{}(m.GetId()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
 			return RegionValidationError{
 				field:  "Id",
@@ -12809,9 +12317,7 @@ func (m *Region) Validate() error {
 	for idx, item := range m.GetEnvironments() {
 		_, _ = idx, item
 
-		if v, ok := interface{}(item).(interface {
-			Validate() error
-		}); ok {
+		if v, ok := interface{}(item).(interface{ Validate() error }); ok {
 			if err := v.Validate(); err != nil {
 				return RegionValidationError{
 					field:  fmt.Sprintf("Environments[%v]", idx),
@@ -12823,9 +12329,7 @@ func (m *Region) Validate() error {
 
 	}
 
-	if v, ok := interface{}(m.GetCloudProviderId()).(interface {
-		Validate() error
-	}); ok {
+	if v, ok := interface{}(m.GetCloudProviderId()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
 			return RegionValidationError{
 				field:  "CloudProviderId",
@@ -12900,9 +12404,7 @@ func (m *CreateRegionRequest) Validate() error {
 		return nil
 	}
 
-	if v, ok := interface{}(m.GetPayload()).(interface {
-		Validate() error
-	}); ok {
+	if v, ok := interface{}(m.GetPayload()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
 			return CreateRegionRequestValidationError{
 				field:  "Payload",
@@ -12979,9 +12481,7 @@ func (m *CreateRegionResponse) Validate() error {
 		return nil
 	}
 
-	if v, ok := interface{}(m.GetResult()).(interface {
-		Validate() error
-	}); ok {
+	if v, ok := interface{}(m.GetResult()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
 			return CreateRegionResponseValidationError{
 				field:  "Result",
@@ -13058,9 +12558,7 @@ func (m *ReadRegionRequest) Validate() error {
 		return nil
 	}
 
-	if v, ok := interface{}(m.GetId()).(interface {
-		Validate() error
-	}); ok {
+	if v, ok := interface{}(m.GetId()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
 			return ReadRegionRequestValidationError{
 				field:  "Id",
@@ -13070,9 +12568,7 @@ func (m *ReadRegionRequest) Validate() error {
 		}
 	}
 
-	if v, ok := interface{}(m.GetFields()).(interface {
-		Validate() error
-	}); ok {
+	if v, ok := interface{}(m.GetFields()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
 			return ReadRegionRequestValidationError{
 				field:  "Fields",
@@ -13149,9 +12645,7 @@ func (m *ReadRegionResponse) Validate() error {
 		return nil
 	}
 
-	if v, ok := interface{}(m.GetResult()).(interface {
-		Validate() error
-	}); ok {
+	if v, ok := interface{}(m.GetResult()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
 			return ReadRegionResponseValidationError{
 				field:  "Result",
@@ -13228,9 +12722,7 @@ func (m *UpdateRegionRequest) Validate() error {
 		return nil
 	}
 
-	if v, ok := interface{}(m.GetPayload()).(interface {
-		Validate() error
-	}); ok {
+	if v, ok := interface{}(m.GetPayload()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
 			return UpdateRegionRequestValidationError{
 				field:  "Payload",
@@ -13240,9 +12732,7 @@ func (m *UpdateRegionRequest) Validate() error {
 		}
 	}
 
-	if v, ok := interface{}(m.GetFields()).(interface {
-		Validate() error
-	}); ok {
+	if v, ok := interface{}(m.GetFields()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
 			return UpdateRegionRequestValidationError{
 				field:  "Fields",
@@ -13319,9 +12809,7 @@ func (m *UpdateRegionResponse) Validate() error {
 		return nil
 	}
 
-	if v, ok := interface{}(m.GetResult()).(interface {
-		Validate() error
-	}); ok {
+	if v, ok := interface{}(m.GetResult()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
 			return UpdateRegionResponseValidationError{
 				field:  "Result",
@@ -13398,9 +12886,7 @@ func (m *DeleteRegionRequest) Validate() error {
 		return nil
 	}
 
-	if v, ok := interface{}(m.GetId()).(interface {
-		Validate() error
-	}); ok {
+	if v, ok := interface{}(m.GetId()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
 			return DeleteRegionRequestValidationError{
 				field:  "Id",
@@ -13544,9 +13030,7 @@ func (m *ListRegionRequest) Validate() error {
 		return nil
 	}
 
-	if v, ok := interface{}(m.GetFilter()).(interface {
-		Validate() error
-	}); ok {
+	if v, ok := interface{}(m.GetFilter()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
 			return ListRegionRequestValidationError{
 				field:  "Filter",
@@ -13556,9 +13040,7 @@ func (m *ListRegionRequest) Validate() error {
 		}
 	}
 
-	if v, ok := interface{}(m.GetOrderBy()).(interface {
-		Validate() error
-	}); ok {
+	if v, ok := interface{}(m.GetOrderBy()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
 			return ListRegionRequestValidationError{
 				field:  "OrderBy",
@@ -13568,9 +13050,7 @@ func (m *ListRegionRequest) Validate() error {
 		}
 	}
 
-	if v, ok := interface{}(m.GetFields()).(interface {
-		Validate() error
-	}); ok {
+	if v, ok := interface{}(m.GetFields()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
 			return ListRegionRequestValidationError{
 				field:  "Fields",
@@ -13580,9 +13060,7 @@ func (m *ListRegionRequest) Validate() error {
 		}
 	}
 
-	if v, ok := interface{}(m.GetPaging()).(interface {
-		Validate() error
-	}); ok {
+	if v, ok := interface{}(m.GetPaging()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
 			return ListRegionRequestValidationError{
 				field:  "Paging",
@@ -13662,9 +13140,7 @@ func (m *ListRegionsResponse) Validate() error {
 	for idx, item := range m.GetResults() {
 		_, _ = idx, item
 
-		if v, ok := interface{}(item).(interface {
-			Validate() error
-		}); ok {
+		if v, ok := interface{}(item).(interface{ Validate() error }); ok {
 			if err := v.Validate(); err != nil {
 				return ListRegionsResponseValidationError{
 					field:  fmt.Sprintf("Results[%v]", idx),
@@ -13676,9 +13152,7 @@ func (m *ListRegionsResponse) Validate() error {
 
 	}
 
-	if v, ok := interface{}(m.GetPage()).(interface {
-		Validate() error
-	}); ok {
+	if v, ok := interface{}(m.GetPage()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
 			return ListRegionsResponseValidationError{
 				field:  "Page",

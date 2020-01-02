@@ -181,10 +181,7 @@
         ],
         "responses": {
           "204": {
-            "description": "DELETE operation response",
-            "schema": {
-              "$ref": "#/definitions/cmdbDeleteApplicationResponse"
-            }
+            "description": "No Content"
           }
         }
       },
@@ -381,10 +378,7 @@
         ],
         "responses": {
           "204": {
-            "description": "DELETE operation response",
-            "schema": {
-              "$ref": "#/definitions/cmdbDeleteArtifactResponse"
-            }
+            "description": "No Content"
           }
         }
       },
@@ -581,10 +575,7 @@
         ],
         "responses": {
           "204": {
-            "description": "DELETE operation response",
-            "schema": {
-              "$ref": "#/definitions/cmdbDeleteAwsRdsInstanceResponse"
-            }
+            "description": "No Content"
           }
         }
       },
@@ -781,10 +772,7 @@
         ],
         "responses": {
           "204": {
-            "description": "DELETE operation response",
-            "schema": {
-              "$ref": "#/definitions/cmdbDeleteAwsServiceResponse"
-            }
+            "description": "No Content"
           }
         }
       },
@@ -981,10 +969,7 @@
         ],
         "responses": {
           "204": {
-            "description": "DELETE operation response",
-            "schema": {
-              "$ref": "#/definitions/cmdbDeleteCloudProviderResponse"
-            }
+            "description": "No Content"
           }
         }
       },
@@ -1181,10 +1166,7 @@
         ],
         "responses": {
           "204": {
-            "description": "DELETE operation response",
-            "schema": {
-              "$ref": "#/definitions/cmdbDeleteContainerResponse"
-            }
+            "description": "No Content"
           }
         }
       },
@@ -1381,10 +1363,7 @@
         ],
         "responses": {
           "204": {
-            "description": "DELETE operation response",
-            "schema": {
-              "$ref": "#/definitions/cmdbDeleteDeploymentResponse"
-            }
+            "description": "No Content"
           }
         }
       },
@@ -1581,10 +1560,7 @@
         ],
         "responses": {
           "204": {
-            "description": "DELETE operation response",
-            "schema": {
-              "$ref": "#/definitions/cmdbDeleteEnvironmentResponse"
-            }
+            "description": "No Content"
           }
         }
       },
@@ -1781,10 +1757,7 @@
         ],
         "responses": {
           "204": {
-            "description": "DELETE operation response",
-            "schema": {
-              "$ref": "#/definitions/cmdbDeleteKubeClusterResponse"
-            }
+            "description": "No Content"
           }
         }
       },
@@ -1981,10 +1954,7 @@
         ],
         "responses": {
           "204": {
-            "description": "DELETE operation response",
-            "schema": {
-              "$ref": "#/definitions/cmdbDeleteManifestResponse"
-            }
+            "description": "No Content"
           }
         }
       },
@@ -2181,10 +2151,7 @@
         ],
         "responses": {
           "204": {
-            "description": "DELETE operation response",
-            "schema": {
-              "$ref": "#/definitions/cmdbDeleteRegionResponse"
-            }
+            "description": "No Content"
           }
         }
       },
@@ -2381,10 +2348,7 @@
         ],
         "responses": {
           "204": {
-            "description": "DELETE operation response",
-            "schema": {
-              "$ref": "#/definitions/cmdbDeleteSecretResponse"
-            }
+            "description": "No Content"
           }
         }
       },
@@ -2581,10 +2545,7 @@
         ],
         "responses": {
           "204": {
-            "description": "DELETE operation response",
-            "schema": {
-              "$ref": "#/definitions/cmdbDeleteVaultResponse"
-            }
+            "description": "No Content"
           }
         }
       },
@@ -2797,10 +2758,7 @@
         ],
         "responses": {
           "204": {
-            "description": "DELETE operation response",
-            "schema": {
-              "$ref": "#/definitions/cmdbDeleteVersionTagResponse"
-            }
+            "description": "No Content"
           }
         }
       },
@@ -3095,23 +3053,6 @@
       "properties": {
         "result": {
           "$ref": "#/definitions/cmdbApplication"
-        },
-        "success": {
-          "properties": {
-            "code": {
-              "type": "integer",
-              "format": "int32",
-              "example": 201
-            },
-            "message": {
-              "type": "string",
-              "example": "\u003cresponse message\u003e"
-            },
-            "status": {
-              "type": "string",
-              "example": "CREATED"
-            }
-          }
         }
       }
     },
@@ -3120,23 +3061,6 @@
       "properties": {
         "result": {
           "$ref": "#/definitions/cmdbArtifact"
-        },
-        "success": {
-          "properties": {
-            "code": {
-              "type": "integer",
-              "format": "int32",
-              "example": 201
-            },
-            "message": {
-              "type": "string",
-              "example": "\u003cresponse message\u003e"
-            },
-            "status": {
-              "type": "string",
-              "example": "CREATED"
-            }
-          }
         }
       }
     },
@@ -3145,23 +3069,6 @@
       "properties": {
         "result": {
           "$ref": "#/definitions/cmdbAwsRdsInstance"
-        },
-        "success": {
-          "properties": {
-            "code": {
-              "type": "integer",
-              "format": "int32",
-              "example": 201
-            },
-            "message": {
-              "type": "string",
-              "example": "\u003cresponse message\u003e"
-            },
-            "status": {
-              "type": "string",
-              "example": "CREATED"
-            }
-          }
         }
       }
     },
@@ -3170,23 +3077,6 @@
       "properties": {
         "result": {
           "$ref": "#/definitions/cmdbAwsService"
-        },
-        "success": {
-          "properties": {
-            "code": {
-              "type": "integer",
-              "format": "int32",
-              "example": 201
-            },
-            "message": {
-              "type": "string",
-              "example": "\u003cresponse message\u003e"
-            },
-            "status": {
-              "type": "string",
-              "example": "CREATED"
-            }
-          }
         }
       }
     },
@@ -3195,23 +3085,6 @@
       "properties": {
         "result": {
           "$ref": "#/definitions/cmdbCloudProvider"
-        },
-        "success": {
-          "properties": {
-            "code": {
-              "type": "integer",
-              "format": "int32",
-              "example": 201
-            },
-            "message": {
-              "type": "string",
-              "example": "\u003cresponse message\u003e"
-            },
-            "status": {
-              "type": "string",
-              "example": "CREATED"
-            }
-          }
         }
       }
     },
@@ -3220,23 +3093,6 @@
       "properties": {
         "result": {
           "$ref": "#/definitions/cmdbContainer"
-        },
-        "success": {
-          "properties": {
-            "code": {
-              "type": "integer",
-              "format": "int32",
-              "example": 201
-            },
-            "message": {
-              "type": "string",
-              "example": "\u003cresponse message\u003e"
-            },
-            "status": {
-              "type": "string",
-              "example": "CREATED"
-            }
-          }
         }
       }
     },
@@ -3245,23 +3101,6 @@
       "properties": {
         "result": {
           "$ref": "#/definitions/cmdbDeployment"
-        },
-        "success": {
-          "properties": {
-            "code": {
-              "type": "integer",
-              "format": "int32",
-              "example": 201
-            },
-            "message": {
-              "type": "string",
-              "example": "\u003cresponse message\u003e"
-            },
-            "status": {
-              "type": "string",
-              "example": "CREATED"
-            }
-          }
         }
       }
     },
@@ -3270,23 +3109,6 @@
       "properties": {
         "result": {
           "$ref": "#/definitions/cmdbEnvironment"
-        },
-        "success": {
-          "properties": {
-            "code": {
-              "type": "integer",
-              "format": "int32",
-              "example": 201
-            },
-            "message": {
-              "type": "string",
-              "example": "\u003cresponse message\u003e"
-            },
-            "status": {
-              "type": "string",
-              "example": "CREATED"
-            }
-          }
         }
       }
     },
@@ -3295,23 +3117,6 @@
       "properties": {
         "result": {
           "$ref": "#/definitions/cmdbKubeCluster"
-        },
-        "success": {
-          "properties": {
-            "code": {
-              "type": "integer",
-              "format": "int32",
-              "example": 201
-            },
-            "message": {
-              "type": "string",
-              "example": "\u003cresponse message\u003e"
-            },
-            "status": {
-              "type": "string",
-              "example": "CREATED"
-            }
-          }
         }
       }
     },
@@ -3320,23 +3125,6 @@
       "properties": {
         "result": {
           "$ref": "#/definitions/cmdbManifest"
-        },
-        "success": {
-          "properties": {
-            "code": {
-              "type": "integer",
-              "format": "int32",
-              "example": 201
-            },
-            "message": {
-              "type": "string",
-              "example": "\u003cresponse message\u003e"
-            },
-            "status": {
-              "type": "string",
-              "example": "CREATED"
-            }
-          }
         }
       }
     },
@@ -3345,23 +3133,6 @@
       "properties": {
         "result": {
           "$ref": "#/definitions/cmdbRegion"
-        },
-        "success": {
-          "properties": {
-            "code": {
-              "type": "integer",
-              "format": "int32",
-              "example": 201
-            },
-            "message": {
-              "type": "string",
-              "example": "\u003cresponse message\u003e"
-            },
-            "status": {
-              "type": "string",
-              "example": "CREATED"
-            }
-          }
         }
       }
     },
@@ -3370,23 +3141,6 @@
       "properties": {
         "result": {
           "$ref": "#/definitions/cmdbSecret"
-        },
-        "success": {
-          "properties": {
-            "code": {
-              "type": "integer",
-              "format": "int32",
-              "example": 201
-            },
-            "message": {
-              "type": "string",
-              "example": "\u003cresponse message\u003e"
-            },
-            "status": {
-              "type": "string",
-              "example": "CREATED"
-            }
-          }
         }
       }
     },
@@ -3395,23 +3149,6 @@
       "properties": {
         "result": {
           "$ref": "#/definitions/cmdbVault"
-        },
-        "success": {
-          "properties": {
-            "code": {
-              "type": "integer",
-              "format": "int32",
-              "example": 201
-            },
-            "message": {
-              "type": "string",
-              "example": "\u003cresponse message\u003e"
-            },
-            "status": {
-              "type": "string",
-              "example": "CREATED"
-            }
-          }
         }
       }
     },
@@ -3420,331 +3157,6 @@
       "properties": {
         "result": {
           "$ref": "#/definitions/cmdbVersionTag"
-        },
-        "success": {
-          "properties": {
-            "code": {
-              "type": "integer",
-              "format": "int32",
-              "example": 201
-            },
-            "message": {
-              "type": "string",
-              "example": "\u003cresponse message\u003e"
-            },
-            "status": {
-              "type": "string",
-              "example": "CREATED"
-            }
-          }
-        }
-      }
-    },
-    "cmdbDeleteApplicationResponse": {
-      "type": "object",
-      "properties": {
-        "success": {
-          "properties": {
-            "code": {
-              "type": "integer",
-              "format": "int32",
-              "example": 204
-            },
-            "message": {
-              "type": "string",
-              "example": "\u003cresponse message\u003e"
-            },
-            "status": {
-              "type": "string",
-              "example": "DELETED"
-            }
-          }
-        }
-      }
-    },
-    "cmdbDeleteArtifactResponse": {
-      "type": "object",
-      "properties": {
-        "success": {
-          "properties": {
-            "code": {
-              "type": "integer",
-              "format": "int32",
-              "example": 204
-            },
-            "message": {
-              "type": "string",
-              "example": "\u003cresponse message\u003e"
-            },
-            "status": {
-              "type": "string",
-              "example": "DELETED"
-            }
-          }
-        }
-      }
-    },
-    "cmdbDeleteAwsRdsInstanceResponse": {
-      "type": "object",
-      "properties": {
-        "success": {
-          "properties": {
-            "code": {
-              "type": "integer",
-              "format": "int32",
-              "example": 204
-            },
-            "message": {
-              "type": "string",
-              "example": "\u003cresponse message\u003e"
-            },
-            "status": {
-              "type": "string",
-              "example": "DELETED"
-            }
-          }
-        }
-      }
-    },
-    "cmdbDeleteAwsServiceResponse": {
-      "type": "object",
-      "properties": {
-        "success": {
-          "properties": {
-            "code": {
-              "type": "integer",
-              "format": "int32",
-              "example": 204
-            },
-            "message": {
-              "type": "string",
-              "example": "\u003cresponse message\u003e"
-            },
-            "status": {
-              "type": "string",
-              "example": "DELETED"
-            }
-          }
-        }
-      }
-    },
-    "cmdbDeleteCloudProviderResponse": {
-      "type": "object",
-      "properties": {
-        "success": {
-          "properties": {
-            "code": {
-              "type": "integer",
-              "format": "int32",
-              "example": 204
-            },
-            "message": {
-              "type": "string",
-              "example": "\u003cresponse message\u003e"
-            },
-            "status": {
-              "type": "string",
-              "example": "DELETED"
-            }
-          }
-        }
-      }
-    },
-    "cmdbDeleteContainerResponse": {
-      "type": "object",
-      "properties": {
-        "success": {
-          "properties": {
-            "code": {
-              "type": "integer",
-              "format": "int32",
-              "example": 204
-            },
-            "message": {
-              "type": "string",
-              "example": "\u003cresponse message\u003e"
-            },
-            "status": {
-              "type": "string",
-              "example": "DELETED"
-            }
-          }
-        }
-      }
-    },
-    "cmdbDeleteDeploymentResponse": {
-      "type": "object",
-      "properties": {
-        "success": {
-          "properties": {
-            "code": {
-              "type": "integer",
-              "format": "int32",
-              "example": 204
-            },
-            "message": {
-              "type": "string",
-              "example": "\u003cresponse message\u003e"
-            },
-            "status": {
-              "type": "string",
-              "example": "DELETED"
-            }
-          }
-        }
-      }
-    },
-    "cmdbDeleteEnvironmentResponse": {
-      "type": "object",
-      "properties": {
-        "success": {
-          "properties": {
-            "code": {
-              "type": "integer",
-              "format": "int32",
-              "example": 204
-            },
-            "message": {
-              "type": "string",
-              "example": "\u003cresponse message\u003e"
-            },
-            "status": {
-              "type": "string",
-              "example": "DELETED"
-            }
-          }
-        }
-      }
-    },
-    "cmdbDeleteKubeClusterResponse": {
-      "type": "object",
-      "properties": {
-        "success": {
-          "properties": {
-            "code": {
-              "type": "integer",
-              "format": "int32",
-              "example": 204
-            },
-            "message": {
-              "type": "string",
-              "example": "\u003cresponse message\u003e"
-            },
-            "status": {
-              "type": "string",
-              "example": "DELETED"
-            }
-          }
-        }
-      }
-    },
-    "cmdbDeleteManifestResponse": {
-      "type": "object",
-      "properties": {
-        "success": {
-          "properties": {
-            "code": {
-              "type": "integer",
-              "format": "int32",
-              "example": 204
-            },
-            "message": {
-              "type": "string",
-              "example": "\u003cresponse message\u003e"
-            },
-            "status": {
-              "type": "string",
-              "example": "DELETED"
-            }
-          }
-        }
-      }
-    },
-    "cmdbDeleteRegionResponse": {
-      "type": "object",
-      "properties": {
-        "success": {
-          "properties": {
-            "code": {
-              "type": "integer",
-              "format": "int32",
-              "example": 204
-            },
-            "message": {
-              "type": "string",
-              "example": "\u003cresponse message\u003e"
-            },
-            "status": {
-              "type": "string",
-              "example": "DELETED"
-            }
-          }
-        }
-      }
-    },
-    "cmdbDeleteSecretResponse": {
-      "type": "object",
-      "properties": {
-        "success": {
-          "properties": {
-            "code": {
-              "type": "integer",
-              "format": "int32",
-              "example": 204
-            },
-            "message": {
-              "type": "string",
-              "example": "\u003cresponse message\u003e"
-            },
-            "status": {
-              "type": "string",
-              "example": "DELETED"
-            }
-          }
-        }
-      }
-    },
-    "cmdbDeleteVaultResponse": {
-      "type": "object",
-      "properties": {
-        "success": {
-          "properties": {
-            "code": {
-              "type": "integer",
-              "format": "int32",
-              "example": 204
-            },
-            "message": {
-              "type": "string",
-              "example": "\u003cresponse message\u003e"
-            },
-            "status": {
-              "type": "string",
-              "example": "DELETED"
-            }
-          }
-        }
-      }
-    },
-    "cmdbDeleteVersionTagResponse": {
-      "type": "object",
-      "properties": {
-        "success": {
-          "properties": {
-            "code": {
-              "type": "integer",
-              "format": "int32",
-              "example": 204
-            },
-            "message": {
-              "type": "string",
-              "example": "\u003cresponse message\u003e"
-            },
-            "status": {
-              "type": "string",
-              "example": "DELETED"
-            }
-          }
         }
       }
     },
@@ -3851,23 +3263,6 @@
           "items": {
             "$ref": "#/definitions/cmdbApplication"
           }
-        },
-        "success": {
-          "properties": {
-            "code": {
-              "type": "integer",
-              "format": "int32",
-              "example": 200
-            },
-            "message": {
-              "type": "string",
-              "example": "\u003cresponse message\u003e"
-            },
-            "status": {
-              "type": "string",
-              "example": "OK"
-            }
-          }
         }
       }
     },
@@ -3881,23 +3276,6 @@
           "type": "array",
           "items": {
             "$ref": "#/definitions/cmdbArtifact"
-          }
-        },
-        "success": {
-          "properties": {
-            "code": {
-              "type": "integer",
-              "format": "int32",
-              "example": 200
-            },
-            "message": {
-              "type": "string",
-              "example": "\u003cresponse message\u003e"
-            },
-            "status": {
-              "type": "string",
-              "example": "OK"
-            }
           }
         }
       }
@@ -3913,23 +3291,6 @@
           "items": {
             "$ref": "#/definitions/cmdbAwsRdsInstance"
           }
-        },
-        "success": {
-          "properties": {
-            "code": {
-              "type": "integer",
-              "format": "int32",
-              "example": 200
-            },
-            "message": {
-              "type": "string",
-              "example": "\u003cresponse message\u003e"
-            },
-            "status": {
-              "type": "string",
-              "example": "OK"
-            }
-          }
         }
       }
     },
@@ -3943,23 +3304,6 @@
           "type": "array",
           "items": {
             "$ref": "#/definitions/cmdbAwsService"
-          }
-        },
-        "success": {
-          "properties": {
-            "code": {
-              "type": "integer",
-              "format": "int32",
-              "example": 200
-            },
-            "message": {
-              "type": "string",
-              "example": "\u003cresponse message\u003e"
-            },
-            "status": {
-              "type": "string",
-              "example": "OK"
-            }
           }
         }
       }
@@ -3975,23 +3319,6 @@
           "items": {
             "$ref": "#/definitions/cmdbCloudProvider"
           }
-        },
-        "success": {
-          "properties": {
-            "code": {
-              "type": "integer",
-              "format": "int32",
-              "example": 200
-            },
-            "message": {
-              "type": "string",
-              "example": "\u003cresponse message\u003e"
-            },
-            "status": {
-              "type": "string",
-              "example": "OK"
-            }
-          }
         }
       }
     },
@@ -4005,23 +3332,6 @@
           "type": "array",
           "items": {
             "$ref": "#/definitions/cmdbContainer"
-          }
-        },
-        "success": {
-          "properties": {
-            "code": {
-              "type": "integer",
-              "format": "int32",
-              "example": 200
-            },
-            "message": {
-              "type": "string",
-              "example": "\u003cresponse message\u003e"
-            },
-            "status": {
-              "type": "string",
-              "example": "OK"
-            }
           }
         }
       }
@@ -4037,23 +3347,6 @@
           "items": {
             "$ref": "#/definitions/cmdbDeployment"
           }
-        },
-        "success": {
-          "properties": {
-            "code": {
-              "type": "integer",
-              "format": "int32",
-              "example": 200
-            },
-            "message": {
-              "type": "string",
-              "example": "\u003cresponse message\u003e"
-            },
-            "status": {
-              "type": "string",
-              "example": "OK"
-            }
-          }
         }
       }
     },
@@ -4067,23 +3360,6 @@
           "type": "array",
           "items": {
             "$ref": "#/definitions/cmdbEnvironment"
-          }
-        },
-        "success": {
-          "properties": {
-            "code": {
-              "type": "integer",
-              "format": "int32",
-              "example": 200
-            },
-            "message": {
-              "type": "string",
-              "example": "\u003cresponse message\u003e"
-            },
-            "status": {
-              "type": "string",
-              "example": "OK"
-            }
           }
         }
       }
@@ -4099,23 +3375,6 @@
           "items": {
             "$ref": "#/definitions/cmdbKubeCluster"
           }
-        },
-        "success": {
-          "properties": {
-            "code": {
-              "type": "integer",
-              "format": "int32",
-              "example": 200
-            },
-            "message": {
-              "type": "string",
-              "example": "\u003cresponse message\u003e"
-            },
-            "status": {
-              "type": "string",
-              "example": "OK"
-            }
-          }
         }
       }
     },
@@ -4129,23 +3388,6 @@
           "type": "array",
           "items": {
             "$ref": "#/definitions/cmdbManifest"
-          }
-        },
-        "success": {
-          "properties": {
-            "code": {
-              "type": "integer",
-              "format": "int32",
-              "example": 200
-            },
-            "message": {
-              "type": "string",
-              "example": "\u003cresponse message\u003e"
-            },
-            "status": {
-              "type": "string",
-              "example": "OK"
-            }
           }
         }
       }
@@ -4161,23 +3403,6 @@
           "items": {
             "$ref": "#/definitions/cmdbRegion"
           }
-        },
-        "success": {
-          "properties": {
-            "code": {
-              "type": "integer",
-              "format": "int32",
-              "example": 200
-            },
-            "message": {
-              "type": "string",
-              "example": "\u003cresponse message\u003e"
-            },
-            "status": {
-              "type": "string",
-              "example": "OK"
-            }
-          }
         }
       }
     },
@@ -4191,23 +3416,6 @@
           "type": "array",
           "items": {
             "$ref": "#/definitions/cmdbSecret"
-          }
-        },
-        "success": {
-          "properties": {
-            "code": {
-              "type": "integer",
-              "format": "int32",
-              "example": 200
-            },
-            "message": {
-              "type": "string",
-              "example": "\u003cresponse message\u003e"
-            },
-            "status": {
-              "type": "string",
-              "example": "OK"
-            }
           }
         }
       }
@@ -4223,23 +3431,6 @@
           "items": {
             "$ref": "#/definitions/cmdbVault"
           }
-        },
-        "success": {
-          "properties": {
-            "code": {
-              "type": "integer",
-              "format": "int32",
-              "example": 200
-            },
-            "message": {
-              "type": "string",
-              "example": "\u003cresponse message\u003e"
-            },
-            "status": {
-              "type": "string",
-              "example": "OK"
-            }
-          }
         }
       }
     },
@@ -4253,23 +3444,6 @@
           "type": "array",
           "items": {
             "$ref": "#/definitions/cmdbVersionTag"
-          }
-        },
-        "success": {
-          "properties": {
-            "code": {
-              "type": "integer",
-              "format": "int32",
-              "example": 200
-            },
-            "message": {
-              "type": "string",
-              "example": "\u003cresponse message\u003e"
-            },
-            "status": {
-              "type": "string",
-              "example": "OK"
-            }
           }
         }
       }
@@ -4369,23 +3543,6 @@
       "properties": {
         "result": {
           "$ref": "#/definitions/cmdbApplication"
-        },
-        "success": {
-          "properties": {
-            "code": {
-              "type": "integer",
-              "format": "int32",
-              "example": 200
-            },
-            "message": {
-              "type": "string",
-              "example": "\u003cresponse message\u003e"
-            },
-            "status": {
-              "type": "string",
-              "example": "OK"
-            }
-          }
         }
       }
     },
@@ -4394,23 +3551,6 @@
       "properties": {
         "result": {
           "$ref": "#/definitions/cmdbArtifact"
-        },
-        "success": {
-          "properties": {
-            "code": {
-              "type": "integer",
-              "format": "int32",
-              "example": 200
-            },
-            "message": {
-              "type": "string",
-              "example": "\u003cresponse message\u003e"
-            },
-            "status": {
-              "type": "string",
-              "example": "OK"
-            }
-          }
         }
       }
     },
@@ -4419,23 +3559,6 @@
       "properties": {
         "result": {
           "$ref": "#/definitions/cmdbAwsRdsInstance"
-        },
-        "success": {
-          "properties": {
-            "code": {
-              "type": "integer",
-              "format": "int32",
-              "example": 200
-            },
-            "message": {
-              "type": "string",
-              "example": "\u003cresponse message\u003e"
-            },
-            "status": {
-              "type": "string",
-              "example": "OK"
-            }
-          }
         }
       }
     },
@@ -4444,23 +3567,6 @@
       "properties": {
         "result": {
           "$ref": "#/definitions/cmdbAwsService"
-        },
-        "success": {
-          "properties": {
-            "code": {
-              "type": "integer",
-              "format": "int32",
-              "example": 200
-            },
-            "message": {
-              "type": "string",
-              "example": "\u003cresponse message\u003e"
-            },
-            "status": {
-              "type": "string",
-              "example": "OK"
-            }
-          }
         }
       }
     },
@@ -4469,23 +3575,6 @@
       "properties": {
         "result": {
           "$ref": "#/definitions/cmdbCloudProvider"
-        },
-        "success": {
-          "properties": {
-            "code": {
-              "type": "integer",
-              "format": "int32",
-              "example": 200
-            },
-            "message": {
-              "type": "string",
-              "example": "\u003cresponse message\u003e"
-            },
-            "status": {
-              "type": "string",
-              "example": "OK"
-            }
-          }
         }
       }
     },
@@ -4494,23 +3583,6 @@
       "properties": {
         "result": {
           "$ref": "#/definitions/cmdbContainer"
-        },
-        "success": {
-          "properties": {
-            "code": {
-              "type": "integer",
-              "format": "int32",
-              "example": 200
-            },
-            "message": {
-              "type": "string",
-              "example": "\u003cresponse message\u003e"
-            },
-            "status": {
-              "type": "string",
-              "example": "OK"
-            }
-          }
         }
       }
     },
@@ -4519,23 +3591,6 @@
       "properties": {
         "result": {
           "$ref": "#/definitions/cmdbDeployment"
-        },
-        "success": {
-          "properties": {
-            "code": {
-              "type": "integer",
-              "format": "int32",
-              "example": 200
-            },
-            "message": {
-              "type": "string",
-              "example": "\u003cresponse message\u003e"
-            },
-            "status": {
-              "type": "string",
-              "example": "OK"
-            }
-          }
         }
       }
     },
@@ -4544,23 +3599,6 @@
       "properties": {
         "result": {
           "$ref": "#/definitions/cmdbEnvironment"
-        },
-        "success": {
-          "properties": {
-            "code": {
-              "type": "integer",
-              "format": "int32",
-              "example": 200
-            },
-            "message": {
-              "type": "string",
-              "example": "\u003cresponse message\u003e"
-            },
-            "status": {
-              "type": "string",
-              "example": "OK"
-            }
-          }
         }
       }
     },
@@ -4569,23 +3607,6 @@
       "properties": {
         "result": {
           "$ref": "#/definitions/cmdbKubeCluster"
-        },
-        "success": {
-          "properties": {
-            "code": {
-              "type": "integer",
-              "format": "int32",
-              "example": 200
-            },
-            "message": {
-              "type": "string",
-              "example": "\u003cresponse message\u003e"
-            },
-            "status": {
-              "type": "string",
-              "example": "OK"
-            }
-          }
         }
       }
     },
@@ -4594,23 +3615,6 @@
       "properties": {
         "result": {
           "$ref": "#/definitions/cmdbManifest"
-        },
-        "success": {
-          "properties": {
-            "code": {
-              "type": "integer",
-              "format": "int32",
-              "example": 200
-            },
-            "message": {
-              "type": "string",
-              "example": "\u003cresponse message\u003e"
-            },
-            "status": {
-              "type": "string",
-              "example": "OK"
-            }
-          }
         }
       }
     },
@@ -4619,23 +3623,6 @@
       "properties": {
         "result": {
           "$ref": "#/definitions/cmdbRegion"
-        },
-        "success": {
-          "properties": {
-            "code": {
-              "type": "integer",
-              "format": "int32",
-              "example": 200
-            },
-            "message": {
-              "type": "string",
-              "example": "\u003cresponse message\u003e"
-            },
-            "status": {
-              "type": "string",
-              "example": "OK"
-            }
-          }
         }
       }
     },
@@ -4644,23 +3631,6 @@
       "properties": {
         "result": {
           "$ref": "#/definitions/cmdbSecret"
-        },
-        "success": {
-          "properties": {
-            "code": {
-              "type": "integer",
-              "format": "int32",
-              "example": 200
-            },
-            "message": {
-              "type": "string",
-              "example": "\u003cresponse message\u003e"
-            },
-            "status": {
-              "type": "string",
-              "example": "OK"
-            }
-          }
         }
       }
     },
@@ -4669,23 +3639,6 @@
       "properties": {
         "result": {
           "$ref": "#/definitions/cmdbVault"
-        },
-        "success": {
-          "properties": {
-            "code": {
-              "type": "integer",
-              "format": "int32",
-              "example": 200
-            },
-            "message": {
-              "type": "string",
-              "example": "\u003cresponse message\u003e"
-            },
-            "status": {
-              "type": "string",
-              "example": "OK"
-            }
-          }
         }
       }
     },
@@ -4694,23 +3647,6 @@
       "properties": {
         "result": {
           "$ref": "#/definitions/cmdbVersionTag"
-        },
-        "success": {
-          "properties": {
-            "code": {
-              "type": "integer",
-              "format": "int32",
-              "example": 200
-            },
-            "message": {
-              "type": "string",
-              "example": "\u003cresponse message\u003e"
-            },
-            "status": {
-              "type": "string",
-              "example": "OK"
-            }
-          }
         }
       }
     },
@@ -4797,23 +3733,6 @@
       "properties": {
         "result": {
           "$ref": "#/definitions/cmdbApplication"
-        },
-        "success": {
-          "properties": {
-            "code": {
-              "type": "integer",
-              "format": "int32",
-              "example": 201
-            },
-            "message": {
-              "type": "string",
-              "example": "\u003cresponse message\u003e"
-            },
-            "status": {
-              "type": "string",
-              "example": "UPDATED"
-            }
-          }
         }
       }
     },
@@ -4822,23 +3741,6 @@
       "properties": {
         "result": {
           "$ref": "#/definitions/cmdbArtifact"
-        },
-        "success": {
-          "properties": {
-            "code": {
-              "type": "integer",
-              "format": "int32",
-              "example": 201
-            },
-            "message": {
-              "type": "string",
-              "example": "\u003cresponse message\u003e"
-            },
-            "status": {
-              "type": "string",
-              "example": "UPDATED"
-            }
-          }
         }
       }
     },
@@ -4847,23 +3749,6 @@
       "properties": {
         "result": {
           "$ref": "#/definitions/cmdbAwsRdsInstance"
-        },
-        "success": {
-          "properties": {
-            "code": {
-              "type": "integer",
-              "format": "int32",
-              "example": 201
-            },
-            "message": {
-              "type": "string",
-              "example": "\u003cresponse message\u003e"
-            },
-            "status": {
-              "type": "string",
-              "example": "UPDATED"
-            }
-          }
         }
       }
     },
@@ -4872,23 +3757,6 @@
       "properties": {
         "result": {
           "$ref": "#/definitions/cmdbAwsService"
-        },
-        "success": {
-          "properties": {
-            "code": {
-              "type": "integer",
-              "format": "int32",
-              "example": 201
-            },
-            "message": {
-              "type": "string",
-              "example": "\u003cresponse message\u003e"
-            },
-            "status": {
-              "type": "string",
-              "example": "UPDATED"
-            }
-          }
         }
       }
     },
@@ -4897,23 +3765,6 @@
       "properties": {
         "result": {
           "$ref": "#/definitions/cmdbCloudProvider"
-        },
-        "success": {
-          "properties": {
-            "code": {
-              "type": "integer",
-              "format": "int32",
-              "example": 201
-            },
-            "message": {
-              "type": "string",
-              "example": "\u003cresponse message\u003e"
-            },
-            "status": {
-              "type": "string",
-              "example": "UPDATED"
-            }
-          }
         }
       }
     },
@@ -4922,23 +3773,6 @@
       "properties": {
         "result": {
           "$ref": "#/definitions/cmdbContainer"
-        },
-        "success": {
-          "properties": {
-            "code": {
-              "type": "integer",
-              "format": "int32",
-              "example": 201
-            },
-            "message": {
-              "type": "string",
-              "example": "\u003cresponse message\u003e"
-            },
-            "status": {
-              "type": "string",
-              "example": "UPDATED"
-            }
-          }
         }
       }
     },
@@ -4947,23 +3781,6 @@
       "properties": {
         "result": {
           "$ref": "#/definitions/cmdbDeployment"
-        },
-        "success": {
-          "properties": {
-            "code": {
-              "type": "integer",
-              "format": "int32",
-              "example": 201
-            },
-            "message": {
-              "type": "string",
-              "example": "\u003cresponse message\u003e"
-            },
-            "status": {
-              "type": "string",
-              "example": "UPDATED"
-            }
-          }
         }
       }
     },
@@ -4972,23 +3789,6 @@
       "properties": {
         "result": {
           "$ref": "#/definitions/cmdbEnvironment"
-        },
-        "success": {
-          "properties": {
-            "code": {
-              "type": "integer",
-              "format": "int32",
-              "example": 201
-            },
-            "message": {
-              "type": "string",
-              "example": "\u003cresponse message\u003e"
-            },
-            "status": {
-              "type": "string",
-              "example": "UPDATED"
-            }
-          }
         }
       }
     },
@@ -4997,23 +3797,6 @@
       "properties": {
         "result": {
           "$ref": "#/definitions/cmdbKubeCluster"
-        },
-        "success": {
-          "properties": {
-            "code": {
-              "type": "integer",
-              "format": "int32",
-              "example": 201
-            },
-            "message": {
-              "type": "string",
-              "example": "\u003cresponse message\u003e"
-            },
-            "status": {
-              "type": "string",
-              "example": "UPDATED"
-            }
-          }
         }
       }
     },
@@ -5022,23 +3805,6 @@
       "properties": {
         "result": {
           "$ref": "#/definitions/cmdbManifest"
-        },
-        "success": {
-          "properties": {
-            "code": {
-              "type": "integer",
-              "format": "int32",
-              "example": 201
-            },
-            "message": {
-              "type": "string",
-              "example": "\u003cresponse message\u003e"
-            },
-            "status": {
-              "type": "string",
-              "example": "UPDATED"
-            }
-          }
         }
       }
     },
@@ -5047,23 +3813,6 @@
       "properties": {
         "result": {
           "$ref": "#/definitions/cmdbRegion"
-        },
-        "success": {
-          "properties": {
-            "code": {
-              "type": "integer",
-              "format": "int32",
-              "example": 201
-            },
-            "message": {
-              "type": "string",
-              "example": "\u003cresponse message\u003e"
-            },
-            "status": {
-              "type": "string",
-              "example": "UPDATED"
-            }
-          }
         }
       }
     },
@@ -5072,23 +3821,6 @@
       "properties": {
         "result": {
           "$ref": "#/definitions/cmdbSecret"
-        },
-        "success": {
-          "properties": {
-            "code": {
-              "type": "integer",
-              "format": "int32",
-              "example": 201
-            },
-            "message": {
-              "type": "string",
-              "example": "\u003cresponse message\u003e"
-            },
-            "status": {
-              "type": "string",
-              "example": "UPDATED"
-            }
-          }
         }
       }
     },
@@ -5097,23 +3829,6 @@
       "properties": {
         "result": {
           "$ref": "#/definitions/cmdbVault"
-        },
-        "success": {
-          "properties": {
-            "code": {
-              "type": "integer",
-              "format": "int32",
-              "example": 201
-            },
-            "message": {
-              "type": "string",
-              "example": "\u003cresponse message\u003e"
-            },
-            "status": {
-              "type": "string",
-              "example": "UPDATED"
-            }
-          }
         }
       }
     },
@@ -5122,23 +3837,6 @@
       "properties": {
         "result": {
           "$ref": "#/definitions/cmdbVersionTag"
-        },
-        "success": {
-          "properties": {
-            "code": {
-              "type": "integer",
-              "format": "int32",
-              "example": 201
-            },
-            "message": {
-              "type": "string",
-              "example": "\u003cresponse message\u003e"
-            },
-            "status": {
-              "type": "string",
-              "example": "UPDATED"
-            }
-          }
         }
       }
     },
@@ -5176,23 +3874,6 @@
       "type": "object",
       "title": "---------------------------------\nCMDB Application Version\n---------------------------------",
       "properties": {
-        "success": {
-          "properties": {
-            "code": {
-              "type": "integer",
-              "format": "int32",
-              "example": 200
-            },
-            "message": {
-              "type": "string",
-              "example": "\u003cresponse message\u003e"
-            },
-            "status": {
-              "type": "string",
-              "example": "OK"
-            }
-          }
-        },
         "version": {
           "type": "string"
         }
