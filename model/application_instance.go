@@ -2,7 +2,7 @@ package model
 
 import "time"
 
-type Application struct {
+type ApplicationInstance struct {
 	ID           uint      `gorm:"primary_key" json:"id"`
 	CreatedAt    time.Time `json:"created_at"`
 	UpdatedAt    time.Time `json:"updated_at"`
@@ -10,7 +10,10 @@ type Application struct {
 	Description  string
 	AppName      string
 	Repo         string
+	ChartVersion   ChartVersion `gorm:"foreignkey:ChartVersionID"`
+	VersionTagID uint
 	Values     []Value
-	Environment Environment
-	ApplicationInstances []ApplicationInstance
+	Deployment   Deployment
 }
+
+

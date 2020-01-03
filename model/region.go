@@ -9,4 +9,5 @@ type Region struct {
 	Name         string
 	Description  string
 	Environments []Environment
+	Values     []Value
 }

@@ -8,6 +8,8 @@ type Secret struct {
 	UpdatedAt time.Time `json:"updated_at"`
 	Name string
 	Description string
+	Vault        Vault `gorm:"foreignkey:VaultID"`
+	VaultID      uint
 	Type string
-	Key string
+	Key string // jsonb
 }

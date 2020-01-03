@@ -10,4 +10,5 @@ type Artifact struct {
 	Description string
 	Repo string
 	Commit string
+	ChartVersion ChartVersion
 }

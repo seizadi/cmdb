@@ -9,5 +9,6 @@ type Environment struct {
 	Name string `json:"name"`
 	Description string
 	Code int
-	Applications []Application
+	ApplicationInstances []ApplicationInstance
+	Values     []Value
 }
