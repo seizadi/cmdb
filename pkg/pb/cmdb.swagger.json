@@ -21,13 +21,13 @@
   },
   "basePath": "/v1/",
   "paths": {
-    "/applications": {
+    "/application_instances": {
       "get": {
         "tags": [
-          "Applications"
+          "ApplicationInstances"
         ],
-        "summary": "Use this method to retrieve all the Applications.",
-        "operationId": "ApplicationsList",
+        "summary": "Use this method to retrieve all the ApplicationInstances.",
+        "operationId": "ApplicationInstancesList",
         "parameters": [
           {
             "type": "string",
@@ -70,24 +70,24 @@
           "200": {
             "description": "GET operation response",
             "schema": {
-              "$ref": "#/definitions/cmdbListApplicationsResponse"
+              "$ref": "#/definitions/cmdbListApplicationInstancesResponse"
             }
           }
         }
       },
       "post": {
         "tags": [
-          "Applications"
+          "ApplicationInstances"
         ],
-        "summary": "Use this method to create a Application information.",
-        "operationId": "ApplicationsCreate",
+        "summary": "Use this method to create a ApplicationInstance information.",
+        "operationId": "ApplicationInstancesCreate",
         "parameters": [
           {
             "name": "body",
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/cmdbApplication"
+              "$ref": "#/definitions/cmdbApplicationInstance"
             }
           }
         ],
@@ -95,19 +95,19 @@
           "201": {
             "description": "POST operation response",
             "schema": {
-              "$ref": "#/definitions/cmdbCreateApplicationResponse"
+              "$ref": "#/definitions/cmdbCreateApplicationInstanceResponse"
             }
           }
         }
       }
     },
-    "/applications/{id}": {
+    "/application_instances/{id}": {
       "get": {
         "tags": [
-          "Applications"
+          "ApplicationInstances"
         ],
-        "summary": "Use this method to read a Application information by identifier.",
-        "operationId": "ApplicationsRead",
+        "summary": "Use this method to read a ApplicationInstance information by identifier.",
+        "operationId": "ApplicationInstancesRead",
         "parameters": [
           {
             "type": "string",
@@ -127,17 +127,17 @@
           "200": {
             "description": "GET operation response",
             "schema": {
-              "$ref": "#/definitions/cmdbReadApplicationResponse"
+              "$ref": "#/definitions/cmdbReadApplicationInstanceResponse"
             }
           }
         }
       },
       "put": {
         "tags": [
-          "Applications"
+          "ApplicationInstances"
         ],
-        "summary": "Use this method to update a Application information.",
-        "operationId": "ApplicationsUpdate",
+        "summary": "Use this method to update a ApplicationInstance information.",
+        "operationId": "ApplicationInstancesUpdate",
         "parameters": [
           {
             "type": "string",
@@ -151,7 +151,7 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/cmdbApplication"
+              "$ref": "#/definitions/cmdbApplicationInstance"
             }
           }
         ],
@@ -159,17 +159,17 @@
           "201": {
             "description": "PUT operation response",
             "schema": {
-              "$ref": "#/definitions/cmdbUpdateApplicationResponse"
+              "$ref": "#/definitions/cmdbUpdateApplicationInstanceResponse"
             }
           }
         }
       },
       "delete": {
         "tags": [
-          "Applications"
+          "ApplicationInstances"
         ],
-        "summary": "Use this method to delete a particular Application.",
-        "operationId": "ApplicationsDelete",
+        "summary": "Use this method to delete a particular ApplicationInstance.",
+        "operationId": "ApplicationInstancesDelete",
         "parameters": [
           {
             "type": "string",
@@ -187,10 +187,10 @@
       },
       "patch": {
         "tags": [
-          "Applications"
+          "ApplicationInstances"
         ],
-        "summary": "Use this method to update a Application information.",
-        "operationId": "ApplicationsUpdate2",
+        "summary": "Use this method to update a ApplicationInstance information.",
+        "operationId": "ApplicationInstancesUpdate2",
         "parameters": [
           {
             "type": "string",
@@ -204,7 +204,7 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/cmdbApplication"
+              "$ref": "#/definitions/cmdbApplicationInstance"
             }
           }
         ],
@@ -212,7 +212,7 @@
           "201": {
             "description": "PATCH operation response",
             "schema": {
-              "$ref": "#/definitions/cmdbUpdateApplicationResponse"
+              "$ref": "#/definitions/cmdbUpdateApplicationInstanceResponse"
             }
           }
         }
@@ -2817,28 +2817,28 @@
         }
       }
     },
-    "cmdbApplication": {
+    "cmdbApplicationInstance": {
       "type": "object",
-      "title": "-----------------------------------------------------------------------\nApplication represents application definition used by an Environment\n-----------------------------------------------------------------------",
+      "title": "-----------------------------------------------------------------------\nApplicationInstance represents application instance deployed in an Environment\n-----------------------------------------------------------------------",
       "properties": {
         "app_name": {
           "type": "string",
-          "title": "The Application Name"
+          "title": "The ApplicationInstance Name"
         },
         "containers": {
           "type": "array",
-          "title": "Containers used by this Application",
+          "title": "Containers used by this ApplicationInstance",
           "items": {
             "$ref": "#/definitions/cmdbContainer"
           }
         },
         "deployment": {
-          "title": "Deployment of this Application",
+          "title": "Deployment of this ApplicationInstance",
           "$ref": "#/definitions/cmdbDeployment"
         },
         "description": {
           "type": "string",
-          "title": "The description of the Application"
+          "title": "The description of the ApplicationInstance"
         },
         "environment_id": {
           "description": "The resource identifier.",
@@ -2850,7 +2850,7 @@
           "readOnly": true
         },
         "manifest": {
-          "title": "Manifest used by this Application",
+          "title": "Manifest used by this ApplicationInstance",
           "$ref": "#/definitions/cmdbManifest"
         },
         "manifest_id": {
@@ -2859,14 +2859,14 @@
         },
         "name": {
           "type": "string",
-          "title": "The name of the Application"
+          "title": "The name of the ApplicationInstance"
         },
         "repo": {
           "type": "string",
-          "title": "Application Repository URL"
+          "title": "ApplicationInstance Repository URL"
         },
         "version_tag": {
-          "title": "VersionTag setting of this Application",
+          "title": "VersionTag setting of this ApplicationInstance",
           "$ref": "#/definitions/cmdbVersionTag"
         },
         "version_tag_id": {
@@ -2920,7 +2920,7 @@
         },
         "database_name": {
           "type": "string",
-          "title": "Name of the database created for use by the application"
+          "title": "Name of the database created for use by the ApplicationInstance"
         },
         "database_password": {
           "title": "Secret database password which must be with the user credentials to access database",
@@ -2947,7 +2947,7 @@
     },
     "cmdbAwsService": {
       "type": "object",
-      "title": "------------------------------------------------------\nAwsService represents a set of AWS Services used by the Application\n------------------------------------------------------",
+      "title": "------------------------------------------------------\nAwsService represents a set of AWS Services used by the ApplicationInstance\n------------------------------------------------------",
       "properties": {
         "aws_rds_instances": {
           "type": "array",
@@ -3009,7 +3009,7 @@
       "type": "object",
       "title": "------------------------------------------------------------------------\nContainer represents a Docker Image that has been loaded to a Registry\n------------------------------------------------------------------------",
       "properties": {
-        "application_id": {
+        "application_instance_id": {
           "description": "The resource identifier.",
           "type": "string"
         },
@@ -3048,11 +3048,11 @@
         }
       }
     },
-    "cmdbCreateApplicationResponse": {
+    "cmdbCreateApplicationInstanceResponse": {
       "type": "object",
       "properties": {
         "result": {
-          "$ref": "#/definitions/cmdbApplication"
+          "$ref": "#/definitions/cmdbApplicationInstance"
         }
       }
     },
@@ -3162,14 +3162,14 @@
     },
     "cmdbDeployment": {
       "type": "object",
-      "title": "---------------------------------------------------------------------\nDeployment represents a particular Application running on Kubernetes\n---------------------------------------------------------------------",
+      "title": "---------------------------------------------------------------------\nDeployment represents a particular ApplicationInstance running on Kubernetes\n---------------------------------------------------------------------",
       "properties": {
-        "application_id": {
+        "application_instance_id": {
           "description": "The resource identifier.",
           "type": "string"
         },
         "artifact": {
-          "title": "Artifact for resolved manifest used for the Application",
+          "title": "Artifact for resolved manifest used for the ApplicationInstance",
           "$ref": "#/definitions/cmdbArtifact"
         },
         "artifact_id": {
@@ -3186,7 +3186,7 @@
           "readOnly": true
         },
         "kube_cluster": {
-          "title": "Kubernetes Cluster on which the Application is deployed",
+          "title": "Kubernetes Cluster on which the ApplicationInstance is deployed",
           "$ref": "#/definitions/cmdbKubeCluster"
         },
         "kube_cluster_id": {
@@ -3201,13 +3201,13 @@
     },
     "cmdbEnvironment": {
       "type": "object",
-      "title": "-------------------------------------------------------------\nEnvironment owns a set of Applications for Deployment\nsee Code for whether it is in Dev, Preprod or Prod Stages\n-------------------------------------------------------------",
+      "title": "-------------------------------------------------------------\nEnvironment owns a set of ApplicationInstances for Deployment\nsee Code for whether it is in Dev, Preprod or Prod Stages\n-------------------------------------------------------------",
       "properties": {
-        "applications": {
+        "application_instances": {
           "type": "array",
-          "title": "Applications in this Environment",
+          "title": "ApplicationInstances in this Environment",
           "items": {
-            "$ref": "#/definitions/cmdbApplication"
+            "$ref": "#/definitions/cmdbApplicationInstance"
           }
         },
         "code": {
@@ -3252,7 +3252,7 @@
         }
       }
     },
-    "cmdbListApplicationsResponse": {
+    "cmdbListApplicationInstancesResponse": {
       "type": "object",
       "properties": {
         "page": {
@@ -3261,7 +3261,7 @@
         "results": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/cmdbApplication"
+            "$ref": "#/definitions/cmdbApplicationInstance"
           }
         }
       }
@@ -3450,7 +3450,7 @@
     },
     "cmdbManifest": {
       "type": "object",
-      "title": "--------------------------------------------------------------------------\nManifest represents all the elements needed for running Application\n--------------------------------------------------------------------------",
+      "title": "--------------------------------------------------------------------------\nManifest represents all the elements needed for running ApplicationInstance\n--------------------------------------------------------------------------",
       "properties": {
         "affinity": {
           "title": "Affinity used for Kubernetes Deployment YAML",
@@ -3538,11 +3538,11 @@
         "EQUINIX"
       ]
     },
-    "cmdbReadApplicationResponse": {
+    "cmdbReadApplicationInstanceResponse": {
       "type": "object",
       "properties": {
         "result": {
-          "$ref": "#/definitions/cmdbApplication"
+          "$ref": "#/definitions/cmdbApplicationInstance"
         }
       }
     },
@@ -3728,11 +3728,11 @@
         "PROD"
       ]
     },
-    "cmdbUpdateApplicationResponse": {
+    "cmdbUpdateApplicationInstanceResponse": {
       "type": "object",
       "properties": {
         "result": {
-          "$ref": "#/definitions/cmdbApplication"
+          "$ref": "#/definitions/cmdbApplicationInstance"
         }
       }
     },

@@ -8,9 +8,10 @@ type Value struct {
 	UpdatedAt    time.Time `json:"updated_at"`
 	Name         string
 	Description  string
-	Key       	 string // jsonb
+	Key          string     // jsonb
 	AwsService   AwsService `gorm:"foreignkey:AwsServiceID"`
 	AwsServiceID uint
+	Secrets      []Secret
 }
 
 

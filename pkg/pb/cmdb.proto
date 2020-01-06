@@ -317,141 +317,141 @@ service VersionTags {
 }
 
 // -----------------------------------------------------------------------
-// Application represents application definition used by an Environment
+// ApplicationInstance represents application instance deployed in an Environment
 // -----------------------------------------------------------------------
-message Application {
+message ApplicationInstance {
   option (gorm.opts) = {
       ormable: true,
       multi_account: true
   };
 
-  // The Application identifier.
+  // The ApplicationInstance identifier.
   atlas.rpc.Identifier id = 1 [(gorm.field).tag = {type: "serial"  primary_key: true}];
 
-  // The name of the Application
+  // The name of the ApplicationInstance
   string name = 2;
 
-  // The description of the Application
+  // The description of the ApplicationInstance
   string description = 3;
 
-  // The Application Name
+  // The ApplicationInstance Name
   string app_name = 4;
 
-  // Application Repository URL
+  // ApplicationInstance Repository URL
   string repo = 5;
 
-  // VersionTag setting of this Application
+  // VersionTag setting of this ApplicationInstance
   VersionTag version_tag = 6 [(gorm.field).belongs_to = {}];
 
   // Reference to VersionTag
   atlas.rpc.Identifier version_tag_id = 7;
 
-  // Manifest used by this Application
+  // Manifest used by this ApplicationInstance
   Manifest manifest = 8 [(gorm.field).belongs_to = {}];
 
   // Reference to Manifest
   atlas.rpc.Identifier manifest_id = 9;
 
-  // Containers used by this Application
+  // Containers used by this ApplicationInstance
   repeated Container containers = 10;
 
   // Reference to Environment
   atlas.rpc.Identifier environment_id = 11;
 
-  // Deployment of this Application
+  // Deployment of this ApplicationInstance
   Deployment deployment = 12;
 }
 
-message CreateApplicationRequest {
-  Application payload = 1;
+message CreateApplicationInstanceRequest {
+  ApplicationInstance payload = 1;
 }
 
-message CreateApplicationResponse {
-  Application result = 1;
+message CreateApplicationInstanceResponse {
+  ApplicationInstance result = 1;
 }
 
-message ReadApplicationRequest {
+message ReadApplicationInstanceRequest {
   atlas.rpc.Identifier id = 1;
   infoblox.api.FieldSelection fields = 2;
 }
 
-message ReadApplicationResponse {
-  Application result = 1;
+message ReadApplicationInstanceResponse {
+  ApplicationInstance result = 1;
 }
 
-message UpdateApplicationRequest {
-  Application payload = 1;
+message UpdateApplicationInstanceRequest {
+  ApplicationInstance payload = 1;
   google.protobuf.FieldMask fields = 2;
 }
 
-message UpdateApplicationResponse {
-  Application result = 1;
+message UpdateApplicationInstanceResponse {
+  ApplicationInstance result = 1;
 }
 
-message DeleteApplicationRequest {
+message DeleteApplicationInstanceRequest {
   atlas.rpc.Identifier id = 1;
 }
 
-message DeleteApplicationResponse {}
+message DeleteApplicationInstanceResponse {}
 
-message ListApplicationRequest {
+message ListApplicationInstanceRequest {
   infoblox.api.Filtering filter = 1;
   infoblox.api.Sorting order_by = 2;
   infoblox.api.FieldSelection fields = 3;
   infoblox.api.Pagination paging = 4;
 }
 
-message ListApplicationsResponse {
-  repeated Application results = 1;
+message ListApplicationInstancesResponse {
+  repeated ApplicationInstance results = 1;
   infoblox.api.PageInfo page = 2;
 }
 
-service Applications {
+service ApplicationInstances {
   option (gorm.server) = {
       autogen: true,
       txn_middleware: true,
     };
 
-  // Use this method to create a Application information.
-  rpc Create (CreateApplicationRequest) returns (CreateApplicationResponse) {
+  // Use this method to create a ApplicationInstance information.
+  rpc Create (CreateApplicationInstanceRequest) returns (CreateApplicationInstanceResponse) {
     option (google.api.http) = {
-            post: "/applications"
+            post: "/application_instances"
             body: "payload"
         };
   }
 
-  // Use this method to read a Application information by identifier.
-  rpc Read (ReadApplicationRequest) returns (ReadApplicationResponse) {
+  // Use this method to read a ApplicationInstance information by identifier.
+  rpc Read (ReadApplicationInstanceRequest) returns (ReadApplicationInstanceResponse) {
     option (google.api.http) = {
-            get: "/applications/{id.resource_id}"
+            get: "/application_instances/{id.resource_id}"
         };
   }
 
-  // Use this method to update a Application information.
-  rpc Update (UpdateApplicationRequest) returns (UpdateApplicationResponse) {
+  // Use this method to update a ApplicationInstance information.
+  rpc Update (UpdateApplicationInstanceRequest) returns (UpdateApplicationInstanceResponse) {
     option (atlas_validate.method).allow_unknown_fields = false;
     option (google.api.http) = {
-            put: "/applications/{payload.id.resource_id}"
+            put: "/application_instances/{payload.id.resource_id}"
             body: "payload"
             additional_bindings: {
-                patch: "/applications/{payload.id.resource_id}"
+                patch: "/application_instances/{payload.id.resource_id}"
                 body: "payload"
             }
     };
   }
 
-  // Use this method to delete a particular Application.
-  rpc Delete (DeleteApplicationRequest) returns (DeleteApplicationResponse) {
+  // Use this method to delete a particular ApplicationInstance.
+  rpc Delete (DeleteApplicationInstanceRequest) returns (DeleteApplicationInstanceResponse) {
     option (google.api.http) = {
-            delete: "/applications/{id.resource_id}"
+            delete: "/application_instances/{id.resource_id}"
         };
-    option (gorm.method).object_type = "Application";
+    option (gorm.method).object_type = "ApplicationInstance";
   }
 
-  // Use this method to retrieve all the Applications.
-  rpc List (ListApplicationRequest) returns (ListApplicationsResponse) {
+  // Use this method to retrieve all the ApplicationInstances.
+  rpc List (ListApplicationInstanceRequest) returns (ListApplicationInstancesResponse) {
     option (google.api.http) = {
-            get: "/applications"
+            get: "/application_instances"
         };
   }
 }
@@ -477,7 +477,7 @@ message AwsRdsInstance {
   // Host URL of the AwsRdsInstance (e.g. cmdb.cf1k7otqh6nf.us-east-1.rds.amazonaws.com)
   string database_host = 4;
 
-  // Name of the database created for use by the application
+  // Name of the database created for use by the ApplicationInstance
   string database_name = 5;
 
   // User credentials for access to the database
@@ -618,8 +618,8 @@ message Container {
   // The digest of the image to check integrity (e.g. digest: sha256:9bf4971079f0ddf3f4ed8681dc96c2610804007359643809165f94a95bc5c3b6)
   string digest = 8;
 
-  // Reference to Application
-  atlas.rpc.Identifier application_id = 9;
+  // Reference to ApplicationInstance
+  atlas.rpc.Identifier application_instance_id = 9;
 
 }
 
@@ -728,7 +728,7 @@ enum Stage {
 }
 
 // -------------------------------------------------------------
-// Environment owns a set of Applications for Deployment
+// Environment owns a set of ApplicationInstances for Deployment
 // see Code for whether it is in Dev, Preprod or Prod Stages
 // -------------------------------------------------------------
 message Environment {
@@ -749,8 +749,8 @@ message Environment {
   // Code defines the various stages e.g. dev, qa, preprod, prod
   Stage code = 4;
 
-  // Applications in this Environment
-  repeated Application applications = 5;
+  // ApplicationInstances in this Environment
+  repeated ApplicationInstance application_instances = 5;
 
   // Region used by this Environment
   atlas.rpc.Identifier region_id = 6;
@@ -851,7 +851,7 @@ service Environments {
 }
 
 // --------------------------------------------------------------------------
-// Manifest represents all the elements needed for running Application
+// Manifest represents all the elements needed for running ApplicationInstance
 // --------------------------------------------------------------------------
 message Manifest {
   option (gorm.opts) = {
@@ -1259,7 +1259,7 @@ service Artifacts {
 
 
 // ------------------------------------------------------
-// AwsService represents a set of AWS Services used by the Application
+// AwsService represents a set of AWS Services used by the ApplicationInstance
 // ------------------------------------------------------
 message AwsService {
   option (gorm.opts) = {
@@ -1375,7 +1375,7 @@ service AwsServices {
 }
 
 // ---------------------------------------------------------------------
-// Deployment represents a particular Application running on Kubernetes
+// Deployment represents a particular ApplicationInstance running on Kubernetes
 // ---------------------------------------------------------------------
 message Deployment {
   option (gorm.opts) = {
@@ -1392,20 +1392,20 @@ message Deployment {
   // The description of the Deployment
   string description = 3;
 
-  // Artifact for resolved manifest used for the Application
+  // Artifact for resolved manifest used for the ApplicationInstance
   Artifact artifact = 4 [(gorm.field).belongs_to = {}];
 
   // Reference to Artifact
   atlas.rpc.Identifier artifact_id = 5;
 
-  // Kubernetes Cluster on which the Application is deployed
+  // Kubernetes Cluster on which the ApplicationInstance is deployed
   KubeCluster kube_cluster = 6 [(gorm.field).belongs_to = {}];
 
   // Reference to Kubernetes Cluster
   atlas.rpc.Identifier kube_cluster_id = 7;
 
-  // Reference to Application
-  atlas.rpc.Identifier application_id = 8;
+  // Reference to ApplicationInstanceInstance
+  atlas.rpc.Identifier application_instance_id = 8;
 }
 
 message CreateDeploymentRequest {
