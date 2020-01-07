@@ -7,6 +7,7 @@ CREATE TABLE deployments (
   name text DEFAULT NULL,
   description text DEFAULT NULL,
   artifact_id int REFERENCES artifacts(id) ON DELETE SET NULL,
+  application_instance_id int REFERENCES application_instances(id) ON DELETE SET NULL,
   kube_cluster_id int REFERENCES kube_clusters(id) ON DELETE CASCADE
 );
 
