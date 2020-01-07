@@ -2,17 +2,14 @@ package model
 
 import "time"
 
-type ApplicationInstance struct {
+type Stage struct {
 	ID           uint      `gorm:"primary_key" json:"id"`
 	CreatedAt    time.Time `json:"created_at"`
 	UpdatedAt    time.Time `json:"updated_at"`
 	Name         string
 	Description  string
-	AppName      string
-	Repo         string
-	ChartVersion ChartVersion `gorm:"foreignkey:ChartVersionID"`
-	Value        Value
-	Deployment   Deployment
+	RegionID     uint
+	Value      Value
+	Applications []Application
+	Environments []Environment
 }
-
-

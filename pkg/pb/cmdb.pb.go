@@ -33,46 +33,6 @@ var _ = math.Inf
 // proto package needs to be updated.
 const _ = proto.ProtoPackageIsVersion3 // please upgrade the proto package
 
-type Stage int32
-
-const (
-	Stage_UNKNOWN_STAGE Stage = 0
-	Stage_DEV           Stage = 1
-	Stage_QA            Stage = 2
-	Stage_QAFUNC        Stage = 3
-	Stage_QAPERF        Stage = 4
-	Stage_PREPROD       Stage = 5
-	Stage_PROD          Stage = 6
-)
-
-var Stage_name = map[int32]string{
-	0: "UNKNOWN_STAGE",
-	1: "DEV",
-	2: "QA",
-	3: "QAFUNC",
-	4: "QAPERF",
-	5: "PREPROD",
-	6: "PROD",
-}
-
-var Stage_value = map[string]int32{
-	"UNKNOWN_STAGE": 0,
-	"DEV":           1,
-	"QA":            2,
-	"QAFUNC":        3,
-	"QAPERF":        4,
-	"PREPROD":       5,
-	"PROD":          6,
-}
-
-func (x Stage) String() string {
-	return proto.EnumName(Stage_name, int32(x))
-}
-
-func (Stage) EnumDescriptor() ([]byte, []int) {
-	return fileDescriptor_b7c4efe410d87592, []int{0}
-}
-
 type Provider int32
 
 const (
@@ -104,6 +64,46 @@ func (x Provider) String() string {
 }
 
 func (Provider) EnumDescriptor() ([]byte, []int) {
+	return fileDescriptor_b7c4efe410d87592, []int{0}
+}
+
+type StageType int32
+
+const (
+	StageType_UNKNOWN_STAGE StageType = 0
+	StageType_DEV           StageType = 1
+	StageType_QA            StageType = 2
+	StageType_QAFUNC        StageType = 3
+	StageType_QAPERF        StageType = 4
+	StageType_PREPROD       StageType = 5
+	StageType_PROD          StageType = 6
+)
+
+var StageType_name = map[int32]string{
+	0: "UNKNOWN_STAGE",
+	1: "DEV",
+	2: "QA",
+	3: "QAFUNC",
+	4: "QAPERF",
+	5: "PREPROD",
+	6: "PROD",
+}
+
+var StageType_value = map[string]int32{
+	"UNKNOWN_STAGE": 0,
+	"DEV":           1,
+	"QA":            2,
+	"QAFUNC":        3,
+	"QAPERF":        4,
+	"PREPROD":       5,
+	"PROD":          6,
+}
+
+func (x StageType) String() string {
+	return proto.EnumName(StageType_name, int32(x))
+}
+
+func (StageType) EnumDescriptor() ([]byte, []int) {
 	return fileDescriptor_b7c4efe410d87592, []int{1}
 }
 
@@ -149,164 +149,173 @@ func (m *VersionResponse) GetVersion() string {
 	return ""
 }
 
-// ------------------------------------------------------
-// Vault represents the store for keeping Secrets
-// ------------------------------------------------------
-type Vault struct {
-	// The vault identifier.
+// ------------------------------------------------------------------------
+// CloudProvider represents a particular Cloud Provider e.g. AWS or Azure
+// ------------------------------------------------------------------------
+type CloudProvider struct {
+	// The CloudProvider identifier.
 	Id *resource.Identifier `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
-	// The name of the vault
+	// The name of the CloudProvider
 	Name string `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
-	// The description of the vault
+	// The description of the CloudProvider
 	Description string `protobuf:"bytes,3,opt,name=description,proto3" json:"description,omitempty"`
-	// The path on vault for the Secrets (e.g. /qa0-secrets)
-	Path string `protobuf:"bytes,4,opt,name=path,proto3" json:"path,omitempty"`
-	// The list of Secrets stored against the path on vault
-	Secrets              []*Secret `protobuf:"bytes,5,rep,name=secrets,proto3" json:"secrets,omitempty"`
+	// The Provider
+	Provider Provider `protobuf:"varint,4,opt,name=provider,proto3,enum=api.cmdb.Provider" json:"provider,omitempty"`
+	// Cloud Provider Account Number
+	Account string `protobuf:"bytes,5,opt,name=account,proto3" json:"account,omitempty"`
+	// Regions for the CloudProvider
+	Regions              []*Region `protobuf:"bytes,6,rep,name=regions,proto3" json:"regions,omitempty"`
 	XXX_NoUnkeyedLiteral struct{}  `json:"-"`
 	XXX_unrecognized     []byte    `json:"-"`
 	XXX_sizecache        int32     `json:"-"`
 }
 
-func (m *Vault) Reset()         { *m = Vault{} }
-func (m *Vault) String() string { return proto.CompactTextString(m) }
-func (*Vault) ProtoMessage()    {}
-func (*Vault) Descriptor() ([]byte, []int) {
+func (m *CloudProvider) Reset()         { *m = CloudProvider{} }
+func (m *CloudProvider) String() string { return proto.CompactTextString(m) }
+func (*CloudProvider) ProtoMessage()    {}
+func (*CloudProvider) Descriptor() ([]byte, []int) {
 	return fileDescriptor_b7c4efe410d87592, []int{1}
 }
 
-func (m *Vault) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_Vault.Unmarshal(m, b)
+func (m *CloudProvider) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_CloudProvider.Unmarshal(m, b)
 }
-func (m *Vault) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_Vault.Marshal(b, m, deterministic)
+func (m *CloudProvider) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_CloudProvider.Marshal(b, m, deterministic)
 }
-func (m *Vault) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_Vault.Merge(m, src)
+func (m *CloudProvider) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_CloudProvider.Merge(m, src)
 }
-func (m *Vault) XXX_Size() int {
-	return xxx_messageInfo_Vault.Size(m)
+func (m *CloudProvider) XXX_Size() int {
+	return xxx_messageInfo_CloudProvider.Size(m)
 }
-func (m *Vault) XXX_DiscardUnknown() {
-	xxx_messageInfo_Vault.DiscardUnknown(m)
+func (m *CloudProvider) XXX_DiscardUnknown() {
+	xxx_messageInfo_CloudProvider.DiscardUnknown(m)
 }
 
-var xxx_messageInfo_Vault proto.InternalMessageInfo
+var xxx_messageInfo_CloudProvider proto.InternalMessageInfo
 
-func (m *Vault) GetId() *resource.Identifier {
+func (m *CloudProvider) GetId() *resource.Identifier {
 	if m != nil {
 		return m.Id
 	}
 	return nil
 }
 
-func (m *Vault) GetName() string {
+func (m *CloudProvider) GetName() string {
 	if m != nil {
 		return m.Name
 	}
 	return ""
 }
 
-func (m *Vault) GetDescription() string {
+func (m *CloudProvider) GetDescription() string {
 	if m != nil {
 		return m.Description
 	}
 	return ""
 }
 
-func (m *Vault) GetPath() string {
+func (m *CloudProvider) GetProvider() Provider {
 	if m != nil {
-		return m.Path
+		return m.Provider
+	}
+	return Provider_UNKNOWN_PROVIDER
+}
+
+func (m *CloudProvider) GetAccount() string {
+	if m != nil {
+		return m.Account
 	}
 	return ""
 }
 
-func (m *Vault) GetSecrets() []*Secret {
+func (m *CloudProvider) GetRegions() []*Region {
 	if m != nil {
-		return m.Secrets
+		return m.Regions
 	}
 	return nil
 }
 
-type CreateVaultRequest struct {
-	Payload              *Vault   `protobuf:"bytes,1,opt,name=payload,proto3" json:"payload,omitempty"`
-	XXX_NoUnkeyedLiteral struct{} `json:"-"`
-	XXX_unrecognized     []byte   `json:"-"`
-	XXX_sizecache        int32    `json:"-"`
+type CreateCloudProviderRequest struct {
+	Payload              *CloudProvider `protobuf:"bytes,1,opt,name=payload,proto3" json:"payload,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}       `json:"-"`
+	XXX_unrecognized     []byte         `json:"-"`
+	XXX_sizecache        int32          `json:"-"`
 }
 
-func (m *CreateVaultRequest) Reset()         { *m = CreateVaultRequest{} }
-func (m *CreateVaultRequest) String() string { return proto.CompactTextString(m) }
-func (*CreateVaultRequest) ProtoMessage()    {}
-func (*CreateVaultRequest) Descriptor() ([]byte, []int) {
+func (m *CreateCloudProviderRequest) Reset()         { *m = CreateCloudProviderRequest{} }
+func (m *CreateCloudProviderRequest) String() string { return proto.CompactTextString(m) }
+func (*CreateCloudProviderRequest) ProtoMessage()    {}
+func (*CreateCloudProviderRequest) Descriptor() ([]byte, []int) {
 	return fileDescriptor_b7c4efe410d87592, []int{2}
 }
 
-func (m *CreateVaultRequest) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_CreateVaultRequest.Unmarshal(m, b)
+func (m *CreateCloudProviderRequest) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_CreateCloudProviderRequest.Unmarshal(m, b)
 }
-func (m *CreateVaultRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_CreateVaultRequest.Marshal(b, m, deterministic)
+func (m *CreateCloudProviderRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_CreateCloudProviderRequest.Marshal(b, m, deterministic)
 }
-func (m *CreateVaultRequest) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_CreateVaultRequest.Merge(m, src)
+func (m *CreateCloudProviderRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_CreateCloudProviderRequest.Merge(m, src)
 }
-func (m *CreateVaultRequest) XXX_Size() int {
-	return xxx_messageInfo_CreateVaultRequest.Size(m)
+func (m *CreateCloudProviderRequest) XXX_Size() int {
+	return xxx_messageInfo_CreateCloudProviderRequest.Size(m)
 }
-func (m *CreateVaultRequest) XXX_DiscardUnknown() {
-	xxx_messageInfo_CreateVaultRequest.DiscardUnknown(m)
+func (m *CreateCloudProviderRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_CreateCloudProviderRequest.DiscardUnknown(m)
 }
 
-var xxx_messageInfo_CreateVaultRequest proto.InternalMessageInfo
+var xxx_messageInfo_CreateCloudProviderRequest proto.InternalMessageInfo
 
-func (m *CreateVaultRequest) GetPayload() *Vault {
+func (m *CreateCloudProviderRequest) GetPayload() *CloudProvider {
 	if m != nil {
 		return m.Payload
 	}
 	return nil
 }
 
-type CreateVaultResponse struct {
-	Result               *Vault   `protobuf:"bytes,1,opt,name=result,proto3" json:"result,omitempty"`
-	XXX_NoUnkeyedLiteral struct{} `json:"-"`
-	XXX_unrecognized     []byte   `json:"-"`
-	XXX_sizecache        int32    `json:"-"`
+type CreateCloudProviderResponse struct {
+	Result               *CloudProvider `protobuf:"bytes,1,opt,name=result,proto3" json:"result,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}       `json:"-"`
+	XXX_unrecognized     []byte         `json:"-"`
+	XXX_sizecache        int32          `json:"-"`
 }
 
-func (m *CreateVaultResponse) Reset()         { *m = CreateVaultResponse{} }
-func (m *CreateVaultResponse) String() string { return proto.CompactTextString(m) }
-func (*CreateVaultResponse) ProtoMessage()    {}
-func (*CreateVaultResponse) Descriptor() ([]byte, []int) {
+func (m *CreateCloudProviderResponse) Reset()         { *m = CreateCloudProviderResponse{} }
+func (m *CreateCloudProviderResponse) String() string { return proto.CompactTextString(m) }
+func (*CreateCloudProviderResponse) ProtoMessage()    {}
+func (*CreateCloudProviderResponse) Descriptor() ([]byte, []int) {
 	return fileDescriptor_b7c4efe410d87592, []int{3}
 }
 
-func (m *CreateVaultResponse) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_CreateVaultResponse.Unmarshal(m, b)
+func (m *CreateCloudProviderResponse) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_CreateCloudProviderResponse.Unmarshal(m, b)
 }
-func (m *CreateVaultResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_CreateVaultResponse.Marshal(b, m, deterministic)
+func (m *CreateCloudProviderResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_CreateCloudProviderResponse.Marshal(b, m, deterministic)
 }
-func (m *CreateVaultResponse) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_CreateVaultResponse.Merge(m, src)
+func (m *CreateCloudProviderResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_CreateCloudProviderResponse.Merge(m, src)
 }
-func (m *CreateVaultResponse) XXX_Size() int {
-	return xxx_messageInfo_CreateVaultResponse.Size(m)
+func (m *CreateCloudProviderResponse) XXX_Size() int {
+	return xxx_messageInfo_CreateCloudProviderResponse.Size(m)
 }
-func (m *CreateVaultResponse) XXX_DiscardUnknown() {
-	xxx_messageInfo_CreateVaultResponse.DiscardUnknown(m)
+func (m *CreateCloudProviderResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_CreateCloudProviderResponse.DiscardUnknown(m)
 }
 
-var xxx_messageInfo_CreateVaultResponse proto.InternalMessageInfo
+var xxx_messageInfo_CreateCloudProviderResponse proto.InternalMessageInfo
 
-func (m *CreateVaultResponse) GetResult() *Vault {
+func (m *CreateCloudProviderResponse) GetResult() *CloudProvider {
 	if m != nil {
 		return m.Result
 	}
 	return nil
 }
 
-type ReadVaultRequest struct {
+type ReadCloudProviderRequest struct {
 	Id                   *resource.Identifier  `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
 	Fields               *query.FieldSelection `protobuf:"bytes,2,opt,name=fields,proto3" json:"fields,omitempty"`
 	XXX_NoUnkeyedLiteral struct{}              `json:"-"`
@@ -314,241 +323,241 @@ type ReadVaultRequest struct {
 	XXX_sizecache        int32                 `json:"-"`
 }
 
-func (m *ReadVaultRequest) Reset()         { *m = ReadVaultRequest{} }
-func (m *ReadVaultRequest) String() string { return proto.CompactTextString(m) }
-func (*ReadVaultRequest) ProtoMessage()    {}
-func (*ReadVaultRequest) Descriptor() ([]byte, []int) {
+func (m *ReadCloudProviderRequest) Reset()         { *m = ReadCloudProviderRequest{} }
+func (m *ReadCloudProviderRequest) String() string { return proto.CompactTextString(m) }
+func (*ReadCloudProviderRequest) ProtoMessage()    {}
+func (*ReadCloudProviderRequest) Descriptor() ([]byte, []int) {
 	return fileDescriptor_b7c4efe410d87592, []int{4}
 }
 
-func (m *ReadVaultRequest) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_ReadVaultRequest.Unmarshal(m, b)
+func (m *ReadCloudProviderRequest) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_ReadCloudProviderRequest.Unmarshal(m, b)
 }
-func (m *ReadVaultRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_ReadVaultRequest.Marshal(b, m, deterministic)
+func (m *ReadCloudProviderRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_ReadCloudProviderRequest.Marshal(b, m, deterministic)
 }
-func (m *ReadVaultRequest) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_ReadVaultRequest.Merge(m, src)
+func (m *ReadCloudProviderRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_ReadCloudProviderRequest.Merge(m, src)
 }
-func (m *ReadVaultRequest) XXX_Size() int {
-	return xxx_messageInfo_ReadVaultRequest.Size(m)
+func (m *ReadCloudProviderRequest) XXX_Size() int {
+	return xxx_messageInfo_ReadCloudProviderRequest.Size(m)
 }
-func (m *ReadVaultRequest) XXX_DiscardUnknown() {
-	xxx_messageInfo_ReadVaultRequest.DiscardUnknown(m)
+func (m *ReadCloudProviderRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_ReadCloudProviderRequest.DiscardUnknown(m)
 }
 
-var xxx_messageInfo_ReadVaultRequest proto.InternalMessageInfo
+var xxx_messageInfo_ReadCloudProviderRequest proto.InternalMessageInfo
 
-func (m *ReadVaultRequest) GetId() *resource.Identifier {
+func (m *ReadCloudProviderRequest) GetId() *resource.Identifier {
 	if m != nil {
 		return m.Id
 	}
 	return nil
 }
 
-func (m *ReadVaultRequest) GetFields() *query.FieldSelection {
+func (m *ReadCloudProviderRequest) GetFields() *query.FieldSelection {
 	if m != nil {
 		return m.Fields
 	}
 	return nil
 }
 
-type ReadVaultResponse struct {
-	Result               *Vault   `protobuf:"bytes,1,opt,name=result,proto3" json:"result,omitempty"`
-	XXX_NoUnkeyedLiteral struct{} `json:"-"`
-	XXX_unrecognized     []byte   `json:"-"`
-	XXX_sizecache        int32    `json:"-"`
+type ReadCloudProviderResponse struct {
+	Result               *CloudProvider `protobuf:"bytes,1,opt,name=result,proto3" json:"result,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}       `json:"-"`
+	XXX_unrecognized     []byte         `json:"-"`
+	XXX_sizecache        int32          `json:"-"`
 }
 
-func (m *ReadVaultResponse) Reset()         { *m = ReadVaultResponse{} }
-func (m *ReadVaultResponse) String() string { return proto.CompactTextString(m) }
-func (*ReadVaultResponse) ProtoMessage()    {}
-func (*ReadVaultResponse) Descriptor() ([]byte, []int) {
+func (m *ReadCloudProviderResponse) Reset()         { *m = ReadCloudProviderResponse{} }
+func (m *ReadCloudProviderResponse) String() string { return proto.CompactTextString(m) }
+func (*ReadCloudProviderResponse) ProtoMessage()    {}
+func (*ReadCloudProviderResponse) Descriptor() ([]byte, []int) {
 	return fileDescriptor_b7c4efe410d87592, []int{5}
 }
 
-func (m *ReadVaultResponse) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_ReadVaultResponse.Unmarshal(m, b)
+func (m *ReadCloudProviderResponse) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_ReadCloudProviderResponse.Unmarshal(m, b)
 }
-func (m *ReadVaultResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_ReadVaultResponse.Marshal(b, m, deterministic)
+func (m *ReadCloudProviderResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_ReadCloudProviderResponse.Marshal(b, m, deterministic)
 }
-func (m *ReadVaultResponse) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_ReadVaultResponse.Merge(m, src)
+func (m *ReadCloudProviderResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_ReadCloudProviderResponse.Merge(m, src)
 }
-func (m *ReadVaultResponse) XXX_Size() int {
-	return xxx_messageInfo_ReadVaultResponse.Size(m)
+func (m *ReadCloudProviderResponse) XXX_Size() int {
+	return xxx_messageInfo_ReadCloudProviderResponse.Size(m)
 }
-func (m *ReadVaultResponse) XXX_DiscardUnknown() {
-	xxx_messageInfo_ReadVaultResponse.DiscardUnknown(m)
+func (m *ReadCloudProviderResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_ReadCloudProviderResponse.DiscardUnknown(m)
 }
 
-var xxx_messageInfo_ReadVaultResponse proto.InternalMessageInfo
+var xxx_messageInfo_ReadCloudProviderResponse proto.InternalMessageInfo
 
-func (m *ReadVaultResponse) GetResult() *Vault {
+func (m *ReadCloudProviderResponse) GetResult() *CloudProvider {
 	if m != nil {
 		return m.Result
 	}
 	return nil
 }
 
-type UpdateVaultRequest struct {
-	Payload              *Vault                `protobuf:"bytes,1,opt,name=payload,proto3" json:"payload,omitempty"`
+type UpdateCloudProviderRequest struct {
+	Payload              *CloudProvider        `protobuf:"bytes,1,opt,name=payload,proto3" json:"payload,omitempty"`
 	Fields               *field_mask.FieldMask `protobuf:"bytes,2,opt,name=fields,proto3" json:"fields,omitempty"`
 	XXX_NoUnkeyedLiteral struct{}              `json:"-"`
 	XXX_unrecognized     []byte                `json:"-"`
 	XXX_sizecache        int32                 `json:"-"`
 }
 
-func (m *UpdateVaultRequest) Reset()         { *m = UpdateVaultRequest{} }
-func (m *UpdateVaultRequest) String() string { return proto.CompactTextString(m) }
-func (*UpdateVaultRequest) ProtoMessage()    {}
-func (*UpdateVaultRequest) Descriptor() ([]byte, []int) {
+func (m *UpdateCloudProviderRequest) Reset()         { *m = UpdateCloudProviderRequest{} }
+func (m *UpdateCloudProviderRequest) String() string { return proto.CompactTextString(m) }
+func (*UpdateCloudProviderRequest) ProtoMessage()    {}
+func (*UpdateCloudProviderRequest) Descriptor() ([]byte, []int) {
 	return fileDescriptor_b7c4efe410d87592, []int{6}
 }
 
-func (m *UpdateVaultRequest) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_UpdateVaultRequest.Unmarshal(m, b)
+func (m *UpdateCloudProviderRequest) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_UpdateCloudProviderRequest.Unmarshal(m, b)
 }
-func (m *UpdateVaultRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_UpdateVaultRequest.Marshal(b, m, deterministic)
+func (m *UpdateCloudProviderRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_UpdateCloudProviderRequest.Marshal(b, m, deterministic)
 }
-func (m *UpdateVaultRequest) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_UpdateVaultRequest.Merge(m, src)
+func (m *UpdateCloudProviderRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_UpdateCloudProviderRequest.Merge(m, src)
 }
-func (m *UpdateVaultRequest) XXX_Size() int {
-	return xxx_messageInfo_UpdateVaultRequest.Size(m)
+func (m *UpdateCloudProviderRequest) XXX_Size() int {
+	return xxx_messageInfo_UpdateCloudProviderRequest.Size(m)
 }
-func (m *UpdateVaultRequest) XXX_DiscardUnknown() {
-	xxx_messageInfo_UpdateVaultRequest.DiscardUnknown(m)
+func (m *UpdateCloudProviderRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_UpdateCloudProviderRequest.DiscardUnknown(m)
 }
 
-var xxx_messageInfo_UpdateVaultRequest proto.InternalMessageInfo
+var xxx_messageInfo_UpdateCloudProviderRequest proto.InternalMessageInfo
 
-func (m *UpdateVaultRequest) GetPayload() *Vault {
+func (m *UpdateCloudProviderRequest) GetPayload() *CloudProvider {
 	if m != nil {
 		return m.Payload
 	}
 	return nil
 }
 
-func (m *UpdateVaultRequest) GetFields() *field_mask.FieldMask {
+func (m *UpdateCloudProviderRequest) GetFields() *field_mask.FieldMask {
 	if m != nil {
 		return m.Fields
 	}
 	return nil
 }
 
-type UpdateVaultResponse struct {
-	Result               *Vault   `protobuf:"bytes,1,opt,name=result,proto3" json:"result,omitempty"`
-	XXX_NoUnkeyedLiteral struct{} `json:"-"`
-	XXX_unrecognized     []byte   `json:"-"`
-	XXX_sizecache        int32    `json:"-"`
+type UpdateCloudProviderResponse struct {
+	Result               *CloudProvider `protobuf:"bytes,1,opt,name=result,proto3" json:"result,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}       `json:"-"`
+	XXX_unrecognized     []byte         `json:"-"`
+	XXX_sizecache        int32          `json:"-"`
 }
 
-func (m *UpdateVaultResponse) Reset()         { *m = UpdateVaultResponse{} }
-func (m *UpdateVaultResponse) String() string { return proto.CompactTextString(m) }
-func (*UpdateVaultResponse) ProtoMessage()    {}
-func (*UpdateVaultResponse) Descriptor() ([]byte, []int) {
+func (m *UpdateCloudProviderResponse) Reset()         { *m = UpdateCloudProviderResponse{} }
+func (m *UpdateCloudProviderResponse) String() string { return proto.CompactTextString(m) }
+func (*UpdateCloudProviderResponse) ProtoMessage()    {}
+func (*UpdateCloudProviderResponse) Descriptor() ([]byte, []int) {
 	return fileDescriptor_b7c4efe410d87592, []int{7}
 }
 
-func (m *UpdateVaultResponse) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_UpdateVaultResponse.Unmarshal(m, b)
+func (m *UpdateCloudProviderResponse) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_UpdateCloudProviderResponse.Unmarshal(m, b)
 }
-func (m *UpdateVaultResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_UpdateVaultResponse.Marshal(b, m, deterministic)
+func (m *UpdateCloudProviderResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_UpdateCloudProviderResponse.Marshal(b, m, deterministic)
 }
-func (m *UpdateVaultResponse) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_UpdateVaultResponse.Merge(m, src)
+func (m *UpdateCloudProviderResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_UpdateCloudProviderResponse.Merge(m, src)
 }
-func (m *UpdateVaultResponse) XXX_Size() int {
-	return xxx_messageInfo_UpdateVaultResponse.Size(m)
+func (m *UpdateCloudProviderResponse) XXX_Size() int {
+	return xxx_messageInfo_UpdateCloudProviderResponse.Size(m)
 }
-func (m *UpdateVaultResponse) XXX_DiscardUnknown() {
-	xxx_messageInfo_UpdateVaultResponse.DiscardUnknown(m)
+func (m *UpdateCloudProviderResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_UpdateCloudProviderResponse.DiscardUnknown(m)
 }
 
-var xxx_messageInfo_UpdateVaultResponse proto.InternalMessageInfo
+var xxx_messageInfo_UpdateCloudProviderResponse proto.InternalMessageInfo
 
-func (m *UpdateVaultResponse) GetResult() *Vault {
+func (m *UpdateCloudProviderResponse) GetResult() *CloudProvider {
 	if m != nil {
 		return m.Result
 	}
 	return nil
 }
 
-type DeleteVaultRequest struct {
+type DeleteCloudProviderRequest struct {
 	Id                   *resource.Identifier `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
 	XXX_NoUnkeyedLiteral struct{}             `json:"-"`
 	XXX_unrecognized     []byte               `json:"-"`
 	XXX_sizecache        int32                `json:"-"`
 }
 
-func (m *DeleteVaultRequest) Reset()         { *m = DeleteVaultRequest{} }
-func (m *DeleteVaultRequest) String() string { return proto.CompactTextString(m) }
-func (*DeleteVaultRequest) ProtoMessage()    {}
-func (*DeleteVaultRequest) Descriptor() ([]byte, []int) {
+func (m *DeleteCloudProviderRequest) Reset()         { *m = DeleteCloudProviderRequest{} }
+func (m *DeleteCloudProviderRequest) String() string { return proto.CompactTextString(m) }
+func (*DeleteCloudProviderRequest) ProtoMessage()    {}
+func (*DeleteCloudProviderRequest) Descriptor() ([]byte, []int) {
 	return fileDescriptor_b7c4efe410d87592, []int{8}
 }
 
-func (m *DeleteVaultRequest) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_DeleteVaultRequest.Unmarshal(m, b)
+func (m *DeleteCloudProviderRequest) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_DeleteCloudProviderRequest.Unmarshal(m, b)
 }
-func (m *DeleteVaultRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_DeleteVaultRequest.Marshal(b, m, deterministic)
+func (m *DeleteCloudProviderRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_DeleteCloudProviderRequest.Marshal(b, m, deterministic)
 }
-func (m *DeleteVaultRequest) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_DeleteVaultRequest.Merge(m, src)
+func (m *DeleteCloudProviderRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_DeleteCloudProviderRequest.Merge(m, src)
 }
-func (m *DeleteVaultRequest) XXX_Size() int {
-	return xxx_messageInfo_DeleteVaultRequest.Size(m)
+func (m *DeleteCloudProviderRequest) XXX_Size() int {
+	return xxx_messageInfo_DeleteCloudProviderRequest.Size(m)
 }
-func (m *DeleteVaultRequest) XXX_DiscardUnknown() {
-	xxx_messageInfo_DeleteVaultRequest.DiscardUnknown(m)
+func (m *DeleteCloudProviderRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_DeleteCloudProviderRequest.DiscardUnknown(m)
 }
 
-var xxx_messageInfo_DeleteVaultRequest proto.InternalMessageInfo
+var xxx_messageInfo_DeleteCloudProviderRequest proto.InternalMessageInfo
 
-func (m *DeleteVaultRequest) GetId() *resource.Identifier {
+func (m *DeleteCloudProviderRequest) GetId() *resource.Identifier {
 	if m != nil {
 		return m.Id
 	}
 	return nil
 }
 
-type DeleteVaultResponse struct {
+type DeleteCloudProviderResponse struct {
 	XXX_NoUnkeyedLiteral struct{} `json:"-"`
 	XXX_unrecognized     []byte   `json:"-"`
 	XXX_sizecache        int32    `json:"-"`
 }
 
-func (m *DeleteVaultResponse) Reset()         { *m = DeleteVaultResponse{} }
-func (m *DeleteVaultResponse) String() string { return proto.CompactTextString(m) }
-func (*DeleteVaultResponse) ProtoMessage()    {}
-func (*DeleteVaultResponse) Descriptor() ([]byte, []int) {
+func (m *DeleteCloudProviderResponse) Reset()         { *m = DeleteCloudProviderResponse{} }
+func (m *DeleteCloudProviderResponse) String() string { return proto.CompactTextString(m) }
+func (*DeleteCloudProviderResponse) ProtoMessage()    {}
+func (*DeleteCloudProviderResponse) Descriptor() ([]byte, []int) {
 	return fileDescriptor_b7c4efe410d87592, []int{9}
 }
 
-func (m *DeleteVaultResponse) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_DeleteVaultResponse.Unmarshal(m, b)
+func (m *DeleteCloudProviderResponse) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_DeleteCloudProviderResponse.Unmarshal(m, b)
 }
-func (m *DeleteVaultResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_DeleteVaultResponse.Marshal(b, m, deterministic)
+func (m *DeleteCloudProviderResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_DeleteCloudProviderResponse.Marshal(b, m, deterministic)
 }
-func (m *DeleteVaultResponse) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_DeleteVaultResponse.Merge(m, src)
+func (m *DeleteCloudProviderResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_DeleteCloudProviderResponse.Merge(m, src)
 }
-func (m *DeleteVaultResponse) XXX_Size() int {
-	return xxx_messageInfo_DeleteVaultResponse.Size(m)
+func (m *DeleteCloudProviderResponse) XXX_Size() int {
+	return xxx_messageInfo_DeleteCloudProviderResponse.Size(m)
 }
-func (m *DeleteVaultResponse) XXX_DiscardUnknown() {
-	xxx_messageInfo_DeleteVaultResponse.DiscardUnknown(m)
+func (m *DeleteCloudProviderResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_DeleteCloudProviderResponse.DiscardUnknown(m)
 }
 
-var xxx_messageInfo_DeleteVaultResponse proto.InternalMessageInfo
+var xxx_messageInfo_DeleteCloudProviderResponse proto.InternalMessageInfo
 
-type ListVaultRequest struct {
+type ListCloudProviderRequest struct {
 	Filter               *query.Filtering      `protobuf:"bytes,1,opt,name=filter,proto3" json:"filter,omitempty"`
 	OrderBy              *query.Sorting        `protobuf:"bytes,2,opt,name=order_by,json=orderBy,proto3" json:"order_by,omitempty"`
 	Fields               *query.FieldSelection `protobuf:"bytes,3,opt,name=fields,proto3" json:"fields,omitempty"`
@@ -558,264 +567,282 @@ type ListVaultRequest struct {
 	XXX_sizecache        int32                 `json:"-"`
 }
 
-func (m *ListVaultRequest) Reset()         { *m = ListVaultRequest{} }
-func (m *ListVaultRequest) String() string { return proto.CompactTextString(m) }
-func (*ListVaultRequest) ProtoMessage()    {}
-func (*ListVaultRequest) Descriptor() ([]byte, []int) {
+func (m *ListCloudProviderRequest) Reset()         { *m = ListCloudProviderRequest{} }
+func (m *ListCloudProviderRequest) String() string { return proto.CompactTextString(m) }
+func (*ListCloudProviderRequest) ProtoMessage()    {}
+func (*ListCloudProviderRequest) Descriptor() ([]byte, []int) {
 	return fileDescriptor_b7c4efe410d87592, []int{10}
 }
 
-func (m *ListVaultRequest) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_ListVaultRequest.Unmarshal(m, b)
+func (m *ListCloudProviderRequest) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_ListCloudProviderRequest.Unmarshal(m, b)
 }
-func (m *ListVaultRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_ListVaultRequest.Marshal(b, m, deterministic)
+func (m *ListCloudProviderRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_ListCloudProviderRequest.Marshal(b, m, deterministic)
 }
-func (m *ListVaultRequest) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_ListVaultRequest.Merge(m, src)
+func (m *ListCloudProviderRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_ListCloudProviderRequest.Merge(m, src)
 }
-func (m *ListVaultRequest) XXX_Size() int {
-	return xxx_messageInfo_ListVaultRequest.Size(m)
+func (m *ListCloudProviderRequest) XXX_Size() int {
+	return xxx_messageInfo_ListCloudProviderRequest.Size(m)
 }
-func (m *ListVaultRequest) XXX_DiscardUnknown() {
-	xxx_messageInfo_ListVaultRequest.DiscardUnknown(m)
+func (m *ListCloudProviderRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_ListCloudProviderRequest.DiscardUnknown(m)
 }
 
-var xxx_messageInfo_ListVaultRequest proto.InternalMessageInfo
+var xxx_messageInfo_ListCloudProviderRequest proto.InternalMessageInfo
 
-func (m *ListVaultRequest) GetFilter() *query.Filtering {
+func (m *ListCloudProviderRequest) GetFilter() *query.Filtering {
 	if m != nil {
 		return m.Filter
 	}
 	return nil
 }
 
-func (m *ListVaultRequest) GetOrderBy() *query.Sorting {
+func (m *ListCloudProviderRequest) GetOrderBy() *query.Sorting {
 	if m != nil {
 		return m.OrderBy
 	}
 	return nil
 }
 
-func (m *ListVaultRequest) GetFields() *query.FieldSelection {
+func (m *ListCloudProviderRequest) GetFields() *query.FieldSelection {
 	if m != nil {
 		return m.Fields
 	}
 	return nil
 }
 
-func (m *ListVaultRequest) GetPaging() *query.Pagination {
+func (m *ListCloudProviderRequest) GetPaging() *query.Pagination {
 	if m != nil {
 		return m.Paging
 	}
 	return nil
 }
 
-type ListVaultsResponse struct {
-	Results              []*Vault        `protobuf:"bytes,1,rep,name=results,proto3" json:"results,omitempty"`
-	Page                 *query.PageInfo `protobuf:"bytes,2,opt,name=page,proto3" json:"page,omitempty"`
-	XXX_NoUnkeyedLiteral struct{}        `json:"-"`
-	XXX_unrecognized     []byte          `json:"-"`
-	XXX_sizecache        int32           `json:"-"`
+type ListCloudProvidersResponse struct {
+	Results              []*CloudProvider `protobuf:"bytes,1,rep,name=results,proto3" json:"results,omitempty"`
+	Page                 *query.PageInfo  `protobuf:"bytes,2,opt,name=page,proto3" json:"page,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}         `json:"-"`
+	XXX_unrecognized     []byte           `json:"-"`
+	XXX_sizecache        int32            `json:"-"`
 }
 
-func (m *ListVaultsResponse) Reset()         { *m = ListVaultsResponse{} }
-func (m *ListVaultsResponse) String() string { return proto.CompactTextString(m) }
-func (*ListVaultsResponse) ProtoMessage()    {}
-func (*ListVaultsResponse) Descriptor() ([]byte, []int) {
+func (m *ListCloudProvidersResponse) Reset()         { *m = ListCloudProvidersResponse{} }
+func (m *ListCloudProvidersResponse) String() string { return proto.CompactTextString(m) }
+func (*ListCloudProvidersResponse) ProtoMessage()    {}
+func (*ListCloudProvidersResponse) Descriptor() ([]byte, []int) {
 	return fileDescriptor_b7c4efe410d87592, []int{11}
 }
 
-func (m *ListVaultsResponse) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_ListVaultsResponse.Unmarshal(m, b)
+func (m *ListCloudProvidersResponse) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_ListCloudProvidersResponse.Unmarshal(m, b)
 }
-func (m *ListVaultsResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_ListVaultsResponse.Marshal(b, m, deterministic)
+func (m *ListCloudProvidersResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_ListCloudProvidersResponse.Marshal(b, m, deterministic)
 }
-func (m *ListVaultsResponse) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_ListVaultsResponse.Merge(m, src)
+func (m *ListCloudProvidersResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_ListCloudProvidersResponse.Merge(m, src)
 }
-func (m *ListVaultsResponse) XXX_Size() int {
-	return xxx_messageInfo_ListVaultsResponse.Size(m)
+func (m *ListCloudProvidersResponse) XXX_Size() int {
+	return xxx_messageInfo_ListCloudProvidersResponse.Size(m)
 }
-func (m *ListVaultsResponse) XXX_DiscardUnknown() {
-	xxx_messageInfo_ListVaultsResponse.DiscardUnknown(m)
+func (m *ListCloudProvidersResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_ListCloudProvidersResponse.DiscardUnknown(m)
 }
 
-var xxx_messageInfo_ListVaultsResponse proto.InternalMessageInfo
+var xxx_messageInfo_ListCloudProvidersResponse proto.InternalMessageInfo
 
-func (m *ListVaultsResponse) GetResults() []*Vault {
+func (m *ListCloudProvidersResponse) GetResults() []*CloudProvider {
 	if m != nil {
 		return m.Results
 	}
 	return nil
 }
 
-func (m *ListVaultsResponse) GetPage() *query.PageInfo {
+func (m *ListCloudProvidersResponse) GetPage() *query.PageInfo {
 	if m != nil {
 		return m.Page
 	}
 	return nil
 }
 
-// ------------------------------------------------------
-// VersionTag represents a tag on git repo
-// ------------------------------------------------------
-type VersionTag struct {
-	// The version_tag identifier.
+// --------------------------------------------------------------------
+// Region represents a particular Geo for Cloud Provier e.g. us-east-1
+// --------------------------------------------------------------------
+type Region struct {
+	// The Region identifier.
 	Id *resource.Identifier `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
-	// The name of the container
+	// The name of the Region
 	Name string `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
-	// The description of the container
+	// The description of the Region
 	Description string `protobuf:"bytes,3,opt,name=description,proto3" json:"description,omitempty"`
-	// The version based on SemVer (e.g. 0.0.4)
-	Version string `protobuf:"bytes,4,opt,name=version,proto3" json:"version,omitempty"`
-	// The list of Artifacts that are versioned by this tag
-	Artifacts            []*Artifact `protobuf:"bytes,5,rep,name=artifacts,proto3" json:"artifacts,omitempty"`
-	XXX_NoUnkeyedLiteral struct{}    `json:"-"`
-	XXX_unrecognized     []byte      `json:"-"`
-	XXX_sizecache        int32       `json:"-"`
+	// Stages supported by this Region
+	Stages []*Stage `protobuf:"bytes,4,rep,name=stages,proto3" json:"stages,omitempty"`
+	// Value for this Region
+	Value *Value `protobuf:"bytes,5,opt,name=value,proto3" json:"value,omitempty"`
+	// AwsServices allocated for this Region
+	AwsServices []*AwsService `protobuf:"bytes,6,rep,name=aws_services,json=awsServices,proto3" json:"aws_services,omitempty"`
+	// Reference to Cloud Provider
+	CloudProviderId      *resource.Identifier `protobuf:"bytes,7,opt,name=cloud_provider_id,json=cloudProviderId,proto3" json:"cloud_provider_id,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}             `json:"-"`
+	XXX_unrecognized     []byte               `json:"-"`
+	XXX_sizecache        int32                `json:"-"`
 }
 
-func (m *VersionTag) Reset()         { *m = VersionTag{} }
-func (m *VersionTag) String() string { return proto.CompactTextString(m) }
-func (*VersionTag) ProtoMessage()    {}
-func (*VersionTag) Descriptor() ([]byte, []int) {
+func (m *Region) Reset()         { *m = Region{} }
+func (m *Region) String() string { return proto.CompactTextString(m) }
+func (*Region) ProtoMessage()    {}
+func (*Region) Descriptor() ([]byte, []int) {
 	return fileDescriptor_b7c4efe410d87592, []int{12}
 }
 
-func (m *VersionTag) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_VersionTag.Unmarshal(m, b)
+func (m *Region) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_Region.Unmarshal(m, b)
 }
-func (m *VersionTag) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_VersionTag.Marshal(b, m, deterministic)
+func (m *Region) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_Region.Marshal(b, m, deterministic)
 }
-func (m *VersionTag) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_VersionTag.Merge(m, src)
+func (m *Region) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_Region.Merge(m, src)
 }
-func (m *VersionTag) XXX_Size() int {
-	return xxx_messageInfo_VersionTag.Size(m)
+func (m *Region) XXX_Size() int {
+	return xxx_messageInfo_Region.Size(m)
 }
-func (m *VersionTag) XXX_DiscardUnknown() {
-	xxx_messageInfo_VersionTag.DiscardUnknown(m)
+func (m *Region) XXX_DiscardUnknown() {
+	xxx_messageInfo_Region.DiscardUnknown(m)
 }
 
-var xxx_messageInfo_VersionTag proto.InternalMessageInfo
+var xxx_messageInfo_Region proto.InternalMessageInfo
 
-func (m *VersionTag) GetId() *resource.Identifier {
+func (m *Region) GetId() *resource.Identifier {
 	if m != nil {
 		return m.Id
 	}
 	return nil
 }
 
-func (m *VersionTag) GetName() string {
+func (m *Region) GetName() string {
 	if m != nil {
 		return m.Name
 	}
 	return ""
 }
 
-func (m *VersionTag) GetDescription() string {
+func (m *Region) GetDescription() string {
 	if m != nil {
 		return m.Description
 	}
 	return ""
 }
 
-func (m *VersionTag) GetVersion() string {
+func (m *Region) GetStages() []*Stage {
 	if m != nil {
-		return m.Version
-	}
-	return ""
-}
-
-func (m *VersionTag) GetArtifacts() []*Artifact {
-	if m != nil {
-		return m.Artifacts
+		return m.Stages
 	}
 	return nil
 }
 
-type CreateVersionTagRequest struct {
-	Payload              *VersionTag `protobuf:"bytes,1,opt,name=payload,proto3" json:"payload,omitempty"`
-	XXX_NoUnkeyedLiteral struct{}    `json:"-"`
-	XXX_unrecognized     []byte      `json:"-"`
-	XXX_sizecache        int32       `json:"-"`
+func (m *Region) GetValue() *Value {
+	if m != nil {
+		return m.Value
+	}
+	return nil
 }
 
-func (m *CreateVersionTagRequest) Reset()         { *m = CreateVersionTagRequest{} }
-func (m *CreateVersionTagRequest) String() string { return proto.CompactTextString(m) }
-func (*CreateVersionTagRequest) ProtoMessage()    {}
-func (*CreateVersionTagRequest) Descriptor() ([]byte, []int) {
+func (m *Region) GetAwsServices() []*AwsService {
+	if m != nil {
+		return m.AwsServices
+	}
+	return nil
+}
+
+func (m *Region) GetCloudProviderId() *resource.Identifier {
+	if m != nil {
+		return m.CloudProviderId
+	}
+	return nil
+}
+
+type CreateRegionRequest struct {
+	Payload              *Region  `protobuf:"bytes,1,opt,name=payload,proto3" json:"payload,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *CreateRegionRequest) Reset()         { *m = CreateRegionRequest{} }
+func (m *CreateRegionRequest) String() string { return proto.CompactTextString(m) }
+func (*CreateRegionRequest) ProtoMessage()    {}
+func (*CreateRegionRequest) Descriptor() ([]byte, []int) {
 	return fileDescriptor_b7c4efe410d87592, []int{13}
 }
 
-func (m *CreateVersionTagRequest) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_CreateVersionTagRequest.Unmarshal(m, b)
+func (m *CreateRegionRequest) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_CreateRegionRequest.Unmarshal(m, b)
 }
-func (m *CreateVersionTagRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_CreateVersionTagRequest.Marshal(b, m, deterministic)
+func (m *CreateRegionRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_CreateRegionRequest.Marshal(b, m, deterministic)
 }
-func (m *CreateVersionTagRequest) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_CreateVersionTagRequest.Merge(m, src)
+func (m *CreateRegionRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_CreateRegionRequest.Merge(m, src)
 }
-func (m *CreateVersionTagRequest) XXX_Size() int {
-	return xxx_messageInfo_CreateVersionTagRequest.Size(m)
+func (m *CreateRegionRequest) XXX_Size() int {
+	return xxx_messageInfo_CreateRegionRequest.Size(m)
 }
-func (m *CreateVersionTagRequest) XXX_DiscardUnknown() {
-	xxx_messageInfo_CreateVersionTagRequest.DiscardUnknown(m)
+func (m *CreateRegionRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_CreateRegionRequest.DiscardUnknown(m)
 }
 
-var xxx_messageInfo_CreateVersionTagRequest proto.InternalMessageInfo
+var xxx_messageInfo_CreateRegionRequest proto.InternalMessageInfo
 
-func (m *CreateVersionTagRequest) GetPayload() *VersionTag {
+func (m *CreateRegionRequest) GetPayload() *Region {
 	if m != nil {
 		return m.Payload
 	}
 	return nil
 }
 
-type CreateVersionTagResponse struct {
-	Result               *VersionTag `protobuf:"bytes,1,opt,name=result,proto3" json:"result,omitempty"`
-	XXX_NoUnkeyedLiteral struct{}    `json:"-"`
-	XXX_unrecognized     []byte      `json:"-"`
-	XXX_sizecache        int32       `json:"-"`
+type CreateRegionResponse struct {
+	Result               *Region  `protobuf:"bytes,1,opt,name=result,proto3" json:"result,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
 }
 
-func (m *CreateVersionTagResponse) Reset()         { *m = CreateVersionTagResponse{} }
-func (m *CreateVersionTagResponse) String() string { return proto.CompactTextString(m) }
-func (*CreateVersionTagResponse) ProtoMessage()    {}
-func (*CreateVersionTagResponse) Descriptor() ([]byte, []int) {
+func (m *CreateRegionResponse) Reset()         { *m = CreateRegionResponse{} }
+func (m *CreateRegionResponse) String() string { return proto.CompactTextString(m) }
+func (*CreateRegionResponse) ProtoMessage()    {}
+func (*CreateRegionResponse) Descriptor() ([]byte, []int) {
 	return fileDescriptor_b7c4efe410d87592, []int{14}
 }
 
-func (m *CreateVersionTagResponse) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_CreateVersionTagResponse.Unmarshal(m, b)
+func (m *CreateRegionResponse) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_CreateRegionResponse.Unmarshal(m, b)
 }
-func (m *CreateVersionTagResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_CreateVersionTagResponse.Marshal(b, m, deterministic)
+func (m *CreateRegionResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_CreateRegionResponse.Marshal(b, m, deterministic)
 }
-func (m *CreateVersionTagResponse) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_CreateVersionTagResponse.Merge(m, src)
+func (m *CreateRegionResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_CreateRegionResponse.Merge(m, src)
 }
-func (m *CreateVersionTagResponse) XXX_Size() int {
-	return xxx_messageInfo_CreateVersionTagResponse.Size(m)
+func (m *CreateRegionResponse) XXX_Size() int {
+	return xxx_messageInfo_CreateRegionResponse.Size(m)
 }
-func (m *CreateVersionTagResponse) XXX_DiscardUnknown() {
-	xxx_messageInfo_CreateVersionTagResponse.DiscardUnknown(m)
+func (m *CreateRegionResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_CreateRegionResponse.DiscardUnknown(m)
 }
 
-var xxx_messageInfo_CreateVersionTagResponse proto.InternalMessageInfo
+var xxx_messageInfo_CreateRegionResponse proto.InternalMessageInfo
 
-func (m *CreateVersionTagResponse) GetResult() *VersionTag {
+func (m *CreateRegionResponse) GetResult() *Region {
 	if m != nil {
 		return m.Result
 	}
 	return nil
 }
 
-type ReadVersionTagRequest struct {
+type ReadRegionRequest struct {
 	Id                   *resource.Identifier  `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
 	Fields               *query.FieldSelection `protobuf:"bytes,2,opt,name=fields,proto3" json:"fields,omitempty"`
 	XXX_NoUnkeyedLiteral struct{}              `json:"-"`
@@ -823,241 +850,241 @@ type ReadVersionTagRequest struct {
 	XXX_sizecache        int32                 `json:"-"`
 }
 
-func (m *ReadVersionTagRequest) Reset()         { *m = ReadVersionTagRequest{} }
-func (m *ReadVersionTagRequest) String() string { return proto.CompactTextString(m) }
-func (*ReadVersionTagRequest) ProtoMessage()    {}
-func (*ReadVersionTagRequest) Descriptor() ([]byte, []int) {
+func (m *ReadRegionRequest) Reset()         { *m = ReadRegionRequest{} }
+func (m *ReadRegionRequest) String() string { return proto.CompactTextString(m) }
+func (*ReadRegionRequest) ProtoMessage()    {}
+func (*ReadRegionRequest) Descriptor() ([]byte, []int) {
 	return fileDescriptor_b7c4efe410d87592, []int{15}
 }
 
-func (m *ReadVersionTagRequest) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_ReadVersionTagRequest.Unmarshal(m, b)
+func (m *ReadRegionRequest) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_ReadRegionRequest.Unmarshal(m, b)
 }
-func (m *ReadVersionTagRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_ReadVersionTagRequest.Marshal(b, m, deterministic)
+func (m *ReadRegionRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_ReadRegionRequest.Marshal(b, m, deterministic)
 }
-func (m *ReadVersionTagRequest) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_ReadVersionTagRequest.Merge(m, src)
+func (m *ReadRegionRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_ReadRegionRequest.Merge(m, src)
 }
-func (m *ReadVersionTagRequest) XXX_Size() int {
-	return xxx_messageInfo_ReadVersionTagRequest.Size(m)
+func (m *ReadRegionRequest) XXX_Size() int {
+	return xxx_messageInfo_ReadRegionRequest.Size(m)
 }
-func (m *ReadVersionTagRequest) XXX_DiscardUnknown() {
-	xxx_messageInfo_ReadVersionTagRequest.DiscardUnknown(m)
+func (m *ReadRegionRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_ReadRegionRequest.DiscardUnknown(m)
 }
 
-var xxx_messageInfo_ReadVersionTagRequest proto.InternalMessageInfo
+var xxx_messageInfo_ReadRegionRequest proto.InternalMessageInfo
 
-func (m *ReadVersionTagRequest) GetId() *resource.Identifier {
+func (m *ReadRegionRequest) GetId() *resource.Identifier {
 	if m != nil {
 		return m.Id
 	}
 	return nil
 }
 
-func (m *ReadVersionTagRequest) GetFields() *query.FieldSelection {
+func (m *ReadRegionRequest) GetFields() *query.FieldSelection {
 	if m != nil {
 		return m.Fields
 	}
 	return nil
 }
 
-type ReadVersionTagResponse struct {
-	Result               *VersionTag `protobuf:"bytes,1,opt,name=result,proto3" json:"result,omitempty"`
-	XXX_NoUnkeyedLiteral struct{}    `json:"-"`
-	XXX_unrecognized     []byte      `json:"-"`
-	XXX_sizecache        int32       `json:"-"`
+type ReadRegionResponse struct {
+	Result               *Region  `protobuf:"bytes,1,opt,name=result,proto3" json:"result,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
 }
 
-func (m *ReadVersionTagResponse) Reset()         { *m = ReadVersionTagResponse{} }
-func (m *ReadVersionTagResponse) String() string { return proto.CompactTextString(m) }
-func (*ReadVersionTagResponse) ProtoMessage()    {}
-func (*ReadVersionTagResponse) Descriptor() ([]byte, []int) {
+func (m *ReadRegionResponse) Reset()         { *m = ReadRegionResponse{} }
+func (m *ReadRegionResponse) String() string { return proto.CompactTextString(m) }
+func (*ReadRegionResponse) ProtoMessage()    {}
+func (*ReadRegionResponse) Descriptor() ([]byte, []int) {
 	return fileDescriptor_b7c4efe410d87592, []int{16}
 }
 
-func (m *ReadVersionTagResponse) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_ReadVersionTagResponse.Unmarshal(m, b)
+func (m *ReadRegionResponse) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_ReadRegionResponse.Unmarshal(m, b)
 }
-func (m *ReadVersionTagResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_ReadVersionTagResponse.Marshal(b, m, deterministic)
+func (m *ReadRegionResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_ReadRegionResponse.Marshal(b, m, deterministic)
 }
-func (m *ReadVersionTagResponse) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_ReadVersionTagResponse.Merge(m, src)
+func (m *ReadRegionResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_ReadRegionResponse.Merge(m, src)
 }
-func (m *ReadVersionTagResponse) XXX_Size() int {
-	return xxx_messageInfo_ReadVersionTagResponse.Size(m)
+func (m *ReadRegionResponse) XXX_Size() int {
+	return xxx_messageInfo_ReadRegionResponse.Size(m)
 }
-func (m *ReadVersionTagResponse) XXX_DiscardUnknown() {
-	xxx_messageInfo_ReadVersionTagResponse.DiscardUnknown(m)
+func (m *ReadRegionResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_ReadRegionResponse.DiscardUnknown(m)
 }
 
-var xxx_messageInfo_ReadVersionTagResponse proto.InternalMessageInfo
+var xxx_messageInfo_ReadRegionResponse proto.InternalMessageInfo
 
-func (m *ReadVersionTagResponse) GetResult() *VersionTag {
+func (m *ReadRegionResponse) GetResult() *Region {
 	if m != nil {
 		return m.Result
 	}
 	return nil
 }
 
-type UpdateVersionTagRequest struct {
-	Payload              *VersionTag           `protobuf:"bytes,1,opt,name=payload,proto3" json:"payload,omitempty"`
+type UpdateRegionRequest struct {
+	Payload              *Region               `protobuf:"bytes,1,opt,name=payload,proto3" json:"payload,omitempty"`
 	Fields               *field_mask.FieldMask `protobuf:"bytes,2,opt,name=fields,proto3" json:"fields,omitempty"`
 	XXX_NoUnkeyedLiteral struct{}              `json:"-"`
 	XXX_unrecognized     []byte                `json:"-"`
 	XXX_sizecache        int32                 `json:"-"`
 }
 
-func (m *UpdateVersionTagRequest) Reset()         { *m = UpdateVersionTagRequest{} }
-func (m *UpdateVersionTagRequest) String() string { return proto.CompactTextString(m) }
-func (*UpdateVersionTagRequest) ProtoMessage()    {}
-func (*UpdateVersionTagRequest) Descriptor() ([]byte, []int) {
+func (m *UpdateRegionRequest) Reset()         { *m = UpdateRegionRequest{} }
+func (m *UpdateRegionRequest) String() string { return proto.CompactTextString(m) }
+func (*UpdateRegionRequest) ProtoMessage()    {}
+func (*UpdateRegionRequest) Descriptor() ([]byte, []int) {
 	return fileDescriptor_b7c4efe410d87592, []int{17}
 }
 
-func (m *UpdateVersionTagRequest) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_UpdateVersionTagRequest.Unmarshal(m, b)
+func (m *UpdateRegionRequest) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_UpdateRegionRequest.Unmarshal(m, b)
 }
-func (m *UpdateVersionTagRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_UpdateVersionTagRequest.Marshal(b, m, deterministic)
+func (m *UpdateRegionRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_UpdateRegionRequest.Marshal(b, m, deterministic)
 }
-func (m *UpdateVersionTagRequest) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_UpdateVersionTagRequest.Merge(m, src)
+func (m *UpdateRegionRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_UpdateRegionRequest.Merge(m, src)
 }
-func (m *UpdateVersionTagRequest) XXX_Size() int {
-	return xxx_messageInfo_UpdateVersionTagRequest.Size(m)
+func (m *UpdateRegionRequest) XXX_Size() int {
+	return xxx_messageInfo_UpdateRegionRequest.Size(m)
 }
-func (m *UpdateVersionTagRequest) XXX_DiscardUnknown() {
-	xxx_messageInfo_UpdateVersionTagRequest.DiscardUnknown(m)
+func (m *UpdateRegionRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_UpdateRegionRequest.DiscardUnknown(m)
 }
 
-var xxx_messageInfo_UpdateVersionTagRequest proto.InternalMessageInfo
+var xxx_messageInfo_UpdateRegionRequest proto.InternalMessageInfo
 
-func (m *UpdateVersionTagRequest) GetPayload() *VersionTag {
+func (m *UpdateRegionRequest) GetPayload() *Region {
 	if m != nil {
 		return m.Payload
 	}
 	return nil
 }
 
-func (m *UpdateVersionTagRequest) GetFields() *field_mask.FieldMask {
+func (m *UpdateRegionRequest) GetFields() *field_mask.FieldMask {
 	if m != nil {
 		return m.Fields
 	}
 	return nil
 }
 
-type UpdateVersionTagResponse struct {
-	Result               *VersionTag `protobuf:"bytes,1,opt,name=result,proto3" json:"result,omitempty"`
-	XXX_NoUnkeyedLiteral struct{}    `json:"-"`
-	XXX_unrecognized     []byte      `json:"-"`
-	XXX_sizecache        int32       `json:"-"`
+type UpdateRegionResponse struct {
+	Result               *Region  `protobuf:"bytes,1,opt,name=result,proto3" json:"result,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
 }
 
-func (m *UpdateVersionTagResponse) Reset()         { *m = UpdateVersionTagResponse{} }
-func (m *UpdateVersionTagResponse) String() string { return proto.CompactTextString(m) }
-func (*UpdateVersionTagResponse) ProtoMessage()    {}
-func (*UpdateVersionTagResponse) Descriptor() ([]byte, []int) {
+func (m *UpdateRegionResponse) Reset()         { *m = UpdateRegionResponse{} }
+func (m *UpdateRegionResponse) String() string { return proto.CompactTextString(m) }
+func (*UpdateRegionResponse) ProtoMessage()    {}
+func (*UpdateRegionResponse) Descriptor() ([]byte, []int) {
 	return fileDescriptor_b7c4efe410d87592, []int{18}
 }
 
-func (m *UpdateVersionTagResponse) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_UpdateVersionTagResponse.Unmarshal(m, b)
+func (m *UpdateRegionResponse) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_UpdateRegionResponse.Unmarshal(m, b)
 }
-func (m *UpdateVersionTagResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_UpdateVersionTagResponse.Marshal(b, m, deterministic)
+func (m *UpdateRegionResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_UpdateRegionResponse.Marshal(b, m, deterministic)
 }
-func (m *UpdateVersionTagResponse) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_UpdateVersionTagResponse.Merge(m, src)
+func (m *UpdateRegionResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_UpdateRegionResponse.Merge(m, src)
 }
-func (m *UpdateVersionTagResponse) XXX_Size() int {
-	return xxx_messageInfo_UpdateVersionTagResponse.Size(m)
+func (m *UpdateRegionResponse) XXX_Size() int {
+	return xxx_messageInfo_UpdateRegionResponse.Size(m)
 }
-func (m *UpdateVersionTagResponse) XXX_DiscardUnknown() {
-	xxx_messageInfo_UpdateVersionTagResponse.DiscardUnknown(m)
+func (m *UpdateRegionResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_UpdateRegionResponse.DiscardUnknown(m)
 }
 
-var xxx_messageInfo_UpdateVersionTagResponse proto.InternalMessageInfo
+var xxx_messageInfo_UpdateRegionResponse proto.InternalMessageInfo
 
-func (m *UpdateVersionTagResponse) GetResult() *VersionTag {
+func (m *UpdateRegionResponse) GetResult() *Region {
 	if m != nil {
 		return m.Result
 	}
 	return nil
 }
 
-type DeleteVersionTagRequest struct {
+type DeleteRegionRequest struct {
 	Id                   *resource.Identifier `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
 	XXX_NoUnkeyedLiteral struct{}             `json:"-"`
 	XXX_unrecognized     []byte               `json:"-"`
 	XXX_sizecache        int32                `json:"-"`
 }
 
-func (m *DeleteVersionTagRequest) Reset()         { *m = DeleteVersionTagRequest{} }
-func (m *DeleteVersionTagRequest) String() string { return proto.CompactTextString(m) }
-func (*DeleteVersionTagRequest) ProtoMessage()    {}
-func (*DeleteVersionTagRequest) Descriptor() ([]byte, []int) {
+func (m *DeleteRegionRequest) Reset()         { *m = DeleteRegionRequest{} }
+func (m *DeleteRegionRequest) String() string { return proto.CompactTextString(m) }
+func (*DeleteRegionRequest) ProtoMessage()    {}
+func (*DeleteRegionRequest) Descriptor() ([]byte, []int) {
 	return fileDescriptor_b7c4efe410d87592, []int{19}
 }
 
-func (m *DeleteVersionTagRequest) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_DeleteVersionTagRequest.Unmarshal(m, b)
+func (m *DeleteRegionRequest) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_DeleteRegionRequest.Unmarshal(m, b)
 }
-func (m *DeleteVersionTagRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_DeleteVersionTagRequest.Marshal(b, m, deterministic)
+func (m *DeleteRegionRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_DeleteRegionRequest.Marshal(b, m, deterministic)
 }
-func (m *DeleteVersionTagRequest) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_DeleteVersionTagRequest.Merge(m, src)
+func (m *DeleteRegionRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_DeleteRegionRequest.Merge(m, src)
 }
-func (m *DeleteVersionTagRequest) XXX_Size() int {
-	return xxx_messageInfo_DeleteVersionTagRequest.Size(m)
+func (m *DeleteRegionRequest) XXX_Size() int {
+	return xxx_messageInfo_DeleteRegionRequest.Size(m)
 }
-func (m *DeleteVersionTagRequest) XXX_DiscardUnknown() {
-	xxx_messageInfo_DeleteVersionTagRequest.DiscardUnknown(m)
+func (m *DeleteRegionRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_DeleteRegionRequest.DiscardUnknown(m)
 }
 
-var xxx_messageInfo_DeleteVersionTagRequest proto.InternalMessageInfo
+var xxx_messageInfo_DeleteRegionRequest proto.InternalMessageInfo
 
-func (m *DeleteVersionTagRequest) GetId() *resource.Identifier {
+func (m *DeleteRegionRequest) GetId() *resource.Identifier {
 	if m != nil {
 		return m.Id
 	}
 	return nil
 }
 
-type DeleteVersionTagResponse struct {
+type DeleteRegionResponse struct {
 	XXX_NoUnkeyedLiteral struct{} `json:"-"`
 	XXX_unrecognized     []byte   `json:"-"`
 	XXX_sizecache        int32    `json:"-"`
 }
 
-func (m *DeleteVersionTagResponse) Reset()         { *m = DeleteVersionTagResponse{} }
-func (m *DeleteVersionTagResponse) String() string { return proto.CompactTextString(m) }
-func (*DeleteVersionTagResponse) ProtoMessage()    {}
-func (*DeleteVersionTagResponse) Descriptor() ([]byte, []int) {
+func (m *DeleteRegionResponse) Reset()         { *m = DeleteRegionResponse{} }
+func (m *DeleteRegionResponse) String() string { return proto.CompactTextString(m) }
+func (*DeleteRegionResponse) ProtoMessage()    {}
+func (*DeleteRegionResponse) Descriptor() ([]byte, []int) {
 	return fileDescriptor_b7c4efe410d87592, []int{20}
 }
 
-func (m *DeleteVersionTagResponse) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_DeleteVersionTagResponse.Unmarshal(m, b)
+func (m *DeleteRegionResponse) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_DeleteRegionResponse.Unmarshal(m, b)
 }
-func (m *DeleteVersionTagResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_DeleteVersionTagResponse.Marshal(b, m, deterministic)
+func (m *DeleteRegionResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_DeleteRegionResponse.Marshal(b, m, deterministic)
 }
-func (m *DeleteVersionTagResponse) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_DeleteVersionTagResponse.Merge(m, src)
+func (m *DeleteRegionResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_DeleteRegionResponse.Merge(m, src)
 }
-func (m *DeleteVersionTagResponse) XXX_Size() int {
-	return xxx_messageInfo_DeleteVersionTagResponse.Size(m)
+func (m *DeleteRegionResponse) XXX_Size() int {
+	return xxx_messageInfo_DeleteRegionResponse.Size(m)
 }
-func (m *DeleteVersionTagResponse) XXX_DiscardUnknown() {
-	xxx_messageInfo_DeleteVersionTagResponse.DiscardUnknown(m)
+func (m *DeleteRegionResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_DeleteRegionResponse.DiscardUnknown(m)
 }
 
-var xxx_messageInfo_DeleteVersionTagResponse proto.InternalMessageInfo
+var xxx_messageInfo_DeleteRegionResponse proto.InternalMessageInfo
 
-type ListVersionTagRequest struct {
+type ListRegionRequest struct {
 	Filter               *query.Filtering      `protobuf:"bytes,1,opt,name=filter,proto3" json:"filter,omitempty"`
 	OrderBy              *query.Sorting        `protobuf:"bytes,2,opt,name=order_by,json=orderBy,proto3" json:"order_by,omitempty"`
 	Fields               *query.FieldSelection `protobuf:"bytes,3,opt,name=fields,proto3" json:"fields,omitempty"`
@@ -1067,327 +1094,264 @@ type ListVersionTagRequest struct {
 	XXX_sizecache        int32                 `json:"-"`
 }
 
-func (m *ListVersionTagRequest) Reset()         { *m = ListVersionTagRequest{} }
-func (m *ListVersionTagRequest) String() string { return proto.CompactTextString(m) }
-func (*ListVersionTagRequest) ProtoMessage()    {}
-func (*ListVersionTagRequest) Descriptor() ([]byte, []int) {
+func (m *ListRegionRequest) Reset()         { *m = ListRegionRequest{} }
+func (m *ListRegionRequest) String() string { return proto.CompactTextString(m) }
+func (*ListRegionRequest) ProtoMessage()    {}
+func (*ListRegionRequest) Descriptor() ([]byte, []int) {
 	return fileDescriptor_b7c4efe410d87592, []int{21}
 }
 
-func (m *ListVersionTagRequest) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_ListVersionTagRequest.Unmarshal(m, b)
+func (m *ListRegionRequest) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_ListRegionRequest.Unmarshal(m, b)
 }
-func (m *ListVersionTagRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_ListVersionTagRequest.Marshal(b, m, deterministic)
+func (m *ListRegionRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_ListRegionRequest.Marshal(b, m, deterministic)
 }
-func (m *ListVersionTagRequest) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_ListVersionTagRequest.Merge(m, src)
+func (m *ListRegionRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_ListRegionRequest.Merge(m, src)
 }
-func (m *ListVersionTagRequest) XXX_Size() int {
-	return xxx_messageInfo_ListVersionTagRequest.Size(m)
+func (m *ListRegionRequest) XXX_Size() int {
+	return xxx_messageInfo_ListRegionRequest.Size(m)
 }
-func (m *ListVersionTagRequest) XXX_DiscardUnknown() {
-	xxx_messageInfo_ListVersionTagRequest.DiscardUnknown(m)
+func (m *ListRegionRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_ListRegionRequest.DiscardUnknown(m)
 }
 
-var xxx_messageInfo_ListVersionTagRequest proto.InternalMessageInfo
+var xxx_messageInfo_ListRegionRequest proto.InternalMessageInfo
 
-func (m *ListVersionTagRequest) GetFilter() *query.Filtering {
+func (m *ListRegionRequest) GetFilter() *query.Filtering {
 	if m != nil {
 		return m.Filter
 	}
 	return nil
 }
 
-func (m *ListVersionTagRequest) GetOrderBy() *query.Sorting {
+func (m *ListRegionRequest) GetOrderBy() *query.Sorting {
 	if m != nil {
 		return m.OrderBy
 	}
 	return nil
 }
 
-func (m *ListVersionTagRequest) GetFields() *query.FieldSelection {
+func (m *ListRegionRequest) GetFields() *query.FieldSelection {
 	if m != nil {
 		return m.Fields
 	}
 	return nil
 }
 
-func (m *ListVersionTagRequest) GetPaging() *query.Pagination {
+func (m *ListRegionRequest) GetPaging() *query.Pagination {
 	if m != nil {
 		return m.Paging
 	}
 	return nil
 }
 
-type ListVersionTagsResponse struct {
-	Results              []*VersionTag   `protobuf:"bytes,1,rep,name=results,proto3" json:"results,omitempty"`
+type ListRegionsResponse struct {
+	Results              []*Region       `protobuf:"bytes,1,rep,name=results,proto3" json:"results,omitempty"`
 	Page                 *query.PageInfo `protobuf:"bytes,2,opt,name=page,proto3" json:"page,omitempty"`
 	XXX_NoUnkeyedLiteral struct{}        `json:"-"`
 	XXX_unrecognized     []byte          `json:"-"`
 	XXX_sizecache        int32           `json:"-"`
 }
 
-func (m *ListVersionTagsResponse) Reset()         { *m = ListVersionTagsResponse{} }
-func (m *ListVersionTagsResponse) String() string { return proto.CompactTextString(m) }
-func (*ListVersionTagsResponse) ProtoMessage()    {}
-func (*ListVersionTagsResponse) Descriptor() ([]byte, []int) {
+func (m *ListRegionsResponse) Reset()         { *m = ListRegionsResponse{} }
+func (m *ListRegionsResponse) String() string { return proto.CompactTextString(m) }
+func (*ListRegionsResponse) ProtoMessage()    {}
+func (*ListRegionsResponse) Descriptor() ([]byte, []int) {
 	return fileDescriptor_b7c4efe410d87592, []int{22}
 }
 
-func (m *ListVersionTagsResponse) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_ListVersionTagsResponse.Unmarshal(m, b)
+func (m *ListRegionsResponse) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_ListRegionsResponse.Unmarshal(m, b)
 }
-func (m *ListVersionTagsResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_ListVersionTagsResponse.Marshal(b, m, deterministic)
+func (m *ListRegionsResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_ListRegionsResponse.Marshal(b, m, deterministic)
 }
-func (m *ListVersionTagsResponse) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_ListVersionTagsResponse.Merge(m, src)
+func (m *ListRegionsResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_ListRegionsResponse.Merge(m, src)
 }
-func (m *ListVersionTagsResponse) XXX_Size() int {
-	return xxx_messageInfo_ListVersionTagsResponse.Size(m)
+func (m *ListRegionsResponse) XXX_Size() int {
+	return xxx_messageInfo_ListRegionsResponse.Size(m)
 }
-func (m *ListVersionTagsResponse) XXX_DiscardUnknown() {
-	xxx_messageInfo_ListVersionTagsResponse.DiscardUnknown(m)
+func (m *ListRegionsResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_ListRegionsResponse.DiscardUnknown(m)
 }
 
-var xxx_messageInfo_ListVersionTagsResponse proto.InternalMessageInfo
+var xxx_messageInfo_ListRegionsResponse proto.InternalMessageInfo
 
-func (m *ListVersionTagsResponse) GetResults() []*VersionTag {
+func (m *ListRegionsResponse) GetResults() []*Region {
 	if m != nil {
 		return m.Results
 	}
 	return nil
 }
 
-func (m *ListVersionTagsResponse) GetPage() *query.PageInfo {
+func (m *ListRegionsResponse) GetPage() *query.PageInfo {
 	if m != nil {
 		return m.Page
 	}
 	return nil
 }
 
-// -----------------------------------------------------------------------
-// ApplicationInstance represents application instance deployed in an Environment
-// -----------------------------------------------------------------------
-type ApplicationInstance struct {
-	// The ApplicationInstance identifier.
+// ------------------------------------------------------
+// Stage represents a particular AWS Region
+// ------------------------------------------------------
+type Stage struct {
+	// The Stage identifier.
 	Id *resource.Identifier `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
-	// The name of the ApplicationInstance
+	// The name of the Stage
 	Name string `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
-	// The description of the ApplicationInstance
+	// The description of the Stage
 	Description string `protobuf:"bytes,3,opt,name=description,proto3" json:"description,omitempty"`
-	// The ApplicationInstance Name
-	AppName string `protobuf:"bytes,4,opt,name=app_name,json=appName,proto3" json:"app_name,omitempty"`
-	// ApplicationInstance Repository URL
-	Repo string `protobuf:"bytes,5,opt,name=repo,proto3" json:"repo,omitempty"`
-	// VersionTag setting of this ApplicationInstance
-	VersionTag *VersionTag `protobuf:"bytes,6,opt,name=version_tag,json=versionTag,proto3" json:"version_tag,omitempty"`
-	// Reference to VersionTag
-	VersionTagId *resource.Identifier `protobuf:"bytes,7,opt,name=version_tag_id,json=versionTagId,proto3" json:"version_tag_id,omitempty"`
-	// Manifest used by this ApplicationInstance
-	Manifest *Manifest `protobuf:"bytes,8,opt,name=manifest,proto3" json:"manifest,omitempty"`
-	// Reference to Manifest
-	ManifestId *resource.Identifier `protobuf:"bytes,9,opt,name=manifest_id,json=manifestId,proto3" json:"manifest_id,omitempty"`
-	// Containers used by this ApplicationInstance
-	Containers []*Container `protobuf:"bytes,10,rep,name=containers,proto3" json:"containers,omitempty"`
-	// Reference to Environment
-	EnvironmentId *resource.Identifier `protobuf:"bytes,11,opt,name=environment_id,json=environmentId,proto3" json:"environment_id,omitempty"`
-	// Deployment of this ApplicationInstance
-	Deployment           *Deployment `protobuf:"bytes,12,opt,name=deployment,proto3" json:"deployment,omitempty"`
-	XXX_NoUnkeyedLiteral struct{}    `json:"-"`
-	XXX_unrecognized     []byte      `json:"-"`
-	XXX_sizecache        int32       `json:"-"`
+	// Code defines the various stages e.g. dev, qa, preprod, prod
+	Type StageType `protobuf:"varint,4,opt,name=type,proto3,enum=api.cmdb.StageType" json:"type,omitempty"`
+	// Region that has this Stage deployed
+	RegionId             *resource.Identifier `protobuf:"bytes,5,opt,name=region_id,json=regionId,proto3" json:"region_id,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}             `json:"-"`
+	XXX_unrecognized     []byte               `json:"-"`
+	XXX_sizecache        int32                `json:"-"`
 }
 
-func (m *ApplicationInstance) Reset()         { *m = ApplicationInstance{} }
-func (m *ApplicationInstance) String() string { return proto.CompactTextString(m) }
-func (*ApplicationInstance) ProtoMessage()    {}
-func (*ApplicationInstance) Descriptor() ([]byte, []int) {
+func (m *Stage) Reset()         { *m = Stage{} }
+func (m *Stage) String() string { return proto.CompactTextString(m) }
+func (*Stage) ProtoMessage()    {}
+func (*Stage) Descriptor() ([]byte, []int) {
 	return fileDescriptor_b7c4efe410d87592, []int{23}
 }
 
-func (m *ApplicationInstance) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_ApplicationInstance.Unmarshal(m, b)
+func (m *Stage) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_Stage.Unmarshal(m, b)
 }
-func (m *ApplicationInstance) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_ApplicationInstance.Marshal(b, m, deterministic)
+func (m *Stage) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_Stage.Marshal(b, m, deterministic)
 }
-func (m *ApplicationInstance) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_ApplicationInstance.Merge(m, src)
+func (m *Stage) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_Stage.Merge(m, src)
 }
-func (m *ApplicationInstance) XXX_Size() int {
-	return xxx_messageInfo_ApplicationInstance.Size(m)
+func (m *Stage) XXX_Size() int {
+	return xxx_messageInfo_Stage.Size(m)
 }
-func (m *ApplicationInstance) XXX_DiscardUnknown() {
-	xxx_messageInfo_ApplicationInstance.DiscardUnknown(m)
+func (m *Stage) XXX_DiscardUnknown() {
+	xxx_messageInfo_Stage.DiscardUnknown(m)
 }
 
-var xxx_messageInfo_ApplicationInstance proto.InternalMessageInfo
+var xxx_messageInfo_Stage proto.InternalMessageInfo
 
-func (m *ApplicationInstance) GetId() *resource.Identifier {
+func (m *Stage) GetId() *resource.Identifier {
 	if m != nil {
 		return m.Id
 	}
 	return nil
 }
 
-func (m *ApplicationInstance) GetName() string {
+func (m *Stage) GetName() string {
 	if m != nil {
 		return m.Name
 	}
 	return ""
 }
 
-func (m *ApplicationInstance) GetDescription() string {
+func (m *Stage) GetDescription() string {
 	if m != nil {
 		return m.Description
 	}
 	return ""
 }
 
-func (m *ApplicationInstance) GetAppName() string {
+func (m *Stage) GetType() StageType {
 	if m != nil {
-		return m.AppName
+		return m.Type
 	}
-	return ""
+	return StageType_UNKNOWN_STAGE
 }
 
-func (m *ApplicationInstance) GetRepo() string {
+func (m *Stage) GetRegionId() *resource.Identifier {
 	if m != nil {
-		return m.Repo
-	}
-	return ""
-}
-
-func (m *ApplicationInstance) GetVersionTag() *VersionTag {
-	if m != nil {
-		return m.VersionTag
+		return m.RegionId
 	}
 	return nil
 }
 
-func (m *ApplicationInstance) GetVersionTagId() *resource.Identifier {
-	if m != nil {
-		return m.VersionTagId
-	}
-	return nil
+type CreateStageRequest struct {
+	Payload              *Stage   `protobuf:"bytes,1,opt,name=payload,proto3" json:"payload,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
 }
 
-func (m *ApplicationInstance) GetManifest() *Manifest {
-	if m != nil {
-		return m.Manifest
-	}
-	return nil
-}
-
-func (m *ApplicationInstance) GetManifestId() *resource.Identifier {
-	if m != nil {
-		return m.ManifestId
-	}
-	return nil
-}
-
-func (m *ApplicationInstance) GetContainers() []*Container {
-	if m != nil {
-		return m.Containers
-	}
-	return nil
-}
-
-func (m *ApplicationInstance) GetEnvironmentId() *resource.Identifier {
-	if m != nil {
-		return m.EnvironmentId
-	}
-	return nil
-}
-
-func (m *ApplicationInstance) GetDeployment() *Deployment {
-	if m != nil {
-		return m.Deployment
-	}
-	return nil
-}
-
-type CreateApplicationInstanceRequest struct {
-	Payload              *ApplicationInstance `protobuf:"bytes,1,opt,name=payload,proto3" json:"payload,omitempty"`
-	XXX_NoUnkeyedLiteral struct{}             `json:"-"`
-	XXX_unrecognized     []byte               `json:"-"`
-	XXX_sizecache        int32                `json:"-"`
-}
-
-func (m *CreateApplicationInstanceRequest) Reset()         { *m = CreateApplicationInstanceRequest{} }
-func (m *CreateApplicationInstanceRequest) String() string { return proto.CompactTextString(m) }
-func (*CreateApplicationInstanceRequest) ProtoMessage()    {}
-func (*CreateApplicationInstanceRequest) Descriptor() ([]byte, []int) {
+func (m *CreateStageRequest) Reset()         { *m = CreateStageRequest{} }
+func (m *CreateStageRequest) String() string { return proto.CompactTextString(m) }
+func (*CreateStageRequest) ProtoMessage()    {}
+func (*CreateStageRequest) Descriptor() ([]byte, []int) {
 	return fileDescriptor_b7c4efe410d87592, []int{24}
 }
 
-func (m *CreateApplicationInstanceRequest) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_CreateApplicationInstanceRequest.Unmarshal(m, b)
+func (m *CreateStageRequest) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_CreateStageRequest.Unmarshal(m, b)
 }
-func (m *CreateApplicationInstanceRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_CreateApplicationInstanceRequest.Marshal(b, m, deterministic)
+func (m *CreateStageRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_CreateStageRequest.Marshal(b, m, deterministic)
 }
-func (m *CreateApplicationInstanceRequest) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_CreateApplicationInstanceRequest.Merge(m, src)
+func (m *CreateStageRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_CreateStageRequest.Merge(m, src)
 }
-func (m *CreateApplicationInstanceRequest) XXX_Size() int {
-	return xxx_messageInfo_CreateApplicationInstanceRequest.Size(m)
+func (m *CreateStageRequest) XXX_Size() int {
+	return xxx_messageInfo_CreateStageRequest.Size(m)
 }
-func (m *CreateApplicationInstanceRequest) XXX_DiscardUnknown() {
-	xxx_messageInfo_CreateApplicationInstanceRequest.DiscardUnknown(m)
+func (m *CreateStageRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_CreateStageRequest.DiscardUnknown(m)
 }
 
-var xxx_messageInfo_CreateApplicationInstanceRequest proto.InternalMessageInfo
+var xxx_messageInfo_CreateStageRequest proto.InternalMessageInfo
 
-func (m *CreateApplicationInstanceRequest) GetPayload() *ApplicationInstance {
+func (m *CreateStageRequest) GetPayload() *Stage {
 	if m != nil {
 		return m.Payload
 	}
 	return nil
 }
 
-type CreateApplicationInstanceResponse struct {
-	Result               *ApplicationInstance `protobuf:"bytes,1,opt,name=result,proto3" json:"result,omitempty"`
-	XXX_NoUnkeyedLiteral struct{}             `json:"-"`
-	XXX_unrecognized     []byte               `json:"-"`
-	XXX_sizecache        int32                `json:"-"`
+type CreateStageResponse struct {
+	Result               *Stage   `protobuf:"bytes,1,opt,name=result,proto3" json:"result,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
 }
 
-func (m *CreateApplicationInstanceResponse) Reset()         { *m = CreateApplicationInstanceResponse{} }
-func (m *CreateApplicationInstanceResponse) String() string { return proto.CompactTextString(m) }
-func (*CreateApplicationInstanceResponse) ProtoMessage()    {}
-func (*CreateApplicationInstanceResponse) Descriptor() ([]byte, []int) {
+func (m *CreateStageResponse) Reset()         { *m = CreateStageResponse{} }
+func (m *CreateStageResponse) String() string { return proto.CompactTextString(m) }
+func (*CreateStageResponse) ProtoMessage()    {}
+func (*CreateStageResponse) Descriptor() ([]byte, []int) {
 	return fileDescriptor_b7c4efe410d87592, []int{25}
 }
 
-func (m *CreateApplicationInstanceResponse) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_CreateApplicationInstanceResponse.Unmarshal(m, b)
+func (m *CreateStageResponse) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_CreateStageResponse.Unmarshal(m, b)
 }
-func (m *CreateApplicationInstanceResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_CreateApplicationInstanceResponse.Marshal(b, m, deterministic)
+func (m *CreateStageResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_CreateStageResponse.Marshal(b, m, deterministic)
 }
-func (m *CreateApplicationInstanceResponse) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_CreateApplicationInstanceResponse.Merge(m, src)
+func (m *CreateStageResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_CreateStageResponse.Merge(m, src)
 }
-func (m *CreateApplicationInstanceResponse) XXX_Size() int {
-	return xxx_messageInfo_CreateApplicationInstanceResponse.Size(m)
+func (m *CreateStageResponse) XXX_Size() int {
+	return xxx_messageInfo_CreateStageResponse.Size(m)
 }
-func (m *CreateApplicationInstanceResponse) XXX_DiscardUnknown() {
-	xxx_messageInfo_CreateApplicationInstanceResponse.DiscardUnknown(m)
+func (m *CreateStageResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_CreateStageResponse.DiscardUnknown(m)
 }
 
-var xxx_messageInfo_CreateApplicationInstanceResponse proto.InternalMessageInfo
+var xxx_messageInfo_CreateStageResponse proto.InternalMessageInfo
 
-func (m *CreateApplicationInstanceResponse) GetResult() *ApplicationInstance {
+func (m *CreateStageResponse) GetResult() *Stage {
 	if m != nil {
 		return m.Result
 	}
 	return nil
 }
 
-type ReadApplicationInstanceRequest struct {
+type ReadStageRequest struct {
 	Id                   *resource.Identifier  `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
 	Fields               *query.FieldSelection `protobuf:"bytes,2,opt,name=fields,proto3" json:"fields,omitempty"`
 	XXX_NoUnkeyedLiteral struct{}              `json:"-"`
@@ -1395,241 +1359,241 @@ type ReadApplicationInstanceRequest struct {
 	XXX_sizecache        int32                 `json:"-"`
 }
 
-func (m *ReadApplicationInstanceRequest) Reset()         { *m = ReadApplicationInstanceRequest{} }
-func (m *ReadApplicationInstanceRequest) String() string { return proto.CompactTextString(m) }
-func (*ReadApplicationInstanceRequest) ProtoMessage()    {}
-func (*ReadApplicationInstanceRequest) Descriptor() ([]byte, []int) {
+func (m *ReadStageRequest) Reset()         { *m = ReadStageRequest{} }
+func (m *ReadStageRequest) String() string { return proto.CompactTextString(m) }
+func (*ReadStageRequest) ProtoMessage()    {}
+func (*ReadStageRequest) Descriptor() ([]byte, []int) {
 	return fileDescriptor_b7c4efe410d87592, []int{26}
 }
 
-func (m *ReadApplicationInstanceRequest) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_ReadApplicationInstanceRequest.Unmarshal(m, b)
+func (m *ReadStageRequest) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_ReadStageRequest.Unmarshal(m, b)
 }
-func (m *ReadApplicationInstanceRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_ReadApplicationInstanceRequest.Marshal(b, m, deterministic)
+func (m *ReadStageRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_ReadStageRequest.Marshal(b, m, deterministic)
 }
-func (m *ReadApplicationInstanceRequest) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_ReadApplicationInstanceRequest.Merge(m, src)
+func (m *ReadStageRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_ReadStageRequest.Merge(m, src)
 }
-func (m *ReadApplicationInstanceRequest) XXX_Size() int {
-	return xxx_messageInfo_ReadApplicationInstanceRequest.Size(m)
+func (m *ReadStageRequest) XXX_Size() int {
+	return xxx_messageInfo_ReadStageRequest.Size(m)
 }
-func (m *ReadApplicationInstanceRequest) XXX_DiscardUnknown() {
-	xxx_messageInfo_ReadApplicationInstanceRequest.DiscardUnknown(m)
+func (m *ReadStageRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_ReadStageRequest.DiscardUnknown(m)
 }
 
-var xxx_messageInfo_ReadApplicationInstanceRequest proto.InternalMessageInfo
+var xxx_messageInfo_ReadStageRequest proto.InternalMessageInfo
 
-func (m *ReadApplicationInstanceRequest) GetId() *resource.Identifier {
+func (m *ReadStageRequest) GetId() *resource.Identifier {
 	if m != nil {
 		return m.Id
 	}
 	return nil
 }
 
-func (m *ReadApplicationInstanceRequest) GetFields() *query.FieldSelection {
+func (m *ReadStageRequest) GetFields() *query.FieldSelection {
 	if m != nil {
 		return m.Fields
 	}
 	return nil
 }
 
-type ReadApplicationInstanceResponse struct {
-	Result               *ApplicationInstance `protobuf:"bytes,1,opt,name=result,proto3" json:"result,omitempty"`
-	XXX_NoUnkeyedLiteral struct{}             `json:"-"`
-	XXX_unrecognized     []byte               `json:"-"`
-	XXX_sizecache        int32                `json:"-"`
+type ReadStageResponse struct {
+	Result               *Stage   `protobuf:"bytes,1,opt,name=result,proto3" json:"result,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
 }
 
-func (m *ReadApplicationInstanceResponse) Reset()         { *m = ReadApplicationInstanceResponse{} }
-func (m *ReadApplicationInstanceResponse) String() string { return proto.CompactTextString(m) }
-func (*ReadApplicationInstanceResponse) ProtoMessage()    {}
-func (*ReadApplicationInstanceResponse) Descriptor() ([]byte, []int) {
+func (m *ReadStageResponse) Reset()         { *m = ReadStageResponse{} }
+func (m *ReadStageResponse) String() string { return proto.CompactTextString(m) }
+func (*ReadStageResponse) ProtoMessage()    {}
+func (*ReadStageResponse) Descriptor() ([]byte, []int) {
 	return fileDescriptor_b7c4efe410d87592, []int{27}
 }
 
-func (m *ReadApplicationInstanceResponse) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_ReadApplicationInstanceResponse.Unmarshal(m, b)
+func (m *ReadStageResponse) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_ReadStageResponse.Unmarshal(m, b)
 }
-func (m *ReadApplicationInstanceResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_ReadApplicationInstanceResponse.Marshal(b, m, deterministic)
+func (m *ReadStageResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_ReadStageResponse.Marshal(b, m, deterministic)
 }
-func (m *ReadApplicationInstanceResponse) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_ReadApplicationInstanceResponse.Merge(m, src)
+func (m *ReadStageResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_ReadStageResponse.Merge(m, src)
 }
-func (m *ReadApplicationInstanceResponse) XXX_Size() int {
-	return xxx_messageInfo_ReadApplicationInstanceResponse.Size(m)
+func (m *ReadStageResponse) XXX_Size() int {
+	return xxx_messageInfo_ReadStageResponse.Size(m)
 }
-func (m *ReadApplicationInstanceResponse) XXX_DiscardUnknown() {
-	xxx_messageInfo_ReadApplicationInstanceResponse.DiscardUnknown(m)
+func (m *ReadStageResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_ReadStageResponse.DiscardUnknown(m)
 }
 
-var xxx_messageInfo_ReadApplicationInstanceResponse proto.InternalMessageInfo
+var xxx_messageInfo_ReadStageResponse proto.InternalMessageInfo
 
-func (m *ReadApplicationInstanceResponse) GetResult() *ApplicationInstance {
+func (m *ReadStageResponse) GetResult() *Stage {
 	if m != nil {
 		return m.Result
 	}
 	return nil
 }
 
-type UpdateApplicationInstanceRequest struct {
-	Payload              *ApplicationInstance  `protobuf:"bytes,1,opt,name=payload,proto3" json:"payload,omitempty"`
+type UpdateStageRequest struct {
+	Payload              *Stage                `protobuf:"bytes,1,opt,name=payload,proto3" json:"payload,omitempty"`
 	Fields               *field_mask.FieldMask `protobuf:"bytes,2,opt,name=fields,proto3" json:"fields,omitempty"`
 	XXX_NoUnkeyedLiteral struct{}              `json:"-"`
 	XXX_unrecognized     []byte                `json:"-"`
 	XXX_sizecache        int32                 `json:"-"`
 }
 
-func (m *UpdateApplicationInstanceRequest) Reset()         { *m = UpdateApplicationInstanceRequest{} }
-func (m *UpdateApplicationInstanceRequest) String() string { return proto.CompactTextString(m) }
-func (*UpdateApplicationInstanceRequest) ProtoMessage()    {}
-func (*UpdateApplicationInstanceRequest) Descriptor() ([]byte, []int) {
+func (m *UpdateStageRequest) Reset()         { *m = UpdateStageRequest{} }
+func (m *UpdateStageRequest) String() string { return proto.CompactTextString(m) }
+func (*UpdateStageRequest) ProtoMessage()    {}
+func (*UpdateStageRequest) Descriptor() ([]byte, []int) {
 	return fileDescriptor_b7c4efe410d87592, []int{28}
 }
 
-func (m *UpdateApplicationInstanceRequest) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_UpdateApplicationInstanceRequest.Unmarshal(m, b)
+func (m *UpdateStageRequest) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_UpdateStageRequest.Unmarshal(m, b)
 }
-func (m *UpdateApplicationInstanceRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_UpdateApplicationInstanceRequest.Marshal(b, m, deterministic)
+func (m *UpdateStageRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_UpdateStageRequest.Marshal(b, m, deterministic)
 }
-func (m *UpdateApplicationInstanceRequest) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_UpdateApplicationInstanceRequest.Merge(m, src)
+func (m *UpdateStageRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_UpdateStageRequest.Merge(m, src)
 }
-func (m *UpdateApplicationInstanceRequest) XXX_Size() int {
-	return xxx_messageInfo_UpdateApplicationInstanceRequest.Size(m)
+func (m *UpdateStageRequest) XXX_Size() int {
+	return xxx_messageInfo_UpdateStageRequest.Size(m)
 }
-func (m *UpdateApplicationInstanceRequest) XXX_DiscardUnknown() {
-	xxx_messageInfo_UpdateApplicationInstanceRequest.DiscardUnknown(m)
+func (m *UpdateStageRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_UpdateStageRequest.DiscardUnknown(m)
 }
 
-var xxx_messageInfo_UpdateApplicationInstanceRequest proto.InternalMessageInfo
+var xxx_messageInfo_UpdateStageRequest proto.InternalMessageInfo
 
-func (m *UpdateApplicationInstanceRequest) GetPayload() *ApplicationInstance {
+func (m *UpdateStageRequest) GetPayload() *Stage {
 	if m != nil {
 		return m.Payload
 	}
 	return nil
 }
 
-func (m *UpdateApplicationInstanceRequest) GetFields() *field_mask.FieldMask {
+func (m *UpdateStageRequest) GetFields() *field_mask.FieldMask {
 	if m != nil {
 		return m.Fields
 	}
 	return nil
 }
 
-type UpdateApplicationInstanceResponse struct {
-	Result               *ApplicationInstance `protobuf:"bytes,1,opt,name=result,proto3" json:"result,omitempty"`
-	XXX_NoUnkeyedLiteral struct{}             `json:"-"`
-	XXX_unrecognized     []byte               `json:"-"`
-	XXX_sizecache        int32                `json:"-"`
+type UpdateStageResponse struct {
+	Result               *Stage   `protobuf:"bytes,1,opt,name=result,proto3" json:"result,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
 }
 
-func (m *UpdateApplicationInstanceResponse) Reset()         { *m = UpdateApplicationInstanceResponse{} }
-func (m *UpdateApplicationInstanceResponse) String() string { return proto.CompactTextString(m) }
-func (*UpdateApplicationInstanceResponse) ProtoMessage()    {}
-func (*UpdateApplicationInstanceResponse) Descriptor() ([]byte, []int) {
+func (m *UpdateStageResponse) Reset()         { *m = UpdateStageResponse{} }
+func (m *UpdateStageResponse) String() string { return proto.CompactTextString(m) }
+func (*UpdateStageResponse) ProtoMessage()    {}
+func (*UpdateStageResponse) Descriptor() ([]byte, []int) {
 	return fileDescriptor_b7c4efe410d87592, []int{29}
 }
 
-func (m *UpdateApplicationInstanceResponse) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_UpdateApplicationInstanceResponse.Unmarshal(m, b)
+func (m *UpdateStageResponse) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_UpdateStageResponse.Unmarshal(m, b)
 }
-func (m *UpdateApplicationInstanceResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_UpdateApplicationInstanceResponse.Marshal(b, m, deterministic)
+func (m *UpdateStageResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_UpdateStageResponse.Marshal(b, m, deterministic)
 }
-func (m *UpdateApplicationInstanceResponse) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_UpdateApplicationInstanceResponse.Merge(m, src)
+func (m *UpdateStageResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_UpdateStageResponse.Merge(m, src)
 }
-func (m *UpdateApplicationInstanceResponse) XXX_Size() int {
-	return xxx_messageInfo_UpdateApplicationInstanceResponse.Size(m)
+func (m *UpdateStageResponse) XXX_Size() int {
+	return xxx_messageInfo_UpdateStageResponse.Size(m)
 }
-func (m *UpdateApplicationInstanceResponse) XXX_DiscardUnknown() {
-	xxx_messageInfo_UpdateApplicationInstanceResponse.DiscardUnknown(m)
+func (m *UpdateStageResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_UpdateStageResponse.DiscardUnknown(m)
 }
 
-var xxx_messageInfo_UpdateApplicationInstanceResponse proto.InternalMessageInfo
+var xxx_messageInfo_UpdateStageResponse proto.InternalMessageInfo
 
-func (m *UpdateApplicationInstanceResponse) GetResult() *ApplicationInstance {
+func (m *UpdateStageResponse) GetResult() *Stage {
 	if m != nil {
 		return m.Result
 	}
 	return nil
 }
 
-type DeleteApplicationInstanceRequest struct {
+type DeleteStageRequest struct {
 	Id                   *resource.Identifier `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
 	XXX_NoUnkeyedLiteral struct{}             `json:"-"`
 	XXX_unrecognized     []byte               `json:"-"`
 	XXX_sizecache        int32                `json:"-"`
 }
 
-func (m *DeleteApplicationInstanceRequest) Reset()         { *m = DeleteApplicationInstanceRequest{} }
-func (m *DeleteApplicationInstanceRequest) String() string { return proto.CompactTextString(m) }
-func (*DeleteApplicationInstanceRequest) ProtoMessage()    {}
-func (*DeleteApplicationInstanceRequest) Descriptor() ([]byte, []int) {
+func (m *DeleteStageRequest) Reset()         { *m = DeleteStageRequest{} }
+func (m *DeleteStageRequest) String() string { return proto.CompactTextString(m) }
+func (*DeleteStageRequest) ProtoMessage()    {}
+func (*DeleteStageRequest) Descriptor() ([]byte, []int) {
 	return fileDescriptor_b7c4efe410d87592, []int{30}
 }
 
-func (m *DeleteApplicationInstanceRequest) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_DeleteApplicationInstanceRequest.Unmarshal(m, b)
+func (m *DeleteStageRequest) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_DeleteStageRequest.Unmarshal(m, b)
 }
-func (m *DeleteApplicationInstanceRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_DeleteApplicationInstanceRequest.Marshal(b, m, deterministic)
+func (m *DeleteStageRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_DeleteStageRequest.Marshal(b, m, deterministic)
 }
-func (m *DeleteApplicationInstanceRequest) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_DeleteApplicationInstanceRequest.Merge(m, src)
+func (m *DeleteStageRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_DeleteStageRequest.Merge(m, src)
 }
-func (m *DeleteApplicationInstanceRequest) XXX_Size() int {
-	return xxx_messageInfo_DeleteApplicationInstanceRequest.Size(m)
+func (m *DeleteStageRequest) XXX_Size() int {
+	return xxx_messageInfo_DeleteStageRequest.Size(m)
 }
-func (m *DeleteApplicationInstanceRequest) XXX_DiscardUnknown() {
-	xxx_messageInfo_DeleteApplicationInstanceRequest.DiscardUnknown(m)
+func (m *DeleteStageRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_DeleteStageRequest.DiscardUnknown(m)
 }
 
-var xxx_messageInfo_DeleteApplicationInstanceRequest proto.InternalMessageInfo
+var xxx_messageInfo_DeleteStageRequest proto.InternalMessageInfo
 
-func (m *DeleteApplicationInstanceRequest) GetId() *resource.Identifier {
+func (m *DeleteStageRequest) GetId() *resource.Identifier {
 	if m != nil {
 		return m.Id
 	}
 	return nil
 }
 
-type DeleteApplicationInstanceResponse struct {
+type DeleteStageResponse struct {
 	XXX_NoUnkeyedLiteral struct{} `json:"-"`
 	XXX_unrecognized     []byte   `json:"-"`
 	XXX_sizecache        int32    `json:"-"`
 }
 
-func (m *DeleteApplicationInstanceResponse) Reset()         { *m = DeleteApplicationInstanceResponse{} }
-func (m *DeleteApplicationInstanceResponse) String() string { return proto.CompactTextString(m) }
-func (*DeleteApplicationInstanceResponse) ProtoMessage()    {}
-func (*DeleteApplicationInstanceResponse) Descriptor() ([]byte, []int) {
+func (m *DeleteStageResponse) Reset()         { *m = DeleteStageResponse{} }
+func (m *DeleteStageResponse) String() string { return proto.CompactTextString(m) }
+func (*DeleteStageResponse) ProtoMessage()    {}
+func (*DeleteStageResponse) Descriptor() ([]byte, []int) {
 	return fileDescriptor_b7c4efe410d87592, []int{31}
 }
 
-func (m *DeleteApplicationInstanceResponse) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_DeleteApplicationInstanceResponse.Unmarshal(m, b)
+func (m *DeleteStageResponse) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_DeleteStageResponse.Unmarshal(m, b)
 }
-func (m *DeleteApplicationInstanceResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_DeleteApplicationInstanceResponse.Marshal(b, m, deterministic)
+func (m *DeleteStageResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_DeleteStageResponse.Marshal(b, m, deterministic)
 }
-func (m *DeleteApplicationInstanceResponse) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_DeleteApplicationInstanceResponse.Merge(m, src)
+func (m *DeleteStageResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_DeleteStageResponse.Merge(m, src)
 }
-func (m *DeleteApplicationInstanceResponse) XXX_Size() int {
-	return xxx_messageInfo_DeleteApplicationInstanceResponse.Size(m)
+func (m *DeleteStageResponse) XXX_Size() int {
+	return xxx_messageInfo_DeleteStageResponse.Size(m)
 }
-func (m *DeleteApplicationInstanceResponse) XXX_DiscardUnknown() {
-	xxx_messageInfo_DeleteApplicationInstanceResponse.DiscardUnknown(m)
+func (m *DeleteStageResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_DeleteStageResponse.DiscardUnknown(m)
 }
 
-var xxx_messageInfo_DeleteApplicationInstanceResponse proto.InternalMessageInfo
+var xxx_messageInfo_DeleteStageResponse proto.InternalMessageInfo
 
-type ListApplicationInstanceRequest struct {
+type ListStageRequest struct {
 	Filter               *query.Filtering      `protobuf:"bytes,1,opt,name=filter,proto3" json:"filter,omitempty"`
 	OrderBy              *query.Sorting        `protobuf:"bytes,2,opt,name=order_by,json=orderBy,proto3" json:"order_by,omitempty"`
 	Fields               *query.FieldSelection `protobuf:"bytes,3,opt,name=fields,proto3" json:"fields,omitempty"`
@@ -1639,1181 +1603,100 @@ type ListApplicationInstanceRequest struct {
 	XXX_sizecache        int32                 `json:"-"`
 }
 
-func (m *ListApplicationInstanceRequest) Reset()         { *m = ListApplicationInstanceRequest{} }
-func (m *ListApplicationInstanceRequest) String() string { return proto.CompactTextString(m) }
-func (*ListApplicationInstanceRequest) ProtoMessage()    {}
-func (*ListApplicationInstanceRequest) Descriptor() ([]byte, []int) {
+func (m *ListStageRequest) Reset()         { *m = ListStageRequest{} }
+func (m *ListStageRequest) String() string { return proto.CompactTextString(m) }
+func (*ListStageRequest) ProtoMessage()    {}
+func (*ListStageRequest) Descriptor() ([]byte, []int) {
 	return fileDescriptor_b7c4efe410d87592, []int{32}
 }
 
-func (m *ListApplicationInstanceRequest) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_ListApplicationInstanceRequest.Unmarshal(m, b)
+func (m *ListStageRequest) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_ListStageRequest.Unmarshal(m, b)
 }
-func (m *ListApplicationInstanceRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_ListApplicationInstanceRequest.Marshal(b, m, deterministic)
+func (m *ListStageRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_ListStageRequest.Marshal(b, m, deterministic)
 }
-func (m *ListApplicationInstanceRequest) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_ListApplicationInstanceRequest.Merge(m, src)
+func (m *ListStageRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_ListStageRequest.Merge(m, src)
 }
-func (m *ListApplicationInstanceRequest) XXX_Size() int {
-	return xxx_messageInfo_ListApplicationInstanceRequest.Size(m)
+func (m *ListStageRequest) XXX_Size() int {
+	return xxx_messageInfo_ListStageRequest.Size(m)
 }
-func (m *ListApplicationInstanceRequest) XXX_DiscardUnknown() {
-	xxx_messageInfo_ListApplicationInstanceRequest.DiscardUnknown(m)
+func (m *ListStageRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_ListStageRequest.DiscardUnknown(m)
 }
 
-var xxx_messageInfo_ListApplicationInstanceRequest proto.InternalMessageInfo
+var xxx_messageInfo_ListStageRequest proto.InternalMessageInfo
 
-func (m *ListApplicationInstanceRequest) GetFilter() *query.Filtering {
+func (m *ListStageRequest) GetFilter() *query.Filtering {
 	if m != nil {
 		return m.Filter
 	}
 	return nil
 }
 
-func (m *ListApplicationInstanceRequest) GetOrderBy() *query.Sorting {
+func (m *ListStageRequest) GetOrderBy() *query.Sorting {
 	if m != nil {
 		return m.OrderBy
 	}
 	return nil
 }
 
-func (m *ListApplicationInstanceRequest) GetFields() *query.FieldSelection {
+func (m *ListStageRequest) GetFields() *query.FieldSelection {
 	if m != nil {
 		return m.Fields
 	}
 	return nil
 }
 
-func (m *ListApplicationInstanceRequest) GetPaging() *query.Pagination {
+func (m *ListStageRequest) GetPaging() *query.Pagination {
 	if m != nil {
 		return m.Paging
 	}
 	return nil
 }
 
-type ListApplicationInstancesResponse struct {
-	Results              []*ApplicationInstance `protobuf:"bytes,1,rep,name=results,proto3" json:"results,omitempty"`
-	Page                 *query.PageInfo        `protobuf:"bytes,2,opt,name=page,proto3" json:"page,omitempty"`
-	XXX_NoUnkeyedLiteral struct{}               `json:"-"`
-	XXX_unrecognized     []byte                 `json:"-"`
-	XXX_sizecache        int32                  `json:"-"`
-}
-
-func (m *ListApplicationInstancesResponse) Reset()         { *m = ListApplicationInstancesResponse{} }
-func (m *ListApplicationInstancesResponse) String() string { return proto.CompactTextString(m) }
-func (*ListApplicationInstancesResponse) ProtoMessage()    {}
-func (*ListApplicationInstancesResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_b7c4efe410d87592, []int{33}
-}
-
-func (m *ListApplicationInstancesResponse) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_ListApplicationInstancesResponse.Unmarshal(m, b)
-}
-func (m *ListApplicationInstancesResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_ListApplicationInstancesResponse.Marshal(b, m, deterministic)
-}
-func (m *ListApplicationInstancesResponse) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_ListApplicationInstancesResponse.Merge(m, src)
-}
-func (m *ListApplicationInstancesResponse) XXX_Size() int {
-	return xxx_messageInfo_ListApplicationInstancesResponse.Size(m)
-}
-func (m *ListApplicationInstancesResponse) XXX_DiscardUnknown() {
-	xxx_messageInfo_ListApplicationInstancesResponse.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_ListApplicationInstancesResponse proto.InternalMessageInfo
-
-func (m *ListApplicationInstancesResponse) GetResults() []*ApplicationInstance {
-	if m != nil {
-		return m.Results
-	}
-	return nil
-}
-
-func (m *ListApplicationInstancesResponse) GetPage() *query.PageInfo {
-	if m != nil {
-		return m.Page
-	}
-	return nil
-}
-
-// --------------------------------------------------------
-// AwsRdsInstance represents a particular AWS RDS Instance
-// --------------------------------------------------------
-type AwsRdsInstance struct {
-	// The AwsRdsInstance identifier.
-	Id *resource.Identifier `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
-	// The name of the AwsRdsInstance
-	Name string `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
-	// The description of the AwsRdsInstance
-	Description string `protobuf:"bytes,3,opt,name=description,proto3" json:"description,omitempty"`
-	// Host URL of the AwsRdsInstance (e.g. cmdb.cf1k7otqh6nf.us-east-1.rds.amazonaws.com)
-	DatabaseHost string `protobuf:"bytes,4,opt,name=database_host,json=databaseHost,proto3" json:"database_host,omitempty"`
-	// Name of the database created for use by the ApplicationInstance
-	DatabaseName string `protobuf:"bytes,5,opt,name=database_name,json=databaseName,proto3" json:"database_name,omitempty"`
-	// User credentials for access to the database
-	DatabaseUser string `protobuf:"bytes,6,opt,name=database_user,json=databaseUser,proto3" json:"database_user,omitempty"`
-	// Secret database password which must be with the user credentials to access database
-	DatabasePassword *Secret `protobuf:"bytes,7,opt,name=database_password,json=databasePassword,proto3" json:"database_password,omitempty"`
-	// Reference to the AWS Service this RDS Instance belongs to
-	AwsServiceId         *resource.Identifier `protobuf:"bytes,8,opt,name=aws_service_id,json=awsServiceId,proto3" json:"aws_service_id,omitempty"`
-	XXX_NoUnkeyedLiteral struct{}             `json:"-"`
-	XXX_unrecognized     []byte               `json:"-"`
-	XXX_sizecache        int32                `json:"-"`
-}
-
-func (m *AwsRdsInstance) Reset()         { *m = AwsRdsInstance{} }
-func (m *AwsRdsInstance) String() string { return proto.CompactTextString(m) }
-func (*AwsRdsInstance) ProtoMessage()    {}
-func (*AwsRdsInstance) Descriptor() ([]byte, []int) {
-	return fileDescriptor_b7c4efe410d87592, []int{34}
-}
-
-func (m *AwsRdsInstance) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_AwsRdsInstance.Unmarshal(m, b)
-}
-func (m *AwsRdsInstance) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_AwsRdsInstance.Marshal(b, m, deterministic)
-}
-func (m *AwsRdsInstance) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_AwsRdsInstance.Merge(m, src)
-}
-func (m *AwsRdsInstance) XXX_Size() int {
-	return xxx_messageInfo_AwsRdsInstance.Size(m)
-}
-func (m *AwsRdsInstance) XXX_DiscardUnknown() {
-	xxx_messageInfo_AwsRdsInstance.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_AwsRdsInstance proto.InternalMessageInfo
-
-func (m *AwsRdsInstance) GetId() *resource.Identifier {
-	if m != nil {
-		return m.Id
-	}
-	return nil
-}
-
-func (m *AwsRdsInstance) GetName() string {
-	if m != nil {
-		return m.Name
-	}
-	return ""
-}
-
-func (m *AwsRdsInstance) GetDescription() string {
-	if m != nil {
-		return m.Description
-	}
-	return ""
-}
-
-func (m *AwsRdsInstance) GetDatabaseHost() string {
-	if m != nil {
-		return m.DatabaseHost
-	}
-	return ""
-}
-
-func (m *AwsRdsInstance) GetDatabaseName() string {
-	if m != nil {
-		return m.DatabaseName
-	}
-	return ""
-}
-
-func (m *AwsRdsInstance) GetDatabaseUser() string {
-	if m != nil {
-		return m.DatabaseUser
-	}
-	return ""
-}
-
-func (m *AwsRdsInstance) GetDatabasePassword() *Secret {
-	if m != nil {
-		return m.DatabasePassword
-	}
-	return nil
-}
-
-func (m *AwsRdsInstance) GetAwsServiceId() *resource.Identifier {
-	if m != nil {
-		return m.AwsServiceId
-	}
-	return nil
-}
-
-type CreateAwsRdsInstanceRequest struct {
-	Payload              *AwsRdsInstance `protobuf:"bytes,1,opt,name=payload,proto3" json:"payload,omitempty"`
-	XXX_NoUnkeyedLiteral struct{}        `json:"-"`
-	XXX_unrecognized     []byte          `json:"-"`
-	XXX_sizecache        int32           `json:"-"`
-}
-
-func (m *CreateAwsRdsInstanceRequest) Reset()         { *m = CreateAwsRdsInstanceRequest{} }
-func (m *CreateAwsRdsInstanceRequest) String() string { return proto.CompactTextString(m) }
-func (*CreateAwsRdsInstanceRequest) ProtoMessage()    {}
-func (*CreateAwsRdsInstanceRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_b7c4efe410d87592, []int{35}
-}
-
-func (m *CreateAwsRdsInstanceRequest) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_CreateAwsRdsInstanceRequest.Unmarshal(m, b)
-}
-func (m *CreateAwsRdsInstanceRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_CreateAwsRdsInstanceRequest.Marshal(b, m, deterministic)
-}
-func (m *CreateAwsRdsInstanceRequest) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_CreateAwsRdsInstanceRequest.Merge(m, src)
-}
-func (m *CreateAwsRdsInstanceRequest) XXX_Size() int {
-	return xxx_messageInfo_CreateAwsRdsInstanceRequest.Size(m)
-}
-func (m *CreateAwsRdsInstanceRequest) XXX_DiscardUnknown() {
-	xxx_messageInfo_CreateAwsRdsInstanceRequest.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_CreateAwsRdsInstanceRequest proto.InternalMessageInfo
-
-func (m *CreateAwsRdsInstanceRequest) GetPayload() *AwsRdsInstance {
-	if m != nil {
-		return m.Payload
-	}
-	return nil
-}
-
-type CreateAwsRdsInstanceResponse struct {
-	Result               *AwsRdsInstance `protobuf:"bytes,1,opt,name=result,proto3" json:"result,omitempty"`
-	XXX_NoUnkeyedLiteral struct{}        `json:"-"`
-	XXX_unrecognized     []byte          `json:"-"`
-	XXX_sizecache        int32           `json:"-"`
-}
-
-func (m *CreateAwsRdsInstanceResponse) Reset()         { *m = CreateAwsRdsInstanceResponse{} }
-func (m *CreateAwsRdsInstanceResponse) String() string { return proto.CompactTextString(m) }
-func (*CreateAwsRdsInstanceResponse) ProtoMessage()    {}
-func (*CreateAwsRdsInstanceResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_b7c4efe410d87592, []int{36}
-}
-
-func (m *CreateAwsRdsInstanceResponse) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_CreateAwsRdsInstanceResponse.Unmarshal(m, b)
-}
-func (m *CreateAwsRdsInstanceResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_CreateAwsRdsInstanceResponse.Marshal(b, m, deterministic)
-}
-func (m *CreateAwsRdsInstanceResponse) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_CreateAwsRdsInstanceResponse.Merge(m, src)
-}
-func (m *CreateAwsRdsInstanceResponse) XXX_Size() int {
-	return xxx_messageInfo_CreateAwsRdsInstanceResponse.Size(m)
-}
-func (m *CreateAwsRdsInstanceResponse) XXX_DiscardUnknown() {
-	xxx_messageInfo_CreateAwsRdsInstanceResponse.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_CreateAwsRdsInstanceResponse proto.InternalMessageInfo
-
-func (m *CreateAwsRdsInstanceResponse) GetResult() *AwsRdsInstance {
-	if m != nil {
-		return m.Result
-	}
-	return nil
-}
-
-type ReadAwsRdsInstanceRequest struct {
-	Id                   *resource.Identifier  `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
-	Fields               *query.FieldSelection `protobuf:"bytes,2,opt,name=fields,proto3" json:"fields,omitempty"`
-	XXX_NoUnkeyedLiteral struct{}              `json:"-"`
-	XXX_unrecognized     []byte                `json:"-"`
-	XXX_sizecache        int32                 `json:"-"`
-}
-
-func (m *ReadAwsRdsInstanceRequest) Reset()         { *m = ReadAwsRdsInstanceRequest{} }
-func (m *ReadAwsRdsInstanceRequest) String() string { return proto.CompactTextString(m) }
-func (*ReadAwsRdsInstanceRequest) ProtoMessage()    {}
-func (*ReadAwsRdsInstanceRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_b7c4efe410d87592, []int{37}
-}
-
-func (m *ReadAwsRdsInstanceRequest) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_ReadAwsRdsInstanceRequest.Unmarshal(m, b)
-}
-func (m *ReadAwsRdsInstanceRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_ReadAwsRdsInstanceRequest.Marshal(b, m, deterministic)
-}
-func (m *ReadAwsRdsInstanceRequest) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_ReadAwsRdsInstanceRequest.Merge(m, src)
-}
-func (m *ReadAwsRdsInstanceRequest) XXX_Size() int {
-	return xxx_messageInfo_ReadAwsRdsInstanceRequest.Size(m)
-}
-func (m *ReadAwsRdsInstanceRequest) XXX_DiscardUnknown() {
-	xxx_messageInfo_ReadAwsRdsInstanceRequest.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_ReadAwsRdsInstanceRequest proto.InternalMessageInfo
-
-func (m *ReadAwsRdsInstanceRequest) GetId() *resource.Identifier {
-	if m != nil {
-		return m.Id
-	}
-	return nil
-}
-
-func (m *ReadAwsRdsInstanceRequest) GetFields() *query.FieldSelection {
-	if m != nil {
-		return m.Fields
-	}
-	return nil
-}
-
-type ReadAwsRdsInstanceResponse struct {
-	Result               *AwsRdsInstance `protobuf:"bytes,1,opt,name=result,proto3" json:"result,omitempty"`
-	XXX_NoUnkeyedLiteral struct{}        `json:"-"`
-	XXX_unrecognized     []byte          `json:"-"`
-	XXX_sizecache        int32           `json:"-"`
-}
-
-func (m *ReadAwsRdsInstanceResponse) Reset()         { *m = ReadAwsRdsInstanceResponse{} }
-func (m *ReadAwsRdsInstanceResponse) String() string { return proto.CompactTextString(m) }
-func (*ReadAwsRdsInstanceResponse) ProtoMessage()    {}
-func (*ReadAwsRdsInstanceResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_b7c4efe410d87592, []int{38}
-}
-
-func (m *ReadAwsRdsInstanceResponse) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_ReadAwsRdsInstanceResponse.Unmarshal(m, b)
-}
-func (m *ReadAwsRdsInstanceResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_ReadAwsRdsInstanceResponse.Marshal(b, m, deterministic)
-}
-func (m *ReadAwsRdsInstanceResponse) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_ReadAwsRdsInstanceResponse.Merge(m, src)
-}
-func (m *ReadAwsRdsInstanceResponse) XXX_Size() int {
-	return xxx_messageInfo_ReadAwsRdsInstanceResponse.Size(m)
-}
-func (m *ReadAwsRdsInstanceResponse) XXX_DiscardUnknown() {
-	xxx_messageInfo_ReadAwsRdsInstanceResponse.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_ReadAwsRdsInstanceResponse proto.InternalMessageInfo
-
-func (m *ReadAwsRdsInstanceResponse) GetResult() *AwsRdsInstance {
-	if m != nil {
-		return m.Result
-	}
-	return nil
-}
-
-type UpdateAwsRdsInstanceRequest struct {
-	Payload              *AwsRdsInstance       `protobuf:"bytes,1,opt,name=payload,proto3" json:"payload,omitempty"`
-	Fields               *field_mask.FieldMask `protobuf:"bytes,2,opt,name=fields,proto3" json:"fields,omitempty"`
-	XXX_NoUnkeyedLiteral struct{}              `json:"-"`
-	XXX_unrecognized     []byte                `json:"-"`
-	XXX_sizecache        int32                 `json:"-"`
-}
-
-func (m *UpdateAwsRdsInstanceRequest) Reset()         { *m = UpdateAwsRdsInstanceRequest{} }
-func (m *UpdateAwsRdsInstanceRequest) String() string { return proto.CompactTextString(m) }
-func (*UpdateAwsRdsInstanceRequest) ProtoMessage()    {}
-func (*UpdateAwsRdsInstanceRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_b7c4efe410d87592, []int{39}
-}
-
-func (m *UpdateAwsRdsInstanceRequest) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_UpdateAwsRdsInstanceRequest.Unmarshal(m, b)
-}
-func (m *UpdateAwsRdsInstanceRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_UpdateAwsRdsInstanceRequest.Marshal(b, m, deterministic)
-}
-func (m *UpdateAwsRdsInstanceRequest) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_UpdateAwsRdsInstanceRequest.Merge(m, src)
-}
-func (m *UpdateAwsRdsInstanceRequest) XXX_Size() int {
-	return xxx_messageInfo_UpdateAwsRdsInstanceRequest.Size(m)
-}
-func (m *UpdateAwsRdsInstanceRequest) XXX_DiscardUnknown() {
-	xxx_messageInfo_UpdateAwsRdsInstanceRequest.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_UpdateAwsRdsInstanceRequest proto.InternalMessageInfo
-
-func (m *UpdateAwsRdsInstanceRequest) GetPayload() *AwsRdsInstance {
-	if m != nil {
-		return m.Payload
-	}
-	return nil
-}
-
-func (m *UpdateAwsRdsInstanceRequest) GetFields() *field_mask.FieldMask {
-	if m != nil {
-		return m.Fields
-	}
-	return nil
-}
-
-type UpdateAwsRdsInstanceResponse struct {
-	Result               *AwsRdsInstance `protobuf:"bytes,1,opt,name=result,proto3" json:"result,omitempty"`
-	XXX_NoUnkeyedLiteral struct{}        `json:"-"`
-	XXX_unrecognized     []byte          `json:"-"`
-	XXX_sizecache        int32           `json:"-"`
-}
-
-func (m *UpdateAwsRdsInstanceResponse) Reset()         { *m = UpdateAwsRdsInstanceResponse{} }
-func (m *UpdateAwsRdsInstanceResponse) String() string { return proto.CompactTextString(m) }
-func (*UpdateAwsRdsInstanceResponse) ProtoMessage()    {}
-func (*UpdateAwsRdsInstanceResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_b7c4efe410d87592, []int{40}
-}
-
-func (m *UpdateAwsRdsInstanceResponse) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_UpdateAwsRdsInstanceResponse.Unmarshal(m, b)
-}
-func (m *UpdateAwsRdsInstanceResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_UpdateAwsRdsInstanceResponse.Marshal(b, m, deterministic)
-}
-func (m *UpdateAwsRdsInstanceResponse) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_UpdateAwsRdsInstanceResponse.Merge(m, src)
-}
-func (m *UpdateAwsRdsInstanceResponse) XXX_Size() int {
-	return xxx_messageInfo_UpdateAwsRdsInstanceResponse.Size(m)
-}
-func (m *UpdateAwsRdsInstanceResponse) XXX_DiscardUnknown() {
-	xxx_messageInfo_UpdateAwsRdsInstanceResponse.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_UpdateAwsRdsInstanceResponse proto.InternalMessageInfo
-
-func (m *UpdateAwsRdsInstanceResponse) GetResult() *AwsRdsInstance {
-	if m != nil {
-		return m.Result
-	}
-	return nil
-}
-
-type DeleteAwsRdsInstanceRequest struct {
-	Id                   *resource.Identifier `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
-	XXX_NoUnkeyedLiteral struct{}             `json:"-"`
-	XXX_unrecognized     []byte               `json:"-"`
-	XXX_sizecache        int32                `json:"-"`
-}
-
-func (m *DeleteAwsRdsInstanceRequest) Reset()         { *m = DeleteAwsRdsInstanceRequest{} }
-func (m *DeleteAwsRdsInstanceRequest) String() string { return proto.CompactTextString(m) }
-func (*DeleteAwsRdsInstanceRequest) ProtoMessage()    {}
-func (*DeleteAwsRdsInstanceRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_b7c4efe410d87592, []int{41}
-}
-
-func (m *DeleteAwsRdsInstanceRequest) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_DeleteAwsRdsInstanceRequest.Unmarshal(m, b)
-}
-func (m *DeleteAwsRdsInstanceRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_DeleteAwsRdsInstanceRequest.Marshal(b, m, deterministic)
-}
-func (m *DeleteAwsRdsInstanceRequest) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_DeleteAwsRdsInstanceRequest.Merge(m, src)
-}
-func (m *DeleteAwsRdsInstanceRequest) XXX_Size() int {
-	return xxx_messageInfo_DeleteAwsRdsInstanceRequest.Size(m)
-}
-func (m *DeleteAwsRdsInstanceRequest) XXX_DiscardUnknown() {
-	xxx_messageInfo_DeleteAwsRdsInstanceRequest.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_DeleteAwsRdsInstanceRequest proto.InternalMessageInfo
-
-func (m *DeleteAwsRdsInstanceRequest) GetId() *resource.Identifier {
-	if m != nil {
-		return m.Id
-	}
-	return nil
-}
-
-type DeleteAwsRdsInstanceResponse struct {
-	XXX_NoUnkeyedLiteral struct{} `json:"-"`
-	XXX_unrecognized     []byte   `json:"-"`
-	XXX_sizecache        int32    `json:"-"`
-}
-
-func (m *DeleteAwsRdsInstanceResponse) Reset()         { *m = DeleteAwsRdsInstanceResponse{} }
-func (m *DeleteAwsRdsInstanceResponse) String() string { return proto.CompactTextString(m) }
-func (*DeleteAwsRdsInstanceResponse) ProtoMessage()    {}
-func (*DeleteAwsRdsInstanceResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_b7c4efe410d87592, []int{42}
-}
-
-func (m *DeleteAwsRdsInstanceResponse) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_DeleteAwsRdsInstanceResponse.Unmarshal(m, b)
-}
-func (m *DeleteAwsRdsInstanceResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_DeleteAwsRdsInstanceResponse.Marshal(b, m, deterministic)
-}
-func (m *DeleteAwsRdsInstanceResponse) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_DeleteAwsRdsInstanceResponse.Merge(m, src)
-}
-func (m *DeleteAwsRdsInstanceResponse) XXX_Size() int {
-	return xxx_messageInfo_DeleteAwsRdsInstanceResponse.Size(m)
-}
-func (m *DeleteAwsRdsInstanceResponse) XXX_DiscardUnknown() {
-	xxx_messageInfo_DeleteAwsRdsInstanceResponse.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_DeleteAwsRdsInstanceResponse proto.InternalMessageInfo
-
-type ListAwsRdsInstanceRequest struct {
-	Filter               *query.Filtering      `protobuf:"bytes,1,opt,name=filter,proto3" json:"filter,omitempty"`
-	OrderBy              *query.Sorting        `protobuf:"bytes,2,opt,name=order_by,json=orderBy,proto3" json:"order_by,omitempty"`
-	Fields               *query.FieldSelection `protobuf:"bytes,3,opt,name=fields,proto3" json:"fields,omitempty"`
-	Paging               *query.Pagination     `protobuf:"bytes,4,opt,name=paging,proto3" json:"paging,omitempty"`
-	XXX_NoUnkeyedLiteral struct{}              `json:"-"`
-	XXX_unrecognized     []byte                `json:"-"`
-	XXX_sizecache        int32                 `json:"-"`
-}
-
-func (m *ListAwsRdsInstanceRequest) Reset()         { *m = ListAwsRdsInstanceRequest{} }
-func (m *ListAwsRdsInstanceRequest) String() string { return proto.CompactTextString(m) }
-func (*ListAwsRdsInstanceRequest) ProtoMessage()    {}
-func (*ListAwsRdsInstanceRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_b7c4efe410d87592, []int{43}
-}
-
-func (m *ListAwsRdsInstanceRequest) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_ListAwsRdsInstanceRequest.Unmarshal(m, b)
-}
-func (m *ListAwsRdsInstanceRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_ListAwsRdsInstanceRequest.Marshal(b, m, deterministic)
-}
-func (m *ListAwsRdsInstanceRequest) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_ListAwsRdsInstanceRequest.Merge(m, src)
-}
-func (m *ListAwsRdsInstanceRequest) XXX_Size() int {
-	return xxx_messageInfo_ListAwsRdsInstanceRequest.Size(m)
-}
-func (m *ListAwsRdsInstanceRequest) XXX_DiscardUnknown() {
-	xxx_messageInfo_ListAwsRdsInstanceRequest.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_ListAwsRdsInstanceRequest proto.InternalMessageInfo
-
-func (m *ListAwsRdsInstanceRequest) GetFilter() *query.Filtering {
-	if m != nil {
-		return m.Filter
-	}
-	return nil
-}
-
-func (m *ListAwsRdsInstanceRequest) GetOrderBy() *query.Sorting {
-	if m != nil {
-		return m.OrderBy
-	}
-	return nil
-}
-
-func (m *ListAwsRdsInstanceRequest) GetFields() *query.FieldSelection {
-	if m != nil {
-		return m.Fields
-	}
-	return nil
-}
-
-func (m *ListAwsRdsInstanceRequest) GetPaging() *query.Pagination {
-	if m != nil {
-		return m.Paging
-	}
-	return nil
-}
-
-type ListAwsRdsInstancesResponse struct {
-	Results              []*AwsRdsInstance `protobuf:"bytes,1,rep,name=results,proto3" json:"results,omitempty"`
-	Page                 *query.PageInfo   `protobuf:"bytes,2,opt,name=page,proto3" json:"page,omitempty"`
-	XXX_NoUnkeyedLiteral struct{}          `json:"-"`
-	XXX_unrecognized     []byte            `json:"-"`
-	XXX_sizecache        int32             `json:"-"`
-}
-
-func (m *ListAwsRdsInstancesResponse) Reset()         { *m = ListAwsRdsInstancesResponse{} }
-func (m *ListAwsRdsInstancesResponse) String() string { return proto.CompactTextString(m) }
-func (*ListAwsRdsInstancesResponse) ProtoMessage()    {}
-func (*ListAwsRdsInstancesResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_b7c4efe410d87592, []int{44}
-}
-
-func (m *ListAwsRdsInstancesResponse) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_ListAwsRdsInstancesResponse.Unmarshal(m, b)
-}
-func (m *ListAwsRdsInstancesResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_ListAwsRdsInstancesResponse.Marshal(b, m, deterministic)
-}
-func (m *ListAwsRdsInstancesResponse) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_ListAwsRdsInstancesResponse.Merge(m, src)
-}
-func (m *ListAwsRdsInstancesResponse) XXX_Size() int {
-	return xxx_messageInfo_ListAwsRdsInstancesResponse.Size(m)
-}
-func (m *ListAwsRdsInstancesResponse) XXX_DiscardUnknown() {
-	xxx_messageInfo_ListAwsRdsInstancesResponse.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_ListAwsRdsInstancesResponse proto.InternalMessageInfo
-
-func (m *ListAwsRdsInstancesResponse) GetResults() []*AwsRdsInstance {
-	if m != nil {
-		return m.Results
-	}
-	return nil
-}
-
-func (m *ListAwsRdsInstancesResponse) GetPage() *query.PageInfo {
-	if m != nil {
-		return m.Page
-	}
-	return nil
-}
-
-// ------------------------------------------------------------------------
-// Container represents a Docker Image that has been loaded to a Registry
-// ------------------------------------------------------------------------
-type Container struct {
-	// The container identifier.
-	Id *resource.Identifier `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
-	// The name of the container
-	Name string `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
-	// The description of the container
-	Description string `protobuf:"bytes,3,opt,name=description,proto3" json:"description,omitempty"`
-	// The unique container name referenced helm charts
-	ContainerName string `protobuf:"bytes,4,opt,name=container_name,json=containerName,proto3" json:"container_name,omitempty"`
-	// The docker image repository (e.g. soheileizadi/cmdb-server)
-	ImageRepo string `protobuf:"bytes,5,opt,name=image_repo,json=imageRepo,proto3" json:"image_repo,omitempty"`
-	// The docker image tag (e.g. latest)
-	ImageTag string `protobuf:"bytes,6,opt,name=image_tag,json=imageTag,proto3" json:"image_tag,omitempty"`
-	// The image pull
-	ImagePullPolicy string `protobuf:"bytes,7,opt,name=image_pull_policy,json=imagePullPolicy,proto3" json:"image_pull_policy,omitempty"`
-	// The digest of the image to check integrity (e.g. digest: sha256:9bf4971079f0ddf3f4ed8681dc96c2610804007359643809165f94a95bc5c3b6)
-	Digest string `protobuf:"bytes,8,opt,name=digest,proto3" json:"digest,omitempty"`
-	// Reference to ApplicationInstance
-	ApplicationInstanceId *resource.Identifier `protobuf:"bytes,9,opt,name=application_instance_id,json=applicationInstanceId,proto3" json:"application_instance_id,omitempty"`
-	XXX_NoUnkeyedLiteral  struct{}             `json:"-"`
-	XXX_unrecognized      []byte               `json:"-"`
-	XXX_sizecache         int32                `json:"-"`
-}
-
-func (m *Container) Reset()         { *m = Container{} }
-func (m *Container) String() string { return proto.CompactTextString(m) }
-func (*Container) ProtoMessage()    {}
-func (*Container) Descriptor() ([]byte, []int) {
-	return fileDescriptor_b7c4efe410d87592, []int{45}
-}
-
-func (m *Container) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_Container.Unmarshal(m, b)
-}
-func (m *Container) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_Container.Marshal(b, m, deterministic)
-}
-func (m *Container) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_Container.Merge(m, src)
-}
-func (m *Container) XXX_Size() int {
-	return xxx_messageInfo_Container.Size(m)
-}
-func (m *Container) XXX_DiscardUnknown() {
-	xxx_messageInfo_Container.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_Container proto.InternalMessageInfo
-
-func (m *Container) GetId() *resource.Identifier {
-	if m != nil {
-		return m.Id
-	}
-	return nil
-}
-
-func (m *Container) GetName() string {
-	if m != nil {
-		return m.Name
-	}
-	return ""
-}
-
-func (m *Container) GetDescription() string {
-	if m != nil {
-		return m.Description
-	}
-	return ""
-}
-
-func (m *Container) GetContainerName() string {
-	if m != nil {
-		return m.ContainerName
-	}
-	return ""
-}
-
-func (m *Container) GetImageRepo() string {
-	if m != nil {
-		return m.ImageRepo
-	}
-	return ""
-}
-
-func (m *Container) GetImageTag() string {
-	if m != nil {
-		return m.ImageTag
-	}
-	return ""
-}
-
-func (m *Container) GetImagePullPolicy() string {
-	if m != nil {
-		return m.ImagePullPolicy
-	}
-	return ""
-}
-
-func (m *Container) GetDigest() string {
-	if m != nil {
-		return m.Digest
-	}
-	return ""
-}
-
-func (m *Container) GetApplicationInstanceId() *resource.Identifier {
-	if m != nil {
-		return m.ApplicationInstanceId
-	}
-	return nil
-}
-
-type CreateContainerRequest struct {
-	Payload              *Container `protobuf:"bytes,1,opt,name=payload,proto3" json:"payload,omitempty"`
-	XXX_NoUnkeyedLiteral struct{}   `json:"-"`
-	XXX_unrecognized     []byte     `json:"-"`
-	XXX_sizecache        int32      `json:"-"`
-}
-
-func (m *CreateContainerRequest) Reset()         { *m = CreateContainerRequest{} }
-func (m *CreateContainerRequest) String() string { return proto.CompactTextString(m) }
-func (*CreateContainerRequest) ProtoMessage()    {}
-func (*CreateContainerRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_b7c4efe410d87592, []int{46}
-}
-
-func (m *CreateContainerRequest) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_CreateContainerRequest.Unmarshal(m, b)
-}
-func (m *CreateContainerRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_CreateContainerRequest.Marshal(b, m, deterministic)
-}
-func (m *CreateContainerRequest) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_CreateContainerRequest.Merge(m, src)
-}
-func (m *CreateContainerRequest) XXX_Size() int {
-	return xxx_messageInfo_CreateContainerRequest.Size(m)
-}
-func (m *CreateContainerRequest) XXX_DiscardUnknown() {
-	xxx_messageInfo_CreateContainerRequest.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_CreateContainerRequest proto.InternalMessageInfo
-
-func (m *CreateContainerRequest) GetPayload() *Container {
-	if m != nil {
-		return m.Payload
-	}
-	return nil
-}
-
-type CreateContainerResponse struct {
-	Result               *Container `protobuf:"bytes,1,opt,name=result,proto3" json:"result,omitempty"`
-	XXX_NoUnkeyedLiteral struct{}   `json:"-"`
-	XXX_unrecognized     []byte     `json:"-"`
-	XXX_sizecache        int32      `json:"-"`
-}
-
-func (m *CreateContainerResponse) Reset()         { *m = CreateContainerResponse{} }
-func (m *CreateContainerResponse) String() string { return proto.CompactTextString(m) }
-func (*CreateContainerResponse) ProtoMessage()    {}
-func (*CreateContainerResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_b7c4efe410d87592, []int{47}
-}
-
-func (m *CreateContainerResponse) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_CreateContainerResponse.Unmarshal(m, b)
-}
-func (m *CreateContainerResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_CreateContainerResponse.Marshal(b, m, deterministic)
-}
-func (m *CreateContainerResponse) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_CreateContainerResponse.Merge(m, src)
-}
-func (m *CreateContainerResponse) XXX_Size() int {
-	return xxx_messageInfo_CreateContainerResponse.Size(m)
-}
-func (m *CreateContainerResponse) XXX_DiscardUnknown() {
-	xxx_messageInfo_CreateContainerResponse.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_CreateContainerResponse proto.InternalMessageInfo
-
-func (m *CreateContainerResponse) GetResult() *Container {
-	if m != nil {
-		return m.Result
-	}
-	return nil
-}
-
-type ReadContainerRequest struct {
-	Id                   *resource.Identifier  `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
-	Fields               *query.FieldSelection `protobuf:"bytes,2,opt,name=fields,proto3" json:"fields,omitempty"`
-	XXX_NoUnkeyedLiteral struct{}              `json:"-"`
-	XXX_unrecognized     []byte                `json:"-"`
-	XXX_sizecache        int32                 `json:"-"`
-}
-
-func (m *ReadContainerRequest) Reset()         { *m = ReadContainerRequest{} }
-func (m *ReadContainerRequest) String() string { return proto.CompactTextString(m) }
-func (*ReadContainerRequest) ProtoMessage()    {}
-func (*ReadContainerRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_b7c4efe410d87592, []int{48}
-}
-
-func (m *ReadContainerRequest) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_ReadContainerRequest.Unmarshal(m, b)
-}
-func (m *ReadContainerRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_ReadContainerRequest.Marshal(b, m, deterministic)
-}
-func (m *ReadContainerRequest) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_ReadContainerRequest.Merge(m, src)
-}
-func (m *ReadContainerRequest) XXX_Size() int {
-	return xxx_messageInfo_ReadContainerRequest.Size(m)
-}
-func (m *ReadContainerRequest) XXX_DiscardUnknown() {
-	xxx_messageInfo_ReadContainerRequest.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_ReadContainerRequest proto.InternalMessageInfo
-
-func (m *ReadContainerRequest) GetId() *resource.Identifier {
-	if m != nil {
-		return m.Id
-	}
-	return nil
-}
-
-func (m *ReadContainerRequest) GetFields() *query.FieldSelection {
-	if m != nil {
-		return m.Fields
-	}
-	return nil
-}
-
-type ReadContainerResponse struct {
-	Result               *Container `protobuf:"bytes,1,opt,name=result,proto3" json:"result,omitempty"`
-	XXX_NoUnkeyedLiteral struct{}   `json:"-"`
-	XXX_unrecognized     []byte     `json:"-"`
-	XXX_sizecache        int32      `json:"-"`
-}
-
-func (m *ReadContainerResponse) Reset()         { *m = ReadContainerResponse{} }
-func (m *ReadContainerResponse) String() string { return proto.CompactTextString(m) }
-func (*ReadContainerResponse) ProtoMessage()    {}
-func (*ReadContainerResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_b7c4efe410d87592, []int{49}
-}
-
-func (m *ReadContainerResponse) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_ReadContainerResponse.Unmarshal(m, b)
-}
-func (m *ReadContainerResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_ReadContainerResponse.Marshal(b, m, deterministic)
-}
-func (m *ReadContainerResponse) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_ReadContainerResponse.Merge(m, src)
-}
-func (m *ReadContainerResponse) XXX_Size() int {
-	return xxx_messageInfo_ReadContainerResponse.Size(m)
-}
-func (m *ReadContainerResponse) XXX_DiscardUnknown() {
-	xxx_messageInfo_ReadContainerResponse.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_ReadContainerResponse proto.InternalMessageInfo
-
-func (m *ReadContainerResponse) GetResult() *Container {
-	if m != nil {
-		return m.Result
-	}
-	return nil
-}
-
-type UpdateContainerRequest struct {
-	Payload              *Container            `protobuf:"bytes,1,opt,name=payload,proto3" json:"payload,omitempty"`
-	Fields               *field_mask.FieldMask `protobuf:"bytes,2,opt,name=fields,proto3" json:"fields,omitempty"`
-	XXX_NoUnkeyedLiteral struct{}              `json:"-"`
-	XXX_unrecognized     []byte                `json:"-"`
-	XXX_sizecache        int32                 `json:"-"`
-}
-
-func (m *UpdateContainerRequest) Reset()         { *m = UpdateContainerRequest{} }
-func (m *UpdateContainerRequest) String() string { return proto.CompactTextString(m) }
-func (*UpdateContainerRequest) ProtoMessage()    {}
-func (*UpdateContainerRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_b7c4efe410d87592, []int{50}
-}
-
-func (m *UpdateContainerRequest) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_UpdateContainerRequest.Unmarshal(m, b)
-}
-func (m *UpdateContainerRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_UpdateContainerRequest.Marshal(b, m, deterministic)
-}
-func (m *UpdateContainerRequest) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_UpdateContainerRequest.Merge(m, src)
-}
-func (m *UpdateContainerRequest) XXX_Size() int {
-	return xxx_messageInfo_UpdateContainerRequest.Size(m)
-}
-func (m *UpdateContainerRequest) XXX_DiscardUnknown() {
-	xxx_messageInfo_UpdateContainerRequest.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_UpdateContainerRequest proto.InternalMessageInfo
-
-func (m *UpdateContainerRequest) GetPayload() *Container {
-	if m != nil {
-		return m.Payload
-	}
-	return nil
-}
-
-func (m *UpdateContainerRequest) GetFields() *field_mask.FieldMask {
-	if m != nil {
-		return m.Fields
-	}
-	return nil
-}
-
-type UpdateContainerResponse struct {
-	Result               *Container `protobuf:"bytes,1,opt,name=result,proto3" json:"result,omitempty"`
-	XXX_NoUnkeyedLiteral struct{}   `json:"-"`
-	XXX_unrecognized     []byte     `json:"-"`
-	XXX_sizecache        int32      `json:"-"`
-}
-
-func (m *UpdateContainerResponse) Reset()         { *m = UpdateContainerResponse{} }
-func (m *UpdateContainerResponse) String() string { return proto.CompactTextString(m) }
-func (*UpdateContainerResponse) ProtoMessage()    {}
-func (*UpdateContainerResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_b7c4efe410d87592, []int{51}
-}
-
-func (m *UpdateContainerResponse) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_UpdateContainerResponse.Unmarshal(m, b)
-}
-func (m *UpdateContainerResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_UpdateContainerResponse.Marshal(b, m, deterministic)
-}
-func (m *UpdateContainerResponse) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_UpdateContainerResponse.Merge(m, src)
-}
-func (m *UpdateContainerResponse) XXX_Size() int {
-	return xxx_messageInfo_UpdateContainerResponse.Size(m)
-}
-func (m *UpdateContainerResponse) XXX_DiscardUnknown() {
-	xxx_messageInfo_UpdateContainerResponse.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_UpdateContainerResponse proto.InternalMessageInfo
-
-func (m *UpdateContainerResponse) GetResult() *Container {
-	if m != nil {
-		return m.Result
-	}
-	return nil
-}
-
-type DeleteContainerRequest struct {
-	Id                   *resource.Identifier `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
-	XXX_NoUnkeyedLiteral struct{}             `json:"-"`
-	XXX_unrecognized     []byte               `json:"-"`
-	XXX_sizecache        int32                `json:"-"`
-}
-
-func (m *DeleteContainerRequest) Reset()         { *m = DeleteContainerRequest{} }
-func (m *DeleteContainerRequest) String() string { return proto.CompactTextString(m) }
-func (*DeleteContainerRequest) ProtoMessage()    {}
-func (*DeleteContainerRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_b7c4efe410d87592, []int{52}
-}
-
-func (m *DeleteContainerRequest) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_DeleteContainerRequest.Unmarshal(m, b)
-}
-func (m *DeleteContainerRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_DeleteContainerRequest.Marshal(b, m, deterministic)
-}
-func (m *DeleteContainerRequest) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_DeleteContainerRequest.Merge(m, src)
-}
-func (m *DeleteContainerRequest) XXX_Size() int {
-	return xxx_messageInfo_DeleteContainerRequest.Size(m)
-}
-func (m *DeleteContainerRequest) XXX_DiscardUnknown() {
-	xxx_messageInfo_DeleteContainerRequest.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_DeleteContainerRequest proto.InternalMessageInfo
-
-func (m *DeleteContainerRequest) GetId() *resource.Identifier {
-	if m != nil {
-		return m.Id
-	}
-	return nil
-}
-
-type DeleteContainerResponse struct {
-	XXX_NoUnkeyedLiteral struct{} `json:"-"`
-	XXX_unrecognized     []byte   `json:"-"`
-	XXX_sizecache        int32    `json:"-"`
-}
-
-func (m *DeleteContainerResponse) Reset()         { *m = DeleteContainerResponse{} }
-func (m *DeleteContainerResponse) String() string { return proto.CompactTextString(m) }
-func (*DeleteContainerResponse) ProtoMessage()    {}
-func (*DeleteContainerResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_b7c4efe410d87592, []int{53}
-}
-
-func (m *DeleteContainerResponse) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_DeleteContainerResponse.Unmarshal(m, b)
-}
-func (m *DeleteContainerResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_DeleteContainerResponse.Marshal(b, m, deterministic)
-}
-func (m *DeleteContainerResponse) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_DeleteContainerResponse.Merge(m, src)
-}
-func (m *DeleteContainerResponse) XXX_Size() int {
-	return xxx_messageInfo_DeleteContainerResponse.Size(m)
-}
-func (m *DeleteContainerResponse) XXX_DiscardUnknown() {
-	xxx_messageInfo_DeleteContainerResponse.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_DeleteContainerResponse proto.InternalMessageInfo
-
-type ListContainerRequest struct {
-	Filter               *query.Filtering      `protobuf:"bytes,1,opt,name=filter,proto3" json:"filter,omitempty"`
-	OrderBy              *query.Sorting        `protobuf:"bytes,2,opt,name=order_by,json=orderBy,proto3" json:"order_by,omitempty"`
-	Fields               *query.FieldSelection `protobuf:"bytes,3,opt,name=fields,proto3" json:"fields,omitempty"`
-	Paging               *query.Pagination     `protobuf:"bytes,4,opt,name=paging,proto3" json:"paging,omitempty"`
-	XXX_NoUnkeyedLiteral struct{}              `json:"-"`
-	XXX_unrecognized     []byte                `json:"-"`
-	XXX_sizecache        int32                 `json:"-"`
-}
-
-func (m *ListContainerRequest) Reset()         { *m = ListContainerRequest{} }
-func (m *ListContainerRequest) String() string { return proto.CompactTextString(m) }
-func (*ListContainerRequest) ProtoMessage()    {}
-func (*ListContainerRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_b7c4efe410d87592, []int{54}
-}
-
-func (m *ListContainerRequest) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_ListContainerRequest.Unmarshal(m, b)
-}
-func (m *ListContainerRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_ListContainerRequest.Marshal(b, m, deterministic)
-}
-func (m *ListContainerRequest) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_ListContainerRequest.Merge(m, src)
-}
-func (m *ListContainerRequest) XXX_Size() int {
-	return xxx_messageInfo_ListContainerRequest.Size(m)
-}
-func (m *ListContainerRequest) XXX_DiscardUnknown() {
-	xxx_messageInfo_ListContainerRequest.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_ListContainerRequest proto.InternalMessageInfo
-
-func (m *ListContainerRequest) GetFilter() *query.Filtering {
-	if m != nil {
-		return m.Filter
-	}
-	return nil
-}
-
-func (m *ListContainerRequest) GetOrderBy() *query.Sorting {
-	if m != nil {
-		return m.OrderBy
-	}
-	return nil
-}
-
-func (m *ListContainerRequest) GetFields() *query.FieldSelection {
-	if m != nil {
-		return m.Fields
-	}
-	return nil
-}
-
-func (m *ListContainerRequest) GetPaging() *query.Pagination {
-	if m != nil {
-		return m.Paging
-	}
-	return nil
-}
-
-type ListContainersResponse struct {
-	Results              []*Container    `protobuf:"bytes,1,rep,name=results,proto3" json:"results,omitempty"`
+type ListStagesResponse struct {
+	Results              []*Stage        `protobuf:"bytes,1,rep,name=results,proto3" json:"results,omitempty"`
 	Page                 *query.PageInfo `protobuf:"bytes,2,opt,name=page,proto3" json:"page,omitempty"`
 	XXX_NoUnkeyedLiteral struct{}        `json:"-"`
 	XXX_unrecognized     []byte          `json:"-"`
 	XXX_sizecache        int32           `json:"-"`
 }
 
-func (m *ListContainersResponse) Reset()         { *m = ListContainersResponse{} }
-func (m *ListContainersResponse) String() string { return proto.CompactTextString(m) }
-func (*ListContainersResponse) ProtoMessage()    {}
-func (*ListContainersResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_b7c4efe410d87592, []int{55}
+func (m *ListStagesResponse) Reset()         { *m = ListStagesResponse{} }
+func (m *ListStagesResponse) String() string { return proto.CompactTextString(m) }
+func (*ListStagesResponse) ProtoMessage()    {}
+func (*ListStagesResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor_b7c4efe410d87592, []int{33}
 }
 
-func (m *ListContainersResponse) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_ListContainersResponse.Unmarshal(m, b)
+func (m *ListStagesResponse) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_ListStagesResponse.Unmarshal(m, b)
 }
-func (m *ListContainersResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_ListContainersResponse.Marshal(b, m, deterministic)
+func (m *ListStagesResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_ListStagesResponse.Marshal(b, m, deterministic)
 }
-func (m *ListContainersResponse) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_ListContainersResponse.Merge(m, src)
+func (m *ListStagesResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_ListStagesResponse.Merge(m, src)
 }
-func (m *ListContainersResponse) XXX_Size() int {
-	return xxx_messageInfo_ListContainersResponse.Size(m)
+func (m *ListStagesResponse) XXX_Size() int {
+	return xxx_messageInfo_ListStagesResponse.Size(m)
 }
-func (m *ListContainersResponse) XXX_DiscardUnknown() {
-	xxx_messageInfo_ListContainersResponse.DiscardUnknown(m)
+func (m *ListStagesResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_ListStagesResponse.DiscardUnknown(m)
 }
 
-var xxx_messageInfo_ListContainersResponse proto.InternalMessageInfo
+var xxx_messageInfo_ListStagesResponse proto.InternalMessageInfo
 
-func (m *ListContainersResponse) GetResults() []*Container {
+func (m *ListStagesResponse) GetResults() []*Stage {
 	if m != nil {
 		return m.Results
 	}
 	return nil
 }
 
-func (m *ListContainersResponse) GetPage() *query.PageInfo {
+func (m *ListStagesResponse) GetPage() *query.PageInfo {
 	if m != nil {
 		return m.Page
 	}
@@ -2831,12 +1714,12 @@ type Environment struct {
 	Name string `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
 	// The description of the Environment
 	Description string `protobuf:"bytes,3,opt,name=description,proto3" json:"description,omitempty"`
-	// Code defines the various stages e.g. dev, qa, preprod, prod
-	Code Stage `protobuf:"varint,4,opt,name=code,proto3,enum=api.cmdb.Stage" json:"code,omitempty"`
+	// Value associated with this Environment
+	Value *Value `protobuf:"bytes,4,opt,name=value,proto3" json:"value,omitempty"`
 	// ApplicationInstances in this Environment
 	ApplicationInstances []*ApplicationInstance `protobuf:"bytes,5,rep,name=application_instances,json=applicationInstances,proto3" json:"application_instances,omitempty"`
-	// Region used by this Environment
-	RegionId             *resource.Identifier `protobuf:"bytes,6,opt,name=region_id,json=regionId,proto3" json:"region_id,omitempty"`
+	// Stage used by this Environment
+	StageId              *resource.Identifier `protobuf:"bytes,6,opt,name=stage_id,json=stageId,proto3" json:"stage_id,omitempty"`
 	XXX_NoUnkeyedLiteral struct{}             `json:"-"`
 	XXX_unrecognized     []byte               `json:"-"`
 	XXX_sizecache        int32                `json:"-"`
@@ -2846,7 +1729,7 @@ func (m *Environment) Reset()         { *m = Environment{} }
 func (m *Environment) String() string { return proto.CompactTextString(m) }
 func (*Environment) ProtoMessage()    {}
 func (*Environment) Descriptor() ([]byte, []int) {
-	return fileDescriptor_b7c4efe410d87592, []int{56}
+	return fileDescriptor_b7c4efe410d87592, []int{34}
 }
 
 func (m *Environment) XXX_Unmarshal(b []byte) error {
@@ -2888,11 +1771,11 @@ func (m *Environment) GetDescription() string {
 	return ""
 }
 
-func (m *Environment) GetCode() Stage {
+func (m *Environment) GetValue() *Value {
 	if m != nil {
-		return m.Code
+		return m.Value
 	}
-	return Stage_UNKNOWN_STAGE
+	return nil
 }
 
 func (m *Environment) GetApplicationInstances() []*ApplicationInstance {
@@ -2902,9 +1785,9 @@ func (m *Environment) GetApplicationInstances() []*ApplicationInstance {
 	return nil
 }
 
-func (m *Environment) GetRegionId() *resource.Identifier {
+func (m *Environment) GetStageId() *resource.Identifier {
 	if m != nil {
-		return m.RegionId
+		return m.StageId
 	}
 	return nil
 }
@@ -2920,7 +1803,7 @@ func (m *CreateEnvironmentRequest) Reset()         { *m = CreateEnvironmentReque
 func (m *CreateEnvironmentRequest) String() string { return proto.CompactTextString(m) }
 func (*CreateEnvironmentRequest) ProtoMessage()    {}
 func (*CreateEnvironmentRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_b7c4efe410d87592, []int{57}
+	return fileDescriptor_b7c4efe410d87592, []int{35}
 }
 
 func (m *CreateEnvironmentRequest) XXX_Unmarshal(b []byte) error {
@@ -2959,7 +1842,7 @@ func (m *CreateEnvironmentResponse) Reset()         { *m = CreateEnvironmentResp
 func (m *CreateEnvironmentResponse) String() string { return proto.CompactTextString(m) }
 func (*CreateEnvironmentResponse) ProtoMessage()    {}
 func (*CreateEnvironmentResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_b7c4efe410d87592, []int{58}
+	return fileDescriptor_b7c4efe410d87592, []int{36}
 }
 
 func (m *CreateEnvironmentResponse) XXX_Unmarshal(b []byte) error {
@@ -2999,7 +1882,7 @@ func (m *ReadEnvironmentRequest) Reset()         { *m = ReadEnvironmentRequest{}
 func (m *ReadEnvironmentRequest) String() string { return proto.CompactTextString(m) }
 func (*ReadEnvironmentRequest) ProtoMessage()    {}
 func (*ReadEnvironmentRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_b7c4efe410d87592, []int{59}
+	return fileDescriptor_b7c4efe410d87592, []int{37}
 }
 
 func (m *ReadEnvironmentRequest) XXX_Unmarshal(b []byte) error {
@@ -3045,7 +1928,7 @@ func (m *ReadEnvironmentResponse) Reset()         { *m = ReadEnvironmentResponse
 func (m *ReadEnvironmentResponse) String() string { return proto.CompactTextString(m) }
 func (*ReadEnvironmentResponse) ProtoMessage()    {}
 func (*ReadEnvironmentResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_b7c4efe410d87592, []int{60}
+	return fileDescriptor_b7c4efe410d87592, []int{38}
 }
 
 func (m *ReadEnvironmentResponse) XXX_Unmarshal(b []byte) error {
@@ -3085,7 +1968,7 @@ func (m *UpdateEnvironmentRequest) Reset()         { *m = UpdateEnvironmentReque
 func (m *UpdateEnvironmentRequest) String() string { return proto.CompactTextString(m) }
 func (*UpdateEnvironmentRequest) ProtoMessage()    {}
 func (*UpdateEnvironmentRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_b7c4efe410d87592, []int{61}
+	return fileDescriptor_b7c4efe410d87592, []int{39}
 }
 
 func (m *UpdateEnvironmentRequest) XXX_Unmarshal(b []byte) error {
@@ -3131,7 +2014,7 @@ func (m *UpdateEnvironmentResponse) Reset()         { *m = UpdateEnvironmentResp
 func (m *UpdateEnvironmentResponse) String() string { return proto.CompactTextString(m) }
 func (*UpdateEnvironmentResponse) ProtoMessage()    {}
 func (*UpdateEnvironmentResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_b7c4efe410d87592, []int{62}
+	return fileDescriptor_b7c4efe410d87592, []int{40}
 }
 
 func (m *UpdateEnvironmentResponse) XXX_Unmarshal(b []byte) error {
@@ -3170,7 +2053,7 @@ func (m *DeleteEnvironmentRequest) Reset()         { *m = DeleteEnvironmentReque
 func (m *DeleteEnvironmentRequest) String() string { return proto.CompactTextString(m) }
 func (*DeleteEnvironmentRequest) ProtoMessage()    {}
 func (*DeleteEnvironmentRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_b7c4efe410d87592, []int{63}
+	return fileDescriptor_b7c4efe410d87592, []int{41}
 }
 
 func (m *DeleteEnvironmentRequest) XXX_Unmarshal(b []byte) error {
@@ -3208,7 +2091,7 @@ func (m *DeleteEnvironmentResponse) Reset()         { *m = DeleteEnvironmentResp
 func (m *DeleteEnvironmentResponse) String() string { return proto.CompactTextString(m) }
 func (*DeleteEnvironmentResponse) ProtoMessage()    {}
 func (*DeleteEnvironmentResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_b7c4efe410d87592, []int{64}
+	return fileDescriptor_b7c4efe410d87592, []int{42}
 }
 
 func (m *DeleteEnvironmentResponse) XXX_Unmarshal(b []byte) error {
@@ -3243,7 +2126,7 @@ func (m *ListEnvironmentRequest) Reset()         { *m = ListEnvironmentRequest{}
 func (m *ListEnvironmentRequest) String() string { return proto.CompactTextString(m) }
 func (*ListEnvironmentRequest) ProtoMessage()    {}
 func (*ListEnvironmentRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_b7c4efe410d87592, []int{65}
+	return fileDescriptor_b7c4efe410d87592, []int{43}
 }
 
 func (m *ListEnvironmentRequest) XXX_Unmarshal(b []byte) error {
@@ -3304,7 +2187,7 @@ func (m *ListEnvironmentsResponse) Reset()         { *m = ListEnvironmentsRespon
 func (m *ListEnvironmentsResponse) String() string { return proto.CompactTextString(m) }
 func (*ListEnvironmentsResponse) ProtoMessage()    {}
 func (*ListEnvironmentsResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_b7c4efe410d87592, []int{66}
+	return fileDescriptor_b7c4efe410d87592, []int{44}
 }
 
 func (m *ListEnvironmentsResponse) XXX_Unmarshal(b []byte) error {
@@ -3339,281 +2222,173 @@ func (m *ListEnvironmentsResponse) GetPage() *query.PageInfo {
 	return nil
 }
 
-// --------------------------------------------------------------------------
-// Manifest represents all the elements needed for running ApplicationInstance
-// --------------------------------------------------------------------------
-type Manifest struct {
-	// The Manifest identifier.
+// ------------------------------------------------------
+// Application represents what can be run in a Stage
+// ------------------------------------------------------
+type Application struct {
+	// The Application identifier.
 	Id *resource.Identifier `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
-	// The name of the Manifest
+	// The name of the Application
 	Name string `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
-	// The description of the Manifest
+	// The description of the Application
 	Description string `protobuf:"bytes,3,opt,name=description,proto3" json:"description,omitempty"`
-	// repo holding Values, Services and Ingress elements
-	Repo string `protobuf:"bytes,4,opt,name=repo,proto3" json:"repo,omitempty"`
-	// repo commit Id
-	Commit string `protobuf:"bytes,5,opt,name=commit,proto3" json:"commit,omitempty"`
-	// Values used for Kubernetes ConfigMap YAML
-	Values *types.JSONValue `protobuf:"bytes,6,opt,name=values,proto3" json:"values,omitempty"`
-	// Services used for Kubernetes Service YAML
-	Services *types.JSONValue `protobuf:"bytes,7,opt,name=services,proto3" json:"services,omitempty"`
-	// Ingress used for Kubernetes Ingress YAML
-	Ingress *types.JSONValue `protobuf:"bytes,8,opt,name=ingress,proto3" json:"ingress,omitempty"`
-	// Resources used for Kubernetes Deployment YAML
-	Resources *types.JSONValue `protobuf:"bytes,9,opt,name=resources,proto3" json:"resources,omitempty"`
-	// NodeSelector used for Kubernetes Deployment YAML
-	NodeSelector *types.JSONValue `protobuf:"bytes,10,opt,name=node_selector,json=nodeSelector,proto3" json:"node_selector,omitempty"`
-	// Tolerations used for Kubernetes Deployment YAML
-	Tolerations *types.JSONValue `protobuf:"bytes,11,opt,name=tolerations,proto3" json:"tolerations,omitempty"`
-	// Affinity used for Kubernetes Deployment YAML
-	Affinity *types.JSONValue `protobuf:"bytes,12,opt,name=affinity,proto3" json:"affinity,omitempty"`
-	// Artifact used by this Manifest
-	Artifact *Artifact `protobuf:"bytes,13,opt,name=artifact,proto3" json:"artifact,omitempty"`
-	// Reference to Artifact
-	ArtifactId *resource.Identifier `protobuf:"bytes,14,opt,name=artifact_id,json=artifactId,proto3" json:"artifact_id,omitempty"`
-	// Vault used by this Manifest
-	Vault *Vault `protobuf:"bytes,15,opt,name=vault,proto3" json:"vault,omitempty"`
-	// Reference to Vault
-	VaultId *resource.Identifier `protobuf:"bytes,16,opt,name=vault_id,json=vaultId,proto3" json:"vault_id,omitempty"`
-	// AWS Service used by this Manifest
-	AwsService *AwsService `protobuf:"bytes,17,opt,name=aws_service,json=awsService,proto3" json:"aws_service,omitempty"`
-	// Reference to AWS Service
-	AwsServiceId         *resource.Identifier `protobuf:"bytes,18,opt,name=aws_service_id,json=awsServiceId,proto3" json:"aws_service_id,omitempty"`
+	// The Values Associated with Application
+	Value *Value `protobuf:"bytes,4,opt,name=value,proto3" json:"value,omitempty"`
+	// ApplicationInstances associated with this Application
+	ApplicationInstances []*ApplicationInstance `protobuf:"bytes,5,rep,name=application_instances,json=applicationInstances,proto3" json:"application_instances,omitempty"`
+	// The Stage Associated with this Application
+	StageId              *resource.Identifier `protobuf:"bytes,6,opt,name=stage_id,json=stageId,proto3" json:"stage_id,omitempty"`
 	XXX_NoUnkeyedLiteral struct{}             `json:"-"`
 	XXX_unrecognized     []byte               `json:"-"`
 	XXX_sizecache        int32                `json:"-"`
 }
 
-func (m *Manifest) Reset()         { *m = Manifest{} }
-func (m *Manifest) String() string { return proto.CompactTextString(m) }
-func (*Manifest) ProtoMessage()    {}
-func (*Manifest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_b7c4efe410d87592, []int{67}
+func (m *Application) Reset()         { *m = Application{} }
+func (m *Application) String() string { return proto.CompactTextString(m) }
+func (*Application) ProtoMessage()    {}
+func (*Application) Descriptor() ([]byte, []int) {
+	return fileDescriptor_b7c4efe410d87592, []int{45}
 }
 
-func (m *Manifest) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_Manifest.Unmarshal(m, b)
+func (m *Application) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_Application.Unmarshal(m, b)
 }
-func (m *Manifest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_Manifest.Marshal(b, m, deterministic)
+func (m *Application) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_Application.Marshal(b, m, deterministic)
 }
-func (m *Manifest) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_Manifest.Merge(m, src)
+func (m *Application) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_Application.Merge(m, src)
 }
-func (m *Manifest) XXX_Size() int {
-	return xxx_messageInfo_Manifest.Size(m)
+func (m *Application) XXX_Size() int {
+	return xxx_messageInfo_Application.Size(m)
 }
-func (m *Manifest) XXX_DiscardUnknown() {
-	xxx_messageInfo_Manifest.DiscardUnknown(m)
+func (m *Application) XXX_DiscardUnknown() {
+	xxx_messageInfo_Application.DiscardUnknown(m)
 }
 
-var xxx_messageInfo_Manifest proto.InternalMessageInfo
+var xxx_messageInfo_Application proto.InternalMessageInfo
 
-func (m *Manifest) GetId() *resource.Identifier {
+func (m *Application) GetId() *resource.Identifier {
 	if m != nil {
 		return m.Id
 	}
 	return nil
 }
 
-func (m *Manifest) GetName() string {
+func (m *Application) GetName() string {
 	if m != nil {
 		return m.Name
 	}
 	return ""
 }
 
-func (m *Manifest) GetDescription() string {
+func (m *Application) GetDescription() string {
 	if m != nil {
 		return m.Description
 	}
 	return ""
 }
 
-func (m *Manifest) GetRepo() string {
+func (m *Application) GetValue() *Value {
 	if m != nil {
-		return m.Repo
-	}
-	return ""
-}
-
-func (m *Manifest) GetCommit() string {
-	if m != nil {
-		return m.Commit
-	}
-	return ""
-}
-
-func (m *Manifest) GetValues() *types.JSONValue {
-	if m != nil {
-		return m.Values
+		return m.Value
 	}
 	return nil
 }
 
-func (m *Manifest) GetServices() *types.JSONValue {
+func (m *Application) GetApplicationInstances() []*ApplicationInstance {
 	if m != nil {
-		return m.Services
+		return m.ApplicationInstances
 	}
 	return nil
 }
 
-func (m *Manifest) GetIngress() *types.JSONValue {
+func (m *Application) GetStageId() *resource.Identifier {
 	if m != nil {
-		return m.Ingress
+		return m.StageId
 	}
 	return nil
 }
 
-func (m *Manifest) GetResources() *types.JSONValue {
-	if m != nil {
-		return m.Resources
-	}
-	return nil
+type CreateApplicationRequest struct {
+	Payload              *Application `protobuf:"bytes,1,opt,name=payload,proto3" json:"payload,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}     `json:"-"`
+	XXX_unrecognized     []byte       `json:"-"`
+	XXX_sizecache        int32        `json:"-"`
 }
 
-func (m *Manifest) GetNodeSelector() *types.JSONValue {
-	if m != nil {
-		return m.NodeSelector
-	}
-	return nil
+func (m *CreateApplicationRequest) Reset()         { *m = CreateApplicationRequest{} }
+func (m *CreateApplicationRequest) String() string { return proto.CompactTextString(m) }
+func (*CreateApplicationRequest) ProtoMessage()    {}
+func (*CreateApplicationRequest) Descriptor() ([]byte, []int) {
+	return fileDescriptor_b7c4efe410d87592, []int{46}
 }
 
-func (m *Manifest) GetTolerations() *types.JSONValue {
-	if m != nil {
-		return m.Tolerations
-	}
-	return nil
+func (m *CreateApplicationRequest) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_CreateApplicationRequest.Unmarshal(m, b)
+}
+func (m *CreateApplicationRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_CreateApplicationRequest.Marshal(b, m, deterministic)
+}
+func (m *CreateApplicationRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_CreateApplicationRequest.Merge(m, src)
+}
+func (m *CreateApplicationRequest) XXX_Size() int {
+	return xxx_messageInfo_CreateApplicationRequest.Size(m)
+}
+func (m *CreateApplicationRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_CreateApplicationRequest.DiscardUnknown(m)
 }
 
-func (m *Manifest) GetAffinity() *types.JSONValue {
-	if m != nil {
-		return m.Affinity
-	}
-	return nil
-}
+var xxx_messageInfo_CreateApplicationRequest proto.InternalMessageInfo
 
-func (m *Manifest) GetArtifact() *Artifact {
-	if m != nil {
-		return m.Artifact
-	}
-	return nil
-}
-
-func (m *Manifest) GetArtifactId() *resource.Identifier {
-	if m != nil {
-		return m.ArtifactId
-	}
-	return nil
-}
-
-func (m *Manifest) GetVault() *Vault {
-	if m != nil {
-		return m.Vault
-	}
-	return nil
-}
-
-func (m *Manifest) GetVaultId() *resource.Identifier {
-	if m != nil {
-		return m.VaultId
-	}
-	return nil
-}
-
-func (m *Manifest) GetAwsService() *AwsService {
-	if m != nil {
-		return m.AwsService
-	}
-	return nil
-}
-
-func (m *Manifest) GetAwsServiceId() *resource.Identifier {
-	if m != nil {
-		return m.AwsServiceId
-	}
-	return nil
-}
-
-type CreateManifestRequest struct {
-	Payload              *Manifest `protobuf:"bytes,1,opt,name=payload,proto3" json:"payload,omitempty"`
-	XXX_NoUnkeyedLiteral struct{}  `json:"-"`
-	XXX_unrecognized     []byte    `json:"-"`
-	XXX_sizecache        int32     `json:"-"`
-}
-
-func (m *CreateManifestRequest) Reset()         { *m = CreateManifestRequest{} }
-func (m *CreateManifestRequest) String() string { return proto.CompactTextString(m) }
-func (*CreateManifestRequest) ProtoMessage()    {}
-func (*CreateManifestRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_b7c4efe410d87592, []int{68}
-}
-
-func (m *CreateManifestRequest) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_CreateManifestRequest.Unmarshal(m, b)
-}
-func (m *CreateManifestRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_CreateManifestRequest.Marshal(b, m, deterministic)
-}
-func (m *CreateManifestRequest) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_CreateManifestRequest.Merge(m, src)
-}
-func (m *CreateManifestRequest) XXX_Size() int {
-	return xxx_messageInfo_CreateManifestRequest.Size(m)
-}
-func (m *CreateManifestRequest) XXX_DiscardUnknown() {
-	xxx_messageInfo_CreateManifestRequest.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_CreateManifestRequest proto.InternalMessageInfo
-
-func (m *CreateManifestRequest) GetPayload() *Manifest {
+func (m *CreateApplicationRequest) GetPayload() *Application {
 	if m != nil {
 		return m.Payload
 	}
 	return nil
 }
 
-type CreateManifestResponse struct {
-	Result               *Manifest `protobuf:"bytes,1,opt,name=result,proto3" json:"result,omitempty"`
-	XXX_NoUnkeyedLiteral struct{}  `json:"-"`
-	XXX_unrecognized     []byte    `json:"-"`
-	XXX_sizecache        int32     `json:"-"`
+type CreateApplicationResponse struct {
+	Result               *Application `protobuf:"bytes,1,opt,name=result,proto3" json:"result,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}     `json:"-"`
+	XXX_unrecognized     []byte       `json:"-"`
+	XXX_sizecache        int32        `json:"-"`
 }
 
-func (m *CreateManifestResponse) Reset()         { *m = CreateManifestResponse{} }
-func (m *CreateManifestResponse) String() string { return proto.CompactTextString(m) }
-func (*CreateManifestResponse) ProtoMessage()    {}
-func (*CreateManifestResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_b7c4efe410d87592, []int{69}
+func (m *CreateApplicationResponse) Reset()         { *m = CreateApplicationResponse{} }
+func (m *CreateApplicationResponse) String() string { return proto.CompactTextString(m) }
+func (*CreateApplicationResponse) ProtoMessage()    {}
+func (*CreateApplicationResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor_b7c4efe410d87592, []int{47}
 }
 
-func (m *CreateManifestResponse) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_CreateManifestResponse.Unmarshal(m, b)
+func (m *CreateApplicationResponse) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_CreateApplicationResponse.Unmarshal(m, b)
 }
-func (m *CreateManifestResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_CreateManifestResponse.Marshal(b, m, deterministic)
+func (m *CreateApplicationResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_CreateApplicationResponse.Marshal(b, m, deterministic)
 }
-func (m *CreateManifestResponse) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_CreateManifestResponse.Merge(m, src)
+func (m *CreateApplicationResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_CreateApplicationResponse.Merge(m, src)
 }
-func (m *CreateManifestResponse) XXX_Size() int {
-	return xxx_messageInfo_CreateManifestResponse.Size(m)
+func (m *CreateApplicationResponse) XXX_Size() int {
+	return xxx_messageInfo_CreateApplicationResponse.Size(m)
 }
-func (m *CreateManifestResponse) XXX_DiscardUnknown() {
-	xxx_messageInfo_CreateManifestResponse.DiscardUnknown(m)
+func (m *CreateApplicationResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_CreateApplicationResponse.DiscardUnknown(m)
 }
 
-var xxx_messageInfo_CreateManifestResponse proto.InternalMessageInfo
+var xxx_messageInfo_CreateApplicationResponse proto.InternalMessageInfo
 
-func (m *CreateManifestResponse) GetResult() *Manifest {
+func (m *CreateApplicationResponse) GetResult() *Application {
 	if m != nil {
 		return m.Result
 	}
 	return nil
 }
 
-type ReadManifestRequest struct {
+type ReadApplicationRequest struct {
 	Id                   *resource.Identifier  `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
 	Fields               *query.FieldSelection `protobuf:"bytes,2,opt,name=fields,proto3" json:"fields,omitempty"`
 	XXX_NoUnkeyedLiteral struct{}              `json:"-"`
@@ -3621,241 +2396,241 @@ type ReadManifestRequest struct {
 	XXX_sizecache        int32                 `json:"-"`
 }
 
-func (m *ReadManifestRequest) Reset()         { *m = ReadManifestRequest{} }
-func (m *ReadManifestRequest) String() string { return proto.CompactTextString(m) }
-func (*ReadManifestRequest) ProtoMessage()    {}
-func (*ReadManifestRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_b7c4efe410d87592, []int{70}
+func (m *ReadApplicationRequest) Reset()         { *m = ReadApplicationRequest{} }
+func (m *ReadApplicationRequest) String() string { return proto.CompactTextString(m) }
+func (*ReadApplicationRequest) ProtoMessage()    {}
+func (*ReadApplicationRequest) Descriptor() ([]byte, []int) {
+	return fileDescriptor_b7c4efe410d87592, []int{48}
 }
 
-func (m *ReadManifestRequest) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_ReadManifestRequest.Unmarshal(m, b)
+func (m *ReadApplicationRequest) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_ReadApplicationRequest.Unmarshal(m, b)
 }
-func (m *ReadManifestRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_ReadManifestRequest.Marshal(b, m, deterministic)
+func (m *ReadApplicationRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_ReadApplicationRequest.Marshal(b, m, deterministic)
 }
-func (m *ReadManifestRequest) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_ReadManifestRequest.Merge(m, src)
+func (m *ReadApplicationRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_ReadApplicationRequest.Merge(m, src)
 }
-func (m *ReadManifestRequest) XXX_Size() int {
-	return xxx_messageInfo_ReadManifestRequest.Size(m)
+func (m *ReadApplicationRequest) XXX_Size() int {
+	return xxx_messageInfo_ReadApplicationRequest.Size(m)
 }
-func (m *ReadManifestRequest) XXX_DiscardUnknown() {
-	xxx_messageInfo_ReadManifestRequest.DiscardUnknown(m)
+func (m *ReadApplicationRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_ReadApplicationRequest.DiscardUnknown(m)
 }
 
-var xxx_messageInfo_ReadManifestRequest proto.InternalMessageInfo
+var xxx_messageInfo_ReadApplicationRequest proto.InternalMessageInfo
 
-func (m *ReadManifestRequest) GetId() *resource.Identifier {
+func (m *ReadApplicationRequest) GetId() *resource.Identifier {
 	if m != nil {
 		return m.Id
 	}
 	return nil
 }
 
-func (m *ReadManifestRequest) GetFields() *query.FieldSelection {
+func (m *ReadApplicationRequest) GetFields() *query.FieldSelection {
 	if m != nil {
 		return m.Fields
 	}
 	return nil
 }
 
-type ReadManifestResponse struct {
-	Result               *Manifest `protobuf:"bytes,1,opt,name=result,proto3" json:"result,omitempty"`
-	XXX_NoUnkeyedLiteral struct{}  `json:"-"`
-	XXX_unrecognized     []byte    `json:"-"`
-	XXX_sizecache        int32     `json:"-"`
+type ReadApplicationResponse struct {
+	Result               *Application `protobuf:"bytes,1,opt,name=result,proto3" json:"result,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}     `json:"-"`
+	XXX_unrecognized     []byte       `json:"-"`
+	XXX_sizecache        int32        `json:"-"`
 }
 
-func (m *ReadManifestResponse) Reset()         { *m = ReadManifestResponse{} }
-func (m *ReadManifestResponse) String() string { return proto.CompactTextString(m) }
-func (*ReadManifestResponse) ProtoMessage()    {}
-func (*ReadManifestResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_b7c4efe410d87592, []int{71}
+func (m *ReadApplicationResponse) Reset()         { *m = ReadApplicationResponse{} }
+func (m *ReadApplicationResponse) String() string { return proto.CompactTextString(m) }
+func (*ReadApplicationResponse) ProtoMessage()    {}
+func (*ReadApplicationResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor_b7c4efe410d87592, []int{49}
 }
 
-func (m *ReadManifestResponse) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_ReadManifestResponse.Unmarshal(m, b)
+func (m *ReadApplicationResponse) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_ReadApplicationResponse.Unmarshal(m, b)
 }
-func (m *ReadManifestResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_ReadManifestResponse.Marshal(b, m, deterministic)
+func (m *ReadApplicationResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_ReadApplicationResponse.Marshal(b, m, deterministic)
 }
-func (m *ReadManifestResponse) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_ReadManifestResponse.Merge(m, src)
+func (m *ReadApplicationResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_ReadApplicationResponse.Merge(m, src)
 }
-func (m *ReadManifestResponse) XXX_Size() int {
-	return xxx_messageInfo_ReadManifestResponse.Size(m)
+func (m *ReadApplicationResponse) XXX_Size() int {
+	return xxx_messageInfo_ReadApplicationResponse.Size(m)
 }
-func (m *ReadManifestResponse) XXX_DiscardUnknown() {
-	xxx_messageInfo_ReadManifestResponse.DiscardUnknown(m)
+func (m *ReadApplicationResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_ReadApplicationResponse.DiscardUnknown(m)
 }
 
-var xxx_messageInfo_ReadManifestResponse proto.InternalMessageInfo
+var xxx_messageInfo_ReadApplicationResponse proto.InternalMessageInfo
 
-func (m *ReadManifestResponse) GetResult() *Manifest {
+func (m *ReadApplicationResponse) GetResult() *Application {
 	if m != nil {
 		return m.Result
 	}
 	return nil
 }
 
-type UpdateManifestRequest struct {
-	Payload              *Manifest             `protobuf:"bytes,1,opt,name=payload,proto3" json:"payload,omitempty"`
+type UpdateApplicationRequest struct {
+	Payload              *Application          `protobuf:"bytes,1,opt,name=payload,proto3" json:"payload,omitempty"`
 	Fields               *field_mask.FieldMask `protobuf:"bytes,2,opt,name=fields,proto3" json:"fields,omitempty"`
 	XXX_NoUnkeyedLiteral struct{}              `json:"-"`
 	XXX_unrecognized     []byte                `json:"-"`
 	XXX_sizecache        int32                 `json:"-"`
 }
 
-func (m *UpdateManifestRequest) Reset()         { *m = UpdateManifestRequest{} }
-func (m *UpdateManifestRequest) String() string { return proto.CompactTextString(m) }
-func (*UpdateManifestRequest) ProtoMessage()    {}
-func (*UpdateManifestRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_b7c4efe410d87592, []int{72}
+func (m *UpdateApplicationRequest) Reset()         { *m = UpdateApplicationRequest{} }
+func (m *UpdateApplicationRequest) String() string { return proto.CompactTextString(m) }
+func (*UpdateApplicationRequest) ProtoMessage()    {}
+func (*UpdateApplicationRequest) Descriptor() ([]byte, []int) {
+	return fileDescriptor_b7c4efe410d87592, []int{50}
 }
 
-func (m *UpdateManifestRequest) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_UpdateManifestRequest.Unmarshal(m, b)
+func (m *UpdateApplicationRequest) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_UpdateApplicationRequest.Unmarshal(m, b)
 }
-func (m *UpdateManifestRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_UpdateManifestRequest.Marshal(b, m, deterministic)
+func (m *UpdateApplicationRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_UpdateApplicationRequest.Marshal(b, m, deterministic)
 }
-func (m *UpdateManifestRequest) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_UpdateManifestRequest.Merge(m, src)
+func (m *UpdateApplicationRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_UpdateApplicationRequest.Merge(m, src)
 }
-func (m *UpdateManifestRequest) XXX_Size() int {
-	return xxx_messageInfo_UpdateManifestRequest.Size(m)
+func (m *UpdateApplicationRequest) XXX_Size() int {
+	return xxx_messageInfo_UpdateApplicationRequest.Size(m)
 }
-func (m *UpdateManifestRequest) XXX_DiscardUnknown() {
-	xxx_messageInfo_UpdateManifestRequest.DiscardUnknown(m)
+func (m *UpdateApplicationRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_UpdateApplicationRequest.DiscardUnknown(m)
 }
 
-var xxx_messageInfo_UpdateManifestRequest proto.InternalMessageInfo
+var xxx_messageInfo_UpdateApplicationRequest proto.InternalMessageInfo
 
-func (m *UpdateManifestRequest) GetPayload() *Manifest {
+func (m *UpdateApplicationRequest) GetPayload() *Application {
 	if m != nil {
 		return m.Payload
 	}
 	return nil
 }
 
-func (m *UpdateManifestRequest) GetFields() *field_mask.FieldMask {
+func (m *UpdateApplicationRequest) GetFields() *field_mask.FieldMask {
 	if m != nil {
 		return m.Fields
 	}
 	return nil
 }
 
-type UpdateManifestResponse struct {
-	Result               *Manifest `protobuf:"bytes,1,opt,name=result,proto3" json:"result,omitempty"`
-	XXX_NoUnkeyedLiteral struct{}  `json:"-"`
-	XXX_unrecognized     []byte    `json:"-"`
-	XXX_sizecache        int32     `json:"-"`
+type UpdateApplicationResponse struct {
+	Result               *Application `protobuf:"bytes,1,opt,name=result,proto3" json:"result,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}     `json:"-"`
+	XXX_unrecognized     []byte       `json:"-"`
+	XXX_sizecache        int32        `json:"-"`
 }
 
-func (m *UpdateManifestResponse) Reset()         { *m = UpdateManifestResponse{} }
-func (m *UpdateManifestResponse) String() string { return proto.CompactTextString(m) }
-func (*UpdateManifestResponse) ProtoMessage()    {}
-func (*UpdateManifestResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_b7c4efe410d87592, []int{73}
+func (m *UpdateApplicationResponse) Reset()         { *m = UpdateApplicationResponse{} }
+func (m *UpdateApplicationResponse) String() string { return proto.CompactTextString(m) }
+func (*UpdateApplicationResponse) ProtoMessage()    {}
+func (*UpdateApplicationResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor_b7c4efe410d87592, []int{51}
 }
 
-func (m *UpdateManifestResponse) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_UpdateManifestResponse.Unmarshal(m, b)
+func (m *UpdateApplicationResponse) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_UpdateApplicationResponse.Unmarshal(m, b)
 }
-func (m *UpdateManifestResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_UpdateManifestResponse.Marshal(b, m, deterministic)
+func (m *UpdateApplicationResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_UpdateApplicationResponse.Marshal(b, m, deterministic)
 }
-func (m *UpdateManifestResponse) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_UpdateManifestResponse.Merge(m, src)
+func (m *UpdateApplicationResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_UpdateApplicationResponse.Merge(m, src)
 }
-func (m *UpdateManifestResponse) XXX_Size() int {
-	return xxx_messageInfo_UpdateManifestResponse.Size(m)
+func (m *UpdateApplicationResponse) XXX_Size() int {
+	return xxx_messageInfo_UpdateApplicationResponse.Size(m)
 }
-func (m *UpdateManifestResponse) XXX_DiscardUnknown() {
-	xxx_messageInfo_UpdateManifestResponse.DiscardUnknown(m)
+func (m *UpdateApplicationResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_UpdateApplicationResponse.DiscardUnknown(m)
 }
 
-var xxx_messageInfo_UpdateManifestResponse proto.InternalMessageInfo
+var xxx_messageInfo_UpdateApplicationResponse proto.InternalMessageInfo
 
-func (m *UpdateManifestResponse) GetResult() *Manifest {
+func (m *UpdateApplicationResponse) GetResult() *Application {
 	if m != nil {
 		return m.Result
 	}
 	return nil
 }
 
-type DeleteManifestRequest struct {
+type DeleteApplicationRequest struct {
 	Id                   *resource.Identifier `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
 	XXX_NoUnkeyedLiteral struct{}             `json:"-"`
 	XXX_unrecognized     []byte               `json:"-"`
 	XXX_sizecache        int32                `json:"-"`
 }
 
-func (m *DeleteManifestRequest) Reset()         { *m = DeleteManifestRequest{} }
-func (m *DeleteManifestRequest) String() string { return proto.CompactTextString(m) }
-func (*DeleteManifestRequest) ProtoMessage()    {}
-func (*DeleteManifestRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_b7c4efe410d87592, []int{74}
+func (m *DeleteApplicationRequest) Reset()         { *m = DeleteApplicationRequest{} }
+func (m *DeleteApplicationRequest) String() string { return proto.CompactTextString(m) }
+func (*DeleteApplicationRequest) ProtoMessage()    {}
+func (*DeleteApplicationRequest) Descriptor() ([]byte, []int) {
+	return fileDescriptor_b7c4efe410d87592, []int{52}
 }
 
-func (m *DeleteManifestRequest) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_DeleteManifestRequest.Unmarshal(m, b)
+func (m *DeleteApplicationRequest) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_DeleteApplicationRequest.Unmarshal(m, b)
 }
-func (m *DeleteManifestRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_DeleteManifestRequest.Marshal(b, m, deterministic)
+func (m *DeleteApplicationRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_DeleteApplicationRequest.Marshal(b, m, deterministic)
 }
-func (m *DeleteManifestRequest) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_DeleteManifestRequest.Merge(m, src)
+func (m *DeleteApplicationRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_DeleteApplicationRequest.Merge(m, src)
 }
-func (m *DeleteManifestRequest) XXX_Size() int {
-	return xxx_messageInfo_DeleteManifestRequest.Size(m)
+func (m *DeleteApplicationRequest) XXX_Size() int {
+	return xxx_messageInfo_DeleteApplicationRequest.Size(m)
 }
-func (m *DeleteManifestRequest) XXX_DiscardUnknown() {
-	xxx_messageInfo_DeleteManifestRequest.DiscardUnknown(m)
+func (m *DeleteApplicationRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_DeleteApplicationRequest.DiscardUnknown(m)
 }
 
-var xxx_messageInfo_DeleteManifestRequest proto.InternalMessageInfo
+var xxx_messageInfo_DeleteApplicationRequest proto.InternalMessageInfo
 
-func (m *DeleteManifestRequest) GetId() *resource.Identifier {
+func (m *DeleteApplicationRequest) GetId() *resource.Identifier {
 	if m != nil {
 		return m.Id
 	}
 	return nil
 }
 
-type DeleteManifestResponse struct {
+type DeleteApplicationResponse struct {
 	XXX_NoUnkeyedLiteral struct{} `json:"-"`
 	XXX_unrecognized     []byte   `json:"-"`
 	XXX_sizecache        int32    `json:"-"`
 }
 
-func (m *DeleteManifestResponse) Reset()         { *m = DeleteManifestResponse{} }
-func (m *DeleteManifestResponse) String() string { return proto.CompactTextString(m) }
-func (*DeleteManifestResponse) ProtoMessage()    {}
-func (*DeleteManifestResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_b7c4efe410d87592, []int{75}
+func (m *DeleteApplicationResponse) Reset()         { *m = DeleteApplicationResponse{} }
+func (m *DeleteApplicationResponse) String() string { return proto.CompactTextString(m) }
+func (*DeleteApplicationResponse) ProtoMessage()    {}
+func (*DeleteApplicationResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor_b7c4efe410d87592, []int{53}
 }
 
-func (m *DeleteManifestResponse) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_DeleteManifestResponse.Unmarshal(m, b)
+func (m *DeleteApplicationResponse) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_DeleteApplicationResponse.Unmarshal(m, b)
 }
-func (m *DeleteManifestResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_DeleteManifestResponse.Marshal(b, m, deterministic)
+func (m *DeleteApplicationResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_DeleteApplicationResponse.Marshal(b, m, deterministic)
 }
-func (m *DeleteManifestResponse) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_DeleteManifestResponse.Merge(m, src)
+func (m *DeleteApplicationResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_DeleteApplicationResponse.Merge(m, src)
 }
-func (m *DeleteManifestResponse) XXX_Size() int {
-	return xxx_messageInfo_DeleteManifestResponse.Size(m)
+func (m *DeleteApplicationResponse) XXX_Size() int {
+	return xxx_messageInfo_DeleteApplicationResponse.Size(m)
 }
-func (m *DeleteManifestResponse) XXX_DiscardUnknown() {
-	xxx_messageInfo_DeleteManifestResponse.DiscardUnknown(m)
+func (m *DeleteApplicationResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_DeleteApplicationResponse.DiscardUnknown(m)
 }
 
-var xxx_messageInfo_DeleteManifestResponse proto.InternalMessageInfo
+var xxx_messageInfo_DeleteApplicationResponse proto.InternalMessageInfo
 
-type ListManifestRequest struct {
+type ListApplicationRequest struct {
 	Filter               *query.Filtering      `protobuf:"bytes,1,opt,name=filter,proto3" json:"filter,omitempty"`
 	OrderBy              *query.Sorting        `protobuf:"bytes,2,opt,name=order_by,json=orderBy,proto3" json:"order_by,omitempty"`
 	Fields               *query.FieldSelection `protobuf:"bytes,3,opt,name=fields,proto3" json:"fields,omitempty"`
@@ -3865,100 +2640,1645 @@ type ListManifestRequest struct {
 	XXX_sizecache        int32                 `json:"-"`
 }
 
-func (m *ListManifestRequest) Reset()         { *m = ListManifestRequest{} }
-func (m *ListManifestRequest) String() string { return proto.CompactTextString(m) }
-func (*ListManifestRequest) ProtoMessage()    {}
-func (*ListManifestRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_b7c4efe410d87592, []int{76}
+func (m *ListApplicationRequest) Reset()         { *m = ListApplicationRequest{} }
+func (m *ListApplicationRequest) String() string { return proto.CompactTextString(m) }
+func (*ListApplicationRequest) ProtoMessage()    {}
+func (*ListApplicationRequest) Descriptor() ([]byte, []int) {
+	return fileDescriptor_b7c4efe410d87592, []int{54}
 }
 
-func (m *ListManifestRequest) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_ListManifestRequest.Unmarshal(m, b)
+func (m *ListApplicationRequest) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_ListApplicationRequest.Unmarshal(m, b)
 }
-func (m *ListManifestRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_ListManifestRequest.Marshal(b, m, deterministic)
+func (m *ListApplicationRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_ListApplicationRequest.Marshal(b, m, deterministic)
 }
-func (m *ListManifestRequest) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_ListManifestRequest.Merge(m, src)
+func (m *ListApplicationRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_ListApplicationRequest.Merge(m, src)
 }
-func (m *ListManifestRequest) XXX_Size() int {
-	return xxx_messageInfo_ListManifestRequest.Size(m)
+func (m *ListApplicationRequest) XXX_Size() int {
+	return xxx_messageInfo_ListApplicationRequest.Size(m)
 }
-func (m *ListManifestRequest) XXX_DiscardUnknown() {
-	xxx_messageInfo_ListManifestRequest.DiscardUnknown(m)
+func (m *ListApplicationRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_ListApplicationRequest.DiscardUnknown(m)
 }
 
-var xxx_messageInfo_ListManifestRequest proto.InternalMessageInfo
+var xxx_messageInfo_ListApplicationRequest proto.InternalMessageInfo
 
-func (m *ListManifestRequest) GetFilter() *query.Filtering {
+func (m *ListApplicationRequest) GetFilter() *query.Filtering {
 	if m != nil {
 		return m.Filter
 	}
 	return nil
 }
 
-func (m *ListManifestRequest) GetOrderBy() *query.Sorting {
+func (m *ListApplicationRequest) GetOrderBy() *query.Sorting {
 	if m != nil {
 		return m.OrderBy
 	}
 	return nil
 }
 
-func (m *ListManifestRequest) GetFields() *query.FieldSelection {
+func (m *ListApplicationRequest) GetFields() *query.FieldSelection {
 	if m != nil {
 		return m.Fields
 	}
 	return nil
 }
 
-func (m *ListManifestRequest) GetPaging() *query.Pagination {
+func (m *ListApplicationRequest) GetPaging() *query.Pagination {
 	if m != nil {
 		return m.Paging
 	}
 	return nil
 }
 
-type ListManifestsResponse struct {
-	Results              []*Manifest     `protobuf:"bytes,1,rep,name=results,proto3" json:"results,omitempty"`
+type ListApplicationsResponse struct {
+	Results              []*Application  `protobuf:"bytes,1,rep,name=results,proto3" json:"results,omitempty"`
 	Page                 *query.PageInfo `protobuf:"bytes,2,opt,name=page,proto3" json:"page,omitempty"`
 	XXX_NoUnkeyedLiteral struct{}        `json:"-"`
 	XXX_unrecognized     []byte          `json:"-"`
 	XXX_sizecache        int32           `json:"-"`
 }
 
-func (m *ListManifestsResponse) Reset()         { *m = ListManifestsResponse{} }
-func (m *ListManifestsResponse) String() string { return proto.CompactTextString(m) }
-func (*ListManifestsResponse) ProtoMessage()    {}
-func (*ListManifestsResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_b7c4efe410d87592, []int{77}
+func (m *ListApplicationsResponse) Reset()         { *m = ListApplicationsResponse{} }
+func (m *ListApplicationsResponse) String() string { return proto.CompactTextString(m) }
+func (*ListApplicationsResponse) ProtoMessage()    {}
+func (*ListApplicationsResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor_b7c4efe410d87592, []int{55}
 }
 
-func (m *ListManifestsResponse) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_ListManifestsResponse.Unmarshal(m, b)
+func (m *ListApplicationsResponse) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_ListApplicationsResponse.Unmarshal(m, b)
 }
-func (m *ListManifestsResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_ListManifestsResponse.Marshal(b, m, deterministic)
+func (m *ListApplicationsResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_ListApplicationsResponse.Marshal(b, m, deterministic)
 }
-func (m *ListManifestsResponse) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_ListManifestsResponse.Merge(m, src)
+func (m *ListApplicationsResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_ListApplicationsResponse.Merge(m, src)
 }
-func (m *ListManifestsResponse) XXX_Size() int {
-	return xxx_messageInfo_ListManifestsResponse.Size(m)
+func (m *ListApplicationsResponse) XXX_Size() int {
+	return xxx_messageInfo_ListApplicationsResponse.Size(m)
 }
-func (m *ListManifestsResponse) XXX_DiscardUnknown() {
-	xxx_messageInfo_ListManifestsResponse.DiscardUnknown(m)
+func (m *ListApplicationsResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_ListApplicationsResponse.DiscardUnknown(m)
 }
 
-var xxx_messageInfo_ListManifestsResponse proto.InternalMessageInfo
+var xxx_messageInfo_ListApplicationsResponse proto.InternalMessageInfo
 
-func (m *ListManifestsResponse) GetResults() []*Manifest {
+func (m *ListApplicationsResponse) GetResults() []*Application {
 	if m != nil {
 		return m.Results
 	}
 	return nil
 }
 
-func (m *ListManifestsResponse) GetPage() *query.PageInfo {
+func (m *ListApplicationsResponse) GetPage() *query.PageInfo {
+	if m != nil {
+		return m.Page
+	}
+	return nil
+}
+
+// ------------------------------------------------------
+// ChartVersion represents a particular AWS Region
+// ------------------------------------------------------
+type ChartVersion struct {
+	// The ChartVersion identifier.
+	Id *resource.Identifier `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	// The name of the ChartVersion
+	Name string `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
+	// The description of the ChartVersion
+	Description string `protobuf:"bytes,3,opt,name=description,proto3" json:"description,omitempty"`
+	// Chart Repo
+	Repo string `protobuf:"bytes,4,opt,name=repo,proto3" json:"repo,omitempty"`
+	// Chart Version
+	Version              string   `protobuf:"bytes,5,opt,name=version,proto3" json:"version,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *ChartVersion) Reset()         { *m = ChartVersion{} }
+func (m *ChartVersion) String() string { return proto.CompactTextString(m) }
+func (*ChartVersion) ProtoMessage()    {}
+func (*ChartVersion) Descriptor() ([]byte, []int) {
+	return fileDescriptor_b7c4efe410d87592, []int{56}
+}
+
+func (m *ChartVersion) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_ChartVersion.Unmarshal(m, b)
+}
+func (m *ChartVersion) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_ChartVersion.Marshal(b, m, deterministic)
+}
+func (m *ChartVersion) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_ChartVersion.Merge(m, src)
+}
+func (m *ChartVersion) XXX_Size() int {
+	return xxx_messageInfo_ChartVersion.Size(m)
+}
+func (m *ChartVersion) XXX_DiscardUnknown() {
+	xxx_messageInfo_ChartVersion.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_ChartVersion proto.InternalMessageInfo
+
+func (m *ChartVersion) GetId() *resource.Identifier {
+	if m != nil {
+		return m.Id
+	}
+	return nil
+}
+
+func (m *ChartVersion) GetName() string {
+	if m != nil {
+		return m.Name
+	}
+	return ""
+}
+
+func (m *ChartVersion) GetDescription() string {
+	if m != nil {
+		return m.Description
+	}
+	return ""
+}
+
+func (m *ChartVersion) GetRepo() string {
+	if m != nil {
+		return m.Repo
+	}
+	return ""
+}
+
+func (m *ChartVersion) GetVersion() string {
+	if m != nil {
+		return m.Version
+	}
+	return ""
+}
+
+type CreateChartVersionRequest struct {
+	Payload              *ChartVersion `protobuf:"bytes,1,opt,name=payload,proto3" json:"payload,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}      `json:"-"`
+	XXX_unrecognized     []byte        `json:"-"`
+	XXX_sizecache        int32         `json:"-"`
+}
+
+func (m *CreateChartVersionRequest) Reset()         { *m = CreateChartVersionRequest{} }
+func (m *CreateChartVersionRequest) String() string { return proto.CompactTextString(m) }
+func (*CreateChartVersionRequest) ProtoMessage()    {}
+func (*CreateChartVersionRequest) Descriptor() ([]byte, []int) {
+	return fileDescriptor_b7c4efe410d87592, []int{57}
+}
+
+func (m *CreateChartVersionRequest) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_CreateChartVersionRequest.Unmarshal(m, b)
+}
+func (m *CreateChartVersionRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_CreateChartVersionRequest.Marshal(b, m, deterministic)
+}
+func (m *CreateChartVersionRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_CreateChartVersionRequest.Merge(m, src)
+}
+func (m *CreateChartVersionRequest) XXX_Size() int {
+	return xxx_messageInfo_CreateChartVersionRequest.Size(m)
+}
+func (m *CreateChartVersionRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_CreateChartVersionRequest.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_CreateChartVersionRequest proto.InternalMessageInfo
+
+func (m *CreateChartVersionRequest) GetPayload() *ChartVersion {
+	if m != nil {
+		return m.Payload
+	}
+	return nil
+}
+
+type CreateChartVersionResponse struct {
+	Result               *ChartVersion `protobuf:"bytes,1,opt,name=result,proto3" json:"result,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}      `json:"-"`
+	XXX_unrecognized     []byte        `json:"-"`
+	XXX_sizecache        int32         `json:"-"`
+}
+
+func (m *CreateChartVersionResponse) Reset()         { *m = CreateChartVersionResponse{} }
+func (m *CreateChartVersionResponse) String() string { return proto.CompactTextString(m) }
+func (*CreateChartVersionResponse) ProtoMessage()    {}
+func (*CreateChartVersionResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor_b7c4efe410d87592, []int{58}
+}
+
+func (m *CreateChartVersionResponse) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_CreateChartVersionResponse.Unmarshal(m, b)
+}
+func (m *CreateChartVersionResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_CreateChartVersionResponse.Marshal(b, m, deterministic)
+}
+func (m *CreateChartVersionResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_CreateChartVersionResponse.Merge(m, src)
+}
+func (m *CreateChartVersionResponse) XXX_Size() int {
+	return xxx_messageInfo_CreateChartVersionResponse.Size(m)
+}
+func (m *CreateChartVersionResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_CreateChartVersionResponse.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_CreateChartVersionResponse proto.InternalMessageInfo
+
+func (m *CreateChartVersionResponse) GetResult() *ChartVersion {
+	if m != nil {
+		return m.Result
+	}
+	return nil
+}
+
+type ReadChartVersionRequest struct {
+	Id                   *resource.Identifier  `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	Fields               *query.FieldSelection `protobuf:"bytes,2,opt,name=fields,proto3" json:"fields,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}              `json:"-"`
+	XXX_unrecognized     []byte                `json:"-"`
+	XXX_sizecache        int32                 `json:"-"`
+}
+
+func (m *ReadChartVersionRequest) Reset()         { *m = ReadChartVersionRequest{} }
+func (m *ReadChartVersionRequest) String() string { return proto.CompactTextString(m) }
+func (*ReadChartVersionRequest) ProtoMessage()    {}
+func (*ReadChartVersionRequest) Descriptor() ([]byte, []int) {
+	return fileDescriptor_b7c4efe410d87592, []int{59}
+}
+
+func (m *ReadChartVersionRequest) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_ReadChartVersionRequest.Unmarshal(m, b)
+}
+func (m *ReadChartVersionRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_ReadChartVersionRequest.Marshal(b, m, deterministic)
+}
+func (m *ReadChartVersionRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_ReadChartVersionRequest.Merge(m, src)
+}
+func (m *ReadChartVersionRequest) XXX_Size() int {
+	return xxx_messageInfo_ReadChartVersionRequest.Size(m)
+}
+func (m *ReadChartVersionRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_ReadChartVersionRequest.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_ReadChartVersionRequest proto.InternalMessageInfo
+
+func (m *ReadChartVersionRequest) GetId() *resource.Identifier {
+	if m != nil {
+		return m.Id
+	}
+	return nil
+}
+
+func (m *ReadChartVersionRequest) GetFields() *query.FieldSelection {
+	if m != nil {
+		return m.Fields
+	}
+	return nil
+}
+
+type ReadChartVersionResponse struct {
+	Result               *ChartVersion `protobuf:"bytes,1,opt,name=result,proto3" json:"result,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}      `json:"-"`
+	XXX_unrecognized     []byte        `json:"-"`
+	XXX_sizecache        int32         `json:"-"`
+}
+
+func (m *ReadChartVersionResponse) Reset()         { *m = ReadChartVersionResponse{} }
+func (m *ReadChartVersionResponse) String() string { return proto.CompactTextString(m) }
+func (*ReadChartVersionResponse) ProtoMessage()    {}
+func (*ReadChartVersionResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor_b7c4efe410d87592, []int{60}
+}
+
+func (m *ReadChartVersionResponse) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_ReadChartVersionResponse.Unmarshal(m, b)
+}
+func (m *ReadChartVersionResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_ReadChartVersionResponse.Marshal(b, m, deterministic)
+}
+func (m *ReadChartVersionResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_ReadChartVersionResponse.Merge(m, src)
+}
+func (m *ReadChartVersionResponse) XXX_Size() int {
+	return xxx_messageInfo_ReadChartVersionResponse.Size(m)
+}
+func (m *ReadChartVersionResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_ReadChartVersionResponse.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_ReadChartVersionResponse proto.InternalMessageInfo
+
+func (m *ReadChartVersionResponse) GetResult() *ChartVersion {
+	if m != nil {
+		return m.Result
+	}
+	return nil
+}
+
+type UpdateChartVersionRequest struct {
+	Payload              *ChartVersion         `protobuf:"bytes,1,opt,name=payload,proto3" json:"payload,omitempty"`
+	Fields               *field_mask.FieldMask `protobuf:"bytes,2,opt,name=fields,proto3" json:"fields,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}              `json:"-"`
+	XXX_unrecognized     []byte                `json:"-"`
+	XXX_sizecache        int32                 `json:"-"`
+}
+
+func (m *UpdateChartVersionRequest) Reset()         { *m = UpdateChartVersionRequest{} }
+func (m *UpdateChartVersionRequest) String() string { return proto.CompactTextString(m) }
+func (*UpdateChartVersionRequest) ProtoMessage()    {}
+func (*UpdateChartVersionRequest) Descriptor() ([]byte, []int) {
+	return fileDescriptor_b7c4efe410d87592, []int{61}
+}
+
+func (m *UpdateChartVersionRequest) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_UpdateChartVersionRequest.Unmarshal(m, b)
+}
+func (m *UpdateChartVersionRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_UpdateChartVersionRequest.Marshal(b, m, deterministic)
+}
+func (m *UpdateChartVersionRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_UpdateChartVersionRequest.Merge(m, src)
+}
+func (m *UpdateChartVersionRequest) XXX_Size() int {
+	return xxx_messageInfo_UpdateChartVersionRequest.Size(m)
+}
+func (m *UpdateChartVersionRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_UpdateChartVersionRequest.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_UpdateChartVersionRequest proto.InternalMessageInfo
+
+func (m *UpdateChartVersionRequest) GetPayload() *ChartVersion {
+	if m != nil {
+		return m.Payload
+	}
+	return nil
+}
+
+func (m *UpdateChartVersionRequest) GetFields() *field_mask.FieldMask {
+	if m != nil {
+		return m.Fields
+	}
+	return nil
+}
+
+type UpdateChartVersionResponse struct {
+	Result               *ChartVersion `protobuf:"bytes,1,opt,name=result,proto3" json:"result,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}      `json:"-"`
+	XXX_unrecognized     []byte        `json:"-"`
+	XXX_sizecache        int32         `json:"-"`
+}
+
+func (m *UpdateChartVersionResponse) Reset()         { *m = UpdateChartVersionResponse{} }
+func (m *UpdateChartVersionResponse) String() string { return proto.CompactTextString(m) }
+func (*UpdateChartVersionResponse) ProtoMessage()    {}
+func (*UpdateChartVersionResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor_b7c4efe410d87592, []int{62}
+}
+
+func (m *UpdateChartVersionResponse) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_UpdateChartVersionResponse.Unmarshal(m, b)
+}
+func (m *UpdateChartVersionResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_UpdateChartVersionResponse.Marshal(b, m, deterministic)
+}
+func (m *UpdateChartVersionResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_UpdateChartVersionResponse.Merge(m, src)
+}
+func (m *UpdateChartVersionResponse) XXX_Size() int {
+	return xxx_messageInfo_UpdateChartVersionResponse.Size(m)
+}
+func (m *UpdateChartVersionResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_UpdateChartVersionResponse.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_UpdateChartVersionResponse proto.InternalMessageInfo
+
+func (m *UpdateChartVersionResponse) GetResult() *ChartVersion {
+	if m != nil {
+		return m.Result
+	}
+	return nil
+}
+
+type DeleteChartVersionRequest struct {
+	Id                   *resource.Identifier `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}             `json:"-"`
+	XXX_unrecognized     []byte               `json:"-"`
+	XXX_sizecache        int32                `json:"-"`
+}
+
+func (m *DeleteChartVersionRequest) Reset()         { *m = DeleteChartVersionRequest{} }
+func (m *DeleteChartVersionRequest) String() string { return proto.CompactTextString(m) }
+func (*DeleteChartVersionRequest) ProtoMessage()    {}
+func (*DeleteChartVersionRequest) Descriptor() ([]byte, []int) {
+	return fileDescriptor_b7c4efe410d87592, []int{63}
+}
+
+func (m *DeleteChartVersionRequest) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_DeleteChartVersionRequest.Unmarshal(m, b)
+}
+func (m *DeleteChartVersionRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_DeleteChartVersionRequest.Marshal(b, m, deterministic)
+}
+func (m *DeleteChartVersionRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_DeleteChartVersionRequest.Merge(m, src)
+}
+func (m *DeleteChartVersionRequest) XXX_Size() int {
+	return xxx_messageInfo_DeleteChartVersionRequest.Size(m)
+}
+func (m *DeleteChartVersionRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_DeleteChartVersionRequest.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_DeleteChartVersionRequest proto.InternalMessageInfo
+
+func (m *DeleteChartVersionRequest) GetId() *resource.Identifier {
+	if m != nil {
+		return m.Id
+	}
+	return nil
+}
+
+type DeleteChartVersionResponse struct {
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *DeleteChartVersionResponse) Reset()         { *m = DeleteChartVersionResponse{} }
+func (m *DeleteChartVersionResponse) String() string { return proto.CompactTextString(m) }
+func (*DeleteChartVersionResponse) ProtoMessage()    {}
+func (*DeleteChartVersionResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor_b7c4efe410d87592, []int{64}
+}
+
+func (m *DeleteChartVersionResponse) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_DeleteChartVersionResponse.Unmarshal(m, b)
+}
+func (m *DeleteChartVersionResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_DeleteChartVersionResponse.Marshal(b, m, deterministic)
+}
+func (m *DeleteChartVersionResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_DeleteChartVersionResponse.Merge(m, src)
+}
+func (m *DeleteChartVersionResponse) XXX_Size() int {
+	return xxx_messageInfo_DeleteChartVersionResponse.Size(m)
+}
+func (m *DeleteChartVersionResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_DeleteChartVersionResponse.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_DeleteChartVersionResponse proto.InternalMessageInfo
+
+type ListChartVersionRequest struct {
+	Filter               *query.Filtering      `protobuf:"bytes,1,opt,name=filter,proto3" json:"filter,omitempty"`
+	OrderBy              *query.Sorting        `protobuf:"bytes,2,opt,name=order_by,json=orderBy,proto3" json:"order_by,omitempty"`
+	Fields               *query.FieldSelection `protobuf:"bytes,3,opt,name=fields,proto3" json:"fields,omitempty"`
+	Paging               *query.Pagination     `protobuf:"bytes,4,opt,name=paging,proto3" json:"paging,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}              `json:"-"`
+	XXX_unrecognized     []byte                `json:"-"`
+	XXX_sizecache        int32                 `json:"-"`
+}
+
+func (m *ListChartVersionRequest) Reset()         { *m = ListChartVersionRequest{} }
+func (m *ListChartVersionRequest) String() string { return proto.CompactTextString(m) }
+func (*ListChartVersionRequest) ProtoMessage()    {}
+func (*ListChartVersionRequest) Descriptor() ([]byte, []int) {
+	return fileDescriptor_b7c4efe410d87592, []int{65}
+}
+
+func (m *ListChartVersionRequest) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_ListChartVersionRequest.Unmarshal(m, b)
+}
+func (m *ListChartVersionRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_ListChartVersionRequest.Marshal(b, m, deterministic)
+}
+func (m *ListChartVersionRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_ListChartVersionRequest.Merge(m, src)
+}
+func (m *ListChartVersionRequest) XXX_Size() int {
+	return xxx_messageInfo_ListChartVersionRequest.Size(m)
+}
+func (m *ListChartVersionRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_ListChartVersionRequest.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_ListChartVersionRequest proto.InternalMessageInfo
+
+func (m *ListChartVersionRequest) GetFilter() *query.Filtering {
+	if m != nil {
+		return m.Filter
+	}
+	return nil
+}
+
+func (m *ListChartVersionRequest) GetOrderBy() *query.Sorting {
+	if m != nil {
+		return m.OrderBy
+	}
+	return nil
+}
+
+func (m *ListChartVersionRequest) GetFields() *query.FieldSelection {
+	if m != nil {
+		return m.Fields
+	}
+	return nil
+}
+
+func (m *ListChartVersionRequest) GetPaging() *query.Pagination {
+	if m != nil {
+		return m.Paging
+	}
+	return nil
+}
+
+type ListChartVersionsResponse struct {
+	Results              []*ChartVersion `protobuf:"bytes,1,rep,name=results,proto3" json:"results,omitempty"`
+	Page                 *query.PageInfo `protobuf:"bytes,2,opt,name=page,proto3" json:"page,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}        `json:"-"`
+	XXX_unrecognized     []byte          `json:"-"`
+	XXX_sizecache        int32           `json:"-"`
+}
+
+func (m *ListChartVersionsResponse) Reset()         { *m = ListChartVersionsResponse{} }
+func (m *ListChartVersionsResponse) String() string { return proto.CompactTextString(m) }
+func (*ListChartVersionsResponse) ProtoMessage()    {}
+func (*ListChartVersionsResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor_b7c4efe410d87592, []int{66}
+}
+
+func (m *ListChartVersionsResponse) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_ListChartVersionsResponse.Unmarshal(m, b)
+}
+func (m *ListChartVersionsResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_ListChartVersionsResponse.Marshal(b, m, deterministic)
+}
+func (m *ListChartVersionsResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_ListChartVersionsResponse.Merge(m, src)
+}
+func (m *ListChartVersionsResponse) XXX_Size() int {
+	return xxx_messageInfo_ListChartVersionsResponse.Size(m)
+}
+func (m *ListChartVersionsResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_ListChartVersionsResponse.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_ListChartVersionsResponse proto.InternalMessageInfo
+
+func (m *ListChartVersionsResponse) GetResults() []*ChartVersion {
+	if m != nil {
+		return m.Results
+	}
+	return nil
+}
+
+func (m *ListChartVersionsResponse) GetPage() *query.PageInfo {
+	if m != nil {
+		return m.Page
+	}
+	return nil
+}
+
+// -----------------------------------------------------------------------
+// ApplicationInstance represents application instance deployed in an Environment
+// -----------------------------------------------------------------------
+type ApplicationInstance struct {
+	// The ApplicationInstance identifier.
+	Id *resource.Identifier `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	// The name of the ApplicationInstance
+	Name string `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
+	// The description of the ApplicationInstance
+	Description string `protobuf:"bytes,3,opt,name=description,proto3" json:"description,omitempty"`
+	// Value associated with this ApplicationInstance
+	Value *Value `protobuf:"bytes,4,opt,name=value,proto3" json:"value,omitempty"`
+	// Deployment of this ApplicationInstance
+	Deployment *Deployment `protobuf:"bytes,6,opt,name=deployment,proto3" json:"deployment,omitempty"`
+	// ChartVersion used by the ApplicationInstance
+	ChartVersion *ChartVersion `protobuf:"bytes,7,opt,name=chart_version,json=chartVersion,proto3" json:"chart_version,omitempty"`
+	// Reference to the ChartVersion
+	ChartVersionId *resource.Identifier `protobuf:"bytes,8,opt,name=chart_version_id,json=chartVersionId,proto3" json:"chart_version_id,omitempty"`
+	// Reference to the Environment
+	EnvironmentId        *resource.Identifier `protobuf:"bytes,9,opt,name=environment_id,json=environmentId,proto3" json:"environment_id,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}             `json:"-"`
+	XXX_unrecognized     []byte               `json:"-"`
+	XXX_sizecache        int32                `json:"-"`
+}
+
+func (m *ApplicationInstance) Reset()         { *m = ApplicationInstance{} }
+func (m *ApplicationInstance) String() string { return proto.CompactTextString(m) }
+func (*ApplicationInstance) ProtoMessage()    {}
+func (*ApplicationInstance) Descriptor() ([]byte, []int) {
+	return fileDescriptor_b7c4efe410d87592, []int{67}
+}
+
+func (m *ApplicationInstance) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_ApplicationInstance.Unmarshal(m, b)
+}
+func (m *ApplicationInstance) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_ApplicationInstance.Marshal(b, m, deterministic)
+}
+func (m *ApplicationInstance) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_ApplicationInstance.Merge(m, src)
+}
+func (m *ApplicationInstance) XXX_Size() int {
+	return xxx_messageInfo_ApplicationInstance.Size(m)
+}
+func (m *ApplicationInstance) XXX_DiscardUnknown() {
+	xxx_messageInfo_ApplicationInstance.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_ApplicationInstance proto.InternalMessageInfo
+
+func (m *ApplicationInstance) GetId() *resource.Identifier {
+	if m != nil {
+		return m.Id
+	}
+	return nil
+}
+
+func (m *ApplicationInstance) GetName() string {
+	if m != nil {
+		return m.Name
+	}
+	return ""
+}
+
+func (m *ApplicationInstance) GetDescription() string {
+	if m != nil {
+		return m.Description
+	}
+	return ""
+}
+
+func (m *ApplicationInstance) GetValue() *Value {
+	if m != nil {
+		return m.Value
+	}
+	return nil
+}
+
+func (m *ApplicationInstance) GetDeployment() *Deployment {
+	if m != nil {
+		return m.Deployment
+	}
+	return nil
+}
+
+func (m *ApplicationInstance) GetChartVersion() *ChartVersion {
+	if m != nil {
+		return m.ChartVersion
+	}
+	return nil
+}
+
+func (m *ApplicationInstance) GetChartVersionId() *resource.Identifier {
+	if m != nil {
+		return m.ChartVersionId
+	}
+	return nil
+}
+
+func (m *ApplicationInstance) GetEnvironmentId() *resource.Identifier {
+	if m != nil {
+		return m.EnvironmentId
+	}
+	return nil
+}
+
+type CreateApplicationInstanceRequest struct {
+	Payload              *ApplicationInstance `protobuf:"bytes,1,opt,name=payload,proto3" json:"payload,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}             `json:"-"`
+	XXX_unrecognized     []byte               `json:"-"`
+	XXX_sizecache        int32                `json:"-"`
+}
+
+func (m *CreateApplicationInstanceRequest) Reset()         { *m = CreateApplicationInstanceRequest{} }
+func (m *CreateApplicationInstanceRequest) String() string { return proto.CompactTextString(m) }
+func (*CreateApplicationInstanceRequest) ProtoMessage()    {}
+func (*CreateApplicationInstanceRequest) Descriptor() ([]byte, []int) {
+	return fileDescriptor_b7c4efe410d87592, []int{68}
+}
+
+func (m *CreateApplicationInstanceRequest) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_CreateApplicationInstanceRequest.Unmarshal(m, b)
+}
+func (m *CreateApplicationInstanceRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_CreateApplicationInstanceRequest.Marshal(b, m, deterministic)
+}
+func (m *CreateApplicationInstanceRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_CreateApplicationInstanceRequest.Merge(m, src)
+}
+func (m *CreateApplicationInstanceRequest) XXX_Size() int {
+	return xxx_messageInfo_CreateApplicationInstanceRequest.Size(m)
+}
+func (m *CreateApplicationInstanceRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_CreateApplicationInstanceRequest.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_CreateApplicationInstanceRequest proto.InternalMessageInfo
+
+func (m *CreateApplicationInstanceRequest) GetPayload() *ApplicationInstance {
+	if m != nil {
+		return m.Payload
+	}
+	return nil
+}
+
+type CreateApplicationInstanceResponse struct {
+	Result               *ApplicationInstance `protobuf:"bytes,1,opt,name=result,proto3" json:"result,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}             `json:"-"`
+	XXX_unrecognized     []byte               `json:"-"`
+	XXX_sizecache        int32                `json:"-"`
+}
+
+func (m *CreateApplicationInstanceResponse) Reset()         { *m = CreateApplicationInstanceResponse{} }
+func (m *CreateApplicationInstanceResponse) String() string { return proto.CompactTextString(m) }
+func (*CreateApplicationInstanceResponse) ProtoMessage()    {}
+func (*CreateApplicationInstanceResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor_b7c4efe410d87592, []int{69}
+}
+
+func (m *CreateApplicationInstanceResponse) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_CreateApplicationInstanceResponse.Unmarshal(m, b)
+}
+func (m *CreateApplicationInstanceResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_CreateApplicationInstanceResponse.Marshal(b, m, deterministic)
+}
+func (m *CreateApplicationInstanceResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_CreateApplicationInstanceResponse.Merge(m, src)
+}
+func (m *CreateApplicationInstanceResponse) XXX_Size() int {
+	return xxx_messageInfo_CreateApplicationInstanceResponse.Size(m)
+}
+func (m *CreateApplicationInstanceResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_CreateApplicationInstanceResponse.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_CreateApplicationInstanceResponse proto.InternalMessageInfo
+
+func (m *CreateApplicationInstanceResponse) GetResult() *ApplicationInstance {
+	if m != nil {
+		return m.Result
+	}
+	return nil
+}
+
+type ReadApplicationInstanceRequest struct {
+	Id                   *resource.Identifier  `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	Fields               *query.FieldSelection `protobuf:"bytes,2,opt,name=fields,proto3" json:"fields,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}              `json:"-"`
+	XXX_unrecognized     []byte                `json:"-"`
+	XXX_sizecache        int32                 `json:"-"`
+}
+
+func (m *ReadApplicationInstanceRequest) Reset()         { *m = ReadApplicationInstanceRequest{} }
+func (m *ReadApplicationInstanceRequest) String() string { return proto.CompactTextString(m) }
+func (*ReadApplicationInstanceRequest) ProtoMessage()    {}
+func (*ReadApplicationInstanceRequest) Descriptor() ([]byte, []int) {
+	return fileDescriptor_b7c4efe410d87592, []int{70}
+}
+
+func (m *ReadApplicationInstanceRequest) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_ReadApplicationInstanceRequest.Unmarshal(m, b)
+}
+func (m *ReadApplicationInstanceRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_ReadApplicationInstanceRequest.Marshal(b, m, deterministic)
+}
+func (m *ReadApplicationInstanceRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_ReadApplicationInstanceRequest.Merge(m, src)
+}
+func (m *ReadApplicationInstanceRequest) XXX_Size() int {
+	return xxx_messageInfo_ReadApplicationInstanceRequest.Size(m)
+}
+func (m *ReadApplicationInstanceRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_ReadApplicationInstanceRequest.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_ReadApplicationInstanceRequest proto.InternalMessageInfo
+
+func (m *ReadApplicationInstanceRequest) GetId() *resource.Identifier {
+	if m != nil {
+		return m.Id
+	}
+	return nil
+}
+
+func (m *ReadApplicationInstanceRequest) GetFields() *query.FieldSelection {
+	if m != nil {
+		return m.Fields
+	}
+	return nil
+}
+
+type ReadApplicationInstanceResponse struct {
+	Result               *ApplicationInstance `protobuf:"bytes,1,opt,name=result,proto3" json:"result,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}             `json:"-"`
+	XXX_unrecognized     []byte               `json:"-"`
+	XXX_sizecache        int32                `json:"-"`
+}
+
+func (m *ReadApplicationInstanceResponse) Reset()         { *m = ReadApplicationInstanceResponse{} }
+func (m *ReadApplicationInstanceResponse) String() string { return proto.CompactTextString(m) }
+func (*ReadApplicationInstanceResponse) ProtoMessage()    {}
+func (*ReadApplicationInstanceResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor_b7c4efe410d87592, []int{71}
+}
+
+func (m *ReadApplicationInstanceResponse) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_ReadApplicationInstanceResponse.Unmarshal(m, b)
+}
+func (m *ReadApplicationInstanceResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_ReadApplicationInstanceResponse.Marshal(b, m, deterministic)
+}
+func (m *ReadApplicationInstanceResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_ReadApplicationInstanceResponse.Merge(m, src)
+}
+func (m *ReadApplicationInstanceResponse) XXX_Size() int {
+	return xxx_messageInfo_ReadApplicationInstanceResponse.Size(m)
+}
+func (m *ReadApplicationInstanceResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_ReadApplicationInstanceResponse.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_ReadApplicationInstanceResponse proto.InternalMessageInfo
+
+func (m *ReadApplicationInstanceResponse) GetResult() *ApplicationInstance {
+	if m != nil {
+		return m.Result
+	}
+	return nil
+}
+
+type UpdateApplicationInstanceRequest struct {
+	Payload              *ApplicationInstance  `protobuf:"bytes,1,opt,name=payload,proto3" json:"payload,omitempty"`
+	Fields               *field_mask.FieldMask `protobuf:"bytes,2,opt,name=fields,proto3" json:"fields,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}              `json:"-"`
+	XXX_unrecognized     []byte                `json:"-"`
+	XXX_sizecache        int32                 `json:"-"`
+}
+
+func (m *UpdateApplicationInstanceRequest) Reset()         { *m = UpdateApplicationInstanceRequest{} }
+func (m *UpdateApplicationInstanceRequest) String() string { return proto.CompactTextString(m) }
+func (*UpdateApplicationInstanceRequest) ProtoMessage()    {}
+func (*UpdateApplicationInstanceRequest) Descriptor() ([]byte, []int) {
+	return fileDescriptor_b7c4efe410d87592, []int{72}
+}
+
+func (m *UpdateApplicationInstanceRequest) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_UpdateApplicationInstanceRequest.Unmarshal(m, b)
+}
+func (m *UpdateApplicationInstanceRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_UpdateApplicationInstanceRequest.Marshal(b, m, deterministic)
+}
+func (m *UpdateApplicationInstanceRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_UpdateApplicationInstanceRequest.Merge(m, src)
+}
+func (m *UpdateApplicationInstanceRequest) XXX_Size() int {
+	return xxx_messageInfo_UpdateApplicationInstanceRequest.Size(m)
+}
+func (m *UpdateApplicationInstanceRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_UpdateApplicationInstanceRequest.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_UpdateApplicationInstanceRequest proto.InternalMessageInfo
+
+func (m *UpdateApplicationInstanceRequest) GetPayload() *ApplicationInstance {
+	if m != nil {
+		return m.Payload
+	}
+	return nil
+}
+
+func (m *UpdateApplicationInstanceRequest) GetFields() *field_mask.FieldMask {
+	if m != nil {
+		return m.Fields
+	}
+	return nil
+}
+
+type UpdateApplicationInstanceResponse struct {
+	Result               *ApplicationInstance `protobuf:"bytes,1,opt,name=result,proto3" json:"result,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}             `json:"-"`
+	XXX_unrecognized     []byte               `json:"-"`
+	XXX_sizecache        int32                `json:"-"`
+}
+
+func (m *UpdateApplicationInstanceResponse) Reset()         { *m = UpdateApplicationInstanceResponse{} }
+func (m *UpdateApplicationInstanceResponse) String() string { return proto.CompactTextString(m) }
+func (*UpdateApplicationInstanceResponse) ProtoMessage()    {}
+func (*UpdateApplicationInstanceResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor_b7c4efe410d87592, []int{73}
+}
+
+func (m *UpdateApplicationInstanceResponse) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_UpdateApplicationInstanceResponse.Unmarshal(m, b)
+}
+func (m *UpdateApplicationInstanceResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_UpdateApplicationInstanceResponse.Marshal(b, m, deterministic)
+}
+func (m *UpdateApplicationInstanceResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_UpdateApplicationInstanceResponse.Merge(m, src)
+}
+func (m *UpdateApplicationInstanceResponse) XXX_Size() int {
+	return xxx_messageInfo_UpdateApplicationInstanceResponse.Size(m)
+}
+func (m *UpdateApplicationInstanceResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_UpdateApplicationInstanceResponse.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_UpdateApplicationInstanceResponse proto.InternalMessageInfo
+
+func (m *UpdateApplicationInstanceResponse) GetResult() *ApplicationInstance {
+	if m != nil {
+		return m.Result
+	}
+	return nil
+}
+
+type DeleteApplicationInstanceRequest struct {
+	Id                   *resource.Identifier `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}             `json:"-"`
+	XXX_unrecognized     []byte               `json:"-"`
+	XXX_sizecache        int32                `json:"-"`
+}
+
+func (m *DeleteApplicationInstanceRequest) Reset()         { *m = DeleteApplicationInstanceRequest{} }
+func (m *DeleteApplicationInstanceRequest) String() string { return proto.CompactTextString(m) }
+func (*DeleteApplicationInstanceRequest) ProtoMessage()    {}
+func (*DeleteApplicationInstanceRequest) Descriptor() ([]byte, []int) {
+	return fileDescriptor_b7c4efe410d87592, []int{74}
+}
+
+func (m *DeleteApplicationInstanceRequest) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_DeleteApplicationInstanceRequest.Unmarshal(m, b)
+}
+func (m *DeleteApplicationInstanceRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_DeleteApplicationInstanceRequest.Marshal(b, m, deterministic)
+}
+func (m *DeleteApplicationInstanceRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_DeleteApplicationInstanceRequest.Merge(m, src)
+}
+func (m *DeleteApplicationInstanceRequest) XXX_Size() int {
+	return xxx_messageInfo_DeleteApplicationInstanceRequest.Size(m)
+}
+func (m *DeleteApplicationInstanceRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_DeleteApplicationInstanceRequest.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_DeleteApplicationInstanceRequest proto.InternalMessageInfo
+
+func (m *DeleteApplicationInstanceRequest) GetId() *resource.Identifier {
+	if m != nil {
+		return m.Id
+	}
+	return nil
+}
+
+type DeleteApplicationInstanceResponse struct {
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *DeleteApplicationInstanceResponse) Reset()         { *m = DeleteApplicationInstanceResponse{} }
+func (m *DeleteApplicationInstanceResponse) String() string { return proto.CompactTextString(m) }
+func (*DeleteApplicationInstanceResponse) ProtoMessage()    {}
+func (*DeleteApplicationInstanceResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor_b7c4efe410d87592, []int{75}
+}
+
+func (m *DeleteApplicationInstanceResponse) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_DeleteApplicationInstanceResponse.Unmarshal(m, b)
+}
+func (m *DeleteApplicationInstanceResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_DeleteApplicationInstanceResponse.Marshal(b, m, deterministic)
+}
+func (m *DeleteApplicationInstanceResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_DeleteApplicationInstanceResponse.Merge(m, src)
+}
+func (m *DeleteApplicationInstanceResponse) XXX_Size() int {
+	return xxx_messageInfo_DeleteApplicationInstanceResponse.Size(m)
+}
+func (m *DeleteApplicationInstanceResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_DeleteApplicationInstanceResponse.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_DeleteApplicationInstanceResponse proto.InternalMessageInfo
+
+type ListApplicationInstanceRequest struct {
+	Filter               *query.Filtering      `protobuf:"bytes,1,opt,name=filter,proto3" json:"filter,omitempty"`
+	OrderBy              *query.Sorting        `protobuf:"bytes,2,opt,name=order_by,json=orderBy,proto3" json:"order_by,omitempty"`
+	Fields               *query.FieldSelection `protobuf:"bytes,3,opt,name=fields,proto3" json:"fields,omitempty"`
+	Paging               *query.Pagination     `protobuf:"bytes,4,opt,name=paging,proto3" json:"paging,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}              `json:"-"`
+	XXX_unrecognized     []byte                `json:"-"`
+	XXX_sizecache        int32                 `json:"-"`
+}
+
+func (m *ListApplicationInstanceRequest) Reset()         { *m = ListApplicationInstanceRequest{} }
+func (m *ListApplicationInstanceRequest) String() string { return proto.CompactTextString(m) }
+func (*ListApplicationInstanceRequest) ProtoMessage()    {}
+func (*ListApplicationInstanceRequest) Descriptor() ([]byte, []int) {
+	return fileDescriptor_b7c4efe410d87592, []int{76}
+}
+
+func (m *ListApplicationInstanceRequest) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_ListApplicationInstanceRequest.Unmarshal(m, b)
+}
+func (m *ListApplicationInstanceRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_ListApplicationInstanceRequest.Marshal(b, m, deterministic)
+}
+func (m *ListApplicationInstanceRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_ListApplicationInstanceRequest.Merge(m, src)
+}
+func (m *ListApplicationInstanceRequest) XXX_Size() int {
+	return xxx_messageInfo_ListApplicationInstanceRequest.Size(m)
+}
+func (m *ListApplicationInstanceRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_ListApplicationInstanceRequest.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_ListApplicationInstanceRequest proto.InternalMessageInfo
+
+func (m *ListApplicationInstanceRequest) GetFilter() *query.Filtering {
+	if m != nil {
+		return m.Filter
+	}
+	return nil
+}
+
+func (m *ListApplicationInstanceRequest) GetOrderBy() *query.Sorting {
+	if m != nil {
+		return m.OrderBy
+	}
+	return nil
+}
+
+func (m *ListApplicationInstanceRequest) GetFields() *query.FieldSelection {
+	if m != nil {
+		return m.Fields
+	}
+	return nil
+}
+
+func (m *ListApplicationInstanceRequest) GetPaging() *query.Pagination {
+	if m != nil {
+		return m.Paging
+	}
+	return nil
+}
+
+type ListApplicationInstancesResponse struct {
+	Results              []*ApplicationInstance `protobuf:"bytes,1,rep,name=results,proto3" json:"results,omitempty"`
+	Page                 *query.PageInfo        `protobuf:"bytes,2,opt,name=page,proto3" json:"page,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}               `json:"-"`
+	XXX_unrecognized     []byte                 `json:"-"`
+	XXX_sizecache        int32                  `json:"-"`
+}
+
+func (m *ListApplicationInstancesResponse) Reset()         { *m = ListApplicationInstancesResponse{} }
+func (m *ListApplicationInstancesResponse) String() string { return proto.CompactTextString(m) }
+func (*ListApplicationInstancesResponse) ProtoMessage()    {}
+func (*ListApplicationInstancesResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor_b7c4efe410d87592, []int{77}
+}
+
+func (m *ListApplicationInstancesResponse) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_ListApplicationInstancesResponse.Unmarshal(m, b)
+}
+func (m *ListApplicationInstancesResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_ListApplicationInstancesResponse.Marshal(b, m, deterministic)
+}
+func (m *ListApplicationInstancesResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_ListApplicationInstancesResponse.Merge(m, src)
+}
+func (m *ListApplicationInstancesResponse) XXX_Size() int {
+	return xxx_messageInfo_ListApplicationInstancesResponse.Size(m)
+}
+func (m *ListApplicationInstancesResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_ListApplicationInstancesResponse.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_ListApplicationInstancesResponse proto.InternalMessageInfo
+
+func (m *ListApplicationInstancesResponse) GetResults() []*ApplicationInstance {
+	if m != nil {
+		return m.Results
+	}
+	return nil
+}
+
+func (m *ListApplicationInstancesResponse) GetPage() *query.PageInfo {
+	if m != nil {
+		return m.Page
+	}
+	return nil
+}
+
+// ------------------------------------------------------
+// Vault represents the store for keeping Secrets
+// ------------------------------------------------------
+type Vault struct {
+	// The vault identifier.
+	Id *resource.Identifier `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	// The name of the vault
+	Name string `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
+	// The description of the vault
+	Description string `protobuf:"bytes,3,opt,name=description,proto3" json:"description,omitempty"`
+	// The list of Secrets stored against the path on vault
+	Secrets              []*Secret `protobuf:"bytes,5,rep,name=secrets,proto3" json:"secrets,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}  `json:"-"`
+	XXX_unrecognized     []byte    `json:"-"`
+	XXX_sizecache        int32     `json:"-"`
+}
+
+func (m *Vault) Reset()         { *m = Vault{} }
+func (m *Vault) String() string { return proto.CompactTextString(m) }
+func (*Vault) ProtoMessage()    {}
+func (*Vault) Descriptor() ([]byte, []int) {
+	return fileDescriptor_b7c4efe410d87592, []int{78}
+}
+
+func (m *Vault) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_Vault.Unmarshal(m, b)
+}
+func (m *Vault) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_Vault.Marshal(b, m, deterministic)
+}
+func (m *Vault) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_Vault.Merge(m, src)
+}
+func (m *Vault) XXX_Size() int {
+	return xxx_messageInfo_Vault.Size(m)
+}
+func (m *Vault) XXX_DiscardUnknown() {
+	xxx_messageInfo_Vault.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_Vault proto.InternalMessageInfo
+
+func (m *Vault) GetId() *resource.Identifier {
+	if m != nil {
+		return m.Id
+	}
+	return nil
+}
+
+func (m *Vault) GetName() string {
+	if m != nil {
+		return m.Name
+	}
+	return ""
+}
+
+func (m *Vault) GetDescription() string {
+	if m != nil {
+		return m.Description
+	}
+	return ""
+}
+
+func (m *Vault) GetSecrets() []*Secret {
+	if m != nil {
+		return m.Secrets
+	}
+	return nil
+}
+
+type CreateVaultRequest struct {
+	Payload              *Vault   `protobuf:"bytes,1,opt,name=payload,proto3" json:"payload,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *CreateVaultRequest) Reset()         { *m = CreateVaultRequest{} }
+func (m *CreateVaultRequest) String() string { return proto.CompactTextString(m) }
+func (*CreateVaultRequest) ProtoMessage()    {}
+func (*CreateVaultRequest) Descriptor() ([]byte, []int) {
+	return fileDescriptor_b7c4efe410d87592, []int{79}
+}
+
+func (m *CreateVaultRequest) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_CreateVaultRequest.Unmarshal(m, b)
+}
+func (m *CreateVaultRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_CreateVaultRequest.Marshal(b, m, deterministic)
+}
+func (m *CreateVaultRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_CreateVaultRequest.Merge(m, src)
+}
+func (m *CreateVaultRequest) XXX_Size() int {
+	return xxx_messageInfo_CreateVaultRequest.Size(m)
+}
+func (m *CreateVaultRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_CreateVaultRequest.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_CreateVaultRequest proto.InternalMessageInfo
+
+func (m *CreateVaultRequest) GetPayload() *Vault {
+	if m != nil {
+		return m.Payload
+	}
+	return nil
+}
+
+type CreateVaultResponse struct {
+	Result               *Vault   `protobuf:"bytes,1,opt,name=result,proto3" json:"result,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *CreateVaultResponse) Reset()         { *m = CreateVaultResponse{} }
+func (m *CreateVaultResponse) String() string { return proto.CompactTextString(m) }
+func (*CreateVaultResponse) ProtoMessage()    {}
+func (*CreateVaultResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor_b7c4efe410d87592, []int{80}
+}
+
+func (m *CreateVaultResponse) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_CreateVaultResponse.Unmarshal(m, b)
+}
+func (m *CreateVaultResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_CreateVaultResponse.Marshal(b, m, deterministic)
+}
+func (m *CreateVaultResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_CreateVaultResponse.Merge(m, src)
+}
+func (m *CreateVaultResponse) XXX_Size() int {
+	return xxx_messageInfo_CreateVaultResponse.Size(m)
+}
+func (m *CreateVaultResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_CreateVaultResponse.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_CreateVaultResponse proto.InternalMessageInfo
+
+func (m *CreateVaultResponse) GetResult() *Vault {
+	if m != nil {
+		return m.Result
+	}
+	return nil
+}
+
+type ReadVaultRequest struct {
+	Id                   *resource.Identifier  `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	Fields               *query.FieldSelection `protobuf:"bytes,2,opt,name=fields,proto3" json:"fields,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}              `json:"-"`
+	XXX_unrecognized     []byte                `json:"-"`
+	XXX_sizecache        int32                 `json:"-"`
+}
+
+func (m *ReadVaultRequest) Reset()         { *m = ReadVaultRequest{} }
+func (m *ReadVaultRequest) String() string { return proto.CompactTextString(m) }
+func (*ReadVaultRequest) ProtoMessage()    {}
+func (*ReadVaultRequest) Descriptor() ([]byte, []int) {
+	return fileDescriptor_b7c4efe410d87592, []int{81}
+}
+
+func (m *ReadVaultRequest) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_ReadVaultRequest.Unmarshal(m, b)
+}
+func (m *ReadVaultRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_ReadVaultRequest.Marshal(b, m, deterministic)
+}
+func (m *ReadVaultRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_ReadVaultRequest.Merge(m, src)
+}
+func (m *ReadVaultRequest) XXX_Size() int {
+	return xxx_messageInfo_ReadVaultRequest.Size(m)
+}
+func (m *ReadVaultRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_ReadVaultRequest.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_ReadVaultRequest proto.InternalMessageInfo
+
+func (m *ReadVaultRequest) GetId() *resource.Identifier {
+	if m != nil {
+		return m.Id
+	}
+	return nil
+}
+
+func (m *ReadVaultRequest) GetFields() *query.FieldSelection {
+	if m != nil {
+		return m.Fields
+	}
+	return nil
+}
+
+type ReadVaultResponse struct {
+	Result               *Vault   `protobuf:"bytes,1,opt,name=result,proto3" json:"result,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *ReadVaultResponse) Reset()         { *m = ReadVaultResponse{} }
+func (m *ReadVaultResponse) String() string { return proto.CompactTextString(m) }
+func (*ReadVaultResponse) ProtoMessage()    {}
+func (*ReadVaultResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor_b7c4efe410d87592, []int{82}
+}
+
+func (m *ReadVaultResponse) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_ReadVaultResponse.Unmarshal(m, b)
+}
+func (m *ReadVaultResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_ReadVaultResponse.Marshal(b, m, deterministic)
+}
+func (m *ReadVaultResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_ReadVaultResponse.Merge(m, src)
+}
+func (m *ReadVaultResponse) XXX_Size() int {
+	return xxx_messageInfo_ReadVaultResponse.Size(m)
+}
+func (m *ReadVaultResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_ReadVaultResponse.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_ReadVaultResponse proto.InternalMessageInfo
+
+func (m *ReadVaultResponse) GetResult() *Vault {
+	if m != nil {
+		return m.Result
+	}
+	return nil
+}
+
+type UpdateVaultRequest struct {
+	Payload              *Vault                `protobuf:"bytes,1,opt,name=payload,proto3" json:"payload,omitempty"`
+	Fields               *field_mask.FieldMask `protobuf:"bytes,2,opt,name=fields,proto3" json:"fields,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}              `json:"-"`
+	XXX_unrecognized     []byte                `json:"-"`
+	XXX_sizecache        int32                 `json:"-"`
+}
+
+func (m *UpdateVaultRequest) Reset()         { *m = UpdateVaultRequest{} }
+func (m *UpdateVaultRequest) String() string { return proto.CompactTextString(m) }
+func (*UpdateVaultRequest) ProtoMessage()    {}
+func (*UpdateVaultRequest) Descriptor() ([]byte, []int) {
+	return fileDescriptor_b7c4efe410d87592, []int{83}
+}
+
+func (m *UpdateVaultRequest) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_UpdateVaultRequest.Unmarshal(m, b)
+}
+func (m *UpdateVaultRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_UpdateVaultRequest.Marshal(b, m, deterministic)
+}
+func (m *UpdateVaultRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_UpdateVaultRequest.Merge(m, src)
+}
+func (m *UpdateVaultRequest) XXX_Size() int {
+	return xxx_messageInfo_UpdateVaultRequest.Size(m)
+}
+func (m *UpdateVaultRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_UpdateVaultRequest.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_UpdateVaultRequest proto.InternalMessageInfo
+
+func (m *UpdateVaultRequest) GetPayload() *Vault {
+	if m != nil {
+		return m.Payload
+	}
+	return nil
+}
+
+func (m *UpdateVaultRequest) GetFields() *field_mask.FieldMask {
+	if m != nil {
+		return m.Fields
+	}
+	return nil
+}
+
+type UpdateVaultResponse struct {
+	Result               *Vault   `protobuf:"bytes,1,opt,name=result,proto3" json:"result,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *UpdateVaultResponse) Reset()         { *m = UpdateVaultResponse{} }
+func (m *UpdateVaultResponse) String() string { return proto.CompactTextString(m) }
+func (*UpdateVaultResponse) ProtoMessage()    {}
+func (*UpdateVaultResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor_b7c4efe410d87592, []int{84}
+}
+
+func (m *UpdateVaultResponse) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_UpdateVaultResponse.Unmarshal(m, b)
+}
+func (m *UpdateVaultResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_UpdateVaultResponse.Marshal(b, m, deterministic)
+}
+func (m *UpdateVaultResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_UpdateVaultResponse.Merge(m, src)
+}
+func (m *UpdateVaultResponse) XXX_Size() int {
+	return xxx_messageInfo_UpdateVaultResponse.Size(m)
+}
+func (m *UpdateVaultResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_UpdateVaultResponse.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_UpdateVaultResponse proto.InternalMessageInfo
+
+func (m *UpdateVaultResponse) GetResult() *Vault {
+	if m != nil {
+		return m.Result
+	}
+	return nil
+}
+
+type DeleteVaultRequest struct {
+	Id                   *resource.Identifier `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}             `json:"-"`
+	XXX_unrecognized     []byte               `json:"-"`
+	XXX_sizecache        int32                `json:"-"`
+}
+
+func (m *DeleteVaultRequest) Reset()         { *m = DeleteVaultRequest{} }
+func (m *DeleteVaultRequest) String() string { return proto.CompactTextString(m) }
+func (*DeleteVaultRequest) ProtoMessage()    {}
+func (*DeleteVaultRequest) Descriptor() ([]byte, []int) {
+	return fileDescriptor_b7c4efe410d87592, []int{85}
+}
+
+func (m *DeleteVaultRequest) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_DeleteVaultRequest.Unmarshal(m, b)
+}
+func (m *DeleteVaultRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_DeleteVaultRequest.Marshal(b, m, deterministic)
+}
+func (m *DeleteVaultRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_DeleteVaultRequest.Merge(m, src)
+}
+func (m *DeleteVaultRequest) XXX_Size() int {
+	return xxx_messageInfo_DeleteVaultRequest.Size(m)
+}
+func (m *DeleteVaultRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_DeleteVaultRequest.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_DeleteVaultRequest proto.InternalMessageInfo
+
+func (m *DeleteVaultRequest) GetId() *resource.Identifier {
+	if m != nil {
+		return m.Id
+	}
+	return nil
+}
+
+type DeleteVaultResponse struct {
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *DeleteVaultResponse) Reset()         { *m = DeleteVaultResponse{} }
+func (m *DeleteVaultResponse) String() string { return proto.CompactTextString(m) }
+func (*DeleteVaultResponse) ProtoMessage()    {}
+func (*DeleteVaultResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor_b7c4efe410d87592, []int{86}
+}
+
+func (m *DeleteVaultResponse) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_DeleteVaultResponse.Unmarshal(m, b)
+}
+func (m *DeleteVaultResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_DeleteVaultResponse.Marshal(b, m, deterministic)
+}
+func (m *DeleteVaultResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_DeleteVaultResponse.Merge(m, src)
+}
+func (m *DeleteVaultResponse) XXX_Size() int {
+	return xxx_messageInfo_DeleteVaultResponse.Size(m)
+}
+func (m *DeleteVaultResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_DeleteVaultResponse.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_DeleteVaultResponse proto.InternalMessageInfo
+
+type ListVaultRequest struct {
+	Filter               *query.Filtering      `protobuf:"bytes,1,opt,name=filter,proto3" json:"filter,omitempty"`
+	OrderBy              *query.Sorting        `protobuf:"bytes,2,opt,name=order_by,json=orderBy,proto3" json:"order_by,omitempty"`
+	Fields               *query.FieldSelection `protobuf:"bytes,3,opt,name=fields,proto3" json:"fields,omitempty"`
+	Paging               *query.Pagination     `protobuf:"bytes,4,opt,name=paging,proto3" json:"paging,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}              `json:"-"`
+	XXX_unrecognized     []byte                `json:"-"`
+	XXX_sizecache        int32                 `json:"-"`
+}
+
+func (m *ListVaultRequest) Reset()         { *m = ListVaultRequest{} }
+func (m *ListVaultRequest) String() string { return proto.CompactTextString(m) }
+func (*ListVaultRequest) ProtoMessage()    {}
+func (*ListVaultRequest) Descriptor() ([]byte, []int) {
+	return fileDescriptor_b7c4efe410d87592, []int{87}
+}
+
+func (m *ListVaultRequest) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_ListVaultRequest.Unmarshal(m, b)
+}
+func (m *ListVaultRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_ListVaultRequest.Marshal(b, m, deterministic)
+}
+func (m *ListVaultRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_ListVaultRequest.Merge(m, src)
+}
+func (m *ListVaultRequest) XXX_Size() int {
+	return xxx_messageInfo_ListVaultRequest.Size(m)
+}
+func (m *ListVaultRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_ListVaultRequest.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_ListVaultRequest proto.InternalMessageInfo
+
+func (m *ListVaultRequest) GetFilter() *query.Filtering {
+	if m != nil {
+		return m.Filter
+	}
+	return nil
+}
+
+func (m *ListVaultRequest) GetOrderBy() *query.Sorting {
+	if m != nil {
+		return m.OrderBy
+	}
+	return nil
+}
+
+func (m *ListVaultRequest) GetFields() *query.FieldSelection {
+	if m != nil {
+		return m.Fields
+	}
+	return nil
+}
+
+func (m *ListVaultRequest) GetPaging() *query.Pagination {
+	if m != nil {
+		return m.Paging
+	}
+	return nil
+}
+
+type ListVaultsResponse struct {
+	Results              []*Vault        `protobuf:"bytes,1,rep,name=results,proto3" json:"results,omitempty"`
+	Page                 *query.PageInfo `protobuf:"bytes,2,opt,name=page,proto3" json:"page,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}        `json:"-"`
+	XXX_unrecognized     []byte          `json:"-"`
+	XXX_sizecache        int32           `json:"-"`
+}
+
+func (m *ListVaultsResponse) Reset()         { *m = ListVaultsResponse{} }
+func (m *ListVaultsResponse) String() string { return proto.CompactTextString(m) }
+func (*ListVaultsResponse) ProtoMessage()    {}
+func (*ListVaultsResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor_b7c4efe410d87592, []int{88}
+}
+
+func (m *ListVaultsResponse) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_ListVaultsResponse.Unmarshal(m, b)
+}
+func (m *ListVaultsResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_ListVaultsResponse.Marshal(b, m, deterministic)
+}
+func (m *ListVaultsResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_ListVaultsResponse.Merge(m, src)
+}
+func (m *ListVaultsResponse) XXX_Size() int {
+	return xxx_messageInfo_ListVaultsResponse.Size(m)
+}
+func (m *ListVaultsResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_ListVaultsResponse.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_ListVaultsResponse proto.InternalMessageInfo
+
+func (m *ListVaultsResponse) GetResults() []*Vault {
+	if m != nil {
+		return m.Results
+	}
+	return nil
+}
+
+func (m *ListVaultsResponse) GetPage() *query.PageInfo {
 	if m != nil {
 		return m.Page
 	}
@@ -3975,14 +4295,18 @@ type Secret struct {
 	Name string `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
 	// The description of the container
 	Description string `protobuf:"bytes,3,opt,name=description,proto3" json:"description,omitempty"`
+	// The path on vault for the Secrets (e.g. /qa0-secrets)
+	Path string `protobuf:"bytes,4,opt,name=path,proto3" json:"path,omitempty"`
 	// The type of secret (e.g. opaque, or tls)
-	Type string `protobuf:"bytes,4,opt,name=type,proto3" json:"type,omitempty"`
+	Type string `protobuf:"bytes,5,opt,name=type,proto3" json:"type,omitempty"`
 	// The key value of secret (note: value is stored on kubernetes secret
-	Key string `protobuf:"bytes,5,opt,name=key,proto3" json:"key,omitempty"`
+	Key string `protobuf:"bytes,6,opt,name=key,proto3" json:"key,omitempty"`
 	// The vault the secret belongs to.
-	VaultId *resource.Identifier `protobuf:"bytes,6,opt,name=vault_id,json=vaultId,proto3" json:"vault_id,omitempty"`
+	VaultId *resource.Identifier `protobuf:"bytes,7,opt,name=vault_id,json=vaultId,proto3" json:"vault_id,omitempty"`
+	// The Value using this Secret
+	ValueId *resource.Identifier `protobuf:"bytes,8,opt,name=value_id,json=valueId,proto3" json:"value_id,omitempty"`
 	// The AWS RDS Instance Id if this is a database password
-	AwsRdsInstanceId     *resource.Identifier `protobuf:"bytes,7,opt,name=aws_rds_instance_id,json=awsRdsInstanceId,proto3" json:"aws_rds_instance_id,omitempty"`
+	AwsRdsInstanceId     *resource.Identifier `protobuf:"bytes,9,opt,name=aws_rds_instance_id,json=awsRdsInstanceId,proto3" json:"aws_rds_instance_id,omitempty"`
 	XXX_NoUnkeyedLiteral struct{}             `json:"-"`
 	XXX_unrecognized     []byte               `json:"-"`
 	XXX_sizecache        int32                `json:"-"`
@@ -3992,7 +4316,7 @@ func (m *Secret) Reset()         { *m = Secret{} }
 func (m *Secret) String() string { return proto.CompactTextString(m) }
 func (*Secret) ProtoMessage()    {}
 func (*Secret) Descriptor() ([]byte, []int) {
-	return fileDescriptor_b7c4efe410d87592, []int{78}
+	return fileDescriptor_b7c4efe410d87592, []int{89}
 }
 
 func (m *Secret) XXX_Unmarshal(b []byte) error {
@@ -4034,6 +4358,13 @@ func (m *Secret) GetDescription() string {
 	return ""
 }
 
+func (m *Secret) GetPath() string {
+	if m != nil {
+		return m.Path
+	}
+	return ""
+}
+
 func (m *Secret) GetType() string {
 	if m != nil {
 		return m.Type
@@ -4051,6 +4382,13 @@ func (m *Secret) GetKey() string {
 func (m *Secret) GetVaultId() *resource.Identifier {
 	if m != nil {
 		return m.VaultId
+	}
+	return nil
+}
+
+func (m *Secret) GetValueId() *resource.Identifier {
+	if m != nil {
+		return m.ValueId
 	}
 	return nil
 }
@@ -4073,7 +4411,7 @@ func (m *CreateSecretRequest) Reset()         { *m = CreateSecretRequest{} }
 func (m *CreateSecretRequest) String() string { return proto.CompactTextString(m) }
 func (*CreateSecretRequest) ProtoMessage()    {}
 func (*CreateSecretRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_b7c4efe410d87592, []int{79}
+	return fileDescriptor_b7c4efe410d87592, []int{90}
 }
 
 func (m *CreateSecretRequest) XXX_Unmarshal(b []byte) error {
@@ -4112,7 +4450,7 @@ func (m *CreateSecretResponse) Reset()         { *m = CreateSecretResponse{} }
 func (m *CreateSecretResponse) String() string { return proto.CompactTextString(m) }
 func (*CreateSecretResponse) ProtoMessage()    {}
 func (*CreateSecretResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_b7c4efe410d87592, []int{80}
+	return fileDescriptor_b7c4efe410d87592, []int{91}
 }
 
 func (m *CreateSecretResponse) XXX_Unmarshal(b []byte) error {
@@ -4152,7 +4490,7 @@ func (m *ReadSecretRequest) Reset()         { *m = ReadSecretRequest{} }
 func (m *ReadSecretRequest) String() string { return proto.CompactTextString(m) }
 func (*ReadSecretRequest) ProtoMessage()    {}
 func (*ReadSecretRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_b7c4efe410d87592, []int{81}
+	return fileDescriptor_b7c4efe410d87592, []int{92}
 }
 
 func (m *ReadSecretRequest) XXX_Unmarshal(b []byte) error {
@@ -4198,7 +4536,7 @@ func (m *ReadSecretResponse) Reset()         { *m = ReadSecretResponse{} }
 func (m *ReadSecretResponse) String() string { return proto.CompactTextString(m) }
 func (*ReadSecretResponse) ProtoMessage()    {}
 func (*ReadSecretResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_b7c4efe410d87592, []int{82}
+	return fileDescriptor_b7c4efe410d87592, []int{93}
 }
 
 func (m *ReadSecretResponse) XXX_Unmarshal(b []byte) error {
@@ -4238,7 +4576,7 @@ func (m *UpdateSecretRequest) Reset()         { *m = UpdateSecretRequest{} }
 func (m *UpdateSecretRequest) String() string { return proto.CompactTextString(m) }
 func (*UpdateSecretRequest) ProtoMessage()    {}
 func (*UpdateSecretRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_b7c4efe410d87592, []int{83}
+	return fileDescriptor_b7c4efe410d87592, []int{94}
 }
 
 func (m *UpdateSecretRequest) XXX_Unmarshal(b []byte) error {
@@ -4284,7 +4622,7 @@ func (m *UpdateSecretResponse) Reset()         { *m = UpdateSecretResponse{} }
 func (m *UpdateSecretResponse) String() string { return proto.CompactTextString(m) }
 func (*UpdateSecretResponse) ProtoMessage()    {}
 func (*UpdateSecretResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_b7c4efe410d87592, []int{84}
+	return fileDescriptor_b7c4efe410d87592, []int{95}
 }
 
 func (m *UpdateSecretResponse) XXX_Unmarshal(b []byte) error {
@@ -4323,7 +4661,7 @@ func (m *DeleteSecretRequest) Reset()         { *m = DeleteSecretRequest{} }
 func (m *DeleteSecretRequest) String() string { return proto.CompactTextString(m) }
 func (*DeleteSecretRequest) ProtoMessage()    {}
 func (*DeleteSecretRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_b7c4efe410d87592, []int{85}
+	return fileDescriptor_b7c4efe410d87592, []int{96}
 }
 
 func (m *DeleteSecretRequest) XXX_Unmarshal(b []byte) error {
@@ -4361,7 +4699,7 @@ func (m *DeleteSecretResponse) Reset()         { *m = DeleteSecretResponse{} }
 func (m *DeleteSecretResponse) String() string { return proto.CompactTextString(m) }
 func (*DeleteSecretResponse) ProtoMessage()    {}
 func (*DeleteSecretResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_b7c4efe410d87592, []int{86}
+	return fileDescriptor_b7c4efe410d87592, []int{97}
 }
 
 func (m *DeleteSecretResponse) XXX_Unmarshal(b []byte) error {
@@ -4396,7 +4734,7 @@ func (m *ListSecretRequest) Reset()         { *m = ListSecretRequest{} }
 func (m *ListSecretRequest) String() string { return proto.CompactTextString(m) }
 func (*ListSecretRequest) ProtoMessage()    {}
 func (*ListSecretRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_b7c4efe410d87592, []int{87}
+	return fileDescriptor_b7c4efe410d87592, []int{98}
 }
 
 func (m *ListSecretRequest) XXX_Unmarshal(b []byte) error {
@@ -4457,7 +4795,7 @@ func (m *ListSecretsResponse) Reset()         { *m = ListSecretsResponse{} }
 func (m *ListSecretsResponse) String() string { return proto.CompactTextString(m) }
 func (*ListSecretsResponse) ProtoMessage()    {}
 func (*ListSecretsResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_b7c4efe410d87592, []int{88}
+	return fileDescriptor_b7c4efe410d87592, []int{99}
 }
 
 func (m *ListSecretsResponse) XXX_Unmarshal(b []byte) error {
@@ -4492,524 +4830,6 @@ func (m *ListSecretsResponse) GetPage() *query.PageInfo {
 	return nil
 }
 
-// ---------------------------------------------------------------------
-// Artifact represents an element built by CI (e.g. resolved manifest)
-// ---------------------------------------------------------------------
-type Artifact struct {
-	// The Artifact identifier.
-	Id *resource.Identifier `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
-	// The name of the Artifact
-	Name string `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
-	// The description of the Artifact
-	Description string `protobuf:"bytes,3,opt,name=description,proto3" json:"description,omitempty"`
-	// The repo which stores the Artifact
-	Repo string `protobuf:"bytes,4,opt,name=repo,proto3" json:"repo,omitempty"`
-	// The commit Id of the Artifact in repo
-	Commit string `protobuf:"bytes,5,opt,name=commit,proto3" json:"commit,omitempty"`
-	// The version tag the artifact belongs to.
-	VersionTagId         *resource.Identifier `protobuf:"bytes,6,opt,name=version_tag_id,json=versionTagId,proto3" json:"version_tag_id,omitempty"`
-	XXX_NoUnkeyedLiteral struct{}             `json:"-"`
-	XXX_unrecognized     []byte               `json:"-"`
-	XXX_sizecache        int32                `json:"-"`
-}
-
-func (m *Artifact) Reset()         { *m = Artifact{} }
-func (m *Artifact) String() string { return proto.CompactTextString(m) }
-func (*Artifact) ProtoMessage()    {}
-func (*Artifact) Descriptor() ([]byte, []int) {
-	return fileDescriptor_b7c4efe410d87592, []int{89}
-}
-
-func (m *Artifact) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_Artifact.Unmarshal(m, b)
-}
-func (m *Artifact) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_Artifact.Marshal(b, m, deterministic)
-}
-func (m *Artifact) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_Artifact.Merge(m, src)
-}
-func (m *Artifact) XXX_Size() int {
-	return xxx_messageInfo_Artifact.Size(m)
-}
-func (m *Artifact) XXX_DiscardUnknown() {
-	xxx_messageInfo_Artifact.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_Artifact proto.InternalMessageInfo
-
-func (m *Artifact) GetId() *resource.Identifier {
-	if m != nil {
-		return m.Id
-	}
-	return nil
-}
-
-func (m *Artifact) GetName() string {
-	if m != nil {
-		return m.Name
-	}
-	return ""
-}
-
-func (m *Artifact) GetDescription() string {
-	if m != nil {
-		return m.Description
-	}
-	return ""
-}
-
-func (m *Artifact) GetRepo() string {
-	if m != nil {
-		return m.Repo
-	}
-	return ""
-}
-
-func (m *Artifact) GetCommit() string {
-	if m != nil {
-		return m.Commit
-	}
-	return ""
-}
-
-func (m *Artifact) GetVersionTagId() *resource.Identifier {
-	if m != nil {
-		return m.VersionTagId
-	}
-	return nil
-}
-
-type CreateArtifactRequest struct {
-	Payload              *Artifact `protobuf:"bytes,1,opt,name=payload,proto3" json:"payload,omitempty"`
-	XXX_NoUnkeyedLiteral struct{}  `json:"-"`
-	XXX_unrecognized     []byte    `json:"-"`
-	XXX_sizecache        int32     `json:"-"`
-}
-
-func (m *CreateArtifactRequest) Reset()         { *m = CreateArtifactRequest{} }
-func (m *CreateArtifactRequest) String() string { return proto.CompactTextString(m) }
-func (*CreateArtifactRequest) ProtoMessage()    {}
-func (*CreateArtifactRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_b7c4efe410d87592, []int{90}
-}
-
-func (m *CreateArtifactRequest) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_CreateArtifactRequest.Unmarshal(m, b)
-}
-func (m *CreateArtifactRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_CreateArtifactRequest.Marshal(b, m, deterministic)
-}
-func (m *CreateArtifactRequest) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_CreateArtifactRequest.Merge(m, src)
-}
-func (m *CreateArtifactRequest) XXX_Size() int {
-	return xxx_messageInfo_CreateArtifactRequest.Size(m)
-}
-func (m *CreateArtifactRequest) XXX_DiscardUnknown() {
-	xxx_messageInfo_CreateArtifactRequest.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_CreateArtifactRequest proto.InternalMessageInfo
-
-func (m *CreateArtifactRequest) GetPayload() *Artifact {
-	if m != nil {
-		return m.Payload
-	}
-	return nil
-}
-
-type CreateArtifactResponse struct {
-	Result               *Artifact `protobuf:"bytes,1,opt,name=result,proto3" json:"result,omitempty"`
-	XXX_NoUnkeyedLiteral struct{}  `json:"-"`
-	XXX_unrecognized     []byte    `json:"-"`
-	XXX_sizecache        int32     `json:"-"`
-}
-
-func (m *CreateArtifactResponse) Reset()         { *m = CreateArtifactResponse{} }
-func (m *CreateArtifactResponse) String() string { return proto.CompactTextString(m) }
-func (*CreateArtifactResponse) ProtoMessage()    {}
-func (*CreateArtifactResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_b7c4efe410d87592, []int{91}
-}
-
-func (m *CreateArtifactResponse) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_CreateArtifactResponse.Unmarshal(m, b)
-}
-func (m *CreateArtifactResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_CreateArtifactResponse.Marshal(b, m, deterministic)
-}
-func (m *CreateArtifactResponse) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_CreateArtifactResponse.Merge(m, src)
-}
-func (m *CreateArtifactResponse) XXX_Size() int {
-	return xxx_messageInfo_CreateArtifactResponse.Size(m)
-}
-func (m *CreateArtifactResponse) XXX_DiscardUnknown() {
-	xxx_messageInfo_CreateArtifactResponse.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_CreateArtifactResponse proto.InternalMessageInfo
-
-func (m *CreateArtifactResponse) GetResult() *Artifact {
-	if m != nil {
-		return m.Result
-	}
-	return nil
-}
-
-type ReadArtifactRequest struct {
-	Id                   *resource.Identifier  `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
-	Fields               *query.FieldSelection `protobuf:"bytes,2,opt,name=fields,proto3" json:"fields,omitempty"`
-	XXX_NoUnkeyedLiteral struct{}              `json:"-"`
-	XXX_unrecognized     []byte                `json:"-"`
-	XXX_sizecache        int32                 `json:"-"`
-}
-
-func (m *ReadArtifactRequest) Reset()         { *m = ReadArtifactRequest{} }
-func (m *ReadArtifactRequest) String() string { return proto.CompactTextString(m) }
-func (*ReadArtifactRequest) ProtoMessage()    {}
-func (*ReadArtifactRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_b7c4efe410d87592, []int{92}
-}
-
-func (m *ReadArtifactRequest) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_ReadArtifactRequest.Unmarshal(m, b)
-}
-func (m *ReadArtifactRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_ReadArtifactRequest.Marshal(b, m, deterministic)
-}
-func (m *ReadArtifactRequest) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_ReadArtifactRequest.Merge(m, src)
-}
-func (m *ReadArtifactRequest) XXX_Size() int {
-	return xxx_messageInfo_ReadArtifactRequest.Size(m)
-}
-func (m *ReadArtifactRequest) XXX_DiscardUnknown() {
-	xxx_messageInfo_ReadArtifactRequest.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_ReadArtifactRequest proto.InternalMessageInfo
-
-func (m *ReadArtifactRequest) GetId() *resource.Identifier {
-	if m != nil {
-		return m.Id
-	}
-	return nil
-}
-
-func (m *ReadArtifactRequest) GetFields() *query.FieldSelection {
-	if m != nil {
-		return m.Fields
-	}
-	return nil
-}
-
-type ReadArtifactResponse struct {
-	Result               *Artifact `protobuf:"bytes,1,opt,name=result,proto3" json:"result,omitempty"`
-	XXX_NoUnkeyedLiteral struct{}  `json:"-"`
-	XXX_unrecognized     []byte    `json:"-"`
-	XXX_sizecache        int32     `json:"-"`
-}
-
-func (m *ReadArtifactResponse) Reset()         { *m = ReadArtifactResponse{} }
-func (m *ReadArtifactResponse) String() string { return proto.CompactTextString(m) }
-func (*ReadArtifactResponse) ProtoMessage()    {}
-func (*ReadArtifactResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_b7c4efe410d87592, []int{93}
-}
-
-func (m *ReadArtifactResponse) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_ReadArtifactResponse.Unmarshal(m, b)
-}
-func (m *ReadArtifactResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_ReadArtifactResponse.Marshal(b, m, deterministic)
-}
-func (m *ReadArtifactResponse) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_ReadArtifactResponse.Merge(m, src)
-}
-func (m *ReadArtifactResponse) XXX_Size() int {
-	return xxx_messageInfo_ReadArtifactResponse.Size(m)
-}
-func (m *ReadArtifactResponse) XXX_DiscardUnknown() {
-	xxx_messageInfo_ReadArtifactResponse.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_ReadArtifactResponse proto.InternalMessageInfo
-
-func (m *ReadArtifactResponse) GetResult() *Artifact {
-	if m != nil {
-		return m.Result
-	}
-	return nil
-}
-
-type UpdateArtifactRequest struct {
-	Payload              *Artifact             `protobuf:"bytes,1,opt,name=payload,proto3" json:"payload,omitempty"`
-	Fields               *field_mask.FieldMask `protobuf:"bytes,2,opt,name=fields,proto3" json:"fields,omitempty"`
-	XXX_NoUnkeyedLiteral struct{}              `json:"-"`
-	XXX_unrecognized     []byte                `json:"-"`
-	XXX_sizecache        int32                 `json:"-"`
-}
-
-func (m *UpdateArtifactRequest) Reset()         { *m = UpdateArtifactRequest{} }
-func (m *UpdateArtifactRequest) String() string { return proto.CompactTextString(m) }
-func (*UpdateArtifactRequest) ProtoMessage()    {}
-func (*UpdateArtifactRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_b7c4efe410d87592, []int{94}
-}
-
-func (m *UpdateArtifactRequest) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_UpdateArtifactRequest.Unmarshal(m, b)
-}
-func (m *UpdateArtifactRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_UpdateArtifactRequest.Marshal(b, m, deterministic)
-}
-func (m *UpdateArtifactRequest) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_UpdateArtifactRequest.Merge(m, src)
-}
-func (m *UpdateArtifactRequest) XXX_Size() int {
-	return xxx_messageInfo_UpdateArtifactRequest.Size(m)
-}
-func (m *UpdateArtifactRequest) XXX_DiscardUnknown() {
-	xxx_messageInfo_UpdateArtifactRequest.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_UpdateArtifactRequest proto.InternalMessageInfo
-
-func (m *UpdateArtifactRequest) GetPayload() *Artifact {
-	if m != nil {
-		return m.Payload
-	}
-	return nil
-}
-
-func (m *UpdateArtifactRequest) GetFields() *field_mask.FieldMask {
-	if m != nil {
-		return m.Fields
-	}
-	return nil
-}
-
-type UpdateArtifactResponse struct {
-	Result               *Artifact `protobuf:"bytes,1,opt,name=result,proto3" json:"result,omitempty"`
-	XXX_NoUnkeyedLiteral struct{}  `json:"-"`
-	XXX_unrecognized     []byte    `json:"-"`
-	XXX_sizecache        int32     `json:"-"`
-}
-
-func (m *UpdateArtifactResponse) Reset()         { *m = UpdateArtifactResponse{} }
-func (m *UpdateArtifactResponse) String() string { return proto.CompactTextString(m) }
-func (*UpdateArtifactResponse) ProtoMessage()    {}
-func (*UpdateArtifactResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_b7c4efe410d87592, []int{95}
-}
-
-func (m *UpdateArtifactResponse) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_UpdateArtifactResponse.Unmarshal(m, b)
-}
-func (m *UpdateArtifactResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_UpdateArtifactResponse.Marshal(b, m, deterministic)
-}
-func (m *UpdateArtifactResponse) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_UpdateArtifactResponse.Merge(m, src)
-}
-func (m *UpdateArtifactResponse) XXX_Size() int {
-	return xxx_messageInfo_UpdateArtifactResponse.Size(m)
-}
-func (m *UpdateArtifactResponse) XXX_DiscardUnknown() {
-	xxx_messageInfo_UpdateArtifactResponse.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_UpdateArtifactResponse proto.InternalMessageInfo
-
-func (m *UpdateArtifactResponse) GetResult() *Artifact {
-	if m != nil {
-		return m.Result
-	}
-	return nil
-}
-
-type DeleteArtifactRequest struct {
-	Id                   *resource.Identifier `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
-	XXX_NoUnkeyedLiteral struct{}             `json:"-"`
-	XXX_unrecognized     []byte               `json:"-"`
-	XXX_sizecache        int32                `json:"-"`
-}
-
-func (m *DeleteArtifactRequest) Reset()         { *m = DeleteArtifactRequest{} }
-func (m *DeleteArtifactRequest) String() string { return proto.CompactTextString(m) }
-func (*DeleteArtifactRequest) ProtoMessage()    {}
-func (*DeleteArtifactRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_b7c4efe410d87592, []int{96}
-}
-
-func (m *DeleteArtifactRequest) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_DeleteArtifactRequest.Unmarshal(m, b)
-}
-func (m *DeleteArtifactRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_DeleteArtifactRequest.Marshal(b, m, deterministic)
-}
-func (m *DeleteArtifactRequest) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_DeleteArtifactRequest.Merge(m, src)
-}
-func (m *DeleteArtifactRequest) XXX_Size() int {
-	return xxx_messageInfo_DeleteArtifactRequest.Size(m)
-}
-func (m *DeleteArtifactRequest) XXX_DiscardUnknown() {
-	xxx_messageInfo_DeleteArtifactRequest.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_DeleteArtifactRequest proto.InternalMessageInfo
-
-func (m *DeleteArtifactRequest) GetId() *resource.Identifier {
-	if m != nil {
-		return m.Id
-	}
-	return nil
-}
-
-type DeleteArtifactResponse struct {
-	XXX_NoUnkeyedLiteral struct{} `json:"-"`
-	XXX_unrecognized     []byte   `json:"-"`
-	XXX_sizecache        int32    `json:"-"`
-}
-
-func (m *DeleteArtifactResponse) Reset()         { *m = DeleteArtifactResponse{} }
-func (m *DeleteArtifactResponse) String() string { return proto.CompactTextString(m) }
-func (*DeleteArtifactResponse) ProtoMessage()    {}
-func (*DeleteArtifactResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_b7c4efe410d87592, []int{97}
-}
-
-func (m *DeleteArtifactResponse) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_DeleteArtifactResponse.Unmarshal(m, b)
-}
-func (m *DeleteArtifactResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_DeleteArtifactResponse.Marshal(b, m, deterministic)
-}
-func (m *DeleteArtifactResponse) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_DeleteArtifactResponse.Merge(m, src)
-}
-func (m *DeleteArtifactResponse) XXX_Size() int {
-	return xxx_messageInfo_DeleteArtifactResponse.Size(m)
-}
-func (m *DeleteArtifactResponse) XXX_DiscardUnknown() {
-	xxx_messageInfo_DeleteArtifactResponse.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_DeleteArtifactResponse proto.InternalMessageInfo
-
-type ListArtifactRequest struct {
-	Filter               *query.Filtering      `protobuf:"bytes,1,opt,name=filter,proto3" json:"filter,omitempty"`
-	OrderBy              *query.Sorting        `protobuf:"bytes,2,opt,name=order_by,json=orderBy,proto3" json:"order_by,omitempty"`
-	Fields               *query.FieldSelection `protobuf:"bytes,3,opt,name=fields,proto3" json:"fields,omitempty"`
-	Paging               *query.Pagination     `protobuf:"bytes,4,opt,name=paging,proto3" json:"paging,omitempty"`
-	XXX_NoUnkeyedLiteral struct{}              `json:"-"`
-	XXX_unrecognized     []byte                `json:"-"`
-	XXX_sizecache        int32                 `json:"-"`
-}
-
-func (m *ListArtifactRequest) Reset()         { *m = ListArtifactRequest{} }
-func (m *ListArtifactRequest) String() string { return proto.CompactTextString(m) }
-func (*ListArtifactRequest) ProtoMessage()    {}
-func (*ListArtifactRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_b7c4efe410d87592, []int{98}
-}
-
-func (m *ListArtifactRequest) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_ListArtifactRequest.Unmarshal(m, b)
-}
-func (m *ListArtifactRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_ListArtifactRequest.Marshal(b, m, deterministic)
-}
-func (m *ListArtifactRequest) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_ListArtifactRequest.Merge(m, src)
-}
-func (m *ListArtifactRequest) XXX_Size() int {
-	return xxx_messageInfo_ListArtifactRequest.Size(m)
-}
-func (m *ListArtifactRequest) XXX_DiscardUnknown() {
-	xxx_messageInfo_ListArtifactRequest.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_ListArtifactRequest proto.InternalMessageInfo
-
-func (m *ListArtifactRequest) GetFilter() *query.Filtering {
-	if m != nil {
-		return m.Filter
-	}
-	return nil
-}
-
-func (m *ListArtifactRequest) GetOrderBy() *query.Sorting {
-	if m != nil {
-		return m.OrderBy
-	}
-	return nil
-}
-
-func (m *ListArtifactRequest) GetFields() *query.FieldSelection {
-	if m != nil {
-		return m.Fields
-	}
-	return nil
-}
-
-func (m *ListArtifactRequest) GetPaging() *query.Pagination {
-	if m != nil {
-		return m.Paging
-	}
-	return nil
-}
-
-type ListArtifactsResponse struct {
-	Results              []*Artifact     `protobuf:"bytes,1,rep,name=results,proto3" json:"results,omitempty"`
-	Page                 *query.PageInfo `protobuf:"bytes,2,opt,name=page,proto3" json:"page,omitempty"`
-	XXX_NoUnkeyedLiteral struct{}        `json:"-"`
-	XXX_unrecognized     []byte          `json:"-"`
-	XXX_sizecache        int32           `json:"-"`
-}
-
-func (m *ListArtifactsResponse) Reset()         { *m = ListArtifactsResponse{} }
-func (m *ListArtifactsResponse) String() string { return proto.CompactTextString(m) }
-func (*ListArtifactsResponse) ProtoMessage()    {}
-func (*ListArtifactsResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_b7c4efe410d87592, []int{99}
-}
-
-func (m *ListArtifactsResponse) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_ListArtifactsResponse.Unmarshal(m, b)
-}
-func (m *ListArtifactsResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_ListArtifactsResponse.Marshal(b, m, deterministic)
-}
-func (m *ListArtifactsResponse) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_ListArtifactsResponse.Merge(m, src)
-}
-func (m *ListArtifactsResponse) XXX_Size() int {
-	return xxx_messageInfo_ListArtifactsResponse.Size(m)
-}
-func (m *ListArtifactsResponse) XXX_DiscardUnknown() {
-	xxx_messageInfo_ListArtifactsResponse.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_ListArtifactsResponse proto.InternalMessageInfo
-
-func (m *ListArtifactsResponse) GetResults() []*Artifact {
-	if m != nil {
-		return m.Results
-	}
-	return nil
-}
-
-func (m *ListArtifactsResponse) GetPage() *query.PageInfo {
-	if m != nil {
-		return m.Page
-	}
-	return nil
-}
-
 // ------------------------------------------------------
 // AwsService represents a set of AWS Services used by the ApplicationInstance
 // ------------------------------------------------------
@@ -5021,10 +4841,12 @@ type AwsService struct {
 	// The description of the AwsService
 	Description string `protobuf:"bytes,3,opt,name=description,proto3" json:"description,omitempty"`
 	// Reference to the AwsRds Instances
-	AwsRdsInstances      []*AwsRdsInstance `protobuf:"bytes,4,rep,name=aws_rds_instances,json=awsRdsInstances,proto3" json:"aws_rds_instances,omitempty"`
-	XXX_NoUnkeyedLiteral struct{}          `json:"-"`
-	XXX_unrecognized     []byte            `json:"-"`
-	XXX_sizecache        int32             `json:"-"`
+	AwsRdsInstances []*AwsRdsInstance `protobuf:"bytes,4,rep,name=aws_rds_instances,json=awsRdsInstances,proto3" json:"aws_rds_instances,omitempty"`
+	// Region service deploy
+	RegionId             *resource.Identifier `protobuf:"bytes,5,opt,name=region_id,json=regionId,proto3" json:"region_id,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}             `json:"-"`
+	XXX_unrecognized     []byte               `json:"-"`
+	XXX_sizecache        int32                `json:"-"`
 }
 
 func (m *AwsService) Reset()         { *m = AwsService{} }
@@ -5076,6 +4898,13 @@ func (m *AwsService) GetDescription() string {
 func (m *AwsService) GetAwsRdsInstances() []*AwsRdsInstance {
 	if m != nil {
 		return m.AwsRdsInstances
+	}
+	return nil
+}
+
+func (m *AwsService) GetRegionId() *resource.Identifier {
+	if m != nil {
+		return m.RegionId
 	}
 	return nil
 }
@@ -5510,6 +5339,1569 @@ func (m *ListAwsServicesResponse) GetPage() *query.PageInfo {
 	return nil
 }
 
+// --------------------------------------------------------
+// AwsRdsInstance represents a particular AWS RDS Instance
+// --------------------------------------------------------
+type AwsRdsInstance struct {
+	// The AwsRdsInstance identifier.
+	Id *resource.Identifier `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	// The name of the AwsRdsInstance
+	Name string `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
+	// The description of the AwsRdsInstance
+	Description string `protobuf:"bytes,3,opt,name=description,proto3" json:"description,omitempty"`
+	// Host URL of the AwsRdsInstance (e.g. cmdb.cf1k7otqh6nf.us-east-1.rds.amazonaws.com)
+	DatabaseHost string `protobuf:"bytes,4,opt,name=database_host,json=databaseHost,proto3" json:"database_host,omitempty"`
+	// Name of the database created for use by the ApplicationInstance
+	DatabaseName string `protobuf:"bytes,5,opt,name=database_name,json=databaseName,proto3" json:"database_name,omitempty"`
+	// User credentials for access to the database
+	DatabaseUser string `protobuf:"bytes,6,opt,name=database_user,json=databaseUser,proto3" json:"database_user,omitempty"`
+	// Secret database password which must be with the user credentials to access database
+	DatabasePassword *Secret `protobuf:"bytes,7,opt,name=database_password,json=databasePassword,proto3" json:"database_password,omitempty"`
+	// Reference to the AWS Service this RDS Instance belongs to
+	AwsServiceId         *resource.Identifier `protobuf:"bytes,8,opt,name=aws_service_id,json=awsServiceId,proto3" json:"aws_service_id,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}             `json:"-"`
+	XXX_unrecognized     []byte               `json:"-"`
+	XXX_sizecache        int32                `json:"-"`
+}
+
+func (m *AwsRdsInstance) Reset()         { *m = AwsRdsInstance{} }
+func (m *AwsRdsInstance) String() string { return proto.CompactTextString(m) }
+func (*AwsRdsInstance) ProtoMessage()    {}
+func (*AwsRdsInstance) Descriptor() ([]byte, []int) {
+	return fileDescriptor_b7c4efe410d87592, []int{111}
+}
+
+func (m *AwsRdsInstance) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_AwsRdsInstance.Unmarshal(m, b)
+}
+func (m *AwsRdsInstance) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_AwsRdsInstance.Marshal(b, m, deterministic)
+}
+func (m *AwsRdsInstance) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_AwsRdsInstance.Merge(m, src)
+}
+func (m *AwsRdsInstance) XXX_Size() int {
+	return xxx_messageInfo_AwsRdsInstance.Size(m)
+}
+func (m *AwsRdsInstance) XXX_DiscardUnknown() {
+	xxx_messageInfo_AwsRdsInstance.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_AwsRdsInstance proto.InternalMessageInfo
+
+func (m *AwsRdsInstance) GetId() *resource.Identifier {
+	if m != nil {
+		return m.Id
+	}
+	return nil
+}
+
+func (m *AwsRdsInstance) GetName() string {
+	if m != nil {
+		return m.Name
+	}
+	return ""
+}
+
+func (m *AwsRdsInstance) GetDescription() string {
+	if m != nil {
+		return m.Description
+	}
+	return ""
+}
+
+func (m *AwsRdsInstance) GetDatabaseHost() string {
+	if m != nil {
+		return m.DatabaseHost
+	}
+	return ""
+}
+
+func (m *AwsRdsInstance) GetDatabaseName() string {
+	if m != nil {
+		return m.DatabaseName
+	}
+	return ""
+}
+
+func (m *AwsRdsInstance) GetDatabaseUser() string {
+	if m != nil {
+		return m.DatabaseUser
+	}
+	return ""
+}
+
+func (m *AwsRdsInstance) GetDatabasePassword() *Secret {
+	if m != nil {
+		return m.DatabasePassword
+	}
+	return nil
+}
+
+func (m *AwsRdsInstance) GetAwsServiceId() *resource.Identifier {
+	if m != nil {
+		return m.AwsServiceId
+	}
+	return nil
+}
+
+type CreateAwsRdsInstanceRequest struct {
+	Payload              *AwsRdsInstance `protobuf:"bytes,1,opt,name=payload,proto3" json:"payload,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}        `json:"-"`
+	XXX_unrecognized     []byte          `json:"-"`
+	XXX_sizecache        int32           `json:"-"`
+}
+
+func (m *CreateAwsRdsInstanceRequest) Reset()         { *m = CreateAwsRdsInstanceRequest{} }
+func (m *CreateAwsRdsInstanceRequest) String() string { return proto.CompactTextString(m) }
+func (*CreateAwsRdsInstanceRequest) ProtoMessage()    {}
+func (*CreateAwsRdsInstanceRequest) Descriptor() ([]byte, []int) {
+	return fileDescriptor_b7c4efe410d87592, []int{112}
+}
+
+func (m *CreateAwsRdsInstanceRequest) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_CreateAwsRdsInstanceRequest.Unmarshal(m, b)
+}
+func (m *CreateAwsRdsInstanceRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_CreateAwsRdsInstanceRequest.Marshal(b, m, deterministic)
+}
+func (m *CreateAwsRdsInstanceRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_CreateAwsRdsInstanceRequest.Merge(m, src)
+}
+func (m *CreateAwsRdsInstanceRequest) XXX_Size() int {
+	return xxx_messageInfo_CreateAwsRdsInstanceRequest.Size(m)
+}
+func (m *CreateAwsRdsInstanceRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_CreateAwsRdsInstanceRequest.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_CreateAwsRdsInstanceRequest proto.InternalMessageInfo
+
+func (m *CreateAwsRdsInstanceRequest) GetPayload() *AwsRdsInstance {
+	if m != nil {
+		return m.Payload
+	}
+	return nil
+}
+
+type CreateAwsRdsInstanceResponse struct {
+	Result               *AwsRdsInstance `protobuf:"bytes,1,opt,name=result,proto3" json:"result,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}        `json:"-"`
+	XXX_unrecognized     []byte          `json:"-"`
+	XXX_sizecache        int32           `json:"-"`
+}
+
+func (m *CreateAwsRdsInstanceResponse) Reset()         { *m = CreateAwsRdsInstanceResponse{} }
+func (m *CreateAwsRdsInstanceResponse) String() string { return proto.CompactTextString(m) }
+func (*CreateAwsRdsInstanceResponse) ProtoMessage()    {}
+func (*CreateAwsRdsInstanceResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor_b7c4efe410d87592, []int{113}
+}
+
+func (m *CreateAwsRdsInstanceResponse) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_CreateAwsRdsInstanceResponse.Unmarshal(m, b)
+}
+func (m *CreateAwsRdsInstanceResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_CreateAwsRdsInstanceResponse.Marshal(b, m, deterministic)
+}
+func (m *CreateAwsRdsInstanceResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_CreateAwsRdsInstanceResponse.Merge(m, src)
+}
+func (m *CreateAwsRdsInstanceResponse) XXX_Size() int {
+	return xxx_messageInfo_CreateAwsRdsInstanceResponse.Size(m)
+}
+func (m *CreateAwsRdsInstanceResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_CreateAwsRdsInstanceResponse.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_CreateAwsRdsInstanceResponse proto.InternalMessageInfo
+
+func (m *CreateAwsRdsInstanceResponse) GetResult() *AwsRdsInstance {
+	if m != nil {
+		return m.Result
+	}
+	return nil
+}
+
+type ReadAwsRdsInstanceRequest struct {
+	Id                   *resource.Identifier  `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	Fields               *query.FieldSelection `protobuf:"bytes,2,opt,name=fields,proto3" json:"fields,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}              `json:"-"`
+	XXX_unrecognized     []byte                `json:"-"`
+	XXX_sizecache        int32                 `json:"-"`
+}
+
+func (m *ReadAwsRdsInstanceRequest) Reset()         { *m = ReadAwsRdsInstanceRequest{} }
+func (m *ReadAwsRdsInstanceRequest) String() string { return proto.CompactTextString(m) }
+func (*ReadAwsRdsInstanceRequest) ProtoMessage()    {}
+func (*ReadAwsRdsInstanceRequest) Descriptor() ([]byte, []int) {
+	return fileDescriptor_b7c4efe410d87592, []int{114}
+}
+
+func (m *ReadAwsRdsInstanceRequest) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_ReadAwsRdsInstanceRequest.Unmarshal(m, b)
+}
+func (m *ReadAwsRdsInstanceRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_ReadAwsRdsInstanceRequest.Marshal(b, m, deterministic)
+}
+func (m *ReadAwsRdsInstanceRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_ReadAwsRdsInstanceRequest.Merge(m, src)
+}
+func (m *ReadAwsRdsInstanceRequest) XXX_Size() int {
+	return xxx_messageInfo_ReadAwsRdsInstanceRequest.Size(m)
+}
+func (m *ReadAwsRdsInstanceRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_ReadAwsRdsInstanceRequest.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_ReadAwsRdsInstanceRequest proto.InternalMessageInfo
+
+func (m *ReadAwsRdsInstanceRequest) GetId() *resource.Identifier {
+	if m != nil {
+		return m.Id
+	}
+	return nil
+}
+
+func (m *ReadAwsRdsInstanceRequest) GetFields() *query.FieldSelection {
+	if m != nil {
+		return m.Fields
+	}
+	return nil
+}
+
+type ReadAwsRdsInstanceResponse struct {
+	Result               *AwsRdsInstance `protobuf:"bytes,1,opt,name=result,proto3" json:"result,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}        `json:"-"`
+	XXX_unrecognized     []byte          `json:"-"`
+	XXX_sizecache        int32           `json:"-"`
+}
+
+func (m *ReadAwsRdsInstanceResponse) Reset()         { *m = ReadAwsRdsInstanceResponse{} }
+func (m *ReadAwsRdsInstanceResponse) String() string { return proto.CompactTextString(m) }
+func (*ReadAwsRdsInstanceResponse) ProtoMessage()    {}
+func (*ReadAwsRdsInstanceResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor_b7c4efe410d87592, []int{115}
+}
+
+func (m *ReadAwsRdsInstanceResponse) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_ReadAwsRdsInstanceResponse.Unmarshal(m, b)
+}
+func (m *ReadAwsRdsInstanceResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_ReadAwsRdsInstanceResponse.Marshal(b, m, deterministic)
+}
+func (m *ReadAwsRdsInstanceResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_ReadAwsRdsInstanceResponse.Merge(m, src)
+}
+func (m *ReadAwsRdsInstanceResponse) XXX_Size() int {
+	return xxx_messageInfo_ReadAwsRdsInstanceResponse.Size(m)
+}
+func (m *ReadAwsRdsInstanceResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_ReadAwsRdsInstanceResponse.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_ReadAwsRdsInstanceResponse proto.InternalMessageInfo
+
+func (m *ReadAwsRdsInstanceResponse) GetResult() *AwsRdsInstance {
+	if m != nil {
+		return m.Result
+	}
+	return nil
+}
+
+type UpdateAwsRdsInstanceRequest struct {
+	Payload              *AwsRdsInstance       `protobuf:"bytes,1,opt,name=payload,proto3" json:"payload,omitempty"`
+	Fields               *field_mask.FieldMask `protobuf:"bytes,2,opt,name=fields,proto3" json:"fields,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}              `json:"-"`
+	XXX_unrecognized     []byte                `json:"-"`
+	XXX_sizecache        int32                 `json:"-"`
+}
+
+func (m *UpdateAwsRdsInstanceRequest) Reset()         { *m = UpdateAwsRdsInstanceRequest{} }
+func (m *UpdateAwsRdsInstanceRequest) String() string { return proto.CompactTextString(m) }
+func (*UpdateAwsRdsInstanceRequest) ProtoMessage()    {}
+func (*UpdateAwsRdsInstanceRequest) Descriptor() ([]byte, []int) {
+	return fileDescriptor_b7c4efe410d87592, []int{116}
+}
+
+func (m *UpdateAwsRdsInstanceRequest) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_UpdateAwsRdsInstanceRequest.Unmarshal(m, b)
+}
+func (m *UpdateAwsRdsInstanceRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_UpdateAwsRdsInstanceRequest.Marshal(b, m, deterministic)
+}
+func (m *UpdateAwsRdsInstanceRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_UpdateAwsRdsInstanceRequest.Merge(m, src)
+}
+func (m *UpdateAwsRdsInstanceRequest) XXX_Size() int {
+	return xxx_messageInfo_UpdateAwsRdsInstanceRequest.Size(m)
+}
+func (m *UpdateAwsRdsInstanceRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_UpdateAwsRdsInstanceRequest.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_UpdateAwsRdsInstanceRequest proto.InternalMessageInfo
+
+func (m *UpdateAwsRdsInstanceRequest) GetPayload() *AwsRdsInstance {
+	if m != nil {
+		return m.Payload
+	}
+	return nil
+}
+
+func (m *UpdateAwsRdsInstanceRequest) GetFields() *field_mask.FieldMask {
+	if m != nil {
+		return m.Fields
+	}
+	return nil
+}
+
+type UpdateAwsRdsInstanceResponse struct {
+	Result               *AwsRdsInstance `protobuf:"bytes,1,opt,name=result,proto3" json:"result,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}        `json:"-"`
+	XXX_unrecognized     []byte          `json:"-"`
+	XXX_sizecache        int32           `json:"-"`
+}
+
+func (m *UpdateAwsRdsInstanceResponse) Reset()         { *m = UpdateAwsRdsInstanceResponse{} }
+func (m *UpdateAwsRdsInstanceResponse) String() string { return proto.CompactTextString(m) }
+func (*UpdateAwsRdsInstanceResponse) ProtoMessage()    {}
+func (*UpdateAwsRdsInstanceResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor_b7c4efe410d87592, []int{117}
+}
+
+func (m *UpdateAwsRdsInstanceResponse) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_UpdateAwsRdsInstanceResponse.Unmarshal(m, b)
+}
+func (m *UpdateAwsRdsInstanceResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_UpdateAwsRdsInstanceResponse.Marshal(b, m, deterministic)
+}
+func (m *UpdateAwsRdsInstanceResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_UpdateAwsRdsInstanceResponse.Merge(m, src)
+}
+func (m *UpdateAwsRdsInstanceResponse) XXX_Size() int {
+	return xxx_messageInfo_UpdateAwsRdsInstanceResponse.Size(m)
+}
+func (m *UpdateAwsRdsInstanceResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_UpdateAwsRdsInstanceResponse.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_UpdateAwsRdsInstanceResponse proto.InternalMessageInfo
+
+func (m *UpdateAwsRdsInstanceResponse) GetResult() *AwsRdsInstance {
+	if m != nil {
+		return m.Result
+	}
+	return nil
+}
+
+type DeleteAwsRdsInstanceRequest struct {
+	Id                   *resource.Identifier `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}             `json:"-"`
+	XXX_unrecognized     []byte               `json:"-"`
+	XXX_sizecache        int32                `json:"-"`
+}
+
+func (m *DeleteAwsRdsInstanceRequest) Reset()         { *m = DeleteAwsRdsInstanceRequest{} }
+func (m *DeleteAwsRdsInstanceRequest) String() string { return proto.CompactTextString(m) }
+func (*DeleteAwsRdsInstanceRequest) ProtoMessage()    {}
+func (*DeleteAwsRdsInstanceRequest) Descriptor() ([]byte, []int) {
+	return fileDescriptor_b7c4efe410d87592, []int{118}
+}
+
+func (m *DeleteAwsRdsInstanceRequest) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_DeleteAwsRdsInstanceRequest.Unmarshal(m, b)
+}
+func (m *DeleteAwsRdsInstanceRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_DeleteAwsRdsInstanceRequest.Marshal(b, m, deterministic)
+}
+func (m *DeleteAwsRdsInstanceRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_DeleteAwsRdsInstanceRequest.Merge(m, src)
+}
+func (m *DeleteAwsRdsInstanceRequest) XXX_Size() int {
+	return xxx_messageInfo_DeleteAwsRdsInstanceRequest.Size(m)
+}
+func (m *DeleteAwsRdsInstanceRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_DeleteAwsRdsInstanceRequest.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_DeleteAwsRdsInstanceRequest proto.InternalMessageInfo
+
+func (m *DeleteAwsRdsInstanceRequest) GetId() *resource.Identifier {
+	if m != nil {
+		return m.Id
+	}
+	return nil
+}
+
+type DeleteAwsRdsInstanceResponse struct {
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *DeleteAwsRdsInstanceResponse) Reset()         { *m = DeleteAwsRdsInstanceResponse{} }
+func (m *DeleteAwsRdsInstanceResponse) String() string { return proto.CompactTextString(m) }
+func (*DeleteAwsRdsInstanceResponse) ProtoMessage()    {}
+func (*DeleteAwsRdsInstanceResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor_b7c4efe410d87592, []int{119}
+}
+
+func (m *DeleteAwsRdsInstanceResponse) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_DeleteAwsRdsInstanceResponse.Unmarshal(m, b)
+}
+func (m *DeleteAwsRdsInstanceResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_DeleteAwsRdsInstanceResponse.Marshal(b, m, deterministic)
+}
+func (m *DeleteAwsRdsInstanceResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_DeleteAwsRdsInstanceResponse.Merge(m, src)
+}
+func (m *DeleteAwsRdsInstanceResponse) XXX_Size() int {
+	return xxx_messageInfo_DeleteAwsRdsInstanceResponse.Size(m)
+}
+func (m *DeleteAwsRdsInstanceResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_DeleteAwsRdsInstanceResponse.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_DeleteAwsRdsInstanceResponse proto.InternalMessageInfo
+
+type ListAwsRdsInstanceRequest struct {
+	Filter               *query.Filtering      `protobuf:"bytes,1,opt,name=filter,proto3" json:"filter,omitempty"`
+	OrderBy              *query.Sorting        `protobuf:"bytes,2,opt,name=order_by,json=orderBy,proto3" json:"order_by,omitempty"`
+	Fields               *query.FieldSelection `protobuf:"bytes,3,opt,name=fields,proto3" json:"fields,omitempty"`
+	Paging               *query.Pagination     `protobuf:"bytes,4,opt,name=paging,proto3" json:"paging,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}              `json:"-"`
+	XXX_unrecognized     []byte                `json:"-"`
+	XXX_sizecache        int32                 `json:"-"`
+}
+
+func (m *ListAwsRdsInstanceRequest) Reset()         { *m = ListAwsRdsInstanceRequest{} }
+func (m *ListAwsRdsInstanceRequest) String() string { return proto.CompactTextString(m) }
+func (*ListAwsRdsInstanceRequest) ProtoMessage()    {}
+func (*ListAwsRdsInstanceRequest) Descriptor() ([]byte, []int) {
+	return fileDescriptor_b7c4efe410d87592, []int{120}
+}
+
+func (m *ListAwsRdsInstanceRequest) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_ListAwsRdsInstanceRequest.Unmarshal(m, b)
+}
+func (m *ListAwsRdsInstanceRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_ListAwsRdsInstanceRequest.Marshal(b, m, deterministic)
+}
+func (m *ListAwsRdsInstanceRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_ListAwsRdsInstanceRequest.Merge(m, src)
+}
+func (m *ListAwsRdsInstanceRequest) XXX_Size() int {
+	return xxx_messageInfo_ListAwsRdsInstanceRequest.Size(m)
+}
+func (m *ListAwsRdsInstanceRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_ListAwsRdsInstanceRequest.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_ListAwsRdsInstanceRequest proto.InternalMessageInfo
+
+func (m *ListAwsRdsInstanceRequest) GetFilter() *query.Filtering {
+	if m != nil {
+		return m.Filter
+	}
+	return nil
+}
+
+func (m *ListAwsRdsInstanceRequest) GetOrderBy() *query.Sorting {
+	if m != nil {
+		return m.OrderBy
+	}
+	return nil
+}
+
+func (m *ListAwsRdsInstanceRequest) GetFields() *query.FieldSelection {
+	if m != nil {
+		return m.Fields
+	}
+	return nil
+}
+
+func (m *ListAwsRdsInstanceRequest) GetPaging() *query.Pagination {
+	if m != nil {
+		return m.Paging
+	}
+	return nil
+}
+
+type ListAwsRdsInstancesResponse struct {
+	Results              []*AwsRdsInstance `protobuf:"bytes,1,rep,name=results,proto3" json:"results,omitempty"`
+	Page                 *query.PageInfo   `protobuf:"bytes,2,opt,name=page,proto3" json:"page,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}          `json:"-"`
+	XXX_unrecognized     []byte            `json:"-"`
+	XXX_sizecache        int32             `json:"-"`
+}
+
+func (m *ListAwsRdsInstancesResponse) Reset()         { *m = ListAwsRdsInstancesResponse{} }
+func (m *ListAwsRdsInstancesResponse) String() string { return proto.CompactTextString(m) }
+func (*ListAwsRdsInstancesResponse) ProtoMessage()    {}
+func (*ListAwsRdsInstancesResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor_b7c4efe410d87592, []int{121}
+}
+
+func (m *ListAwsRdsInstancesResponse) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_ListAwsRdsInstancesResponse.Unmarshal(m, b)
+}
+func (m *ListAwsRdsInstancesResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_ListAwsRdsInstancesResponse.Marshal(b, m, deterministic)
+}
+func (m *ListAwsRdsInstancesResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_ListAwsRdsInstancesResponse.Merge(m, src)
+}
+func (m *ListAwsRdsInstancesResponse) XXX_Size() int {
+	return xxx_messageInfo_ListAwsRdsInstancesResponse.Size(m)
+}
+func (m *ListAwsRdsInstancesResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_ListAwsRdsInstancesResponse.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_ListAwsRdsInstancesResponse proto.InternalMessageInfo
+
+func (m *ListAwsRdsInstancesResponse) GetResults() []*AwsRdsInstance {
+	if m != nil {
+		return m.Results
+	}
+	return nil
+}
+
+func (m *ListAwsRdsInstancesResponse) GetPage() *query.PageInfo {
+	if m != nil {
+		return m.Page
+	}
+	return nil
+}
+
+// ------------------------------------------------------
+// Value represents a key/value for Charts
+// ------------------------------------------------------
+type Value struct {
+	// The Value identifier.
+	Id *resource.Identifier `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	// The name of the Value
+	Name string `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
+	// The description of the Value
+	Description string `protobuf:"bytes,3,opt,name=description,proto3" json:"description,omitempty"`
+	// keys used for Values YAML
+	Keys *types.JSONValue `protobuf:"bytes,4,opt,name=keys,proto3" json:"keys,omitempty"`
+	// Reference to AWS Service
+	AwsServiceId         *resource.Identifier `protobuf:"bytes,5,opt,name=aws_service_id,json=awsServiceId,proto3" json:"aws_service_id,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}             `json:"-"`
+	XXX_unrecognized     []byte               `json:"-"`
+	XXX_sizecache        int32                `json:"-"`
+}
+
+func (m *Value) Reset()         { *m = Value{} }
+func (m *Value) String() string { return proto.CompactTextString(m) }
+func (*Value) ProtoMessage()    {}
+func (*Value) Descriptor() ([]byte, []int) {
+	return fileDescriptor_b7c4efe410d87592, []int{122}
+}
+
+func (m *Value) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_Value.Unmarshal(m, b)
+}
+func (m *Value) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_Value.Marshal(b, m, deterministic)
+}
+func (m *Value) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_Value.Merge(m, src)
+}
+func (m *Value) XXX_Size() int {
+	return xxx_messageInfo_Value.Size(m)
+}
+func (m *Value) XXX_DiscardUnknown() {
+	xxx_messageInfo_Value.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_Value proto.InternalMessageInfo
+
+func (m *Value) GetId() *resource.Identifier {
+	if m != nil {
+		return m.Id
+	}
+	return nil
+}
+
+func (m *Value) GetName() string {
+	if m != nil {
+		return m.Name
+	}
+	return ""
+}
+
+func (m *Value) GetDescription() string {
+	if m != nil {
+		return m.Description
+	}
+	return ""
+}
+
+func (m *Value) GetKeys() *types.JSONValue {
+	if m != nil {
+		return m.Keys
+	}
+	return nil
+}
+
+func (m *Value) GetAwsServiceId() *resource.Identifier {
+	if m != nil {
+		return m.AwsServiceId
+	}
+	return nil
+}
+
+type CreateValueRequest struct {
+	Payload              *Value   `protobuf:"bytes,1,opt,name=payload,proto3" json:"payload,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *CreateValueRequest) Reset()         { *m = CreateValueRequest{} }
+func (m *CreateValueRequest) String() string { return proto.CompactTextString(m) }
+func (*CreateValueRequest) ProtoMessage()    {}
+func (*CreateValueRequest) Descriptor() ([]byte, []int) {
+	return fileDescriptor_b7c4efe410d87592, []int{123}
+}
+
+func (m *CreateValueRequest) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_CreateValueRequest.Unmarshal(m, b)
+}
+func (m *CreateValueRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_CreateValueRequest.Marshal(b, m, deterministic)
+}
+func (m *CreateValueRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_CreateValueRequest.Merge(m, src)
+}
+func (m *CreateValueRequest) XXX_Size() int {
+	return xxx_messageInfo_CreateValueRequest.Size(m)
+}
+func (m *CreateValueRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_CreateValueRequest.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_CreateValueRequest proto.InternalMessageInfo
+
+func (m *CreateValueRequest) GetPayload() *Value {
+	if m != nil {
+		return m.Payload
+	}
+	return nil
+}
+
+type CreateValueResponse struct {
+	Result               *Value   `protobuf:"bytes,1,opt,name=result,proto3" json:"result,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *CreateValueResponse) Reset()         { *m = CreateValueResponse{} }
+func (m *CreateValueResponse) String() string { return proto.CompactTextString(m) }
+func (*CreateValueResponse) ProtoMessage()    {}
+func (*CreateValueResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor_b7c4efe410d87592, []int{124}
+}
+
+func (m *CreateValueResponse) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_CreateValueResponse.Unmarshal(m, b)
+}
+func (m *CreateValueResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_CreateValueResponse.Marshal(b, m, deterministic)
+}
+func (m *CreateValueResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_CreateValueResponse.Merge(m, src)
+}
+func (m *CreateValueResponse) XXX_Size() int {
+	return xxx_messageInfo_CreateValueResponse.Size(m)
+}
+func (m *CreateValueResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_CreateValueResponse.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_CreateValueResponse proto.InternalMessageInfo
+
+func (m *CreateValueResponse) GetResult() *Value {
+	if m != nil {
+		return m.Result
+	}
+	return nil
+}
+
+type ReadValueRequest struct {
+	Id                   *resource.Identifier  `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	Fields               *query.FieldSelection `protobuf:"bytes,2,opt,name=fields,proto3" json:"fields,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}              `json:"-"`
+	XXX_unrecognized     []byte                `json:"-"`
+	XXX_sizecache        int32                 `json:"-"`
+}
+
+func (m *ReadValueRequest) Reset()         { *m = ReadValueRequest{} }
+func (m *ReadValueRequest) String() string { return proto.CompactTextString(m) }
+func (*ReadValueRequest) ProtoMessage()    {}
+func (*ReadValueRequest) Descriptor() ([]byte, []int) {
+	return fileDescriptor_b7c4efe410d87592, []int{125}
+}
+
+func (m *ReadValueRequest) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_ReadValueRequest.Unmarshal(m, b)
+}
+func (m *ReadValueRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_ReadValueRequest.Marshal(b, m, deterministic)
+}
+func (m *ReadValueRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_ReadValueRequest.Merge(m, src)
+}
+func (m *ReadValueRequest) XXX_Size() int {
+	return xxx_messageInfo_ReadValueRequest.Size(m)
+}
+func (m *ReadValueRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_ReadValueRequest.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_ReadValueRequest proto.InternalMessageInfo
+
+func (m *ReadValueRequest) GetId() *resource.Identifier {
+	if m != nil {
+		return m.Id
+	}
+	return nil
+}
+
+func (m *ReadValueRequest) GetFields() *query.FieldSelection {
+	if m != nil {
+		return m.Fields
+	}
+	return nil
+}
+
+type ReadValueResponse struct {
+	Result               *Value   `protobuf:"bytes,1,opt,name=result,proto3" json:"result,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *ReadValueResponse) Reset()         { *m = ReadValueResponse{} }
+func (m *ReadValueResponse) String() string { return proto.CompactTextString(m) }
+func (*ReadValueResponse) ProtoMessage()    {}
+func (*ReadValueResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor_b7c4efe410d87592, []int{126}
+}
+
+func (m *ReadValueResponse) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_ReadValueResponse.Unmarshal(m, b)
+}
+func (m *ReadValueResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_ReadValueResponse.Marshal(b, m, deterministic)
+}
+func (m *ReadValueResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_ReadValueResponse.Merge(m, src)
+}
+func (m *ReadValueResponse) XXX_Size() int {
+	return xxx_messageInfo_ReadValueResponse.Size(m)
+}
+func (m *ReadValueResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_ReadValueResponse.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_ReadValueResponse proto.InternalMessageInfo
+
+func (m *ReadValueResponse) GetResult() *Value {
+	if m != nil {
+		return m.Result
+	}
+	return nil
+}
+
+type UpdateValueRequest struct {
+	Payload              *Value                `protobuf:"bytes,1,opt,name=payload,proto3" json:"payload,omitempty"`
+	Fields               *field_mask.FieldMask `protobuf:"bytes,2,opt,name=fields,proto3" json:"fields,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}              `json:"-"`
+	XXX_unrecognized     []byte                `json:"-"`
+	XXX_sizecache        int32                 `json:"-"`
+}
+
+func (m *UpdateValueRequest) Reset()         { *m = UpdateValueRequest{} }
+func (m *UpdateValueRequest) String() string { return proto.CompactTextString(m) }
+func (*UpdateValueRequest) ProtoMessage()    {}
+func (*UpdateValueRequest) Descriptor() ([]byte, []int) {
+	return fileDescriptor_b7c4efe410d87592, []int{127}
+}
+
+func (m *UpdateValueRequest) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_UpdateValueRequest.Unmarshal(m, b)
+}
+func (m *UpdateValueRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_UpdateValueRequest.Marshal(b, m, deterministic)
+}
+func (m *UpdateValueRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_UpdateValueRequest.Merge(m, src)
+}
+func (m *UpdateValueRequest) XXX_Size() int {
+	return xxx_messageInfo_UpdateValueRequest.Size(m)
+}
+func (m *UpdateValueRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_UpdateValueRequest.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_UpdateValueRequest proto.InternalMessageInfo
+
+func (m *UpdateValueRequest) GetPayload() *Value {
+	if m != nil {
+		return m.Payload
+	}
+	return nil
+}
+
+func (m *UpdateValueRequest) GetFields() *field_mask.FieldMask {
+	if m != nil {
+		return m.Fields
+	}
+	return nil
+}
+
+type UpdateValueResponse struct {
+	Result               *Value   `protobuf:"bytes,1,opt,name=result,proto3" json:"result,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *UpdateValueResponse) Reset()         { *m = UpdateValueResponse{} }
+func (m *UpdateValueResponse) String() string { return proto.CompactTextString(m) }
+func (*UpdateValueResponse) ProtoMessage()    {}
+func (*UpdateValueResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor_b7c4efe410d87592, []int{128}
+}
+
+func (m *UpdateValueResponse) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_UpdateValueResponse.Unmarshal(m, b)
+}
+func (m *UpdateValueResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_UpdateValueResponse.Marshal(b, m, deterministic)
+}
+func (m *UpdateValueResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_UpdateValueResponse.Merge(m, src)
+}
+func (m *UpdateValueResponse) XXX_Size() int {
+	return xxx_messageInfo_UpdateValueResponse.Size(m)
+}
+func (m *UpdateValueResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_UpdateValueResponse.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_UpdateValueResponse proto.InternalMessageInfo
+
+func (m *UpdateValueResponse) GetResult() *Value {
+	if m != nil {
+		return m.Result
+	}
+	return nil
+}
+
+type DeleteValueRequest struct {
+	Id                   *resource.Identifier `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}             `json:"-"`
+	XXX_unrecognized     []byte               `json:"-"`
+	XXX_sizecache        int32                `json:"-"`
+}
+
+func (m *DeleteValueRequest) Reset()         { *m = DeleteValueRequest{} }
+func (m *DeleteValueRequest) String() string { return proto.CompactTextString(m) }
+func (*DeleteValueRequest) ProtoMessage()    {}
+func (*DeleteValueRequest) Descriptor() ([]byte, []int) {
+	return fileDescriptor_b7c4efe410d87592, []int{129}
+}
+
+func (m *DeleteValueRequest) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_DeleteValueRequest.Unmarshal(m, b)
+}
+func (m *DeleteValueRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_DeleteValueRequest.Marshal(b, m, deterministic)
+}
+func (m *DeleteValueRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_DeleteValueRequest.Merge(m, src)
+}
+func (m *DeleteValueRequest) XXX_Size() int {
+	return xxx_messageInfo_DeleteValueRequest.Size(m)
+}
+func (m *DeleteValueRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_DeleteValueRequest.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_DeleteValueRequest proto.InternalMessageInfo
+
+func (m *DeleteValueRequest) GetId() *resource.Identifier {
+	if m != nil {
+		return m.Id
+	}
+	return nil
+}
+
+type DeleteValueResponse struct {
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *DeleteValueResponse) Reset()         { *m = DeleteValueResponse{} }
+func (m *DeleteValueResponse) String() string { return proto.CompactTextString(m) }
+func (*DeleteValueResponse) ProtoMessage()    {}
+func (*DeleteValueResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor_b7c4efe410d87592, []int{130}
+}
+
+func (m *DeleteValueResponse) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_DeleteValueResponse.Unmarshal(m, b)
+}
+func (m *DeleteValueResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_DeleteValueResponse.Marshal(b, m, deterministic)
+}
+func (m *DeleteValueResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_DeleteValueResponse.Merge(m, src)
+}
+func (m *DeleteValueResponse) XXX_Size() int {
+	return xxx_messageInfo_DeleteValueResponse.Size(m)
+}
+func (m *DeleteValueResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_DeleteValueResponse.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_DeleteValueResponse proto.InternalMessageInfo
+
+type ListValueRequest struct {
+	Filter               *query.Filtering      `protobuf:"bytes,1,opt,name=filter,proto3" json:"filter,omitempty"`
+	OrderBy              *query.Sorting        `protobuf:"bytes,2,opt,name=order_by,json=orderBy,proto3" json:"order_by,omitempty"`
+	Fields               *query.FieldSelection `protobuf:"bytes,3,opt,name=fields,proto3" json:"fields,omitempty"`
+	Paging               *query.Pagination     `protobuf:"bytes,4,opt,name=paging,proto3" json:"paging,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}              `json:"-"`
+	XXX_unrecognized     []byte                `json:"-"`
+	XXX_sizecache        int32                 `json:"-"`
+}
+
+func (m *ListValueRequest) Reset()         { *m = ListValueRequest{} }
+func (m *ListValueRequest) String() string { return proto.CompactTextString(m) }
+func (*ListValueRequest) ProtoMessage()    {}
+func (*ListValueRequest) Descriptor() ([]byte, []int) {
+	return fileDescriptor_b7c4efe410d87592, []int{131}
+}
+
+func (m *ListValueRequest) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_ListValueRequest.Unmarshal(m, b)
+}
+func (m *ListValueRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_ListValueRequest.Marshal(b, m, deterministic)
+}
+func (m *ListValueRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_ListValueRequest.Merge(m, src)
+}
+func (m *ListValueRequest) XXX_Size() int {
+	return xxx_messageInfo_ListValueRequest.Size(m)
+}
+func (m *ListValueRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_ListValueRequest.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_ListValueRequest proto.InternalMessageInfo
+
+func (m *ListValueRequest) GetFilter() *query.Filtering {
+	if m != nil {
+		return m.Filter
+	}
+	return nil
+}
+
+func (m *ListValueRequest) GetOrderBy() *query.Sorting {
+	if m != nil {
+		return m.OrderBy
+	}
+	return nil
+}
+
+func (m *ListValueRequest) GetFields() *query.FieldSelection {
+	if m != nil {
+		return m.Fields
+	}
+	return nil
+}
+
+func (m *ListValueRequest) GetPaging() *query.Pagination {
+	if m != nil {
+		return m.Paging
+	}
+	return nil
+}
+
+type ListValuesResponse struct {
+	Results              []*Value        `protobuf:"bytes,1,rep,name=results,proto3" json:"results,omitempty"`
+	Page                 *query.PageInfo `protobuf:"bytes,2,opt,name=page,proto3" json:"page,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}        `json:"-"`
+	XXX_unrecognized     []byte          `json:"-"`
+	XXX_sizecache        int32           `json:"-"`
+}
+
+func (m *ListValuesResponse) Reset()         { *m = ListValuesResponse{} }
+func (m *ListValuesResponse) String() string { return proto.CompactTextString(m) }
+func (*ListValuesResponse) ProtoMessage()    {}
+func (*ListValuesResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor_b7c4efe410d87592, []int{132}
+}
+
+func (m *ListValuesResponse) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_ListValuesResponse.Unmarshal(m, b)
+}
+func (m *ListValuesResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_ListValuesResponse.Marshal(b, m, deterministic)
+}
+func (m *ListValuesResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_ListValuesResponse.Merge(m, src)
+}
+func (m *ListValuesResponse) XXX_Size() int {
+	return xxx_messageInfo_ListValuesResponse.Size(m)
+}
+func (m *ListValuesResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_ListValuesResponse.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_ListValuesResponse proto.InternalMessageInfo
+
+func (m *ListValuesResponse) GetResults() []*Value {
+	if m != nil {
+		return m.Results
+	}
+	return nil
+}
+
+func (m *ListValuesResponse) GetPage() *query.PageInfo {
+	if m != nil {
+		return m.Page
+	}
+	return nil
+}
+
+// ---------------------------------------------------------------------
+// Artifact represents an element built by CI (e.g. resolved manifest)
+// ---------------------------------------------------------------------
+type Artifact struct {
+	// The Artifact identifier.
+	Id *resource.Identifier `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	// The name of the Artifact
+	Name string `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
+	// The description of the Artifact
+	Description string `protobuf:"bytes,3,opt,name=description,proto3" json:"description,omitempty"`
+	// The repo which stores the Artifact
+	Repo string `protobuf:"bytes,4,opt,name=repo,proto3" json:"repo,omitempty"`
+	// The commit Id of the Artifact in repo
+	Commit string `protobuf:"bytes,5,opt,name=commit,proto3" json:"commit,omitempty"`
+	// The version tag the artifact belongs to.
+	ChartVersionId       *resource.Identifier `protobuf:"bytes,6,opt,name=chart_version_id,json=chartVersionId,proto3" json:"chart_version_id,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}             `json:"-"`
+	XXX_unrecognized     []byte               `json:"-"`
+	XXX_sizecache        int32                `json:"-"`
+}
+
+func (m *Artifact) Reset()         { *m = Artifact{} }
+func (m *Artifact) String() string { return proto.CompactTextString(m) }
+func (*Artifact) ProtoMessage()    {}
+func (*Artifact) Descriptor() ([]byte, []int) {
+	return fileDescriptor_b7c4efe410d87592, []int{133}
+}
+
+func (m *Artifact) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_Artifact.Unmarshal(m, b)
+}
+func (m *Artifact) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_Artifact.Marshal(b, m, deterministic)
+}
+func (m *Artifact) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_Artifact.Merge(m, src)
+}
+func (m *Artifact) XXX_Size() int {
+	return xxx_messageInfo_Artifact.Size(m)
+}
+func (m *Artifact) XXX_DiscardUnknown() {
+	xxx_messageInfo_Artifact.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_Artifact proto.InternalMessageInfo
+
+func (m *Artifact) GetId() *resource.Identifier {
+	if m != nil {
+		return m.Id
+	}
+	return nil
+}
+
+func (m *Artifact) GetName() string {
+	if m != nil {
+		return m.Name
+	}
+	return ""
+}
+
+func (m *Artifact) GetDescription() string {
+	if m != nil {
+		return m.Description
+	}
+	return ""
+}
+
+func (m *Artifact) GetRepo() string {
+	if m != nil {
+		return m.Repo
+	}
+	return ""
+}
+
+func (m *Artifact) GetCommit() string {
+	if m != nil {
+		return m.Commit
+	}
+	return ""
+}
+
+func (m *Artifact) GetChartVersionId() *resource.Identifier {
+	if m != nil {
+		return m.ChartVersionId
+	}
+	return nil
+}
+
+type CreateArtifactRequest struct {
+	Payload              *Artifact `protobuf:"bytes,1,opt,name=payload,proto3" json:"payload,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}  `json:"-"`
+	XXX_unrecognized     []byte    `json:"-"`
+	XXX_sizecache        int32     `json:"-"`
+}
+
+func (m *CreateArtifactRequest) Reset()         { *m = CreateArtifactRequest{} }
+func (m *CreateArtifactRequest) String() string { return proto.CompactTextString(m) }
+func (*CreateArtifactRequest) ProtoMessage()    {}
+func (*CreateArtifactRequest) Descriptor() ([]byte, []int) {
+	return fileDescriptor_b7c4efe410d87592, []int{134}
+}
+
+func (m *CreateArtifactRequest) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_CreateArtifactRequest.Unmarshal(m, b)
+}
+func (m *CreateArtifactRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_CreateArtifactRequest.Marshal(b, m, deterministic)
+}
+func (m *CreateArtifactRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_CreateArtifactRequest.Merge(m, src)
+}
+func (m *CreateArtifactRequest) XXX_Size() int {
+	return xxx_messageInfo_CreateArtifactRequest.Size(m)
+}
+func (m *CreateArtifactRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_CreateArtifactRequest.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_CreateArtifactRequest proto.InternalMessageInfo
+
+func (m *CreateArtifactRequest) GetPayload() *Artifact {
+	if m != nil {
+		return m.Payload
+	}
+	return nil
+}
+
+type CreateArtifactResponse struct {
+	Result               *Artifact `protobuf:"bytes,1,opt,name=result,proto3" json:"result,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}  `json:"-"`
+	XXX_unrecognized     []byte    `json:"-"`
+	XXX_sizecache        int32     `json:"-"`
+}
+
+func (m *CreateArtifactResponse) Reset()         { *m = CreateArtifactResponse{} }
+func (m *CreateArtifactResponse) String() string { return proto.CompactTextString(m) }
+func (*CreateArtifactResponse) ProtoMessage()    {}
+func (*CreateArtifactResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor_b7c4efe410d87592, []int{135}
+}
+
+func (m *CreateArtifactResponse) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_CreateArtifactResponse.Unmarshal(m, b)
+}
+func (m *CreateArtifactResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_CreateArtifactResponse.Marshal(b, m, deterministic)
+}
+func (m *CreateArtifactResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_CreateArtifactResponse.Merge(m, src)
+}
+func (m *CreateArtifactResponse) XXX_Size() int {
+	return xxx_messageInfo_CreateArtifactResponse.Size(m)
+}
+func (m *CreateArtifactResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_CreateArtifactResponse.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_CreateArtifactResponse proto.InternalMessageInfo
+
+func (m *CreateArtifactResponse) GetResult() *Artifact {
+	if m != nil {
+		return m.Result
+	}
+	return nil
+}
+
+type ReadArtifactRequest struct {
+	Id                   *resource.Identifier  `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	Fields               *query.FieldSelection `protobuf:"bytes,2,opt,name=fields,proto3" json:"fields,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}              `json:"-"`
+	XXX_unrecognized     []byte                `json:"-"`
+	XXX_sizecache        int32                 `json:"-"`
+}
+
+func (m *ReadArtifactRequest) Reset()         { *m = ReadArtifactRequest{} }
+func (m *ReadArtifactRequest) String() string { return proto.CompactTextString(m) }
+func (*ReadArtifactRequest) ProtoMessage()    {}
+func (*ReadArtifactRequest) Descriptor() ([]byte, []int) {
+	return fileDescriptor_b7c4efe410d87592, []int{136}
+}
+
+func (m *ReadArtifactRequest) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_ReadArtifactRequest.Unmarshal(m, b)
+}
+func (m *ReadArtifactRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_ReadArtifactRequest.Marshal(b, m, deterministic)
+}
+func (m *ReadArtifactRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_ReadArtifactRequest.Merge(m, src)
+}
+func (m *ReadArtifactRequest) XXX_Size() int {
+	return xxx_messageInfo_ReadArtifactRequest.Size(m)
+}
+func (m *ReadArtifactRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_ReadArtifactRequest.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_ReadArtifactRequest proto.InternalMessageInfo
+
+func (m *ReadArtifactRequest) GetId() *resource.Identifier {
+	if m != nil {
+		return m.Id
+	}
+	return nil
+}
+
+func (m *ReadArtifactRequest) GetFields() *query.FieldSelection {
+	if m != nil {
+		return m.Fields
+	}
+	return nil
+}
+
+type ReadArtifactResponse struct {
+	Result               *Artifact `protobuf:"bytes,1,opt,name=result,proto3" json:"result,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}  `json:"-"`
+	XXX_unrecognized     []byte    `json:"-"`
+	XXX_sizecache        int32     `json:"-"`
+}
+
+func (m *ReadArtifactResponse) Reset()         { *m = ReadArtifactResponse{} }
+func (m *ReadArtifactResponse) String() string { return proto.CompactTextString(m) }
+func (*ReadArtifactResponse) ProtoMessage()    {}
+func (*ReadArtifactResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor_b7c4efe410d87592, []int{137}
+}
+
+func (m *ReadArtifactResponse) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_ReadArtifactResponse.Unmarshal(m, b)
+}
+func (m *ReadArtifactResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_ReadArtifactResponse.Marshal(b, m, deterministic)
+}
+func (m *ReadArtifactResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_ReadArtifactResponse.Merge(m, src)
+}
+func (m *ReadArtifactResponse) XXX_Size() int {
+	return xxx_messageInfo_ReadArtifactResponse.Size(m)
+}
+func (m *ReadArtifactResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_ReadArtifactResponse.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_ReadArtifactResponse proto.InternalMessageInfo
+
+func (m *ReadArtifactResponse) GetResult() *Artifact {
+	if m != nil {
+		return m.Result
+	}
+	return nil
+}
+
+type UpdateArtifactRequest struct {
+	Payload              *Artifact             `protobuf:"bytes,1,opt,name=payload,proto3" json:"payload,omitempty"`
+	Fields               *field_mask.FieldMask `protobuf:"bytes,2,opt,name=fields,proto3" json:"fields,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}              `json:"-"`
+	XXX_unrecognized     []byte                `json:"-"`
+	XXX_sizecache        int32                 `json:"-"`
+}
+
+func (m *UpdateArtifactRequest) Reset()         { *m = UpdateArtifactRequest{} }
+func (m *UpdateArtifactRequest) String() string { return proto.CompactTextString(m) }
+func (*UpdateArtifactRequest) ProtoMessage()    {}
+func (*UpdateArtifactRequest) Descriptor() ([]byte, []int) {
+	return fileDescriptor_b7c4efe410d87592, []int{138}
+}
+
+func (m *UpdateArtifactRequest) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_UpdateArtifactRequest.Unmarshal(m, b)
+}
+func (m *UpdateArtifactRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_UpdateArtifactRequest.Marshal(b, m, deterministic)
+}
+func (m *UpdateArtifactRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_UpdateArtifactRequest.Merge(m, src)
+}
+func (m *UpdateArtifactRequest) XXX_Size() int {
+	return xxx_messageInfo_UpdateArtifactRequest.Size(m)
+}
+func (m *UpdateArtifactRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_UpdateArtifactRequest.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_UpdateArtifactRequest proto.InternalMessageInfo
+
+func (m *UpdateArtifactRequest) GetPayload() *Artifact {
+	if m != nil {
+		return m.Payload
+	}
+	return nil
+}
+
+func (m *UpdateArtifactRequest) GetFields() *field_mask.FieldMask {
+	if m != nil {
+		return m.Fields
+	}
+	return nil
+}
+
+type UpdateArtifactResponse struct {
+	Result               *Artifact `protobuf:"bytes,1,opt,name=result,proto3" json:"result,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}  `json:"-"`
+	XXX_unrecognized     []byte    `json:"-"`
+	XXX_sizecache        int32     `json:"-"`
+}
+
+func (m *UpdateArtifactResponse) Reset()         { *m = UpdateArtifactResponse{} }
+func (m *UpdateArtifactResponse) String() string { return proto.CompactTextString(m) }
+func (*UpdateArtifactResponse) ProtoMessage()    {}
+func (*UpdateArtifactResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor_b7c4efe410d87592, []int{139}
+}
+
+func (m *UpdateArtifactResponse) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_UpdateArtifactResponse.Unmarshal(m, b)
+}
+func (m *UpdateArtifactResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_UpdateArtifactResponse.Marshal(b, m, deterministic)
+}
+func (m *UpdateArtifactResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_UpdateArtifactResponse.Merge(m, src)
+}
+func (m *UpdateArtifactResponse) XXX_Size() int {
+	return xxx_messageInfo_UpdateArtifactResponse.Size(m)
+}
+func (m *UpdateArtifactResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_UpdateArtifactResponse.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_UpdateArtifactResponse proto.InternalMessageInfo
+
+func (m *UpdateArtifactResponse) GetResult() *Artifact {
+	if m != nil {
+		return m.Result
+	}
+	return nil
+}
+
+type DeleteArtifactRequest struct {
+	Id                   *resource.Identifier `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}             `json:"-"`
+	XXX_unrecognized     []byte               `json:"-"`
+	XXX_sizecache        int32                `json:"-"`
+}
+
+func (m *DeleteArtifactRequest) Reset()         { *m = DeleteArtifactRequest{} }
+func (m *DeleteArtifactRequest) String() string { return proto.CompactTextString(m) }
+func (*DeleteArtifactRequest) ProtoMessage()    {}
+func (*DeleteArtifactRequest) Descriptor() ([]byte, []int) {
+	return fileDescriptor_b7c4efe410d87592, []int{140}
+}
+
+func (m *DeleteArtifactRequest) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_DeleteArtifactRequest.Unmarshal(m, b)
+}
+func (m *DeleteArtifactRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_DeleteArtifactRequest.Marshal(b, m, deterministic)
+}
+func (m *DeleteArtifactRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_DeleteArtifactRequest.Merge(m, src)
+}
+func (m *DeleteArtifactRequest) XXX_Size() int {
+	return xxx_messageInfo_DeleteArtifactRequest.Size(m)
+}
+func (m *DeleteArtifactRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_DeleteArtifactRequest.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_DeleteArtifactRequest proto.InternalMessageInfo
+
+func (m *DeleteArtifactRequest) GetId() *resource.Identifier {
+	if m != nil {
+		return m.Id
+	}
+	return nil
+}
+
+type DeleteArtifactResponse struct {
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *DeleteArtifactResponse) Reset()         { *m = DeleteArtifactResponse{} }
+func (m *DeleteArtifactResponse) String() string { return proto.CompactTextString(m) }
+func (*DeleteArtifactResponse) ProtoMessage()    {}
+func (*DeleteArtifactResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor_b7c4efe410d87592, []int{141}
+}
+
+func (m *DeleteArtifactResponse) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_DeleteArtifactResponse.Unmarshal(m, b)
+}
+func (m *DeleteArtifactResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_DeleteArtifactResponse.Marshal(b, m, deterministic)
+}
+func (m *DeleteArtifactResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_DeleteArtifactResponse.Merge(m, src)
+}
+func (m *DeleteArtifactResponse) XXX_Size() int {
+	return xxx_messageInfo_DeleteArtifactResponse.Size(m)
+}
+func (m *DeleteArtifactResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_DeleteArtifactResponse.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_DeleteArtifactResponse proto.InternalMessageInfo
+
+type ListArtifactRequest struct {
+	Filter               *query.Filtering      `protobuf:"bytes,1,opt,name=filter,proto3" json:"filter,omitempty"`
+	OrderBy              *query.Sorting        `protobuf:"bytes,2,opt,name=order_by,json=orderBy,proto3" json:"order_by,omitempty"`
+	Fields               *query.FieldSelection `protobuf:"bytes,3,opt,name=fields,proto3" json:"fields,omitempty"`
+	Paging               *query.Pagination     `protobuf:"bytes,4,opt,name=paging,proto3" json:"paging,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}              `json:"-"`
+	XXX_unrecognized     []byte                `json:"-"`
+	XXX_sizecache        int32                 `json:"-"`
+}
+
+func (m *ListArtifactRequest) Reset()         { *m = ListArtifactRequest{} }
+func (m *ListArtifactRequest) String() string { return proto.CompactTextString(m) }
+func (*ListArtifactRequest) ProtoMessage()    {}
+func (*ListArtifactRequest) Descriptor() ([]byte, []int) {
+	return fileDescriptor_b7c4efe410d87592, []int{142}
+}
+
+func (m *ListArtifactRequest) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_ListArtifactRequest.Unmarshal(m, b)
+}
+func (m *ListArtifactRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_ListArtifactRequest.Marshal(b, m, deterministic)
+}
+func (m *ListArtifactRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_ListArtifactRequest.Merge(m, src)
+}
+func (m *ListArtifactRequest) XXX_Size() int {
+	return xxx_messageInfo_ListArtifactRequest.Size(m)
+}
+func (m *ListArtifactRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_ListArtifactRequest.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_ListArtifactRequest proto.InternalMessageInfo
+
+func (m *ListArtifactRequest) GetFilter() *query.Filtering {
+	if m != nil {
+		return m.Filter
+	}
+	return nil
+}
+
+func (m *ListArtifactRequest) GetOrderBy() *query.Sorting {
+	if m != nil {
+		return m.OrderBy
+	}
+	return nil
+}
+
+func (m *ListArtifactRequest) GetFields() *query.FieldSelection {
+	if m != nil {
+		return m.Fields
+	}
+	return nil
+}
+
+func (m *ListArtifactRequest) GetPaging() *query.Pagination {
+	if m != nil {
+		return m.Paging
+	}
+	return nil
+}
+
+type ListArtifactsResponse struct {
+	Results              []*Artifact     `protobuf:"bytes,1,rep,name=results,proto3" json:"results,omitempty"`
+	Page                 *query.PageInfo `protobuf:"bytes,2,opt,name=page,proto3" json:"page,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}        `json:"-"`
+	XXX_unrecognized     []byte          `json:"-"`
+	XXX_sizecache        int32           `json:"-"`
+}
+
+func (m *ListArtifactsResponse) Reset()         { *m = ListArtifactsResponse{} }
+func (m *ListArtifactsResponse) String() string { return proto.CompactTextString(m) }
+func (*ListArtifactsResponse) ProtoMessage()    {}
+func (*ListArtifactsResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor_b7c4efe410d87592, []int{143}
+}
+
+func (m *ListArtifactsResponse) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_ListArtifactsResponse.Unmarshal(m, b)
+}
+func (m *ListArtifactsResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_ListArtifactsResponse.Marshal(b, m, deterministic)
+}
+func (m *ListArtifactsResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_ListArtifactsResponse.Merge(m, src)
+}
+func (m *ListArtifactsResponse) XXX_Size() int {
+	return xxx_messageInfo_ListArtifactsResponse.Size(m)
+}
+func (m *ListArtifactsResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_ListArtifactsResponse.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_ListArtifactsResponse proto.InternalMessageInfo
+
+func (m *ListArtifactsResponse) GetResults() []*Artifact {
+	if m != nil {
+		return m.Results
+	}
+	return nil
+}
+
+func (m *ListArtifactsResponse) GetPage() *query.PageInfo {
+	if m != nil {
+		return m.Page
+	}
+	return nil
+}
+
 // ---------------------------------------------------------------------
 // Deployment represents a particular ApplicationInstance running on Kubernetes
 // ---------------------------------------------------------------------
@@ -5539,7 +6931,7 @@ func (m *Deployment) Reset()         { *m = Deployment{} }
 func (m *Deployment) String() string { return proto.CompactTextString(m) }
 func (*Deployment) ProtoMessage()    {}
 func (*Deployment) Descriptor() ([]byte, []int) {
-	return fileDescriptor_b7c4efe410d87592, []int{111}
+	return fileDescriptor_b7c4efe410d87592, []int{144}
 }
 
 func (m *Deployment) XXX_Unmarshal(b []byte) error {
@@ -5627,7 +7019,7 @@ func (m *CreateDeploymentRequest) Reset()         { *m = CreateDeploymentRequest
 func (m *CreateDeploymentRequest) String() string { return proto.CompactTextString(m) }
 func (*CreateDeploymentRequest) ProtoMessage()    {}
 func (*CreateDeploymentRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_b7c4efe410d87592, []int{112}
+	return fileDescriptor_b7c4efe410d87592, []int{145}
 }
 
 func (m *CreateDeploymentRequest) XXX_Unmarshal(b []byte) error {
@@ -5666,7 +7058,7 @@ func (m *CreateDeploymentResponse) Reset()         { *m = CreateDeploymentRespon
 func (m *CreateDeploymentResponse) String() string { return proto.CompactTextString(m) }
 func (*CreateDeploymentResponse) ProtoMessage()    {}
 func (*CreateDeploymentResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_b7c4efe410d87592, []int{113}
+	return fileDescriptor_b7c4efe410d87592, []int{146}
 }
 
 func (m *CreateDeploymentResponse) XXX_Unmarshal(b []byte) error {
@@ -5706,7 +7098,7 @@ func (m *ReadDeploymentRequest) Reset()         { *m = ReadDeploymentRequest{} }
 func (m *ReadDeploymentRequest) String() string { return proto.CompactTextString(m) }
 func (*ReadDeploymentRequest) ProtoMessage()    {}
 func (*ReadDeploymentRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_b7c4efe410d87592, []int{114}
+	return fileDescriptor_b7c4efe410d87592, []int{147}
 }
 
 func (m *ReadDeploymentRequest) XXX_Unmarshal(b []byte) error {
@@ -5752,7 +7144,7 @@ func (m *ReadDeploymentResponse) Reset()         { *m = ReadDeploymentResponse{}
 func (m *ReadDeploymentResponse) String() string { return proto.CompactTextString(m) }
 func (*ReadDeploymentResponse) ProtoMessage()    {}
 func (*ReadDeploymentResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_b7c4efe410d87592, []int{115}
+	return fileDescriptor_b7c4efe410d87592, []int{148}
 }
 
 func (m *ReadDeploymentResponse) XXX_Unmarshal(b []byte) error {
@@ -5792,7 +7184,7 @@ func (m *UpdateDeploymentRequest) Reset()         { *m = UpdateDeploymentRequest
 func (m *UpdateDeploymentRequest) String() string { return proto.CompactTextString(m) }
 func (*UpdateDeploymentRequest) ProtoMessage()    {}
 func (*UpdateDeploymentRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_b7c4efe410d87592, []int{116}
+	return fileDescriptor_b7c4efe410d87592, []int{149}
 }
 
 func (m *UpdateDeploymentRequest) XXX_Unmarshal(b []byte) error {
@@ -5838,7 +7230,7 @@ func (m *UpdateDeploymentResponse) Reset()         { *m = UpdateDeploymentRespon
 func (m *UpdateDeploymentResponse) String() string { return proto.CompactTextString(m) }
 func (*UpdateDeploymentResponse) ProtoMessage()    {}
 func (*UpdateDeploymentResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_b7c4efe410d87592, []int{117}
+	return fileDescriptor_b7c4efe410d87592, []int{150}
 }
 
 func (m *UpdateDeploymentResponse) XXX_Unmarshal(b []byte) error {
@@ -5877,7 +7269,7 @@ func (m *DeleteDeploymentRequest) Reset()         { *m = DeleteDeploymentRequest
 func (m *DeleteDeploymentRequest) String() string { return proto.CompactTextString(m) }
 func (*DeleteDeploymentRequest) ProtoMessage()    {}
 func (*DeleteDeploymentRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_b7c4efe410d87592, []int{118}
+	return fileDescriptor_b7c4efe410d87592, []int{151}
 }
 
 func (m *DeleteDeploymentRequest) XXX_Unmarshal(b []byte) error {
@@ -5915,7 +7307,7 @@ func (m *DeleteDeploymentResponse) Reset()         { *m = DeleteDeploymentRespon
 func (m *DeleteDeploymentResponse) String() string { return proto.CompactTextString(m) }
 func (*DeleteDeploymentResponse) ProtoMessage()    {}
 func (*DeleteDeploymentResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_b7c4efe410d87592, []int{119}
+	return fileDescriptor_b7c4efe410d87592, []int{152}
 }
 
 func (m *DeleteDeploymentResponse) XXX_Unmarshal(b []byte) error {
@@ -5950,7 +7342,7 @@ func (m *ListDeploymentRequest) Reset()         { *m = ListDeploymentRequest{} }
 func (m *ListDeploymentRequest) String() string { return proto.CompactTextString(m) }
 func (*ListDeploymentRequest) ProtoMessage()    {}
 func (*ListDeploymentRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_b7c4efe410d87592, []int{120}
+	return fileDescriptor_b7c4efe410d87592, []int{153}
 }
 
 func (m *ListDeploymentRequest) XXX_Unmarshal(b []byte) error {
@@ -6011,7 +7403,7 @@ func (m *ListDeploymentsResponse) Reset()         { *m = ListDeploymentsResponse
 func (m *ListDeploymentsResponse) String() string { return proto.CompactTextString(m) }
 func (*ListDeploymentsResponse) ProtoMessage()    {}
 func (*ListDeploymentsResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_b7c4efe410d87592, []int{121}
+	return fileDescriptor_b7c4efe410d87592, []int{154}
 }
 
 func (m *ListDeploymentsResponse) XXX_Unmarshal(b []byte) error {
@@ -6065,7 +7457,7 @@ func (m *KubeCluster) Reset()         { *m = KubeCluster{} }
 func (m *KubeCluster) String() string { return proto.CompactTextString(m) }
 func (*KubeCluster) ProtoMessage()    {}
 func (*KubeCluster) Descriptor() ([]byte, []int) {
-	return fileDescriptor_b7c4efe410d87592, []int{122}
+	return fileDescriptor_b7c4efe410d87592, []int{155}
 }
 
 func (m *KubeCluster) XXX_Unmarshal(b []byte) error {
@@ -6118,7 +7510,7 @@ func (m *CreateKubeClusterRequest) Reset()         { *m = CreateKubeClusterReque
 func (m *CreateKubeClusterRequest) String() string { return proto.CompactTextString(m) }
 func (*CreateKubeClusterRequest) ProtoMessage()    {}
 func (*CreateKubeClusterRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_b7c4efe410d87592, []int{123}
+	return fileDescriptor_b7c4efe410d87592, []int{156}
 }
 
 func (m *CreateKubeClusterRequest) XXX_Unmarshal(b []byte) error {
@@ -6157,7 +7549,7 @@ func (m *CreateKubeClusterResponse) Reset()         { *m = CreateKubeClusterResp
 func (m *CreateKubeClusterResponse) String() string { return proto.CompactTextString(m) }
 func (*CreateKubeClusterResponse) ProtoMessage()    {}
 func (*CreateKubeClusterResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_b7c4efe410d87592, []int{124}
+	return fileDescriptor_b7c4efe410d87592, []int{157}
 }
 
 func (m *CreateKubeClusterResponse) XXX_Unmarshal(b []byte) error {
@@ -6197,7 +7589,7 @@ func (m *ReadKubeClusterRequest) Reset()         { *m = ReadKubeClusterRequest{}
 func (m *ReadKubeClusterRequest) String() string { return proto.CompactTextString(m) }
 func (*ReadKubeClusterRequest) ProtoMessage()    {}
 func (*ReadKubeClusterRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_b7c4efe410d87592, []int{125}
+	return fileDescriptor_b7c4efe410d87592, []int{158}
 }
 
 func (m *ReadKubeClusterRequest) XXX_Unmarshal(b []byte) error {
@@ -6243,7 +7635,7 @@ func (m *ReadKubeClusterResponse) Reset()         { *m = ReadKubeClusterResponse
 func (m *ReadKubeClusterResponse) String() string { return proto.CompactTextString(m) }
 func (*ReadKubeClusterResponse) ProtoMessage()    {}
 func (*ReadKubeClusterResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_b7c4efe410d87592, []int{126}
+	return fileDescriptor_b7c4efe410d87592, []int{159}
 }
 
 func (m *ReadKubeClusterResponse) XXX_Unmarshal(b []byte) error {
@@ -6283,7 +7675,7 @@ func (m *UpdateKubeClusterRequest) Reset()         { *m = UpdateKubeClusterReque
 func (m *UpdateKubeClusterRequest) String() string { return proto.CompactTextString(m) }
 func (*UpdateKubeClusterRequest) ProtoMessage()    {}
 func (*UpdateKubeClusterRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_b7c4efe410d87592, []int{127}
+	return fileDescriptor_b7c4efe410d87592, []int{160}
 }
 
 func (m *UpdateKubeClusterRequest) XXX_Unmarshal(b []byte) error {
@@ -6329,7 +7721,7 @@ func (m *UpdateKubeClusterResponse) Reset()         { *m = UpdateKubeClusterResp
 func (m *UpdateKubeClusterResponse) String() string { return proto.CompactTextString(m) }
 func (*UpdateKubeClusterResponse) ProtoMessage()    {}
 func (*UpdateKubeClusterResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_b7c4efe410d87592, []int{128}
+	return fileDescriptor_b7c4efe410d87592, []int{161}
 }
 
 func (m *UpdateKubeClusterResponse) XXX_Unmarshal(b []byte) error {
@@ -6368,7 +7760,7 @@ func (m *DeleteKubeClusterRequest) Reset()         { *m = DeleteKubeClusterReque
 func (m *DeleteKubeClusterRequest) String() string { return proto.CompactTextString(m) }
 func (*DeleteKubeClusterRequest) ProtoMessage()    {}
 func (*DeleteKubeClusterRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_b7c4efe410d87592, []int{129}
+	return fileDescriptor_b7c4efe410d87592, []int{162}
 }
 
 func (m *DeleteKubeClusterRequest) XXX_Unmarshal(b []byte) error {
@@ -6406,7 +7798,7 @@ func (m *DeleteKubeClusterResponse) Reset()         { *m = DeleteKubeClusterResp
 func (m *DeleteKubeClusterResponse) String() string { return proto.CompactTextString(m) }
 func (*DeleteKubeClusterResponse) ProtoMessage()    {}
 func (*DeleteKubeClusterResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_b7c4efe410d87592, []int{130}
+	return fileDescriptor_b7c4efe410d87592, []int{163}
 }
 
 func (m *DeleteKubeClusterResponse) XXX_Unmarshal(b []byte) error {
@@ -6441,7 +7833,7 @@ func (m *ListKubeClusterRequest) Reset()         { *m = ListKubeClusterRequest{}
 func (m *ListKubeClusterRequest) String() string { return proto.CompactTextString(m) }
 func (*ListKubeClusterRequest) ProtoMessage()    {}
 func (*ListKubeClusterRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_b7c4efe410d87592, []int{131}
+	return fileDescriptor_b7c4efe410d87592, []int{164}
 }
 
 func (m *ListKubeClusterRequest) XXX_Unmarshal(b []byte) error {
@@ -6502,7 +7894,7 @@ func (m *ListKubeClustersResponse) Reset()         { *m = ListKubeClustersRespon
 func (m *ListKubeClustersResponse) String() string { return proto.CompactTextString(m) }
 func (*ListKubeClustersResponse) ProtoMessage()    {}
 func (*ListKubeClustersResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_b7c4efe410d87592, []int{132}
+	return fileDescriptor_b7c4efe410d87592, []int{165}
 }
 
 func (m *ListKubeClustersResponse) XXX_Unmarshal(b []byte) error {
@@ -6537,1169 +7929,10 @@ func (m *ListKubeClustersResponse) GetPage() *query.PageInfo {
 	return nil
 }
 
-// ------------------------------------------------------------------------
-// CloudProvider represents a particular Cloud Provider e.g. AWS or Azure
-// ------------------------------------------------------------------------
-type CloudProvider struct {
-	// The CloudProvider identifier.
-	Id *resource.Identifier `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
-	// The name of the CloudProvider
-	Name string `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
-	// The description of the CloudProvider
-	Description string `protobuf:"bytes,3,opt,name=description,proto3" json:"description,omitempty"`
-	// The Provider
-	Provider Provider `protobuf:"varint,4,opt,name=provider,proto3,enum=api.cmdb.Provider" json:"provider,omitempty"`
-	// Cloud Provider Account Number
-	Account string `protobuf:"bytes,5,opt,name=account,proto3" json:"account,omitempty"`
-	// Regions for the CloudProvider
-	Regions              []*Region `protobuf:"bytes,6,rep,name=regions,proto3" json:"regions,omitempty"`
-	XXX_NoUnkeyedLiteral struct{}  `json:"-"`
-	XXX_unrecognized     []byte    `json:"-"`
-	XXX_sizecache        int32     `json:"-"`
-}
-
-func (m *CloudProvider) Reset()         { *m = CloudProvider{} }
-func (m *CloudProvider) String() string { return proto.CompactTextString(m) }
-func (*CloudProvider) ProtoMessage()    {}
-func (*CloudProvider) Descriptor() ([]byte, []int) {
-	return fileDescriptor_b7c4efe410d87592, []int{133}
-}
-
-func (m *CloudProvider) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_CloudProvider.Unmarshal(m, b)
-}
-func (m *CloudProvider) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_CloudProvider.Marshal(b, m, deterministic)
-}
-func (m *CloudProvider) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_CloudProvider.Merge(m, src)
-}
-func (m *CloudProvider) XXX_Size() int {
-	return xxx_messageInfo_CloudProvider.Size(m)
-}
-func (m *CloudProvider) XXX_DiscardUnknown() {
-	xxx_messageInfo_CloudProvider.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_CloudProvider proto.InternalMessageInfo
-
-func (m *CloudProvider) GetId() *resource.Identifier {
-	if m != nil {
-		return m.Id
-	}
-	return nil
-}
-
-func (m *CloudProvider) GetName() string {
-	if m != nil {
-		return m.Name
-	}
-	return ""
-}
-
-func (m *CloudProvider) GetDescription() string {
-	if m != nil {
-		return m.Description
-	}
-	return ""
-}
-
-func (m *CloudProvider) GetProvider() Provider {
-	if m != nil {
-		return m.Provider
-	}
-	return Provider_UNKNOWN_PROVIDER
-}
-
-func (m *CloudProvider) GetAccount() string {
-	if m != nil {
-		return m.Account
-	}
-	return ""
-}
-
-func (m *CloudProvider) GetRegions() []*Region {
-	if m != nil {
-		return m.Regions
-	}
-	return nil
-}
-
-type CreateCloudProviderRequest struct {
-	Payload              *CloudProvider `protobuf:"bytes,1,opt,name=payload,proto3" json:"payload,omitempty"`
-	XXX_NoUnkeyedLiteral struct{}       `json:"-"`
-	XXX_unrecognized     []byte         `json:"-"`
-	XXX_sizecache        int32          `json:"-"`
-}
-
-func (m *CreateCloudProviderRequest) Reset()         { *m = CreateCloudProviderRequest{} }
-func (m *CreateCloudProviderRequest) String() string { return proto.CompactTextString(m) }
-func (*CreateCloudProviderRequest) ProtoMessage()    {}
-func (*CreateCloudProviderRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_b7c4efe410d87592, []int{134}
-}
-
-func (m *CreateCloudProviderRequest) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_CreateCloudProviderRequest.Unmarshal(m, b)
-}
-func (m *CreateCloudProviderRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_CreateCloudProviderRequest.Marshal(b, m, deterministic)
-}
-func (m *CreateCloudProviderRequest) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_CreateCloudProviderRequest.Merge(m, src)
-}
-func (m *CreateCloudProviderRequest) XXX_Size() int {
-	return xxx_messageInfo_CreateCloudProviderRequest.Size(m)
-}
-func (m *CreateCloudProviderRequest) XXX_DiscardUnknown() {
-	xxx_messageInfo_CreateCloudProviderRequest.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_CreateCloudProviderRequest proto.InternalMessageInfo
-
-func (m *CreateCloudProviderRequest) GetPayload() *CloudProvider {
-	if m != nil {
-		return m.Payload
-	}
-	return nil
-}
-
-type CreateCloudProviderResponse struct {
-	Result               *CloudProvider `protobuf:"bytes,1,opt,name=result,proto3" json:"result,omitempty"`
-	XXX_NoUnkeyedLiteral struct{}       `json:"-"`
-	XXX_unrecognized     []byte         `json:"-"`
-	XXX_sizecache        int32          `json:"-"`
-}
-
-func (m *CreateCloudProviderResponse) Reset()         { *m = CreateCloudProviderResponse{} }
-func (m *CreateCloudProviderResponse) String() string { return proto.CompactTextString(m) }
-func (*CreateCloudProviderResponse) ProtoMessage()    {}
-func (*CreateCloudProviderResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_b7c4efe410d87592, []int{135}
-}
-
-func (m *CreateCloudProviderResponse) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_CreateCloudProviderResponse.Unmarshal(m, b)
-}
-func (m *CreateCloudProviderResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_CreateCloudProviderResponse.Marshal(b, m, deterministic)
-}
-func (m *CreateCloudProviderResponse) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_CreateCloudProviderResponse.Merge(m, src)
-}
-func (m *CreateCloudProviderResponse) XXX_Size() int {
-	return xxx_messageInfo_CreateCloudProviderResponse.Size(m)
-}
-func (m *CreateCloudProviderResponse) XXX_DiscardUnknown() {
-	xxx_messageInfo_CreateCloudProviderResponse.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_CreateCloudProviderResponse proto.InternalMessageInfo
-
-func (m *CreateCloudProviderResponse) GetResult() *CloudProvider {
-	if m != nil {
-		return m.Result
-	}
-	return nil
-}
-
-type ReadCloudProviderRequest struct {
-	Id                   *resource.Identifier  `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
-	Fields               *query.FieldSelection `protobuf:"bytes,2,opt,name=fields,proto3" json:"fields,omitempty"`
-	XXX_NoUnkeyedLiteral struct{}              `json:"-"`
-	XXX_unrecognized     []byte                `json:"-"`
-	XXX_sizecache        int32                 `json:"-"`
-}
-
-func (m *ReadCloudProviderRequest) Reset()         { *m = ReadCloudProviderRequest{} }
-func (m *ReadCloudProviderRequest) String() string { return proto.CompactTextString(m) }
-func (*ReadCloudProviderRequest) ProtoMessage()    {}
-func (*ReadCloudProviderRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_b7c4efe410d87592, []int{136}
-}
-
-func (m *ReadCloudProviderRequest) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_ReadCloudProviderRequest.Unmarshal(m, b)
-}
-func (m *ReadCloudProviderRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_ReadCloudProviderRequest.Marshal(b, m, deterministic)
-}
-func (m *ReadCloudProviderRequest) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_ReadCloudProviderRequest.Merge(m, src)
-}
-func (m *ReadCloudProviderRequest) XXX_Size() int {
-	return xxx_messageInfo_ReadCloudProviderRequest.Size(m)
-}
-func (m *ReadCloudProviderRequest) XXX_DiscardUnknown() {
-	xxx_messageInfo_ReadCloudProviderRequest.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_ReadCloudProviderRequest proto.InternalMessageInfo
-
-func (m *ReadCloudProviderRequest) GetId() *resource.Identifier {
-	if m != nil {
-		return m.Id
-	}
-	return nil
-}
-
-func (m *ReadCloudProviderRequest) GetFields() *query.FieldSelection {
-	if m != nil {
-		return m.Fields
-	}
-	return nil
-}
-
-type ReadCloudProviderResponse struct {
-	Result               *CloudProvider `protobuf:"bytes,1,opt,name=result,proto3" json:"result,omitempty"`
-	XXX_NoUnkeyedLiteral struct{}       `json:"-"`
-	XXX_unrecognized     []byte         `json:"-"`
-	XXX_sizecache        int32          `json:"-"`
-}
-
-func (m *ReadCloudProviderResponse) Reset()         { *m = ReadCloudProviderResponse{} }
-func (m *ReadCloudProviderResponse) String() string { return proto.CompactTextString(m) }
-func (*ReadCloudProviderResponse) ProtoMessage()    {}
-func (*ReadCloudProviderResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_b7c4efe410d87592, []int{137}
-}
-
-func (m *ReadCloudProviderResponse) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_ReadCloudProviderResponse.Unmarshal(m, b)
-}
-func (m *ReadCloudProviderResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_ReadCloudProviderResponse.Marshal(b, m, deterministic)
-}
-func (m *ReadCloudProviderResponse) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_ReadCloudProviderResponse.Merge(m, src)
-}
-func (m *ReadCloudProviderResponse) XXX_Size() int {
-	return xxx_messageInfo_ReadCloudProviderResponse.Size(m)
-}
-func (m *ReadCloudProviderResponse) XXX_DiscardUnknown() {
-	xxx_messageInfo_ReadCloudProviderResponse.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_ReadCloudProviderResponse proto.InternalMessageInfo
-
-func (m *ReadCloudProviderResponse) GetResult() *CloudProvider {
-	if m != nil {
-		return m.Result
-	}
-	return nil
-}
-
-type UpdateCloudProviderRequest struct {
-	Payload              *CloudProvider        `protobuf:"bytes,1,opt,name=payload,proto3" json:"payload,omitempty"`
-	Fields               *field_mask.FieldMask `protobuf:"bytes,2,opt,name=fields,proto3" json:"fields,omitempty"`
-	XXX_NoUnkeyedLiteral struct{}              `json:"-"`
-	XXX_unrecognized     []byte                `json:"-"`
-	XXX_sizecache        int32                 `json:"-"`
-}
-
-func (m *UpdateCloudProviderRequest) Reset()         { *m = UpdateCloudProviderRequest{} }
-func (m *UpdateCloudProviderRequest) String() string { return proto.CompactTextString(m) }
-func (*UpdateCloudProviderRequest) ProtoMessage()    {}
-func (*UpdateCloudProviderRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_b7c4efe410d87592, []int{138}
-}
-
-func (m *UpdateCloudProviderRequest) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_UpdateCloudProviderRequest.Unmarshal(m, b)
-}
-func (m *UpdateCloudProviderRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_UpdateCloudProviderRequest.Marshal(b, m, deterministic)
-}
-func (m *UpdateCloudProviderRequest) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_UpdateCloudProviderRequest.Merge(m, src)
-}
-func (m *UpdateCloudProviderRequest) XXX_Size() int {
-	return xxx_messageInfo_UpdateCloudProviderRequest.Size(m)
-}
-func (m *UpdateCloudProviderRequest) XXX_DiscardUnknown() {
-	xxx_messageInfo_UpdateCloudProviderRequest.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_UpdateCloudProviderRequest proto.InternalMessageInfo
-
-func (m *UpdateCloudProviderRequest) GetPayload() *CloudProvider {
-	if m != nil {
-		return m.Payload
-	}
-	return nil
-}
-
-func (m *UpdateCloudProviderRequest) GetFields() *field_mask.FieldMask {
-	if m != nil {
-		return m.Fields
-	}
-	return nil
-}
-
-type UpdateCloudProviderResponse struct {
-	Result               *CloudProvider `protobuf:"bytes,1,opt,name=result,proto3" json:"result,omitempty"`
-	XXX_NoUnkeyedLiteral struct{}       `json:"-"`
-	XXX_unrecognized     []byte         `json:"-"`
-	XXX_sizecache        int32          `json:"-"`
-}
-
-func (m *UpdateCloudProviderResponse) Reset()         { *m = UpdateCloudProviderResponse{} }
-func (m *UpdateCloudProviderResponse) String() string { return proto.CompactTextString(m) }
-func (*UpdateCloudProviderResponse) ProtoMessage()    {}
-func (*UpdateCloudProviderResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_b7c4efe410d87592, []int{139}
-}
-
-func (m *UpdateCloudProviderResponse) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_UpdateCloudProviderResponse.Unmarshal(m, b)
-}
-func (m *UpdateCloudProviderResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_UpdateCloudProviderResponse.Marshal(b, m, deterministic)
-}
-func (m *UpdateCloudProviderResponse) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_UpdateCloudProviderResponse.Merge(m, src)
-}
-func (m *UpdateCloudProviderResponse) XXX_Size() int {
-	return xxx_messageInfo_UpdateCloudProviderResponse.Size(m)
-}
-func (m *UpdateCloudProviderResponse) XXX_DiscardUnknown() {
-	xxx_messageInfo_UpdateCloudProviderResponse.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_UpdateCloudProviderResponse proto.InternalMessageInfo
-
-func (m *UpdateCloudProviderResponse) GetResult() *CloudProvider {
-	if m != nil {
-		return m.Result
-	}
-	return nil
-}
-
-type DeleteCloudProviderRequest struct {
-	Id                   *resource.Identifier `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
-	XXX_NoUnkeyedLiteral struct{}             `json:"-"`
-	XXX_unrecognized     []byte               `json:"-"`
-	XXX_sizecache        int32                `json:"-"`
-}
-
-func (m *DeleteCloudProviderRequest) Reset()         { *m = DeleteCloudProviderRequest{} }
-func (m *DeleteCloudProviderRequest) String() string { return proto.CompactTextString(m) }
-func (*DeleteCloudProviderRequest) ProtoMessage()    {}
-func (*DeleteCloudProviderRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_b7c4efe410d87592, []int{140}
-}
-
-func (m *DeleteCloudProviderRequest) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_DeleteCloudProviderRequest.Unmarshal(m, b)
-}
-func (m *DeleteCloudProviderRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_DeleteCloudProviderRequest.Marshal(b, m, deterministic)
-}
-func (m *DeleteCloudProviderRequest) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_DeleteCloudProviderRequest.Merge(m, src)
-}
-func (m *DeleteCloudProviderRequest) XXX_Size() int {
-	return xxx_messageInfo_DeleteCloudProviderRequest.Size(m)
-}
-func (m *DeleteCloudProviderRequest) XXX_DiscardUnknown() {
-	xxx_messageInfo_DeleteCloudProviderRequest.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_DeleteCloudProviderRequest proto.InternalMessageInfo
-
-func (m *DeleteCloudProviderRequest) GetId() *resource.Identifier {
-	if m != nil {
-		return m.Id
-	}
-	return nil
-}
-
-type DeleteCloudProviderResponse struct {
-	XXX_NoUnkeyedLiteral struct{} `json:"-"`
-	XXX_unrecognized     []byte   `json:"-"`
-	XXX_sizecache        int32    `json:"-"`
-}
-
-func (m *DeleteCloudProviderResponse) Reset()         { *m = DeleteCloudProviderResponse{} }
-func (m *DeleteCloudProviderResponse) String() string { return proto.CompactTextString(m) }
-func (*DeleteCloudProviderResponse) ProtoMessage()    {}
-func (*DeleteCloudProviderResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_b7c4efe410d87592, []int{141}
-}
-
-func (m *DeleteCloudProviderResponse) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_DeleteCloudProviderResponse.Unmarshal(m, b)
-}
-func (m *DeleteCloudProviderResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_DeleteCloudProviderResponse.Marshal(b, m, deterministic)
-}
-func (m *DeleteCloudProviderResponse) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_DeleteCloudProviderResponse.Merge(m, src)
-}
-func (m *DeleteCloudProviderResponse) XXX_Size() int {
-	return xxx_messageInfo_DeleteCloudProviderResponse.Size(m)
-}
-func (m *DeleteCloudProviderResponse) XXX_DiscardUnknown() {
-	xxx_messageInfo_DeleteCloudProviderResponse.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_DeleteCloudProviderResponse proto.InternalMessageInfo
-
-type ListCloudProviderRequest struct {
-	Filter               *query.Filtering      `protobuf:"bytes,1,opt,name=filter,proto3" json:"filter,omitempty"`
-	OrderBy              *query.Sorting        `protobuf:"bytes,2,opt,name=order_by,json=orderBy,proto3" json:"order_by,omitempty"`
-	Fields               *query.FieldSelection `protobuf:"bytes,3,opt,name=fields,proto3" json:"fields,omitempty"`
-	Paging               *query.Pagination     `protobuf:"bytes,4,opt,name=paging,proto3" json:"paging,omitempty"`
-	XXX_NoUnkeyedLiteral struct{}              `json:"-"`
-	XXX_unrecognized     []byte                `json:"-"`
-	XXX_sizecache        int32                 `json:"-"`
-}
-
-func (m *ListCloudProviderRequest) Reset()         { *m = ListCloudProviderRequest{} }
-func (m *ListCloudProviderRequest) String() string { return proto.CompactTextString(m) }
-func (*ListCloudProviderRequest) ProtoMessage()    {}
-func (*ListCloudProviderRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_b7c4efe410d87592, []int{142}
-}
-
-func (m *ListCloudProviderRequest) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_ListCloudProviderRequest.Unmarshal(m, b)
-}
-func (m *ListCloudProviderRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_ListCloudProviderRequest.Marshal(b, m, deterministic)
-}
-func (m *ListCloudProviderRequest) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_ListCloudProviderRequest.Merge(m, src)
-}
-func (m *ListCloudProviderRequest) XXX_Size() int {
-	return xxx_messageInfo_ListCloudProviderRequest.Size(m)
-}
-func (m *ListCloudProviderRequest) XXX_DiscardUnknown() {
-	xxx_messageInfo_ListCloudProviderRequest.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_ListCloudProviderRequest proto.InternalMessageInfo
-
-func (m *ListCloudProviderRequest) GetFilter() *query.Filtering {
-	if m != nil {
-		return m.Filter
-	}
-	return nil
-}
-
-func (m *ListCloudProviderRequest) GetOrderBy() *query.Sorting {
-	if m != nil {
-		return m.OrderBy
-	}
-	return nil
-}
-
-func (m *ListCloudProviderRequest) GetFields() *query.FieldSelection {
-	if m != nil {
-		return m.Fields
-	}
-	return nil
-}
-
-func (m *ListCloudProviderRequest) GetPaging() *query.Pagination {
-	if m != nil {
-		return m.Paging
-	}
-	return nil
-}
-
-type ListCloudProvidersResponse struct {
-	Results              []*CloudProvider `protobuf:"bytes,1,rep,name=results,proto3" json:"results,omitempty"`
-	Page                 *query.PageInfo  `protobuf:"bytes,2,opt,name=page,proto3" json:"page,omitempty"`
-	XXX_NoUnkeyedLiteral struct{}         `json:"-"`
-	XXX_unrecognized     []byte           `json:"-"`
-	XXX_sizecache        int32            `json:"-"`
-}
-
-func (m *ListCloudProvidersResponse) Reset()         { *m = ListCloudProvidersResponse{} }
-func (m *ListCloudProvidersResponse) String() string { return proto.CompactTextString(m) }
-func (*ListCloudProvidersResponse) ProtoMessage()    {}
-func (*ListCloudProvidersResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_b7c4efe410d87592, []int{143}
-}
-
-func (m *ListCloudProvidersResponse) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_ListCloudProvidersResponse.Unmarshal(m, b)
-}
-func (m *ListCloudProvidersResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_ListCloudProvidersResponse.Marshal(b, m, deterministic)
-}
-func (m *ListCloudProvidersResponse) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_ListCloudProvidersResponse.Merge(m, src)
-}
-func (m *ListCloudProvidersResponse) XXX_Size() int {
-	return xxx_messageInfo_ListCloudProvidersResponse.Size(m)
-}
-func (m *ListCloudProvidersResponse) XXX_DiscardUnknown() {
-	xxx_messageInfo_ListCloudProvidersResponse.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_ListCloudProvidersResponse proto.InternalMessageInfo
-
-func (m *ListCloudProvidersResponse) GetResults() []*CloudProvider {
-	if m != nil {
-		return m.Results
-	}
-	return nil
-}
-
-func (m *ListCloudProvidersResponse) GetPage() *query.PageInfo {
-	if m != nil {
-		return m.Page
-	}
-	return nil
-}
-
-// --------------------------------------------------------------------
-// Region represents a particular Geo for Cloud Provier e.g. us-east-1
-// --------------------------------------------------------------------
-type Region struct {
-	// The Region identifier.
-	Id *resource.Identifier `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
-	// The name of the Region
-	Name string `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
-	// The description of the Region
-	Description string `protobuf:"bytes,3,opt,name=description,proto3" json:"description,omitempty"`
-	// Environment
-	Environments []*Environment `protobuf:"bytes,4,rep,name=environments,proto3" json:"environments,omitempty"`
-	// Reference to Cloud Provider
-	CloudProviderId      *resource.Identifier `protobuf:"bytes,5,opt,name=cloud_provider_id,json=cloudProviderId,proto3" json:"cloud_provider_id,omitempty"`
-	XXX_NoUnkeyedLiteral struct{}             `json:"-"`
-	XXX_unrecognized     []byte               `json:"-"`
-	XXX_sizecache        int32                `json:"-"`
-}
-
-func (m *Region) Reset()         { *m = Region{} }
-func (m *Region) String() string { return proto.CompactTextString(m) }
-func (*Region) ProtoMessage()    {}
-func (*Region) Descriptor() ([]byte, []int) {
-	return fileDescriptor_b7c4efe410d87592, []int{144}
-}
-
-func (m *Region) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_Region.Unmarshal(m, b)
-}
-func (m *Region) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_Region.Marshal(b, m, deterministic)
-}
-func (m *Region) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_Region.Merge(m, src)
-}
-func (m *Region) XXX_Size() int {
-	return xxx_messageInfo_Region.Size(m)
-}
-func (m *Region) XXX_DiscardUnknown() {
-	xxx_messageInfo_Region.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_Region proto.InternalMessageInfo
-
-func (m *Region) GetId() *resource.Identifier {
-	if m != nil {
-		return m.Id
-	}
-	return nil
-}
-
-func (m *Region) GetName() string {
-	if m != nil {
-		return m.Name
-	}
-	return ""
-}
-
-func (m *Region) GetDescription() string {
-	if m != nil {
-		return m.Description
-	}
-	return ""
-}
-
-func (m *Region) GetEnvironments() []*Environment {
-	if m != nil {
-		return m.Environments
-	}
-	return nil
-}
-
-func (m *Region) GetCloudProviderId() *resource.Identifier {
-	if m != nil {
-		return m.CloudProviderId
-	}
-	return nil
-}
-
-type CreateRegionRequest struct {
-	Payload              *Region  `protobuf:"bytes,1,opt,name=payload,proto3" json:"payload,omitempty"`
-	XXX_NoUnkeyedLiteral struct{} `json:"-"`
-	XXX_unrecognized     []byte   `json:"-"`
-	XXX_sizecache        int32    `json:"-"`
-}
-
-func (m *CreateRegionRequest) Reset()         { *m = CreateRegionRequest{} }
-func (m *CreateRegionRequest) String() string { return proto.CompactTextString(m) }
-func (*CreateRegionRequest) ProtoMessage()    {}
-func (*CreateRegionRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_b7c4efe410d87592, []int{145}
-}
-
-func (m *CreateRegionRequest) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_CreateRegionRequest.Unmarshal(m, b)
-}
-func (m *CreateRegionRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_CreateRegionRequest.Marshal(b, m, deterministic)
-}
-func (m *CreateRegionRequest) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_CreateRegionRequest.Merge(m, src)
-}
-func (m *CreateRegionRequest) XXX_Size() int {
-	return xxx_messageInfo_CreateRegionRequest.Size(m)
-}
-func (m *CreateRegionRequest) XXX_DiscardUnknown() {
-	xxx_messageInfo_CreateRegionRequest.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_CreateRegionRequest proto.InternalMessageInfo
-
-func (m *CreateRegionRequest) GetPayload() *Region {
-	if m != nil {
-		return m.Payload
-	}
-	return nil
-}
-
-type CreateRegionResponse struct {
-	Result               *Region  `protobuf:"bytes,1,opt,name=result,proto3" json:"result,omitempty"`
-	XXX_NoUnkeyedLiteral struct{} `json:"-"`
-	XXX_unrecognized     []byte   `json:"-"`
-	XXX_sizecache        int32    `json:"-"`
-}
-
-func (m *CreateRegionResponse) Reset()         { *m = CreateRegionResponse{} }
-func (m *CreateRegionResponse) String() string { return proto.CompactTextString(m) }
-func (*CreateRegionResponse) ProtoMessage()    {}
-func (*CreateRegionResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_b7c4efe410d87592, []int{146}
-}
-
-func (m *CreateRegionResponse) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_CreateRegionResponse.Unmarshal(m, b)
-}
-func (m *CreateRegionResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_CreateRegionResponse.Marshal(b, m, deterministic)
-}
-func (m *CreateRegionResponse) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_CreateRegionResponse.Merge(m, src)
-}
-func (m *CreateRegionResponse) XXX_Size() int {
-	return xxx_messageInfo_CreateRegionResponse.Size(m)
-}
-func (m *CreateRegionResponse) XXX_DiscardUnknown() {
-	xxx_messageInfo_CreateRegionResponse.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_CreateRegionResponse proto.InternalMessageInfo
-
-func (m *CreateRegionResponse) GetResult() *Region {
-	if m != nil {
-		return m.Result
-	}
-	return nil
-}
-
-type ReadRegionRequest struct {
-	Id                   *resource.Identifier  `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
-	Fields               *query.FieldSelection `protobuf:"bytes,2,opt,name=fields,proto3" json:"fields,omitempty"`
-	XXX_NoUnkeyedLiteral struct{}              `json:"-"`
-	XXX_unrecognized     []byte                `json:"-"`
-	XXX_sizecache        int32                 `json:"-"`
-}
-
-func (m *ReadRegionRequest) Reset()         { *m = ReadRegionRequest{} }
-func (m *ReadRegionRequest) String() string { return proto.CompactTextString(m) }
-func (*ReadRegionRequest) ProtoMessage()    {}
-func (*ReadRegionRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_b7c4efe410d87592, []int{147}
-}
-
-func (m *ReadRegionRequest) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_ReadRegionRequest.Unmarshal(m, b)
-}
-func (m *ReadRegionRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_ReadRegionRequest.Marshal(b, m, deterministic)
-}
-func (m *ReadRegionRequest) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_ReadRegionRequest.Merge(m, src)
-}
-func (m *ReadRegionRequest) XXX_Size() int {
-	return xxx_messageInfo_ReadRegionRequest.Size(m)
-}
-func (m *ReadRegionRequest) XXX_DiscardUnknown() {
-	xxx_messageInfo_ReadRegionRequest.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_ReadRegionRequest proto.InternalMessageInfo
-
-func (m *ReadRegionRequest) GetId() *resource.Identifier {
-	if m != nil {
-		return m.Id
-	}
-	return nil
-}
-
-func (m *ReadRegionRequest) GetFields() *query.FieldSelection {
-	if m != nil {
-		return m.Fields
-	}
-	return nil
-}
-
-type ReadRegionResponse struct {
-	Result               *Region  `protobuf:"bytes,1,opt,name=result,proto3" json:"result,omitempty"`
-	XXX_NoUnkeyedLiteral struct{} `json:"-"`
-	XXX_unrecognized     []byte   `json:"-"`
-	XXX_sizecache        int32    `json:"-"`
-}
-
-func (m *ReadRegionResponse) Reset()         { *m = ReadRegionResponse{} }
-func (m *ReadRegionResponse) String() string { return proto.CompactTextString(m) }
-func (*ReadRegionResponse) ProtoMessage()    {}
-func (*ReadRegionResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_b7c4efe410d87592, []int{148}
-}
-
-func (m *ReadRegionResponse) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_ReadRegionResponse.Unmarshal(m, b)
-}
-func (m *ReadRegionResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_ReadRegionResponse.Marshal(b, m, deterministic)
-}
-func (m *ReadRegionResponse) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_ReadRegionResponse.Merge(m, src)
-}
-func (m *ReadRegionResponse) XXX_Size() int {
-	return xxx_messageInfo_ReadRegionResponse.Size(m)
-}
-func (m *ReadRegionResponse) XXX_DiscardUnknown() {
-	xxx_messageInfo_ReadRegionResponse.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_ReadRegionResponse proto.InternalMessageInfo
-
-func (m *ReadRegionResponse) GetResult() *Region {
-	if m != nil {
-		return m.Result
-	}
-	return nil
-}
-
-type UpdateRegionRequest struct {
-	Payload              *Region               `protobuf:"bytes,1,opt,name=payload,proto3" json:"payload,omitempty"`
-	Fields               *field_mask.FieldMask `protobuf:"bytes,2,opt,name=fields,proto3" json:"fields,omitempty"`
-	XXX_NoUnkeyedLiteral struct{}              `json:"-"`
-	XXX_unrecognized     []byte                `json:"-"`
-	XXX_sizecache        int32                 `json:"-"`
-}
-
-func (m *UpdateRegionRequest) Reset()         { *m = UpdateRegionRequest{} }
-func (m *UpdateRegionRequest) String() string { return proto.CompactTextString(m) }
-func (*UpdateRegionRequest) ProtoMessage()    {}
-func (*UpdateRegionRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_b7c4efe410d87592, []int{149}
-}
-
-func (m *UpdateRegionRequest) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_UpdateRegionRequest.Unmarshal(m, b)
-}
-func (m *UpdateRegionRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_UpdateRegionRequest.Marshal(b, m, deterministic)
-}
-func (m *UpdateRegionRequest) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_UpdateRegionRequest.Merge(m, src)
-}
-func (m *UpdateRegionRequest) XXX_Size() int {
-	return xxx_messageInfo_UpdateRegionRequest.Size(m)
-}
-func (m *UpdateRegionRequest) XXX_DiscardUnknown() {
-	xxx_messageInfo_UpdateRegionRequest.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_UpdateRegionRequest proto.InternalMessageInfo
-
-func (m *UpdateRegionRequest) GetPayload() *Region {
-	if m != nil {
-		return m.Payload
-	}
-	return nil
-}
-
-func (m *UpdateRegionRequest) GetFields() *field_mask.FieldMask {
-	if m != nil {
-		return m.Fields
-	}
-	return nil
-}
-
-type UpdateRegionResponse struct {
-	Result               *Region  `protobuf:"bytes,1,opt,name=result,proto3" json:"result,omitempty"`
-	XXX_NoUnkeyedLiteral struct{} `json:"-"`
-	XXX_unrecognized     []byte   `json:"-"`
-	XXX_sizecache        int32    `json:"-"`
-}
-
-func (m *UpdateRegionResponse) Reset()         { *m = UpdateRegionResponse{} }
-func (m *UpdateRegionResponse) String() string { return proto.CompactTextString(m) }
-func (*UpdateRegionResponse) ProtoMessage()    {}
-func (*UpdateRegionResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_b7c4efe410d87592, []int{150}
-}
-
-func (m *UpdateRegionResponse) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_UpdateRegionResponse.Unmarshal(m, b)
-}
-func (m *UpdateRegionResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_UpdateRegionResponse.Marshal(b, m, deterministic)
-}
-func (m *UpdateRegionResponse) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_UpdateRegionResponse.Merge(m, src)
-}
-func (m *UpdateRegionResponse) XXX_Size() int {
-	return xxx_messageInfo_UpdateRegionResponse.Size(m)
-}
-func (m *UpdateRegionResponse) XXX_DiscardUnknown() {
-	xxx_messageInfo_UpdateRegionResponse.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_UpdateRegionResponse proto.InternalMessageInfo
-
-func (m *UpdateRegionResponse) GetResult() *Region {
-	if m != nil {
-		return m.Result
-	}
-	return nil
-}
-
-type DeleteRegionRequest struct {
-	Id                   *resource.Identifier `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
-	XXX_NoUnkeyedLiteral struct{}             `json:"-"`
-	XXX_unrecognized     []byte               `json:"-"`
-	XXX_sizecache        int32                `json:"-"`
-}
-
-func (m *DeleteRegionRequest) Reset()         { *m = DeleteRegionRequest{} }
-func (m *DeleteRegionRequest) String() string { return proto.CompactTextString(m) }
-func (*DeleteRegionRequest) ProtoMessage()    {}
-func (*DeleteRegionRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_b7c4efe410d87592, []int{151}
-}
-
-func (m *DeleteRegionRequest) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_DeleteRegionRequest.Unmarshal(m, b)
-}
-func (m *DeleteRegionRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_DeleteRegionRequest.Marshal(b, m, deterministic)
-}
-func (m *DeleteRegionRequest) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_DeleteRegionRequest.Merge(m, src)
-}
-func (m *DeleteRegionRequest) XXX_Size() int {
-	return xxx_messageInfo_DeleteRegionRequest.Size(m)
-}
-func (m *DeleteRegionRequest) XXX_DiscardUnknown() {
-	xxx_messageInfo_DeleteRegionRequest.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_DeleteRegionRequest proto.InternalMessageInfo
-
-func (m *DeleteRegionRequest) GetId() *resource.Identifier {
-	if m != nil {
-		return m.Id
-	}
-	return nil
-}
-
-type DeleteRegionResponse struct {
-	XXX_NoUnkeyedLiteral struct{} `json:"-"`
-	XXX_unrecognized     []byte   `json:"-"`
-	XXX_sizecache        int32    `json:"-"`
-}
-
-func (m *DeleteRegionResponse) Reset()         { *m = DeleteRegionResponse{} }
-func (m *DeleteRegionResponse) String() string { return proto.CompactTextString(m) }
-func (*DeleteRegionResponse) ProtoMessage()    {}
-func (*DeleteRegionResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_b7c4efe410d87592, []int{152}
-}
-
-func (m *DeleteRegionResponse) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_DeleteRegionResponse.Unmarshal(m, b)
-}
-func (m *DeleteRegionResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_DeleteRegionResponse.Marshal(b, m, deterministic)
-}
-func (m *DeleteRegionResponse) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_DeleteRegionResponse.Merge(m, src)
-}
-func (m *DeleteRegionResponse) XXX_Size() int {
-	return xxx_messageInfo_DeleteRegionResponse.Size(m)
-}
-func (m *DeleteRegionResponse) XXX_DiscardUnknown() {
-	xxx_messageInfo_DeleteRegionResponse.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_DeleteRegionResponse proto.InternalMessageInfo
-
-type ListRegionRequest struct {
-	Filter               *query.Filtering      `protobuf:"bytes,1,opt,name=filter,proto3" json:"filter,omitempty"`
-	OrderBy              *query.Sorting        `protobuf:"bytes,2,opt,name=order_by,json=orderBy,proto3" json:"order_by,omitempty"`
-	Fields               *query.FieldSelection `protobuf:"bytes,3,opt,name=fields,proto3" json:"fields,omitempty"`
-	Paging               *query.Pagination     `protobuf:"bytes,4,opt,name=paging,proto3" json:"paging,omitempty"`
-	XXX_NoUnkeyedLiteral struct{}              `json:"-"`
-	XXX_unrecognized     []byte                `json:"-"`
-	XXX_sizecache        int32                 `json:"-"`
-}
-
-func (m *ListRegionRequest) Reset()         { *m = ListRegionRequest{} }
-func (m *ListRegionRequest) String() string { return proto.CompactTextString(m) }
-func (*ListRegionRequest) ProtoMessage()    {}
-func (*ListRegionRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_b7c4efe410d87592, []int{153}
-}
-
-func (m *ListRegionRequest) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_ListRegionRequest.Unmarshal(m, b)
-}
-func (m *ListRegionRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_ListRegionRequest.Marshal(b, m, deterministic)
-}
-func (m *ListRegionRequest) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_ListRegionRequest.Merge(m, src)
-}
-func (m *ListRegionRequest) XXX_Size() int {
-	return xxx_messageInfo_ListRegionRequest.Size(m)
-}
-func (m *ListRegionRequest) XXX_DiscardUnknown() {
-	xxx_messageInfo_ListRegionRequest.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_ListRegionRequest proto.InternalMessageInfo
-
-func (m *ListRegionRequest) GetFilter() *query.Filtering {
-	if m != nil {
-		return m.Filter
-	}
-	return nil
-}
-
-func (m *ListRegionRequest) GetOrderBy() *query.Sorting {
-	if m != nil {
-		return m.OrderBy
-	}
-	return nil
-}
-
-func (m *ListRegionRequest) GetFields() *query.FieldSelection {
-	if m != nil {
-		return m.Fields
-	}
-	return nil
-}
-
-func (m *ListRegionRequest) GetPaging() *query.Pagination {
-	if m != nil {
-		return m.Paging
-	}
-	return nil
-}
-
-type ListRegionsResponse struct {
-	Results              []*Region       `protobuf:"bytes,1,rep,name=results,proto3" json:"results,omitempty"`
-	Page                 *query.PageInfo `protobuf:"bytes,2,opt,name=page,proto3" json:"page,omitempty"`
-	XXX_NoUnkeyedLiteral struct{}        `json:"-"`
-	XXX_unrecognized     []byte          `json:"-"`
-	XXX_sizecache        int32           `json:"-"`
-}
-
-func (m *ListRegionsResponse) Reset()         { *m = ListRegionsResponse{} }
-func (m *ListRegionsResponse) String() string { return proto.CompactTextString(m) }
-func (*ListRegionsResponse) ProtoMessage()    {}
-func (*ListRegionsResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_b7c4efe410d87592, []int{154}
-}
-
-func (m *ListRegionsResponse) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_ListRegionsResponse.Unmarshal(m, b)
-}
-func (m *ListRegionsResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_ListRegionsResponse.Marshal(b, m, deterministic)
-}
-func (m *ListRegionsResponse) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_ListRegionsResponse.Merge(m, src)
-}
-func (m *ListRegionsResponse) XXX_Size() int {
-	return xxx_messageInfo_ListRegionsResponse.Size(m)
-}
-func (m *ListRegionsResponse) XXX_DiscardUnknown() {
-	xxx_messageInfo_ListRegionsResponse.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_ListRegionsResponse proto.InternalMessageInfo
-
-func (m *ListRegionsResponse) GetResults() []*Region {
-	if m != nil {
-		return m.Results
-	}
-	return nil
-}
-
-func (m *ListRegionsResponse) GetPage() *query.PageInfo {
-	if m != nil {
-		return m.Page
-	}
-	return nil
-}
-
 func init() {
-	proto.RegisterEnum("api.cmdb.Stage", Stage_name, Stage_value)
 	proto.RegisterEnum("api.cmdb.Provider", Provider_name, Provider_value)
+	proto.RegisterEnum("api.cmdb.StageType", StageType_name, StageType_value)
 	proto.RegisterType((*VersionResponse)(nil), "api.cmdb.VersionResponse")
-	proto.RegisterType((*Vault)(nil), "api.cmdb.Vault")
-	proto.RegisterType((*CreateVaultRequest)(nil), "api.cmdb.CreateVaultRequest")
-	proto.RegisterType((*CreateVaultResponse)(nil), "api.cmdb.CreateVaultResponse")
-	proto.RegisterType((*ReadVaultRequest)(nil), "api.cmdb.ReadVaultRequest")
-	proto.RegisterType((*ReadVaultResponse)(nil), "api.cmdb.ReadVaultResponse")
-	proto.RegisterType((*UpdateVaultRequest)(nil), "api.cmdb.UpdateVaultRequest")
-	proto.RegisterType((*UpdateVaultResponse)(nil), "api.cmdb.UpdateVaultResponse")
-	proto.RegisterType((*DeleteVaultRequest)(nil), "api.cmdb.DeleteVaultRequest")
-	proto.RegisterType((*DeleteVaultResponse)(nil), "api.cmdb.DeleteVaultResponse")
-	proto.RegisterType((*ListVaultRequest)(nil), "api.cmdb.ListVaultRequest")
-	proto.RegisterType((*ListVaultsResponse)(nil), "api.cmdb.ListVaultsResponse")
-	proto.RegisterType((*VersionTag)(nil), "api.cmdb.VersionTag")
-	proto.RegisterType((*CreateVersionTagRequest)(nil), "api.cmdb.CreateVersionTagRequest")
-	proto.RegisterType((*CreateVersionTagResponse)(nil), "api.cmdb.CreateVersionTagResponse")
-	proto.RegisterType((*ReadVersionTagRequest)(nil), "api.cmdb.ReadVersionTagRequest")
-	proto.RegisterType((*ReadVersionTagResponse)(nil), "api.cmdb.ReadVersionTagResponse")
-	proto.RegisterType((*UpdateVersionTagRequest)(nil), "api.cmdb.UpdateVersionTagRequest")
-	proto.RegisterType((*UpdateVersionTagResponse)(nil), "api.cmdb.UpdateVersionTagResponse")
-	proto.RegisterType((*DeleteVersionTagRequest)(nil), "api.cmdb.DeleteVersionTagRequest")
-	proto.RegisterType((*DeleteVersionTagResponse)(nil), "api.cmdb.DeleteVersionTagResponse")
-	proto.RegisterType((*ListVersionTagRequest)(nil), "api.cmdb.ListVersionTagRequest")
-	proto.RegisterType((*ListVersionTagsResponse)(nil), "api.cmdb.ListVersionTagsResponse")
-	proto.RegisterType((*ApplicationInstance)(nil), "api.cmdb.ApplicationInstance")
-	proto.RegisterType((*CreateApplicationInstanceRequest)(nil), "api.cmdb.CreateApplicationInstanceRequest")
-	proto.RegisterType((*CreateApplicationInstanceResponse)(nil), "api.cmdb.CreateApplicationInstanceResponse")
-	proto.RegisterType((*ReadApplicationInstanceRequest)(nil), "api.cmdb.ReadApplicationInstanceRequest")
-	proto.RegisterType((*ReadApplicationInstanceResponse)(nil), "api.cmdb.ReadApplicationInstanceResponse")
-	proto.RegisterType((*UpdateApplicationInstanceRequest)(nil), "api.cmdb.UpdateApplicationInstanceRequest")
-	proto.RegisterType((*UpdateApplicationInstanceResponse)(nil), "api.cmdb.UpdateApplicationInstanceResponse")
-	proto.RegisterType((*DeleteApplicationInstanceRequest)(nil), "api.cmdb.DeleteApplicationInstanceRequest")
-	proto.RegisterType((*DeleteApplicationInstanceResponse)(nil), "api.cmdb.DeleteApplicationInstanceResponse")
-	proto.RegisterType((*ListApplicationInstanceRequest)(nil), "api.cmdb.ListApplicationInstanceRequest")
-	proto.RegisterType((*ListApplicationInstancesResponse)(nil), "api.cmdb.ListApplicationInstancesResponse")
-	proto.RegisterType((*AwsRdsInstance)(nil), "api.cmdb.AwsRdsInstance")
-	proto.RegisterType((*CreateAwsRdsInstanceRequest)(nil), "api.cmdb.CreateAwsRdsInstanceRequest")
-	proto.RegisterType((*CreateAwsRdsInstanceResponse)(nil), "api.cmdb.CreateAwsRdsInstanceResponse")
-	proto.RegisterType((*ReadAwsRdsInstanceRequest)(nil), "api.cmdb.ReadAwsRdsInstanceRequest")
-	proto.RegisterType((*ReadAwsRdsInstanceResponse)(nil), "api.cmdb.ReadAwsRdsInstanceResponse")
-	proto.RegisterType((*UpdateAwsRdsInstanceRequest)(nil), "api.cmdb.UpdateAwsRdsInstanceRequest")
-	proto.RegisterType((*UpdateAwsRdsInstanceResponse)(nil), "api.cmdb.UpdateAwsRdsInstanceResponse")
-	proto.RegisterType((*DeleteAwsRdsInstanceRequest)(nil), "api.cmdb.DeleteAwsRdsInstanceRequest")
-	proto.RegisterType((*DeleteAwsRdsInstanceResponse)(nil), "api.cmdb.DeleteAwsRdsInstanceResponse")
-	proto.RegisterType((*ListAwsRdsInstanceRequest)(nil), "api.cmdb.ListAwsRdsInstanceRequest")
-	proto.RegisterType((*ListAwsRdsInstancesResponse)(nil), "api.cmdb.ListAwsRdsInstancesResponse")
-	proto.RegisterType((*Container)(nil), "api.cmdb.Container")
-	proto.RegisterType((*CreateContainerRequest)(nil), "api.cmdb.CreateContainerRequest")
-	proto.RegisterType((*CreateContainerResponse)(nil), "api.cmdb.CreateContainerResponse")
-	proto.RegisterType((*ReadContainerRequest)(nil), "api.cmdb.ReadContainerRequest")
-	proto.RegisterType((*ReadContainerResponse)(nil), "api.cmdb.ReadContainerResponse")
-	proto.RegisterType((*UpdateContainerRequest)(nil), "api.cmdb.UpdateContainerRequest")
-	proto.RegisterType((*UpdateContainerResponse)(nil), "api.cmdb.UpdateContainerResponse")
-	proto.RegisterType((*DeleteContainerRequest)(nil), "api.cmdb.DeleteContainerRequest")
-	proto.RegisterType((*DeleteContainerResponse)(nil), "api.cmdb.DeleteContainerResponse")
-	proto.RegisterType((*ListContainerRequest)(nil), "api.cmdb.ListContainerRequest")
-	proto.RegisterType((*ListContainersResponse)(nil), "api.cmdb.ListContainersResponse")
-	proto.RegisterType((*Environment)(nil), "api.cmdb.Environment")
-	proto.RegisterType((*CreateEnvironmentRequest)(nil), "api.cmdb.CreateEnvironmentRequest")
-	proto.RegisterType((*CreateEnvironmentResponse)(nil), "api.cmdb.CreateEnvironmentResponse")
-	proto.RegisterType((*ReadEnvironmentRequest)(nil), "api.cmdb.ReadEnvironmentRequest")
-	proto.RegisterType((*ReadEnvironmentResponse)(nil), "api.cmdb.ReadEnvironmentResponse")
-	proto.RegisterType((*UpdateEnvironmentRequest)(nil), "api.cmdb.UpdateEnvironmentRequest")
-	proto.RegisterType((*UpdateEnvironmentResponse)(nil), "api.cmdb.UpdateEnvironmentResponse")
-	proto.RegisterType((*DeleteEnvironmentRequest)(nil), "api.cmdb.DeleteEnvironmentRequest")
-	proto.RegisterType((*DeleteEnvironmentResponse)(nil), "api.cmdb.DeleteEnvironmentResponse")
-	proto.RegisterType((*ListEnvironmentRequest)(nil), "api.cmdb.ListEnvironmentRequest")
-	proto.RegisterType((*ListEnvironmentsResponse)(nil), "api.cmdb.ListEnvironmentsResponse")
-	proto.RegisterType((*Manifest)(nil), "api.cmdb.Manifest")
-	proto.RegisterType((*CreateManifestRequest)(nil), "api.cmdb.CreateManifestRequest")
-	proto.RegisterType((*CreateManifestResponse)(nil), "api.cmdb.CreateManifestResponse")
-	proto.RegisterType((*ReadManifestRequest)(nil), "api.cmdb.ReadManifestRequest")
-	proto.RegisterType((*ReadManifestResponse)(nil), "api.cmdb.ReadManifestResponse")
-	proto.RegisterType((*UpdateManifestRequest)(nil), "api.cmdb.UpdateManifestRequest")
-	proto.RegisterType((*UpdateManifestResponse)(nil), "api.cmdb.UpdateManifestResponse")
-	proto.RegisterType((*DeleteManifestRequest)(nil), "api.cmdb.DeleteManifestRequest")
-	proto.RegisterType((*DeleteManifestResponse)(nil), "api.cmdb.DeleteManifestResponse")
-	proto.RegisterType((*ListManifestRequest)(nil), "api.cmdb.ListManifestRequest")
-	proto.RegisterType((*ListManifestsResponse)(nil), "api.cmdb.ListManifestsResponse")
-	proto.RegisterType((*Secret)(nil), "api.cmdb.Secret")
-	proto.RegisterType((*CreateSecretRequest)(nil), "api.cmdb.CreateSecretRequest")
-	proto.RegisterType((*CreateSecretResponse)(nil), "api.cmdb.CreateSecretResponse")
-	proto.RegisterType((*ReadSecretRequest)(nil), "api.cmdb.ReadSecretRequest")
-	proto.RegisterType((*ReadSecretResponse)(nil), "api.cmdb.ReadSecretResponse")
-	proto.RegisterType((*UpdateSecretRequest)(nil), "api.cmdb.UpdateSecretRequest")
-	proto.RegisterType((*UpdateSecretResponse)(nil), "api.cmdb.UpdateSecretResponse")
-	proto.RegisterType((*DeleteSecretRequest)(nil), "api.cmdb.DeleteSecretRequest")
-	proto.RegisterType((*DeleteSecretResponse)(nil), "api.cmdb.DeleteSecretResponse")
-	proto.RegisterType((*ListSecretRequest)(nil), "api.cmdb.ListSecretRequest")
-	proto.RegisterType((*ListSecretsResponse)(nil), "api.cmdb.ListSecretsResponse")
-	proto.RegisterType((*Artifact)(nil), "api.cmdb.Artifact")
-	proto.RegisterType((*CreateArtifactRequest)(nil), "api.cmdb.CreateArtifactRequest")
-	proto.RegisterType((*CreateArtifactResponse)(nil), "api.cmdb.CreateArtifactResponse")
-	proto.RegisterType((*ReadArtifactRequest)(nil), "api.cmdb.ReadArtifactRequest")
-	proto.RegisterType((*ReadArtifactResponse)(nil), "api.cmdb.ReadArtifactResponse")
-	proto.RegisterType((*UpdateArtifactRequest)(nil), "api.cmdb.UpdateArtifactRequest")
-	proto.RegisterType((*UpdateArtifactResponse)(nil), "api.cmdb.UpdateArtifactResponse")
-	proto.RegisterType((*DeleteArtifactRequest)(nil), "api.cmdb.DeleteArtifactRequest")
-	proto.RegisterType((*DeleteArtifactResponse)(nil), "api.cmdb.DeleteArtifactResponse")
-	proto.RegisterType((*ListArtifactRequest)(nil), "api.cmdb.ListArtifactRequest")
-	proto.RegisterType((*ListArtifactsResponse)(nil), "api.cmdb.ListArtifactsResponse")
-	proto.RegisterType((*AwsService)(nil), "api.cmdb.AwsService")
-	proto.RegisterType((*CreateAwsServiceRequest)(nil), "api.cmdb.CreateAwsServiceRequest")
-	proto.RegisterType((*CreateAwsServiceResponse)(nil), "api.cmdb.CreateAwsServiceResponse")
-	proto.RegisterType((*ReadAwsServiceRequest)(nil), "api.cmdb.ReadAwsServiceRequest")
-	proto.RegisterType((*ReadAwsServiceResponse)(nil), "api.cmdb.ReadAwsServiceResponse")
-	proto.RegisterType((*UpdateAwsServiceRequest)(nil), "api.cmdb.UpdateAwsServiceRequest")
-	proto.RegisterType((*UpdateAwsServiceResponse)(nil), "api.cmdb.UpdateAwsServiceResponse")
-	proto.RegisterType((*DeleteAwsServiceRequest)(nil), "api.cmdb.DeleteAwsServiceRequest")
-	proto.RegisterType((*DeleteAwsServiceResponse)(nil), "api.cmdb.DeleteAwsServiceResponse")
-	proto.RegisterType((*ListAwsServiceRequest)(nil), "api.cmdb.ListAwsServiceRequest")
-	proto.RegisterType((*ListAwsServicesResponse)(nil), "api.cmdb.ListAwsServicesResponse")
-	proto.RegisterType((*Deployment)(nil), "api.cmdb.Deployment")
-	proto.RegisterType((*CreateDeploymentRequest)(nil), "api.cmdb.CreateDeploymentRequest")
-	proto.RegisterType((*CreateDeploymentResponse)(nil), "api.cmdb.CreateDeploymentResponse")
-	proto.RegisterType((*ReadDeploymentRequest)(nil), "api.cmdb.ReadDeploymentRequest")
-	proto.RegisterType((*ReadDeploymentResponse)(nil), "api.cmdb.ReadDeploymentResponse")
-	proto.RegisterType((*UpdateDeploymentRequest)(nil), "api.cmdb.UpdateDeploymentRequest")
-	proto.RegisterType((*UpdateDeploymentResponse)(nil), "api.cmdb.UpdateDeploymentResponse")
-	proto.RegisterType((*DeleteDeploymentRequest)(nil), "api.cmdb.DeleteDeploymentRequest")
-	proto.RegisterType((*DeleteDeploymentResponse)(nil), "api.cmdb.DeleteDeploymentResponse")
-	proto.RegisterType((*ListDeploymentRequest)(nil), "api.cmdb.ListDeploymentRequest")
-	proto.RegisterType((*ListDeploymentsResponse)(nil), "api.cmdb.ListDeploymentsResponse")
-	proto.RegisterType((*KubeCluster)(nil), "api.cmdb.KubeCluster")
-	proto.RegisterType((*CreateKubeClusterRequest)(nil), "api.cmdb.CreateKubeClusterRequest")
-	proto.RegisterType((*CreateKubeClusterResponse)(nil), "api.cmdb.CreateKubeClusterResponse")
-	proto.RegisterType((*ReadKubeClusterRequest)(nil), "api.cmdb.ReadKubeClusterRequest")
-	proto.RegisterType((*ReadKubeClusterResponse)(nil), "api.cmdb.ReadKubeClusterResponse")
-	proto.RegisterType((*UpdateKubeClusterRequest)(nil), "api.cmdb.UpdateKubeClusterRequest")
-	proto.RegisterType((*UpdateKubeClusterResponse)(nil), "api.cmdb.UpdateKubeClusterResponse")
-	proto.RegisterType((*DeleteKubeClusterRequest)(nil), "api.cmdb.DeleteKubeClusterRequest")
-	proto.RegisterType((*DeleteKubeClusterResponse)(nil), "api.cmdb.DeleteKubeClusterResponse")
-	proto.RegisterType((*ListKubeClusterRequest)(nil), "api.cmdb.ListKubeClusterRequest")
-	proto.RegisterType((*ListKubeClustersResponse)(nil), "api.cmdb.ListKubeClustersResponse")
 	proto.RegisterType((*CloudProvider)(nil), "api.cmdb.CloudProvider")
 	proto.RegisterType((*CreateCloudProviderRequest)(nil), "api.cmdb.CreateCloudProviderRequest")
 	proto.RegisterType((*CreateCloudProviderResponse)(nil), "api.cmdb.CreateCloudProviderResponse")
@@ -7722,6 +7955,149 @@ func init() {
 	proto.RegisterType((*DeleteRegionResponse)(nil), "api.cmdb.DeleteRegionResponse")
 	proto.RegisterType((*ListRegionRequest)(nil), "api.cmdb.ListRegionRequest")
 	proto.RegisterType((*ListRegionsResponse)(nil), "api.cmdb.ListRegionsResponse")
+	proto.RegisterType((*Stage)(nil), "api.cmdb.Stage")
+	proto.RegisterType((*CreateStageRequest)(nil), "api.cmdb.CreateStageRequest")
+	proto.RegisterType((*CreateStageResponse)(nil), "api.cmdb.CreateStageResponse")
+	proto.RegisterType((*ReadStageRequest)(nil), "api.cmdb.ReadStageRequest")
+	proto.RegisterType((*ReadStageResponse)(nil), "api.cmdb.ReadStageResponse")
+	proto.RegisterType((*UpdateStageRequest)(nil), "api.cmdb.UpdateStageRequest")
+	proto.RegisterType((*UpdateStageResponse)(nil), "api.cmdb.UpdateStageResponse")
+	proto.RegisterType((*DeleteStageRequest)(nil), "api.cmdb.DeleteStageRequest")
+	proto.RegisterType((*DeleteStageResponse)(nil), "api.cmdb.DeleteStageResponse")
+	proto.RegisterType((*ListStageRequest)(nil), "api.cmdb.ListStageRequest")
+	proto.RegisterType((*ListStagesResponse)(nil), "api.cmdb.ListStagesResponse")
+	proto.RegisterType((*Environment)(nil), "api.cmdb.Environment")
+	proto.RegisterType((*CreateEnvironmentRequest)(nil), "api.cmdb.CreateEnvironmentRequest")
+	proto.RegisterType((*CreateEnvironmentResponse)(nil), "api.cmdb.CreateEnvironmentResponse")
+	proto.RegisterType((*ReadEnvironmentRequest)(nil), "api.cmdb.ReadEnvironmentRequest")
+	proto.RegisterType((*ReadEnvironmentResponse)(nil), "api.cmdb.ReadEnvironmentResponse")
+	proto.RegisterType((*UpdateEnvironmentRequest)(nil), "api.cmdb.UpdateEnvironmentRequest")
+	proto.RegisterType((*UpdateEnvironmentResponse)(nil), "api.cmdb.UpdateEnvironmentResponse")
+	proto.RegisterType((*DeleteEnvironmentRequest)(nil), "api.cmdb.DeleteEnvironmentRequest")
+	proto.RegisterType((*DeleteEnvironmentResponse)(nil), "api.cmdb.DeleteEnvironmentResponse")
+	proto.RegisterType((*ListEnvironmentRequest)(nil), "api.cmdb.ListEnvironmentRequest")
+	proto.RegisterType((*ListEnvironmentsResponse)(nil), "api.cmdb.ListEnvironmentsResponse")
+	proto.RegisterType((*Application)(nil), "api.cmdb.Application")
+	proto.RegisterType((*CreateApplicationRequest)(nil), "api.cmdb.CreateApplicationRequest")
+	proto.RegisterType((*CreateApplicationResponse)(nil), "api.cmdb.CreateApplicationResponse")
+	proto.RegisterType((*ReadApplicationRequest)(nil), "api.cmdb.ReadApplicationRequest")
+	proto.RegisterType((*ReadApplicationResponse)(nil), "api.cmdb.ReadApplicationResponse")
+	proto.RegisterType((*UpdateApplicationRequest)(nil), "api.cmdb.UpdateApplicationRequest")
+	proto.RegisterType((*UpdateApplicationResponse)(nil), "api.cmdb.UpdateApplicationResponse")
+	proto.RegisterType((*DeleteApplicationRequest)(nil), "api.cmdb.DeleteApplicationRequest")
+	proto.RegisterType((*DeleteApplicationResponse)(nil), "api.cmdb.DeleteApplicationResponse")
+	proto.RegisterType((*ListApplicationRequest)(nil), "api.cmdb.ListApplicationRequest")
+	proto.RegisterType((*ListApplicationsResponse)(nil), "api.cmdb.ListApplicationsResponse")
+	proto.RegisterType((*ChartVersion)(nil), "api.cmdb.ChartVersion")
+	proto.RegisterType((*CreateChartVersionRequest)(nil), "api.cmdb.CreateChartVersionRequest")
+	proto.RegisterType((*CreateChartVersionResponse)(nil), "api.cmdb.CreateChartVersionResponse")
+	proto.RegisterType((*ReadChartVersionRequest)(nil), "api.cmdb.ReadChartVersionRequest")
+	proto.RegisterType((*ReadChartVersionResponse)(nil), "api.cmdb.ReadChartVersionResponse")
+	proto.RegisterType((*UpdateChartVersionRequest)(nil), "api.cmdb.UpdateChartVersionRequest")
+	proto.RegisterType((*UpdateChartVersionResponse)(nil), "api.cmdb.UpdateChartVersionResponse")
+	proto.RegisterType((*DeleteChartVersionRequest)(nil), "api.cmdb.DeleteChartVersionRequest")
+	proto.RegisterType((*DeleteChartVersionResponse)(nil), "api.cmdb.DeleteChartVersionResponse")
+	proto.RegisterType((*ListChartVersionRequest)(nil), "api.cmdb.ListChartVersionRequest")
+	proto.RegisterType((*ListChartVersionsResponse)(nil), "api.cmdb.ListChartVersionsResponse")
+	proto.RegisterType((*ApplicationInstance)(nil), "api.cmdb.ApplicationInstance")
+	proto.RegisterType((*CreateApplicationInstanceRequest)(nil), "api.cmdb.CreateApplicationInstanceRequest")
+	proto.RegisterType((*CreateApplicationInstanceResponse)(nil), "api.cmdb.CreateApplicationInstanceResponse")
+	proto.RegisterType((*ReadApplicationInstanceRequest)(nil), "api.cmdb.ReadApplicationInstanceRequest")
+	proto.RegisterType((*ReadApplicationInstanceResponse)(nil), "api.cmdb.ReadApplicationInstanceResponse")
+	proto.RegisterType((*UpdateApplicationInstanceRequest)(nil), "api.cmdb.UpdateApplicationInstanceRequest")
+	proto.RegisterType((*UpdateApplicationInstanceResponse)(nil), "api.cmdb.UpdateApplicationInstanceResponse")
+	proto.RegisterType((*DeleteApplicationInstanceRequest)(nil), "api.cmdb.DeleteApplicationInstanceRequest")
+	proto.RegisterType((*DeleteApplicationInstanceResponse)(nil), "api.cmdb.DeleteApplicationInstanceResponse")
+	proto.RegisterType((*ListApplicationInstanceRequest)(nil), "api.cmdb.ListApplicationInstanceRequest")
+	proto.RegisterType((*ListApplicationInstancesResponse)(nil), "api.cmdb.ListApplicationInstancesResponse")
+	proto.RegisterType((*Vault)(nil), "api.cmdb.Vault")
+	proto.RegisterType((*CreateVaultRequest)(nil), "api.cmdb.CreateVaultRequest")
+	proto.RegisterType((*CreateVaultResponse)(nil), "api.cmdb.CreateVaultResponse")
+	proto.RegisterType((*ReadVaultRequest)(nil), "api.cmdb.ReadVaultRequest")
+	proto.RegisterType((*ReadVaultResponse)(nil), "api.cmdb.ReadVaultResponse")
+	proto.RegisterType((*UpdateVaultRequest)(nil), "api.cmdb.UpdateVaultRequest")
+	proto.RegisterType((*UpdateVaultResponse)(nil), "api.cmdb.UpdateVaultResponse")
+	proto.RegisterType((*DeleteVaultRequest)(nil), "api.cmdb.DeleteVaultRequest")
+	proto.RegisterType((*DeleteVaultResponse)(nil), "api.cmdb.DeleteVaultResponse")
+	proto.RegisterType((*ListVaultRequest)(nil), "api.cmdb.ListVaultRequest")
+	proto.RegisterType((*ListVaultsResponse)(nil), "api.cmdb.ListVaultsResponse")
+	proto.RegisterType((*Secret)(nil), "api.cmdb.Secret")
+	proto.RegisterType((*CreateSecretRequest)(nil), "api.cmdb.CreateSecretRequest")
+	proto.RegisterType((*CreateSecretResponse)(nil), "api.cmdb.CreateSecretResponse")
+	proto.RegisterType((*ReadSecretRequest)(nil), "api.cmdb.ReadSecretRequest")
+	proto.RegisterType((*ReadSecretResponse)(nil), "api.cmdb.ReadSecretResponse")
+	proto.RegisterType((*UpdateSecretRequest)(nil), "api.cmdb.UpdateSecretRequest")
+	proto.RegisterType((*UpdateSecretResponse)(nil), "api.cmdb.UpdateSecretResponse")
+	proto.RegisterType((*DeleteSecretRequest)(nil), "api.cmdb.DeleteSecretRequest")
+	proto.RegisterType((*DeleteSecretResponse)(nil), "api.cmdb.DeleteSecretResponse")
+	proto.RegisterType((*ListSecretRequest)(nil), "api.cmdb.ListSecretRequest")
+	proto.RegisterType((*ListSecretsResponse)(nil), "api.cmdb.ListSecretsResponse")
+	proto.RegisterType((*AwsService)(nil), "api.cmdb.AwsService")
+	proto.RegisterType((*CreateAwsServiceRequest)(nil), "api.cmdb.CreateAwsServiceRequest")
+	proto.RegisterType((*CreateAwsServiceResponse)(nil), "api.cmdb.CreateAwsServiceResponse")
+	proto.RegisterType((*ReadAwsServiceRequest)(nil), "api.cmdb.ReadAwsServiceRequest")
+	proto.RegisterType((*ReadAwsServiceResponse)(nil), "api.cmdb.ReadAwsServiceResponse")
+	proto.RegisterType((*UpdateAwsServiceRequest)(nil), "api.cmdb.UpdateAwsServiceRequest")
+	proto.RegisterType((*UpdateAwsServiceResponse)(nil), "api.cmdb.UpdateAwsServiceResponse")
+	proto.RegisterType((*DeleteAwsServiceRequest)(nil), "api.cmdb.DeleteAwsServiceRequest")
+	proto.RegisterType((*DeleteAwsServiceResponse)(nil), "api.cmdb.DeleteAwsServiceResponse")
+	proto.RegisterType((*ListAwsServiceRequest)(nil), "api.cmdb.ListAwsServiceRequest")
+	proto.RegisterType((*ListAwsServicesResponse)(nil), "api.cmdb.ListAwsServicesResponse")
+	proto.RegisterType((*AwsRdsInstance)(nil), "api.cmdb.AwsRdsInstance")
+	proto.RegisterType((*CreateAwsRdsInstanceRequest)(nil), "api.cmdb.CreateAwsRdsInstanceRequest")
+	proto.RegisterType((*CreateAwsRdsInstanceResponse)(nil), "api.cmdb.CreateAwsRdsInstanceResponse")
+	proto.RegisterType((*ReadAwsRdsInstanceRequest)(nil), "api.cmdb.ReadAwsRdsInstanceRequest")
+	proto.RegisterType((*ReadAwsRdsInstanceResponse)(nil), "api.cmdb.ReadAwsRdsInstanceResponse")
+	proto.RegisterType((*UpdateAwsRdsInstanceRequest)(nil), "api.cmdb.UpdateAwsRdsInstanceRequest")
+	proto.RegisterType((*UpdateAwsRdsInstanceResponse)(nil), "api.cmdb.UpdateAwsRdsInstanceResponse")
+	proto.RegisterType((*DeleteAwsRdsInstanceRequest)(nil), "api.cmdb.DeleteAwsRdsInstanceRequest")
+	proto.RegisterType((*DeleteAwsRdsInstanceResponse)(nil), "api.cmdb.DeleteAwsRdsInstanceResponse")
+	proto.RegisterType((*ListAwsRdsInstanceRequest)(nil), "api.cmdb.ListAwsRdsInstanceRequest")
+	proto.RegisterType((*ListAwsRdsInstancesResponse)(nil), "api.cmdb.ListAwsRdsInstancesResponse")
+	proto.RegisterType((*Value)(nil), "api.cmdb.Value")
+	proto.RegisterType((*CreateValueRequest)(nil), "api.cmdb.CreateValueRequest")
+	proto.RegisterType((*CreateValueResponse)(nil), "api.cmdb.CreateValueResponse")
+	proto.RegisterType((*ReadValueRequest)(nil), "api.cmdb.ReadValueRequest")
+	proto.RegisterType((*ReadValueResponse)(nil), "api.cmdb.ReadValueResponse")
+	proto.RegisterType((*UpdateValueRequest)(nil), "api.cmdb.UpdateValueRequest")
+	proto.RegisterType((*UpdateValueResponse)(nil), "api.cmdb.UpdateValueResponse")
+	proto.RegisterType((*DeleteValueRequest)(nil), "api.cmdb.DeleteValueRequest")
+	proto.RegisterType((*DeleteValueResponse)(nil), "api.cmdb.DeleteValueResponse")
+	proto.RegisterType((*ListValueRequest)(nil), "api.cmdb.ListValueRequest")
+	proto.RegisterType((*ListValuesResponse)(nil), "api.cmdb.ListValuesResponse")
+	proto.RegisterType((*Artifact)(nil), "api.cmdb.Artifact")
+	proto.RegisterType((*CreateArtifactRequest)(nil), "api.cmdb.CreateArtifactRequest")
+	proto.RegisterType((*CreateArtifactResponse)(nil), "api.cmdb.CreateArtifactResponse")
+	proto.RegisterType((*ReadArtifactRequest)(nil), "api.cmdb.ReadArtifactRequest")
+	proto.RegisterType((*ReadArtifactResponse)(nil), "api.cmdb.ReadArtifactResponse")
+	proto.RegisterType((*UpdateArtifactRequest)(nil), "api.cmdb.UpdateArtifactRequest")
+	proto.RegisterType((*UpdateArtifactResponse)(nil), "api.cmdb.UpdateArtifactResponse")
+	proto.RegisterType((*DeleteArtifactRequest)(nil), "api.cmdb.DeleteArtifactRequest")
+	proto.RegisterType((*DeleteArtifactResponse)(nil), "api.cmdb.DeleteArtifactResponse")
+	proto.RegisterType((*ListArtifactRequest)(nil), "api.cmdb.ListArtifactRequest")
+	proto.RegisterType((*ListArtifactsResponse)(nil), "api.cmdb.ListArtifactsResponse")
+	proto.RegisterType((*Deployment)(nil), "api.cmdb.Deployment")
+	proto.RegisterType((*CreateDeploymentRequest)(nil), "api.cmdb.CreateDeploymentRequest")
+	proto.RegisterType((*CreateDeploymentResponse)(nil), "api.cmdb.CreateDeploymentResponse")
+	proto.RegisterType((*ReadDeploymentRequest)(nil), "api.cmdb.ReadDeploymentRequest")
+	proto.RegisterType((*ReadDeploymentResponse)(nil), "api.cmdb.ReadDeploymentResponse")
+	proto.RegisterType((*UpdateDeploymentRequest)(nil), "api.cmdb.UpdateDeploymentRequest")
+	proto.RegisterType((*UpdateDeploymentResponse)(nil), "api.cmdb.UpdateDeploymentResponse")
+	proto.RegisterType((*DeleteDeploymentRequest)(nil), "api.cmdb.DeleteDeploymentRequest")
+	proto.RegisterType((*DeleteDeploymentResponse)(nil), "api.cmdb.DeleteDeploymentResponse")
+	proto.RegisterType((*ListDeploymentRequest)(nil), "api.cmdb.ListDeploymentRequest")
+	proto.RegisterType((*ListDeploymentsResponse)(nil), "api.cmdb.ListDeploymentsResponse")
+	proto.RegisterType((*KubeCluster)(nil), "api.cmdb.KubeCluster")
+	proto.RegisterType((*CreateKubeClusterRequest)(nil), "api.cmdb.CreateKubeClusterRequest")
+	proto.RegisterType((*CreateKubeClusterResponse)(nil), "api.cmdb.CreateKubeClusterResponse")
+	proto.RegisterType((*ReadKubeClusterRequest)(nil), "api.cmdb.ReadKubeClusterRequest")
+	proto.RegisterType((*ReadKubeClusterResponse)(nil), "api.cmdb.ReadKubeClusterResponse")
+	proto.RegisterType((*UpdateKubeClusterRequest)(nil), "api.cmdb.UpdateKubeClusterRequest")
+	proto.RegisterType((*UpdateKubeClusterResponse)(nil), "api.cmdb.UpdateKubeClusterResponse")
+	proto.RegisterType((*DeleteKubeClusterRequest)(nil), "api.cmdb.DeleteKubeClusterRequest")
+	proto.RegisterType((*DeleteKubeClusterResponse)(nil), "api.cmdb.DeleteKubeClusterResponse")
+	proto.RegisterType((*ListKubeClusterRequest)(nil), "api.cmdb.ListKubeClusterRequest")
+	proto.RegisterType((*ListKubeClustersResponse)(nil), "api.cmdb.ListKubeClustersResponse")
 }
 
 func init() {
@@ -7729,325 +8105,320 @@ func init() {
 }
 
 var fileDescriptor_b7c4efe410d87592 = []byte{
-	// 5084 bytes of a gzipped FileDescriptorProto
-	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xdc, 0x7d, 0xdb, 0x73, 0x1b, 0x47,
-	0x76, 0xb7, 0x41, 0x81, 0x20, 0x78, 0x78, 0x83, 0x9a, 0x37, 0x00, 0xbc, 0x81, 0x43, 0xd1, 0x96,
-	0x20, 0x8b, 0x90, 0xe0, 0x5d, 0xf9, 0x5b, 0xf9, 0x26, 0x8a, 0xa4, 0x2c, 0xda, 0x6b, 0x9a, 0x02,
-	0x2d, 0xaf, 0x3f, 0xa5, 0x12, 0xee, 0x10, 0x18, 0x42, 0x23, 0x81, 0x18, 0x78, 0x66, 0x40, 0x99,
-	0xf6, 0x7a, 0x53, 0x71, 0x2a, 0xbb, 0x95, 0x4b, 0x55, 0xaa, 0xb2, 0x79, 0xc8, 0x5f, 0x90, 0x97,
-	0xa4, 0x2a, 0x0f, 0x79, 0x70, 0xc8, 0x54, 0x65, 0x93, 0x4a, 0xed, 0xd3, 0x56, 0x1e, 0x36, 0x5b,
-	0x79, 0x49, 0xd5, 0x6e, 0x25, 0x9b, 0x64, 0x5f, 0xf2, 0x9a, 0xa7, 0x7d, 0x48, 0x52, 0xd3, 0xd3,
-	0xd3, 0xd3, 0xd3, 0xdd, 0x33, 0x00, 0x07, 0x12, 0x9d, 0xe2, 0x8b, 0x0a, 0x9c, 0x3e, 0x7d, 0xce,
-	0xe9, 0xd3, 0xbf, 0xfe, 0xf5, 0xed, 0xcc, 0x08, 0xae, 0xd4, 0x75, 0xfb, 0x51, 0x7b, 0x6f, 0xa5,
-	0x6a, 0x1c, 0x94, 0x2c, 0x4d, 0xff, 0x54, 0xad, 0xe9, 0xa5, 0xea, 0x41, 0x6d, 0xaf, 0xd4, 0x7a,
-	0x52, 0x2f, 0xb5, 0xf6, 0xf0, 0xef, 0x95, 0x96, 0x69, 0xd8, 0x06, 0x4a, 0xab, 0x2d, 0x7d, 0xc5,
-	0xf9, 0x3b, 0x3f, 0x53, 0x37, 0x8c, 0x7a, 0x43, 0x2b, 0xe1, 0xe7, 0x7b, 0xed, 0xfd, 0x92, 0x76,
-	0xd0, 0xb2, 0x8f, 0x5c, 0xb1, 0x7c, 0x81, 0x2f, 0xdc, 0xd7, 0xb5, 0x46, 0x6d, 0xf7, 0x40, 0xb5,
-	0x9e, 0x10, 0x89, 0x59, 0x22, 0xa1, 0xb6, 0xf4, 0x92, 0xda, 0x6c, 0x1a, 0xb6, 0x6a, 0xeb, 0x46,
-	0xd3, 0x22, 0xa5, 0xaf, 0x31, 0x1e, 0x35, 0x8e, 0xf6, 0x6d, 0x57, 0x51, 0xf5, 0x5a, 0x5d, 0x6b,
-	0x5e, 0x3b, 0x54, 0x1b, 0x7a, 0x4d, 0xb5, 0xb5, 0x92, 0xf0, 0x83, 0x54, 0x7e, 0x99, 0x11, 0xb6,
-	0x9e, 0xaa, 0xf5, 0xba, 0x66, 0x96, 0x8c, 0x16, 0x56, 0x2f, 0x31, 0x75, 0x8b, 0x31, 0xa5, 0x37,
-	0xf7, 0x8d, 0xbd, 0x86, 0xf1, 0x89, 0xd1, 0xd2, 0x9a, 0xac, 0xc9, 0xba, 0x61, 0x1e, 0x50, 0x15,
-	0xce, 0x1f, 0xa4, 0xee, 0x37, 0xba, 0xad, 0x6b, 0x1f, 0xb5, 0x34, 0xcb, 0xfd, 0x97, 0x54, 0x7d,
-	0x27, 0xac, 0xaa, 0x6a, 0x37, 0x54, 0xeb, 0x9a, 0xda, 0x6a, 0x5d, 0xb3, 0x0d, 0xa3, 0xf1, 0x44,
-	0xb7, 0x4b, 0x1f, 0xb7, 0x35, 0xf3, 0xa8, 0x54, 0x35, 0x1a, 0x0d, 0xad, 0xea, 0xb8, 0xb0, 0x6b,
-	0xb4, 0x34, 0x53, 0xb5, 0x0d, 0xd3, 0xd3, 0xb5, 0xd1, 0xbd, 0x2e, 0xb3, 0x55, 0x2d, 0x99, 0x9a,
-	0x65, 0xb4, 0xcd, 0xaa, 0x46, 0x7f, 0x10, 0x35, 0x1f, 0x74, 0xd1, 0x1a, 0x57, 0x23, 0xf6, 0xc8,
-	0xef, 0x08, 0x2f, 0x32, 0xf8, 0xf1, 0x2e, 0xd7, 0x1b, 0x5b, 0x5d, 0x6b, 0x15, 0xf4, 0xe1, 0xc7,
-	0x9c, 0x3e, 0xe5, 0x2a, 0x8c, 0x7d, 0xa8, 0x99, 0x96, 0x6e, 0x34, 0x2b, 0x9a, 0xd5, 0x32, 0x9a,
-	0x96, 0x86, 0xb2, 0x30, 0x70, 0xe8, 0x3e, 0xca, 0x26, 0x0a, 0x89, 0xcb, 0x83, 0x15, 0xef, 0x4f,
-	0xe5, 0x6f, 0x13, 0xd0, 0xff, 0xa1, 0xda, 0x6e, 0xd8, 0xe8, 0x55, 0xe8, 0xd3, 0x6b, 0xb8, 0x78,
-	0xa8, 0x3c, 0xb9, 0x82, 0x35, 0xaf, 0x98, 0xad, 0xea, 0xca, 0x66, 0x4d, 0x6b, 0xda, 0xfa, 0xbe,
-	0xae, 0x99, 0x77, 0x32, 0x27, 0xc7, 0xb9, 0x61, 0x00, 0x94, 0xb2, 0x34, 0x53, 0x57, 0x1b, 0x97,
-	0x13, 0x95, 0x3e, 0xbd, 0x86, 0x10, 0x24, 0x9b, 0xea, 0x81, 0x96, 0xed, 0xc3, 0x9a, 0xf1, 0x6f,
-	0x54, 0x80, 0xa1, 0x9a, 0x66, 0x55, 0x4d, 0x1d, 0x3b, 0x9a, 0xbd, 0x80, 0x8b, 0xd8, 0x47, 0x4e,
-	0xad, 0x96, 0x6a, 0x3f, 0xca, 0x26, 0xdd, 0x5a, 0xce, 0x6f, 0x54, 0x84, 0x01, 0x4b, 0xab, 0x9a,
-	0x9a, 0x6d, 0x65, 0xfb, 0x0b, 0x17, 0x2e, 0x0f, 0x95, 0x33, 0x2b, 0xde, 0x68, 0x5a, 0xd9, 0xc1,
-	0x05, 0x15, 0x4f, 0xe0, 0x56, 0xfa, 0xe4, 0x38, 0x97, 0x4c, 0x27, 0x0a, 0x09, 0xe5, 0x2d, 0x40,
-	0x6b, 0xa6, 0xa6, 0xda, 0x1a, 0x6e, 0x47, 0x45, 0xfb, 0xb8, 0xad, 0x59, 0x36, 0xba, 0x02, 0x03,
-	0x2d, 0xf5, 0xa8, 0x61, 0xa8, 0x5e, 0x9b, 0xc6, 0x7c, 0x5d, 0xae, 0xa0, 0x57, 0xae, 0xbc, 0x09,
-	0xe3, 0x01, 0x05, 0x24, 0x68, 0x2f, 0x41, 0xca, 0xd4, 0xac, 0x76, 0xc3, 0x0e, 0x53, 0x40, 0x8a,
-	0x15, 0x03, 0x32, 0x15, 0x4d, 0xad, 0x05, 0xcc, 0x2f, 0x77, 0x8c, 0x26, 0x8e, 0xdd, 0xd7, 0x20,
-	0x85, 0x07, 0xbe, 0x85, 0xa3, 0x37, 0x54, 0x9e, 0x5d, 0xf1, 0x10, 0x80, 0x8d, 0xdd, 0x75, 0xca,
-	0x76, 0x34, 0x02, 0xeb, 0x0a, 0x91, 0x55, 0x5e, 0x87, 0x8b, 0x8c, 0xc1, 0xd3, 0xba, 0x6b, 0x01,
-	0x7a, 0xd0, 0xaa, 0xc5, 0x8f, 0x17, 0x2a, 0x73, 0x4e, 0xe7, 0x57, 0x5c, 0xaa, 0x5a, 0xf1, 0xc8,
-	0xcc, 0xf5, 0xfb, 0x3d, 0xd5, 0x7a, 0x42, 0x5d, 0x7e, 0x13, 0xc6, 0x03, 0x46, 0x4f, 0xeb, 0xf4,
-	0x6b, 0x80, 0xd6, 0xb5, 0x86, 0xc6, 0x39, 0xdd, 0x5d, 0x94, 0x95, 0x49, 0x18, 0x0f, 0x54, 0x76,
-	0x8d, 0x2b, 0x3f, 0x4b, 0x40, 0xe6, 0x9b, 0xba, 0x65, 0x07, 0x54, 0x96, 0x9c, 0xc6, 0x35, 0x6c,
-	0xcd, 0x24, 0x6a, 0xa7, 0xf9, 0x1e, 0x71, 0xca, 0xf4, 0x66, 0xbd, 0x42, 0xc4, 0xd0, 0x75, 0x48,
-	0x1b, 0x66, 0x4d, 0x33, 0x77, 0xf7, 0x8e, 0x48, 0x3c, 0x26, 0x83, 0x55, 0x76, 0x0c, 0xd3, 0x76,
-	0x2a, 0x0c, 0x60, 0xb1, 0x3b, 0x47, 0x4c, 0xa7, 0x5f, 0xe8, 0xbe, 0xd3, 0xd1, 0x75, 0x48, 0xb5,
-	0xd4, 0xba, 0xde, 0xac, 0xe3, 0x21, 0x33, 0x54, 0xce, 0x06, 0x6b, 0x6d, 0x3b, 0x65, 0xaa, 0x5b,
-	0xc3, 0x95, 0x53, 0x9e, 0x00, 0xa2, 0xcd, 0xb3, 0x68, 0xc8, 0xaf, 0xc0, 0x80, 0x1b, 0x53, 0x2b,
-	0x9b, 0xc0, 0x83, 0x4c, 0xec, 0x68, 0x52, 0x8e, 0x8a, 0xce, 0x18, 0xad, 0x6b, 0xa4, 0x59, 0x53,
-	0x82, 0x41, 0x6d, 0xb3, 0xb9, 0x6f, 0x54, 0xb0, 0x8c, 0xf2, 0x93, 0x04, 0x00, 0xa1, 0x9d, 0x0f,
-	0xd4, 0xfa, 0x59, 0xb3, 0x09, 0x43, 0x70, 0xc9, 0x00, 0xc1, 0xa1, 0xeb, 0x30, 0xa8, 0x9a, 0xb6,
-	0xbe, 0xaf, 0x56, 0x29, 0xab, 0x20, 0xbf, 0xc1, 0xab, 0xa4, 0xa8, 0xe2, 0x0b, 0x31, 0xcc, 0xb2,
-	0x09, 0xd3, 0x84, 0x18, 0x68, 0xc3, 0x3c, 0x98, 0xac, 0xf0, 0xc3, 0x65, 0x82, 0x89, 0xa2, 0x2f,
-	0x4d, 0x39, 0xe6, 0x1e, 0x64, 0x45, 0x55, 0xa4, 0x47, 0x5e, 0xe6, 0x06, 0x81, 0x5c, 0x95, 0x37,
-	0x12, 0x6c, 0x98, 0xc4, 0x83, 0x5f, 0x70, 0xe9, 0xb9, 0x52, 0xce, 0x5d, 0x98, 0xe2, 0xad, 0xc6,
-	0xf2, 0xfe, 0x73, 0x98, 0x26, 0x3c, 0xd0, 0x6b, 0x48, 0x63, 0xd1, 0xd0, 0x3d, 0xc8, 0x8a, 0xe6,
-	0x63, 0x35, 0xe4, 0x36, 0x4c, 0x13, 0x4e, 0x89, 0xd9, 0x11, 0x4a, 0x1e, 0xb2, 0xa2, 0x06, 0x42,
-	0x4d, 0xbf, 0x48, 0xc0, 0x24, 0x1e, 0xbb, 0x82, 0xf2, 0x73, 0xc4, 0x4f, 0x6d, 0x98, 0x0e, 0xb6,
-	0xd1, 0x27, 0xa9, 0x15, 0x9e, 0xa4, 0x42, 0xb0, 0x10, 0x87, 0xa9, 0xfe, 0x31, 0x09, 0xe3, 0xab,
-	0xad, 0x56, 0x43, 0xaf, 0x62, 0x77, 0x36, 0x9b, 0x96, 0xad, 0x36, 0xab, 0xda, 0x59, 0x53, 0x56,
-	0x0e, 0xd2, 0x6a, 0xab, 0xb5, 0x8b, 0x6b, 0x12, 0xce, 0x52, 0x5b, 0xad, 0x2d, 0xa7, 0x32, 0x82,
-	0xa4, 0xa9, 0xb5, 0x8c, 0x6c, 0xbf, 0xab, 0xd0, 0xf9, 0x8d, 0xde, 0x80, 0x21, 0x42, 0x69, 0xbb,
-	0xb6, 0x5a, 0xcf, 0xa6, 0xc2, 0x21, 0x7a, 0x27, 0x75, 0x72, 0x9c, 0xeb, 0x53, 0x5e, 0xa8, 0xc0,
-	0xa1, 0xcf, 0xc7, 0xaf, 0xc1, 0x28, 0x53, 0x7d, 0x57, 0xaf, 0x65, 0x07, 0xa2, 0xf0, 0x39, 0xec,
-	0x57, 0xdd, 0xac, 0xa1, 0x9b, 0x90, 0x3e, 0x50, 0x9b, 0xfa, 0xbe, 0x66, 0xd9, 0xd9, 0x34, 0xae,
-	0xc6, 0x50, 0xe8, 0x7b, 0xa4, 0x84, 0x9a, 0xa5, 0xb2, 0xe8, 0x26, 0x0c, 0x79, 0xbf, 0x1d, 0x8b,
-	0x83, 0x51, 0x16, 0xc1, 0x93, 0xdc, 0xac, 0xa1, 0x57, 0x00, 0xaa, 0x46, 0xd3, 0x56, 0xf5, 0xa6,
-	0x66, 0x5a, 0x59, 0xc0, 0x00, 0x18, 0xf7, 0x2d, 0xae, 0x79, 0x65, 0x15, 0x46, 0x0c, 0xbd, 0x0e,
-	0xa3, 0x5a, 0xf3, 0x50, 0x37, 0x8d, 0xe6, 0x81, 0xd6, 0xc4, 0xf6, 0x86, 0xa2, 0xec, 0x8d, 0x30,
-	0xc2, 0x9b, 0x0e, 0x2b, 0x42, 0x4d, 0x6b, 0x35, 0x8c, 0x23, 0xe7, 0xef, 0xec, 0x30, 0x1f, 0xdd,
-	0x75, 0x5a, 0x56, 0x61, 0xe4, 0x98, 0xa9, 0xe2, 0xd7, 0xa0, 0xe0, 0xf2, 0xbb, 0x04, 0x59, 0xde,
-	0xd0, 0x7d, 0x95, 0x27, 0xb8, 0x39, 0x66, 0x22, 0x92, 0x54, 0xa3, 0x93, 0xc7, 0x43, 0x58, 0x8c,
-	0x50, 0x4e, 0x86, 0xcc, 0xd7, 0x39, 0xfa, 0xea, 0xa0, 0xdc, 0x27, 0xe4, 0x79, 0x87, 0xd8, 0x23,
-	0xdc, 0x7e, 0xae, 0xf3, 0xca, 0x47, 0xb0, 0x10, 0x6a, 0xbe, 0xb7, 0x86, 0xfd, 0x61, 0x02, 0x0a,
-	0x2e, 0xd7, 0x3f, 0x87, 0x2e, 0x89, 0x35, 0xf9, 0x3c, 0x84, 0xc5, 0x08, 0x87, 0x7a, 0x6b, 0xed,
-	0x26, 0x14, 0xdc, 0xc9, 0xa4, 0xe7, 0x8e, 0x54, 0x96, 0x60, 0x31, 0x42, 0x15, 0x99, 0xa0, 0xfe,
-	0x33, 0x01, 0xf3, 0x0e, 0x79, 0x47, 0x98, 0x3b, 0x47, 0x33, 0xd5, 0xf7, 0x13, 0x50, 0x08, 0x69,
-	0xad, 0x3f, 0x67, 0xbd, 0xca, 0xcf, 0x59, 0x9d, 0xb0, 0x14, 0x67, 0xf2, 0xfa, 0xaf, 0x3e, 0x18,
-	0x5d, 0x7d, 0x6a, 0x55, 0x6a, 0xd6, 0x57, 0x35, 0x6f, 0x2d, 0xc1, 0x48, 0x4d, 0xb5, 0xd5, 0x3d,
-	0xd5, 0xd2, 0x76, 0x1f, 0x19, 0x96, 0x4d, 0x26, 0xaf, 0x61, 0xef, 0xe1, 0x3d, 0xc3, 0xb2, 0x03,
-	0x42, 0xd8, 0x46, 0x7f, 0x50, 0x08, 0x4f, 0x73, 0xac, 0x50, 0xdb, 0xd2, 0x4c, 0x3c, 0xa9, 0x31,
-	0x42, 0x0f, 0x2c, 0xcd, 0x44, 0x6f, 0xc0, 0x45, 0x2a, 0xd4, 0x52, 0x2d, 0xeb, 0xa9, 0x61, 0x7a,
-	0x73, 0x97, 0x78, 0x3a, 0x90, 0xf1, 0x44, 0xb7, 0x89, 0xa4, 0x33, 0xef, 0xa9, 0x4f, 0xad, 0x5d,
-	0x4b, 0x33, 0x0f, 0xf5, 0xaa, 0xe6, 0xcc, 0x0a, 0xe9, 0xc8, 0x79, 0x4f, 0x7d, 0x6a, 0xed, 0xb8,
-	0xb2, 0x9b, 0x35, 0x86, 0xde, 0xef, 0xc3, 0x0c, 0x61, 0xe0, 0x40, 0xec, 0x3d, 0xa8, 0x97, 0x79,
-	0x1a, 0xc9, 0x32, 0x5d, 0x1f, 0xac, 0x41, 0x49, 0x7d, 0x1b, 0x66, 0xe5, 0x2a, 0x09, 0x9c, 0xae,
-	0x73, 0x44, 0x10, 0xae, 0xd2, 0xe3, 0x80, 0x4f, 0x20, 0x87, 0xb9, 0x54, 0xea, 0xe2, 0x73, 0x65,
-	0xf1, 0x2d, 0xc8, 0xcb, 0x2c, 0xc7, 0x6e, 0xc9, 0xef, 0x24, 0x60, 0x86, 0x50, 0xe5, 0xb3, 0x8a,
-	0x77, 0x2c, 0xc6, 0xde, 0x86, 0x59, 0xb9, 0x1b, 0xb1, 0x5b, 0xb6, 0x0e, 0x33, 0x84, 0x5c, 0x7b,
-	0xe8, 0x25, 0x65, 0x1e, 0x66, 0xe5, 0x5a, 0x08, 0x3b, 0xff, 0x32, 0x01, 0x39, 0xcc, 0x57, 0x52,
-	0x23, 0xe7, 0x88, 0x98, 0x3f, 0x87, 0x19, 0xb1, 0x9d, 0x3e, 0x25, 0x97, 0x79, 0x4a, 0x8e, 0xc0,
-	0x49, 0x1c, 0x36, 0xfe, 0x55, 0x1f, 0x0c, 0xd2, 0xd5, 0xe8, 0x59, 0x13, 0xf1, 0x32, 0x8c, 0xd2,
-	0xe5, 0x2f, 0xbb, 0x8d, 0x18, 0xa1, 0x4f, 0x31, 0xcb, 0xce, 0x01, 0xe8, 0x07, 0x6a, 0x5d, 0xdb,
-	0x65, 0xb6, 0x14, 0x83, 0xf8, 0x49, 0xc5, 0xd9, 0x57, 0xcc, 0x80, 0xfb, 0x07, 0xdd, 0x55, 0x0c,
-	0x56, 0xd2, 0xf8, 0x81, 0xb3, 0x6b, 0x28, 0xc2, 0x45, 0xb7, 0xb0, 0xd5, 0x6e, 0x34, 0x76, 0x5b,
-	0x46, 0x43, 0xaf, 0x1e, 0x61, 0xf2, 0x1d, 0xac, 0x8c, 0xe1, 0x82, 0xed, 0x76, 0xa3, 0xb1, 0x8d,
-	0x1f, 0xa3, 0x29, 0x48, 0xd5, 0xf4, 0xba, 0xb7, 0x45, 0x18, 0xac, 0x90, 0xbf, 0xd0, 0x7b, 0x30,
-	0xad, 0xfa, 0xb3, 0xdf, 0xae, 0x4e, 0x02, 0xde, 0x71, 0x43, 0x30, 0xa9, 0x8a, 0x73, 0x66, 0x80,
-	0x93, 0xdf, 0x86, 0x29, 0x97, 0x40, 0xfd, 0xfd, 0x00, 0x01, 0xf8, 0x35, 0x9e, 0x1e, 0xa4, 0x9b,
-	0x07, 0xca, 0xc4, 0x77, 0xbd, 0x63, 0x1e, 0x46, 0x11, 0x01, 0xd0, 0x55, 0x6e, 0x80, 0x4b, 0x15,
-	0xf9, 0x07, 0xab, 0x13, 0x0e, 0x0b, 0x0a, 0xee, 0x3c, 0x57, 0xea, 0x5d, 0x77, 0x8f, 0x83, 0x7a,
-	0x74, 0xfd, 0x33, 0x98, 0x72, 0x89, 0xae, 0xc7, 0x58, 0xc6, 0x62, 0xd9, 0xbb, 0xde, 0x99, 0x50,
-	0x8f, 0x8d, 0x78, 0x0b, 0xa6, 0x5c, 0x56, 0x8c, 0xd9, 0x03, 0x4a, 0xce, 0x3b, 0xd3, 0x11, 0x1c,
-	0x51, 0xfe, 0x35, 0x01, 0x13, 0x0e, 0xd3, 0x08, 0xaa, 0xcf, 0x11, 0x99, 0x5a, 0x30, 0x15, 0x68,
-	0xa2, 0xcf, 0xa3, 0xd7, 0x78, 0x1e, 0x95, 0x83, 0x20, 0x0e, 0x85, 0xfe, 0x65, 0x1f, 0x0c, 0x6d,
-	0xf8, 0x5b, 0xf1, 0xb3, 0x5f, 0xcd, 0x26, 0xab, 0x46, 0xcd, 0xa5, 0xce, 0x51, 0xf6, 0x28, 0x7c,
-	0xc7, 0x76, 0x18, 0x12, 0x17, 0xa2, 0x0a, 0x4c, 0xca, 0x28, 0xcc, 0x3b, 0x4f, 0xee, 0xb0, 0xce,
-	0x9f, 0x90, 0x10, 0x99, 0x85, 0xca, 0x30, 0x68, 0x6a, 0x75, 0xac, 0xae, 0x46, 0x4e, 0x73, 0x42,
-	0x90, 0x99, 0x76, 0xe5, 0x02, 0xdc, 0xf7, 0xae, 0x77, 0x9c, 0xcc, 0x84, 0xce, 0x47, 0x24, 0x37,
-	0x62, 0x27, 0x7d, 0xff, 0x58, 0x71, 0xca, 0x7f, 0xef, 0x40, 0x4e, 0xa2, 0x8c, 0x76, 0x7d, 0x70,
-	0x04, 0x86, 0x28, 0xf3, 0xc6, 0x60, 0xdb, 0x3d, 0x27, 0x96, 0xb8, 0xf5, 0x5c, 0x59, 0xf0, 0x1e,
-	0x4c, 0x0b, 0x66, 0xe3, 0x35, 0xe0, 0x37, 0xbd, 0x13, 0xe2, 0x67, 0x10, 0xd9, 0x58, 0x6c, 0xf8,
-	0x0e, 0xe4, 0x24, 0x0e, 0xc4, 0x6b, 0xcc, 0xaa, 0x77, 0xc4, 0x1c, 0xbb, 0x3f, 0x94, 0x19, 0xc8,
-	0x49, 0x54, 0x10, 0x56, 0xfc, 0xb7, 0x84, 0x4b, 0x19, 0xd2, 0x58, 0x9d, 0x1b, 0x5e, 0x7c, 0x0a,
-	0x59, 0xae, 0x91, 0x3e, 0x33, 0x96, 0x78, 0x66, 0x0c, 0x83, 0x44, 0x1c, 0x6e, 0xfc, 0xa7, 0x01,
-	0x48, 0x7b, 0xc7, 0xab, 0x5f, 0xc1, 0xfd, 0x3c, 0x5e, 0x30, 0x26, 0x99, 0x33, 0xe8, 0x29, 0x48,
-	0x55, 0x8d, 0x83, 0x03, 0xdd, 0x26, 0xcb, 0x48, 0xf2, 0x17, 0x7a, 0x1d, 0x52, 0x87, 0x6a, 0xa3,
-	0xad, 0x59, 0x94, 0xc8, 0x70, 0x0a, 0x88, 0x9b, 0xcd, 0xf1, 0xce, 0xce, 0xfb, 0x5b, 0x1f, 0x3a,
-	0xa5, 0x77, 0x46, 0x4e, 0x8e, 0x73, 0x83, 0x30, 0x80, 0xfa, 0x1f, 0x5b, 0x46, 0x73, 0xaf, 0x42,
-	0xea, 0xa0, 0xdb, 0x90, 0x26, 0xdb, 0x73, 0x8b, 0x1e, 0x4a, 0x77, 0x53, 0x9f, 0xd6, 0x42, 0x6f,
-	0xc2, 0x80, 0xde, 0xac, 0x9b, 0x9a, 0x65, 0xd1, 0xdd, 0x7d, 0x37, 0x0a, 0xbc, 0x4a, 0xe8, 0x8e,
-	0xc3, 0xc5, 0x6e, 0xa6, 0x87, 0x45, 0x17, 0xa5, 0xdd, 0x68, 0xf0, 0xab, 0xa1, 0x4d, 0x18, 0x69,
-	0x1a, 0x35, 0x6d, 0xd7, 0xc2, 0x80, 0x33, 0xcc, 0x2c, 0x9c, 0x42, 0xcf, 0xb0, 0x53, 0x75, 0x87,
-	0xd4, 0x44, 0x77, 0x61, 0xc8, 0x36, 0x1a, 0x9a, 0xe9, 0x66, 0xe1, 0xd0, 0x63, 0xec, 0x6e, 0x14,
-	0xb1, 0x15, 0x9d, 0xc0, 0xaa, 0xfb, 0xfb, 0x7a, 0x53, 0xb7, 0x8f, 0xc8, 0x89, 0x76, 0x97, 0x81,
-	0xf5, 0x6a, 0xa1, 0x9b, 0x90, 0xf6, 0xee, 0x45, 0xb3, 0x23, 0xfc, 0xc1, 0xbf, 0x77, 0x77, 0xea,
-	0x1f, 0xfc, 0x7b, 0xb2, 0xe8, 0x26, 0x0c, 0x79, 0xbf, 0x9d, 0xe9, 0x6d, 0x34, 0xf2, 0xe0, 0xdf,
-	0x93, 0xdc, 0xac, 0xa1, 0x6b, 0xd0, 0x7f, 0xa8, 0x3a, 0xec, 0x36, 0x26, 0xcd, 0x06, 0xa0, 0x96,
-	0x5c, 0x29, 0x87, 0x32, 0xf0, 0x0f, 0xc7, 0x46, 0x26, 0xca, 0xc6, 0x00, 0x16, 0xdb, 0xac, 0xa1,
-	0x37, 0x60, 0x88, 0x39, 0x0e, 0xca, 0x5e, 0xe4, 0xcf, 0xf9, 0x57, 0xe9, 0xf1, 0x8f, 0x7f, 0x8b,
-	0xe2, 0x1f, 0x09, 0x49, 0x4e, 0x93, 0x50, 0x9c, 0xd3, 0xa4, 0x0d, 0x98, 0x74, 0x27, 0x5c, 0x6f,
-	0x70, 0x7b, 0xa4, 0xf9, 0x32, 0x3f, 0xc1, 0x48, 0xee, 0x59, 0xfc, 0x79, 0x7b, 0xdd, 0xdb, 0x00,
-	0xf9, 0x6a, 0x08, 0x2b, 0x15, 0xb9, 0x69, 0x42, 0xa6, 0xc6, 0x9b, 0x23, 0x4c, 0x18, 0x77, 0xa6,
-	0x4e, 0xde, 0x95, 0xe7, 0x3a, 0x5d, 0xdf, 0x71, 0x77, 0x4a, 0x3d, 0xf9, 0x7d, 0x04, 0x93, 0xee,
-	0x3c, 0xd9, 0x53, 0x10, 0x63, 0x4d, 0xd1, 0xeb, 0xde, 0x6e, 0xa9, 0xa7, 0x06, 0xbc, 0x09, 0x93,
-	0xee, 0xcc, 0x1a, 0x2f, 0xf4, 0x4a, 0xd6, 0xdb, 0xee, 0xf0, 0x5e, 0x28, 0xff, 0x92, 0x80, 0x71,
-	0x67, 0xc6, 0xe2, 0x15, 0x9f, 0xa3, 0x39, 0xf9, 0x63, 0xf7, 0x7e, 0xdc, 0x6b, 0xa1, 0xc5, 0xdc,
-	0xe2, 0x73, 0x13, 0xb2, 0xb4, 0xf7, 0xe3, 0xcc, 0xc6, 0x5f, 0xf6, 0x41, 0xca, 0x3d, 0x67, 0xfe,
-	0x0a, 0xe6, 0x62, 0x87, 0xb2, 0xbd, 0xb9, 0xd8, 0xf9, 0x8d, 0x32, 0x70, 0xe1, 0x89, 0x76, 0x44,
-	0x26, 0x62, 0xe7, 0x27, 0xba, 0xc7, 0xb0, 0x61, 0xd4, 0x86, 0xe2, 0xce, 0xd4, 0xc9, 0x71, 0x0e,
-	0xc1, 0x20, 0x1a, 0xd0, 0x9b, 0xb6, 0x56, 0xd7, 0xcc, 0x5b, 0xfd, 0x24, 0xef, 0xc7, 0x63, 0xc9,
-	0x75, 0x18, 0x77, 0x68, 0xce, 0xac, 0x59, 0x81, 0xe3, 0x9a, 0xc8, 0x1b, 0xe3, 0x8c, 0x1a, 0x38,
-	0x4f, 0x0b, 0xf0, 0xdd, 0xaa, 0x97, 0x60, 0x47, 0x8e, 0xe9, 0x09, 0x1c, 0x8b, 0xfc, 0x40, 0x95,
-	0xa4, 0xfb, 0x79, 0x5c, 0x77, 0x1b, 0x26, 0x82, 0x2a, 0x48, 0x77, 0x5f, 0xe6, 0x06, 0x9c, 0xa8,
-	0xc2, 0x1b, 0x6e, 0x2d, 0x37, 0x69, 0x2e, 0xe8, 0xc2, 0x73, 0x65, 0xb9, 0x37, 0x01, 0xb1, 0x16,
-	0x4f, 0xed, 0x71, 0xdb, 0xcb, 0x99, 0x8b, 0x1d, 0xb6, 0x58, 0xec, 0x76, 0x1b, 0x26, 0x82, 0x66,
-	0x4f, 0xed, 0xf8, 0xeb, 0x5e, 0xbe, 0x5d, 0x9c, 0x60, 0x2b, 0x53, 0x30, 0x11, 0xac, 0x4d, 0x58,
-	0xed, 0xe7, 0x09, 0xb8, 0xe8, 0x8c, 0xf9, 0xa0, 0xd2, 0x73, 0xc4, 0x69, 0x07, 0x2e, 0x6b, 0xbb,
-	0xed, 0xb3, 0x98, 0x39, 0x85, 0x63, 0x34, 0x49, 0x7f, 0xc7, 0xe1, 0xb3, 0xdf, 0xed, 0x83, 0xb4,
-	0xb7, 0x86, 0xfb, 0xbf, 0xbc, 0xbb, 0xf8, 0x48, 0x48, 0x5d, 0x89, 0x64, 0xb7, 0x99, 0x93, 0xe3,
-	0xdc, 0x34, 0xcb, 0x6e, 0x4c, 0x5a, 0x62, 0x30, 0xaf, 0x45, 0xb6, 0x22, 0xa3, 0x09, 0x81, 0x5d,
-	0x2c, 0x26, 0xa8, 0xac, 0xb8, 0x22, 0xf3, 0xd5, 0x74, 0x5e, 0x18, 0x50, 0x59, 0x6e, 0x45, 0xc6,
-	0xbb, 0x72, 0x16, 0x2b, 0xb2, 0x9e, 0xfc, 0xa6, 0x2b, 0xb2, 0x9e, 0x82, 0xd8, 0xdb, 0x8a, 0xac,
-	0xa7, 0x06, 0xd0, 0x15, 0x59, 0xbc, 0xd0, 0xfb, 0x2b, 0x32, 0xde, 0x0b, 0xba, 0x22, 0xe3, 0x15,
-	0x9f, 0xbf, 0x15, 0x99, 0xd7, 0xc2, 0xee, 0x56, 0x64, 0x7e, 0xef, 0xc7, 0x61, 0xb0, 0x1f, 0x27,
-	0x00, 0xfc, 0x1d, 0xdb, 0x59, 0x73, 0xd8, 0x3a, 0x5c, 0xe4, 0x57, 0x49, 0x56, 0x36, 0xd9, 0xe1,
-	0x9a, 0x71, 0x2c, 0xb8, 0x4c, 0x92, 0x66, 0x1b, 0xfb, 0x4d, 0xea, 0x26, 0x35, 0x96, 0x91, 0x16,
-	0xb3, 0x8d, 0x59, 0x55, 0x9d, 0xd3, 0x5c, 0x19, 0x69, 0x2e, 0xdb, 0x58, 0x74, 0xe9, 0x2c, 0xb2,
-	0x8d, 0x7b, 0xf6, 0x9e, 0x66, 0x1b, 0xf7, 0x1c, 0xd2, 0xde, 0xb2, 0x8d, 0x7b, 0x6e, 0x08, 0xcd,
-	0x36, 0x8e, 0xdb, 0x11, 0x7e, 0xb6, 0xb1, 0xe8, 0x0b, 0xcd, 0x36, 0x16, 0x95, 0x9f, 0xbf, 0x6c,
-	0x63, 0xbf, 0x8d, 0xdd, 0x65, 0x1b, 0xb3, 0x58, 0x88, 0xc3, 0x51, 0x3f, 0xba, 0x00, 0xe0, 0x67,
-	0x8f, 0x9e, 0x35, 0x47, 0xb1, 0x07, 0x78, 0xc9, 0xf8, 0x07, 0x78, 0xfd, 0xdd, 0x1e, 0xe0, 0xdd,
-	0x86, 0xe1, 0x27, 0xed, 0x3d, 0x6d, 0xb7, 0xda, 0x68, 0x5b, 0x36, 0xc9, 0xe8, 0x0a, 0x9c, 0x89,
-	0xbf, 0xdb, 0xde, 0xd3, 0xd6, 0xdc, 0x42, 0x6a, 0x76, 0xe8, 0x89, 0xff, 0x10, 0xbd, 0x01, 0x63,
-	0xac, 0x86, 0x8e, 0xfb, 0xce, 0x11, 0xa6, 0xf2, 0x66, 0x2d, 0x2a, 0xdb, 0x20, 0xdd, 0x53, 0xb6,
-	0x01, 0x65, 0x67, 0x26, 0x15, 0xb8, 0x0b, 0x2a, 0x61, 0xa4, 0x45, 0x76, 0x66, 0x55, 0x75, 0xa6,
-	0x05, 0x46, 0x9a, 0x63, 0x67, 0xd1, 0xa5, 0xb3, 0x60, 0xe7, 0x9e, 0xbd, 0xa7, 0xec, 0xdc, 0x73,
-	0x48, 0x7b, 0x63, 0xe7, 0x9e, 0x1b, 0x42, 0xd9, 0x39, 0x6e, 0x47, 0xf8, 0xec, 0x2c, 0xfa, 0x42,
-	0xd9, 0x59, 0x54, 0x7e, 0xfe, 0xd8, 0xd9, 0x6f, 0x63, 0x77, 0xec, 0xcc, 0x62, 0x21, 0x0e, 0x3b,
-	0x7f, 0x2f, 0x01, 0x43, 0x0c, 0x25, 0x9d, 0x31, 0x3d, 0xcb, 0x2e, 0xf4, 0x19, 0x6f, 0xba, 0xb9,
-	0x76, 0x66, 0xc5, 0xc5, 0x0b, 0xfd, 0x80, 0xb2, 0xce, 0x57, 0xc8, 0xac, 0x38, 0x77, 0xa1, 0x2f,
-	0x71, 0xeb, 0x2c, 0x2e, 0xf4, 0x9f, 0x41, 0x03, 0xe8, 0x85, 0xfe, 0x33, 0x88, 0x6c, 0x6f, 0x17,
-	0xfa, 0xcf, 0xa0, 0x31, 0xf4, 0x42, 0x3f, 0x76, 0x7f, 0xf8, 0x17, 0xfa, 0x12, 0x77, 0xe8, 0x85,
-	0xbe, 0x34, 0x56, 0xe7, 0xed, 0x42, 0x9f, 0x69, 0x64, 0x77, 0x17, 0xfa, 0x01, 0x48, 0xc4, 0xa1,
-	0x9b, 0xff, 0x4e, 0xc0, 0xc8, 0x5a, 0xc3, 0x68, 0xd7, 0xb6, 0x4d, 0xe3, 0x50, 0xaf, 0x9d, 0x7d,
-	0xce, 0xe8, 0x0a, 0xa4, 0x5b, 0xc4, 0x34, 0x49, 0x79, 0x62, 0xd6, 0x83, 0x9e, 0x53, 0x15, 0x2a,
-	0x83, 0xb2, 0x30, 0xa0, 0x56, 0xab, 0x46, 0xbb, 0xe9, 0x1d, 0xca, 0x79, 0x7f, 0xba, 0xa7, 0x92,
-	0x75, 0x7c, 0x41, 0x9d, 0xe2, 0x4f, 0x25, 0x2b, 0xb8, 0xa0, 0xe2, 0x09, 0x30, 0x34, 0xf7, 0x3e,
-	0xe4, 0x49, 0xaa, 0x25, 0x1b, 0x05, 0x0f, 0x62, 0x37, 0xf8, 0xe1, 0x38, 0xcd, 0xa4, 0x99, 0x05,
-	0x2a, 0x50, 0xaa, 0xdb, 0xf2, 0x12, 0xf3, 0x39, 0x85, 0xb4, 0x37, 0x83, 0xc3, 0x2b, 0x54, 0xa1,
-	0x37, 0xc0, 0x9e, 0x42, 0x16, 0xa7, 0x53, 0xca, 0xdc, 0x7b, 0xae, 0x84, 0xf7, 0x4d, 0x37, 0x79,
-	0xff, 0x19, 0x35, 0xe3, 0xb7, 0x13, 0x90, 0x27, 0x39, 0x95, 0xcf, 0x26, 0xd0, 0xb1, 0x98, 0x6f,
-	0xcb, 0xcb, 0xe2, 0x7f, 0x46, 0xad, 0x5a, 0x83, 0x3c, 0xc9, 0xcf, 0x8c, 0xdf, 0x3d, 0xca, 0x9c,
-	0x97, 0x81, 0x2f, 0x75, 0x4a, 0xf9, 0x8f, 0x84, 0x4b, 0x0e, 0x52, 0x13, 0xe7, 0x88, 0x03, 0x3f,
-	0x83, 0xbc, 0xd0, 0x4c, 0x9f, 0x05, 0x6f, 0xf0, 0x2c, 0x18, 0x0e, 0x90, 0x38, 0x3c, 0xf8, 0x3f,
-	0x09, 0x48, 0xb9, 0x24, 0x71, 0xd6, 0x04, 0xf8, 0x0d, 0x18, 0x66, 0x5e, 0xfc, 0xf4, 0xce, 0xeb,
-	0x42, 0x92, 0xb6, 0x02, 0xa2, 0x68, 0x15, 0x2e, 0x56, 0x9d, 0xa6, 0xef, 0x7a, 0xec, 0xd8, 0x71,
-	0x67, 0x3c, 0x56, 0x65, 0x43, 0x25, 0xbf, 0x12, 0x25, 0x5c, 0xd9, 0xc5, 0xdd, 0x9e, 0xc7, 0xaa,
-	0xc2, 0x95, 0xa8, 0xa7, 0xa2, 0xf3, 0x3d, 0x1d, 0x91, 0xe4, 0xae, 0x44, 0x83, 0x2e, 0x9c, 0xc5,
-	0x95, 0x68, 0x6c, 0x8f, 0xe9, 0x95, 0x68, 0xec, 0xb0, 0xf5, 0x76, 0x25, 0x1a, 0xdb, 0x71, 0x7a,
-	0x25, 0x1a, 0x27, 0xd8, 0xfe, 0x95, 0x68, 0xd0, 0x3e, 0xbd, 0x12, 0x0d, 0x2a, 0x3d, 0x7f, 0x57,
-	0xa2, 0x6e, 0xfb, 0xba, 0xbb, 0x12, 0xf5, 0x17, 0x1f, 0xa7, 0xe6, 0xa5, 0xe2, 0x43, 0xe8, 0xc7,
-	0x79, 0xdf, 0xe8, 0x22, 0x8c, 0x3c, 0xd8, 0x7a, 0x77, 0xeb, 0xfd, 0x6f, 0x6d, 0xed, 0xee, 0x7c,
-	0xb0, 0xfa, 0xf6, 0x46, 0xe6, 0x05, 0x34, 0x00, 0x17, 0xd6, 0x37, 0x3e, 0xcc, 0x24, 0x50, 0x0a,
-	0xfa, 0xee, 0xaf, 0x66, 0xfa, 0x10, 0x40, 0xea, 0xfe, 0xea, 0xdd, 0x07, 0x5b, 0x6b, 0x99, 0x0b,
-	0xee, 0xef, 0xed, 0x8d, 0xca, 0xdd, 0x4c, 0x12, 0x0d, 0xc1, 0xc0, 0x76, 0x65, 0x63, 0xbb, 0xf2,
-	0xfe, 0x7a, 0xa6, 0x1f, 0xa5, 0x21, 0x89, 0x7f, 0xa5, 0x8a, 0xef, 0x40, 0x9a, 0xae, 0xfa, 0x26,
-	0x20, 0xe3, 0xa9, 0xdf, 0xae, 0xbc, 0xff, 0xe1, 0xe6, 0xfa, 0x46, 0xc5, 0xb5, 0xb0, 0xfa, 0xad,
-	0x9d, 0x4c, 0x02, 0x0d, 0x42, 0xff, 0xea, 0xc3, 0x07, 0x95, 0x8d, 0x4c, 0x9f, 0xf3, 0xec, 0xed,
-	0xb5, 0xed, 0xcc, 0x05, 0x47, 0xeb, 0xc6, 0xfd, 0x07, 0x9b, 0x5b, 0x9b, 0x1f, 0x65, 0x92, 0xe5,
-	0xff, 0x0f, 0xc9, 0xb5, 0x83, 0xda, 0x1e, 0xba, 0x0f, 0xf0, 0xb6, 0xe6, 0x7d, 0x40, 0x01, 0x4d,
-	0x09, 0x48, 0xde, 0x38, 0x68, 0xd9, 0x47, 0xf9, 0x9c, 0xf0, 0x95, 0x00, 0x0a, 0xa0, 0xcc, 0x17,
-	0x3f, 0xfd, 0xf7, 0x1f, 0xf4, 0x01, 0x4a, 0x97, 0xc8, 0xc5, 0x68, 0xf9, 0xc7, 0x49, 0x48, 0xb9,
-	0x5f, 0x8c, 0x41, 0xbb, 0x90, 0x72, 0x09, 0x06, 0xcd, 0x32, 0xec, 0x2f, 0x7c, 0x6a, 0x29, 0x3f,
-	0x17, 0x52, 0x4a, 0x6c, 0x64, 0xb1, 0x0d, 0xa4, 0x0c, 0x94, 0x70, 0x7e, 0x89, 0x75, 0x8b, 0x0e,
-	0x45, 0x15, 0x92, 0x0e, 0x1b, 0xa0, 0x3c, 0xdb, 0x7b, 0xc1, 0x0f, 0x29, 0xe5, 0x67, 0xa4, 0x65,
-	0x44, 0x75, 0x01, 0xab, 0xce, 0xa3, 0x2c, 0x51, 0x5d, 0xfa, 0x4c, 0xaf, 0xad, 0x78, 0x39, 0x99,
-	0xbb, 0x7a, 0xed, 0x73, 0xf4, 0x67, 0x09, 0x48, 0xb9, 0x43, 0x97, 0x6d, 0x84, 0xf8, 0xfd, 0x23,
-	0xb6, 0x11, 0x92, 0x0f, 0x15, 0x29, 0xb5, 0x7f, 0xfe, 0x61, 0xae, 0x2f, 0xfd, 0x02, 0xb6, 0xf7,
-	0x51, 0xbe, 0x40, 0xed, 0x91, 0xa6, 0xac, 0x70, 0x76, 0x69, 0x1b, 0x1f, 0x5e, 0x2d, 0x77, 0x2f,
-	0x8c, 0x4c, 0x48, 0xb9, 0xe3, 0x9c, 0x75, 0x56, 0xfc, 0xee, 0x11, 0xeb, 0xac, 0xec, 0xc3, 0x46,
-	0x57, 0x4f, 0x8e, 0x73, 0x03, 0xe4, 0xbb, 0x5e, 0x6e, 0x84, 0x8a, 0xe1, 0x11, 0xba, 0x0f, 0x49,
-	0x67, 0x88, 0xb1, 0x9d, 0xc0, 0x7f, 0x14, 0x29, 0x3f, 0x2b, 0x29, 0xa3, 0xa3, 0x51, 0x19, 0xc3,
-	0x36, 0x06, 0x91, 0xd7, 0xc1, 0x79, 0x32, 0xcd, 0x65, 0x12, 0xe5, 0x3f, 0xef, 0x87, 0x21, 0xe6,
-	0xfb, 0x1e, 0xc8, 0xa0, 0x90, 0x5a, 0x14, 0x40, 0xc3, 0x7f, 0xea, 0x24, 0xaf, 0x44, 0x89, 0x10,
-	0xdb, 0xf3, 0xd8, 0x76, 0x56, 0x19, 0x29, 0x31, 0x39, 0x02, 0x0c, 0xc4, 0x3e, 0x26, 0x10, 0x5b,
-	0xe0, 0x60, 0x24, 0x18, 0x2b, 0x84, 0x0b, 0x10, 0x53, 0x2f, 0x62, 0x53, 0x05, 0x34, 0x1f, 0x30,
-	0x25, 0x06, 0xf4, 0xef, 0x7c, 0xc8, 0x2d, 0x0a, 0xa0, 0x8a, 0x6a, 0x64, 0xd8, 0x97, 0x69, 0x94,
-	0x16, 0x03, 0xbe, 0x5a, 0xfe, 0x45, 0xce, 0x7e, 0x47, 0x08, 0xde, 0x28, 0x9f, 0xb6, 0x0a, 0xfa,
-	0x7e, 0x82, 0x22, 0x71, 0x51, 0xc0, 0x5a, 0x54, 0x1b, 0x42, 0xbf, 0x68, 0x73, 0xd3, 0x5d, 0xc4,
-	0xf9, 0x25, 0x6e, 0x34, 0x8b, 0x9d, 0xa2, 0xa9, 0x12, 0x78, 0x2e, 0x70, 0x10, 0x14, 0x9c, 0x58,
-	0x0c, 0x13, 0xf0, 0x81, 0x3a, 0x89, 0x6d, 0x8e, 0xa1, 0x20, 0x58, 0x18, 0xb8, 0xfe, 0x24, 0x05,
-	0x13, 0xb2, 0x77, 0xfc, 0xd1, 0xef, 0x25, 0x28, 0x70, 0x8b, 0x3c, 0x2a, 0xc3, 0x3f, 0x81, 0x90,
-	0xbf, 0xda, 0x95, 0x2c, 0xf1, 0xee, 0x25, 0xec, 0xdd, 0xa2, 0x32, 0x55, 0x92, 0xbe, 0x6c, 0xe4,
-	0x77, 0xce, 0x1f, 0x24, 0x08, 0xa8, 0x2f, 0x07, 0x31, 0x1b, 0xe1, 0xc8, 0x95, 0x2e, 0x24, 0x89,
-	0x1b, 0x25, 0xec, 0xc6, 0x15, 0xf4, 0x92, 0xdc, 0x0d, 0xb1, 0x87, 0x7e, 0xe9, 0xe3, 0xbd, 0xc8,
-	0x83, 0xb9, 0xbb, 0xd8, 0x74, 0xfc, 0x2a, 0x86, 0xf2, 0x45, 0x82, 0x19, 0x02, 0x87, 0xf9, 0x52,
-	0x98, 0x6f, 0x1d, 0xc7, 0xc2, 0xad, 0x72, 0xec, 0xba, 0x78, 0x2e, 0x21, 0x83, 0xa2, 0xc8, 0x23,
-	0xbe, 0xbb, 0x86, 0x76, 0xfe, 0xae, 0xc6, 0xbd, 0x93, 0xe3, 0xdc, 0xa4, 0xf4, 0xfb, 0x44, 0x6e,
-	0xb7, 0x14, 0xbb, 0xee, 0x96, 0xef, 0x90, 0x81, 0x73, 0x39, 0x38, 0x2e, 0x22, 0x1c, 0x2d, 0x76,
-	0x94, 0xb4, 0x78, 0xde, 0x45, 0x21, 0x60, 0x65, 0xc6, 0xd4, 0xaf, 0xfa, 0x61, 0x8c, 0x7b, 0x3f,
-	0x1b, 0x7d, 0x87, 0x8e, 0xa6, 0x65, 0x61, 0x84, 0xc8, 0x5e, 0x59, 0xcf, 0xbf, 0xd8, 0x49, 0x8c,
-	0xb8, 0xb5, 0x84, 0xdd, 0x9a, 0x53, 0x50, 0x49, 0x48, 0xcd, 0xf0, 0xfb, 0xf1, 0xbb, 0x64, 0xf8,
-	0x2c, 0x71, 0x83, 0x42, 0x6a, 0xf9, 0x52, 0xb4, 0x90, 0x37, 0xe3, 0x62, 0xbb, 0xcb, 0x68, 0x49,
-	0xb4, 0x2b, 0xf6, 0xcc, 0x4f, 0xfd, 0x01, 0xb3, 0x2c, 0x0c, 0x82, 0x4e, 0xcd, 0x8f, 0xfa, 0x1e,
-	0x81, 0xf2, 0x29, 0x33, 0x4a, 0x9a, 0xf9, 0xab, 0x32, 0x67, 0x3a, 0x8e, 0x90, 0x9b, 0xe5, 0x58,
-	0xf5, 0xd0, 0x9f, 0xf8, 0xa3, 0x63, 0x59, 0x40, 0x7c, 0xa7, 0x56, 0x45, 0x7e, 0xcd, 0xe0, 0xad,
-	0x93, 0xe3, 0x5c, 0x86, 0xff, 0xec, 0x89, 0x1b, 0xf0, 0x62, 0x57, 0x01, 0x6f, 0x92, 0xa1, 0xb0,
-	0xc4, 0x01, 0x5c, 0xea, 0xd5, 0x72, 0x94, 0x90, 0x3f, 0x00, 0xf2, 0xd8, 0x81, 0x09, 0x24, 0x41,
-	0x1a, 0x03, 0xfe, 0x3f, 0xee, 0x07, 0xf0, 0xdf, 0xa7, 0x45, 0x4f, 0x28, 0xee, 0x0b, 0x3c, 0xa0,
-	0xf9, 0x17, 0x8b, 0xf3, 0x8b, 0x11, 0x12, 0xc4, 0x87, 0x59, 0xec, 0xc3, 0x94, 0x32, 0x54, 0xf2,
-	0xbf, 0x83, 0xe5, 0x77, 0xc8, 0x01, 0x81, 0xf9, 0x7c, 0x10, 0xc1, 0x82, 0xa1, 0x85, 0xd0, 0x72,
-	0x62, 0xe6, 0x12, 0x36, 0x33, 0x8f, 0x66, 0x19, 0x33, 0x62, 0x90, 0xff, 0xda, 0x47, 0x75, 0x81,
-	0x87, 0x6b, 0x54, 0xe3, 0x42, 0x5e, 0xfd, 0x56, 0x1a, 0x0c, 0x96, 0xbf, 0x9d, 0xbf, 0x14, 0xb0,
-	0xdd, 0x11, 0xc4, 0xa5, 0xf2, 0xe9, 0x2a, 0xa0, 0x2f, 0x7c, 0xf4, 0x16, 0x78, 0x58, 0x46, 0x79,
-	0x1f, 0xf6, 0xbe, 0xf8, 0x2b, 0x27, 0xc7, 0xb9, 0x21, 0xe6, 0xe3, 0x10, 0x6e, 0x08, 0x8b, 0xd1,
-	0x21, 0xfc, 0x75, 0x82, 0xd3, 0xf9, 0x20, 0x04, 0x05, 0xfb, 0x85, 0x90, 0x72, 0x1f, 0x9d, 0xe3,
-	0xd8, 0xde, 0x08, 0x62, 0x91, 0xc1, 0xc0, 0xf2, 0xaf, 0xfa, 0x61, 0x98, 0x7d, 0x9d, 0x11, 0x7d,
-	0x4c, 0x81, 0x29, 0x2c, 0xba, 0xc5, 0x77, 0x3b, 0xf3, 0x4b, 0x91, 0x32, 0xc2, 0xca, 0x9c, 0x3d,
-	0x45, 0xf3, 0x23, 0x6e, 0x11, 0x78, 0x72, 0x0b, 0x6f, 0x89, 0xb9, 0xc5, 0x08, 0x09, 0x61, 0x6d,
-	0xce, 0x1a, 0x13, 0x23, 0xfc, 0xf7, 0x3e, 0x48, 0x85, 0x85, 0x77, 0x74, 0x43, 0x43, 0xdf, 0xc9,
-	0x15, 0x56, 0xe7, 0x41, 0x0f, 0xba, 0x5a, 0x9d, 0x9f, 0xae, 0x0a, 0x5e, 0x8d, 0x12, 0xb0, 0x0a,
-	0x4b, 0xef, 0xe8, 0x56, 0x84, 0xbf, 0xca, 0xfb, 0xea, 0xc9, 0x71, 0x6e, 0x24, 0xf0, 0x2a, 0x3e,
-	0x5d, 0xa0, 0x47, 0x87, 0xb4, 0x4a, 0x40, 0xcb, 0x81, 0x52, 0xe2, 0x87, 0x12, 0x2a, 0x21, 0x5b,
-	0xa2, 0xb3, 0x56, 0x19, 0xe8, 0xfe, 0x56, 0x3f, 0x0c, 0xd2, 0xb7, 0x7e, 0xd0, 0x23, 0x8a, 0xdb,
-	0x05, 0x1e, 0x93, 0xdc, 0xcb, 0x4f, 0xf9, 0x42, 0xb8, 0x00, 0xb1, 0x3d, 0x83, 0x6d, 0x4f, 0x2a,
-	0x50, 0xf2, 0xbe, 0x45, 0xc8, 0xc0, 0xf5, 0x31, 0x81, 0xeb, 0x5c, 0x10, 0x8c, 0xbc, 0x95, 0xf9,
-	0xb0, 0xe2, 0xe0, 0x02, 0x05, 0xcd, 0xf8, 0x36, 0xc4, 0x90, 0x7e, 0xe9, 0xa3, 0x74, 0x81, 0x47,
-	0x60, 0x44, 0xb3, 0xe4, 0xef, 0xa4, 0x29, 0x8f, 0x19, 0x7c, 0xfe, 0x46, 0x7e, 0x89, 0x35, 0xdc,
-	0x11, 0x9c, 0x2b, 0xe5, 0x53, 0xc9, 0xa3, 0xef, 0x52, 0x60, 0x2e, 0xf0, 0xa0, 0x8b, 0x70, 0x3c,
-	0xe4, 0x35, 0xb6, 0x1b, 0x27, 0xc7, 0x39, 0xf0, 0xdf, 0x80, 0x76, 0x23, 0x57, 0x8c, 0x8c, 0xdc,
-	0x43, 0x02, 0xc6, 0xb9, 0x20, 0xd4, 0x78, 0xdb, 0x0b, 0xf2, 0x62, 0x1f, 0x86, 0x08, 0x1b, 0x1b,
-	0x46, 0x0c, 0x14, 0x18, 0x0c, 0xfe, 0x2c, 0x09, 0x03, 0xe4, 0x2d, 0x0d, 0xb4, 0x47, 0x11, 0x28,
-	0x1c, 0x83, 0x05, 0x5e, 0x54, 0x61, 0x91, 0x21, 0x7b, 0x93, 0x49, 0xc9, 0x61, 0x93, 0xe3, 0x4a,
-	0xba, 0xe4, 0x7d, 0xe2, 0x9c, 0x46, 0xb5, 0x46, 0xb0, 0xc7, 0x9d, 0x85, 0x05, 0xf5, 0xcf, 0xca,
-	0x0b, 0x89, 0xf6, 0x45, 0xac, 0x7d, 0x06, 0xe5, 0x3c, 0xed, 0x62, 0xec, 0xfe, 0xc2, 0x47, 0x9d,
-	0x70, 0x18, 0x16, 0xda, 0x14, 0xd9, 0x9b, 0x42, 0xca, 0x3e, 0x83, 0xb8, 0x87, 0xf9, 0x45, 0xdf,
-	0x64, 0x47, 0xbc, 0xbd, 0x5c, 0x3e, 0x85, 0x34, 0x3a, 0xa4, 0x68, 0x13, 0x0e, 0xc4, 0x42, 0x1d,
-	0x96, 0xbe, 0x5a, 0x74, 0xed, 0xe4, 0x38, 0x97, 0xf6, 0xde, 0xee, 0x73, 0x23, 0x55, 0x8c, 0x88,
-	0xd4, 0x07, 0x04, 0x65, 0x33, 0x41, 0x18, 0x05, 0x6d, 0xce, 0xc9, 0x0a, 0x2d, 0xc9, 0xc9, 0x2b,
-	0x31, 0xc3, 0x71, 0x1c, 0xcd, 0xa3, 0x8f, 0xe2, 0x38, 0xee, 0x75, 0x02, 0x91, 0xe3, 0x84, 0x17,
-	0x11, 0x7c, 0x8e, 0xf3, 0x3f, 0x78, 0xdd, 0x89, 0xe3, 0x78, 0x2b, 0xf3, 0x61, 0xc5, 0x02, 0xc7,
-	0x51, 0x1b, 0xa7, 0xe3, 0xb8, 0x88, 0x66, 0xc9, 0xdf, 0xf2, 0x10, 0x38, 0x8e, 0x31, 0xdc, 0x15,
-	0xc7, 0x9d, 0x42, 0x3e, 0x8a, 0xe3, 0x22, 0x1c, 0x0f, 0x79, 0x31, 0x84, 0x70, 0x9c, 0xf7, 0x9c,
-	0x72, 0x5c, 0x44, 0xe4, 0x42, 0x38, 0x8e, 0xb7, 0xbd, 0x20, 0x2f, 0x96, 0x71, 0x1c, 0x35, 0xc6,
-	0x9d, 0xdc, 0x32, 0xb9, 0xd2, 0x51, 0x27, 0xb7, 0x42, 0xda, 0xb8, 0x78, 0x72, 0x2b, 0x49, 0x3a,
-	0xf7, 0xd7, 0x87, 0xcc, 0x2b, 0xf5, 0x9d, 0x4f, 0x6e, 0x45, 0x63, 0x85, 0x70, 0x01, 0x61, 0x75,
-	0xc8, 0x9a, 0x3a, 0xdd, 0xc9, 0x6d, 0x64, 0x23, 0xc3, 0xb2, 0xfc, 0x85, 0xb5, 0x61, 0xd0, 0x7e,
-	0x57, 0x6b, 0xc3, 0xd3, 0x55, 0x89, 0x3c, 0xb9, 0x8d, 0x6c, 0x43, 0xe8, 0xdb, 0x01, 0xe4, 0xe4,
-	0xd6, 0x2f, 0xa1, 0x0b, 0xc3, 0xe8, 0x68, 0x86, 0x9c, 0xdc, 0x8a, 0x4e, 0x2c, 0x86, 0x09, 0xc8,
-	0x96, 0x85, 0xac, 0x4d, 0x06, 0xae, 0x7f, 0xda, 0x0f, 0x43, 0x4c, 0xf2, 0x28, 0x6a, 0x86, 0xc3,
-	0x55, 0xc8, 0xa3, 0x15, 0xe1, 0x2a, 0xc9, 0xc2, 0x9d, 0xc3, 0x1e, 0x4c, 0x2b, 0xc3, 0x25, 0xff,
-	0xfb, 0xcf, 0x0c, 0x5a, 0x5b, 0x72, 0xb4, 0x8a, 0xb6, 0x0a, 0xe1, 0x02, 0xc4, 0xd2, 0x32, 0xb6,
-	0xb4, 0x80, 0xe6, 0x58, 0x4b, 0x62, 0x78, 0x7f, 0x18, 0x01, 0xd6, 0xc8, 0x26, 0x86, 0x25, 0x3d,
-	0x2b, 0x4d, 0x06, 0xac, 0x7b, 0xf9, 0xe5, 0xa0, 0xf9, 0x8e, 0x58, 0xbd, 0x5e, 0x3e, 0x65, 0x0d,
-	0xf4, 0xbd, 0x08, 0xa8, 0x46, 0xb6, 0x20, 0x34, 0x55, 0xfa, 0xeb, 0x2e, 0x54, 0xfd, 0x12, 0x37,
-	0x94, 0xc5, 0x0e, 0xa1, 0xfc, 0xb6, 0x1c, 0xa9, 0xa2, 0x0f, 0x8b, 0x61, 0x02, 0x3e, 0x52, 0x27,
-	0xb0, 0xc9, 0x51, 0x14, 0xc0, 0x09, 0x03, 0xd4, 0xbf, 0xe9, 0x87, 0x61, 0x36, 0xf1, 0x10, 0x99,
-	0xe1, 0x5b, 0x6f, 0x31, 0x0b, 0x53, 0xdc, 0x7a, 0xcb, 0xb2, 0x38, 0x17, 0xb0, 0x0f, 0x39, 0x65,
-	0xb4, 0xc4, 0xbe, 0x4a, 0xc1, 0xa0, 0xd5, 0x96, 0xef, 0xbd, 0x25, 0xf6, 0x16, 0x23, 0x24, 0x82,
-	0xf7, 0x16, 0x68, 0x21, 0x68, 0x4d, 0x0c, 0xf3, 0x8f, 0x22, 0x36, 0xdf, 0xd1, 0x4d, 0x0d, 0xcd,
-	0x9f, 0x55, 0x4c, 0x06, 0xb3, 0xfb, 0xf9, 0x97, 0x78, 0x17, 0x3a, 0xa2, 0xb6, 0x5c, 0x3e, 0x75,
-	0x1d, 0xf4, 0xfb, 0x11, 0xdb, 0xef, 0xe8, 0x76, 0x84, 0x27, 0xde, 0xfe, 0x3f, 0x77, 0xfb, 0xcd,
-	0x14, 0xb9, 0x51, 0x2d, 0x76, 0x8c, 0x6a, 0x4d, 0xbe, 0xff, 0x96, 0x38, 0xa2, 0x84, 0x4a, 0xf8,
-	0xf0, 0x9d, 0xc2, 0x66, 0x33, 0x88, 0x83, 0x0e, 0x03, 0xe0, 0x5f, 0xf4, 0xc3, 0x68, 0x30, 0x6b,
-	0x0c, 0x7d, 0x42, 0x21, 0x7c, 0x49, 0x38, 0xb4, 0x94, 0xa4, 0xd1, 0xe5, 0x97, 0x3b, 0x48, 0x05,
-	0xf7, 0x2c, 0x4a, 0xa6, 0x14, 0xcc, 0xbb, 0x62, 0x80, 0xfc, 0x29, 0x01, 0xb2, 0xc2, 0x9d, 0x61,
-	0xca, 0xac, 0x2e, 0x45, 0xca, 0x10, 0x9b, 0x57, 0xb0, 0xcd, 0x25, 0xb4, 0xc8, 0xdb, 0x14, 0x03,
-	0xff, 0x0f, 0x3e, 0x9c, 0x2f, 0x09, 0xc7, 0x99, 0x1d, 0x9a, 0x1d, 0x91, 0x16, 0xa9, 0x1c, 0x32,
-	0x90, 0x7e, 0x9c, 0xbf, 0x22, 0x3a, 0xd2, 0x11, 0xd4, 0x5f, 0x2b, 0xc7, 0xa8, 0x85, 0x7e, 0xe0,
-	0xc3, 0xfa, 0x92, 0x70, 0xc0, 0xd9, 0xa1, 0x3d, 0x51, 0x19, 0x95, 0xaf, 0x9f, 0x1c, 0xe7, 0xc6,
-	0xb8, 0xbc, 0x67, 0x37, 0xca, 0xc5, 0x2e, 0xa2, 0xfc, 0x98, 0xc0, 0x9b, 0x03, 0xaf, 0xd4, 0xa1,
-	0x4b, 0x11, 0x32, 0x16, 0x9f, 0x8f, 0x82, 0x04, 0x58, 0x71, 0x3b, 0x7c, 0x92, 0x74, 0x14, 0xb5,
-	0xc3, 0x0f, 0xe4, 0x5d, 0x89, 0x3b, 0x7c, 0x2e, 0x5b, 0xcb, 0xdf, 0xe1, 0x7b, 0x89, 0xd1, 0x9d,
-	0x76, 0xf8, 0x41, 0xfd, 0xb3, 0xf2, 0x42, 0x61, 0x87, 0x4f, 0xb4, 0x9f, 0x6e, 0x87, 0x1f, 0xda,
-	0x14, 0x59, 0xe2, 0x9b, 0xb0, 0xc3, 0xa7, 0x26, 0xbb, 0xda, 0xe1, 0x77, 0x2d, 0x1d, 0xb5, 0xc3,
-	0x0f, 0x75, 0x58, 0x9a, 0x29, 0x47, 0x76, 0xf8, 0xee, 0x53, 0xba, 0xc3, 0x0f, 0x8d, 0x54, 0xc8,
-	0x0e, 0x3f, 0x68, 0x73, 0x4e, 0x56, 0x28, 0xdb, 0xe1, 0x13, 0x33, 0x3e, 0xbe, 0xee, 0xfc, 0x3c,
-	0xf1, 0x47, 0xab, 0x5f, 0x26, 0xd0, 0x36, 0x24, 0xd7, 0xde, 0x5b, 0xbf, 0xa3, 0xac, 0xc1, 0xc8,
-	0x8e, 0xf1, 0x48, 0xd3, 0x1b, 0x85, 0x0d, 0xfc, 0x9f, 0x4b, 0xa2, 0x85, 0x47, 0xb6, 0xdd, 0xb2,
-	0x6e, 0x95, 0x4a, 0x21, 0xff, 0xf1, 0x64, 0xfe, 0x22, 0xf9, 0xeb, 0x76, 0xfd, 0x40, 0xd5, 0x1b,
-	0x4e, 0x79, 0xf9, 0xc2, 0x8d, 0x95, 0xeb, 0x4a, 0xb2, 0x74, 0x78, 0xa3, 0x54, 0xec, 0x4b, 0xf4,
-	0x95, 0x33, 0xcc, 0xc5, 0x6c, 0xe9, 0xb1, 0x65, 0x34, 0x6f, 0x09, 0x4f, 0x1e, 0x2e, 0xc1, 0x22,
-	0xc0, 0x6a, 0x4b, 0x7f, 0x57, 0x3b, 0x5a, 0x6d, 0xdb, 0x8f, 0xd0, 0x78, 0xba, 0x2f, 0x3f, 0xe2,
-	0xfc, 0x32, 0x4c, 0xfd, 0x53, 0x2c, 0x57, 0xe8, 0xdb, 0xcb, 0xc0, 0x68, 0x40, 0xe8, 0x85, 0x87,
-	0x8b, 0xd1, 0xff, 0x1d, 0xe6, 0x6b, 0xad, 0xbd, 0xbd, 0x14, 0xce, 0x41, 0x7b, 0xe5, 0x7f, 0x03,
-	0x00, 0x00, 0xff, 0xff, 0x7c, 0x9a, 0x6a, 0x3a, 0x3a, 0x73, 0x00, 0x00,
+	// 4998 bytes of a gzipped FileDescriptorProto
+	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xec, 0x5d, 0xdb, 0x6f, 0x1b, 0xd9,
+	0x79, 0x5f, 0x4a, 0x24, 0x25, 0x7d, 0xba, 0xd1, 0x47, 0x17, 0x93, 0x94, 0x64, 0x91, 0xa3, 0x55,
+	0x6c, 0xd3, 0x6b, 0xd2, 0x66, 0x36, 0xeb, 0xd4, 0xbb, 0xd9, 0xb5, 0x6e, 0xbb, 0x96, 0x77, 0x57,
+	0x96, 0xe9, 0xb5, 0xb3, 0x75, 0x81, 0x55, 0x47, 0xe4, 0x58, 0xa6, 0x4d, 0x71, 0xe8, 0x99, 0xa1,
+	0xbc, 0xda, 0x64, 0x53, 0x24, 0x45, 0x13, 0xa0, 0x2d, 0xb0, 0x40, 0xf3, 0xd2, 0xbf, 0xa0, 0x2f,
+	0x0d, 0x90, 0x87, 0xa2, 0x48, 0xa5, 0x87, 0x06, 0x45, 0x91, 0x87, 0xa2, 0x08, 0xd0, 0x22, 0x6f,
+	0x05, 0x12, 0x14, 0x69, 0x9a, 0x97, 0xbe, 0x16, 0x28, 0x50, 0xa0, 0x17, 0xcc, 0x99, 0x33, 0x33,
+	0xe7, 0x36, 0x33, 0xd4, 0x48, 0x56, 0x03, 0xa1, 0x2f, 0x06, 0x35, 0xe7, 0x9b, 0xef, 0x76, 0x7e,
+	0xe7, 0x37, 0xe7, 0x6e, 0xb8, 0xbc, 0xd3, 0xb4, 0x9e, 0x74, 0xb7, 0xcb, 0x75, 0x7d, 0xb7, 0x62,
+	0x6a, 0xcd, 0xcf, 0xd4, 0x46, 0xb3, 0x52, 0xdf, 0x6d, 0x6c, 0x57, 0x3a, 0xcf, 0x76, 0x2a, 0x9d,
+	0x6d, 0xfc, 0xbb, 0xdc, 0x31, 0x74, 0x4b, 0x47, 0x83, 0x6a, 0xa7, 0x59, 0xb6, 0xff, 0xce, 0xcf,
+	0xec, 0xe8, 0xfa, 0x4e, 0x4b, 0xab, 0xe0, 0xe7, 0xdb, 0xdd, 0xc7, 0x15, 0x6d, 0xb7, 0x63, 0xed,
+	0x3b, 0x62, 0xf9, 0x02, 0x5f, 0xf8, 0xb8, 0xa9, 0xb5, 0x1a, 0x5b, 0xbb, 0xaa, 0xf9, 0x8c, 0x48,
+	0xcc, 0x12, 0x09, 0xb5, 0xd3, 0xac, 0xa8, 0xed, 0xb6, 0x6e, 0xa9, 0x56, 0x53, 0x6f, 0x9b, 0xa4,
+	0xf4, 0x4d, 0xca, 0xa3, 0xd6, 0xfe, 0x63, 0xcb, 0x51, 0x54, 0xbf, 0xba, 0xa3, 0xb5, 0xaf, 0xee,
+	0xa9, 0xad, 0x66, 0x43, 0xb5, 0xb4, 0x8a, 0xf0, 0x83, 0xbc, 0xfc, 0x1a, 0x25, 0x6c, 0xbe, 0x50,
+	0x77, 0x76, 0x34, 0xa3, 0xa2, 0x77, 0xb0, 0x7a, 0x89, 0xa9, 0x9b, 0x94, 0xa9, 0x66, 0xfb, 0xb1,
+	0xbe, 0xdd, 0xd2, 0x3f, 0xd5, 0x3b, 0x5a, 0x9b, 0x36, 0xb9, 0xa3, 0x1b, 0xbb, 0x9e, 0x0a, 0xfb,
+	0x0f, 0xf2, 0xee, 0x6f, 0xf5, 0xfa, 0xae, 0xb5, 0xdf, 0xd1, 0x4c, 0xe7, 0x5f, 0xf2, 0xea, 0x9d,
+	0xa0, 0x57, 0x55, 0xab, 0xa5, 0x9a, 0x57, 0xd5, 0x4e, 0xe7, 0xaa, 0xa5, 0xeb, 0xad, 0x67, 0x4d,
+	0xab, 0xf2, 0xbc, 0xab, 0x19, 0xfb, 0x95, 0xba, 0xde, 0x6a, 0x69, 0x75, 0xdb, 0x85, 0x2d, 0xbd,
+	0xa3, 0x19, 0xaa, 0xa5, 0x1b, 0xae, 0xae, 0xb5, 0xde, 0x75, 0x19, 0x9d, 0x7a, 0xc5, 0xd0, 0x4c,
+	0xbd, 0x6b, 0xd4, 0x35, 0xef, 0x07, 0x51, 0xf3, 0x51, 0x0f, 0xd1, 0x38, 0x1a, 0xb1, 0x47, 0x7e,
+	0x45, 0xb8, 0x99, 0xc1, 0x8f, 0xb7, 0xb8, 0xda, 0xd8, 0xe8, 0x59, 0xab, 0xa0, 0x0f, 0x3f, 0xe6,
+	0xf4, 0x29, 0x57, 0x60, 0xfc, 0xa1, 0x66, 0x98, 0x4d, 0xbd, 0x5d, 0xd3, 0xcc, 0x8e, 0xde, 0x36,
+	0x35, 0x94, 0x85, 0x81, 0x3d, 0xe7, 0x51, 0x36, 0x51, 0x48, 0x5c, 0x1a, 0xaa, 0xb9, 0x7f, 0x2a,
+	0xff, 0x9d, 0x80, 0xd1, 0x95, 0x96, 0xde, 0x6d, 0x6c, 0x1a, 0xfa, 0x5e, 0xb3, 0xa1, 0x19, 0xe8,
+	0x06, 0xf4, 0x35, 0x1b, 0x58, 0x6c, 0xb8, 0x3a, 0x55, 0xc6, 0x16, 0xca, 0x46, 0xa7, 0x5e, 0x5e,
+	0x6f, 0x68, 0x6d, 0xab, 0xf9, 0xb8, 0xa9, 0x19, 0xcb, 0x99, 0xc3, 0x83, 0xdc, 0x08, 0x00, 0x4a,
+	0x9b, 0x9a, 0xd1, 0x54, 0x5b, 0x97, 0x12, 0xb5, 0xbe, 0x66, 0x03, 0x21, 0x48, 0xb6, 0xd5, 0x5d,
+	0x2d, 0xdb, 0x87, 0x2d, 0xe0, 0xdf, 0xa8, 0x00, 0xc3, 0x0d, 0xcd, 0xac, 0x1b, 0x4d, 0xec, 0x70,
+	0xb6, 0x1f, 0x17, 0xd1, 0x8f, 0x50, 0x19, 0x06, 0x3b, 0xc4, 0x74, 0x36, 0x59, 0x48, 0x5c, 0x1a,
+	0xab, 0xa2, 0xb2, 0xdb, 0x84, 0xca, 0xae, 0x53, 0x35, 0x4f, 0xc6, 0x0e, 0x45, 0xad, 0xd7, 0xf5,
+	0x6e, 0xdb, 0xca, 0xa6, 0x9c, 0x50, 0xc8, 0x9f, 0xa8, 0x04, 0x03, 0x86, 0xb6, 0x63, 0xe7, 0x25,
+	0x9b, 0x2e, 0xf4, 0x5f, 0x1a, 0xae, 0x66, 0x7c, 0x45, 0x35, 0x5c, 0x50, 0x73, 0x05, 0x6e, 0x0e,
+	0x1e, 0x1e, 0xe4, 0x92, 0x83, 0x89, 0x42, 0x42, 0xb9, 0x0b, 0xf9, 0x15, 0x43, 0x53, 0x2d, 0x8d,
+	0xc9, 0x42, 0x4d, 0x7b, 0xde, 0xd5, 0x4c, 0x0b, 0x5d, 0x87, 0x81, 0x8e, 0xba, 0xdf, 0xd2, 0x55,
+	0x37, 0x23, 0xe7, 0x7d, 0x9d, 0xec, 0x0b, 0xae, 0x9c, 0xb2, 0x01, 0x33, 0x52, 0x85, 0xa4, 0x2a,
+	0x2a, 0x90, 0x36, 0x34, 0xb3, 0xdb, 0xb2, 0xa2, 0x14, 0x12, 0x31, 0xe5, 0x05, 0x64, 0x6b, 0x9a,
+	0xda, 0x90, 0xba, 0xb7, 0x18, 0x59, 0x57, 0xb8, 0x66, 0x5e, 0x87, 0x34, 0xa6, 0x17, 0x13, 0xd7,
+	0xcd, 0x70, 0x75, 0xb6, 0xec, 0xe2, 0x0c, 0x1b, 0x7f, 0xd7, 0x2e, 0xbb, 0xaf, 0x91, 0xc6, 0x53,
+	0x23, 0xb2, 0xca, 0x07, 0x90, 0x93, 0x18, 0x8e, 0x1b, 0xc6, 0xef, 0x27, 0x20, 0xff, 0xa0, 0xd3,
+	0x38, 0xb9, 0x44, 0xa3, 0x2a, 0x17, 0x55, 0xbe, 0xec, 0x30, 0x66, 0xd9, 0xe5, 0x54, 0x27, 0xb0,
+	0x0f, 0x55, 0xf3, 0x99, 0x17, 0xd3, 0x06, 0xcc, 0x48, 0x9d, 0x88, 0x1b, 0xd5, 0x0a, 0xe4, 0x57,
+	0xb5, 0x96, 0x16, 0x10, 0x54, 0x6f, 0xd5, 0xa3, 0xcc, 0xc1, 0x8c, 0x54, 0x89, 0xe3, 0x94, 0xf2,
+	0xaf, 0x09, 0xc8, 0x7e, 0xd0, 0x34, 0x2d, 0xa9, 0x89, 0x8a, 0x9d, 0x84, 0x96, 0xa5, 0x19, 0x9e,
+	0xc7, 0x5c, 0xd5, 0xda, 0x65, 0xcd, 0xf6, 0x4e, 0x8d, 0x88, 0xa1, 0x6b, 0x30, 0xa8, 0x1b, 0x0d,
+	0xcd, 0xd8, 0xda, 0xde, 0x27, 0x79, 0x9b, 0x62, 0x5f, 0xb9, 0xaf, 0x1b, 0x96, 0xfd, 0xc2, 0x00,
+	0x16, 0x5b, 0xde, 0xa7, 0xd0, 0xd3, 0xdf, 0x3b, 0x7a, 0xd0, 0x35, 0x48, 0x77, 0xd4, 0x9d, 0x66,
+	0x7b, 0x07, 0xb7, 0xea, 0xe1, 0x6a, 0x96, 0x7d, 0x6b, 0xd3, 0x2e, 0x53, 0x9d, 0x37, 0x1c, 0x39,
+	0xe5, 0x1b, 0x90, 0x17, 0xc2, 0x34, 0xbd, 0xaa, 0xb9, 0x6e, 0xb7, 0x6e, 0x3b, 0xe7, 0x66, 0x36,
+	0x81, 0x5b, 0x77, 0x30, 0x40, 0x88, 0x1c, 0x2a, 0x41, 0xb2, 0xa3, 0xee, 0x68, 0x24, 0xcc, 0x69,
+	0xc1, 0x01, 0x6d, 0xbd, 0xfd, 0x58, 0xaf, 0x61, 0x19, 0xe5, 0xa7, 0x7d, 0x90, 0x76, 0x48, 0xe2,
+	0xb4, 0x09, 0xf0, 0x22, 0xa4, 0x4d, 0x4b, 0xdd, 0xd1, 0xcc, 0x6c, 0x12, 0xc7, 0x35, 0xee, 0xc7,
+	0x75, 0xdf, 0x7e, 0x5e, 0x23, 0xc5, 0x68, 0x11, 0x52, 0x7b, 0x6a, 0xab, 0xab, 0x61, 0xde, 0x63,
+	0xe4, 0x1e, 0xda, 0x8f, 0x6b, 0x4e, 0x29, 0xba, 0x01, 0x23, 0xea, 0x0b, 0x73, 0xcb, 0xd4, 0x8c,
+	0xbd, 0x66, 0x5d, 0x73, 0xb9, 0x70, 0xd2, 0x97, 0x5e, 0x7a, 0x61, 0xde, 0x77, 0x0a, 0x6b, 0xc3,
+	0xaa, 0xf7, 0xdb, 0x44, 0x4b, 0x70, 0xae, 0x6e, 0x27, 0x72, 0xcb, 0xe5, 0xda, 0xad, 0x66, 0x23,
+	0x3b, 0x10, 0x06, 0xde, 0xf1, 0x3a, 0x9d, 0xf8, 0xf5, 0x06, 0x45, 0xab, 0x4b, 0x30, 0xe1, 0xb0,
+	0x20, 0x61, 0x5e, 0x02, 0xd7, 0x12, 0xdf, 0xcc, 0x25, 0x1c, 0xed, 0x12, 0xe9, 0x2d, 0x98, 0x64,
+	0x55, 0x10, 0x24, 0x5c, 0xe2, 0x1a, 0xa9, 0xa8, 0xc2, 0x6d, 0x9d, 0x1d, 0x38, 0x67, 0x33, 0x18,
+	0xeb, 0xc2, 0x4b, 0xe5, 0xcc, 0xb7, 0x01, 0xd1, 0x16, 0x8f, 0xec, 0x71, 0x17, 0x26, 0x1c, 0x7e,
+	0x8a, 0x9d, 0xb6, 0x58, 0xb4, 0x78, 0x0b, 0x26, 0x59, 0xb3, 0x47, 0x76, 0xfc, 0x2d, 0x98, 0x70,
+	0x38, 0x2c, 0x4e, 0xb2, 0x95, 0x69, 0x98, 0x64, 0xdf, 0x26, 0xd4, 0xf7, 0x8b, 0x04, 0x9c, 0xb3,
+	0x39, 0x81, 0x55, 0x7a, 0x86, 0x38, 0x6f, 0x17, 0x26, 0xfc, 0xf8, 0x7c, 0xb2, 0x2b, 0xf1, 0x64,
+	0x27, 0xed, 0xca, 0x1c, 0x9d, 0xe5, 0x7e, 0x9e, 0x80, 0x14, 0x26, 0x95, 0xd3, 0x27, 0xb9, 0xa4,
+	0xdd, 0xb7, 0x27, 0x3d, 0xbc, 0x09, 0x8e, 0xe2, 0x3e, 0xda, 0xef, 0x68, 0x35, 0x2c, 0x80, 0xaa,
+	0x30, 0xe4, 0xf4, 0xd1, 0x6c, 0xf2, 0x49, 0x85, 0xe1, 0x66, 0xd0, 0x91, 0x63, 0x58, 0xe7, 0x1d,
+	0x40, 0x0e, 0x65, 0x38, 0xcc, 0x49, 0xf0, 0x72, 0x99, 0x6f, 0x3d, 0x02, 0xc5, 0x7a, 0x9c, 0xf3,
+	0xb6, 0x4b, 0x5b, 0x44, 0x01, 0xa9, 0x8f, 0x8b, 0x5c, 0x3b, 0x10, 0x39, 0x9a, 0x34, 0x03, 0x1d,
+	0x32, 0x76, 0xfb, 0x67, 0xcc, 0xbf, 0x54, 0xc2, 0x79, 0xcb, 0xa1, 0xb8, 0x98, 0xee, 0x9a, 0x80,
+	0x9c, 0x76, 0x1f, 0x33, 0x5f, 0xb1, 0xc8, 0xe6, 0x6d, 0x97, 0xe3, 0x62, 0x3a, 0xfd, 0x26, 0x20,
+	0x87, 0x2c, 0x62, 0x64, 0x59, 0x99, 0x72, 0x79, 0x8a, 0x31, 0x6e, 0x37, 0x8c, 0x8c, 0xdd, 0x10,
+	0x19, 0x95, 0x67, 0x88, 0x67, 0x9e, 0x01, 0xf2, 0xc2, 0xf3, 0x69, 0xe6, 0x32, 0x4f, 0x33, 0x62,
+	0x45, 0xc7, 0x61, 0x99, 0xbf, 0xe8, 0x83, 0xe1, 0xb5, 0xf6, 0x5e, 0xd3, 0xd0, 0xdb, 0xbb, 0x5a,
+	0xdb, 0x3a, 0x6d, 0xae, 0xf1, 0xfa, 0x49, 0xc9, 0xd0, 0x7e, 0x52, 0x0d, 0xa6, 0xd4, 0x4e, 0xa7,
+	0xd5, 0xac, 0xe3, 0x4c, 0x6d, 0x35, 0xdb, 0xa6, 0xa5, 0xb6, 0xed, 0x0e, 0x53, 0x0a, 0xa7, 0x62,
+	0x8e, 0xea, 0x30, 0xf9, 0x62, 0xeb, 0x44, 0xaa, 0x36, 0xa9, 0x8a, 0x0f, 0xed, 0x8a, 0x19, 0xc4,
+	0x9d, 0x35, 0x9b, 0xbc, 0xd2, 0x61, 0x50, 0x1c, 0xc0, 0x62, 0x0c, 0x77, 0xbd, 0x0f, 0x59, 0x87,
+	0x7a, 0xa8, 0xd4, 0xf9, 0x48, 0xe4, 0x5a, 0xe4, 0x94, 0xef, 0x1d, 0x2d, 0xee, 0xf1, 0xd8, 0x1d,
+	0xc8, 0x49, 0x94, 0x91, 0x6a, 0xbf, 0xca, 0xb5, 0xb4, 0x00, 0x65, 0x7e, 0x9f, 0x64, 0xda, 0xa6,
+	0x18, 0x89, 0x5b, 0x2f, 0x95, 0xd9, 0x6e, 0xc3, 0x79, 0xc1, 0x6c, 0xbc, 0x00, 0x7e, 0x0f, 0xb2,
+	0x0e, 0xe1, 0x9c, 0x40, 0x66, 0x63, 0x31, 0xde, 0x1d, 0xc8, 0x49, 0x1c, 0x88, 0x17, 0xcc, 0x12,
+	0x64, 0x1d, 0x02, 0x8b, 0x5d, 0x1f, 0xca, 0x0c, 0xe4, 0x24, 0x2a, 0x08, 0x13, 0xfe, 0x4b, 0x02,
+	0xa6, 0x6d, 0xaa, 0x90, 0xe6, 0xea, 0xcc, 0xf0, 0xe1, 0x0b, 0x67, 0x48, 0x4d, 0x05, 0x69, 0x52,
+	0x93, 0x00, 0x1c, 0x2b, 0x06, 0x41, 0x22, 0x2e, 0x37, 0x52, 0x7c, 0xf2, 0xff, 0xdc, 0x78, 0x34,
+	0x6e, 0xa4, 0xcc, 0xf5, 0xd2, 0x82, 0x69, 0x71, 0x91, 0x1b, 0x19, 0x65, 0xd1, 0xad, 0x91, 0x16,
+	0xe7, 0xb8, 0x51, 0xe2, 0xd6, 0x69, 0x70, 0xe3, 0x09, 0x04, 0xe0, 0x71, 0xe3, 0x09, 0x64, 0xf6,
+	0x78, 0xdc, 0x78, 0x02, 0xc1, 0x78, 0xdc, 0x18, 0xbb, 0x3e, 0x7c, 0x6e, 0x94, 0xb8, 0xe3, 0x71,
+	0xa3, 0x34, 0x57, 0x67, 0x8d, 0x1b, 0xa9, 0x20, 0x7b, 0xe3, 0x46, 0x06, 0x12, 0x71, 0xb8, 0xf1,
+	0x2f, 0x13, 0x30, 0xb2, 0xf2, 0x44, 0x35, 0x2c, 0xb2, 0x7c, 0x71, 0xda, 0xe4, 0x88, 0x20, 0x69,
+	0x68, 0x1d, 0x1d, 0x27, 0x6a, 0xa8, 0x86, 0x7f, 0xd3, 0x2b, 0x27, 0x29, 0x66, 0xe5, 0x84, 0x62,
+	0xa7, 0x0f, 0x5d, 0x42, 0xa1, 0x9d, 0x77, 0x81, 0x71, 0x8d, 0x6f, 0x44, 0xd3, 0xd4, 0xbc, 0x25,
+	0x2d, 0xef, 0xf1, 0xd3, 0x07, 0xde, 0x8a, 0x04, 0xa3, 0x8e, 0xd4, 0x40, 0x99, 0x6b, 0x12, 0x41,
+	0xea, 0xdc, 0x36, 0xb1, 0xe7, 0x50, 0x85, 0xcc, 0xb5, 0x97, 0x4a, 0x51, 0x77, 0xc8, 0xb2, 0xc5,
+	0x49, 0xc4, 0xf0, 0xed, 0x84, 0x4b, 0x12, 0x27, 0x92, 0xe1, 0x58, 0x3c, 0xf5, 0x81, 0xb7, 0x7c,
+	0x71, 0x12, 0x11, 0x2d, 0xbb, 0x34, 0x13, 0xbf, 0x5e, 0x94, 0x59, 0x6f, 0xed, 0x41, 0xe2, 0x91,
+	0xf2, 0xab, 0x04, 0x9c, 0xc7, 0xd3, 0xe9, 0x12, 0x03, 0x67, 0x88, 0xac, 0xf6, 0x21, 0xc7, 0x47,
+	0xe9, 0xb3, 0xd5, 0x35, 0x9e, 0xad, 0x02, 0x91, 0x11, 0x87, 0xae, 0x7e, 0xd8, 0x0f, 0x13, 0x92,
+	0xee, 0xcf, 0x6f, 0x68, 0x97, 0xee, 0x75, 0x80, 0x86, 0xd6, 0x69, 0xe9, 0xfb, 0x76, 0xdf, 0x95,
+	0x74, 0xc0, 0xa8, 0x45, 0x81, 0x55, 0xaf, 0xac, 0x46, 0xc9, 0xa1, 0x15, 0x18, 0xad, 0xdb, 0x89,
+	0xda, 0x72, 0x49, 0x70, 0x20, 0x0c, 0xde, 0xcb, 0xe9, 0xc3, 0x83, 0x5c, 0x9f, 0xf2, 0x4a, 0x6d,
+	0xa4, 0x4e, 0xd3, 0xf8, 0x3b, 0x90, 0x61, 0x94, 0xd8, 0x3d, 0xc0, 0xc1, 0x30, 0x74, 0x8f, 0xd1,
+	0xaf, 0xaf, 0x37, 0xd0, 0x5b, 0x30, 0xa6, 0xf9, 0x1d, 0x6f, 0xfb, 0xf5, 0xa1, 0xb0, 0xd7, 0x47,
+	0x29, 0x61, 0xa6, 0x1b, 0xf9, 0x3b, 0x50, 0x10, 0x7a, 0x7e, 0x5e, 0xaf, 0x95, 0xb4, 0x8d, 0x1b,
+	0x3c, 0x9b, 0x44, 0x74, 0x76, 0x3d, 0xda, 0x7e, 0x04, 0xc5, 0x10, 0xe5, 0x04, 0x91, 0x5f, 0xe1,
+	0x78, 0x22, 0x42, 0xb9, 0x4b, 0x17, 0x9f, 0xc3, 0x05, 0xae, 0xbf, 0xc7, 0xbb, 0xfd, 0x52, 0xb9,
+	0xfc, 0x63, 0x98, 0x0f, 0x34, 0x7f, 0xbc, 0xc0, 0xbe, 0x48, 0x40, 0x41, 0xe8, 0xfe, 0x9d, 0x54,
+	0x95, 0xc4, 0xe2, 0xf9, 0x47, 0x50, 0x0c, 0x71, 0xe8, 0x78, 0xd1, 0xae, 0x43, 0x41, 0xe8, 0x5c,
+	0xc6, 0xab, 0x48, 0x65, 0x01, 0x8a, 0x21, 0xaa, 0xc8, 0x37, 0xe0, 0xdf, 0x12, 0x70, 0x81, 0xeb,
+	0xca, 0xf1, 0xe6, 0xce, 0xd0, 0xa7, 0xe0, 0x7b, 0x09, 0x28, 0x04, 0x44, 0xeb, 0x7f, 0x12, 0x6e,
+	0xf0, 0x9f, 0x84, 0x28, 0x2c, 0xc5, 0xf9, 0x32, 0xfc, 0x20, 0x01, 0xa9, 0x87, 0x6a, 0xb7, 0x75,
+	0xea, 0x53, 0x9f, 0x25, 0x18, 0x30, 0xb5, 0xba, 0xa1, 0x59, 0xee, 0x48, 0x9d, 0x5a, 0x37, 0xba,
+	0x8f, 0x0b, 0x6a, 0xae, 0x80, 0x6c, 0xd5, 0x04, 0xfb, 0xdc, 0xcb, 0x2a, 0x80, 0x23, 0x28, 0xae,
+	0x9a, 0x10, 0x05, 0xd1, 0x33, 0xfa, 0x8e, 0x20, 0xb7, 0x6a, 0xc2, 0x98, 0x3f, 0x8d, 0x55, 0x93,
+	0x98, 0xee, 0x7a, 0xab, 0x26, 0x31, 0xf3, 0x75, 0xbc, 0x55, 0x93, 0x98, 0x4e, 0x7b, 0xab, 0x26,
+	0x31, 0xb2, 0xec, 0xaf, 0x9a, 0x30, 0xc6, 0xbd, 0x55, 0x13, 0x46, 0xe5, 0xd9, 0x5b, 0x35, 0xc1,
+	0xe1, 0xf5, 0xb6, 0x6a, 0x42, 0x2a, 0x3a, 0x0e, 0x69, 0xfc, 0x57, 0x1f, 0xa4, 0x9d, 0x36, 0xfa,
+	0x7f, 0x30, 0xee, 0xed, 0xa8, 0xd6, 0x13, 0x77, 0xdc, 0x6b, 0xff, 0xb6, 0x9f, 0xe1, 0x05, 0x5b,
+	0x67, 0xd0, 0xeb, 0xac, 0xcd, 0x66, 0xa0, 0xff, 0x99, 0xb6, 0x8f, 0xfb, 0x8e, 0x43, 0x35, 0xfb,
+	0x27, 0xba, 0x0d, 0x83, 0x7b, 0x76, 0xc4, 0x51, 0x3b, 0x45, 0x96, 0xa7, 0x0f, 0x0f, 0x72, 0x08,
+	0x86, 0xd0, 0x40, 0xb3, 0x6d, 0x69, 0x3b, 0x9a, 0x71, 0x33, 0x45, 0x32, 0x85, 0x5f, 0x5f, 0x6f,
+	0xd8, 0x20, 0xc0, 0xfd, 0xd4, 0xc8, 0xbe, 0xe1, 0x00, 0x16, 0x5b, 0x6f, 0xa0, 0x55, 0x98, 0x50,
+	0x5f, 0x98, 0x5b, 0x46, 0xc3, 0xf4, 0xe6, 0x27, 0x23, 0x7b, 0x86, 0x19, 0xf5, 0x85, 0x59, 0x6b,
+	0x98, 0x2e, 0xbb, 0xcb, 0x77, 0xac, 0x10, 0xa2, 0xec, 0x61, 0xeb, 0x85, 0x4b, 0xa9, 0xc2, 0x8e,
+	0x15, 0x57, 0x45, 0xf4, 0x36, 0x0a, 0x22, 0xc9, 0xed, 0x58, 0x61, 0x5d, 0x38, 0x8d, 0x1d, 0x2b,
+	0xb1, 0x3d, 0xf6, 0x76, 0xac, 0xc4, 0x4e, 0xdb, 0xf1, 0x76, 0xac, 0xc4, 0x76, 0xdc, 0xdb, 0xb1,
+	0x12, 0x27, 0xd9, 0xfe, 0x8e, 0x15, 0xd6, 0xbe, 0xb7, 0x63, 0x85, 0x55, 0x7a, 0xf6, 0x76, 0xac,
+	0x38, 0xf1, 0xf5, 0xb6, 0x63, 0xc5, 0xad, 0xef, 0x38, 0xac, 0xf8, 0x3f, 0x09, 0x00, 0x7f, 0xc3,
+	0xda, 0x69, 0x33, 0xe3, 0x2a, 0x9c, 0xe3, 0x39, 0xc6, 0xdd, 0xa6, 0x97, 0x65, 0x36, 0xd4, 0x51,
+	0xa4, 0x52, 0x1b, 0x67, 0x49, 0xc6, 0x3c, 0xe6, 0x9e, 0x96, 0x75, 0x38, 0x4f, 0xc6, 0x95, 0xfe,
+	0xbe, 0x3d, 0x02, 0xab, 0x32, 0xdf, 0xc8, 0xe4, 0xbb, 0xfc, 0x3c, 0x7e, 0xba, 0xed, 0x2d, 0xa3,
+	0x50, 0xaa, 0x48, 0x05, 0xbe, 0xc6, 0x35, 0x1c, 0xb9, 0x2a, 0xb7, 0xf1, 0x58, 0x30, 0x85, 0x47,
+	0x84, 0x82, 0x4b, 0x2f, 0x95, 0xab, 0xde, 0x25, 0xab, 0x2d, 0xc7, 0xf5, 0xfe, 0x73, 0x38, 0x4f,
+	0xc6, 0x78, 0xc7, 0x4d, 0x69, 0x2c, 0xee, 0xba, 0xed, 0xad, 0xb9, 0x1c, 0x37, 0x90, 0x5b, 0x70,
+	0x9e, 0x8c, 0x02, 0x63, 0x56, 0x84, 0x92, 0xf7, 0x96, 0x4c, 0x04, 0x5f, 0x94, 0x5f, 0x26, 0x60,
+	0x0a, 0x0f, 0xa8, 0x04, 0xe5, 0x67, 0x88, 0xcf, 0xba, 0xce, 0x34, 0xa9, 0x1f, 0xa3, 0x49, 0x4d,
+	0xea, 0x72, 0x9c, 0x16, 0x80, 0x85, 0x38, 0xbc, 0xf6, 0xef, 0x7d, 0x30, 0xc6, 0xf2, 0xc6, 0x69,
+	0x73, 0xdb, 0x02, 0x8c, 0x36, 0x54, 0x4b, 0xdd, 0x56, 0x4d, 0x6d, 0xeb, 0x89, 0x6e, 0x5a, 0xa4,
+	0xfb, 0x37, 0xe2, 0x3e, 0xbc, 0xad, 0x9b, 0x16, 0x23, 0x84, 0x6d, 0xa4, 0x58, 0xa1, 0x0d, 0xdb,
+	0x16, 0x2d, 0xd4, 0x35, 0x35, 0x83, 0xf4, 0x10, 0x3d, 0xa1, 0x07, 0xa6, 0x66, 0xa0, 0xaf, 0xc1,
+	0x39, 0x4f, 0xa8, 0xa3, 0x9a, 0xe6, 0x0b, 0xdd, 0x70, 0xfb, 0x8c, 0xe2, 0xa7, 0x22, 0xe3, 0x8a,
+	0x6e, 0x12, 0x49, 0xf4, 0x26, 0x8c, 0x51, 0xbb, 0x9a, 0x23, 0x7b, 0x89, 0x23, 0xfe, 0xc6, 0x66,
+	0x86, 0x4c, 0xef, 0xb9, 0x87, 0x33, 0x38, 0xce, 0x26, 0xb8, 0xae, 0xf2, 0xad, 0x3f, 0x98, 0xe5,
+	0x3d, 0x52, 0xdd, 0x84, 0x59, 0xb9, 0x4a, 0x6f, 0x12, 0x9a, 0x6d, 0xd1, 0xc1, 0x2a, 0xdd, 0x56,
+	0xfd, 0xa9, 0x73, 0xf0, 0x42, 0xee, 0xe2, 0x4b, 0x25, 0xd8, 0x0d, 0xc8, 0xcb, 0x2c, 0xc7, 0x8e,
+	0xe4, 0x0f, 0x12, 0xee, 0x79, 0x8b, 0x13, 0xcb, 0x77, 0x2c, 0xc6, 0xdd, 0x84, 0x59, 0xb9, 0x1b,
+	0xb1, 0x23, 0x5b, 0x75, 0xcf, 0x6c, 0x1c, 0xa7, 0x96, 0x94, 0x0b, 0x30, 0x2b, 0xd7, 0x42, 0x18,
+	0xf8, 0xd7, 0x09, 0x67, 0x79, 0x43, 0x6e, 0xe4, 0x0c, 0xb1, 0xf0, 0xe7, 0x30, 0x23, 0xc6, 0xe9,
+	0x33, 0x71, 0x95, 0x67, 0xe2, 0x10, 0x9c, 0xc4, 0x61, 0xe3, 0xff, 0xc0, 0x13, 0x76, 0xce, 0xe9,
+	0x89, 0x53, 0x25, 0xe1, 0xaf, 0x42, 0xf2, 0x99, 0xb6, 0x6f, 0x92, 0x3c, 0x4d, 0x95, 0xf1, 0xd1,
+	0x49, 0xe7, 0x14, 0xe4, 0x9d, 0xfb, 0x77, 0x37, 0xb0, 0x4f, 0xcb, 0xa3, 0x87, 0x07, 0xb9, 0x21,
+	0x18, 0x40, 0xa9, 0xa7, 0xa6, 0xde, 0xde, 0xae, 0xe1, 0x37, 0x24, 0x84, 0x98, 0x8a, 0x43, 0x88,
+	0xd4, 0xdc, 0x5f, 0xab, 0xab, 0xf5, 0x36, 0x97, 0x65, 0x0b, 0xca, 0xe6, 0xfe, 0xb0, 0x82, 0x5e,
+	0xe6, 0xa5, 0x6c, 0x41, 0x61, 0xee, 0x8f, 0x32, 0x7f, 0x3a, 0x73, 0x7f, 0xb1, 0xdc, 0xa5, 0xe6,
+	0xfe, 0x62, 0xe5, 0xeb, 0xb8, 0x73, 0x7f, 0xb1, 0x9c, 0xa6, 0xe6, 0xfe, 0x8e, 0x9c, 0x65, 0x7a,
+	0xee, 0x8f, 0x32, 0x4e, 0xcd, 0xfd, 0x51, 0x2a, 0xcf, 0xe2, 0xdc, 0x5f, 0xab, 0xab, 0xf5, 0x3a,
+	0xf7, 0x87, 0x2b, 0x3a, 0x0e, 0xff, 0x7c, 0xd1, 0x07, 0x83, 0x4b, 0x86, 0xd5, 0x7c, 0xac, 0xd6,
+	0xad, 0xdf, 0x84, 0x5d, 0x2f, 0xd3, 0x90, 0xae, 0xeb, 0xbb, 0xbb, 0x4d, 0xf7, 0x8c, 0x2d, 0xf9,
+	0x0b, 0x7d, 0x22, 0x59, 0xc9, 0x0d, 0xdb, 0xcb, 0xb7, 0x3c, 0x77, 0x78, 0x90, 0xcb, 0xd1, 0xf3,
+	0x7e, 0xcc, 0x06, 0x1f, 0x7e, 0xa1, 0x97, 0xe2, 0xa5, 0x35, 0x98, 0x22, 0xbd, 0x2a, 0x92, 0x16,
+	0x17, 0x62, 0xaf, 0xf1, 0x4d, 0x8d, 0x3a, 0x2e, 0xec, 0xc9, 0x7a, 0xec, 0xb4, 0x0a, 0xd3, 0xbc,
+	0x1a, 0x6f, 0xc2, 0x82, 0x6d, 0x3c, 0x32, 0x35, 0x6e, 0xfb, 0x31, 0x60, 0x02, 0x77, 0x8b, 0x38,
+	0x57, 0x5e, 0x2a, 0x4d, 0x2d, 0xc3, 0x24, 0x6b, 0x33, 0x86, 0xdf, 0xfb, 0x30, 0x45, 0xba, 0x3d,
+	0xc7, 0x49, 0x62, 0x2c, 0xca, 0x5a, 0x85, 0x69, 0xde, 0x74, 0x8c, 0x00, 0xde, 0x86, 0x29, 0xd2,
+	0x3f, 0x8a, 0x95, 0x7a, 0x25, 0x0b, 0xd3, 0xfc, 0xfb, 0x84, 0xbe, 0xfe, 0x39, 0xe1, 0xcc, 0x63,
+	0xf1, 0x8a, 0xcf, 0x10, 0x83, 0x3d, 0x27, 0xa3, 0x77, 0x12, 0xa1, 0x49, 0xcd, 0x31, 0x70, 0x24,
+	0x26, 0xad, 0xfd, 0x38, 0x3c, 0xf6, 0x93, 0x7e, 0x00, 0x7f, 0x27, 0xc9, 0x69, 0x33, 0xd9, 0x1b,
+	0x30, 0xa8, 0x12, 0xf7, 0x49, 0x92, 0x24, 0x81, 0x79, 0x7b, 0x54, 0x3c, 0x59, 0xf4, 0x06, 0x0c,
+	0xbb, 0xbf, 0x23, 0xfb, 0x51, 0xe0, 0x4a, 0xae, 0x37, 0xd0, 0x2d, 0x18, 0x79, 0xd6, 0xdd, 0xd6,
+	0xb6, 0xea, 0xad, 0xae, 0x69, 0x91, 0x61, 0x2f, 0xb3, 0x23, 0xf2, 0xfd, 0xee, 0xb6, 0xb6, 0xe2,
+	0x14, 0x7a, 0x66, 0x87, 0x9f, 0xf9, 0x0f, 0xd1, 0xd7, 0x60, 0x9c, 0xd6, 0x10, 0x79, 0xe0, 0x76,
+	0x94, 0x7a, 0x79, 0xbd, 0x81, 0x3e, 0x84, 0xf3, 0xb2, 0x6d, 0xda, 0x91, 0xa3, 0xe3, 0x29, 0xc9,
+	0x06, 0x6d, 0xf9, 0x9c, 0x23, 0xb5, 0x2d, 0xa8, 0x87, 0x09, 0x32, 0x4a, 0x5a, 0x9c, 0x73, 0xa4,
+	0x55, 0x45, 0x4f, 0x76, 0x51, 0xd2, 0xdc, 0x9c, 0xa3, 0xe8, 0xd2, 0x69, 0xcc, 0x39, 0x1e, 0xdb,
+	0x7b, 0x6f, 0xce, 0xf1, 0xd8, 0x29, 0x3d, 0xde, 0x9c, 0xe3, 0xb1, 0x03, 0xf1, 0xe6, 0x1c, 0xe3,
+	0x56, 0x84, 0x3f, 0xe7, 0x28, 0xfa, 0xe2, 0xcd, 0x39, 0x8a, 0xca, 0xcf, 0xde, 0x9c, 0xa3, 0x1f,
+	0x63, 0x6f, 0x73, 0x8e, 0x34, 0x16, 0xe2, 0xb0, 0xf3, 0x77, 0x13, 0x30, 0x4c, 0x51, 0xd2, 0x29,
+	0xd3, 0xb3, 0xec, 0x38, 0x07, 0xe5, 0x4d, 0x2f, 0x87, 0x0e, 0x68, 0x71, 0xf1, 0x38, 0x07, 0xa3,
+	0x2c, 0xfa, 0x00, 0x01, 0x2d, 0xce, 0x1d, 0xe7, 0x90, 0xb8, 0x75, 0x1a, 0xc7, 0x39, 0x4e, 0x20,
+	0x00, 0xef, 0x38, 0xc7, 0x09, 0x64, 0xf6, 0x78, 0xc7, 0x39, 0x4e, 0x20, 0x18, 0xef, 0x38, 0x47,
+	0xec, 0xfa, 0xf0, 0x8f, 0x73, 0x48, 0xdc, 0xf1, 0x8e, 0x73, 0x48, 0x73, 0x75, 0xd6, 0x8e, 0x73,
+	0x50, 0x41, 0xf6, 0x76, 0x9c, 0x83, 0x81, 0x44, 0x0c, 0xba, 0x29, 0xdd, 0x81, 0x41, 0xef, 0x52,
+	0xa9, 0x49, 0xc8, 0x3c, 0xd8, 0x78, 0x7f, 0xe3, 0xee, 0xd7, 0x37, 0xb6, 0x36, 0x6b, 0x77, 0x1f,
+	0xae, 0xaf, 0xae, 0xd5, 0x32, 0xaf, 0xa0, 0x01, 0xe8, 0x5f, 0xfa, 0xfa, 0xfd, 0x4c, 0x02, 0x0d,
+	0x41, 0x6a, 0xe9, 0xd1, 0x83, 0xda, 0x5a, 0xa6, 0xcf, 0x7e, 0xf6, 0xde, 0xca, 0x66, 0xa6, 0x1f,
+	0x0d, 0xc3, 0xc0, 0xda, 0xbd, 0x07, 0xeb, 0x1b, 0xeb, 0x1f, 0x67, 0x92, 0xa5, 0x4f, 0x60, 0xc8,
+	0xbb, 0x29, 0x00, 0x9d, 0x83, 0x51, 0x57, 0xd9, 0xfd, 0x8f, 0x96, 0xde, 0x5b, 0x73, 0x34, 0xad,
+	0xae, 0x3d, 0xcc, 0x24, 0x50, 0x1a, 0xfa, 0xee, 0x2d, 0x65, 0xfa, 0x10, 0x40, 0xfa, 0xde, 0xd2,
+	0xbb, 0x0f, 0x36, 0x56, 0x32, 0xfd, 0xce, 0xef, 0xcd, 0xb5, 0xda, 0xbb, 0x99, 0xa4, 0xad, 0x75,
+	0xb3, 0xb6, 0xb6, 0x59, 0xbb, 0xbb, 0x9a, 0x49, 0xa1, 0x41, 0x48, 0xe2, 0x5f, 0xe9, 0xea, 0x6f,
+	0x43, 0x72, 0x65, 0xb7, 0xb1, 0x8d, 0xee, 0x01, 0xbc, 0xa7, 0x79, 0x1b, 0x97, 0xa7, 0x05, 0xc0,
+	0xaf, 0xed, 0x76, 0xac, 0xfd, 0x7c, 0x8e, 0x1a, 0xf4, 0x73, 0xdb, 0xee, 0x33, 0xdf, 0xf9, 0xd9,
+	0xaf, 0xbe, 0xdf, 0x07, 0x68, 0xb0, 0x42, 0x86, 0xc8, 0xd5, 0x5f, 0xa6, 0x60, 0x8c, 0xbd, 0xd3,
+	0x06, 0x7d, 0x0a, 0x69, 0x87, 0xb2, 0xd0, 0xab, 0xd4, 0x46, 0xea, 0xc0, 0x5b, 0xa8, 0xf2, 0x8b,
+	0x11, 0x52, 0xc4, 0x76, 0x11, 0xdb, 0x9e, 0x51, 0x32, 0x15, 0xf6, 0x1e, 0x17, 0xf3, 0xa6, 0xd7,
+	0xa4, 0x3f, 0x83, 0xa4, 0xcd, 0x34, 0x48, 0xa1, 0xef, 0x93, 0x90, 0x5f, 0x2e, 0x95, 0x5f, 0x08,
+	0x95, 0x21, 0x36, 0x2f, 0x63, 0x9b, 0x0b, 0xa8, 0xc8, 0xdb, 0xac, 0x7c, 0xa3, 0xd9, 0x28, 0xbb,
+	0xf7, 0xa7, 0x6d, 0x35, 0x1b, 0x9f, 0xa3, 0x9f, 0x26, 0x20, 0xed, 0x70, 0x03, 0x1d, 0x76, 0xf0,
+	0x9d, 0x50, 0x74, 0xd8, 0x21, 0x97, 0x36, 0x29, 0x7b, 0xff, 0xf4, 0xe3, 0x5c, 0xdf, 0xe0, 0x2b,
+	0xd8, 0x91, 0xa7, 0xf9, 0xcb, 0xa2, 0x23, 0x24, 0xf8, 0x32, 0xe7, 0x90, 0x97, 0x95, 0x47, 0xaf,
+	0x57, 0x63, 0xbc, 0x85, 0xbe, 0x9f, 0x80, 0xb4, 0x43, 0x2e, 0x74, 0x3c, 0xc1, 0xd7, 0x41, 0xd1,
+	0xf1, 0x84, 0xdd, 0xf7, 0xf4, 0xd6, 0xe1, 0x41, 0x6e, 0x9c, 0xbb, 0x95, 0xcd, 0xc9, 0x72, 0xa9,
+	0x87, 0x2c, 0x3f, 0x85, 0xa4, 0xdd, 0xdc, 0xe9, 0x1a, 0x0e, 0xba, 0x3c, 0x2a, 0xff, 0x6a, 0x88,
+	0x8c, 0x47, 0x12, 0x4a, 0x16, 0x1b, 0x47, 0x48, 0x80, 0x55, 0x9e, 0x7c, 0xd1, 0x33, 0x89, 0xea,
+	0xcf, 0x93, 0x30, 0x40, 0x2e, 0x31, 0x41, 0xdb, 0x1e, 0xba, 0xe7, 0x78, 0xdc, 0x32, 0xf7, 0xb8,
+	0xe4, 0x2f, 0x04, 0x15, 0x13, 0xc3, 0x39, 0x6c, 0x78, 0x42, 0x19, 0xac, 0xb8, 0xd7, 0xb6, 0x79,
+	0xb9, 0x6f, 0x10, 0x1c, 0xcf, 0xb0, 0x18, 0x65, 0xf5, 0xcf, 0xca, 0x0b, 0xd9, 0xd6, 0x82, 0x72,
+	0xae, 0x76, 0x31, 0x97, 0x3f, 0xf4, 0x11, 0x3b, 0xc7, 0x63, 0x31, 0x30, 0x14, 0xd9, 0x45, 0x3a,
+	0xca, 0x63, 0x0a, 0xa3, 0x8f, 0xf2, 0x45, 0xdf, 0x64, 0x24, 0x36, 0x5f, 0xab, 0x1e, 0x41, 0x1a,
+	0xed, 0x79, 0x90, 0x9c, 0xe3, 0xc1, 0x16, 0xe8, 0xb0, 0xf4, 0xe6, 0x9d, 0xab, 0x87, 0x07, 0xb9,
+	0x41, 0xf7, 0x4a, 0x2c, 0x27, 0x53, 0xa5, 0x90, 0x4c, 0x7d, 0x44, 0x50, 0x37, 0xc3, 0x22, 0x8a,
+	0xb5, 0x39, 0x27, 0x2b, 0x34, 0x25, 0xd4, 0x49, 0xcc, 0x50, 0xf8, 0xfa, 0xfb, 0x24, 0xa4, 0x9d,
+	0xcb, 0x2b, 0xd0, 0x96, 0x07, 0xaf, 0x59, 0x1e, 0x3f, 0xf4, 0xed, 0x1d, 0xf9, 0xb9, 0x80, 0x52,
+	0x16, 0xd5, 0xca, 0x40, 0xc5, 0xb9, 0x5e, 0xcb, 0xcf, 0xa1, 0x4a, 0xb0, 0x95, 0x67, 0xe1, 0xc3,
+	0x28, 0x9f, 0x91, 0x96, 0x11, 0xd5, 0x05, 0xac, 0x3a, 0x8f, 0xb2, 0x44, 0xb5, 0x98, 0xae, 0x3f,
+	0xf7, 0x81, 0x35, 0xcb, 0x23, 0x27, 0x28, 0x08, 0xc9, 0x9d, 0x29, 0x4a, 0x83, 0x82, 0xd5, 0xc7,
+	0xf9, 0x82, 0x67, 0x2f, 0x12, 0x55, 0x57, 0xaa, 0xbd, 0x0b, 0x23, 0xc3, 0x03, 0xd5, 0x2c, 0x8f,
+	0x9a, 0x20, 0x67, 0x65, 0x77, 0xac, 0x5c, 0x39, 0x3c, 0xc8, 0x0d, 0x90, 0xfb, 0x87, 0x9c, 0x0c,
+	0x95, 0x82, 0x33, 0x74, 0x8f, 0x00, 0x2a, 0xcf, 0x62, 0x86, 0xb1, 0x37, 0x2b, 0x29, 0xf3, 0xe1,
+	0x34, 0x8e, 0x6d, 0x0c, 0x21, 0xb7, 0x82, 0x29, 0x34, 0xfd, 0x55, 0x0a, 0x46, 0xe8, 0xa3, 0xff,
+	0xe8, 0xb9, 0x87, 0x29, 0x85, 0x47, 0x8d, 0x78, 0x0f, 0x02, 0xfd, 0x61, 0x0c, 0xbc, 0x64, 0x43,
+	0xb9, 0x80, 0xcd, 0x67, 0x95, 0xd1, 0x0a, 0x75, 0x1a, 0x89, 0x42, 0x99, 0x49, 0x50, 0x56, 0x60,
+	0x91, 0x24, 0x31, 0x57, 0x0c, 0x91, 0x20, 0xc6, 0xbe, 0x84, 0x8d, 0x15, 0xd0, 0x05, 0xc6, 0x98,
+	0x98, 0xd5, 0xbf, 0xf5, 0x71, 0xa7, 0xf0, 0xc8, 0x0a, 0x0f, 0x34, 0xf0, 0xfe, 0x0a, 0xa5, 0x43,
+	0x61, 0xb0, 0x91, 0xff, 0x12, 0xe7, 0x41, 0x24, 0x12, 0xaf, 0x57, 0x8f, 0xfa, 0x0a, 0xfa, 0x43,
+	0xff, 0xc3, 0xab, 0xf0, 0x90, 0x0b, 0x8f, 0x22, 0xf8, 0xda, 0x8b, 0x1b, 0x87, 0x07, 0xb9, 0x51,
+	0xe6, 0xda, 0x1a, 0x27, 0xa5, 0xa5, 0xa8, 0x94, 0xd6, 0x09, 0x50, 0x0b, 0x2c, 0x18, 0x25, 0x7e,
+	0x28, 0x81, 0x12, 0x3e, 0x68, 0xa7, 0xb0, 0xd5, 0x71, 0xc4, 0xa2, 0x86, 0x83, 0x2e, 0x7d, 0x32,
+	0x3b, 0x0c, 0xba, 0xe2, 0x31, 0x75, 0x11, 0xba, 0xb2, 0x63, 0xee, 0x3e, 0x74, 0xa9, 0x79, 0xc2,
+	0x68, 0xe8, 0x4a, 0xcc, 0x15, 0x43, 0x24, 0x04, 0xe8, 0xd2, 0xc6, 0x8e, 0x06, 0xdd, 0xf0, 0x40,
+	0x03, 0xaf, 0x17, 0x10, 0xa0, 0xcb, 0x7a, 0xd0, 0x13, 0x74, 0x8f, 0xf6, 0x4a, 0x28, 0x74, 0xc3,
+	0xa3, 0x08, 0xbe, 0x95, 0x80, 0x40, 0x97, 0x2a, 0xf2, 0xa0, 0x1b, 0x9e, 0xd2, 0x00, 0xe8, 0x4a,
+	0xfc, 0x50, 0x02, 0x25, 0x64, 0xd0, 0xa5, 0xad, 0x52, 0xd0, 0xfd, 0x87, 0x14, 0x8c, 0x32, 0xe7,
+	0x74, 0x51, 0xd7, 0xc3, 0xae, 0x80, 0x4b, 0xc9, 0xb1, 0xe5, 0xfc, 0xab, 0xe1, 0x42, 0xec, 0xd7,
+	0x57, 0x19, 0xaf, 0x30, 0x4b, 0x95, 0x14, 0x7e, 0x5f, 0x10, 0xfc, 0x72, 0xe8, 0x94, 0x99, 0x54,
+	0xc2, 0x44, 0x88, 0xc1, 0x4b, 0xd8, 0xa0, 0x82, 0x0a, 0x9c, 0x41, 0x31, 0xe1, 0x7f, 0xe7, 0x63,
+	0x58, 0xc0, 0x67, 0x44, 0xc0, 0xc1, 0x67, 0xcf, 0x15, 0x8b, 0x42, 0xf1, 0x93, 0xfc, 0x25, 0xc1,
+	0x8b, 0x48, 0x1c, 0x7f, 0xb9, 0x7a, 0xf4, 0x97, 0xd0, 0x17, 0x3e, 0x92, 0x05, 0x94, 0x46, 0xc4,
+	0x12, 0x72, 0x6a, 0xfd, 0xe6, 0xe1, 0x41, 0x6e, 0x8c, 0xbd, 0x05, 0xc2, 0xc9, 0x6e, 0x29, 0x3a,
+	0xbb, 0x3b, 0x04, 0xce, 0x45, 0x6e, 0x54, 0x23, 0x71, 0x66, 0x21, 0x58, 0xc4, 0x07, 0xf4, 0x79,
+	0x6c, 0xf9, 0x1c, 0xe2, 0x81, 0x44, 0x41, 0xfa, 0x1f, 0xd3, 0x30, 0x29, 0x3b, 0x6e, 0x88, 0xdb,
+	0x39, 0x81, 0x76, 0x29, 0x84, 0x72, 0xb9, 0x1d, 0x5d, 0xf9, 0x2b, 0x3d, 0xc9, 0x12, 0xff, 0x2e,
+	0x62, 0xff, 0x8a, 0xca, 0x74, 0x45, 0x7a, 0x57, 0x8f, 0x5f, 0x55, 0x7f, 0x9c, 0x20, 0x80, 0xbf,
+	0x14, 0x48, 0xc7, 0xbc, 0x23, 0x97, 0x7b, 0x90, 0x24, 0x6e, 0x54, 0xb0, 0x1b, 0x97, 0xd1, 0x45,
+	0xb9, 0x1b, 0x62, 0x3d, 0xfd, 0xda, 0x6f, 0x05, 0xa5, 0x10, 0x96, 0x0e, 0xc9, 0x4d, 0xe4, 0x01,
+	0x5d, 0xe5, 0x3b, 0x09, 0xaa, 0x51, 0xec, 0xe5, 0x2b, 0x41, 0xbe, 0x45, 0xb6, 0x8d, 0x9b, 0xd5,
+	0xd8, 0xef, 0xe2, 0x5e, 0x3e, 0x69, 0x22, 0xa5, 0x10, 0x22, 0x0f, 0x09, 0x34, 0xfa, 0x88, 0xef,
+	0xed, 0xc3, 0x83, 0xdc, 0x94, 0xf4, 0x1e, 0x02, 0xa7, 0x5a, 0x4a, 0x3d, 0x57, 0xcb, 0x37, 0x49,
+	0xf3, 0xb9, 0x14, 0xc8, 0xf5, 0xbc, 0xa3, 0xa5, 0x48, 0x49, 0x93, 0xef, 0x53, 0xa0, 0x00, 0xb0,
+	0x72, 0x43, 0x3d, 0xe7, 0xc4, 0x5d, 0xd8, 0x50, 0x8f, 0x3e, 0x72, 0x28, 0x0e, 0xf5, 0xd8, 0x63,
+	0x8a, 0xfe, 0x50, 0x0f, 0x9f, 0x36, 0x8b, 0x1e, 0xea, 0x31, 0xca, 0x67, 0xa4, 0x65, 0xc2, 0x50,
+	0xcf, 0x51, 0x7d, 0xb4, 0xa1, 0x5e, 0x50, 0x10, 0x92, 0x83, 0x9e, 0xc2, 0x50, 0xcf, 0xb5, 0xd7,
+	0xd3, 0x50, 0xaf, 0x57, 0xe1, 0xb0, 0xa1, 0x5e, 0x90, 0xb3, 0xb2, 0x83, 0xa1, 0x64, 0xa8, 0x87,
+	0x1f, 0x7a, 0x43, 0xbd, 0xa0, 0x0c, 0x05, 0x0c, 0xf5, 0x18, 0x7b, 0xb3, 0x92, 0x32, 0xd9, 0x50,
+	0xcf, 0xb1, 0xc1, 0x4d, 0x4c, 0x91, 0xb3, 0x4a, 0x61, 0x13, 0x53, 0xcc, 0x71, 0x2d, 0x71, 0x62,
+	0x8a, 0x3b, 0xe4, 0xe5, 0x4f, 0x4c, 0xb9, 0x87, 0xa9, 0xa3, 0x26, 0xa6, 0x58, 0xfd, 0xb3, 0xf2,
+	0x42, 0x61, 0x62, 0x8a, 0x68, 0x3f, 0xda, 0xc4, 0x54, 0x60, 0x28, 0xb2, 0xf3, 0x72, 0xc2, 0xc4,
+	0x94, 0x67, 0xb2, 0xa7, 0x89, 0xa9, 0x9e, 0xa5, 0xc3, 0x26, 0xa6, 0x02, 0x1d, 0x96, 0x1e, 0xb0,
+	0x23, 0x13, 0x53, 0xce, 0x53, 0x6f, 0x62, 0x2a, 0x30, 0x53, 0x01, 0x13, 0x53, 0xac, 0xcd, 0x39,
+	0x59, 0xa1, 0x6c, 0x62, 0x8a, 0x98, 0xa1, 0xf0, 0xf5, 0x83, 0x14, 0x0c, 0x53, 0x67, 0x47, 0x90,
+	0xee, 0x61, 0xac, 0x28, 0x7c, 0xcb, 0xf9, 0x63, 0x34, 0x79, 0x25, 0x4c, 0x44, 0x1c, 0x8c, 0x51,
+	0xb7, 0xba, 0xfb, 0x89, 0x7d, 0x4e, 0x00, 0x37, 0xcf, 0x7d, 0xb1, 0x05, 0x63, 0x85, 0x60, 0x01,
+	0x71, 0x28, 0x46, 0x99, 0x12, 0x73, 0xfa, 0x37, 0x3e, 0xfa, 0x8a, 0xc2, 0x47, 0x39, 0x2c, 0xc8,
+	0xa0, 0x53, 0x4f, 0xe2, 0x40, 0x8c, 0xb1, 0xdf, 0xdb, 0x40, 0xec, 0x48, 0xaf, 0xa0, 0xef, 0xf9,
+	0xdf, 0xe6, 0xa2, 0xf0, 0xbd, 0x0d, 0x8b, 0x21, 0xf0, 0xb4, 0xd4, 0x1b, 0xce, 0x52, 0xb9, 0x5f,
+	0xe2, 0x8f, 0xc2, 0x42, 0xb3, 0xa9, 0x12, 0x84, 0xce, 0x73, 0x5f, 0x53, 0xc1, 0x89, 0x62, 0x90,
+	0x80, 0x74, 0x0c, 0x46, 0xd9, 0xa4, 0xe0, 0xfa, 0x9f, 0x29, 0x18, 0xe7, 0x36, 0xd9, 0xa3, 0x6f,
+	0x7a, 0x90, 0x5d, 0x94, 0xe0, 0x51, 0x3c, 0x77, 0x90, 0xff, 0x52, 0x94, 0x18, 0xf1, 0x66, 0x01,
+	0x7b, 0x33, 0xa7, 0xa0, 0x8a, 0x70, 0x88, 0xd2, 0xaf, 0x88, 0x6f, 0x11, 0xfc, 0x2e, 0x08, 0xf0,
+	0x94, 0x58, 0x7e, 0x35, 0x5c, 0xc8, 0xfd, 0xfa, 0x60, 0xbb, 0x8b, 0x68, 0x41, 0xb4, 0x2b, 0xa6,
+	0xff, 0x67, 0x3e, 0x98, 0x17, 0x25, 0x48, 0x0d, 0x0f, 0x3f, 0xec, 0x50, 0x89, 0xf2, 0x19, 0x05,
+	0xea, 0x76, 0xfe, 0x8a, 0xcc, 0x99, 0x48, 0x64, 0xbf, 0x51, 0x8d, 0xf5, 0x1e, 0xfa, 0x53, 0x1f,
+	0xde, 0x8b, 0x12, 0xec, 0x86, 0x47, 0x15, 0x7a, 0x24, 0xe5, 0x9d, 0xc3, 0x83, 0x5c, 0x86, 0x3f,
+	0xbb, 0xe6, 0x24, 0xbc, 0xd4, 0x53, 0xc2, 0xdb, 0x04, 0xef, 0x0b, 0x02, 0x9c, 0x25, 0x5e, 0x2d,
+	0x86, 0x09, 0xf9, 0xb8, 0xcf, 0x63, 0x07, 0x26, 0x91, 0x04, 0x69, 0x42, 0xcf, 0xb2, 0xd5, 0xd5,
+	0x22, 0x7a, 0x96, 0xfe, 0x86, 0x76, 0x59, 0xcf, 0x92, 0xde, 0x04, 0x4f, 0xf7, 0x2c, 0x6d, 0xbd,
+	0x3d, 0xf4, 0x2c, 0x29, 0xe5, 0x33, 0xd2, 0x32, 0x49, 0xcf, 0xd2, 0x56, 0x7d, 0xd4, 0x9e, 0xa5,
+	0x3c, 0x08, 0xc9, 0x31, 0x02, 0x49, 0xcf, 0xd2, 0xb1, 0xd7, 0x63, 0xcf, 0xb2, 0x37, 0xe1, 0xf0,
+	0x9e, 0xa5, 0xdc, 0x59, 0xd9, 0xb1, 0x03, 0xaf, 0x67, 0xd9, 0xea, 0x6a, 0x54, 0xcf, 0x52, 0x9e,
+	0xa1, 0xc0, 0x9e, 0x25, 0x65, 0x6f, 0x56, 0x52, 0x26, 0xef, 0x59, 0xda, 0x05, 0x14, 0x9a, 0xbe,
+	0x9d, 0x82, 0x21, 0x6f, 0x6f, 0x2d, 0x7a, 0xe2, 0x01, 0x6a, 0x5e, 0x60, 0x47, 0x76, 0x8b, 0x31,
+	0xfd, 0x21, 0x96, 0xef, 0x4d, 0x57, 0x66, 0xb0, 0xd5, 0x29, 0x05, 0x2a, 0xee, 0x6e, 0x53, 0x0a,
+	0x59, 0x4f, 0x09, 0xb2, 0xe6, 0x38, 0x2e, 0xe4, 0xac, 0x5c, 0x08, 0x2a, 0x66, 0xc9, 0x19, 0xcd,
+	0xf8, 0x36, 0xc4, 0x04, 0xfe, 0xc8, 0x87, 0xd8, 0xbc, 0xc0, 0x7a, 0xc1, 0x61, 0xc9, 0x77, 0x7e,
+	0x2b, 0x4f, 0x29, 0xa0, 0x7d, 0x92, 0x5f, 0xa0, 0x0d, 0x47, 0x62, 0xad, 0x5c, 0x3d, 0x92, 0x3c,
+	0xfa, 0x96, 0x07, 0xb7, 0x79, 0x81, 0xd8, 0x82, 0x1d, 0x0f, 0xd8, 0x2c, 0x7e, 0xfd, 0xf0, 0x20,
+	0x07, 0xfe, 0x09, 0x0d, 0x27, 0x73, 0xa5, 0xd0, 0xcc, 0x3d, 0x22, 0xd0, 0xe3, 0xba, 0x96, 0xbc,
+	0xed, 0x79, 0x79, 0xb1, 0x0f, 0x40, 0x84, 0x8d, 0x8d, 0x20, 0x0a, 0x0a, 0x14, 0x06, 0xff, 0x2c,
+	0x05, 0xc3, 0xd4, 0x2e, 0x42, 0xd4, 0x0e, 0xee, 0x7d, 0x0a, 0x1b, 0x2a, 0xc5, 0xde, 0xa7, 0x64,
+	0x3b, 0xe6, 0x1c, 0x36, 0x7f, 0x5e, 0x19, 0xa9, 0xf8, 0x97, 0x02, 0x52, 0x58, 0xec, 0xc8, 0x3b,
+	0x9f, 0xa2, 0xad, 0x42, 0xb0, 0x00, 0xb1, 0xb4, 0x88, 0x2d, 0xcd, 0xa3, 0x39, 0xda, 0x92, 0x98,
+	0xd7, 0x1f, 0x87, 0xf4, 0x3d, 0x43, 0x43, 0x0c, 0xda, 0xfd, 0xaa, 0xb4, 0x29, 0x54, 0x6e, 0xe7,
+	0x17, 0x59, 0xf3, 0x91, 0xb8, 0xbc, 0x56, 0x3d, 0xe2, 0x1b, 0xe8, 0xbb, 0x21, 0x3d, 0xcf, 0xd0,
+	0x08, 0x02, 0xf7, 0xcc, 0x7e, 0xc5, 0xe9, 0x79, 0xfa, 0x25, 0x4e, 0x2a, 0x4b, 0x11, 0xa9, 0xfc,
+	0x5d, 0x79, 0xc7, 0x53, 0xf4, 0xa1, 0x18, 0x24, 0xe0, 0xc3, 0x74, 0x12, 0x9b, 0x1c, 0x43, 0x0c,
+	0x4e, 0x28, 0xa0, 0xfe, 0x75, 0x0a, 0x46, 0xe8, 0x1d, 0x68, 0xf6, 0xe7, 0x20, 0x68, 0xd9, 0x4a,
+	0xdc, 0x8e, 0x27, 0x2e, 0x5b, 0xc9, 0xb6, 0xf3, 0xcd, 0x63, 0x1f, 0x72, 0xca, 0x58, 0x85, 0xde,
+	0x53, 0x4f, 0xa1, 0xd5, 0x92, 0xaf, 0x5b, 0x49, 0xec, 0x15, 0x43, 0x24, 0xd8, 0xd9, 0x57, 0x34,
+	0xcf, 0x5a, 0x13, 0xd3, 0xfc, 0x93, 0x90, 0x85, 0xab, 0xf0, 0x50, 0x03, 0x37, 0x52, 0x2a, 0x06,
+	0x85, 0xd9, 0xc7, 0xf9, 0x8b, 0xbc, 0x0b, 0x91, 0xa8, 0xad, 0x56, 0x8f, 0xfc, 0x0e, 0xfa, 0xa3,
+	0x90, 0xa5, 0xab, 0xf0, 0x38, 0x82, 0x77, 0x60, 0x7e, 0xd5, 0x59, 0xba, 0xa2, 0x8a, 0x9c, 0xac,
+	0x96, 0x22, 0xb3, 0xda, 0x90, 0xaf, 0x5d, 0x49, 0x1c, 0x51, 0x02, 0x25, 0x7c, 0xf8, 0x4e, 0x63,
+	0xb3, 0x19, 0xc4, 0x41, 0xc7, 0x07, 0xf0, 0xf2, 0x2f, 0x12, 0x7f, 0xb2, 0xf4, 0xa3, 0x04, 0xda,
+	0x84, 0xe4, 0xca, 0x87, 0xab, 0xcb, 0xca, 0x0a, 0x8c, 0xde, 0xd7, 0x9f, 0x68, 0xcd, 0x56, 0x61,
+	0x0d, 0xff, 0x6f, 0xb0, 0x68, 0xfe, 0x89, 0x65, 0x75, 0xcc, 0x9b, 0x95, 0x4a, 0xc0, 0xff, 0x14,
+	0x9b, 0x3f, 0x47, 0xfe, 0xba, 0xb5, 0xb3, 0xab, 0x36, 0x5b, 0x76, 0x79, 0xb5, 0xff, 0x7a, 0xf9,
+	0x9a, 0x92, 0xac, 0xec, 0x5d, 0xaf, 0x94, 0xfa, 0x12, 0x7d, 0xd5, 0x0c, 0x35, 0x33, 0x5a, 0x79,
+	0x6a, 0xea, 0xed, 0x9b, 0xc2, 0x93, 0x47, 0x0b, 0x50, 0x04, 0x58, 0xea, 0x34, 0xdf, 0xd7, 0xf6,
+	0x97, 0xba, 0xd6, 0x13, 0x34, 0x31, 0xd8, 0x97, 0x1f, 0xb5, 0x7f, 0xe9, 0x46, 0xf3, 0x33, 0x2c,
+	0x57, 0xe8, 0xdb, 0xce, 0xc0, 0x18, 0x23, 0xf4, 0xca, 0xa3, 0x62, 0xf8, 0xff, 0x5f, 0xfb, 0x66,
+	0x67, 0x7b, 0x3b, 0x8d, 0xf7, 0x38, 0x7e, 0xf9, 0x7f, 0x03, 0x00, 0x00, 0xff, 0xff, 0xd7, 0x76,
+	0x9a, 0x14, 0xeb, 0x76, 0x00, 0x00,
 }
 
 // Reference imports to suppress errors if they are not otherwise used.
@@ -8116,2478 +8487,6 @@ var _Cmdb_serviceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetVersion",
 			Handler:    _Cmdb_GetVersion_Handler,
-		},
-	},
-	Streams:  []grpc.StreamDesc{},
-	Metadata: "github.com/seizadi/cmdb/pkg/pb/cmdb.proto",
-}
-
-// VaultsClient is the client API for Vaults service.
-//
-// For semantics around ctx use and closing/ending streaming RPCs, please refer to https://godoc.org/google.golang.org/grpc#ClientConn.NewStream.
-type VaultsClient interface {
-	// Use this method to create a Vault information.
-	Create(ctx context.Context, in *CreateVaultRequest, opts ...grpc.CallOption) (*CreateVaultResponse, error)
-	// Use this method to read a Vault information by identifier.
-	Read(ctx context.Context, in *ReadVaultRequest, opts ...grpc.CallOption) (*ReadVaultResponse, error)
-	// Use this method to update a Vault information.
-	Update(ctx context.Context, in *UpdateVaultRequest, opts ...grpc.CallOption) (*UpdateVaultResponse, error)
-	// Use this method to delete a particular Vault.
-	Delete(ctx context.Context, in *DeleteVaultRequest, opts ...grpc.CallOption) (*DeleteVaultResponse, error)
-	// Use this method to retrieve all the Vaults.
-	List(ctx context.Context, in *ListVaultRequest, opts ...grpc.CallOption) (*ListVaultsResponse, error)
-}
-
-type vaultsClient struct {
-	cc *grpc.ClientConn
-}
-
-func NewVaultsClient(cc *grpc.ClientConn) VaultsClient {
-	return &vaultsClient{cc}
-}
-
-func (c *vaultsClient) Create(ctx context.Context, in *CreateVaultRequest, opts ...grpc.CallOption) (*CreateVaultResponse, error) {
-	out := new(CreateVaultResponse)
-	err := c.cc.Invoke(ctx, "/api.cmdb.Vaults/Create", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *vaultsClient) Read(ctx context.Context, in *ReadVaultRequest, opts ...grpc.CallOption) (*ReadVaultResponse, error) {
-	out := new(ReadVaultResponse)
-	err := c.cc.Invoke(ctx, "/api.cmdb.Vaults/Read", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *vaultsClient) Update(ctx context.Context, in *UpdateVaultRequest, opts ...grpc.CallOption) (*UpdateVaultResponse, error) {
-	out := new(UpdateVaultResponse)
-	err := c.cc.Invoke(ctx, "/api.cmdb.Vaults/Update", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *vaultsClient) Delete(ctx context.Context, in *DeleteVaultRequest, opts ...grpc.CallOption) (*DeleteVaultResponse, error) {
-	out := new(DeleteVaultResponse)
-	err := c.cc.Invoke(ctx, "/api.cmdb.Vaults/Delete", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *vaultsClient) List(ctx context.Context, in *ListVaultRequest, opts ...grpc.CallOption) (*ListVaultsResponse, error) {
-	out := new(ListVaultsResponse)
-	err := c.cc.Invoke(ctx, "/api.cmdb.Vaults/List", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-// VaultsServer is the server API for Vaults service.
-type VaultsServer interface {
-	// Use this method to create a Vault information.
-	Create(context.Context, *CreateVaultRequest) (*CreateVaultResponse, error)
-	// Use this method to read a Vault information by identifier.
-	Read(context.Context, *ReadVaultRequest) (*ReadVaultResponse, error)
-	// Use this method to update a Vault information.
-	Update(context.Context, *UpdateVaultRequest) (*UpdateVaultResponse, error)
-	// Use this method to delete a particular Vault.
-	Delete(context.Context, *DeleteVaultRequest) (*DeleteVaultResponse, error)
-	// Use this method to retrieve all the Vaults.
-	List(context.Context, *ListVaultRequest) (*ListVaultsResponse, error)
-}
-
-func RegisterVaultsServer(s *grpc.Server, srv VaultsServer) {
-	s.RegisterService(&_Vaults_serviceDesc, srv)
-}
-
-func _Vaults_Create_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(CreateVaultRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(VaultsServer).Create(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/api.cmdb.Vaults/Create",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(VaultsServer).Create(ctx, req.(*CreateVaultRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _Vaults_Read_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(ReadVaultRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(VaultsServer).Read(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/api.cmdb.Vaults/Read",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(VaultsServer).Read(ctx, req.(*ReadVaultRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _Vaults_Update_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(UpdateVaultRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(VaultsServer).Update(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/api.cmdb.Vaults/Update",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(VaultsServer).Update(ctx, req.(*UpdateVaultRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _Vaults_Delete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(DeleteVaultRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(VaultsServer).Delete(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/api.cmdb.Vaults/Delete",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(VaultsServer).Delete(ctx, req.(*DeleteVaultRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _Vaults_List_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(ListVaultRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(VaultsServer).List(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/api.cmdb.Vaults/List",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(VaultsServer).List(ctx, req.(*ListVaultRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-var _Vaults_serviceDesc = grpc.ServiceDesc{
-	ServiceName: "api.cmdb.Vaults",
-	HandlerType: (*VaultsServer)(nil),
-	Methods: []grpc.MethodDesc{
-		{
-			MethodName: "Create",
-			Handler:    _Vaults_Create_Handler,
-		},
-		{
-			MethodName: "Read",
-			Handler:    _Vaults_Read_Handler,
-		},
-		{
-			MethodName: "Update",
-			Handler:    _Vaults_Update_Handler,
-		},
-		{
-			MethodName: "Delete",
-			Handler:    _Vaults_Delete_Handler,
-		},
-		{
-			MethodName: "List",
-			Handler:    _Vaults_List_Handler,
-		},
-	},
-	Streams:  []grpc.StreamDesc{},
-	Metadata: "github.com/seizadi/cmdb/pkg/pb/cmdb.proto",
-}
-
-// VersionTagsClient is the client API for VersionTags service.
-//
-// For semantics around ctx use and closing/ending streaming RPCs, please refer to https://godoc.org/google.golang.org/grpc#ClientConn.NewStream.
-type VersionTagsClient interface {
-	// Use this method to create a VersionTag information.
-	Create(ctx context.Context, in *CreateVersionTagRequest, opts ...grpc.CallOption) (*CreateVersionTagResponse, error)
-	// Use this method to read a VersionTag information by identifier.
-	Read(ctx context.Context, in *ReadVersionTagRequest, opts ...grpc.CallOption) (*ReadVersionTagResponse, error)
-	// Use this method to update a VersionTag information.
-	Update(ctx context.Context, in *UpdateVersionTagRequest, opts ...grpc.CallOption) (*UpdateVersionTagResponse, error)
-	// Use this method to delete a particular VersionTag.
-	Delete(ctx context.Context, in *DeleteVersionTagRequest, opts ...grpc.CallOption) (*DeleteVersionTagResponse, error)
-	// Use this method to retrieve all the VersionTags.
-	List(ctx context.Context, in *ListVersionTagRequest, opts ...grpc.CallOption) (*ListVersionTagsResponse, error)
-}
-
-type versionTagsClient struct {
-	cc *grpc.ClientConn
-}
-
-func NewVersionTagsClient(cc *grpc.ClientConn) VersionTagsClient {
-	return &versionTagsClient{cc}
-}
-
-func (c *versionTagsClient) Create(ctx context.Context, in *CreateVersionTagRequest, opts ...grpc.CallOption) (*CreateVersionTagResponse, error) {
-	out := new(CreateVersionTagResponse)
-	err := c.cc.Invoke(ctx, "/api.cmdb.VersionTags/Create", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *versionTagsClient) Read(ctx context.Context, in *ReadVersionTagRequest, opts ...grpc.CallOption) (*ReadVersionTagResponse, error) {
-	out := new(ReadVersionTagResponse)
-	err := c.cc.Invoke(ctx, "/api.cmdb.VersionTags/Read", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *versionTagsClient) Update(ctx context.Context, in *UpdateVersionTagRequest, opts ...grpc.CallOption) (*UpdateVersionTagResponse, error) {
-	out := new(UpdateVersionTagResponse)
-	err := c.cc.Invoke(ctx, "/api.cmdb.VersionTags/Update", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *versionTagsClient) Delete(ctx context.Context, in *DeleteVersionTagRequest, opts ...grpc.CallOption) (*DeleteVersionTagResponse, error) {
-	out := new(DeleteVersionTagResponse)
-	err := c.cc.Invoke(ctx, "/api.cmdb.VersionTags/Delete", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *versionTagsClient) List(ctx context.Context, in *ListVersionTagRequest, opts ...grpc.CallOption) (*ListVersionTagsResponse, error) {
-	out := new(ListVersionTagsResponse)
-	err := c.cc.Invoke(ctx, "/api.cmdb.VersionTags/List", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-// VersionTagsServer is the server API for VersionTags service.
-type VersionTagsServer interface {
-	// Use this method to create a VersionTag information.
-	Create(context.Context, *CreateVersionTagRequest) (*CreateVersionTagResponse, error)
-	// Use this method to read a VersionTag information by identifier.
-	Read(context.Context, *ReadVersionTagRequest) (*ReadVersionTagResponse, error)
-	// Use this method to update a VersionTag information.
-	Update(context.Context, *UpdateVersionTagRequest) (*UpdateVersionTagResponse, error)
-	// Use this method to delete a particular VersionTag.
-	Delete(context.Context, *DeleteVersionTagRequest) (*DeleteVersionTagResponse, error)
-	// Use this method to retrieve all the VersionTags.
-	List(context.Context, *ListVersionTagRequest) (*ListVersionTagsResponse, error)
-}
-
-func RegisterVersionTagsServer(s *grpc.Server, srv VersionTagsServer) {
-	s.RegisterService(&_VersionTags_serviceDesc, srv)
-}
-
-func _VersionTags_Create_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(CreateVersionTagRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(VersionTagsServer).Create(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/api.cmdb.VersionTags/Create",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(VersionTagsServer).Create(ctx, req.(*CreateVersionTagRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _VersionTags_Read_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(ReadVersionTagRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(VersionTagsServer).Read(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/api.cmdb.VersionTags/Read",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(VersionTagsServer).Read(ctx, req.(*ReadVersionTagRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _VersionTags_Update_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(UpdateVersionTagRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(VersionTagsServer).Update(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/api.cmdb.VersionTags/Update",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(VersionTagsServer).Update(ctx, req.(*UpdateVersionTagRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _VersionTags_Delete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(DeleteVersionTagRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(VersionTagsServer).Delete(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/api.cmdb.VersionTags/Delete",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(VersionTagsServer).Delete(ctx, req.(*DeleteVersionTagRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _VersionTags_List_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(ListVersionTagRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(VersionTagsServer).List(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/api.cmdb.VersionTags/List",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(VersionTagsServer).List(ctx, req.(*ListVersionTagRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-var _VersionTags_serviceDesc = grpc.ServiceDesc{
-	ServiceName: "api.cmdb.VersionTags",
-	HandlerType: (*VersionTagsServer)(nil),
-	Methods: []grpc.MethodDesc{
-		{
-			MethodName: "Create",
-			Handler:    _VersionTags_Create_Handler,
-		},
-		{
-			MethodName: "Read",
-			Handler:    _VersionTags_Read_Handler,
-		},
-		{
-			MethodName: "Update",
-			Handler:    _VersionTags_Update_Handler,
-		},
-		{
-			MethodName: "Delete",
-			Handler:    _VersionTags_Delete_Handler,
-		},
-		{
-			MethodName: "List",
-			Handler:    _VersionTags_List_Handler,
-		},
-	},
-	Streams:  []grpc.StreamDesc{},
-	Metadata: "github.com/seizadi/cmdb/pkg/pb/cmdb.proto",
-}
-
-// ApplicationInstancesClient is the client API for ApplicationInstances service.
-//
-// For semantics around ctx use and closing/ending streaming RPCs, please refer to https://godoc.org/google.golang.org/grpc#ClientConn.NewStream.
-type ApplicationInstancesClient interface {
-	// Use this method to create a ApplicationInstance information.
-	Create(ctx context.Context, in *CreateApplicationInstanceRequest, opts ...grpc.CallOption) (*CreateApplicationInstanceResponse, error)
-	// Use this method to read a ApplicationInstance information by identifier.
-	Read(ctx context.Context, in *ReadApplicationInstanceRequest, opts ...grpc.CallOption) (*ReadApplicationInstanceResponse, error)
-	// Use this method to update a ApplicationInstance information.
-	Update(ctx context.Context, in *UpdateApplicationInstanceRequest, opts ...grpc.CallOption) (*UpdateApplicationInstanceResponse, error)
-	// Use this method to delete a particular ApplicationInstance.
-	Delete(ctx context.Context, in *DeleteApplicationInstanceRequest, opts ...grpc.CallOption) (*DeleteApplicationInstanceResponse, error)
-	// Use this method to retrieve all the ApplicationInstances.
-	List(ctx context.Context, in *ListApplicationInstanceRequest, opts ...grpc.CallOption) (*ListApplicationInstancesResponse, error)
-}
-
-type applicationInstancesClient struct {
-	cc *grpc.ClientConn
-}
-
-func NewApplicationInstancesClient(cc *grpc.ClientConn) ApplicationInstancesClient {
-	return &applicationInstancesClient{cc}
-}
-
-func (c *applicationInstancesClient) Create(ctx context.Context, in *CreateApplicationInstanceRequest, opts ...grpc.CallOption) (*CreateApplicationInstanceResponse, error) {
-	out := new(CreateApplicationInstanceResponse)
-	err := c.cc.Invoke(ctx, "/api.cmdb.ApplicationInstances/Create", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *applicationInstancesClient) Read(ctx context.Context, in *ReadApplicationInstanceRequest, opts ...grpc.CallOption) (*ReadApplicationInstanceResponse, error) {
-	out := new(ReadApplicationInstanceResponse)
-	err := c.cc.Invoke(ctx, "/api.cmdb.ApplicationInstances/Read", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *applicationInstancesClient) Update(ctx context.Context, in *UpdateApplicationInstanceRequest, opts ...grpc.CallOption) (*UpdateApplicationInstanceResponse, error) {
-	out := new(UpdateApplicationInstanceResponse)
-	err := c.cc.Invoke(ctx, "/api.cmdb.ApplicationInstances/Update", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *applicationInstancesClient) Delete(ctx context.Context, in *DeleteApplicationInstanceRequest, opts ...grpc.CallOption) (*DeleteApplicationInstanceResponse, error) {
-	out := new(DeleteApplicationInstanceResponse)
-	err := c.cc.Invoke(ctx, "/api.cmdb.ApplicationInstances/Delete", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *applicationInstancesClient) List(ctx context.Context, in *ListApplicationInstanceRequest, opts ...grpc.CallOption) (*ListApplicationInstancesResponse, error) {
-	out := new(ListApplicationInstancesResponse)
-	err := c.cc.Invoke(ctx, "/api.cmdb.ApplicationInstances/List", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-// ApplicationInstancesServer is the server API for ApplicationInstances service.
-type ApplicationInstancesServer interface {
-	// Use this method to create a ApplicationInstance information.
-	Create(context.Context, *CreateApplicationInstanceRequest) (*CreateApplicationInstanceResponse, error)
-	// Use this method to read a ApplicationInstance information by identifier.
-	Read(context.Context, *ReadApplicationInstanceRequest) (*ReadApplicationInstanceResponse, error)
-	// Use this method to update a ApplicationInstance information.
-	Update(context.Context, *UpdateApplicationInstanceRequest) (*UpdateApplicationInstanceResponse, error)
-	// Use this method to delete a particular ApplicationInstance.
-	Delete(context.Context, *DeleteApplicationInstanceRequest) (*DeleteApplicationInstanceResponse, error)
-	// Use this method to retrieve all the ApplicationInstances.
-	List(context.Context, *ListApplicationInstanceRequest) (*ListApplicationInstancesResponse, error)
-}
-
-func RegisterApplicationInstancesServer(s *grpc.Server, srv ApplicationInstancesServer) {
-	s.RegisterService(&_ApplicationInstances_serviceDesc, srv)
-}
-
-func _ApplicationInstances_Create_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(CreateApplicationInstanceRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(ApplicationInstancesServer).Create(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/api.cmdb.ApplicationInstances/Create",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ApplicationInstancesServer).Create(ctx, req.(*CreateApplicationInstanceRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _ApplicationInstances_Read_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(ReadApplicationInstanceRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(ApplicationInstancesServer).Read(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/api.cmdb.ApplicationInstances/Read",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ApplicationInstancesServer).Read(ctx, req.(*ReadApplicationInstanceRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _ApplicationInstances_Update_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(UpdateApplicationInstanceRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(ApplicationInstancesServer).Update(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/api.cmdb.ApplicationInstances/Update",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ApplicationInstancesServer).Update(ctx, req.(*UpdateApplicationInstanceRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _ApplicationInstances_Delete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(DeleteApplicationInstanceRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(ApplicationInstancesServer).Delete(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/api.cmdb.ApplicationInstances/Delete",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ApplicationInstancesServer).Delete(ctx, req.(*DeleteApplicationInstanceRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _ApplicationInstances_List_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(ListApplicationInstanceRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(ApplicationInstancesServer).List(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/api.cmdb.ApplicationInstances/List",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ApplicationInstancesServer).List(ctx, req.(*ListApplicationInstanceRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-var _ApplicationInstances_serviceDesc = grpc.ServiceDesc{
-	ServiceName: "api.cmdb.ApplicationInstances",
-	HandlerType: (*ApplicationInstancesServer)(nil),
-	Methods: []grpc.MethodDesc{
-		{
-			MethodName: "Create",
-			Handler:    _ApplicationInstances_Create_Handler,
-		},
-		{
-			MethodName: "Read",
-			Handler:    _ApplicationInstances_Read_Handler,
-		},
-		{
-			MethodName: "Update",
-			Handler:    _ApplicationInstances_Update_Handler,
-		},
-		{
-			MethodName: "Delete",
-			Handler:    _ApplicationInstances_Delete_Handler,
-		},
-		{
-			MethodName: "List",
-			Handler:    _ApplicationInstances_List_Handler,
-		},
-	},
-	Streams:  []grpc.StreamDesc{},
-	Metadata: "github.com/seizadi/cmdb/pkg/pb/cmdb.proto",
-}
-
-// AwsRdsInstancesClient is the client API for AwsRdsInstances service.
-//
-// For semantics around ctx use and closing/ending streaming RPCs, please refer to https://godoc.org/google.golang.org/grpc#ClientConn.NewStream.
-type AwsRdsInstancesClient interface {
-	// Use this method to create a AwsRdsInstance information.
-	Create(ctx context.Context, in *CreateAwsRdsInstanceRequest, opts ...grpc.CallOption) (*CreateAwsRdsInstanceResponse, error)
-	// Use this method to read a AwsRdsInstance information by identifier.
-	Read(ctx context.Context, in *ReadAwsRdsInstanceRequest, opts ...grpc.CallOption) (*ReadAwsRdsInstanceResponse, error)
-	// Use this method to update a AwsRdsInstance information.
-	Update(ctx context.Context, in *UpdateAwsRdsInstanceRequest, opts ...grpc.CallOption) (*UpdateAwsRdsInstanceResponse, error)
-	// Use this method to delete a particular AwsRdsInstance.
-	Delete(ctx context.Context, in *DeleteAwsRdsInstanceRequest, opts ...grpc.CallOption) (*DeleteAwsRdsInstanceResponse, error)
-	// Use this method to retrieve all the AwsRdsInstances.
-	List(ctx context.Context, in *ListAwsRdsInstanceRequest, opts ...grpc.CallOption) (*ListAwsRdsInstancesResponse, error)
-}
-
-type awsRdsInstancesClient struct {
-	cc *grpc.ClientConn
-}
-
-func NewAwsRdsInstancesClient(cc *grpc.ClientConn) AwsRdsInstancesClient {
-	return &awsRdsInstancesClient{cc}
-}
-
-func (c *awsRdsInstancesClient) Create(ctx context.Context, in *CreateAwsRdsInstanceRequest, opts ...grpc.CallOption) (*CreateAwsRdsInstanceResponse, error) {
-	out := new(CreateAwsRdsInstanceResponse)
-	err := c.cc.Invoke(ctx, "/api.cmdb.AwsRdsInstances/Create", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *awsRdsInstancesClient) Read(ctx context.Context, in *ReadAwsRdsInstanceRequest, opts ...grpc.CallOption) (*ReadAwsRdsInstanceResponse, error) {
-	out := new(ReadAwsRdsInstanceResponse)
-	err := c.cc.Invoke(ctx, "/api.cmdb.AwsRdsInstances/Read", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *awsRdsInstancesClient) Update(ctx context.Context, in *UpdateAwsRdsInstanceRequest, opts ...grpc.CallOption) (*UpdateAwsRdsInstanceResponse, error) {
-	out := new(UpdateAwsRdsInstanceResponse)
-	err := c.cc.Invoke(ctx, "/api.cmdb.AwsRdsInstances/Update", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *awsRdsInstancesClient) Delete(ctx context.Context, in *DeleteAwsRdsInstanceRequest, opts ...grpc.CallOption) (*DeleteAwsRdsInstanceResponse, error) {
-	out := new(DeleteAwsRdsInstanceResponse)
-	err := c.cc.Invoke(ctx, "/api.cmdb.AwsRdsInstances/Delete", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *awsRdsInstancesClient) List(ctx context.Context, in *ListAwsRdsInstanceRequest, opts ...grpc.CallOption) (*ListAwsRdsInstancesResponse, error) {
-	out := new(ListAwsRdsInstancesResponse)
-	err := c.cc.Invoke(ctx, "/api.cmdb.AwsRdsInstances/List", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-// AwsRdsInstancesServer is the server API for AwsRdsInstances service.
-type AwsRdsInstancesServer interface {
-	// Use this method to create a AwsRdsInstance information.
-	Create(context.Context, *CreateAwsRdsInstanceRequest) (*CreateAwsRdsInstanceResponse, error)
-	// Use this method to read a AwsRdsInstance information by identifier.
-	Read(context.Context, *ReadAwsRdsInstanceRequest) (*ReadAwsRdsInstanceResponse, error)
-	// Use this method to update a AwsRdsInstance information.
-	Update(context.Context, *UpdateAwsRdsInstanceRequest) (*UpdateAwsRdsInstanceResponse, error)
-	// Use this method to delete a particular AwsRdsInstance.
-	Delete(context.Context, *DeleteAwsRdsInstanceRequest) (*DeleteAwsRdsInstanceResponse, error)
-	// Use this method to retrieve all the AwsRdsInstances.
-	List(context.Context, *ListAwsRdsInstanceRequest) (*ListAwsRdsInstancesResponse, error)
-}
-
-func RegisterAwsRdsInstancesServer(s *grpc.Server, srv AwsRdsInstancesServer) {
-	s.RegisterService(&_AwsRdsInstances_serviceDesc, srv)
-}
-
-func _AwsRdsInstances_Create_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(CreateAwsRdsInstanceRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(AwsRdsInstancesServer).Create(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/api.cmdb.AwsRdsInstances/Create",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(AwsRdsInstancesServer).Create(ctx, req.(*CreateAwsRdsInstanceRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _AwsRdsInstances_Read_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(ReadAwsRdsInstanceRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(AwsRdsInstancesServer).Read(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/api.cmdb.AwsRdsInstances/Read",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(AwsRdsInstancesServer).Read(ctx, req.(*ReadAwsRdsInstanceRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _AwsRdsInstances_Update_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(UpdateAwsRdsInstanceRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(AwsRdsInstancesServer).Update(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/api.cmdb.AwsRdsInstances/Update",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(AwsRdsInstancesServer).Update(ctx, req.(*UpdateAwsRdsInstanceRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _AwsRdsInstances_Delete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(DeleteAwsRdsInstanceRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(AwsRdsInstancesServer).Delete(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/api.cmdb.AwsRdsInstances/Delete",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(AwsRdsInstancesServer).Delete(ctx, req.(*DeleteAwsRdsInstanceRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _AwsRdsInstances_List_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(ListAwsRdsInstanceRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(AwsRdsInstancesServer).List(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/api.cmdb.AwsRdsInstances/List",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(AwsRdsInstancesServer).List(ctx, req.(*ListAwsRdsInstanceRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-var _AwsRdsInstances_serviceDesc = grpc.ServiceDesc{
-	ServiceName: "api.cmdb.AwsRdsInstances",
-	HandlerType: (*AwsRdsInstancesServer)(nil),
-	Methods: []grpc.MethodDesc{
-		{
-			MethodName: "Create",
-			Handler:    _AwsRdsInstances_Create_Handler,
-		},
-		{
-			MethodName: "Read",
-			Handler:    _AwsRdsInstances_Read_Handler,
-		},
-		{
-			MethodName: "Update",
-			Handler:    _AwsRdsInstances_Update_Handler,
-		},
-		{
-			MethodName: "Delete",
-			Handler:    _AwsRdsInstances_Delete_Handler,
-		},
-		{
-			MethodName: "List",
-			Handler:    _AwsRdsInstances_List_Handler,
-		},
-	},
-	Streams:  []grpc.StreamDesc{},
-	Metadata: "github.com/seizadi/cmdb/pkg/pb/cmdb.proto",
-}
-
-// ContainersClient is the client API for Containers service.
-//
-// For semantics around ctx use and closing/ending streaming RPCs, please refer to https://godoc.org/google.golang.org/grpc#ClientConn.NewStream.
-type ContainersClient interface {
-	// Use this method to create a Container information.
-	Create(ctx context.Context, in *CreateContainerRequest, opts ...grpc.CallOption) (*CreateContainerResponse, error)
-	// Use this method to read a Container information by identifier.
-	Read(ctx context.Context, in *ReadContainerRequest, opts ...grpc.CallOption) (*ReadContainerResponse, error)
-	// Use this method to update a Container information.
-	Update(ctx context.Context, in *UpdateContainerRequest, opts ...grpc.CallOption) (*UpdateContainerResponse, error)
-	// Use this method to delete a particular Container.
-	Delete(ctx context.Context, in *DeleteContainerRequest, opts ...grpc.CallOption) (*DeleteContainerResponse, error)
-	// Use this method to retrieve all the Containers.
-	List(ctx context.Context, in *ListContainerRequest, opts ...grpc.CallOption) (*ListContainersResponse, error)
-}
-
-type containersClient struct {
-	cc *grpc.ClientConn
-}
-
-func NewContainersClient(cc *grpc.ClientConn) ContainersClient {
-	return &containersClient{cc}
-}
-
-func (c *containersClient) Create(ctx context.Context, in *CreateContainerRequest, opts ...grpc.CallOption) (*CreateContainerResponse, error) {
-	out := new(CreateContainerResponse)
-	err := c.cc.Invoke(ctx, "/api.cmdb.Containers/Create", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *containersClient) Read(ctx context.Context, in *ReadContainerRequest, opts ...grpc.CallOption) (*ReadContainerResponse, error) {
-	out := new(ReadContainerResponse)
-	err := c.cc.Invoke(ctx, "/api.cmdb.Containers/Read", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *containersClient) Update(ctx context.Context, in *UpdateContainerRequest, opts ...grpc.CallOption) (*UpdateContainerResponse, error) {
-	out := new(UpdateContainerResponse)
-	err := c.cc.Invoke(ctx, "/api.cmdb.Containers/Update", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *containersClient) Delete(ctx context.Context, in *DeleteContainerRequest, opts ...grpc.CallOption) (*DeleteContainerResponse, error) {
-	out := new(DeleteContainerResponse)
-	err := c.cc.Invoke(ctx, "/api.cmdb.Containers/Delete", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *containersClient) List(ctx context.Context, in *ListContainerRequest, opts ...grpc.CallOption) (*ListContainersResponse, error) {
-	out := new(ListContainersResponse)
-	err := c.cc.Invoke(ctx, "/api.cmdb.Containers/List", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-// ContainersServer is the server API for Containers service.
-type ContainersServer interface {
-	// Use this method to create a Container information.
-	Create(context.Context, *CreateContainerRequest) (*CreateContainerResponse, error)
-	// Use this method to read a Container information by identifier.
-	Read(context.Context, *ReadContainerRequest) (*ReadContainerResponse, error)
-	// Use this method to update a Container information.
-	Update(context.Context, *UpdateContainerRequest) (*UpdateContainerResponse, error)
-	// Use this method to delete a particular Container.
-	Delete(context.Context, *DeleteContainerRequest) (*DeleteContainerResponse, error)
-	// Use this method to retrieve all the Containers.
-	List(context.Context, *ListContainerRequest) (*ListContainersResponse, error)
-}
-
-func RegisterContainersServer(s *grpc.Server, srv ContainersServer) {
-	s.RegisterService(&_Containers_serviceDesc, srv)
-}
-
-func _Containers_Create_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(CreateContainerRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(ContainersServer).Create(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/api.cmdb.Containers/Create",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ContainersServer).Create(ctx, req.(*CreateContainerRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _Containers_Read_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(ReadContainerRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(ContainersServer).Read(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/api.cmdb.Containers/Read",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ContainersServer).Read(ctx, req.(*ReadContainerRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _Containers_Update_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(UpdateContainerRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(ContainersServer).Update(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/api.cmdb.Containers/Update",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ContainersServer).Update(ctx, req.(*UpdateContainerRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _Containers_Delete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(DeleteContainerRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(ContainersServer).Delete(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/api.cmdb.Containers/Delete",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ContainersServer).Delete(ctx, req.(*DeleteContainerRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _Containers_List_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(ListContainerRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(ContainersServer).List(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/api.cmdb.Containers/List",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ContainersServer).List(ctx, req.(*ListContainerRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-var _Containers_serviceDesc = grpc.ServiceDesc{
-	ServiceName: "api.cmdb.Containers",
-	HandlerType: (*ContainersServer)(nil),
-	Methods: []grpc.MethodDesc{
-		{
-			MethodName: "Create",
-			Handler:    _Containers_Create_Handler,
-		},
-		{
-			MethodName: "Read",
-			Handler:    _Containers_Read_Handler,
-		},
-		{
-			MethodName: "Update",
-			Handler:    _Containers_Update_Handler,
-		},
-		{
-			MethodName: "Delete",
-			Handler:    _Containers_Delete_Handler,
-		},
-		{
-			MethodName: "List",
-			Handler:    _Containers_List_Handler,
-		},
-	},
-	Streams:  []grpc.StreamDesc{},
-	Metadata: "github.com/seizadi/cmdb/pkg/pb/cmdb.proto",
-}
-
-// EnvironmentsClient is the client API for Environments service.
-//
-// For semantics around ctx use and closing/ending streaming RPCs, please refer to https://godoc.org/google.golang.org/grpc#ClientConn.NewStream.
-type EnvironmentsClient interface {
-	// Use this method to create a Environment information.
-	Create(ctx context.Context, in *CreateEnvironmentRequest, opts ...grpc.CallOption) (*CreateEnvironmentResponse, error)
-	// Use this method to read a Environment information by identifier.
-	Read(ctx context.Context, in *ReadEnvironmentRequest, opts ...grpc.CallOption) (*ReadEnvironmentResponse, error)
-	// Use this method to update a Environment information.
-	Update(ctx context.Context, in *UpdateEnvironmentRequest, opts ...grpc.CallOption) (*UpdateEnvironmentResponse, error)
-	// Use this method to delete a particular Environment.
-	Delete(ctx context.Context, in *DeleteEnvironmentRequest, opts ...grpc.CallOption) (*DeleteEnvironmentResponse, error)
-	// Use this method to retrieve all the Environments.
-	List(ctx context.Context, in *ListEnvironmentRequest, opts ...grpc.CallOption) (*ListEnvironmentsResponse, error)
-}
-
-type environmentsClient struct {
-	cc *grpc.ClientConn
-}
-
-func NewEnvironmentsClient(cc *grpc.ClientConn) EnvironmentsClient {
-	return &environmentsClient{cc}
-}
-
-func (c *environmentsClient) Create(ctx context.Context, in *CreateEnvironmentRequest, opts ...grpc.CallOption) (*CreateEnvironmentResponse, error) {
-	out := new(CreateEnvironmentResponse)
-	err := c.cc.Invoke(ctx, "/api.cmdb.Environments/Create", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *environmentsClient) Read(ctx context.Context, in *ReadEnvironmentRequest, opts ...grpc.CallOption) (*ReadEnvironmentResponse, error) {
-	out := new(ReadEnvironmentResponse)
-	err := c.cc.Invoke(ctx, "/api.cmdb.Environments/Read", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *environmentsClient) Update(ctx context.Context, in *UpdateEnvironmentRequest, opts ...grpc.CallOption) (*UpdateEnvironmentResponse, error) {
-	out := new(UpdateEnvironmentResponse)
-	err := c.cc.Invoke(ctx, "/api.cmdb.Environments/Update", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *environmentsClient) Delete(ctx context.Context, in *DeleteEnvironmentRequest, opts ...grpc.CallOption) (*DeleteEnvironmentResponse, error) {
-	out := new(DeleteEnvironmentResponse)
-	err := c.cc.Invoke(ctx, "/api.cmdb.Environments/Delete", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *environmentsClient) List(ctx context.Context, in *ListEnvironmentRequest, opts ...grpc.CallOption) (*ListEnvironmentsResponse, error) {
-	out := new(ListEnvironmentsResponse)
-	err := c.cc.Invoke(ctx, "/api.cmdb.Environments/List", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-// EnvironmentsServer is the server API for Environments service.
-type EnvironmentsServer interface {
-	// Use this method to create a Environment information.
-	Create(context.Context, *CreateEnvironmentRequest) (*CreateEnvironmentResponse, error)
-	// Use this method to read a Environment information by identifier.
-	Read(context.Context, *ReadEnvironmentRequest) (*ReadEnvironmentResponse, error)
-	// Use this method to update a Environment information.
-	Update(context.Context, *UpdateEnvironmentRequest) (*UpdateEnvironmentResponse, error)
-	// Use this method to delete a particular Environment.
-	Delete(context.Context, *DeleteEnvironmentRequest) (*DeleteEnvironmentResponse, error)
-	// Use this method to retrieve all the Environments.
-	List(context.Context, *ListEnvironmentRequest) (*ListEnvironmentsResponse, error)
-}
-
-func RegisterEnvironmentsServer(s *grpc.Server, srv EnvironmentsServer) {
-	s.RegisterService(&_Environments_serviceDesc, srv)
-}
-
-func _Environments_Create_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(CreateEnvironmentRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(EnvironmentsServer).Create(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/api.cmdb.Environments/Create",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(EnvironmentsServer).Create(ctx, req.(*CreateEnvironmentRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _Environments_Read_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(ReadEnvironmentRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(EnvironmentsServer).Read(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/api.cmdb.Environments/Read",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(EnvironmentsServer).Read(ctx, req.(*ReadEnvironmentRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _Environments_Update_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(UpdateEnvironmentRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(EnvironmentsServer).Update(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/api.cmdb.Environments/Update",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(EnvironmentsServer).Update(ctx, req.(*UpdateEnvironmentRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _Environments_Delete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(DeleteEnvironmentRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(EnvironmentsServer).Delete(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/api.cmdb.Environments/Delete",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(EnvironmentsServer).Delete(ctx, req.(*DeleteEnvironmentRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _Environments_List_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(ListEnvironmentRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(EnvironmentsServer).List(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/api.cmdb.Environments/List",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(EnvironmentsServer).List(ctx, req.(*ListEnvironmentRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-var _Environments_serviceDesc = grpc.ServiceDesc{
-	ServiceName: "api.cmdb.Environments",
-	HandlerType: (*EnvironmentsServer)(nil),
-	Methods: []grpc.MethodDesc{
-		{
-			MethodName: "Create",
-			Handler:    _Environments_Create_Handler,
-		},
-		{
-			MethodName: "Read",
-			Handler:    _Environments_Read_Handler,
-		},
-		{
-			MethodName: "Update",
-			Handler:    _Environments_Update_Handler,
-		},
-		{
-			MethodName: "Delete",
-			Handler:    _Environments_Delete_Handler,
-		},
-		{
-			MethodName: "List",
-			Handler:    _Environments_List_Handler,
-		},
-	},
-	Streams:  []grpc.StreamDesc{},
-	Metadata: "github.com/seizadi/cmdb/pkg/pb/cmdb.proto",
-}
-
-// ManifestsClient is the client API for Manifests service.
-//
-// For semantics around ctx use and closing/ending streaming RPCs, please refer to https://godoc.org/google.golang.org/grpc#ClientConn.NewStream.
-type ManifestsClient interface {
-	// Use this method to create a Manifest information.
-	Create(ctx context.Context, in *CreateManifestRequest, opts ...grpc.CallOption) (*CreateManifestResponse, error)
-	// Use this method to read a Manifest information by identifier.
-	Read(ctx context.Context, in *ReadManifestRequest, opts ...grpc.CallOption) (*ReadManifestResponse, error)
-	// Use this method to update a Manifest information.
-	Update(ctx context.Context, in *UpdateManifestRequest, opts ...grpc.CallOption) (*UpdateManifestResponse, error)
-	// Use this method to delete a particular Manifest.
-	Delete(ctx context.Context, in *DeleteManifestRequest, opts ...grpc.CallOption) (*DeleteManifestResponse, error)
-	// Use this method to retrieve all the Manifests.
-	List(ctx context.Context, in *ListManifestRequest, opts ...grpc.CallOption) (*ListManifestsResponse, error)
-}
-
-type manifestsClient struct {
-	cc *grpc.ClientConn
-}
-
-func NewManifestsClient(cc *grpc.ClientConn) ManifestsClient {
-	return &manifestsClient{cc}
-}
-
-func (c *manifestsClient) Create(ctx context.Context, in *CreateManifestRequest, opts ...grpc.CallOption) (*CreateManifestResponse, error) {
-	out := new(CreateManifestResponse)
-	err := c.cc.Invoke(ctx, "/api.cmdb.Manifests/Create", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *manifestsClient) Read(ctx context.Context, in *ReadManifestRequest, opts ...grpc.CallOption) (*ReadManifestResponse, error) {
-	out := new(ReadManifestResponse)
-	err := c.cc.Invoke(ctx, "/api.cmdb.Manifests/Read", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *manifestsClient) Update(ctx context.Context, in *UpdateManifestRequest, opts ...grpc.CallOption) (*UpdateManifestResponse, error) {
-	out := new(UpdateManifestResponse)
-	err := c.cc.Invoke(ctx, "/api.cmdb.Manifests/Update", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *manifestsClient) Delete(ctx context.Context, in *DeleteManifestRequest, opts ...grpc.CallOption) (*DeleteManifestResponse, error) {
-	out := new(DeleteManifestResponse)
-	err := c.cc.Invoke(ctx, "/api.cmdb.Manifests/Delete", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *manifestsClient) List(ctx context.Context, in *ListManifestRequest, opts ...grpc.CallOption) (*ListManifestsResponse, error) {
-	out := new(ListManifestsResponse)
-	err := c.cc.Invoke(ctx, "/api.cmdb.Manifests/List", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-// ManifestsServer is the server API for Manifests service.
-type ManifestsServer interface {
-	// Use this method to create a Manifest information.
-	Create(context.Context, *CreateManifestRequest) (*CreateManifestResponse, error)
-	// Use this method to read a Manifest information by identifier.
-	Read(context.Context, *ReadManifestRequest) (*ReadManifestResponse, error)
-	// Use this method to update a Manifest information.
-	Update(context.Context, *UpdateManifestRequest) (*UpdateManifestResponse, error)
-	// Use this method to delete a particular Manifest.
-	Delete(context.Context, *DeleteManifestRequest) (*DeleteManifestResponse, error)
-	// Use this method to retrieve all the Manifests.
-	List(context.Context, *ListManifestRequest) (*ListManifestsResponse, error)
-}
-
-func RegisterManifestsServer(s *grpc.Server, srv ManifestsServer) {
-	s.RegisterService(&_Manifests_serviceDesc, srv)
-}
-
-func _Manifests_Create_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(CreateManifestRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(ManifestsServer).Create(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/api.cmdb.Manifests/Create",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ManifestsServer).Create(ctx, req.(*CreateManifestRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _Manifests_Read_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(ReadManifestRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(ManifestsServer).Read(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/api.cmdb.Manifests/Read",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ManifestsServer).Read(ctx, req.(*ReadManifestRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _Manifests_Update_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(UpdateManifestRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(ManifestsServer).Update(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/api.cmdb.Manifests/Update",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ManifestsServer).Update(ctx, req.(*UpdateManifestRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _Manifests_Delete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(DeleteManifestRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(ManifestsServer).Delete(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/api.cmdb.Manifests/Delete",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ManifestsServer).Delete(ctx, req.(*DeleteManifestRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _Manifests_List_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(ListManifestRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(ManifestsServer).List(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/api.cmdb.Manifests/List",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ManifestsServer).List(ctx, req.(*ListManifestRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-var _Manifests_serviceDesc = grpc.ServiceDesc{
-	ServiceName: "api.cmdb.Manifests",
-	HandlerType: (*ManifestsServer)(nil),
-	Methods: []grpc.MethodDesc{
-		{
-			MethodName: "Create",
-			Handler:    _Manifests_Create_Handler,
-		},
-		{
-			MethodName: "Read",
-			Handler:    _Manifests_Read_Handler,
-		},
-		{
-			MethodName: "Update",
-			Handler:    _Manifests_Update_Handler,
-		},
-		{
-			MethodName: "Delete",
-			Handler:    _Manifests_Delete_Handler,
-		},
-		{
-			MethodName: "List",
-			Handler:    _Manifests_List_Handler,
-		},
-	},
-	Streams:  []grpc.StreamDesc{},
-	Metadata: "github.com/seizadi/cmdb/pkg/pb/cmdb.proto",
-}
-
-// SecretsClient is the client API for Secrets service.
-//
-// For semantics around ctx use and closing/ending streaming RPCs, please refer to https://godoc.org/google.golang.org/grpc#ClientConn.NewStream.
-type SecretsClient interface {
-	// Use this method to create a Secret information.
-	Create(ctx context.Context, in *CreateSecretRequest, opts ...grpc.CallOption) (*CreateSecretResponse, error)
-	// Use this method to read a Secret information by identifier.
-	Read(ctx context.Context, in *ReadSecretRequest, opts ...grpc.CallOption) (*ReadSecretResponse, error)
-	// Use this method to update a Secret information.
-	Update(ctx context.Context, in *UpdateSecretRequest, opts ...grpc.CallOption) (*UpdateSecretResponse, error)
-	// Use this method to delete a particular Secret.
-	Delete(ctx context.Context, in *DeleteSecretRequest, opts ...grpc.CallOption) (*DeleteSecretResponse, error)
-	// Use this method to retrieve all the Secrets.
-	List(ctx context.Context, in *ListSecretRequest, opts ...grpc.CallOption) (*ListSecretsResponse, error)
-}
-
-type secretsClient struct {
-	cc *grpc.ClientConn
-}
-
-func NewSecretsClient(cc *grpc.ClientConn) SecretsClient {
-	return &secretsClient{cc}
-}
-
-func (c *secretsClient) Create(ctx context.Context, in *CreateSecretRequest, opts ...grpc.CallOption) (*CreateSecretResponse, error) {
-	out := new(CreateSecretResponse)
-	err := c.cc.Invoke(ctx, "/api.cmdb.Secrets/Create", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *secretsClient) Read(ctx context.Context, in *ReadSecretRequest, opts ...grpc.CallOption) (*ReadSecretResponse, error) {
-	out := new(ReadSecretResponse)
-	err := c.cc.Invoke(ctx, "/api.cmdb.Secrets/Read", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *secretsClient) Update(ctx context.Context, in *UpdateSecretRequest, opts ...grpc.CallOption) (*UpdateSecretResponse, error) {
-	out := new(UpdateSecretResponse)
-	err := c.cc.Invoke(ctx, "/api.cmdb.Secrets/Update", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *secretsClient) Delete(ctx context.Context, in *DeleteSecretRequest, opts ...grpc.CallOption) (*DeleteSecretResponse, error) {
-	out := new(DeleteSecretResponse)
-	err := c.cc.Invoke(ctx, "/api.cmdb.Secrets/Delete", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *secretsClient) List(ctx context.Context, in *ListSecretRequest, opts ...grpc.CallOption) (*ListSecretsResponse, error) {
-	out := new(ListSecretsResponse)
-	err := c.cc.Invoke(ctx, "/api.cmdb.Secrets/List", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-// SecretsServer is the server API for Secrets service.
-type SecretsServer interface {
-	// Use this method to create a Secret information.
-	Create(context.Context, *CreateSecretRequest) (*CreateSecretResponse, error)
-	// Use this method to read a Secret information by identifier.
-	Read(context.Context, *ReadSecretRequest) (*ReadSecretResponse, error)
-	// Use this method to update a Secret information.
-	Update(context.Context, *UpdateSecretRequest) (*UpdateSecretResponse, error)
-	// Use this method to delete a particular Secret.
-	Delete(context.Context, *DeleteSecretRequest) (*DeleteSecretResponse, error)
-	// Use this method to retrieve all the Secrets.
-	List(context.Context, *ListSecretRequest) (*ListSecretsResponse, error)
-}
-
-func RegisterSecretsServer(s *grpc.Server, srv SecretsServer) {
-	s.RegisterService(&_Secrets_serviceDesc, srv)
-}
-
-func _Secrets_Create_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(CreateSecretRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(SecretsServer).Create(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/api.cmdb.Secrets/Create",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(SecretsServer).Create(ctx, req.(*CreateSecretRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _Secrets_Read_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(ReadSecretRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(SecretsServer).Read(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/api.cmdb.Secrets/Read",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(SecretsServer).Read(ctx, req.(*ReadSecretRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _Secrets_Update_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(UpdateSecretRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(SecretsServer).Update(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/api.cmdb.Secrets/Update",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(SecretsServer).Update(ctx, req.(*UpdateSecretRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _Secrets_Delete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(DeleteSecretRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(SecretsServer).Delete(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/api.cmdb.Secrets/Delete",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(SecretsServer).Delete(ctx, req.(*DeleteSecretRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _Secrets_List_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(ListSecretRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(SecretsServer).List(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/api.cmdb.Secrets/List",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(SecretsServer).List(ctx, req.(*ListSecretRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-var _Secrets_serviceDesc = grpc.ServiceDesc{
-	ServiceName: "api.cmdb.Secrets",
-	HandlerType: (*SecretsServer)(nil),
-	Methods: []grpc.MethodDesc{
-		{
-			MethodName: "Create",
-			Handler:    _Secrets_Create_Handler,
-		},
-		{
-			MethodName: "Read",
-			Handler:    _Secrets_Read_Handler,
-		},
-		{
-			MethodName: "Update",
-			Handler:    _Secrets_Update_Handler,
-		},
-		{
-			MethodName: "Delete",
-			Handler:    _Secrets_Delete_Handler,
-		},
-		{
-			MethodName: "List",
-			Handler:    _Secrets_List_Handler,
-		},
-	},
-	Streams:  []grpc.StreamDesc{},
-	Metadata: "github.com/seizadi/cmdb/pkg/pb/cmdb.proto",
-}
-
-// ArtifactsClient is the client API for Artifacts service.
-//
-// For semantics around ctx use and closing/ending streaming RPCs, please refer to https://godoc.org/google.golang.org/grpc#ClientConn.NewStream.
-type ArtifactsClient interface {
-	// Use this method to create a Artifact information.
-	Create(ctx context.Context, in *CreateArtifactRequest, opts ...grpc.CallOption) (*CreateArtifactResponse, error)
-	// Use this method to read a Artifact information by identifier.
-	Read(ctx context.Context, in *ReadArtifactRequest, opts ...grpc.CallOption) (*ReadArtifactResponse, error)
-	// Use this method to update a Artifact information.
-	Update(ctx context.Context, in *UpdateArtifactRequest, opts ...grpc.CallOption) (*UpdateArtifactResponse, error)
-	// Use this method to delete a particular Artifact.
-	Delete(ctx context.Context, in *DeleteArtifactRequest, opts ...grpc.CallOption) (*DeleteArtifactResponse, error)
-	// Use this method to retrieve all the Artifacts.
-	List(ctx context.Context, in *ListArtifactRequest, opts ...grpc.CallOption) (*ListArtifactsResponse, error)
-}
-
-type artifactsClient struct {
-	cc *grpc.ClientConn
-}
-
-func NewArtifactsClient(cc *grpc.ClientConn) ArtifactsClient {
-	return &artifactsClient{cc}
-}
-
-func (c *artifactsClient) Create(ctx context.Context, in *CreateArtifactRequest, opts ...grpc.CallOption) (*CreateArtifactResponse, error) {
-	out := new(CreateArtifactResponse)
-	err := c.cc.Invoke(ctx, "/api.cmdb.Artifacts/Create", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *artifactsClient) Read(ctx context.Context, in *ReadArtifactRequest, opts ...grpc.CallOption) (*ReadArtifactResponse, error) {
-	out := new(ReadArtifactResponse)
-	err := c.cc.Invoke(ctx, "/api.cmdb.Artifacts/Read", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *artifactsClient) Update(ctx context.Context, in *UpdateArtifactRequest, opts ...grpc.CallOption) (*UpdateArtifactResponse, error) {
-	out := new(UpdateArtifactResponse)
-	err := c.cc.Invoke(ctx, "/api.cmdb.Artifacts/Update", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *artifactsClient) Delete(ctx context.Context, in *DeleteArtifactRequest, opts ...grpc.CallOption) (*DeleteArtifactResponse, error) {
-	out := new(DeleteArtifactResponse)
-	err := c.cc.Invoke(ctx, "/api.cmdb.Artifacts/Delete", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *artifactsClient) List(ctx context.Context, in *ListArtifactRequest, opts ...grpc.CallOption) (*ListArtifactsResponse, error) {
-	out := new(ListArtifactsResponse)
-	err := c.cc.Invoke(ctx, "/api.cmdb.Artifacts/List", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-// ArtifactsServer is the server API for Artifacts service.
-type ArtifactsServer interface {
-	// Use this method to create a Artifact information.
-	Create(context.Context, *CreateArtifactRequest) (*CreateArtifactResponse, error)
-	// Use this method to read a Artifact information by identifier.
-	Read(context.Context, *ReadArtifactRequest) (*ReadArtifactResponse, error)
-	// Use this method to update a Artifact information.
-	Update(context.Context, *UpdateArtifactRequest) (*UpdateArtifactResponse, error)
-	// Use this method to delete a particular Artifact.
-	Delete(context.Context, *DeleteArtifactRequest) (*DeleteArtifactResponse, error)
-	// Use this method to retrieve all the Artifacts.
-	List(context.Context, *ListArtifactRequest) (*ListArtifactsResponse, error)
-}
-
-func RegisterArtifactsServer(s *grpc.Server, srv ArtifactsServer) {
-	s.RegisterService(&_Artifacts_serviceDesc, srv)
-}
-
-func _Artifacts_Create_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(CreateArtifactRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(ArtifactsServer).Create(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/api.cmdb.Artifacts/Create",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ArtifactsServer).Create(ctx, req.(*CreateArtifactRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _Artifacts_Read_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(ReadArtifactRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(ArtifactsServer).Read(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/api.cmdb.Artifacts/Read",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ArtifactsServer).Read(ctx, req.(*ReadArtifactRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _Artifacts_Update_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(UpdateArtifactRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(ArtifactsServer).Update(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/api.cmdb.Artifacts/Update",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ArtifactsServer).Update(ctx, req.(*UpdateArtifactRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _Artifacts_Delete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(DeleteArtifactRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(ArtifactsServer).Delete(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/api.cmdb.Artifacts/Delete",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ArtifactsServer).Delete(ctx, req.(*DeleteArtifactRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _Artifacts_List_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(ListArtifactRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(ArtifactsServer).List(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/api.cmdb.Artifacts/List",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ArtifactsServer).List(ctx, req.(*ListArtifactRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-var _Artifacts_serviceDesc = grpc.ServiceDesc{
-	ServiceName: "api.cmdb.Artifacts",
-	HandlerType: (*ArtifactsServer)(nil),
-	Methods: []grpc.MethodDesc{
-		{
-			MethodName: "Create",
-			Handler:    _Artifacts_Create_Handler,
-		},
-		{
-			MethodName: "Read",
-			Handler:    _Artifacts_Read_Handler,
-		},
-		{
-			MethodName: "Update",
-			Handler:    _Artifacts_Update_Handler,
-		},
-		{
-			MethodName: "Delete",
-			Handler:    _Artifacts_Delete_Handler,
-		},
-		{
-			MethodName: "List",
-			Handler:    _Artifacts_List_Handler,
-		},
-	},
-	Streams:  []grpc.StreamDesc{},
-	Metadata: "github.com/seizadi/cmdb/pkg/pb/cmdb.proto",
-}
-
-// AwsServicesClient is the client API for AwsServices service.
-//
-// For semantics around ctx use and closing/ending streaming RPCs, please refer to https://godoc.org/google.golang.org/grpc#ClientConn.NewStream.
-type AwsServicesClient interface {
-	// Use this method to create a AwsService information.
-	Create(ctx context.Context, in *CreateAwsServiceRequest, opts ...grpc.CallOption) (*CreateAwsServiceResponse, error)
-	// Use this method to read a AwsService information by identifier.
-	Read(ctx context.Context, in *ReadAwsServiceRequest, opts ...grpc.CallOption) (*ReadAwsServiceResponse, error)
-	// Use this method to update a AwsService information.
-	Update(ctx context.Context, in *UpdateAwsServiceRequest, opts ...grpc.CallOption) (*UpdateAwsServiceResponse, error)
-	// Use this method to delete a particular AwsService.
-	Delete(ctx context.Context, in *DeleteAwsServiceRequest, opts ...grpc.CallOption) (*DeleteAwsServiceResponse, error)
-	// Use this method to retrieve all the AwsServices.
-	List(ctx context.Context, in *ListAwsServiceRequest, opts ...grpc.CallOption) (*ListAwsServicesResponse, error)
-}
-
-type awsServicesClient struct {
-	cc *grpc.ClientConn
-}
-
-func NewAwsServicesClient(cc *grpc.ClientConn) AwsServicesClient {
-	return &awsServicesClient{cc}
-}
-
-func (c *awsServicesClient) Create(ctx context.Context, in *CreateAwsServiceRequest, opts ...grpc.CallOption) (*CreateAwsServiceResponse, error) {
-	out := new(CreateAwsServiceResponse)
-	err := c.cc.Invoke(ctx, "/api.cmdb.AwsServices/Create", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *awsServicesClient) Read(ctx context.Context, in *ReadAwsServiceRequest, opts ...grpc.CallOption) (*ReadAwsServiceResponse, error) {
-	out := new(ReadAwsServiceResponse)
-	err := c.cc.Invoke(ctx, "/api.cmdb.AwsServices/Read", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *awsServicesClient) Update(ctx context.Context, in *UpdateAwsServiceRequest, opts ...grpc.CallOption) (*UpdateAwsServiceResponse, error) {
-	out := new(UpdateAwsServiceResponse)
-	err := c.cc.Invoke(ctx, "/api.cmdb.AwsServices/Update", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *awsServicesClient) Delete(ctx context.Context, in *DeleteAwsServiceRequest, opts ...grpc.CallOption) (*DeleteAwsServiceResponse, error) {
-	out := new(DeleteAwsServiceResponse)
-	err := c.cc.Invoke(ctx, "/api.cmdb.AwsServices/Delete", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *awsServicesClient) List(ctx context.Context, in *ListAwsServiceRequest, opts ...grpc.CallOption) (*ListAwsServicesResponse, error) {
-	out := new(ListAwsServicesResponse)
-	err := c.cc.Invoke(ctx, "/api.cmdb.AwsServices/List", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-// AwsServicesServer is the server API for AwsServices service.
-type AwsServicesServer interface {
-	// Use this method to create a AwsService information.
-	Create(context.Context, *CreateAwsServiceRequest) (*CreateAwsServiceResponse, error)
-	// Use this method to read a AwsService information by identifier.
-	Read(context.Context, *ReadAwsServiceRequest) (*ReadAwsServiceResponse, error)
-	// Use this method to update a AwsService information.
-	Update(context.Context, *UpdateAwsServiceRequest) (*UpdateAwsServiceResponse, error)
-	// Use this method to delete a particular AwsService.
-	Delete(context.Context, *DeleteAwsServiceRequest) (*DeleteAwsServiceResponse, error)
-	// Use this method to retrieve all the AwsServices.
-	List(context.Context, *ListAwsServiceRequest) (*ListAwsServicesResponse, error)
-}
-
-func RegisterAwsServicesServer(s *grpc.Server, srv AwsServicesServer) {
-	s.RegisterService(&_AwsServices_serviceDesc, srv)
-}
-
-func _AwsServices_Create_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(CreateAwsServiceRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(AwsServicesServer).Create(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/api.cmdb.AwsServices/Create",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(AwsServicesServer).Create(ctx, req.(*CreateAwsServiceRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _AwsServices_Read_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(ReadAwsServiceRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(AwsServicesServer).Read(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/api.cmdb.AwsServices/Read",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(AwsServicesServer).Read(ctx, req.(*ReadAwsServiceRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _AwsServices_Update_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(UpdateAwsServiceRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(AwsServicesServer).Update(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/api.cmdb.AwsServices/Update",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(AwsServicesServer).Update(ctx, req.(*UpdateAwsServiceRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _AwsServices_Delete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(DeleteAwsServiceRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(AwsServicesServer).Delete(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/api.cmdb.AwsServices/Delete",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(AwsServicesServer).Delete(ctx, req.(*DeleteAwsServiceRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _AwsServices_List_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(ListAwsServiceRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(AwsServicesServer).List(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/api.cmdb.AwsServices/List",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(AwsServicesServer).List(ctx, req.(*ListAwsServiceRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-var _AwsServices_serviceDesc = grpc.ServiceDesc{
-	ServiceName: "api.cmdb.AwsServices",
-	HandlerType: (*AwsServicesServer)(nil),
-	Methods: []grpc.MethodDesc{
-		{
-			MethodName: "Create",
-			Handler:    _AwsServices_Create_Handler,
-		},
-		{
-			MethodName: "Read",
-			Handler:    _AwsServices_Read_Handler,
-		},
-		{
-			MethodName: "Update",
-			Handler:    _AwsServices_Update_Handler,
-		},
-		{
-			MethodName: "Delete",
-			Handler:    _AwsServices_Delete_Handler,
-		},
-		{
-			MethodName: "List",
-			Handler:    _AwsServices_List_Handler,
-		},
-	},
-	Streams:  []grpc.StreamDesc{},
-	Metadata: "github.com/seizadi/cmdb/pkg/pb/cmdb.proto",
-}
-
-// DeploymentsClient is the client API for Deployments service.
-//
-// For semantics around ctx use and closing/ending streaming RPCs, please refer to https://godoc.org/google.golang.org/grpc#ClientConn.NewStream.
-type DeploymentsClient interface {
-	// Use this method to create a Deployment information.
-	Create(ctx context.Context, in *CreateDeploymentRequest, opts ...grpc.CallOption) (*CreateDeploymentResponse, error)
-	// Use this method to read a Deployment information by identifier.
-	Read(ctx context.Context, in *ReadDeploymentRequest, opts ...grpc.CallOption) (*ReadDeploymentResponse, error)
-	// Use this method to update a Deployment information.
-	Update(ctx context.Context, in *UpdateDeploymentRequest, opts ...grpc.CallOption) (*UpdateDeploymentResponse, error)
-	// Use this method to delete a particular Deployment.
-	Delete(ctx context.Context, in *DeleteDeploymentRequest, opts ...grpc.CallOption) (*DeleteDeploymentResponse, error)
-	// Use this method to retrieve all the Deployments.
-	List(ctx context.Context, in *ListDeploymentRequest, opts ...grpc.CallOption) (*ListDeploymentsResponse, error)
-}
-
-type deploymentsClient struct {
-	cc *grpc.ClientConn
-}
-
-func NewDeploymentsClient(cc *grpc.ClientConn) DeploymentsClient {
-	return &deploymentsClient{cc}
-}
-
-func (c *deploymentsClient) Create(ctx context.Context, in *CreateDeploymentRequest, opts ...grpc.CallOption) (*CreateDeploymentResponse, error) {
-	out := new(CreateDeploymentResponse)
-	err := c.cc.Invoke(ctx, "/api.cmdb.Deployments/Create", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *deploymentsClient) Read(ctx context.Context, in *ReadDeploymentRequest, opts ...grpc.CallOption) (*ReadDeploymentResponse, error) {
-	out := new(ReadDeploymentResponse)
-	err := c.cc.Invoke(ctx, "/api.cmdb.Deployments/Read", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *deploymentsClient) Update(ctx context.Context, in *UpdateDeploymentRequest, opts ...grpc.CallOption) (*UpdateDeploymentResponse, error) {
-	out := new(UpdateDeploymentResponse)
-	err := c.cc.Invoke(ctx, "/api.cmdb.Deployments/Update", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *deploymentsClient) Delete(ctx context.Context, in *DeleteDeploymentRequest, opts ...grpc.CallOption) (*DeleteDeploymentResponse, error) {
-	out := new(DeleteDeploymentResponse)
-	err := c.cc.Invoke(ctx, "/api.cmdb.Deployments/Delete", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *deploymentsClient) List(ctx context.Context, in *ListDeploymentRequest, opts ...grpc.CallOption) (*ListDeploymentsResponse, error) {
-	out := new(ListDeploymentsResponse)
-	err := c.cc.Invoke(ctx, "/api.cmdb.Deployments/List", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-// DeploymentsServer is the server API for Deployments service.
-type DeploymentsServer interface {
-	// Use this method to create a Deployment information.
-	Create(context.Context, *CreateDeploymentRequest) (*CreateDeploymentResponse, error)
-	// Use this method to read a Deployment information by identifier.
-	Read(context.Context, *ReadDeploymentRequest) (*ReadDeploymentResponse, error)
-	// Use this method to update a Deployment information.
-	Update(context.Context, *UpdateDeploymentRequest) (*UpdateDeploymentResponse, error)
-	// Use this method to delete a particular Deployment.
-	Delete(context.Context, *DeleteDeploymentRequest) (*DeleteDeploymentResponse, error)
-	// Use this method to retrieve all the Deployments.
-	List(context.Context, *ListDeploymentRequest) (*ListDeploymentsResponse, error)
-}
-
-func RegisterDeploymentsServer(s *grpc.Server, srv DeploymentsServer) {
-	s.RegisterService(&_Deployments_serviceDesc, srv)
-}
-
-func _Deployments_Create_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(CreateDeploymentRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(DeploymentsServer).Create(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/api.cmdb.Deployments/Create",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(DeploymentsServer).Create(ctx, req.(*CreateDeploymentRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _Deployments_Read_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(ReadDeploymentRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(DeploymentsServer).Read(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/api.cmdb.Deployments/Read",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(DeploymentsServer).Read(ctx, req.(*ReadDeploymentRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _Deployments_Update_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(UpdateDeploymentRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(DeploymentsServer).Update(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/api.cmdb.Deployments/Update",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(DeploymentsServer).Update(ctx, req.(*UpdateDeploymentRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _Deployments_Delete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(DeleteDeploymentRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(DeploymentsServer).Delete(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/api.cmdb.Deployments/Delete",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(DeploymentsServer).Delete(ctx, req.(*DeleteDeploymentRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _Deployments_List_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(ListDeploymentRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(DeploymentsServer).List(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/api.cmdb.Deployments/List",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(DeploymentsServer).List(ctx, req.(*ListDeploymentRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-var _Deployments_serviceDesc = grpc.ServiceDesc{
-	ServiceName: "api.cmdb.Deployments",
-	HandlerType: (*DeploymentsServer)(nil),
-	Methods: []grpc.MethodDesc{
-		{
-			MethodName: "Create",
-			Handler:    _Deployments_Create_Handler,
-		},
-		{
-			MethodName: "Read",
-			Handler:    _Deployments_Read_Handler,
-		},
-		{
-			MethodName: "Update",
-			Handler:    _Deployments_Update_Handler,
-		},
-		{
-			MethodName: "Delete",
-			Handler:    _Deployments_Delete_Handler,
-		},
-		{
-			MethodName: "List",
-			Handler:    _Deployments_List_Handler,
-		},
-	},
-	Streams:  []grpc.StreamDesc{},
-	Metadata: "github.com/seizadi/cmdb/pkg/pb/cmdb.proto",
-}
-
-// KubeClustersClient is the client API for KubeClusters service.
-//
-// For semantics around ctx use and closing/ending streaming RPCs, please refer to https://godoc.org/google.golang.org/grpc#ClientConn.NewStream.
-type KubeClustersClient interface {
-	// Use this method to create a KubeCluster information.
-	Create(ctx context.Context, in *CreateKubeClusterRequest, opts ...grpc.CallOption) (*CreateKubeClusterResponse, error)
-	// Use this method to read a KubeCluster information by identifier.
-	Read(ctx context.Context, in *ReadKubeClusterRequest, opts ...grpc.CallOption) (*ReadKubeClusterResponse, error)
-	// Use this method to update a KubeCluster information.
-	Update(ctx context.Context, in *UpdateKubeClusterRequest, opts ...grpc.CallOption) (*UpdateKubeClusterResponse, error)
-	// Use this method to delete a particular KubeCluster.
-	Delete(ctx context.Context, in *DeleteKubeClusterRequest, opts ...grpc.CallOption) (*DeleteKubeClusterResponse, error)
-	// Use this method to retrieve all the KubeClusters.
-	List(ctx context.Context, in *ListKubeClusterRequest, opts ...grpc.CallOption) (*ListKubeClustersResponse, error)
-}
-
-type kubeClustersClient struct {
-	cc *grpc.ClientConn
-}
-
-func NewKubeClustersClient(cc *grpc.ClientConn) KubeClustersClient {
-	return &kubeClustersClient{cc}
-}
-
-func (c *kubeClustersClient) Create(ctx context.Context, in *CreateKubeClusterRequest, opts ...grpc.CallOption) (*CreateKubeClusterResponse, error) {
-	out := new(CreateKubeClusterResponse)
-	err := c.cc.Invoke(ctx, "/api.cmdb.KubeClusters/Create", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *kubeClustersClient) Read(ctx context.Context, in *ReadKubeClusterRequest, opts ...grpc.CallOption) (*ReadKubeClusterResponse, error) {
-	out := new(ReadKubeClusterResponse)
-	err := c.cc.Invoke(ctx, "/api.cmdb.KubeClusters/Read", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *kubeClustersClient) Update(ctx context.Context, in *UpdateKubeClusterRequest, opts ...grpc.CallOption) (*UpdateKubeClusterResponse, error) {
-	out := new(UpdateKubeClusterResponse)
-	err := c.cc.Invoke(ctx, "/api.cmdb.KubeClusters/Update", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *kubeClustersClient) Delete(ctx context.Context, in *DeleteKubeClusterRequest, opts ...grpc.CallOption) (*DeleteKubeClusterResponse, error) {
-	out := new(DeleteKubeClusterResponse)
-	err := c.cc.Invoke(ctx, "/api.cmdb.KubeClusters/Delete", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *kubeClustersClient) List(ctx context.Context, in *ListKubeClusterRequest, opts ...grpc.CallOption) (*ListKubeClustersResponse, error) {
-	out := new(ListKubeClustersResponse)
-	err := c.cc.Invoke(ctx, "/api.cmdb.KubeClusters/List", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-// KubeClustersServer is the server API for KubeClusters service.
-type KubeClustersServer interface {
-	// Use this method to create a KubeCluster information.
-	Create(context.Context, *CreateKubeClusterRequest) (*CreateKubeClusterResponse, error)
-	// Use this method to read a KubeCluster information by identifier.
-	Read(context.Context, *ReadKubeClusterRequest) (*ReadKubeClusterResponse, error)
-	// Use this method to update a KubeCluster information.
-	Update(context.Context, *UpdateKubeClusterRequest) (*UpdateKubeClusterResponse, error)
-	// Use this method to delete a particular KubeCluster.
-	Delete(context.Context, *DeleteKubeClusterRequest) (*DeleteKubeClusterResponse, error)
-	// Use this method to retrieve all the KubeClusters.
-	List(context.Context, *ListKubeClusterRequest) (*ListKubeClustersResponse, error)
-}
-
-func RegisterKubeClustersServer(s *grpc.Server, srv KubeClustersServer) {
-	s.RegisterService(&_KubeClusters_serviceDesc, srv)
-}
-
-func _KubeClusters_Create_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(CreateKubeClusterRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(KubeClustersServer).Create(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/api.cmdb.KubeClusters/Create",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(KubeClustersServer).Create(ctx, req.(*CreateKubeClusterRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _KubeClusters_Read_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(ReadKubeClusterRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(KubeClustersServer).Read(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/api.cmdb.KubeClusters/Read",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(KubeClustersServer).Read(ctx, req.(*ReadKubeClusterRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _KubeClusters_Update_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(UpdateKubeClusterRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(KubeClustersServer).Update(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/api.cmdb.KubeClusters/Update",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(KubeClustersServer).Update(ctx, req.(*UpdateKubeClusterRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _KubeClusters_Delete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(DeleteKubeClusterRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(KubeClustersServer).Delete(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/api.cmdb.KubeClusters/Delete",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(KubeClustersServer).Delete(ctx, req.(*DeleteKubeClusterRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _KubeClusters_List_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(ListKubeClusterRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(KubeClustersServer).List(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/api.cmdb.KubeClusters/List",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(KubeClustersServer).List(ctx, req.(*ListKubeClusterRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-var _KubeClusters_serviceDesc = grpc.ServiceDesc{
-	ServiceName: "api.cmdb.KubeClusters",
-	HandlerType: (*KubeClustersServer)(nil),
-	Methods: []grpc.MethodDesc{
-		{
-			MethodName: "Create",
-			Handler:    _KubeClusters_Create_Handler,
-		},
-		{
-			MethodName: "Read",
-			Handler:    _KubeClusters_Read_Handler,
-		},
-		{
-			MethodName: "Update",
-			Handler:    _KubeClusters_Update_Handler,
-		},
-		{
-			MethodName: "Delete",
-			Handler:    _KubeClusters_Delete_Handler,
-		},
-		{
-			MethodName: "List",
-			Handler:    _KubeClusters_List_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
@@ -11000,6 +8899,2684 @@ var _Regions_serviceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "List",
 			Handler:    _Regions_List_Handler,
+		},
+	},
+	Streams:  []grpc.StreamDesc{},
+	Metadata: "github.com/seizadi/cmdb/pkg/pb/cmdb.proto",
+}
+
+// StagesClient is the client API for Stages service.
+//
+// For semantics around ctx use and closing/ending streaming RPCs, please refer to https://godoc.org/google.golang.org/grpc#ClientConn.NewStream.
+type StagesClient interface {
+	// Use this method to create a Stage information.
+	Create(ctx context.Context, in *CreateStageRequest, opts ...grpc.CallOption) (*CreateStageResponse, error)
+	// Use this method to read a Stage information by identifier.
+	Read(ctx context.Context, in *ReadStageRequest, opts ...grpc.CallOption) (*ReadStageResponse, error)
+	// Use this method to update a Stage information.
+	Update(ctx context.Context, in *UpdateStageRequest, opts ...grpc.CallOption) (*UpdateStageResponse, error)
+	// Use this method to delete a particular Stage.
+	Delete(ctx context.Context, in *DeleteStageRequest, opts ...grpc.CallOption) (*DeleteStageResponse, error)
+	// Use this method to retrieve all the Stages.
+	List(ctx context.Context, in *ListStageRequest, opts ...grpc.CallOption) (*ListStagesResponse, error)
+}
+
+type stagesClient struct {
+	cc *grpc.ClientConn
+}
+
+func NewStagesClient(cc *grpc.ClientConn) StagesClient {
+	return &stagesClient{cc}
+}
+
+func (c *stagesClient) Create(ctx context.Context, in *CreateStageRequest, opts ...grpc.CallOption) (*CreateStageResponse, error) {
+	out := new(CreateStageResponse)
+	err := c.cc.Invoke(ctx, "/api.cmdb.Stages/Create", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *stagesClient) Read(ctx context.Context, in *ReadStageRequest, opts ...grpc.CallOption) (*ReadStageResponse, error) {
+	out := new(ReadStageResponse)
+	err := c.cc.Invoke(ctx, "/api.cmdb.Stages/Read", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *stagesClient) Update(ctx context.Context, in *UpdateStageRequest, opts ...grpc.CallOption) (*UpdateStageResponse, error) {
+	out := new(UpdateStageResponse)
+	err := c.cc.Invoke(ctx, "/api.cmdb.Stages/Update", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *stagesClient) Delete(ctx context.Context, in *DeleteStageRequest, opts ...grpc.CallOption) (*DeleteStageResponse, error) {
+	out := new(DeleteStageResponse)
+	err := c.cc.Invoke(ctx, "/api.cmdb.Stages/Delete", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *stagesClient) List(ctx context.Context, in *ListStageRequest, opts ...grpc.CallOption) (*ListStagesResponse, error) {
+	out := new(ListStagesResponse)
+	err := c.cc.Invoke(ctx, "/api.cmdb.Stages/List", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+// StagesServer is the server API for Stages service.
+type StagesServer interface {
+	// Use this method to create a Stage information.
+	Create(context.Context, *CreateStageRequest) (*CreateStageResponse, error)
+	// Use this method to read a Stage information by identifier.
+	Read(context.Context, *ReadStageRequest) (*ReadStageResponse, error)
+	// Use this method to update a Stage information.
+	Update(context.Context, *UpdateStageRequest) (*UpdateStageResponse, error)
+	// Use this method to delete a particular Stage.
+	Delete(context.Context, *DeleteStageRequest) (*DeleteStageResponse, error)
+	// Use this method to retrieve all the Stages.
+	List(context.Context, *ListStageRequest) (*ListStagesResponse, error)
+}
+
+func RegisterStagesServer(s *grpc.Server, srv StagesServer) {
+	s.RegisterService(&_Stages_serviceDesc, srv)
+}
+
+func _Stages_Create_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CreateStageRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(StagesServer).Create(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/api.cmdb.Stages/Create",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(StagesServer).Create(ctx, req.(*CreateStageRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Stages_Read_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ReadStageRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(StagesServer).Read(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/api.cmdb.Stages/Read",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(StagesServer).Read(ctx, req.(*ReadStageRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Stages_Update_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UpdateStageRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(StagesServer).Update(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/api.cmdb.Stages/Update",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(StagesServer).Update(ctx, req.(*UpdateStageRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Stages_Delete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DeleteStageRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(StagesServer).Delete(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/api.cmdb.Stages/Delete",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(StagesServer).Delete(ctx, req.(*DeleteStageRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Stages_List_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListStageRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(StagesServer).List(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/api.cmdb.Stages/List",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(StagesServer).List(ctx, req.(*ListStageRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+var _Stages_serviceDesc = grpc.ServiceDesc{
+	ServiceName: "api.cmdb.Stages",
+	HandlerType: (*StagesServer)(nil),
+	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "Create",
+			Handler:    _Stages_Create_Handler,
+		},
+		{
+			MethodName: "Read",
+			Handler:    _Stages_Read_Handler,
+		},
+		{
+			MethodName: "Update",
+			Handler:    _Stages_Update_Handler,
+		},
+		{
+			MethodName: "Delete",
+			Handler:    _Stages_Delete_Handler,
+		},
+		{
+			MethodName: "List",
+			Handler:    _Stages_List_Handler,
+		},
+	},
+	Streams:  []grpc.StreamDesc{},
+	Metadata: "github.com/seizadi/cmdb/pkg/pb/cmdb.proto",
+}
+
+// EnvironmentsClient is the client API for Environments service.
+//
+// For semantics around ctx use and closing/ending streaming RPCs, please refer to https://godoc.org/google.golang.org/grpc#ClientConn.NewStream.
+type EnvironmentsClient interface {
+	// Use this method to create a Environment information.
+	Create(ctx context.Context, in *CreateEnvironmentRequest, opts ...grpc.CallOption) (*CreateEnvironmentResponse, error)
+	// Use this method to read a Environment information by identifier.
+	Read(ctx context.Context, in *ReadEnvironmentRequest, opts ...grpc.CallOption) (*ReadEnvironmentResponse, error)
+	// Use this method to update a Environment information.
+	Update(ctx context.Context, in *UpdateEnvironmentRequest, opts ...grpc.CallOption) (*UpdateEnvironmentResponse, error)
+	// Use this method to delete a particular Environment.
+	Delete(ctx context.Context, in *DeleteEnvironmentRequest, opts ...grpc.CallOption) (*DeleteEnvironmentResponse, error)
+	// Use this method to retrieve all the Environments.
+	List(ctx context.Context, in *ListEnvironmentRequest, opts ...grpc.CallOption) (*ListEnvironmentsResponse, error)
+}
+
+type environmentsClient struct {
+	cc *grpc.ClientConn
+}
+
+func NewEnvironmentsClient(cc *grpc.ClientConn) EnvironmentsClient {
+	return &environmentsClient{cc}
+}
+
+func (c *environmentsClient) Create(ctx context.Context, in *CreateEnvironmentRequest, opts ...grpc.CallOption) (*CreateEnvironmentResponse, error) {
+	out := new(CreateEnvironmentResponse)
+	err := c.cc.Invoke(ctx, "/api.cmdb.Environments/Create", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *environmentsClient) Read(ctx context.Context, in *ReadEnvironmentRequest, opts ...grpc.CallOption) (*ReadEnvironmentResponse, error) {
+	out := new(ReadEnvironmentResponse)
+	err := c.cc.Invoke(ctx, "/api.cmdb.Environments/Read", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *environmentsClient) Update(ctx context.Context, in *UpdateEnvironmentRequest, opts ...grpc.CallOption) (*UpdateEnvironmentResponse, error) {
+	out := new(UpdateEnvironmentResponse)
+	err := c.cc.Invoke(ctx, "/api.cmdb.Environments/Update", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *environmentsClient) Delete(ctx context.Context, in *DeleteEnvironmentRequest, opts ...grpc.CallOption) (*DeleteEnvironmentResponse, error) {
+	out := new(DeleteEnvironmentResponse)
+	err := c.cc.Invoke(ctx, "/api.cmdb.Environments/Delete", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *environmentsClient) List(ctx context.Context, in *ListEnvironmentRequest, opts ...grpc.CallOption) (*ListEnvironmentsResponse, error) {
+	out := new(ListEnvironmentsResponse)
+	err := c.cc.Invoke(ctx, "/api.cmdb.Environments/List", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+// EnvironmentsServer is the server API for Environments service.
+type EnvironmentsServer interface {
+	// Use this method to create a Environment information.
+	Create(context.Context, *CreateEnvironmentRequest) (*CreateEnvironmentResponse, error)
+	// Use this method to read a Environment information by identifier.
+	Read(context.Context, *ReadEnvironmentRequest) (*ReadEnvironmentResponse, error)
+	// Use this method to update a Environment information.
+	Update(context.Context, *UpdateEnvironmentRequest) (*UpdateEnvironmentResponse, error)
+	// Use this method to delete a particular Environment.
+	Delete(context.Context, *DeleteEnvironmentRequest) (*DeleteEnvironmentResponse, error)
+	// Use this method to retrieve all the Environments.
+	List(context.Context, *ListEnvironmentRequest) (*ListEnvironmentsResponse, error)
+}
+
+func RegisterEnvironmentsServer(s *grpc.Server, srv EnvironmentsServer) {
+	s.RegisterService(&_Environments_serviceDesc, srv)
+}
+
+func _Environments_Create_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CreateEnvironmentRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(EnvironmentsServer).Create(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/api.cmdb.Environments/Create",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(EnvironmentsServer).Create(ctx, req.(*CreateEnvironmentRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Environments_Read_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ReadEnvironmentRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(EnvironmentsServer).Read(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/api.cmdb.Environments/Read",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(EnvironmentsServer).Read(ctx, req.(*ReadEnvironmentRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Environments_Update_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UpdateEnvironmentRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(EnvironmentsServer).Update(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/api.cmdb.Environments/Update",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(EnvironmentsServer).Update(ctx, req.(*UpdateEnvironmentRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Environments_Delete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DeleteEnvironmentRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(EnvironmentsServer).Delete(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/api.cmdb.Environments/Delete",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(EnvironmentsServer).Delete(ctx, req.(*DeleteEnvironmentRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Environments_List_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListEnvironmentRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(EnvironmentsServer).List(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/api.cmdb.Environments/List",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(EnvironmentsServer).List(ctx, req.(*ListEnvironmentRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+var _Environments_serviceDesc = grpc.ServiceDesc{
+	ServiceName: "api.cmdb.Environments",
+	HandlerType: (*EnvironmentsServer)(nil),
+	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "Create",
+			Handler:    _Environments_Create_Handler,
+		},
+		{
+			MethodName: "Read",
+			Handler:    _Environments_Read_Handler,
+		},
+		{
+			MethodName: "Update",
+			Handler:    _Environments_Update_Handler,
+		},
+		{
+			MethodName: "Delete",
+			Handler:    _Environments_Delete_Handler,
+		},
+		{
+			MethodName: "List",
+			Handler:    _Environments_List_Handler,
+		},
+	},
+	Streams:  []grpc.StreamDesc{},
+	Metadata: "github.com/seizadi/cmdb/pkg/pb/cmdb.proto",
+}
+
+// ApplicationsClient is the client API for Applications service.
+//
+// For semantics around ctx use and closing/ending streaming RPCs, please refer to https://godoc.org/google.golang.org/grpc#ClientConn.NewStream.
+type ApplicationsClient interface {
+	// Use this method to create a Application information.
+	Create(ctx context.Context, in *CreateApplicationRequest, opts ...grpc.CallOption) (*CreateApplicationResponse, error)
+	// Use this method to read a Application information by identifier.
+	Read(ctx context.Context, in *ReadApplicationRequest, opts ...grpc.CallOption) (*ReadApplicationResponse, error)
+	// Use this method to update a Application information.
+	Update(ctx context.Context, in *UpdateApplicationRequest, opts ...grpc.CallOption) (*UpdateApplicationResponse, error)
+	// Use this method to delete a particular Application.
+	Delete(ctx context.Context, in *DeleteApplicationRequest, opts ...grpc.CallOption) (*DeleteApplicationResponse, error)
+	// Use this method to retrieve all the Applications.
+	List(ctx context.Context, in *ListApplicationRequest, opts ...grpc.CallOption) (*ListApplicationsResponse, error)
+}
+
+type applicationsClient struct {
+	cc *grpc.ClientConn
+}
+
+func NewApplicationsClient(cc *grpc.ClientConn) ApplicationsClient {
+	return &applicationsClient{cc}
+}
+
+func (c *applicationsClient) Create(ctx context.Context, in *CreateApplicationRequest, opts ...grpc.CallOption) (*CreateApplicationResponse, error) {
+	out := new(CreateApplicationResponse)
+	err := c.cc.Invoke(ctx, "/api.cmdb.Applications/Create", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *applicationsClient) Read(ctx context.Context, in *ReadApplicationRequest, opts ...grpc.CallOption) (*ReadApplicationResponse, error) {
+	out := new(ReadApplicationResponse)
+	err := c.cc.Invoke(ctx, "/api.cmdb.Applications/Read", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *applicationsClient) Update(ctx context.Context, in *UpdateApplicationRequest, opts ...grpc.CallOption) (*UpdateApplicationResponse, error) {
+	out := new(UpdateApplicationResponse)
+	err := c.cc.Invoke(ctx, "/api.cmdb.Applications/Update", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *applicationsClient) Delete(ctx context.Context, in *DeleteApplicationRequest, opts ...grpc.CallOption) (*DeleteApplicationResponse, error) {
+	out := new(DeleteApplicationResponse)
+	err := c.cc.Invoke(ctx, "/api.cmdb.Applications/Delete", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *applicationsClient) List(ctx context.Context, in *ListApplicationRequest, opts ...grpc.CallOption) (*ListApplicationsResponse, error) {
+	out := new(ListApplicationsResponse)
+	err := c.cc.Invoke(ctx, "/api.cmdb.Applications/List", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+// ApplicationsServer is the server API for Applications service.
+type ApplicationsServer interface {
+	// Use this method to create a Application information.
+	Create(context.Context, *CreateApplicationRequest) (*CreateApplicationResponse, error)
+	// Use this method to read a Application information by identifier.
+	Read(context.Context, *ReadApplicationRequest) (*ReadApplicationResponse, error)
+	// Use this method to update a Application information.
+	Update(context.Context, *UpdateApplicationRequest) (*UpdateApplicationResponse, error)
+	// Use this method to delete a particular Application.
+	Delete(context.Context, *DeleteApplicationRequest) (*DeleteApplicationResponse, error)
+	// Use this method to retrieve all the Applications.
+	List(context.Context, *ListApplicationRequest) (*ListApplicationsResponse, error)
+}
+
+func RegisterApplicationsServer(s *grpc.Server, srv ApplicationsServer) {
+	s.RegisterService(&_Applications_serviceDesc, srv)
+}
+
+func _Applications_Create_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CreateApplicationRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ApplicationsServer).Create(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/api.cmdb.Applications/Create",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ApplicationsServer).Create(ctx, req.(*CreateApplicationRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Applications_Read_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ReadApplicationRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ApplicationsServer).Read(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/api.cmdb.Applications/Read",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ApplicationsServer).Read(ctx, req.(*ReadApplicationRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Applications_Update_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UpdateApplicationRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ApplicationsServer).Update(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/api.cmdb.Applications/Update",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ApplicationsServer).Update(ctx, req.(*UpdateApplicationRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Applications_Delete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DeleteApplicationRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ApplicationsServer).Delete(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/api.cmdb.Applications/Delete",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ApplicationsServer).Delete(ctx, req.(*DeleteApplicationRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Applications_List_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListApplicationRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ApplicationsServer).List(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/api.cmdb.Applications/List",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ApplicationsServer).List(ctx, req.(*ListApplicationRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+var _Applications_serviceDesc = grpc.ServiceDesc{
+	ServiceName: "api.cmdb.Applications",
+	HandlerType: (*ApplicationsServer)(nil),
+	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "Create",
+			Handler:    _Applications_Create_Handler,
+		},
+		{
+			MethodName: "Read",
+			Handler:    _Applications_Read_Handler,
+		},
+		{
+			MethodName: "Update",
+			Handler:    _Applications_Update_Handler,
+		},
+		{
+			MethodName: "Delete",
+			Handler:    _Applications_Delete_Handler,
+		},
+		{
+			MethodName: "List",
+			Handler:    _Applications_List_Handler,
+		},
+	},
+	Streams:  []grpc.StreamDesc{},
+	Metadata: "github.com/seizadi/cmdb/pkg/pb/cmdb.proto",
+}
+
+// ChartVersionsClient is the client API for ChartVersions service.
+//
+// For semantics around ctx use and closing/ending streaming RPCs, please refer to https://godoc.org/google.golang.org/grpc#ClientConn.NewStream.
+type ChartVersionsClient interface {
+	// Use this method to create a ChartVersion information.
+	Create(ctx context.Context, in *CreateChartVersionRequest, opts ...grpc.CallOption) (*CreateChartVersionResponse, error)
+	// Use this method to read a ChartVersion information by identifier.
+	Read(ctx context.Context, in *ReadChartVersionRequest, opts ...grpc.CallOption) (*ReadChartVersionResponse, error)
+	// Use this method to update a ChartVersion information.
+	Update(ctx context.Context, in *UpdateChartVersionRequest, opts ...grpc.CallOption) (*UpdateChartVersionResponse, error)
+	// Use this method to delete a particular ChartVersion.
+	Delete(ctx context.Context, in *DeleteChartVersionRequest, opts ...grpc.CallOption) (*DeleteChartVersionResponse, error)
+	// Use this method to retrieve all the ChartVersions.
+	List(ctx context.Context, in *ListChartVersionRequest, opts ...grpc.CallOption) (*ListChartVersionsResponse, error)
+}
+
+type chartVersionsClient struct {
+	cc *grpc.ClientConn
+}
+
+func NewChartVersionsClient(cc *grpc.ClientConn) ChartVersionsClient {
+	return &chartVersionsClient{cc}
+}
+
+func (c *chartVersionsClient) Create(ctx context.Context, in *CreateChartVersionRequest, opts ...grpc.CallOption) (*CreateChartVersionResponse, error) {
+	out := new(CreateChartVersionResponse)
+	err := c.cc.Invoke(ctx, "/api.cmdb.ChartVersions/Create", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *chartVersionsClient) Read(ctx context.Context, in *ReadChartVersionRequest, opts ...grpc.CallOption) (*ReadChartVersionResponse, error) {
+	out := new(ReadChartVersionResponse)
+	err := c.cc.Invoke(ctx, "/api.cmdb.ChartVersions/Read", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *chartVersionsClient) Update(ctx context.Context, in *UpdateChartVersionRequest, opts ...grpc.CallOption) (*UpdateChartVersionResponse, error) {
+	out := new(UpdateChartVersionResponse)
+	err := c.cc.Invoke(ctx, "/api.cmdb.ChartVersions/Update", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *chartVersionsClient) Delete(ctx context.Context, in *DeleteChartVersionRequest, opts ...grpc.CallOption) (*DeleteChartVersionResponse, error) {
+	out := new(DeleteChartVersionResponse)
+	err := c.cc.Invoke(ctx, "/api.cmdb.ChartVersions/Delete", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *chartVersionsClient) List(ctx context.Context, in *ListChartVersionRequest, opts ...grpc.CallOption) (*ListChartVersionsResponse, error) {
+	out := new(ListChartVersionsResponse)
+	err := c.cc.Invoke(ctx, "/api.cmdb.ChartVersions/List", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+// ChartVersionsServer is the server API for ChartVersions service.
+type ChartVersionsServer interface {
+	// Use this method to create a ChartVersion information.
+	Create(context.Context, *CreateChartVersionRequest) (*CreateChartVersionResponse, error)
+	// Use this method to read a ChartVersion information by identifier.
+	Read(context.Context, *ReadChartVersionRequest) (*ReadChartVersionResponse, error)
+	// Use this method to update a ChartVersion information.
+	Update(context.Context, *UpdateChartVersionRequest) (*UpdateChartVersionResponse, error)
+	// Use this method to delete a particular ChartVersion.
+	Delete(context.Context, *DeleteChartVersionRequest) (*DeleteChartVersionResponse, error)
+	// Use this method to retrieve all the ChartVersions.
+	List(context.Context, *ListChartVersionRequest) (*ListChartVersionsResponse, error)
+}
+
+func RegisterChartVersionsServer(s *grpc.Server, srv ChartVersionsServer) {
+	s.RegisterService(&_ChartVersions_serviceDesc, srv)
+}
+
+func _ChartVersions_Create_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CreateChartVersionRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ChartVersionsServer).Create(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/api.cmdb.ChartVersions/Create",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ChartVersionsServer).Create(ctx, req.(*CreateChartVersionRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ChartVersions_Read_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ReadChartVersionRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ChartVersionsServer).Read(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/api.cmdb.ChartVersions/Read",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ChartVersionsServer).Read(ctx, req.(*ReadChartVersionRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ChartVersions_Update_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UpdateChartVersionRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ChartVersionsServer).Update(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/api.cmdb.ChartVersions/Update",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ChartVersionsServer).Update(ctx, req.(*UpdateChartVersionRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ChartVersions_Delete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DeleteChartVersionRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ChartVersionsServer).Delete(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/api.cmdb.ChartVersions/Delete",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ChartVersionsServer).Delete(ctx, req.(*DeleteChartVersionRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ChartVersions_List_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListChartVersionRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ChartVersionsServer).List(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/api.cmdb.ChartVersions/List",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ChartVersionsServer).List(ctx, req.(*ListChartVersionRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+var _ChartVersions_serviceDesc = grpc.ServiceDesc{
+	ServiceName: "api.cmdb.ChartVersions",
+	HandlerType: (*ChartVersionsServer)(nil),
+	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "Create",
+			Handler:    _ChartVersions_Create_Handler,
+		},
+		{
+			MethodName: "Read",
+			Handler:    _ChartVersions_Read_Handler,
+		},
+		{
+			MethodName: "Update",
+			Handler:    _ChartVersions_Update_Handler,
+		},
+		{
+			MethodName: "Delete",
+			Handler:    _ChartVersions_Delete_Handler,
+		},
+		{
+			MethodName: "List",
+			Handler:    _ChartVersions_List_Handler,
+		},
+	},
+	Streams:  []grpc.StreamDesc{},
+	Metadata: "github.com/seizadi/cmdb/pkg/pb/cmdb.proto",
+}
+
+// ApplicationInstancesClient is the client API for ApplicationInstances service.
+//
+// For semantics around ctx use and closing/ending streaming RPCs, please refer to https://godoc.org/google.golang.org/grpc#ClientConn.NewStream.
+type ApplicationInstancesClient interface {
+	// Use this method to create a ApplicationInstance information.
+	Create(ctx context.Context, in *CreateApplicationInstanceRequest, opts ...grpc.CallOption) (*CreateApplicationInstanceResponse, error)
+	// Use this method to read a ApplicationInstance information by identifier.
+	Read(ctx context.Context, in *ReadApplicationInstanceRequest, opts ...grpc.CallOption) (*ReadApplicationInstanceResponse, error)
+	// Use this method to update a ApplicationInstance information.
+	Update(ctx context.Context, in *UpdateApplicationInstanceRequest, opts ...grpc.CallOption) (*UpdateApplicationInstanceResponse, error)
+	// Use this method to delete a particular ApplicationInstance.
+	Delete(ctx context.Context, in *DeleteApplicationInstanceRequest, opts ...grpc.CallOption) (*DeleteApplicationInstanceResponse, error)
+	// Use this method to retrieve all the ApplicationInstances.
+	List(ctx context.Context, in *ListApplicationInstanceRequest, opts ...grpc.CallOption) (*ListApplicationInstancesResponse, error)
+}
+
+type applicationInstancesClient struct {
+	cc *grpc.ClientConn
+}
+
+func NewApplicationInstancesClient(cc *grpc.ClientConn) ApplicationInstancesClient {
+	return &applicationInstancesClient{cc}
+}
+
+func (c *applicationInstancesClient) Create(ctx context.Context, in *CreateApplicationInstanceRequest, opts ...grpc.CallOption) (*CreateApplicationInstanceResponse, error) {
+	out := new(CreateApplicationInstanceResponse)
+	err := c.cc.Invoke(ctx, "/api.cmdb.ApplicationInstances/Create", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *applicationInstancesClient) Read(ctx context.Context, in *ReadApplicationInstanceRequest, opts ...grpc.CallOption) (*ReadApplicationInstanceResponse, error) {
+	out := new(ReadApplicationInstanceResponse)
+	err := c.cc.Invoke(ctx, "/api.cmdb.ApplicationInstances/Read", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *applicationInstancesClient) Update(ctx context.Context, in *UpdateApplicationInstanceRequest, opts ...grpc.CallOption) (*UpdateApplicationInstanceResponse, error) {
+	out := new(UpdateApplicationInstanceResponse)
+	err := c.cc.Invoke(ctx, "/api.cmdb.ApplicationInstances/Update", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *applicationInstancesClient) Delete(ctx context.Context, in *DeleteApplicationInstanceRequest, opts ...grpc.CallOption) (*DeleteApplicationInstanceResponse, error) {
+	out := new(DeleteApplicationInstanceResponse)
+	err := c.cc.Invoke(ctx, "/api.cmdb.ApplicationInstances/Delete", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *applicationInstancesClient) List(ctx context.Context, in *ListApplicationInstanceRequest, opts ...grpc.CallOption) (*ListApplicationInstancesResponse, error) {
+	out := new(ListApplicationInstancesResponse)
+	err := c.cc.Invoke(ctx, "/api.cmdb.ApplicationInstances/List", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+// ApplicationInstancesServer is the server API for ApplicationInstances service.
+type ApplicationInstancesServer interface {
+	// Use this method to create a ApplicationInstance information.
+	Create(context.Context, *CreateApplicationInstanceRequest) (*CreateApplicationInstanceResponse, error)
+	// Use this method to read a ApplicationInstance information by identifier.
+	Read(context.Context, *ReadApplicationInstanceRequest) (*ReadApplicationInstanceResponse, error)
+	// Use this method to update a ApplicationInstance information.
+	Update(context.Context, *UpdateApplicationInstanceRequest) (*UpdateApplicationInstanceResponse, error)
+	// Use this method to delete a particular ApplicationInstance.
+	Delete(context.Context, *DeleteApplicationInstanceRequest) (*DeleteApplicationInstanceResponse, error)
+	// Use this method to retrieve all the ApplicationInstances.
+	List(context.Context, *ListApplicationInstanceRequest) (*ListApplicationInstancesResponse, error)
+}
+
+func RegisterApplicationInstancesServer(s *grpc.Server, srv ApplicationInstancesServer) {
+	s.RegisterService(&_ApplicationInstances_serviceDesc, srv)
+}
+
+func _ApplicationInstances_Create_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CreateApplicationInstanceRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ApplicationInstancesServer).Create(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/api.cmdb.ApplicationInstances/Create",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ApplicationInstancesServer).Create(ctx, req.(*CreateApplicationInstanceRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ApplicationInstances_Read_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ReadApplicationInstanceRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ApplicationInstancesServer).Read(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/api.cmdb.ApplicationInstances/Read",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ApplicationInstancesServer).Read(ctx, req.(*ReadApplicationInstanceRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ApplicationInstances_Update_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UpdateApplicationInstanceRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ApplicationInstancesServer).Update(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/api.cmdb.ApplicationInstances/Update",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ApplicationInstancesServer).Update(ctx, req.(*UpdateApplicationInstanceRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ApplicationInstances_Delete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DeleteApplicationInstanceRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ApplicationInstancesServer).Delete(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/api.cmdb.ApplicationInstances/Delete",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ApplicationInstancesServer).Delete(ctx, req.(*DeleteApplicationInstanceRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ApplicationInstances_List_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListApplicationInstanceRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ApplicationInstancesServer).List(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/api.cmdb.ApplicationInstances/List",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ApplicationInstancesServer).List(ctx, req.(*ListApplicationInstanceRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+var _ApplicationInstances_serviceDesc = grpc.ServiceDesc{
+	ServiceName: "api.cmdb.ApplicationInstances",
+	HandlerType: (*ApplicationInstancesServer)(nil),
+	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "Create",
+			Handler:    _ApplicationInstances_Create_Handler,
+		},
+		{
+			MethodName: "Read",
+			Handler:    _ApplicationInstances_Read_Handler,
+		},
+		{
+			MethodName: "Update",
+			Handler:    _ApplicationInstances_Update_Handler,
+		},
+		{
+			MethodName: "Delete",
+			Handler:    _ApplicationInstances_Delete_Handler,
+		},
+		{
+			MethodName: "List",
+			Handler:    _ApplicationInstances_List_Handler,
+		},
+	},
+	Streams:  []grpc.StreamDesc{},
+	Metadata: "github.com/seizadi/cmdb/pkg/pb/cmdb.proto",
+}
+
+// VaultsClient is the client API for Vaults service.
+//
+// For semantics around ctx use and closing/ending streaming RPCs, please refer to https://godoc.org/google.golang.org/grpc#ClientConn.NewStream.
+type VaultsClient interface {
+	// Use this method to create a Vault information.
+	Create(ctx context.Context, in *CreateVaultRequest, opts ...grpc.CallOption) (*CreateVaultResponse, error)
+	// Use this method to read a Vault information by identifier.
+	Read(ctx context.Context, in *ReadVaultRequest, opts ...grpc.CallOption) (*ReadVaultResponse, error)
+	// Use this method to update a Vault information.
+	Update(ctx context.Context, in *UpdateVaultRequest, opts ...grpc.CallOption) (*UpdateVaultResponse, error)
+	// Use this method to delete a particular Vault.
+	Delete(ctx context.Context, in *DeleteVaultRequest, opts ...grpc.CallOption) (*DeleteVaultResponse, error)
+	// Use this method to retrieve all the Vaults.
+	List(ctx context.Context, in *ListVaultRequest, opts ...grpc.CallOption) (*ListVaultsResponse, error)
+}
+
+type vaultsClient struct {
+	cc *grpc.ClientConn
+}
+
+func NewVaultsClient(cc *grpc.ClientConn) VaultsClient {
+	return &vaultsClient{cc}
+}
+
+func (c *vaultsClient) Create(ctx context.Context, in *CreateVaultRequest, opts ...grpc.CallOption) (*CreateVaultResponse, error) {
+	out := new(CreateVaultResponse)
+	err := c.cc.Invoke(ctx, "/api.cmdb.Vaults/Create", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *vaultsClient) Read(ctx context.Context, in *ReadVaultRequest, opts ...grpc.CallOption) (*ReadVaultResponse, error) {
+	out := new(ReadVaultResponse)
+	err := c.cc.Invoke(ctx, "/api.cmdb.Vaults/Read", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *vaultsClient) Update(ctx context.Context, in *UpdateVaultRequest, opts ...grpc.CallOption) (*UpdateVaultResponse, error) {
+	out := new(UpdateVaultResponse)
+	err := c.cc.Invoke(ctx, "/api.cmdb.Vaults/Update", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *vaultsClient) Delete(ctx context.Context, in *DeleteVaultRequest, opts ...grpc.CallOption) (*DeleteVaultResponse, error) {
+	out := new(DeleteVaultResponse)
+	err := c.cc.Invoke(ctx, "/api.cmdb.Vaults/Delete", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *vaultsClient) List(ctx context.Context, in *ListVaultRequest, opts ...grpc.CallOption) (*ListVaultsResponse, error) {
+	out := new(ListVaultsResponse)
+	err := c.cc.Invoke(ctx, "/api.cmdb.Vaults/List", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+// VaultsServer is the server API for Vaults service.
+type VaultsServer interface {
+	// Use this method to create a Vault information.
+	Create(context.Context, *CreateVaultRequest) (*CreateVaultResponse, error)
+	// Use this method to read a Vault information by identifier.
+	Read(context.Context, *ReadVaultRequest) (*ReadVaultResponse, error)
+	// Use this method to update a Vault information.
+	Update(context.Context, *UpdateVaultRequest) (*UpdateVaultResponse, error)
+	// Use this method to delete a particular Vault.
+	Delete(context.Context, *DeleteVaultRequest) (*DeleteVaultResponse, error)
+	// Use this method to retrieve all the Vaults.
+	List(context.Context, *ListVaultRequest) (*ListVaultsResponse, error)
+}
+
+func RegisterVaultsServer(s *grpc.Server, srv VaultsServer) {
+	s.RegisterService(&_Vaults_serviceDesc, srv)
+}
+
+func _Vaults_Create_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CreateVaultRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(VaultsServer).Create(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/api.cmdb.Vaults/Create",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(VaultsServer).Create(ctx, req.(*CreateVaultRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Vaults_Read_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ReadVaultRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(VaultsServer).Read(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/api.cmdb.Vaults/Read",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(VaultsServer).Read(ctx, req.(*ReadVaultRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Vaults_Update_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UpdateVaultRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(VaultsServer).Update(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/api.cmdb.Vaults/Update",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(VaultsServer).Update(ctx, req.(*UpdateVaultRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Vaults_Delete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DeleteVaultRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(VaultsServer).Delete(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/api.cmdb.Vaults/Delete",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(VaultsServer).Delete(ctx, req.(*DeleteVaultRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Vaults_List_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListVaultRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(VaultsServer).List(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/api.cmdb.Vaults/List",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(VaultsServer).List(ctx, req.(*ListVaultRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+var _Vaults_serviceDesc = grpc.ServiceDesc{
+	ServiceName: "api.cmdb.Vaults",
+	HandlerType: (*VaultsServer)(nil),
+	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "Create",
+			Handler:    _Vaults_Create_Handler,
+		},
+		{
+			MethodName: "Read",
+			Handler:    _Vaults_Read_Handler,
+		},
+		{
+			MethodName: "Update",
+			Handler:    _Vaults_Update_Handler,
+		},
+		{
+			MethodName: "Delete",
+			Handler:    _Vaults_Delete_Handler,
+		},
+		{
+			MethodName: "List",
+			Handler:    _Vaults_List_Handler,
+		},
+	},
+	Streams:  []grpc.StreamDesc{},
+	Metadata: "github.com/seizadi/cmdb/pkg/pb/cmdb.proto",
+}
+
+// SecretsClient is the client API for Secrets service.
+//
+// For semantics around ctx use and closing/ending streaming RPCs, please refer to https://godoc.org/google.golang.org/grpc#ClientConn.NewStream.
+type SecretsClient interface {
+	// Use this method to create a Secret information.
+	Create(ctx context.Context, in *CreateSecretRequest, opts ...grpc.CallOption) (*CreateSecretResponse, error)
+	// Use this method to read a Secret information by identifier.
+	Read(ctx context.Context, in *ReadSecretRequest, opts ...grpc.CallOption) (*ReadSecretResponse, error)
+	// Use this method to update a Secret information.
+	Update(ctx context.Context, in *UpdateSecretRequest, opts ...grpc.CallOption) (*UpdateSecretResponse, error)
+	// Use this method to delete a particular Secret.
+	Delete(ctx context.Context, in *DeleteSecretRequest, opts ...grpc.CallOption) (*DeleteSecretResponse, error)
+	// Use this method to retrieve all the Secrets.
+	List(ctx context.Context, in *ListSecretRequest, opts ...grpc.CallOption) (*ListSecretsResponse, error)
+}
+
+type secretsClient struct {
+	cc *grpc.ClientConn
+}
+
+func NewSecretsClient(cc *grpc.ClientConn) SecretsClient {
+	return &secretsClient{cc}
+}
+
+func (c *secretsClient) Create(ctx context.Context, in *CreateSecretRequest, opts ...grpc.CallOption) (*CreateSecretResponse, error) {
+	out := new(CreateSecretResponse)
+	err := c.cc.Invoke(ctx, "/api.cmdb.Secrets/Create", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *secretsClient) Read(ctx context.Context, in *ReadSecretRequest, opts ...grpc.CallOption) (*ReadSecretResponse, error) {
+	out := new(ReadSecretResponse)
+	err := c.cc.Invoke(ctx, "/api.cmdb.Secrets/Read", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *secretsClient) Update(ctx context.Context, in *UpdateSecretRequest, opts ...grpc.CallOption) (*UpdateSecretResponse, error) {
+	out := new(UpdateSecretResponse)
+	err := c.cc.Invoke(ctx, "/api.cmdb.Secrets/Update", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *secretsClient) Delete(ctx context.Context, in *DeleteSecretRequest, opts ...grpc.CallOption) (*DeleteSecretResponse, error) {
+	out := new(DeleteSecretResponse)
+	err := c.cc.Invoke(ctx, "/api.cmdb.Secrets/Delete", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *secretsClient) List(ctx context.Context, in *ListSecretRequest, opts ...grpc.CallOption) (*ListSecretsResponse, error) {
+	out := new(ListSecretsResponse)
+	err := c.cc.Invoke(ctx, "/api.cmdb.Secrets/List", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+// SecretsServer is the server API for Secrets service.
+type SecretsServer interface {
+	// Use this method to create a Secret information.
+	Create(context.Context, *CreateSecretRequest) (*CreateSecretResponse, error)
+	// Use this method to read a Secret information by identifier.
+	Read(context.Context, *ReadSecretRequest) (*ReadSecretResponse, error)
+	// Use this method to update a Secret information.
+	Update(context.Context, *UpdateSecretRequest) (*UpdateSecretResponse, error)
+	// Use this method to delete a particular Secret.
+	Delete(context.Context, *DeleteSecretRequest) (*DeleteSecretResponse, error)
+	// Use this method to retrieve all the Secrets.
+	List(context.Context, *ListSecretRequest) (*ListSecretsResponse, error)
+}
+
+func RegisterSecretsServer(s *grpc.Server, srv SecretsServer) {
+	s.RegisterService(&_Secrets_serviceDesc, srv)
+}
+
+func _Secrets_Create_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CreateSecretRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(SecretsServer).Create(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/api.cmdb.Secrets/Create",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(SecretsServer).Create(ctx, req.(*CreateSecretRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Secrets_Read_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ReadSecretRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(SecretsServer).Read(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/api.cmdb.Secrets/Read",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(SecretsServer).Read(ctx, req.(*ReadSecretRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Secrets_Update_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UpdateSecretRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(SecretsServer).Update(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/api.cmdb.Secrets/Update",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(SecretsServer).Update(ctx, req.(*UpdateSecretRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Secrets_Delete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DeleteSecretRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(SecretsServer).Delete(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/api.cmdb.Secrets/Delete",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(SecretsServer).Delete(ctx, req.(*DeleteSecretRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Secrets_List_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListSecretRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(SecretsServer).List(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/api.cmdb.Secrets/List",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(SecretsServer).List(ctx, req.(*ListSecretRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+var _Secrets_serviceDesc = grpc.ServiceDesc{
+	ServiceName: "api.cmdb.Secrets",
+	HandlerType: (*SecretsServer)(nil),
+	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "Create",
+			Handler:    _Secrets_Create_Handler,
+		},
+		{
+			MethodName: "Read",
+			Handler:    _Secrets_Read_Handler,
+		},
+		{
+			MethodName: "Update",
+			Handler:    _Secrets_Update_Handler,
+		},
+		{
+			MethodName: "Delete",
+			Handler:    _Secrets_Delete_Handler,
+		},
+		{
+			MethodName: "List",
+			Handler:    _Secrets_List_Handler,
+		},
+	},
+	Streams:  []grpc.StreamDesc{},
+	Metadata: "github.com/seizadi/cmdb/pkg/pb/cmdb.proto",
+}
+
+// AwsServicesClient is the client API for AwsServices service.
+//
+// For semantics around ctx use and closing/ending streaming RPCs, please refer to https://godoc.org/google.golang.org/grpc#ClientConn.NewStream.
+type AwsServicesClient interface {
+	// Use this method to create a AwsService information.
+	Create(ctx context.Context, in *CreateAwsServiceRequest, opts ...grpc.CallOption) (*CreateAwsServiceResponse, error)
+	// Use this method to read a AwsService information by identifier.
+	Read(ctx context.Context, in *ReadAwsServiceRequest, opts ...grpc.CallOption) (*ReadAwsServiceResponse, error)
+	// Use this method to update a AwsService information.
+	Update(ctx context.Context, in *UpdateAwsServiceRequest, opts ...grpc.CallOption) (*UpdateAwsServiceResponse, error)
+	// Use this method to delete a particular AwsService.
+	Delete(ctx context.Context, in *DeleteAwsServiceRequest, opts ...grpc.CallOption) (*DeleteAwsServiceResponse, error)
+	// Use this method to retrieve all the AwsServices.
+	List(ctx context.Context, in *ListAwsServiceRequest, opts ...grpc.CallOption) (*ListAwsServicesResponse, error)
+}
+
+type awsServicesClient struct {
+	cc *grpc.ClientConn
+}
+
+func NewAwsServicesClient(cc *grpc.ClientConn) AwsServicesClient {
+	return &awsServicesClient{cc}
+}
+
+func (c *awsServicesClient) Create(ctx context.Context, in *CreateAwsServiceRequest, opts ...grpc.CallOption) (*CreateAwsServiceResponse, error) {
+	out := new(CreateAwsServiceResponse)
+	err := c.cc.Invoke(ctx, "/api.cmdb.AwsServices/Create", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *awsServicesClient) Read(ctx context.Context, in *ReadAwsServiceRequest, opts ...grpc.CallOption) (*ReadAwsServiceResponse, error) {
+	out := new(ReadAwsServiceResponse)
+	err := c.cc.Invoke(ctx, "/api.cmdb.AwsServices/Read", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *awsServicesClient) Update(ctx context.Context, in *UpdateAwsServiceRequest, opts ...grpc.CallOption) (*UpdateAwsServiceResponse, error) {
+	out := new(UpdateAwsServiceResponse)
+	err := c.cc.Invoke(ctx, "/api.cmdb.AwsServices/Update", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *awsServicesClient) Delete(ctx context.Context, in *DeleteAwsServiceRequest, opts ...grpc.CallOption) (*DeleteAwsServiceResponse, error) {
+	out := new(DeleteAwsServiceResponse)
+	err := c.cc.Invoke(ctx, "/api.cmdb.AwsServices/Delete", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *awsServicesClient) List(ctx context.Context, in *ListAwsServiceRequest, opts ...grpc.CallOption) (*ListAwsServicesResponse, error) {
+	out := new(ListAwsServicesResponse)
+	err := c.cc.Invoke(ctx, "/api.cmdb.AwsServices/List", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+// AwsServicesServer is the server API for AwsServices service.
+type AwsServicesServer interface {
+	// Use this method to create a AwsService information.
+	Create(context.Context, *CreateAwsServiceRequest) (*CreateAwsServiceResponse, error)
+	// Use this method to read a AwsService information by identifier.
+	Read(context.Context, *ReadAwsServiceRequest) (*ReadAwsServiceResponse, error)
+	// Use this method to update a AwsService information.
+	Update(context.Context, *UpdateAwsServiceRequest) (*UpdateAwsServiceResponse, error)
+	// Use this method to delete a particular AwsService.
+	Delete(context.Context, *DeleteAwsServiceRequest) (*DeleteAwsServiceResponse, error)
+	// Use this method to retrieve all the AwsServices.
+	List(context.Context, *ListAwsServiceRequest) (*ListAwsServicesResponse, error)
+}
+
+func RegisterAwsServicesServer(s *grpc.Server, srv AwsServicesServer) {
+	s.RegisterService(&_AwsServices_serviceDesc, srv)
+}
+
+func _AwsServices_Create_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CreateAwsServiceRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AwsServicesServer).Create(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/api.cmdb.AwsServices/Create",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AwsServicesServer).Create(ctx, req.(*CreateAwsServiceRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AwsServices_Read_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ReadAwsServiceRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AwsServicesServer).Read(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/api.cmdb.AwsServices/Read",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AwsServicesServer).Read(ctx, req.(*ReadAwsServiceRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AwsServices_Update_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UpdateAwsServiceRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AwsServicesServer).Update(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/api.cmdb.AwsServices/Update",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AwsServicesServer).Update(ctx, req.(*UpdateAwsServiceRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AwsServices_Delete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DeleteAwsServiceRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AwsServicesServer).Delete(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/api.cmdb.AwsServices/Delete",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AwsServicesServer).Delete(ctx, req.(*DeleteAwsServiceRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AwsServices_List_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListAwsServiceRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AwsServicesServer).List(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/api.cmdb.AwsServices/List",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AwsServicesServer).List(ctx, req.(*ListAwsServiceRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+var _AwsServices_serviceDesc = grpc.ServiceDesc{
+	ServiceName: "api.cmdb.AwsServices",
+	HandlerType: (*AwsServicesServer)(nil),
+	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "Create",
+			Handler:    _AwsServices_Create_Handler,
+		},
+		{
+			MethodName: "Read",
+			Handler:    _AwsServices_Read_Handler,
+		},
+		{
+			MethodName: "Update",
+			Handler:    _AwsServices_Update_Handler,
+		},
+		{
+			MethodName: "Delete",
+			Handler:    _AwsServices_Delete_Handler,
+		},
+		{
+			MethodName: "List",
+			Handler:    _AwsServices_List_Handler,
+		},
+	},
+	Streams:  []grpc.StreamDesc{},
+	Metadata: "github.com/seizadi/cmdb/pkg/pb/cmdb.proto",
+}
+
+// AwsRdsInstancesClient is the client API for AwsRdsInstances service.
+//
+// For semantics around ctx use and closing/ending streaming RPCs, please refer to https://godoc.org/google.golang.org/grpc#ClientConn.NewStream.
+type AwsRdsInstancesClient interface {
+	// Use this method to create a AwsRdsInstance information.
+	Create(ctx context.Context, in *CreateAwsRdsInstanceRequest, opts ...grpc.CallOption) (*CreateAwsRdsInstanceResponse, error)
+	// Use this method to read a AwsRdsInstance information by identifier.
+	Read(ctx context.Context, in *ReadAwsRdsInstanceRequest, opts ...grpc.CallOption) (*ReadAwsRdsInstanceResponse, error)
+	// Use this method to update a AwsRdsInstance information.
+	Update(ctx context.Context, in *UpdateAwsRdsInstanceRequest, opts ...grpc.CallOption) (*UpdateAwsRdsInstanceResponse, error)
+	// Use this method to delete a particular AwsRdsInstance.
+	Delete(ctx context.Context, in *DeleteAwsRdsInstanceRequest, opts ...grpc.CallOption) (*DeleteAwsRdsInstanceResponse, error)
+	// Use this method to retrieve all the AwsRdsInstances.
+	List(ctx context.Context, in *ListAwsRdsInstanceRequest, opts ...grpc.CallOption) (*ListAwsRdsInstancesResponse, error)
+}
+
+type awsRdsInstancesClient struct {
+	cc *grpc.ClientConn
+}
+
+func NewAwsRdsInstancesClient(cc *grpc.ClientConn) AwsRdsInstancesClient {
+	return &awsRdsInstancesClient{cc}
+}
+
+func (c *awsRdsInstancesClient) Create(ctx context.Context, in *CreateAwsRdsInstanceRequest, opts ...grpc.CallOption) (*CreateAwsRdsInstanceResponse, error) {
+	out := new(CreateAwsRdsInstanceResponse)
+	err := c.cc.Invoke(ctx, "/api.cmdb.AwsRdsInstances/Create", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *awsRdsInstancesClient) Read(ctx context.Context, in *ReadAwsRdsInstanceRequest, opts ...grpc.CallOption) (*ReadAwsRdsInstanceResponse, error) {
+	out := new(ReadAwsRdsInstanceResponse)
+	err := c.cc.Invoke(ctx, "/api.cmdb.AwsRdsInstances/Read", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *awsRdsInstancesClient) Update(ctx context.Context, in *UpdateAwsRdsInstanceRequest, opts ...grpc.CallOption) (*UpdateAwsRdsInstanceResponse, error) {
+	out := new(UpdateAwsRdsInstanceResponse)
+	err := c.cc.Invoke(ctx, "/api.cmdb.AwsRdsInstances/Update", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *awsRdsInstancesClient) Delete(ctx context.Context, in *DeleteAwsRdsInstanceRequest, opts ...grpc.CallOption) (*DeleteAwsRdsInstanceResponse, error) {
+	out := new(DeleteAwsRdsInstanceResponse)
+	err := c.cc.Invoke(ctx, "/api.cmdb.AwsRdsInstances/Delete", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *awsRdsInstancesClient) List(ctx context.Context, in *ListAwsRdsInstanceRequest, opts ...grpc.CallOption) (*ListAwsRdsInstancesResponse, error) {
+	out := new(ListAwsRdsInstancesResponse)
+	err := c.cc.Invoke(ctx, "/api.cmdb.AwsRdsInstances/List", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+// AwsRdsInstancesServer is the server API for AwsRdsInstances service.
+type AwsRdsInstancesServer interface {
+	// Use this method to create a AwsRdsInstance information.
+	Create(context.Context, *CreateAwsRdsInstanceRequest) (*CreateAwsRdsInstanceResponse, error)
+	// Use this method to read a AwsRdsInstance information by identifier.
+	Read(context.Context, *ReadAwsRdsInstanceRequest) (*ReadAwsRdsInstanceResponse, error)
+	// Use this method to update a AwsRdsInstance information.
+	Update(context.Context, *UpdateAwsRdsInstanceRequest) (*UpdateAwsRdsInstanceResponse, error)
+	// Use this method to delete a particular AwsRdsInstance.
+	Delete(context.Context, *DeleteAwsRdsInstanceRequest) (*DeleteAwsRdsInstanceResponse, error)
+	// Use this method to retrieve all the AwsRdsInstances.
+	List(context.Context, *ListAwsRdsInstanceRequest) (*ListAwsRdsInstancesResponse, error)
+}
+
+func RegisterAwsRdsInstancesServer(s *grpc.Server, srv AwsRdsInstancesServer) {
+	s.RegisterService(&_AwsRdsInstances_serviceDesc, srv)
+}
+
+func _AwsRdsInstances_Create_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CreateAwsRdsInstanceRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AwsRdsInstancesServer).Create(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/api.cmdb.AwsRdsInstances/Create",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AwsRdsInstancesServer).Create(ctx, req.(*CreateAwsRdsInstanceRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AwsRdsInstances_Read_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ReadAwsRdsInstanceRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AwsRdsInstancesServer).Read(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/api.cmdb.AwsRdsInstances/Read",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AwsRdsInstancesServer).Read(ctx, req.(*ReadAwsRdsInstanceRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AwsRdsInstances_Update_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UpdateAwsRdsInstanceRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AwsRdsInstancesServer).Update(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/api.cmdb.AwsRdsInstances/Update",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AwsRdsInstancesServer).Update(ctx, req.(*UpdateAwsRdsInstanceRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AwsRdsInstances_Delete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DeleteAwsRdsInstanceRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AwsRdsInstancesServer).Delete(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/api.cmdb.AwsRdsInstances/Delete",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AwsRdsInstancesServer).Delete(ctx, req.(*DeleteAwsRdsInstanceRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AwsRdsInstances_List_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListAwsRdsInstanceRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AwsRdsInstancesServer).List(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/api.cmdb.AwsRdsInstances/List",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AwsRdsInstancesServer).List(ctx, req.(*ListAwsRdsInstanceRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+var _AwsRdsInstances_serviceDesc = grpc.ServiceDesc{
+	ServiceName: "api.cmdb.AwsRdsInstances",
+	HandlerType: (*AwsRdsInstancesServer)(nil),
+	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "Create",
+			Handler:    _AwsRdsInstances_Create_Handler,
+		},
+		{
+			MethodName: "Read",
+			Handler:    _AwsRdsInstances_Read_Handler,
+		},
+		{
+			MethodName: "Update",
+			Handler:    _AwsRdsInstances_Update_Handler,
+		},
+		{
+			MethodName: "Delete",
+			Handler:    _AwsRdsInstances_Delete_Handler,
+		},
+		{
+			MethodName: "List",
+			Handler:    _AwsRdsInstances_List_Handler,
+		},
+	},
+	Streams:  []grpc.StreamDesc{},
+	Metadata: "github.com/seizadi/cmdb/pkg/pb/cmdb.proto",
+}
+
+// ValuesClient is the client API for Values service.
+//
+// For semantics around ctx use and closing/ending streaming RPCs, please refer to https://godoc.org/google.golang.org/grpc#ClientConn.NewStream.
+type ValuesClient interface {
+	// Use this method to create a Value information.
+	Create(ctx context.Context, in *CreateValueRequest, opts ...grpc.CallOption) (*CreateValueResponse, error)
+	// Use this method to read a Value information by identifier.
+	Read(ctx context.Context, in *ReadValueRequest, opts ...grpc.CallOption) (*ReadValueResponse, error)
+	// Use this method to update a Value information.
+	Update(ctx context.Context, in *UpdateValueRequest, opts ...grpc.CallOption) (*UpdateValueResponse, error)
+	// Use this method to delete a particular Value.
+	Delete(ctx context.Context, in *DeleteValueRequest, opts ...grpc.CallOption) (*DeleteValueResponse, error)
+	// Use this method to retrieve all the Values.
+	List(ctx context.Context, in *ListValueRequest, opts ...grpc.CallOption) (*ListValuesResponse, error)
+}
+
+type valuesClient struct {
+	cc *grpc.ClientConn
+}
+
+func NewValuesClient(cc *grpc.ClientConn) ValuesClient {
+	return &valuesClient{cc}
+}
+
+func (c *valuesClient) Create(ctx context.Context, in *CreateValueRequest, opts ...grpc.CallOption) (*CreateValueResponse, error) {
+	out := new(CreateValueResponse)
+	err := c.cc.Invoke(ctx, "/api.cmdb.Values/Create", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *valuesClient) Read(ctx context.Context, in *ReadValueRequest, opts ...grpc.CallOption) (*ReadValueResponse, error) {
+	out := new(ReadValueResponse)
+	err := c.cc.Invoke(ctx, "/api.cmdb.Values/Read", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *valuesClient) Update(ctx context.Context, in *UpdateValueRequest, opts ...grpc.CallOption) (*UpdateValueResponse, error) {
+	out := new(UpdateValueResponse)
+	err := c.cc.Invoke(ctx, "/api.cmdb.Values/Update", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *valuesClient) Delete(ctx context.Context, in *DeleteValueRequest, opts ...grpc.CallOption) (*DeleteValueResponse, error) {
+	out := new(DeleteValueResponse)
+	err := c.cc.Invoke(ctx, "/api.cmdb.Values/Delete", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *valuesClient) List(ctx context.Context, in *ListValueRequest, opts ...grpc.CallOption) (*ListValuesResponse, error) {
+	out := new(ListValuesResponse)
+	err := c.cc.Invoke(ctx, "/api.cmdb.Values/List", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+// ValuesServer is the server API for Values service.
+type ValuesServer interface {
+	// Use this method to create a Value information.
+	Create(context.Context, *CreateValueRequest) (*CreateValueResponse, error)
+	// Use this method to read a Value information by identifier.
+	Read(context.Context, *ReadValueRequest) (*ReadValueResponse, error)
+	// Use this method to update a Value information.
+	Update(context.Context, *UpdateValueRequest) (*UpdateValueResponse, error)
+	// Use this method to delete a particular Value.
+	Delete(context.Context, *DeleteValueRequest) (*DeleteValueResponse, error)
+	// Use this method to retrieve all the Values.
+	List(context.Context, *ListValueRequest) (*ListValuesResponse, error)
+}
+
+func RegisterValuesServer(s *grpc.Server, srv ValuesServer) {
+	s.RegisterService(&_Values_serviceDesc, srv)
+}
+
+func _Values_Create_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CreateValueRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ValuesServer).Create(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/api.cmdb.Values/Create",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ValuesServer).Create(ctx, req.(*CreateValueRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Values_Read_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ReadValueRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ValuesServer).Read(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/api.cmdb.Values/Read",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ValuesServer).Read(ctx, req.(*ReadValueRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Values_Update_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UpdateValueRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ValuesServer).Update(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/api.cmdb.Values/Update",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ValuesServer).Update(ctx, req.(*UpdateValueRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Values_Delete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DeleteValueRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ValuesServer).Delete(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/api.cmdb.Values/Delete",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ValuesServer).Delete(ctx, req.(*DeleteValueRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Values_List_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListValueRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ValuesServer).List(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/api.cmdb.Values/List",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ValuesServer).List(ctx, req.(*ListValueRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+var _Values_serviceDesc = grpc.ServiceDesc{
+	ServiceName: "api.cmdb.Values",
+	HandlerType: (*ValuesServer)(nil),
+	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "Create",
+			Handler:    _Values_Create_Handler,
+		},
+		{
+			MethodName: "Read",
+			Handler:    _Values_Read_Handler,
+		},
+		{
+			MethodName: "Update",
+			Handler:    _Values_Update_Handler,
+		},
+		{
+			MethodName: "Delete",
+			Handler:    _Values_Delete_Handler,
+		},
+		{
+			MethodName: "List",
+			Handler:    _Values_List_Handler,
+		},
+	},
+	Streams:  []grpc.StreamDesc{},
+	Metadata: "github.com/seizadi/cmdb/pkg/pb/cmdb.proto",
+}
+
+// ArtifactsClient is the client API for Artifacts service.
+//
+// For semantics around ctx use and closing/ending streaming RPCs, please refer to https://godoc.org/google.golang.org/grpc#ClientConn.NewStream.
+type ArtifactsClient interface {
+	// Use this method to create a Artifact information.
+	Create(ctx context.Context, in *CreateArtifactRequest, opts ...grpc.CallOption) (*CreateArtifactResponse, error)
+	// Use this method to read a Artifact information by identifier.
+	Read(ctx context.Context, in *ReadArtifactRequest, opts ...grpc.CallOption) (*ReadArtifactResponse, error)
+	// Use this method to update a Artifact information.
+	Update(ctx context.Context, in *UpdateArtifactRequest, opts ...grpc.CallOption) (*UpdateArtifactResponse, error)
+	// Use this method to delete a particular Artifact.
+	Delete(ctx context.Context, in *DeleteArtifactRequest, opts ...grpc.CallOption) (*DeleteArtifactResponse, error)
+	// Use this method to retrieve all the Artifacts.
+	List(ctx context.Context, in *ListArtifactRequest, opts ...grpc.CallOption) (*ListArtifactsResponse, error)
+}
+
+type artifactsClient struct {
+	cc *grpc.ClientConn
+}
+
+func NewArtifactsClient(cc *grpc.ClientConn) ArtifactsClient {
+	return &artifactsClient{cc}
+}
+
+func (c *artifactsClient) Create(ctx context.Context, in *CreateArtifactRequest, opts ...grpc.CallOption) (*CreateArtifactResponse, error) {
+	out := new(CreateArtifactResponse)
+	err := c.cc.Invoke(ctx, "/api.cmdb.Artifacts/Create", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *artifactsClient) Read(ctx context.Context, in *ReadArtifactRequest, opts ...grpc.CallOption) (*ReadArtifactResponse, error) {
+	out := new(ReadArtifactResponse)
+	err := c.cc.Invoke(ctx, "/api.cmdb.Artifacts/Read", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *artifactsClient) Update(ctx context.Context, in *UpdateArtifactRequest, opts ...grpc.CallOption) (*UpdateArtifactResponse, error) {
+	out := new(UpdateArtifactResponse)
+	err := c.cc.Invoke(ctx, "/api.cmdb.Artifacts/Update", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *artifactsClient) Delete(ctx context.Context, in *DeleteArtifactRequest, opts ...grpc.CallOption) (*DeleteArtifactResponse, error) {
+	out := new(DeleteArtifactResponse)
+	err := c.cc.Invoke(ctx, "/api.cmdb.Artifacts/Delete", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *artifactsClient) List(ctx context.Context, in *ListArtifactRequest, opts ...grpc.CallOption) (*ListArtifactsResponse, error) {
+	out := new(ListArtifactsResponse)
+	err := c.cc.Invoke(ctx, "/api.cmdb.Artifacts/List", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+// ArtifactsServer is the server API for Artifacts service.
+type ArtifactsServer interface {
+	// Use this method to create a Artifact information.
+	Create(context.Context, *CreateArtifactRequest) (*CreateArtifactResponse, error)
+	// Use this method to read a Artifact information by identifier.
+	Read(context.Context, *ReadArtifactRequest) (*ReadArtifactResponse, error)
+	// Use this method to update a Artifact information.
+	Update(context.Context, *UpdateArtifactRequest) (*UpdateArtifactResponse, error)
+	// Use this method to delete a particular Artifact.
+	Delete(context.Context, *DeleteArtifactRequest) (*DeleteArtifactResponse, error)
+	// Use this method to retrieve all the Artifacts.
+	List(context.Context, *ListArtifactRequest) (*ListArtifactsResponse, error)
+}
+
+func RegisterArtifactsServer(s *grpc.Server, srv ArtifactsServer) {
+	s.RegisterService(&_Artifacts_serviceDesc, srv)
+}
+
+func _Artifacts_Create_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CreateArtifactRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ArtifactsServer).Create(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/api.cmdb.Artifacts/Create",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ArtifactsServer).Create(ctx, req.(*CreateArtifactRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Artifacts_Read_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ReadArtifactRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ArtifactsServer).Read(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/api.cmdb.Artifacts/Read",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ArtifactsServer).Read(ctx, req.(*ReadArtifactRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Artifacts_Update_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UpdateArtifactRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ArtifactsServer).Update(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/api.cmdb.Artifacts/Update",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ArtifactsServer).Update(ctx, req.(*UpdateArtifactRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Artifacts_Delete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DeleteArtifactRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ArtifactsServer).Delete(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/api.cmdb.Artifacts/Delete",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ArtifactsServer).Delete(ctx, req.(*DeleteArtifactRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Artifacts_List_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListArtifactRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ArtifactsServer).List(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/api.cmdb.Artifacts/List",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ArtifactsServer).List(ctx, req.(*ListArtifactRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+var _Artifacts_serviceDesc = grpc.ServiceDesc{
+	ServiceName: "api.cmdb.Artifacts",
+	HandlerType: (*ArtifactsServer)(nil),
+	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "Create",
+			Handler:    _Artifacts_Create_Handler,
+		},
+		{
+			MethodName: "Read",
+			Handler:    _Artifacts_Read_Handler,
+		},
+		{
+			MethodName: "Update",
+			Handler:    _Artifacts_Update_Handler,
+		},
+		{
+			MethodName: "Delete",
+			Handler:    _Artifacts_Delete_Handler,
+		},
+		{
+			MethodName: "List",
+			Handler:    _Artifacts_List_Handler,
+		},
+	},
+	Streams:  []grpc.StreamDesc{},
+	Metadata: "github.com/seizadi/cmdb/pkg/pb/cmdb.proto",
+}
+
+// DeploymentsClient is the client API for Deployments service.
+//
+// For semantics around ctx use and closing/ending streaming RPCs, please refer to https://godoc.org/google.golang.org/grpc#ClientConn.NewStream.
+type DeploymentsClient interface {
+	// Use this method to create a Deployment information.
+	Create(ctx context.Context, in *CreateDeploymentRequest, opts ...grpc.CallOption) (*CreateDeploymentResponse, error)
+	// Use this method to read a Deployment information by identifier.
+	Read(ctx context.Context, in *ReadDeploymentRequest, opts ...grpc.CallOption) (*ReadDeploymentResponse, error)
+	// Use this method to update a Deployment information.
+	Update(ctx context.Context, in *UpdateDeploymentRequest, opts ...grpc.CallOption) (*UpdateDeploymentResponse, error)
+	// Use this method to delete a particular Deployment.
+	Delete(ctx context.Context, in *DeleteDeploymentRequest, opts ...grpc.CallOption) (*DeleteDeploymentResponse, error)
+	// Use this method to retrieve all the Deployments.
+	List(ctx context.Context, in *ListDeploymentRequest, opts ...grpc.CallOption) (*ListDeploymentsResponse, error)
+}
+
+type deploymentsClient struct {
+	cc *grpc.ClientConn
+}
+
+func NewDeploymentsClient(cc *grpc.ClientConn) DeploymentsClient {
+	return &deploymentsClient{cc}
+}
+
+func (c *deploymentsClient) Create(ctx context.Context, in *CreateDeploymentRequest, opts ...grpc.CallOption) (*CreateDeploymentResponse, error) {
+	out := new(CreateDeploymentResponse)
+	err := c.cc.Invoke(ctx, "/api.cmdb.Deployments/Create", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *deploymentsClient) Read(ctx context.Context, in *ReadDeploymentRequest, opts ...grpc.CallOption) (*ReadDeploymentResponse, error) {
+	out := new(ReadDeploymentResponse)
+	err := c.cc.Invoke(ctx, "/api.cmdb.Deployments/Read", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *deploymentsClient) Update(ctx context.Context, in *UpdateDeploymentRequest, opts ...grpc.CallOption) (*UpdateDeploymentResponse, error) {
+	out := new(UpdateDeploymentResponse)
+	err := c.cc.Invoke(ctx, "/api.cmdb.Deployments/Update", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *deploymentsClient) Delete(ctx context.Context, in *DeleteDeploymentRequest, opts ...grpc.CallOption) (*DeleteDeploymentResponse, error) {
+	out := new(DeleteDeploymentResponse)
+	err := c.cc.Invoke(ctx, "/api.cmdb.Deployments/Delete", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *deploymentsClient) List(ctx context.Context, in *ListDeploymentRequest, opts ...grpc.CallOption) (*ListDeploymentsResponse, error) {
+	out := new(ListDeploymentsResponse)
+	err := c.cc.Invoke(ctx, "/api.cmdb.Deployments/List", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+// DeploymentsServer is the server API for Deployments service.
+type DeploymentsServer interface {
+	// Use this method to create a Deployment information.
+	Create(context.Context, *CreateDeploymentRequest) (*CreateDeploymentResponse, error)
+	// Use this method to read a Deployment information by identifier.
+	Read(context.Context, *ReadDeploymentRequest) (*ReadDeploymentResponse, error)
+	// Use this method to update a Deployment information.
+	Update(context.Context, *UpdateDeploymentRequest) (*UpdateDeploymentResponse, error)
+	// Use this method to delete a particular Deployment.
+	Delete(context.Context, *DeleteDeploymentRequest) (*DeleteDeploymentResponse, error)
+	// Use this method to retrieve all the Deployments.
+	List(context.Context, *ListDeploymentRequest) (*ListDeploymentsResponse, error)
+}
+
+func RegisterDeploymentsServer(s *grpc.Server, srv DeploymentsServer) {
+	s.RegisterService(&_Deployments_serviceDesc, srv)
+}
+
+func _Deployments_Create_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CreateDeploymentRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DeploymentsServer).Create(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/api.cmdb.Deployments/Create",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DeploymentsServer).Create(ctx, req.(*CreateDeploymentRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Deployments_Read_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ReadDeploymentRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DeploymentsServer).Read(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/api.cmdb.Deployments/Read",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DeploymentsServer).Read(ctx, req.(*ReadDeploymentRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Deployments_Update_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UpdateDeploymentRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DeploymentsServer).Update(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/api.cmdb.Deployments/Update",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DeploymentsServer).Update(ctx, req.(*UpdateDeploymentRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Deployments_Delete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DeleteDeploymentRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DeploymentsServer).Delete(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/api.cmdb.Deployments/Delete",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DeploymentsServer).Delete(ctx, req.(*DeleteDeploymentRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Deployments_List_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListDeploymentRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DeploymentsServer).List(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/api.cmdb.Deployments/List",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DeploymentsServer).List(ctx, req.(*ListDeploymentRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+var _Deployments_serviceDesc = grpc.ServiceDesc{
+	ServiceName: "api.cmdb.Deployments",
+	HandlerType: (*DeploymentsServer)(nil),
+	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "Create",
+			Handler:    _Deployments_Create_Handler,
+		},
+		{
+			MethodName: "Read",
+			Handler:    _Deployments_Read_Handler,
+		},
+		{
+			MethodName: "Update",
+			Handler:    _Deployments_Update_Handler,
+		},
+		{
+			MethodName: "Delete",
+			Handler:    _Deployments_Delete_Handler,
+		},
+		{
+			MethodName: "List",
+			Handler:    _Deployments_List_Handler,
+		},
+	},
+	Streams:  []grpc.StreamDesc{},
+	Metadata: "github.com/seizadi/cmdb/pkg/pb/cmdb.proto",
+}
+
+// KubeClustersClient is the client API for KubeClusters service.
+//
+// For semantics around ctx use and closing/ending streaming RPCs, please refer to https://godoc.org/google.golang.org/grpc#ClientConn.NewStream.
+type KubeClustersClient interface {
+	// Use this method to create a KubeCluster information.
+	Create(ctx context.Context, in *CreateKubeClusterRequest, opts ...grpc.CallOption) (*CreateKubeClusterResponse, error)
+	// Use this method to read a KubeCluster information by identifier.
+	Read(ctx context.Context, in *ReadKubeClusterRequest, opts ...grpc.CallOption) (*ReadKubeClusterResponse, error)
+	// Use this method to update a KubeCluster information.
+	Update(ctx context.Context, in *UpdateKubeClusterRequest, opts ...grpc.CallOption) (*UpdateKubeClusterResponse, error)
+	// Use this method to delete a particular KubeCluster.
+	Delete(ctx context.Context, in *DeleteKubeClusterRequest, opts ...grpc.CallOption) (*DeleteKubeClusterResponse, error)
+	// Use this method to retrieve all the KubeClusters.
+	List(ctx context.Context, in *ListKubeClusterRequest, opts ...grpc.CallOption) (*ListKubeClustersResponse, error)
+}
+
+type kubeClustersClient struct {
+	cc *grpc.ClientConn
+}
+
+func NewKubeClustersClient(cc *grpc.ClientConn) KubeClustersClient {
+	return &kubeClustersClient{cc}
+}
+
+func (c *kubeClustersClient) Create(ctx context.Context, in *CreateKubeClusterRequest, opts ...grpc.CallOption) (*CreateKubeClusterResponse, error) {
+	out := new(CreateKubeClusterResponse)
+	err := c.cc.Invoke(ctx, "/api.cmdb.KubeClusters/Create", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *kubeClustersClient) Read(ctx context.Context, in *ReadKubeClusterRequest, opts ...grpc.CallOption) (*ReadKubeClusterResponse, error) {
+	out := new(ReadKubeClusterResponse)
+	err := c.cc.Invoke(ctx, "/api.cmdb.KubeClusters/Read", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *kubeClustersClient) Update(ctx context.Context, in *UpdateKubeClusterRequest, opts ...grpc.CallOption) (*UpdateKubeClusterResponse, error) {
+	out := new(UpdateKubeClusterResponse)
+	err := c.cc.Invoke(ctx, "/api.cmdb.KubeClusters/Update", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *kubeClustersClient) Delete(ctx context.Context, in *DeleteKubeClusterRequest, opts ...grpc.CallOption) (*DeleteKubeClusterResponse, error) {
+	out := new(DeleteKubeClusterResponse)
+	err := c.cc.Invoke(ctx, "/api.cmdb.KubeClusters/Delete", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *kubeClustersClient) List(ctx context.Context, in *ListKubeClusterRequest, opts ...grpc.CallOption) (*ListKubeClustersResponse, error) {
+	out := new(ListKubeClustersResponse)
+	err := c.cc.Invoke(ctx, "/api.cmdb.KubeClusters/List", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+// KubeClustersServer is the server API for KubeClusters service.
+type KubeClustersServer interface {
+	// Use this method to create a KubeCluster information.
+	Create(context.Context, *CreateKubeClusterRequest) (*CreateKubeClusterResponse, error)
+	// Use this method to read a KubeCluster information by identifier.
+	Read(context.Context, *ReadKubeClusterRequest) (*ReadKubeClusterResponse, error)
+	// Use this method to update a KubeCluster information.
+	Update(context.Context, *UpdateKubeClusterRequest) (*UpdateKubeClusterResponse, error)
+	// Use this method to delete a particular KubeCluster.
+	Delete(context.Context, *DeleteKubeClusterRequest) (*DeleteKubeClusterResponse, error)
+	// Use this method to retrieve all the KubeClusters.
+	List(context.Context, *ListKubeClusterRequest) (*ListKubeClustersResponse, error)
+}
+
+func RegisterKubeClustersServer(s *grpc.Server, srv KubeClustersServer) {
+	s.RegisterService(&_KubeClusters_serviceDesc, srv)
+}
+
+func _KubeClusters_Create_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CreateKubeClusterRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(KubeClustersServer).Create(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/api.cmdb.KubeClusters/Create",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(KubeClustersServer).Create(ctx, req.(*CreateKubeClusterRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _KubeClusters_Read_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ReadKubeClusterRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(KubeClustersServer).Read(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/api.cmdb.KubeClusters/Read",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(KubeClustersServer).Read(ctx, req.(*ReadKubeClusterRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _KubeClusters_Update_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UpdateKubeClusterRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(KubeClustersServer).Update(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/api.cmdb.KubeClusters/Update",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(KubeClustersServer).Update(ctx, req.(*UpdateKubeClusterRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _KubeClusters_Delete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DeleteKubeClusterRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(KubeClustersServer).Delete(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/api.cmdb.KubeClusters/Delete",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(KubeClustersServer).Delete(ctx, req.(*DeleteKubeClusterRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _KubeClusters_List_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListKubeClusterRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(KubeClustersServer).List(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/api.cmdb.KubeClusters/List",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(KubeClustersServer).List(ctx, req.(*ListKubeClusterRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+var _KubeClusters_serviceDesc = grpc.ServiceDesc{
+	ServiceName: "api.cmdb.KubeClusters",
+	HandlerType: (*KubeClustersServer)(nil),
+	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "Create",
+			Handler:    _KubeClusters_Create_Handler,
+		},
+		{
+			MethodName: "Read",
+			Handler:    _KubeClusters_Read_Handler,
+		},
+		{
+			MethodName: "Update",
+			Handler:    _KubeClusters_Update_Handler,
+		},
+		{
+			MethodName: "Delete",
+			Handler:    _KubeClusters_Delete_Handler,
+		},
+		{
+			MethodName: "List",
+			Handler:    _KubeClusters_List_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

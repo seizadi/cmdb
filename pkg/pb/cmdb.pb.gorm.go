@@ -12,138 +12,6 @@ It is generated from these files:
 
 It has these top-level messages:
 	VersionResponse
-	Vault
-	CreateVaultRequest
-	CreateVaultResponse
-	ReadVaultRequest
-	ReadVaultResponse
-	UpdateVaultRequest
-	UpdateVaultResponse
-	DeleteVaultRequest
-	DeleteVaultResponse
-	ListVaultRequest
-	ListVaultsResponse
-	VersionTag
-	CreateVersionTagRequest
-	CreateVersionTagResponse
-	ReadVersionTagRequest
-	ReadVersionTagResponse
-	UpdateVersionTagRequest
-	UpdateVersionTagResponse
-	DeleteVersionTagRequest
-	DeleteVersionTagResponse
-	ListVersionTagRequest
-	ListVersionTagsResponse
-	ApplicationInstance
-	CreateApplicationInstanceRequest
-	CreateApplicationInstanceResponse
-	ReadApplicationInstanceRequest
-	ReadApplicationInstanceResponse
-	UpdateApplicationInstanceRequest
-	UpdateApplicationInstanceResponse
-	DeleteApplicationInstanceRequest
-	DeleteApplicationInstanceResponse
-	ListApplicationInstanceRequest
-	ListApplicationInstancesResponse
-	AwsRdsInstance
-	CreateAwsRdsInstanceRequest
-	CreateAwsRdsInstanceResponse
-	ReadAwsRdsInstanceRequest
-	ReadAwsRdsInstanceResponse
-	UpdateAwsRdsInstanceRequest
-	UpdateAwsRdsInstanceResponse
-	DeleteAwsRdsInstanceRequest
-	DeleteAwsRdsInstanceResponse
-	ListAwsRdsInstanceRequest
-	ListAwsRdsInstancesResponse
-	Container
-	CreateContainerRequest
-	CreateContainerResponse
-	ReadContainerRequest
-	ReadContainerResponse
-	UpdateContainerRequest
-	UpdateContainerResponse
-	DeleteContainerRequest
-	DeleteContainerResponse
-	ListContainerRequest
-	ListContainersResponse
-	Environment
-	CreateEnvironmentRequest
-	CreateEnvironmentResponse
-	ReadEnvironmentRequest
-	ReadEnvironmentResponse
-	UpdateEnvironmentRequest
-	UpdateEnvironmentResponse
-	DeleteEnvironmentRequest
-	DeleteEnvironmentResponse
-	ListEnvironmentRequest
-	ListEnvironmentsResponse
-	Manifest
-	CreateManifestRequest
-	CreateManifestResponse
-	ReadManifestRequest
-	ReadManifestResponse
-	UpdateManifestRequest
-	UpdateManifestResponse
-	DeleteManifestRequest
-	DeleteManifestResponse
-	ListManifestRequest
-	ListManifestsResponse
-	Secret
-	CreateSecretRequest
-	CreateSecretResponse
-	ReadSecretRequest
-	ReadSecretResponse
-	UpdateSecretRequest
-	UpdateSecretResponse
-	DeleteSecretRequest
-	DeleteSecretResponse
-	ListSecretRequest
-	ListSecretsResponse
-	Artifact
-	CreateArtifactRequest
-	CreateArtifactResponse
-	ReadArtifactRequest
-	ReadArtifactResponse
-	UpdateArtifactRequest
-	UpdateArtifactResponse
-	DeleteArtifactRequest
-	DeleteArtifactResponse
-	ListArtifactRequest
-	ListArtifactsResponse
-	AwsService
-	CreateAwsServiceRequest
-	CreateAwsServiceResponse
-	ReadAwsServiceRequest
-	ReadAwsServiceResponse
-	UpdateAwsServiceRequest
-	UpdateAwsServiceResponse
-	DeleteAwsServiceRequest
-	DeleteAwsServiceResponse
-	ListAwsServiceRequest
-	ListAwsServicesResponse
-	Deployment
-	CreateDeploymentRequest
-	CreateDeploymentResponse
-	ReadDeploymentRequest
-	ReadDeploymentResponse
-	UpdateDeploymentRequest
-	UpdateDeploymentResponse
-	DeleteDeploymentRequest
-	DeleteDeploymentResponse
-	ListDeploymentRequest
-	ListDeploymentsResponse
-	KubeCluster
-	CreateKubeClusterRequest
-	CreateKubeClusterResponse
-	ReadKubeClusterRequest
-	ReadKubeClusterResponse
-	UpdateKubeClusterRequest
-	UpdateKubeClusterResponse
-	DeleteKubeClusterRequest
-	DeleteKubeClusterResponse
-	ListKubeClusterRequest
-	ListKubeClustersResponse
 	CloudProvider
 	CreateCloudProviderRequest
 	CreateCloudProviderResponse
@@ -166,6 +34,149 @@ It has these top-level messages:
 	DeleteRegionResponse
 	ListRegionRequest
 	ListRegionsResponse
+	Stage
+	CreateStageRequest
+	CreateStageResponse
+	ReadStageRequest
+	ReadStageResponse
+	UpdateStageRequest
+	UpdateStageResponse
+	DeleteStageRequest
+	DeleteStageResponse
+	ListStageRequest
+	ListStagesResponse
+	Environment
+	CreateEnvironmentRequest
+	CreateEnvironmentResponse
+	ReadEnvironmentRequest
+	ReadEnvironmentResponse
+	UpdateEnvironmentRequest
+	UpdateEnvironmentResponse
+	DeleteEnvironmentRequest
+	DeleteEnvironmentResponse
+	ListEnvironmentRequest
+	ListEnvironmentsResponse
+	Application
+	CreateApplicationRequest
+	CreateApplicationResponse
+	ReadApplicationRequest
+	ReadApplicationResponse
+	UpdateApplicationRequest
+	UpdateApplicationResponse
+	DeleteApplicationRequest
+	DeleteApplicationResponse
+	ListApplicationRequest
+	ListApplicationsResponse
+	ChartVersion
+	CreateChartVersionRequest
+	CreateChartVersionResponse
+	ReadChartVersionRequest
+	ReadChartVersionResponse
+	UpdateChartVersionRequest
+	UpdateChartVersionResponse
+	DeleteChartVersionRequest
+	DeleteChartVersionResponse
+	ListChartVersionRequest
+	ListChartVersionsResponse
+	ApplicationInstance
+	CreateApplicationInstanceRequest
+	CreateApplicationInstanceResponse
+	ReadApplicationInstanceRequest
+	ReadApplicationInstanceResponse
+	UpdateApplicationInstanceRequest
+	UpdateApplicationInstanceResponse
+	DeleteApplicationInstanceRequest
+	DeleteApplicationInstanceResponse
+	ListApplicationInstanceRequest
+	ListApplicationInstancesResponse
+	Vault
+	CreateVaultRequest
+	CreateVaultResponse
+	ReadVaultRequest
+	ReadVaultResponse
+	UpdateVaultRequest
+	UpdateVaultResponse
+	DeleteVaultRequest
+	DeleteVaultResponse
+	ListVaultRequest
+	ListVaultsResponse
+	Secret
+	CreateSecretRequest
+	CreateSecretResponse
+	ReadSecretRequest
+	ReadSecretResponse
+	UpdateSecretRequest
+	UpdateSecretResponse
+	DeleteSecretRequest
+	DeleteSecretResponse
+	ListSecretRequest
+	ListSecretsResponse
+	AwsService
+	CreateAwsServiceRequest
+	CreateAwsServiceResponse
+	ReadAwsServiceRequest
+	ReadAwsServiceResponse
+	UpdateAwsServiceRequest
+	UpdateAwsServiceResponse
+	DeleteAwsServiceRequest
+	DeleteAwsServiceResponse
+	ListAwsServiceRequest
+	ListAwsServicesResponse
+	AwsRdsInstance
+	CreateAwsRdsInstanceRequest
+	CreateAwsRdsInstanceResponse
+	ReadAwsRdsInstanceRequest
+	ReadAwsRdsInstanceResponse
+	UpdateAwsRdsInstanceRequest
+	UpdateAwsRdsInstanceResponse
+	DeleteAwsRdsInstanceRequest
+	DeleteAwsRdsInstanceResponse
+	ListAwsRdsInstanceRequest
+	ListAwsRdsInstancesResponse
+	Value
+	CreateValueRequest
+	CreateValueResponse
+	ReadValueRequest
+	ReadValueResponse
+	UpdateValueRequest
+	UpdateValueResponse
+	DeleteValueRequest
+	DeleteValueResponse
+	ListValueRequest
+	ListValuesResponse
+	Artifact
+	CreateArtifactRequest
+	CreateArtifactResponse
+	ReadArtifactRequest
+	ReadArtifactResponse
+	UpdateArtifactRequest
+	UpdateArtifactResponse
+	DeleteArtifactRequest
+	DeleteArtifactResponse
+	ListArtifactRequest
+	ListArtifactsResponse
+	Deployment
+	CreateDeploymentRequest
+	CreateDeploymentResponse
+	ReadDeploymentRequest
+	ReadDeploymentResponse
+	UpdateDeploymentRequest
+	UpdateDeploymentResponse
+	DeleteDeploymentRequest
+	DeleteDeploymentResponse
+	ListDeploymentRequest
+	ListDeploymentsResponse
+	KubeCluster
+	CreateKubeClusterRequest
+	CreateKubeClusterResponse
+	ReadKubeClusterRequest
+	ReadKubeClusterResponse
+	UpdateKubeClusterRequest
+	UpdateKubeClusterResponse
+	DeleteKubeClusterRequest
+	DeleteKubeClusterResponse
+	ListKubeClusterRequest
+	ListKubeClustersResponse
 */
 package pb
 
@@ -198,12 +209,916 @@ import _ "github.com/infobloxopen/protoc-gen-atlas-validate/options"
 var _ = fmt.Errorf
 var _ = math.Inf
 
+type CloudProviderORM struct {
+	Account     string
+	AccountID   string
+	Description string
+	Id          int64 `gorm:"type:serial;primary_key"`
+	Name        string
+	Provider    int32
+	Regions     []*RegionORM `gorm:"foreignkey:CloudProviderId;association_foreignkey:Id"`
+}
+
+// TableName overrides the default tablename generated by GORM
+func (CloudProviderORM) TableName() string {
+	return "cloud_providers"
+}
+
+// ToORM runs the BeforeToORM hook if present, converts the fields of this
+// object to ORM format, runs the AfterToORM hook, then returns the ORM object
+func (m *CloudProvider) ToORM(ctx context.Context) (CloudProviderORM, error) {
+	to := CloudProviderORM{}
+	var err error
+	if prehook, ok := interface{}(m).(CloudProviderWithBeforeToORM); ok {
+		if err = prehook.BeforeToORM(ctx, &to); err != nil {
+			return to, err
+		}
+	}
+	if v, err := resource1.DecodeInt64(&CloudProvider{}, m.Id); err != nil {
+		return to, err
+	} else {
+		to.Id = v
+	}
+	to.Name = m.Name
+	to.Description = m.Description
+	to.Provider = int32(m.Provider)
+	to.Account = m.Account
+	for _, v := range m.Regions {
+		if v != nil {
+			if tempRegions, cErr := v.ToORM(ctx); cErr == nil {
+				to.Regions = append(to.Regions, &tempRegions)
+			} else {
+				return to, cErr
+			}
+		} else {
+			to.Regions = append(to.Regions, nil)
+		}
+	}
+	accountID, err := auth1.GetAccountID(ctx, nil)
+	if err != nil {
+		return to, err
+	}
+	to.AccountID = accountID
+	if posthook, ok := interface{}(m).(CloudProviderWithAfterToORM); ok {
+		err = posthook.AfterToORM(ctx, &to)
+	}
+	return to, err
+}
+
+// ToPB runs the BeforeToPB hook if present, converts the fields of this
+// object to PB format, runs the AfterToPB hook, then returns the PB object
+func (m *CloudProviderORM) ToPB(ctx context.Context) (CloudProvider, error) {
+	to := CloudProvider{}
+	var err error
+	if prehook, ok := interface{}(m).(CloudProviderWithBeforeToPB); ok {
+		if err = prehook.BeforeToPB(ctx, &to); err != nil {
+			return to, err
+		}
+	}
+	if v, err := resource1.Encode(&CloudProvider{}, m.Id); err != nil {
+		return to, err
+	} else {
+		to.Id = v
+	}
+	to.Name = m.Name
+	to.Description = m.Description
+	to.Provider = Provider(m.Provider)
+	to.Account = m.Account
+	for _, v := range m.Regions {
+		if v != nil {
+			if tempRegions, cErr := v.ToPB(ctx); cErr == nil {
+				to.Regions = append(to.Regions, &tempRegions)
+			} else {
+				return to, cErr
+			}
+		} else {
+			to.Regions = append(to.Regions, nil)
+		}
+	}
+	if posthook, ok := interface{}(m).(CloudProviderWithAfterToPB); ok {
+		err = posthook.AfterToPB(ctx, &to)
+	}
+	return to, err
+}
+
+// The following are interfaces you can implement for special behavior during ORM/PB conversions
+// of type CloudProvider the arg will be the target, the caller the one being converted from
+
+// CloudProviderBeforeToORM called before default ToORM code
+type CloudProviderWithBeforeToORM interface {
+	BeforeToORM(context.Context, *CloudProviderORM) error
+}
+
+// CloudProviderAfterToORM called after default ToORM code
+type CloudProviderWithAfterToORM interface {
+	AfterToORM(context.Context, *CloudProviderORM) error
+}
+
+// CloudProviderBeforeToPB called before default ToPB code
+type CloudProviderWithBeforeToPB interface {
+	BeforeToPB(context.Context, *CloudProvider) error
+}
+
+// CloudProviderAfterToPB called after default ToPB code
+type CloudProviderWithAfterToPB interface {
+	AfterToPB(context.Context, *CloudProvider) error
+}
+
+type RegionORM struct {
+	AccountID       string
+	AwsServices     []*AwsServiceORM `gorm:"foreignkey:RegionId;association_foreignkey:Id"`
+	CloudProviderId *int64
+	Description     string
+	Id              int64 `gorm:"type:serial;primary_key"`
+	Name            string
+	Stages          []*StageORM `gorm:"foreignkey:RegionId;association_foreignkey:Id"`
+	Value           *ValueORM   `gorm:"foreignkey:RegionId;association_foreignkey:Id"`
+}
+
+// TableName overrides the default tablename generated by GORM
+func (RegionORM) TableName() string {
+	return "regions"
+}
+
+// ToORM runs the BeforeToORM hook if present, converts the fields of this
+// object to ORM format, runs the AfterToORM hook, then returns the ORM object
+func (m *Region) ToORM(ctx context.Context) (RegionORM, error) {
+	to := RegionORM{}
+	var err error
+	if prehook, ok := interface{}(m).(RegionWithBeforeToORM); ok {
+		if err = prehook.BeforeToORM(ctx, &to); err != nil {
+			return to, err
+		}
+	}
+	if v, err := resource1.DecodeInt64(&Region{}, m.Id); err != nil {
+		return to, err
+	} else {
+		to.Id = v
+	}
+	to.Name = m.Name
+	to.Description = m.Description
+	for _, v := range m.Stages {
+		if v != nil {
+			if tempStages, cErr := v.ToORM(ctx); cErr == nil {
+				to.Stages = append(to.Stages, &tempStages)
+			} else {
+				return to, cErr
+			}
+		} else {
+			to.Stages = append(to.Stages, nil)
+		}
+	}
+	if m.Value != nil {
+		tempValue, err := m.Value.ToORM(ctx)
+		if err != nil {
+			return to, err
+		}
+		to.Value = &tempValue
+	}
+	for _, v := range m.AwsServices {
+		if v != nil {
+			if tempAwsServices, cErr := v.ToORM(ctx); cErr == nil {
+				to.AwsServices = append(to.AwsServices, &tempAwsServices)
+			} else {
+				return to, cErr
+			}
+		} else {
+			to.AwsServices = append(to.AwsServices, nil)
+		}
+	}
+	if m.CloudProviderId != nil {
+		if v, err := resource1.DecodeInt64(&CloudProvider{}, m.CloudProviderId); err != nil {
+			return to, err
+		} else {
+			to.CloudProviderId = &v
+		}
+	}
+	accountID, err := auth1.GetAccountID(ctx, nil)
+	if err != nil {
+		return to, err
+	}
+	to.AccountID = accountID
+	if posthook, ok := interface{}(m).(RegionWithAfterToORM); ok {
+		err = posthook.AfterToORM(ctx, &to)
+	}
+	return to, err
+}
+
+// ToPB runs the BeforeToPB hook if present, converts the fields of this
+// object to PB format, runs the AfterToPB hook, then returns the PB object
+func (m *RegionORM) ToPB(ctx context.Context) (Region, error) {
+	to := Region{}
+	var err error
+	if prehook, ok := interface{}(m).(RegionWithBeforeToPB); ok {
+		if err = prehook.BeforeToPB(ctx, &to); err != nil {
+			return to, err
+		}
+	}
+	if v, err := resource1.Encode(&Region{}, m.Id); err != nil {
+		return to, err
+	} else {
+		to.Id = v
+	}
+	to.Name = m.Name
+	to.Description = m.Description
+	for _, v := range m.Stages {
+		if v != nil {
+			if tempStages, cErr := v.ToPB(ctx); cErr == nil {
+				to.Stages = append(to.Stages, &tempStages)
+			} else {
+				return to, cErr
+			}
+		} else {
+			to.Stages = append(to.Stages, nil)
+		}
+	}
+	if m.Value != nil {
+		tempValue, err := m.Value.ToPB(ctx)
+		if err != nil {
+			return to, err
+		}
+		to.Value = &tempValue
+	}
+	for _, v := range m.AwsServices {
+		if v != nil {
+			if tempAwsServices, cErr := v.ToPB(ctx); cErr == nil {
+				to.AwsServices = append(to.AwsServices, &tempAwsServices)
+			} else {
+				return to, cErr
+			}
+		} else {
+			to.AwsServices = append(to.AwsServices, nil)
+		}
+	}
+	if m.CloudProviderId != nil {
+		if v, err := resource1.Encode(&CloudProvider{}, *m.CloudProviderId); err != nil {
+			return to, err
+		} else {
+			to.CloudProviderId = v
+		}
+	}
+	if posthook, ok := interface{}(m).(RegionWithAfterToPB); ok {
+		err = posthook.AfterToPB(ctx, &to)
+	}
+	return to, err
+}
+
+// The following are interfaces you can implement for special behavior during ORM/PB conversions
+// of type Region the arg will be the target, the caller the one being converted from
+
+// RegionBeforeToORM called before default ToORM code
+type RegionWithBeforeToORM interface {
+	BeforeToORM(context.Context, *RegionORM) error
+}
+
+// RegionAfterToORM called after default ToORM code
+type RegionWithAfterToORM interface {
+	AfterToORM(context.Context, *RegionORM) error
+}
+
+// RegionBeforeToPB called before default ToPB code
+type RegionWithBeforeToPB interface {
+	BeforeToPB(context.Context, *Region) error
+}
+
+// RegionAfterToPB called after default ToPB code
+type RegionWithAfterToPB interface {
+	AfterToPB(context.Context, *Region) error
+}
+
+type StageORM struct {
+	AccountID   string
+	Description string
+	Id          int64 `gorm:"type:serial;primary_key"`
+	Name        string
+	RegionId    *int64
+	Type        int32
+}
+
+// TableName overrides the default tablename generated by GORM
+func (StageORM) TableName() string {
+	return "stages"
+}
+
+// ToORM runs the BeforeToORM hook if present, converts the fields of this
+// object to ORM format, runs the AfterToORM hook, then returns the ORM object
+func (m *Stage) ToORM(ctx context.Context) (StageORM, error) {
+	to := StageORM{}
+	var err error
+	if prehook, ok := interface{}(m).(StageWithBeforeToORM); ok {
+		if err = prehook.BeforeToORM(ctx, &to); err != nil {
+			return to, err
+		}
+	}
+	if v, err := resource1.DecodeInt64(&Stage{}, m.Id); err != nil {
+		return to, err
+	} else {
+		to.Id = v
+	}
+	to.Name = m.Name
+	to.Description = m.Description
+	to.Type = int32(m.Type)
+	if m.RegionId != nil {
+		if v, err := resource1.DecodeInt64(&Region{}, m.RegionId); err != nil {
+			return to, err
+		} else {
+			to.RegionId = &v
+		}
+	}
+	accountID, err := auth1.GetAccountID(ctx, nil)
+	if err != nil {
+		return to, err
+	}
+	to.AccountID = accountID
+	if posthook, ok := interface{}(m).(StageWithAfterToORM); ok {
+		err = posthook.AfterToORM(ctx, &to)
+	}
+	return to, err
+}
+
+// ToPB runs the BeforeToPB hook if present, converts the fields of this
+// object to PB format, runs the AfterToPB hook, then returns the PB object
+func (m *StageORM) ToPB(ctx context.Context) (Stage, error) {
+	to := Stage{}
+	var err error
+	if prehook, ok := interface{}(m).(StageWithBeforeToPB); ok {
+		if err = prehook.BeforeToPB(ctx, &to); err != nil {
+			return to, err
+		}
+	}
+	if v, err := resource1.Encode(&Stage{}, m.Id); err != nil {
+		return to, err
+	} else {
+		to.Id = v
+	}
+	to.Name = m.Name
+	to.Description = m.Description
+	to.Type = StageType(m.Type)
+	if m.RegionId != nil {
+		if v, err := resource1.Encode(&Region{}, *m.RegionId); err != nil {
+			return to, err
+		} else {
+			to.RegionId = v
+		}
+	}
+	if posthook, ok := interface{}(m).(StageWithAfterToPB); ok {
+		err = posthook.AfterToPB(ctx, &to)
+	}
+	return to, err
+}
+
+// The following are interfaces you can implement for special behavior during ORM/PB conversions
+// of type Stage the arg will be the target, the caller the one being converted from
+
+// StageBeforeToORM called before default ToORM code
+type StageWithBeforeToORM interface {
+	BeforeToORM(context.Context, *StageORM) error
+}
+
+// StageAfterToORM called after default ToORM code
+type StageWithAfterToORM interface {
+	AfterToORM(context.Context, *StageORM) error
+}
+
+// StageBeforeToPB called before default ToPB code
+type StageWithBeforeToPB interface {
+	BeforeToPB(context.Context, *Stage) error
+}
+
+// StageAfterToPB called after default ToPB code
+type StageWithAfterToPB interface {
+	AfterToPB(context.Context, *Stage) error
+}
+
+type EnvironmentORM struct {
+	AccountID            string
+	ApplicationInstances []*ApplicationInstanceORM `gorm:"foreignkey:EnvironmentId;association_foreignkey:Id"`
+	Description          string
+	Id                   int64 `gorm:"type:serial;primary_key"`
+	Name                 string
+	StageId              interface{}
+	Value                *ValueORM `gorm:"foreignkey:EnvironmentId;association_foreignkey:Id"`
+}
+
+// TableName overrides the default tablename generated by GORM
+func (EnvironmentORM) TableName() string {
+	return "environments"
+}
+
+// ToORM runs the BeforeToORM hook if present, converts the fields of this
+// object to ORM format, runs the AfterToORM hook, then returns the ORM object
+func (m *Environment) ToORM(ctx context.Context) (EnvironmentORM, error) {
+	to := EnvironmentORM{}
+	var err error
+	if prehook, ok := interface{}(m).(EnvironmentWithBeforeToORM); ok {
+		if err = prehook.BeforeToORM(ctx, &to); err != nil {
+			return to, err
+		}
+	}
+	if v, err := resource1.DecodeInt64(&Environment{}, m.Id); err != nil {
+		return to, err
+	} else {
+		to.Id = v
+	}
+	to.Name = m.Name
+	to.Description = m.Description
+	if m.Value != nil {
+		tempValue, err := m.Value.ToORM(ctx)
+		if err != nil {
+			return to, err
+		}
+		to.Value = &tempValue
+	}
+	for _, v := range m.ApplicationInstances {
+		if v != nil {
+			if tempApplicationInstances, cErr := v.ToORM(ctx); cErr == nil {
+				to.ApplicationInstances = append(to.ApplicationInstances, &tempApplicationInstances)
+			} else {
+				return to, cErr
+			}
+		} else {
+			to.ApplicationInstances = append(to.ApplicationInstances, nil)
+		}
+	}
+	if v, err := resource1.Decode(nil, m.StageId); err != nil {
+		return to, err
+	} else if v != nil {
+		to.StageId = v
+	}
+	accountID, err := auth1.GetAccountID(ctx, nil)
+	if err != nil {
+		return to, err
+	}
+	to.AccountID = accountID
+	if posthook, ok := interface{}(m).(EnvironmentWithAfterToORM); ok {
+		err = posthook.AfterToORM(ctx, &to)
+	}
+	return to, err
+}
+
+// ToPB runs the BeforeToPB hook if present, converts the fields of this
+// object to PB format, runs the AfterToPB hook, then returns the PB object
+func (m *EnvironmentORM) ToPB(ctx context.Context) (Environment, error) {
+	to := Environment{}
+	var err error
+	if prehook, ok := interface{}(m).(EnvironmentWithBeforeToPB); ok {
+		if err = prehook.BeforeToPB(ctx, &to); err != nil {
+			return to, err
+		}
+	}
+	if v, err := resource1.Encode(&Environment{}, m.Id); err != nil {
+		return to, err
+	} else {
+		to.Id = v
+	}
+	to.Name = m.Name
+	to.Description = m.Description
+	if m.Value != nil {
+		tempValue, err := m.Value.ToPB(ctx)
+		if err != nil {
+			return to, err
+		}
+		to.Value = &tempValue
+	}
+	for _, v := range m.ApplicationInstances {
+		if v != nil {
+			if tempApplicationInstances, cErr := v.ToPB(ctx); cErr == nil {
+				to.ApplicationInstances = append(to.ApplicationInstances, &tempApplicationInstances)
+			} else {
+				return to, cErr
+			}
+		} else {
+			to.ApplicationInstances = append(to.ApplicationInstances, nil)
+		}
+	}
+	if v, err := resource1.Encode(nil, m.StageId); err != nil {
+		return to, err
+	} else {
+		to.StageId = v
+	}
+	if posthook, ok := interface{}(m).(EnvironmentWithAfterToPB); ok {
+		err = posthook.AfterToPB(ctx, &to)
+	}
+	return to, err
+}
+
+// The following are interfaces you can implement for special behavior during ORM/PB conversions
+// of type Environment the arg will be the target, the caller the one being converted from
+
+// EnvironmentBeforeToORM called before default ToORM code
+type EnvironmentWithBeforeToORM interface {
+	BeforeToORM(context.Context, *EnvironmentORM) error
+}
+
+// EnvironmentAfterToORM called after default ToORM code
+type EnvironmentWithAfterToORM interface {
+	AfterToORM(context.Context, *EnvironmentORM) error
+}
+
+// EnvironmentBeforeToPB called before default ToPB code
+type EnvironmentWithBeforeToPB interface {
+	BeforeToPB(context.Context, *Environment) error
+}
+
+// EnvironmentAfterToPB called after default ToPB code
+type EnvironmentWithAfterToPB interface {
+	AfterToPB(context.Context, *Environment) error
+}
+
+type ApplicationORM struct {
+	AccountID            string
+	ApplicationInstances []*ApplicationInstanceORM `gorm:"foreignkey:ApplicationId;association_foreignkey:Id"`
+	Description          string
+	Id                   int64 `gorm:"type:serial;primary_key"`
+	Name                 string
+	StageId              interface{}
+	Value                *ValueORM `gorm:"foreignkey:ApplicationId;association_foreignkey:Id"`
+}
+
+// TableName overrides the default tablename generated by GORM
+func (ApplicationORM) TableName() string {
+	return "applications"
+}
+
+// ToORM runs the BeforeToORM hook if present, converts the fields of this
+// object to ORM format, runs the AfterToORM hook, then returns the ORM object
+func (m *Application) ToORM(ctx context.Context) (ApplicationORM, error) {
+	to := ApplicationORM{}
+	var err error
+	if prehook, ok := interface{}(m).(ApplicationWithBeforeToORM); ok {
+		if err = prehook.BeforeToORM(ctx, &to); err != nil {
+			return to, err
+		}
+	}
+	if v, err := resource1.DecodeInt64(&Application{}, m.Id); err != nil {
+		return to, err
+	} else {
+		to.Id = v
+	}
+	to.Name = m.Name
+	to.Description = m.Description
+	if m.Value != nil {
+		tempValue, err := m.Value.ToORM(ctx)
+		if err != nil {
+			return to, err
+		}
+		to.Value = &tempValue
+	}
+	for _, v := range m.ApplicationInstances {
+		if v != nil {
+			if tempApplicationInstances, cErr := v.ToORM(ctx); cErr == nil {
+				to.ApplicationInstances = append(to.ApplicationInstances, &tempApplicationInstances)
+			} else {
+				return to, cErr
+			}
+		} else {
+			to.ApplicationInstances = append(to.ApplicationInstances, nil)
+		}
+	}
+	if v, err := resource1.Decode(nil, m.StageId); err != nil {
+		return to, err
+	} else if v != nil {
+		to.StageId = v
+	}
+	accountID, err := auth1.GetAccountID(ctx, nil)
+	if err != nil {
+		return to, err
+	}
+	to.AccountID = accountID
+	if posthook, ok := interface{}(m).(ApplicationWithAfterToORM); ok {
+		err = posthook.AfterToORM(ctx, &to)
+	}
+	return to, err
+}
+
+// ToPB runs the BeforeToPB hook if present, converts the fields of this
+// object to PB format, runs the AfterToPB hook, then returns the PB object
+func (m *ApplicationORM) ToPB(ctx context.Context) (Application, error) {
+	to := Application{}
+	var err error
+	if prehook, ok := interface{}(m).(ApplicationWithBeforeToPB); ok {
+		if err = prehook.BeforeToPB(ctx, &to); err != nil {
+			return to, err
+		}
+	}
+	if v, err := resource1.Encode(&Application{}, m.Id); err != nil {
+		return to, err
+	} else {
+		to.Id = v
+	}
+	to.Name = m.Name
+	to.Description = m.Description
+	if m.Value != nil {
+		tempValue, err := m.Value.ToPB(ctx)
+		if err != nil {
+			return to, err
+		}
+		to.Value = &tempValue
+	}
+	for _, v := range m.ApplicationInstances {
+		if v != nil {
+			if tempApplicationInstances, cErr := v.ToPB(ctx); cErr == nil {
+				to.ApplicationInstances = append(to.ApplicationInstances, &tempApplicationInstances)
+			} else {
+				return to, cErr
+			}
+		} else {
+			to.ApplicationInstances = append(to.ApplicationInstances, nil)
+		}
+	}
+	if v, err := resource1.Encode(nil, m.StageId); err != nil {
+		return to, err
+	} else {
+		to.StageId = v
+	}
+	if posthook, ok := interface{}(m).(ApplicationWithAfterToPB); ok {
+		err = posthook.AfterToPB(ctx, &to)
+	}
+	return to, err
+}
+
+// The following are interfaces you can implement for special behavior during ORM/PB conversions
+// of type Application the arg will be the target, the caller the one being converted from
+
+// ApplicationBeforeToORM called before default ToORM code
+type ApplicationWithBeforeToORM interface {
+	BeforeToORM(context.Context, *ApplicationORM) error
+}
+
+// ApplicationAfterToORM called after default ToORM code
+type ApplicationWithAfterToORM interface {
+	AfterToORM(context.Context, *ApplicationORM) error
+}
+
+// ApplicationBeforeToPB called before default ToPB code
+type ApplicationWithBeforeToPB interface {
+	BeforeToPB(context.Context, *Application) error
+}
+
+// ApplicationAfterToPB called after default ToPB code
+type ApplicationWithAfterToPB interface {
+	AfterToPB(context.Context, *Application) error
+}
+
+type ChartVersionORM struct {
+	AccountID   string
+	Description string
+	Id          int64 `gorm:"type:serial;primary_key"`
+	Name        string
+	Repo        string
+	Version     string
+}
+
+// TableName overrides the default tablename generated by GORM
+func (ChartVersionORM) TableName() string {
+	return "chart_versions"
+}
+
+// ToORM runs the BeforeToORM hook if present, converts the fields of this
+// object to ORM format, runs the AfterToORM hook, then returns the ORM object
+func (m *ChartVersion) ToORM(ctx context.Context) (ChartVersionORM, error) {
+	to := ChartVersionORM{}
+	var err error
+	if prehook, ok := interface{}(m).(ChartVersionWithBeforeToORM); ok {
+		if err = prehook.BeforeToORM(ctx, &to); err != nil {
+			return to, err
+		}
+	}
+	if v, err := resource1.DecodeInt64(&ChartVersion{}, m.Id); err != nil {
+		return to, err
+	} else {
+		to.Id = v
+	}
+	to.Name = m.Name
+	to.Description = m.Description
+	to.Repo = m.Repo
+	to.Version = m.Version
+	accountID, err := auth1.GetAccountID(ctx, nil)
+	if err != nil {
+		return to, err
+	}
+	to.AccountID = accountID
+	if posthook, ok := interface{}(m).(ChartVersionWithAfterToORM); ok {
+		err = posthook.AfterToORM(ctx, &to)
+	}
+	return to, err
+}
+
+// ToPB runs the BeforeToPB hook if present, converts the fields of this
+// object to PB format, runs the AfterToPB hook, then returns the PB object
+func (m *ChartVersionORM) ToPB(ctx context.Context) (ChartVersion, error) {
+	to := ChartVersion{}
+	var err error
+	if prehook, ok := interface{}(m).(ChartVersionWithBeforeToPB); ok {
+		if err = prehook.BeforeToPB(ctx, &to); err != nil {
+			return to, err
+		}
+	}
+	if v, err := resource1.Encode(&ChartVersion{}, m.Id); err != nil {
+		return to, err
+	} else {
+		to.Id = v
+	}
+	to.Name = m.Name
+	to.Description = m.Description
+	to.Repo = m.Repo
+	to.Version = m.Version
+	if posthook, ok := interface{}(m).(ChartVersionWithAfterToPB); ok {
+		err = posthook.AfterToPB(ctx, &to)
+	}
+	return to, err
+}
+
+// The following are interfaces you can implement for special behavior during ORM/PB conversions
+// of type ChartVersion the arg will be the target, the caller the one being converted from
+
+// ChartVersionBeforeToORM called before default ToORM code
+type ChartVersionWithBeforeToORM interface {
+	BeforeToORM(context.Context, *ChartVersionORM) error
+}
+
+// ChartVersionAfterToORM called after default ToORM code
+type ChartVersionWithAfterToORM interface {
+	AfterToORM(context.Context, *ChartVersionORM) error
+}
+
+// ChartVersionBeforeToPB called before default ToPB code
+type ChartVersionWithBeforeToPB interface {
+	BeforeToPB(context.Context, *ChartVersion) error
+}
+
+// ChartVersionAfterToPB called after default ToPB code
+type ChartVersionWithAfterToPB interface {
+	AfterToPB(context.Context, *ChartVersion) error
+}
+
+type ApplicationInstanceORM struct {
+	AccountID      string
+	ApplicationId  *int64
+	ChartVersion   *ChartVersionORM `gorm:"foreignkey:ChartVersionId;association_foreignkey:Id"`
+	ChartVersionId *int64
+	Deployment     *DeploymentORM `gorm:"foreignkey:ApplicationInstanceId;association_foreignkey:Id"`
+	Description    string
+	EnvironmentId  *int64
+	Id             int64 `gorm:"type:serial;primary_key"`
+	Name           string
+	Value          *ValueORM `gorm:"foreignkey:ApplicationInstanceId;association_foreignkey:Id"`
+}
+
+// TableName overrides the default tablename generated by GORM
+func (ApplicationInstanceORM) TableName() string {
+	return "application_instances"
+}
+
+// ToORM runs the BeforeToORM hook if present, converts the fields of this
+// object to ORM format, runs the AfterToORM hook, then returns the ORM object
+func (m *ApplicationInstance) ToORM(ctx context.Context) (ApplicationInstanceORM, error) {
+	to := ApplicationInstanceORM{}
+	var err error
+	if prehook, ok := interface{}(m).(ApplicationInstanceWithBeforeToORM); ok {
+		if err = prehook.BeforeToORM(ctx, &to); err != nil {
+			return to, err
+		}
+	}
+	if v, err := resource1.DecodeInt64(&ApplicationInstance{}, m.Id); err != nil {
+		return to, err
+	} else {
+		to.Id = v
+	}
+	to.Name = m.Name
+	to.Description = m.Description
+	if m.Value != nil {
+		tempValue, err := m.Value.ToORM(ctx)
+		if err != nil {
+			return to, err
+		}
+		to.Value = &tempValue
+	}
+	if m.Deployment != nil {
+		tempDeployment, err := m.Deployment.ToORM(ctx)
+		if err != nil {
+			return to, err
+		}
+		to.Deployment = &tempDeployment
+	}
+	if m.ChartVersion != nil {
+		tempChartVersion, err := m.ChartVersion.ToORM(ctx)
+		if err != nil {
+			return to, err
+		}
+		to.ChartVersion = &tempChartVersion
+	}
+	if m.ChartVersionId != nil {
+		if v, err := resource1.DecodeInt64(&ChartVersion{}, m.ChartVersionId); err != nil {
+			return to, err
+		} else {
+			to.ChartVersionId = &v
+		}
+	}
+	if m.EnvironmentId != nil {
+		if v, err := resource1.DecodeInt64(&Environment{}, m.EnvironmentId); err != nil {
+			return to, err
+		} else {
+			to.EnvironmentId = &v
+		}
+	}
+	accountID, err := auth1.GetAccountID(ctx, nil)
+	if err != nil {
+		return to, err
+	}
+	to.AccountID = accountID
+	if posthook, ok := interface{}(m).(ApplicationInstanceWithAfterToORM); ok {
+		err = posthook.AfterToORM(ctx, &to)
+	}
+	return to, err
+}
+
+// ToPB runs the BeforeToPB hook if present, converts the fields of this
+// object to PB format, runs the AfterToPB hook, then returns the PB object
+func (m *ApplicationInstanceORM) ToPB(ctx context.Context) (ApplicationInstance, error) {
+	to := ApplicationInstance{}
+	var err error
+	if prehook, ok := interface{}(m).(ApplicationInstanceWithBeforeToPB); ok {
+		if err = prehook.BeforeToPB(ctx, &to); err != nil {
+			return to, err
+		}
+	}
+	if v, err := resource1.Encode(&ApplicationInstance{}, m.Id); err != nil {
+		return to, err
+	} else {
+		to.Id = v
+	}
+	to.Name = m.Name
+	to.Description = m.Description
+	if m.Value != nil {
+		tempValue, err := m.Value.ToPB(ctx)
+		if err != nil {
+			return to, err
+		}
+		to.Value = &tempValue
+	}
+	if m.Deployment != nil {
+		tempDeployment, err := m.Deployment.ToPB(ctx)
+		if err != nil {
+			return to, err
+		}
+		to.Deployment = &tempDeployment
+	}
+	if m.ChartVersion != nil {
+		tempChartVersion, err := m.ChartVersion.ToPB(ctx)
+		if err != nil {
+			return to, err
+		}
+		to.ChartVersion = &tempChartVersion
+	}
+	if m.ChartVersionId != nil {
+		if v, err := resource1.Encode(&ChartVersion{}, *m.ChartVersionId); err != nil {
+			return to, err
+		} else {
+			to.ChartVersionId = v
+		}
+	}
+	if m.EnvironmentId != nil {
+		if v, err := resource1.Encode(&Environment{}, *m.EnvironmentId); err != nil {
+			return to, err
+		} else {
+			to.EnvironmentId = v
+		}
+	}
+	if posthook, ok := interface{}(m).(ApplicationInstanceWithAfterToPB); ok {
+		err = posthook.AfterToPB(ctx, &to)
+	}
+	return to, err
+}
+
+// The following are interfaces you can implement for special behavior during ORM/PB conversions
+// of type ApplicationInstance the arg will be the target, the caller the one being converted from
+
+// ApplicationInstanceBeforeToORM called before default ToORM code
+type ApplicationInstanceWithBeforeToORM interface {
+	BeforeToORM(context.Context, *ApplicationInstanceORM) error
+}
+
+// ApplicationInstanceAfterToORM called after default ToORM code
+type ApplicationInstanceWithAfterToORM interface {
+	AfterToORM(context.Context, *ApplicationInstanceORM) error
+}
+
+// ApplicationInstanceBeforeToPB called before default ToPB code
+type ApplicationInstanceWithBeforeToPB interface {
+	BeforeToPB(context.Context, *ApplicationInstance) error
+}
+
+// ApplicationInstanceAfterToPB called after default ToPB code
+type ApplicationInstanceWithAfterToPB interface {
+	AfterToPB(context.Context, *ApplicationInstance) error
+}
+
 type VaultORM struct {
 	AccountID   string
 	Description string
 	Id          int64 `gorm:"type:serial;primary_key"`
 	Name        string
-	Path        string
 	Secrets     []*SecretORM `gorm:"foreignkey:VaultId;association_foreignkey:Id"`
 }
 
@@ -229,7 +1144,6 @@ func (m *Vault) ToORM(ctx context.Context) (VaultORM, error) {
 	}
 	to.Name = m.Name
 	to.Description = m.Description
-	to.Path = m.Path
 	for _, v := range m.Secrets {
 		if v != nil {
 			if tempSecrets, cErr := v.ToORM(ctx); cErr == nil {
@@ -269,7 +1183,6 @@ func (m *VaultORM) ToPB(ctx context.Context) (Vault, error) {
 	}
 	to.Name = m.Name
 	to.Description = m.Description
-	to.Path = m.Path
 	for _, v := range m.Secrets {
 		if v != nil {
 			if tempSecrets, cErr := v.ToPB(ctx); cErr == nil {
@@ -310,47 +1223,61 @@ type VaultWithAfterToPB interface {
 	AfterToPB(context.Context, *Vault) error
 }
 
-type VersionTagORM struct {
-	AccountID   string
-	Artifacts   []*ArtifactORM `gorm:"foreignkey:VersionTagId;association_foreignkey:Id"`
-	Description string
-	Id          int64 `gorm:"type:serial;primary_key"`
-	Name        string
-	Version     string
+type SecretORM struct {
+	AccountID        string
+	AwsRdsInstanceId *int64
+	Description      string
+	Id               int64 `gorm:"type:serial;primary_key"`
+	Key              string
+	Name             string
+	Path             string
+	Type             string
+	ValueId          interface{}
+	VaultId          *int64 `gorm:"type:integer"`
 }
 
 // TableName overrides the default tablename generated by GORM
-func (VersionTagORM) TableName() string {
-	return "version_tags"
+func (SecretORM) TableName() string {
+	return "secrets"
 }
 
 // ToORM runs the BeforeToORM hook if present, converts the fields of this
 // object to ORM format, runs the AfterToORM hook, then returns the ORM object
-func (m *VersionTag) ToORM(ctx context.Context) (VersionTagORM, error) {
-	to := VersionTagORM{}
+func (m *Secret) ToORM(ctx context.Context) (SecretORM, error) {
+	to := SecretORM{}
 	var err error
-	if prehook, ok := interface{}(m).(VersionTagWithBeforeToORM); ok {
+	if prehook, ok := interface{}(m).(SecretWithBeforeToORM); ok {
 		if err = prehook.BeforeToORM(ctx, &to); err != nil {
 			return to, err
 		}
 	}
-	if v, err := resource1.DecodeInt64(&VersionTag{}, m.Id); err != nil {
+	if v, err := resource1.DecodeInt64(&Secret{}, m.Id); err != nil {
 		return to, err
 	} else {
 		to.Id = v
 	}
 	to.Name = m.Name
 	to.Description = m.Description
-	to.Version = m.Version
-	for _, v := range m.Artifacts {
-		if v != nil {
-			if tempArtifacts, cErr := v.ToORM(ctx); cErr == nil {
-				to.Artifacts = append(to.Artifacts, &tempArtifacts)
-			} else {
-				return to, cErr
-			}
+	to.Path = m.Path
+	to.Type = m.Type
+	to.Key = m.Key
+	if m.VaultId != nil {
+		if v, err := resource1.DecodeInt64(&Vault{}, m.VaultId); err != nil {
+			return to, err
 		} else {
-			to.Artifacts = append(to.Artifacts, nil)
+			to.VaultId = &v
+		}
+	}
+	if v, err := resource1.Decode(nil, m.ValueId); err != nil {
+		return to, err
+	} else if v != nil {
+		to.ValueId = v
+	}
+	if m.AwsRdsInstanceId != nil {
+		if v, err := resource1.DecodeInt64(&AwsRdsInstance{}, m.AwsRdsInstanceId); err != nil {
+			return to, err
+		} else {
+			to.AwsRdsInstanceId = &v
 		}
 	}
 	accountID, err := auth1.GetAccountID(ctx, nil)
@@ -358,7 +1285,7 @@ func (m *VersionTag) ToORM(ctx context.Context) (VersionTagORM, error) {
 		return to, err
 	}
 	to.AccountID = accountID
-	if posthook, ok := interface{}(m).(VersionTagWithAfterToORM); ok {
+	if posthook, ok := interface{}(m).(SecretWithAfterToORM); ok {
 		err = posthook.AfterToORM(ctx, &to)
 	}
 	return to, err
@@ -366,161 +1293,127 @@ func (m *VersionTag) ToORM(ctx context.Context) (VersionTagORM, error) {
 
 // ToPB runs the BeforeToPB hook if present, converts the fields of this
 // object to PB format, runs the AfterToPB hook, then returns the PB object
-func (m *VersionTagORM) ToPB(ctx context.Context) (VersionTag, error) {
-	to := VersionTag{}
+func (m *SecretORM) ToPB(ctx context.Context) (Secret, error) {
+	to := Secret{}
 	var err error
-	if prehook, ok := interface{}(m).(VersionTagWithBeforeToPB); ok {
+	if prehook, ok := interface{}(m).(SecretWithBeforeToPB); ok {
 		if err = prehook.BeforeToPB(ctx, &to); err != nil {
 			return to, err
 		}
 	}
-	if v, err := resource1.Encode(&VersionTag{}, m.Id); err != nil {
+	if v, err := resource1.Encode(&Secret{}, m.Id); err != nil {
 		return to, err
 	} else {
 		to.Id = v
 	}
 	to.Name = m.Name
 	to.Description = m.Description
-	to.Version = m.Version
-	for _, v := range m.Artifacts {
-		if v != nil {
-			if tempArtifacts, cErr := v.ToPB(ctx); cErr == nil {
-				to.Artifacts = append(to.Artifacts, &tempArtifacts)
-			} else {
-				return to, cErr
-			}
+	to.Path = m.Path
+	to.Type = m.Type
+	to.Key = m.Key
+	if m.VaultId != nil {
+		if v, err := resource1.Encode(&Vault{}, *m.VaultId); err != nil {
+			return to, err
 		} else {
-			to.Artifacts = append(to.Artifacts, nil)
+			to.VaultId = v
 		}
 	}
-	if posthook, ok := interface{}(m).(VersionTagWithAfterToPB); ok {
+	if v, err := resource1.Encode(nil, m.ValueId); err != nil {
+		return to, err
+	} else {
+		to.ValueId = v
+	}
+	if m.AwsRdsInstanceId != nil {
+		if v, err := resource1.Encode(&AwsRdsInstance{}, *m.AwsRdsInstanceId); err != nil {
+			return to, err
+		} else {
+			to.AwsRdsInstanceId = v
+		}
+	}
+	if posthook, ok := interface{}(m).(SecretWithAfterToPB); ok {
 		err = posthook.AfterToPB(ctx, &to)
 	}
 	return to, err
 }
 
 // The following are interfaces you can implement for special behavior during ORM/PB conversions
-// of type VersionTag the arg will be the target, the caller the one being converted from
+// of type Secret the arg will be the target, the caller the one being converted from
 
-// VersionTagBeforeToORM called before default ToORM code
-type VersionTagWithBeforeToORM interface {
-	BeforeToORM(context.Context, *VersionTagORM) error
+// SecretBeforeToORM called before default ToORM code
+type SecretWithBeforeToORM interface {
+	BeforeToORM(context.Context, *SecretORM) error
 }
 
-// VersionTagAfterToORM called after default ToORM code
-type VersionTagWithAfterToORM interface {
-	AfterToORM(context.Context, *VersionTagORM) error
+// SecretAfterToORM called after default ToORM code
+type SecretWithAfterToORM interface {
+	AfterToORM(context.Context, *SecretORM) error
 }
 
-// VersionTagBeforeToPB called before default ToPB code
-type VersionTagWithBeforeToPB interface {
-	BeforeToPB(context.Context, *VersionTag) error
+// SecretBeforeToPB called before default ToPB code
+type SecretWithBeforeToPB interface {
+	BeforeToPB(context.Context, *Secret) error
 }
 
-// VersionTagAfterToPB called after default ToPB code
-type VersionTagWithAfterToPB interface {
-	AfterToPB(context.Context, *VersionTag) error
+// SecretAfterToPB called after default ToPB code
+type SecretWithAfterToPB interface {
+	AfterToPB(context.Context, *Secret) error
 }
 
-type ApplicationInstanceORM struct {
-	AccountID     string
-	AppName       string
-	Containers    []*ContainerORM `gorm:"foreignkey:ApplicationInstanceId;association_foreignkey:Id"`
-	Deployment    *DeploymentORM  `gorm:"foreignkey:ApplicationInstanceId;association_foreignkey:Id"`
-	Description   string
-	EnvironmentId *int64
-	Id            int64        `gorm:"type:serial;primary_key"`
-	Manifest      *ManifestORM `gorm:"foreignkey:ManifestId;association_foreignkey:Id"`
-	ManifestId    *int64
-	Name          string
-	Repo          string
-	VersionTag    *VersionTagORM `gorm:"foreignkey:VersionTagId;association_foreignkey:Id"`
-	VersionTagId  *int64
+type AwsServiceORM struct {
+	AccountID       string
+	AwsRdsInstances []*AwsRdsInstanceORM `gorm:"foreignkey:AwsServiceId;association_foreignkey:Id"`
+	Description     string
+	Id              int64 `gorm:"type:serial;primary_key"`
+	Name            string
+	RegionId        *int64
 }
 
 // TableName overrides the default tablename generated by GORM
-func (ApplicationInstanceORM) TableName() string {
-	return "application_instances"
+func (AwsServiceORM) TableName() string {
+	return "aws_services"
 }
 
 // ToORM runs the BeforeToORM hook if present, converts the fields of this
 // object to ORM format, runs the AfterToORM hook, then returns the ORM object
-func (m *ApplicationInstance) ToORM(ctx context.Context) (ApplicationInstanceORM, error) {
-	to := ApplicationInstanceORM{}
+func (m *AwsService) ToORM(ctx context.Context) (AwsServiceORM, error) {
+	to := AwsServiceORM{}
 	var err error
-	if prehook, ok := interface{}(m).(ApplicationInstanceWithBeforeToORM); ok {
+	if prehook, ok := interface{}(m).(AwsServiceWithBeforeToORM); ok {
 		if err = prehook.BeforeToORM(ctx, &to); err != nil {
 			return to, err
 		}
 	}
-	if v, err := resource1.DecodeInt64(&ApplicationInstance{}, m.Id); err != nil {
+	if v, err := resource1.DecodeInt64(&AwsService{}, m.Id); err != nil {
 		return to, err
 	} else {
 		to.Id = v
 	}
 	to.Name = m.Name
 	to.Description = m.Description
-	to.AppName = m.AppName
-	to.Repo = m.Repo
-	if m.VersionTag != nil {
-		tempVersionTag, err := m.VersionTag.ToORM(ctx)
-		if err != nil {
-			return to, err
-		}
-		to.VersionTag = &tempVersionTag
-	}
-	if m.VersionTagId != nil {
-		if v, err := resource1.DecodeInt64(&VersionTag{}, m.VersionTagId); err != nil {
-			return to, err
-		} else {
-			to.VersionTagId = &v
-		}
-	}
-	if m.Manifest != nil {
-		tempManifest, err := m.Manifest.ToORM(ctx)
-		if err != nil {
-			return to, err
-		}
-		to.Manifest = &tempManifest
-	}
-	if m.ManifestId != nil {
-		if v, err := resource1.DecodeInt64(&Manifest{}, m.ManifestId); err != nil {
-			return to, err
-		} else {
-			to.ManifestId = &v
-		}
-	}
-	for _, v := range m.Containers {
+	for _, v := range m.AwsRdsInstances {
 		if v != nil {
-			if tempContainers, cErr := v.ToORM(ctx); cErr == nil {
-				to.Containers = append(to.Containers, &tempContainers)
+			if tempAwsRdsInstances, cErr := v.ToORM(ctx); cErr == nil {
+				to.AwsRdsInstances = append(to.AwsRdsInstances, &tempAwsRdsInstances)
 			} else {
 				return to, cErr
 			}
 		} else {
-			to.Containers = append(to.Containers, nil)
+			to.AwsRdsInstances = append(to.AwsRdsInstances, nil)
 		}
 	}
-	if m.EnvironmentId != nil {
-		if v, err := resource1.DecodeInt64(&Environment{}, m.EnvironmentId); err != nil {
+	if m.RegionId != nil {
+		if v, err := resource1.DecodeInt64(&Region{}, m.RegionId); err != nil {
 			return to, err
 		} else {
-			to.EnvironmentId = &v
+			to.RegionId = &v
 		}
-	}
-	if m.Deployment != nil {
-		tempDeployment, err := m.Deployment.ToORM(ctx)
-		if err != nil {
-			return to, err
-		}
-		to.Deployment = &tempDeployment
 	}
 	accountID, err := auth1.GetAccountID(ctx, nil)
 	if err != nil {
 		return to, err
 	}
 	to.AccountID = accountID
-	if posthook, ok := interface{}(m).(ApplicationInstanceWithAfterToORM); ok {
+	if posthook, ok := interface{}(m).(AwsServiceWithAfterToORM); ok {
 		err = posthook.AfterToORM(ctx, &to)
 	}
 	return to, err
@@ -528,103 +1421,66 @@ func (m *ApplicationInstance) ToORM(ctx context.Context) (ApplicationInstanceORM
 
 // ToPB runs the BeforeToPB hook if present, converts the fields of this
 // object to PB format, runs the AfterToPB hook, then returns the PB object
-func (m *ApplicationInstanceORM) ToPB(ctx context.Context) (ApplicationInstance, error) {
-	to := ApplicationInstance{}
+func (m *AwsServiceORM) ToPB(ctx context.Context) (AwsService, error) {
+	to := AwsService{}
 	var err error
-	if prehook, ok := interface{}(m).(ApplicationInstanceWithBeforeToPB); ok {
+	if prehook, ok := interface{}(m).(AwsServiceWithBeforeToPB); ok {
 		if err = prehook.BeforeToPB(ctx, &to); err != nil {
 			return to, err
 		}
 	}
-	if v, err := resource1.Encode(&ApplicationInstance{}, m.Id); err != nil {
+	if v, err := resource1.Encode(&AwsService{}, m.Id); err != nil {
 		return to, err
 	} else {
 		to.Id = v
 	}
 	to.Name = m.Name
 	to.Description = m.Description
-	to.AppName = m.AppName
-	to.Repo = m.Repo
-	if m.VersionTag != nil {
-		tempVersionTag, err := m.VersionTag.ToPB(ctx)
-		if err != nil {
-			return to, err
-		}
-		to.VersionTag = &tempVersionTag
-	}
-	if m.VersionTagId != nil {
-		if v, err := resource1.Encode(&VersionTag{}, *m.VersionTagId); err != nil {
-			return to, err
-		} else {
-			to.VersionTagId = v
-		}
-	}
-	if m.Manifest != nil {
-		tempManifest, err := m.Manifest.ToPB(ctx)
-		if err != nil {
-			return to, err
-		}
-		to.Manifest = &tempManifest
-	}
-	if m.ManifestId != nil {
-		if v, err := resource1.Encode(&Manifest{}, *m.ManifestId); err != nil {
-			return to, err
-		} else {
-			to.ManifestId = v
-		}
-	}
-	for _, v := range m.Containers {
+	for _, v := range m.AwsRdsInstances {
 		if v != nil {
-			if tempContainers, cErr := v.ToPB(ctx); cErr == nil {
-				to.Containers = append(to.Containers, &tempContainers)
+			if tempAwsRdsInstances, cErr := v.ToPB(ctx); cErr == nil {
+				to.AwsRdsInstances = append(to.AwsRdsInstances, &tempAwsRdsInstances)
 			} else {
 				return to, cErr
 			}
 		} else {
-			to.Containers = append(to.Containers, nil)
+			to.AwsRdsInstances = append(to.AwsRdsInstances, nil)
 		}
 	}
-	if m.EnvironmentId != nil {
-		if v, err := resource1.Encode(&Environment{}, *m.EnvironmentId); err != nil {
+	if m.RegionId != nil {
+		if v, err := resource1.Encode(&Region{}, *m.RegionId); err != nil {
 			return to, err
 		} else {
-			to.EnvironmentId = v
+			to.RegionId = v
 		}
 	}
-	if m.Deployment != nil {
-		tempDeployment, err := m.Deployment.ToPB(ctx)
-		if err != nil {
-			return to, err
-		}
-		to.Deployment = &tempDeployment
-	}
-	if posthook, ok := interface{}(m).(ApplicationInstanceWithAfterToPB); ok {
+	if posthook, ok := interface{}(m).(AwsServiceWithAfterToPB); ok {
 		err = posthook.AfterToPB(ctx, &to)
 	}
 	return to, err
 }
 
 // The following are interfaces you can implement for special behavior during ORM/PB conversions
-// of type ApplicationInstance the arg will be the target, the caller the one being converted from
+// of type AwsService the arg will be the target, the caller the one being converted from
 
-// ApplicationInstanceBeforeToORM called before default ToORM code
-type ApplicationInstanceWithBeforeToORM interface {
-	BeforeToORM(context.Context, *ApplicationInstanceORM) error
+// AwsServiceBeforeToORM called before default ToORM code
+type AwsServiceWithBeforeToORM interface {
+	BeforeToORM(context.Context, *AwsServiceORM) error
 }
 
-// ApplicationInstanceAfterToORM called after default ToORM code
-type ApplicationInstanceWithAfterToORM interface {
-	AfterToORM(context.Context, *ApplicationInstanceORM) error
+// AwsServiceAfterToORM called after default ToORM code
+type AwsServiceWithAfterToORM interface {
+	AfterToORM(context.Context, *AwsServiceORM) error
 }
 
-// ApplicationInstanceBeforeToPB called before default ToPB code
-type ApplicationInstanceWithBeforeToPB interface {
-	BeforeToPB(context.Context, *ApplicationInstance) error
+// AwsServiceBeforeToPB called before default ToPB code
+type AwsServiceWithBeforeToPB interface {
+	BeforeToPB(context.Context, *AwsService) error
 }
 
-// ApplicationInstanceAfterToPB called after default ToPB code
-type ApplicationInstanceWithAfterToPB interface {
-	AfterToPB(context.Context, *ApplicationInstance) error
+// AwsServiceAfterToPB called after default ToPB code
+type AwsServiceWithAfterToPB interface {
+	AfterToPB(context.Context, *AwsService) error
 }
 
 type AwsRdsInstanceORM struct {
@@ -752,59 +1608,55 @@ type AwsRdsInstanceWithAfterToPB interface {
 	AfterToPB(context.Context, *AwsRdsInstance) error
 }
 
-type ContainerORM struct {
+type ValueORM struct {
 	AccountID             string
+	ApplicationId         *int64
 	ApplicationInstanceId *int64
-	ContainerName         string
+	AwsServiceId          interface{}
 	Description           string
-	Digest                string
-	Id                    int64 `gorm:"type:serial;primary_key"`
-	ImagePullPolicy       string
-	ImageRepo             string
-	ImageTag              string
+	EnvironmentId         *int64
+	Id                    int64            `gorm:"type:serial;primary_key"`
+	Keys                  *postgres1.Jsonb `gorm:"type:jsonb"`
 	Name                  string
+	RegionId              *int64
 }
 
 // TableName overrides the default tablename generated by GORM
-func (ContainerORM) TableName() string {
-	return "containers"
+func (ValueORM) TableName() string {
+	return "values"
 }
 
 // ToORM runs the BeforeToORM hook if present, converts the fields of this
 // object to ORM format, runs the AfterToORM hook, then returns the ORM object
-func (m *Container) ToORM(ctx context.Context) (ContainerORM, error) {
-	to := ContainerORM{}
+func (m *Value) ToORM(ctx context.Context) (ValueORM, error) {
+	to := ValueORM{}
 	var err error
-	if prehook, ok := interface{}(m).(ContainerWithBeforeToORM); ok {
+	if prehook, ok := interface{}(m).(ValueWithBeforeToORM); ok {
 		if err = prehook.BeforeToORM(ctx, &to); err != nil {
 			return to, err
 		}
 	}
-	if v, err := resource1.DecodeInt64(&Container{}, m.Id); err != nil {
+	if v, err := resource1.DecodeInt64(&Value{}, m.Id); err != nil {
 		return to, err
 	} else {
 		to.Id = v
 	}
 	to.Name = m.Name
 	to.Description = m.Description
-	to.ContainerName = m.ContainerName
-	to.ImageRepo = m.ImageRepo
-	to.ImageTag = m.ImageTag
-	to.ImagePullPolicy = m.ImagePullPolicy
-	to.Digest = m.Digest
-	if m.ApplicationInstanceId != nil {
-		if v, err := resource1.DecodeInt64(&ApplicationInstance{}, m.ApplicationInstanceId); err != nil {
-			return to, err
-		} else {
-			to.ApplicationInstanceId = &v
-		}
+	if m.Keys != nil {
+		to.Keys = &postgres1.Jsonb{[]byte(m.Keys.Value)}
+	}
+	if v, err := resource1.Decode(nil, m.AwsServiceId); err != nil {
+		return to, err
+	} else if v != nil {
+		to.AwsServiceId = v
 	}
 	accountID, err := auth1.GetAccountID(ctx, nil)
 	if err != nil {
 		return to, err
 	}
 	to.AccountID = accountID
-	if posthook, ok := interface{}(m).(ContainerWithAfterToORM); ok {
+	if posthook, ok := interface{}(m).(ValueWithAfterToORM); ok {
 		err = posthook.AfterToORM(ctx, &to)
 	}
 	return to, err
@@ -812,550 +1664,66 @@ func (m *Container) ToORM(ctx context.Context) (ContainerORM, error) {
 
 // ToPB runs the BeforeToPB hook if present, converts the fields of this
 // object to PB format, runs the AfterToPB hook, then returns the PB object
-func (m *ContainerORM) ToPB(ctx context.Context) (Container, error) {
-	to := Container{}
+func (m *ValueORM) ToPB(ctx context.Context) (Value, error) {
+	to := Value{}
 	var err error
-	if prehook, ok := interface{}(m).(ContainerWithBeforeToPB); ok {
+	if prehook, ok := interface{}(m).(ValueWithBeforeToPB); ok {
 		if err = prehook.BeforeToPB(ctx, &to); err != nil {
 			return to, err
 		}
 	}
-	if v, err := resource1.Encode(&Container{}, m.Id); err != nil {
+	if v, err := resource1.Encode(&Value{}, m.Id); err != nil {
 		return to, err
 	} else {
 		to.Id = v
 	}
 	to.Name = m.Name
 	to.Description = m.Description
-	to.ContainerName = m.ContainerName
-	to.ImageRepo = m.ImageRepo
-	to.ImageTag = m.ImageTag
-	to.ImagePullPolicy = m.ImagePullPolicy
-	to.Digest = m.Digest
-	if m.ApplicationInstanceId != nil {
-		if v, err := resource1.Encode(&ApplicationInstance{}, *m.ApplicationInstanceId); err != nil {
-			return to, err
-		} else {
-			to.ApplicationInstanceId = v
-		}
+	if m.Keys != nil {
+		to.Keys = &types1.JSONValue{Value: string(m.Keys.RawMessage)}
 	}
-	if posthook, ok := interface{}(m).(ContainerWithAfterToPB); ok {
+	if v, err := resource1.Encode(nil, m.AwsServiceId); err != nil {
+		return to, err
+	} else {
+		to.AwsServiceId = v
+	}
+	if posthook, ok := interface{}(m).(ValueWithAfterToPB); ok {
 		err = posthook.AfterToPB(ctx, &to)
 	}
 	return to, err
 }
 
 // The following are interfaces you can implement for special behavior during ORM/PB conversions
-// of type Container the arg will be the target, the caller the one being converted from
+// of type Value the arg will be the target, the caller the one being converted from
 
-// ContainerBeforeToORM called before default ToORM code
-type ContainerWithBeforeToORM interface {
-	BeforeToORM(context.Context, *ContainerORM) error
+// ValueBeforeToORM called before default ToORM code
+type ValueWithBeforeToORM interface {
+	BeforeToORM(context.Context, *ValueORM) error
 }
 
-// ContainerAfterToORM called after default ToORM code
-type ContainerWithAfterToORM interface {
-	AfterToORM(context.Context, *ContainerORM) error
+// ValueAfterToORM called after default ToORM code
+type ValueWithAfterToORM interface {
+	AfterToORM(context.Context, *ValueORM) error
 }
 
-// ContainerBeforeToPB called before default ToPB code
-type ContainerWithBeforeToPB interface {
-	BeforeToPB(context.Context, *Container) error
+// ValueBeforeToPB called before default ToPB code
+type ValueWithBeforeToPB interface {
+	BeforeToPB(context.Context, *Value) error
 }
 
-// ContainerAfterToPB called after default ToPB code
-type ContainerWithAfterToPB interface {
-	AfterToPB(context.Context, *Container) error
-}
-
-type EnvironmentORM struct {
-	AccountID            string
-	ApplicationInstances []*ApplicationInstanceORM `gorm:"foreignkey:EnvironmentId;association_foreignkey:Id"`
-	Code                 int32
-	Description          string
-	Id                   int64 `gorm:"type:serial;primary_key"`
-	Name                 string
-	RegionId             *int64
-}
-
-// TableName overrides the default tablename generated by GORM
-func (EnvironmentORM) TableName() string {
-	return "environments"
-}
-
-// ToORM runs the BeforeToORM hook if present, converts the fields of this
-// object to ORM format, runs the AfterToORM hook, then returns the ORM object
-func (m *Environment) ToORM(ctx context.Context) (EnvironmentORM, error) {
-	to := EnvironmentORM{}
-	var err error
-	if prehook, ok := interface{}(m).(EnvironmentWithBeforeToORM); ok {
-		if err = prehook.BeforeToORM(ctx, &to); err != nil {
-			return to, err
-		}
-	}
-	if v, err := resource1.DecodeInt64(&Environment{}, m.Id); err != nil {
-		return to, err
-	} else {
-		to.Id = v
-	}
-	to.Name = m.Name
-	to.Description = m.Description
-	to.Code = int32(m.Code)
-	for _, v := range m.ApplicationInstances {
-		if v != nil {
-			if tempApplicationInstances, cErr := v.ToORM(ctx); cErr == nil {
-				to.ApplicationInstances = append(to.ApplicationInstances, &tempApplicationInstances)
-			} else {
-				return to, cErr
-			}
-		} else {
-			to.ApplicationInstances = append(to.ApplicationInstances, nil)
-		}
-	}
-	if m.RegionId != nil {
-		if v, err := resource1.DecodeInt64(&Region{}, m.RegionId); err != nil {
-			return to, err
-		} else {
-			to.RegionId = &v
-		}
-	}
-	accountID, err := auth1.GetAccountID(ctx, nil)
-	if err != nil {
-		return to, err
-	}
-	to.AccountID = accountID
-	if posthook, ok := interface{}(m).(EnvironmentWithAfterToORM); ok {
-		err = posthook.AfterToORM(ctx, &to)
-	}
-	return to, err
-}
-
-// ToPB runs the BeforeToPB hook if present, converts the fields of this
-// object to PB format, runs the AfterToPB hook, then returns the PB object
-func (m *EnvironmentORM) ToPB(ctx context.Context) (Environment, error) {
-	to := Environment{}
-	var err error
-	if prehook, ok := interface{}(m).(EnvironmentWithBeforeToPB); ok {
-		if err = prehook.BeforeToPB(ctx, &to); err != nil {
-			return to, err
-		}
-	}
-	if v, err := resource1.Encode(&Environment{}, m.Id); err != nil {
-		return to, err
-	} else {
-		to.Id = v
-	}
-	to.Name = m.Name
-	to.Description = m.Description
-	to.Code = Stage(m.Code)
-	for _, v := range m.ApplicationInstances {
-		if v != nil {
-			if tempApplicationInstances, cErr := v.ToPB(ctx); cErr == nil {
-				to.ApplicationInstances = append(to.ApplicationInstances, &tempApplicationInstances)
-			} else {
-				return to, cErr
-			}
-		} else {
-			to.ApplicationInstances = append(to.ApplicationInstances, nil)
-		}
-	}
-	if m.RegionId != nil {
-		if v, err := resource1.Encode(&Region{}, *m.RegionId); err != nil {
-			return to, err
-		} else {
-			to.RegionId = v
-		}
-	}
-	if posthook, ok := interface{}(m).(EnvironmentWithAfterToPB); ok {
-		err = posthook.AfterToPB(ctx, &to)
-	}
-	return to, err
-}
-
-// The following are interfaces you can implement for special behavior during ORM/PB conversions
-// of type Environment the arg will be the target, the caller the one being converted from
-
-// EnvironmentBeforeToORM called before default ToORM code
-type EnvironmentWithBeforeToORM interface {
-	BeforeToORM(context.Context, *EnvironmentORM) error
-}
-
-// EnvironmentAfterToORM called after default ToORM code
-type EnvironmentWithAfterToORM interface {
-	AfterToORM(context.Context, *EnvironmentORM) error
-}
-
-// EnvironmentBeforeToPB called before default ToPB code
-type EnvironmentWithBeforeToPB interface {
-	BeforeToPB(context.Context, *Environment) error
-}
-
-// EnvironmentAfterToPB called after default ToPB code
-type EnvironmentWithAfterToPB interface {
-	AfterToPB(context.Context, *Environment) error
-}
-
-type ManifestORM struct {
-	AccountID    string
-	Affinity     *postgres1.Jsonb `gorm:"type:jsonb"`
-	Artifact     *ArtifactORM     `gorm:"foreignkey:ArtifactId;association_foreignkey:Id"`
-	ArtifactId   *int64
-	AwsService   *AwsServiceORM `gorm:"foreignkey:AwsServiceId;association_foreignkey:Id"`
-	AwsServiceId *int64
-	Commit       string
-	Description  string
-	Id           int64            `gorm:"type:serial;primary_key"`
-	Ingress      *postgres1.Jsonb `gorm:"type:jsonb"`
-	Name         string
-	NodeSelector *postgres1.Jsonb `gorm:"type:jsonb"`
-	Repo         string
-	Resources    *postgres1.Jsonb `gorm:"type:jsonb"`
-	Services     *postgres1.Jsonb `gorm:"type:jsonb"`
-	Tolerations  *postgres1.Jsonb `gorm:"type:jsonb"`
-	Values       *postgres1.Jsonb `gorm:"type:jsonb"`
-	Vault        *VaultORM        `gorm:"foreignkey:VaultId;association_foreignkey:Id"`
-	VaultId      *int64
-}
-
-// TableName overrides the default tablename generated by GORM
-func (ManifestORM) TableName() string {
-	return "manifests"
-}
-
-// ToORM runs the BeforeToORM hook if present, converts the fields of this
-// object to ORM format, runs the AfterToORM hook, then returns the ORM object
-func (m *Manifest) ToORM(ctx context.Context) (ManifestORM, error) {
-	to := ManifestORM{}
-	var err error
-	if prehook, ok := interface{}(m).(ManifestWithBeforeToORM); ok {
-		if err = prehook.BeforeToORM(ctx, &to); err != nil {
-			return to, err
-		}
-	}
-	if v, err := resource1.DecodeInt64(&Manifest{}, m.Id); err != nil {
-		return to, err
-	} else {
-		to.Id = v
-	}
-	to.Name = m.Name
-	to.Description = m.Description
-	to.Repo = m.Repo
-	to.Commit = m.Commit
-	if m.Values != nil {
-		to.Values = &postgres1.Jsonb{[]byte(m.Values.Value)}
-	}
-	if m.Services != nil {
-		to.Services = &postgres1.Jsonb{[]byte(m.Services.Value)}
-	}
-	if m.Ingress != nil {
-		to.Ingress = &postgres1.Jsonb{[]byte(m.Ingress.Value)}
-	}
-	if m.Resources != nil {
-		to.Resources = &postgres1.Jsonb{[]byte(m.Resources.Value)}
-	}
-	if m.NodeSelector != nil {
-		to.NodeSelector = &postgres1.Jsonb{[]byte(m.NodeSelector.Value)}
-	}
-	if m.Tolerations != nil {
-		to.Tolerations = &postgres1.Jsonb{[]byte(m.Tolerations.Value)}
-	}
-	if m.Affinity != nil {
-		to.Affinity = &postgres1.Jsonb{[]byte(m.Affinity.Value)}
-	}
-	if m.Artifact != nil {
-		tempArtifact, err := m.Artifact.ToORM(ctx)
-		if err != nil {
-			return to, err
-		}
-		to.Artifact = &tempArtifact
-	}
-	if m.ArtifactId != nil {
-		if v, err := resource1.DecodeInt64(&Artifact{}, m.ArtifactId); err != nil {
-			return to, err
-		} else {
-			to.ArtifactId = &v
-		}
-	}
-	if m.Vault != nil {
-		tempVault, err := m.Vault.ToORM(ctx)
-		if err != nil {
-			return to, err
-		}
-		to.Vault = &tempVault
-	}
-	if m.VaultId != nil {
-		if v, err := resource1.DecodeInt64(&Vault{}, m.VaultId); err != nil {
-			return to, err
-		} else {
-			to.VaultId = &v
-		}
-	}
-	if m.AwsService != nil {
-		tempAwsService, err := m.AwsService.ToORM(ctx)
-		if err != nil {
-			return to, err
-		}
-		to.AwsService = &tempAwsService
-	}
-	if m.AwsServiceId != nil {
-		if v, err := resource1.DecodeInt64(&AwsService{}, m.AwsServiceId); err != nil {
-			return to, err
-		} else {
-			to.AwsServiceId = &v
-		}
-	}
-	accountID, err := auth1.GetAccountID(ctx, nil)
-	if err != nil {
-		return to, err
-	}
-	to.AccountID = accountID
-	if posthook, ok := interface{}(m).(ManifestWithAfterToORM); ok {
-		err = posthook.AfterToORM(ctx, &to)
-	}
-	return to, err
-}
-
-// ToPB runs the BeforeToPB hook if present, converts the fields of this
-// object to PB format, runs the AfterToPB hook, then returns the PB object
-func (m *ManifestORM) ToPB(ctx context.Context) (Manifest, error) {
-	to := Manifest{}
-	var err error
-	if prehook, ok := interface{}(m).(ManifestWithBeforeToPB); ok {
-		if err = prehook.BeforeToPB(ctx, &to); err != nil {
-			return to, err
-		}
-	}
-	if v, err := resource1.Encode(&Manifest{}, m.Id); err != nil {
-		return to, err
-	} else {
-		to.Id = v
-	}
-	to.Name = m.Name
-	to.Description = m.Description
-	to.Repo = m.Repo
-	to.Commit = m.Commit
-	if m.Values != nil {
-		to.Values = &types1.JSONValue{Value: string(m.Values.RawMessage)}
-	}
-	if m.Services != nil {
-		to.Services = &types1.JSONValue{Value: string(m.Services.RawMessage)}
-	}
-	if m.Ingress != nil {
-		to.Ingress = &types1.JSONValue{Value: string(m.Ingress.RawMessage)}
-	}
-	if m.Resources != nil {
-		to.Resources = &types1.JSONValue{Value: string(m.Resources.RawMessage)}
-	}
-	if m.NodeSelector != nil {
-		to.NodeSelector = &types1.JSONValue{Value: string(m.NodeSelector.RawMessage)}
-	}
-	if m.Tolerations != nil {
-		to.Tolerations = &types1.JSONValue{Value: string(m.Tolerations.RawMessage)}
-	}
-	if m.Affinity != nil {
-		to.Affinity = &types1.JSONValue{Value: string(m.Affinity.RawMessage)}
-	}
-	if m.Artifact != nil {
-		tempArtifact, err := m.Artifact.ToPB(ctx)
-		if err != nil {
-			return to, err
-		}
-		to.Artifact = &tempArtifact
-	}
-	if m.ArtifactId != nil {
-		if v, err := resource1.Encode(&Artifact{}, *m.ArtifactId); err != nil {
-			return to, err
-		} else {
-			to.ArtifactId = v
-		}
-	}
-	if m.Vault != nil {
-		tempVault, err := m.Vault.ToPB(ctx)
-		if err != nil {
-			return to, err
-		}
-		to.Vault = &tempVault
-	}
-	if m.VaultId != nil {
-		if v, err := resource1.Encode(&Vault{}, *m.VaultId); err != nil {
-			return to, err
-		} else {
-			to.VaultId = v
-		}
-	}
-	if m.AwsService != nil {
-		tempAwsService, err := m.AwsService.ToPB(ctx)
-		if err != nil {
-			return to, err
-		}
-		to.AwsService = &tempAwsService
-	}
-	if m.AwsServiceId != nil {
-		if v, err := resource1.Encode(&AwsService{}, *m.AwsServiceId); err != nil {
-			return to, err
-		} else {
-			to.AwsServiceId = v
-		}
-	}
-	if posthook, ok := interface{}(m).(ManifestWithAfterToPB); ok {
-		err = posthook.AfterToPB(ctx, &to)
-	}
-	return to, err
-}
-
-// The following are interfaces you can implement for special behavior during ORM/PB conversions
-// of type Manifest the arg will be the target, the caller the one being converted from
-
-// ManifestBeforeToORM called before default ToORM code
-type ManifestWithBeforeToORM interface {
-	BeforeToORM(context.Context, *ManifestORM) error
-}
-
-// ManifestAfterToORM called after default ToORM code
-type ManifestWithAfterToORM interface {
-	AfterToORM(context.Context, *ManifestORM) error
-}
-
-// ManifestBeforeToPB called before default ToPB code
-type ManifestWithBeforeToPB interface {
-	BeforeToPB(context.Context, *Manifest) error
-}
-
-// ManifestAfterToPB called after default ToPB code
-type ManifestWithAfterToPB interface {
-	AfterToPB(context.Context, *Manifest) error
-}
-
-type SecretORM struct {
-	AccountID        string
-	AwsRdsInstanceId *int64
-	Description      string
-	Id               int64 `gorm:"type:serial;primary_key"`
-	Key              string
-	Name             string
-	Type             string
-	VaultId          *int64 `gorm:"type:integer"`
-}
-
-// TableName overrides the default tablename generated by GORM
-func (SecretORM) TableName() string {
-	return "secrets"
-}
-
-// ToORM runs the BeforeToORM hook if present, converts the fields of this
-// object to ORM format, runs the AfterToORM hook, then returns the ORM object
-func (m *Secret) ToORM(ctx context.Context) (SecretORM, error) {
-	to := SecretORM{}
-	var err error
-	if prehook, ok := interface{}(m).(SecretWithBeforeToORM); ok {
-		if err = prehook.BeforeToORM(ctx, &to); err != nil {
-			return to, err
-		}
-	}
-	if v, err := resource1.DecodeInt64(&Secret{}, m.Id); err != nil {
-		return to, err
-	} else {
-		to.Id = v
-	}
-	to.Name = m.Name
-	to.Description = m.Description
-	to.Type = m.Type
-	to.Key = m.Key
-	if m.VaultId != nil {
-		if v, err := resource1.DecodeInt64(&Vault{}, m.VaultId); err != nil {
-			return to, err
-		} else {
-			to.VaultId = &v
-		}
-	}
-	if m.AwsRdsInstanceId != nil {
-		if v, err := resource1.DecodeInt64(&AwsRdsInstance{}, m.AwsRdsInstanceId); err != nil {
-			return to, err
-		} else {
-			to.AwsRdsInstanceId = &v
-		}
-	}
-	accountID, err := auth1.GetAccountID(ctx, nil)
-	if err != nil {
-		return to, err
-	}
-	to.AccountID = accountID
-	if posthook, ok := interface{}(m).(SecretWithAfterToORM); ok {
-		err = posthook.AfterToORM(ctx, &to)
-	}
-	return to, err
-}
-
-// ToPB runs the BeforeToPB hook if present, converts the fields of this
-// object to PB format, runs the AfterToPB hook, then returns the PB object
-func (m *SecretORM) ToPB(ctx context.Context) (Secret, error) {
-	to := Secret{}
-	var err error
-	if prehook, ok := interface{}(m).(SecretWithBeforeToPB); ok {
-		if err = prehook.BeforeToPB(ctx, &to); err != nil {
-			return to, err
-		}
-	}
-	if v, err := resource1.Encode(&Secret{}, m.Id); err != nil {
-		return to, err
-	} else {
-		to.Id = v
-	}
-	to.Name = m.Name
-	to.Description = m.Description
-	to.Type = m.Type
-	to.Key = m.Key
-	if m.VaultId != nil {
-		if v, err := resource1.Encode(&Vault{}, *m.VaultId); err != nil {
-			return to, err
-		} else {
-			to.VaultId = v
-		}
-	}
-	if m.AwsRdsInstanceId != nil {
-		if v, err := resource1.Encode(&AwsRdsInstance{}, *m.AwsRdsInstanceId); err != nil {
-			return to, err
-		} else {
-			to.AwsRdsInstanceId = v
-		}
-	}
-	if posthook, ok := interface{}(m).(SecretWithAfterToPB); ok {
-		err = posthook.AfterToPB(ctx, &to)
-	}
-	return to, err
-}
-
-// The following are interfaces you can implement for special behavior during ORM/PB conversions
-// of type Secret the arg will be the target, the caller the one being converted from
-
-// SecretBeforeToORM called before default ToORM code
-type SecretWithBeforeToORM interface {
-	BeforeToORM(context.Context, *SecretORM) error
-}
-
-// SecretAfterToORM called after default ToORM code
-type SecretWithAfterToORM interface {
-	AfterToORM(context.Context, *SecretORM) error
-}
-
-// SecretBeforeToPB called before default ToPB code
-type SecretWithBeforeToPB interface {
-	BeforeToPB(context.Context, *Secret) error
-}
-
-// SecretAfterToPB called after default ToPB code
-type SecretWithAfterToPB interface {
-	AfterToPB(context.Context, *Secret) error
+// ValueAfterToPB called after default ToPB code
+type ValueWithAfterToPB interface {
+	AfterToPB(context.Context, *Value) error
 }
 
 type ArtifactORM struct {
-	AccountID    string
-	Commit       string
-	Description  string
-	Id           int64 `gorm:"type:serial;primary_key"`
-	Name         string
-	Repo         string
-	VersionTagId *int64 `gorm:"type:integer"`
+	AccountID      string
+	ChartVersionId *int64 `gorm:"type:integer"`
+	Commit         string
+	Description    string
+	Id             int64 `gorm:"type:serial;primary_key"`
+	Name           string
+	Repo           string
 }
 
 // TableName overrides the default tablename generated by GORM
@@ -1382,11 +1750,11 @@ func (m *Artifact) ToORM(ctx context.Context) (ArtifactORM, error) {
 	to.Description = m.Description
 	to.Repo = m.Repo
 	to.Commit = m.Commit
-	if m.VersionTagId != nil {
-		if v, err := resource1.DecodeInt64(&VersionTag{}, m.VersionTagId); err != nil {
+	if m.ChartVersionId != nil {
+		if v, err := resource1.DecodeInt64(&ChartVersion{}, m.ChartVersionId); err != nil {
 			return to, err
 		} else {
-			to.VersionTagId = &v
+			to.ChartVersionId = &v
 		}
 	}
 	accountID, err := auth1.GetAccountID(ctx, nil)
@@ -1419,11 +1787,11 @@ func (m *ArtifactORM) ToPB(ctx context.Context) (Artifact, error) {
 	to.Description = m.Description
 	to.Repo = m.Repo
 	to.Commit = m.Commit
-	if m.VersionTagId != nil {
-		if v, err := resource1.Encode(&VersionTag{}, *m.VersionTagId); err != nil {
+	if m.ChartVersionId != nil {
+		if v, err := resource1.Encode(&ChartVersion{}, *m.ChartVersionId); err != nil {
 			return to, err
 		} else {
-			to.VersionTagId = v
+			to.ChartVersionId = v
 		}
 	}
 	if posthook, ok := interface{}(m).(ArtifactWithAfterToPB); ok {
@@ -1453,115 +1821,6 @@ type ArtifactWithBeforeToPB interface {
 // ArtifactAfterToPB called after default ToPB code
 type ArtifactWithAfterToPB interface {
 	AfterToPB(context.Context, *Artifact) error
-}
-
-type AwsServiceORM struct {
-	AccountID       string
-	AwsRdsInstances []*AwsRdsInstanceORM `gorm:"foreignkey:AwsServiceId;association_foreignkey:Id"`
-	Description     string
-	Id              int64 `gorm:"type:serial;primary_key"`
-	Name            string
-}
-
-// TableName overrides the default tablename generated by GORM
-func (AwsServiceORM) TableName() string {
-	return "aws_services"
-}
-
-// ToORM runs the BeforeToORM hook if present, converts the fields of this
-// object to ORM format, runs the AfterToORM hook, then returns the ORM object
-func (m *AwsService) ToORM(ctx context.Context) (AwsServiceORM, error) {
-	to := AwsServiceORM{}
-	var err error
-	if prehook, ok := interface{}(m).(AwsServiceWithBeforeToORM); ok {
-		if err = prehook.BeforeToORM(ctx, &to); err != nil {
-			return to, err
-		}
-	}
-	if v, err := resource1.DecodeInt64(&AwsService{}, m.Id); err != nil {
-		return to, err
-	} else {
-		to.Id = v
-	}
-	to.Name = m.Name
-	to.Description = m.Description
-	for _, v := range m.AwsRdsInstances {
-		if v != nil {
-			if tempAwsRdsInstances, cErr := v.ToORM(ctx); cErr == nil {
-				to.AwsRdsInstances = append(to.AwsRdsInstances, &tempAwsRdsInstances)
-			} else {
-				return to, cErr
-			}
-		} else {
-			to.AwsRdsInstances = append(to.AwsRdsInstances, nil)
-		}
-	}
-	accountID, err := auth1.GetAccountID(ctx, nil)
-	if err != nil {
-		return to, err
-	}
-	to.AccountID = accountID
-	if posthook, ok := interface{}(m).(AwsServiceWithAfterToORM); ok {
-		err = posthook.AfterToORM(ctx, &to)
-	}
-	return to, err
-}
-
-// ToPB runs the BeforeToPB hook if present, converts the fields of this
-// object to PB format, runs the AfterToPB hook, then returns the PB object
-func (m *AwsServiceORM) ToPB(ctx context.Context) (AwsService, error) {
-	to := AwsService{}
-	var err error
-	if prehook, ok := interface{}(m).(AwsServiceWithBeforeToPB); ok {
-		if err = prehook.BeforeToPB(ctx, &to); err != nil {
-			return to, err
-		}
-	}
-	if v, err := resource1.Encode(&AwsService{}, m.Id); err != nil {
-		return to, err
-	} else {
-		to.Id = v
-	}
-	to.Name = m.Name
-	to.Description = m.Description
-	for _, v := range m.AwsRdsInstances {
-		if v != nil {
-			if tempAwsRdsInstances, cErr := v.ToPB(ctx); cErr == nil {
-				to.AwsRdsInstances = append(to.AwsRdsInstances, &tempAwsRdsInstances)
-			} else {
-				return to, cErr
-			}
-		} else {
-			to.AwsRdsInstances = append(to.AwsRdsInstances, nil)
-		}
-	}
-	if posthook, ok := interface{}(m).(AwsServiceWithAfterToPB); ok {
-		err = posthook.AfterToPB(ctx, &to)
-	}
-	return to, err
-}
-
-// The following are interfaces you can implement for special behavior during ORM/PB conversions
-// of type AwsService the arg will be the target, the caller the one being converted from
-
-// AwsServiceBeforeToORM called before default ToORM code
-type AwsServiceWithBeforeToORM interface {
-	BeforeToORM(context.Context, *AwsServiceORM) error
-}
-
-// AwsServiceAfterToORM called after default ToORM code
-type AwsServiceWithAfterToORM interface {
-	AfterToORM(context.Context, *AwsServiceORM) error
-}
-
-// AwsServiceBeforeToPB called before default ToPB code
-type AwsServiceWithBeforeToPB interface {
-	BeforeToPB(context.Context, *AwsService) error
-}
-
-// AwsServiceAfterToPB called after default ToPB code
-type AwsServiceWithAfterToPB interface {
-	AfterToPB(context.Context, *AwsService) error
 }
 
 type DeploymentORM struct {
@@ -1811,243 +2070,2824 @@ type KubeClusterWithAfterToPB interface {
 	AfterToPB(context.Context, *KubeCluster) error
 }
 
-type CloudProviderORM struct {
-	Account     string
-	AccountID   string
-	Description string
-	Id          int64 `gorm:"type:serial;primary_key"`
-	Name        string
-	Provider    int32
-	Regions     []*RegionORM `gorm:"foreignkey:CloudProviderId;association_foreignkey:Id"`
+// DefaultCreateCloudProvider executes a basic gorm create call
+func DefaultCreateCloudProvider(ctx context.Context, in *CloudProvider, db *gorm1.DB) (*CloudProvider, error) {
+	if in == nil {
+		return nil, errors1.NilArgumentError
+	}
+	ormObj, err := in.ToORM(ctx)
+	if err != nil {
+		return nil, err
+	}
+	if hook, ok := interface{}(&ormObj).(CloudProviderORMWithBeforeCreate_); ok {
+		if db, err = hook.BeforeCreate_(ctx, db); err != nil {
+			return nil, err
+		}
+	}
+	if err = db.Create(&ormObj).Error; err != nil {
+		return nil, err
+	}
+	if hook, ok := interface{}(&ormObj).(CloudProviderORMWithAfterCreate_); ok {
+		if err = hook.AfterCreate_(ctx, db); err != nil {
+			return nil, err
+		}
+	}
+	pbResponse, err := ormObj.ToPB(ctx)
+	return &pbResponse, err
 }
 
-// TableName overrides the default tablename generated by GORM
-func (CloudProviderORM) TableName() string {
-	return "cloud_providers"
+type CloudProviderORMWithBeforeCreate_ interface {
+	BeforeCreate_(context.Context, *gorm1.DB) (*gorm1.DB, error)
+}
+type CloudProviderORMWithAfterCreate_ interface {
+	AfterCreate_(context.Context, *gorm1.DB) error
 }
 
-// ToORM runs the BeforeToORM hook if present, converts the fields of this
-// object to ORM format, runs the AfterToORM hook, then returns the ORM object
-func (m *CloudProvider) ToORM(ctx context.Context) (CloudProviderORM, error) {
-	to := CloudProviderORM{}
+// DefaultReadCloudProvider executes a basic gorm read call
+func DefaultReadCloudProvider(ctx context.Context, in *CloudProvider, db *gorm1.DB, fs *query1.FieldSelection) (*CloudProvider, error) {
+	if in == nil {
+		return nil, errors1.NilArgumentError
+	}
+	ormObj, err := in.ToORM(ctx)
+	if err != nil {
+		return nil, err
+	}
+	if ormObj.Id == 0 {
+		return nil, errors1.EmptyIdError
+	}
+	if hook, ok := interface{}(&ormObj).(CloudProviderORMWithBeforeReadApplyQuery); ok {
+		if db, err = hook.BeforeReadApplyQuery(ctx, db, fs); err != nil {
+			return nil, err
+		}
+	}
+	if db, err = gorm2.ApplyFieldSelection(ctx, db, fs, &CloudProviderORM{}); err != nil {
+		return nil, err
+	}
+	if hook, ok := interface{}(&ormObj).(CloudProviderORMWithBeforeReadFind); ok {
+		if db, err = hook.BeforeReadFind(ctx, db, fs); err != nil {
+			return nil, err
+		}
+	}
+	ormResponse := CloudProviderORM{}
+	if err = db.Where(&ormObj).First(&ormResponse).Error; err != nil {
+		return nil, err
+	}
+	if hook, ok := interface{}(&ormResponse).(CloudProviderORMWithAfterReadFind); ok {
+		if err = hook.AfterReadFind(ctx, db, fs); err != nil {
+			return nil, err
+		}
+	}
+	pbResponse, err := ormResponse.ToPB(ctx)
+	return &pbResponse, err
+}
+
+type CloudProviderORMWithBeforeReadApplyQuery interface {
+	BeforeReadApplyQuery(context.Context, *gorm1.DB, *query1.FieldSelection) (*gorm1.DB, error)
+}
+type CloudProviderORMWithBeforeReadFind interface {
+	BeforeReadFind(context.Context, *gorm1.DB, *query1.FieldSelection) (*gorm1.DB, error)
+}
+type CloudProviderORMWithAfterReadFind interface {
+	AfterReadFind(context.Context, *gorm1.DB, *query1.FieldSelection) error
+}
+
+func DefaultDeleteCloudProvider(ctx context.Context, in *CloudProvider, db *gorm1.DB) error {
+	if in == nil {
+		return errors1.NilArgumentError
+	}
+	ormObj, err := in.ToORM(ctx)
+	if err != nil {
+		return err
+	}
+	if ormObj.Id == 0 {
+		return errors1.EmptyIdError
+	}
+	if hook, ok := interface{}(&ormObj).(CloudProviderORMWithBeforeDelete_); ok {
+		if db, err = hook.BeforeDelete_(ctx, db); err != nil {
+			return err
+		}
+	}
+	err = db.Where(&ormObj).Delete(&CloudProviderORM{}).Error
+	if err != nil {
+		return err
+	}
+	if hook, ok := interface{}(&ormObj).(CloudProviderORMWithAfterDelete_); ok {
+		err = hook.AfterDelete_(ctx, db)
+	}
+	return err
+}
+
+type CloudProviderORMWithBeforeDelete_ interface {
+	BeforeDelete_(context.Context, *gorm1.DB) (*gorm1.DB, error)
+}
+type CloudProviderORMWithAfterDelete_ interface {
+	AfterDelete_(context.Context, *gorm1.DB) error
+}
+
+func DefaultDeleteCloudProviderSet(ctx context.Context, in []*CloudProvider, db *gorm1.DB) error {
+	if in == nil {
+		return errors1.NilArgumentError
+	}
 	var err error
-	if prehook, ok := interface{}(m).(CloudProviderWithBeforeToORM); ok {
-		if err = prehook.BeforeToORM(ctx, &to); err != nil {
-			return to, err
+	keys := []int64{}
+	for _, obj := range in {
+		ormObj, err := obj.ToORM(ctx)
+		if err != nil {
+			return err
+		}
+		if ormObj.Id == 0 {
+			return errors1.EmptyIdError
+		}
+		keys = append(keys, ormObj.Id)
+	}
+	if hook, ok := (interface{}(&CloudProviderORM{})).(CloudProviderORMWithBeforeDeleteSet); ok {
+		if db, err = hook.BeforeDeleteSet(ctx, in, db); err != nil {
+			return err
 		}
 	}
-	if v, err := resource1.DecodeInt64(&CloudProvider{}, m.Id); err != nil {
-		return to, err
-	} else {
-		to.Id = v
+	acctId, err := auth1.GetAccountID(ctx, nil)
+	if err != nil {
+		return err
 	}
-	to.Name = m.Name
-	to.Description = m.Description
-	to.Provider = int32(m.Provider)
-	to.Account = m.Account
-	for _, v := range m.Regions {
-		if v != nil {
-			if tempRegions, cErr := v.ToORM(ctx); cErr == nil {
-				to.Regions = append(to.Regions, &tempRegions)
-			} else {
-				return to, cErr
-			}
-		} else {
-			to.Regions = append(to.Regions, nil)
-		}
+	err = db.Where("account_id = ? AND id in (?)", acctId, keys).Delete(&CloudProviderORM{}).Error
+	if err != nil {
+		return err
+	}
+	if hook, ok := (interface{}(&CloudProviderORM{})).(CloudProviderORMWithAfterDeleteSet); ok {
+		err = hook.AfterDeleteSet(ctx, in, db)
+	}
+	return err
+}
+
+type CloudProviderORMWithBeforeDeleteSet interface {
+	BeforeDeleteSet(context.Context, []*CloudProvider, *gorm1.DB) (*gorm1.DB, error)
+}
+type CloudProviderORMWithAfterDeleteSet interface {
+	AfterDeleteSet(context.Context, []*CloudProvider, *gorm1.DB) error
+}
+
+// DefaultStrictUpdateCloudProvider clears first level 1:many children and then executes a gorm update call
+func DefaultStrictUpdateCloudProvider(ctx context.Context, in *CloudProvider, db *gorm1.DB) (*CloudProvider, error) {
+	if in == nil {
+		return nil, fmt.Errorf("Nil argument to DefaultStrictUpdateCloudProvider")
+	}
+	ormObj, err := in.ToORM(ctx)
+	if err != nil {
+		return nil, err
 	}
 	accountID, err := auth1.GetAccountID(ctx, nil)
 	if err != nil {
-		return to, err
+		return nil, err
 	}
-	to.AccountID = accountID
-	if posthook, ok := interface{}(m).(CloudProviderWithAfterToORM); ok {
-		err = posthook.AfterToORM(ctx, &to)
+	db = db.Where(map[string]interface{}{"account_id": accountID})
+	lockedRow := &CloudProviderORM{}
+	db.Model(&ormObj).Set("gorm:query_option", "FOR UPDATE").Where("id=?", ormObj.Id).First(lockedRow)
+	if hook, ok := interface{}(&ormObj).(CloudProviderORMWithBeforeStrictUpdateCleanup); ok {
+		if db, err = hook.BeforeStrictUpdateCleanup(ctx, db); err != nil {
+			return nil, err
+		}
 	}
-	return to, err
+	filterRegions := RegionORM{}
+	if ormObj.Id == 0 {
+		return nil, errors1.EmptyIdError
+	}
+	filterRegions.CloudProviderId = new(int64)
+	*filterRegions.CloudProviderId = ormObj.Id
+	if err = db.Where(filterRegions).Delete(RegionORM{}).Error; err != nil {
+		return nil, err
+	}
+	if hook, ok := interface{}(&ormObj).(CloudProviderORMWithBeforeStrictUpdateSave); ok {
+		if db, err = hook.BeforeStrictUpdateSave(ctx, db); err != nil {
+			return nil, err
+		}
+	}
+	if err = db.Save(&ormObj).Error; err != nil {
+		return nil, err
+	}
+	if hook, ok := interface{}(&ormObj).(CloudProviderORMWithAfterStrictUpdateSave); ok {
+		if err = hook.AfterStrictUpdateSave(ctx, db); err != nil {
+			return nil, err
+		}
+	}
+	pbResponse, err := ormObj.ToPB(ctx)
+	if err != nil {
+		return nil, err
+	}
+	return &pbResponse, err
 }
 
-// ToPB runs the BeforeToPB hook if present, converts the fields of this
-// object to PB format, runs the AfterToPB hook, then returns the PB object
-func (m *CloudProviderORM) ToPB(ctx context.Context) (CloudProvider, error) {
-	to := CloudProvider{}
+type CloudProviderORMWithBeforeStrictUpdateCleanup interface {
+	BeforeStrictUpdateCleanup(context.Context, *gorm1.DB) (*gorm1.DB, error)
+}
+type CloudProviderORMWithBeforeStrictUpdateSave interface {
+	BeforeStrictUpdateSave(context.Context, *gorm1.DB) (*gorm1.DB, error)
+}
+type CloudProviderORMWithAfterStrictUpdateSave interface {
+	AfterStrictUpdateSave(context.Context, *gorm1.DB) error
+}
+
+// DefaultPatchCloudProvider executes a basic gorm update call with patch behavior
+func DefaultPatchCloudProvider(ctx context.Context, in *CloudProvider, updateMask *field_mask1.FieldMask, db *gorm1.DB) (*CloudProvider, error) {
+	if in == nil {
+		return nil, errors1.NilArgumentError
+	}
+	var pbObj CloudProvider
 	var err error
-	if prehook, ok := interface{}(m).(CloudProviderWithBeforeToPB); ok {
-		if err = prehook.BeforeToPB(ctx, &to); err != nil {
-			return to, err
+	if hook, ok := interface{}(&pbObj).(CloudProviderWithBeforePatchRead); ok {
+		if db, err = hook.BeforePatchRead(ctx, in, updateMask, db); err != nil {
+			return nil, err
 		}
 	}
-	if v, err := resource1.Encode(&CloudProvider{}, m.Id); err != nil {
-		return to, err
-	} else {
-		to.Id = v
+	pbReadRes, err := DefaultReadCloudProvider(ctx, &CloudProvider{Id: in.GetId()}, db, nil)
+	if err != nil {
+		return nil, err
 	}
-	to.Name = m.Name
-	to.Description = m.Description
-	to.Provider = Provider(m.Provider)
-	to.Account = m.Account
-	for _, v := range m.Regions {
-		if v != nil {
-			if tempRegions, cErr := v.ToPB(ctx); cErr == nil {
-				to.Regions = append(to.Regions, &tempRegions)
-			} else {
-				return to, cErr
-			}
-		} else {
-			to.Regions = append(to.Regions, nil)
+	pbObj = *pbReadRes
+	if hook, ok := interface{}(&pbObj).(CloudProviderWithBeforePatchApplyFieldMask); ok {
+		if db, err = hook.BeforePatchApplyFieldMask(ctx, in, updateMask, db); err != nil {
+			return nil, err
 		}
 	}
-	if posthook, ok := interface{}(m).(CloudProviderWithAfterToPB); ok {
-		err = posthook.AfterToPB(ctx, &to)
+	if _, err := DefaultApplyFieldMaskCloudProvider(ctx, &pbObj, in, updateMask, "", db); err != nil {
+		return nil, err
 	}
-	return to, err
+	if hook, ok := interface{}(&pbObj).(CloudProviderWithBeforePatchSave); ok {
+		if db, err = hook.BeforePatchSave(ctx, in, updateMask, db); err != nil {
+			return nil, err
+		}
+	}
+	pbResponse, err := DefaultStrictUpdateCloudProvider(ctx, &pbObj, db)
+	if err != nil {
+		return nil, err
+	}
+	if hook, ok := interface{}(pbResponse).(CloudProviderWithAfterPatchSave); ok {
+		if err = hook.AfterPatchSave(ctx, in, updateMask, db); err != nil {
+			return nil, err
+		}
+	}
+	return pbResponse, nil
 }
 
-// The following are interfaces you can implement for special behavior during ORM/PB conversions
-// of type CloudProvider the arg will be the target, the caller the one being converted from
-
-// CloudProviderBeforeToORM called before default ToORM code
-type CloudProviderWithBeforeToORM interface {
-	BeforeToORM(context.Context, *CloudProviderORM) error
+type CloudProviderWithBeforePatchRead interface {
+	BeforePatchRead(context.Context, *CloudProvider, *field_mask1.FieldMask, *gorm1.DB) (*gorm1.DB, error)
+}
+type CloudProviderWithBeforePatchApplyFieldMask interface {
+	BeforePatchApplyFieldMask(context.Context, *CloudProvider, *field_mask1.FieldMask, *gorm1.DB) (*gorm1.DB, error)
+}
+type CloudProviderWithBeforePatchSave interface {
+	BeforePatchSave(context.Context, *CloudProvider, *field_mask1.FieldMask, *gorm1.DB) (*gorm1.DB, error)
+}
+type CloudProviderWithAfterPatchSave interface {
+	AfterPatchSave(context.Context, *CloudProvider, *field_mask1.FieldMask, *gorm1.DB) error
 }
 
-// CloudProviderAfterToORM called after default ToORM code
-type CloudProviderWithAfterToORM interface {
-	AfterToORM(context.Context, *CloudProviderORM) error
+// DefaultPatchSetCloudProvider executes a bulk gorm update call with patch behavior
+func DefaultPatchSetCloudProvider(ctx context.Context, objects []*CloudProvider, updateMasks []*field_mask1.FieldMask, db *gorm1.DB) ([]*CloudProvider, error) {
+	if len(objects) != len(updateMasks) {
+		return nil, fmt.Errorf(errors1.BadRepeatedFieldMaskTpl, len(updateMasks), len(objects))
+	}
+
+	results := make([]*CloudProvider, 0, len(objects))
+	for i, patcher := range objects {
+		pbResponse, err := DefaultPatchCloudProvider(ctx, patcher, updateMasks[i], db)
+		if err != nil {
+			return nil, err
+		}
+
+		results = append(results, pbResponse)
+	}
+
+	return results, nil
 }
 
-// CloudProviderBeforeToPB called before default ToPB code
-type CloudProviderWithBeforeToPB interface {
-	BeforeToPB(context.Context, *CloudProvider) error
-}
-
-// CloudProviderAfterToPB called after default ToPB code
-type CloudProviderWithAfterToPB interface {
-	AfterToPB(context.Context, *CloudProvider) error
-}
-
-type RegionORM struct {
-	AccountID       string
-	CloudProviderId *int64
-	Description     string
-	Environments    []*EnvironmentORM `gorm:"foreignkey:RegionId;association_foreignkey:Id"`
-	Id              int64             `gorm:"type:serial;primary_key"`
-	Name            string
-}
-
-// TableName overrides the default tablename generated by GORM
-func (RegionORM) TableName() string {
-	return "regions"
-}
-
-// ToORM runs the BeforeToORM hook if present, converts the fields of this
-// object to ORM format, runs the AfterToORM hook, then returns the ORM object
-func (m *Region) ToORM(ctx context.Context) (RegionORM, error) {
-	to := RegionORM{}
+// DefaultApplyFieldMaskCloudProvider patches an pbObject with patcher according to a field mask.
+func DefaultApplyFieldMaskCloudProvider(ctx context.Context, patchee *CloudProvider, patcher *CloudProvider, updateMask *field_mask1.FieldMask, prefix string, db *gorm1.DB) (*CloudProvider, error) {
+	if patcher == nil {
+		return nil, nil
+	} else if patchee == nil {
+		return nil, errors1.NilArgumentError
+	}
 	var err error
-	if prehook, ok := interface{}(m).(RegionWithBeforeToORM); ok {
-		if err = prehook.BeforeToORM(ctx, &to); err != nil {
-			return to, err
+	for _, f := range updateMask.Paths {
+		if f == prefix+"Id" {
+			patchee.Id = patcher.Id
+			continue
+		}
+		if f == prefix+"Name" {
+			patchee.Name = patcher.Name
+			continue
+		}
+		if f == prefix+"Description" {
+			patchee.Description = patcher.Description
+			continue
+		}
+		if f == prefix+"Provider" {
+			patchee.Provider = patcher.Provider
+			continue
+		}
+		if f == prefix+"Account" {
+			patchee.Account = patcher.Account
+			continue
+		}
+		if f == prefix+"Regions" {
+			patchee.Regions = patcher.Regions
+			continue
 		}
 	}
-	if v, err := resource1.DecodeInt64(&Region{}, m.Id); err != nil {
-		return to, err
-	} else {
-		to.Id = v
+	if err != nil {
+		return nil, err
 	}
-	to.Name = m.Name
-	to.Description = m.Description
-	for _, v := range m.Environments {
-		if v != nil {
-			if tempEnvironments, cErr := v.ToORM(ctx); cErr == nil {
-				to.Environments = append(to.Environments, &tempEnvironments)
-			} else {
-				return to, cErr
-			}
-		} else {
-			to.Environments = append(to.Environments, nil)
+	return patchee, nil
+}
+
+// DefaultListCloudProvider executes a gorm list call
+func DefaultListCloudProvider(ctx context.Context, db *gorm1.DB, f *query1.Filtering, s *query1.Sorting, p *query1.Pagination, fs *query1.FieldSelection) ([]*CloudProvider, error) {
+	in := CloudProvider{}
+	ormObj, err := in.ToORM(ctx)
+	if err != nil {
+		return nil, err
+	}
+	if hook, ok := interface{}(&ormObj).(CloudProviderORMWithBeforeListApplyQuery); ok {
+		if db, err = hook.BeforeListApplyQuery(ctx, db, f, s, p, fs); err != nil {
+			return nil, err
 		}
 	}
-	if m.CloudProviderId != nil {
-		if v, err := resource1.DecodeInt64(&CloudProvider{}, m.CloudProviderId); err != nil {
-			return to, err
-		} else {
-			to.CloudProviderId = &v
+	db, err = gorm2.ApplyCollectionOperators(ctx, db, &CloudProviderORM{}, &CloudProvider{}, f, s, p, fs)
+	if err != nil {
+		return nil, err
+	}
+	if hook, ok := interface{}(&ormObj).(CloudProviderORMWithBeforeListFind); ok {
+		if db, err = hook.BeforeListFind(ctx, db, f, s, p, fs); err != nil {
+			return nil, err
 		}
+	}
+	db = db.Where(&ormObj)
+	db = db.Order("id")
+	ormResponse := []CloudProviderORM{}
+	if err := db.Find(&ormResponse).Error; err != nil {
+		return nil, err
+	}
+	if hook, ok := interface{}(&ormObj).(CloudProviderORMWithAfterListFind); ok {
+		if err = hook.AfterListFind(ctx, db, &ormResponse, f, s, p, fs); err != nil {
+			return nil, err
+		}
+	}
+	pbResponse := []*CloudProvider{}
+	for _, responseEntry := range ormResponse {
+		temp, err := responseEntry.ToPB(ctx)
+		if err != nil {
+			return nil, err
+		}
+		pbResponse = append(pbResponse, &temp)
+	}
+	return pbResponse, nil
+}
+
+type CloudProviderORMWithBeforeListApplyQuery interface {
+	BeforeListApplyQuery(context.Context, *gorm1.DB, *query1.Filtering, *query1.Sorting, *query1.Pagination, *query1.FieldSelection) (*gorm1.DB, error)
+}
+type CloudProviderORMWithBeforeListFind interface {
+	BeforeListFind(context.Context, *gorm1.DB, *query1.Filtering, *query1.Sorting, *query1.Pagination, *query1.FieldSelection) (*gorm1.DB, error)
+}
+type CloudProviderORMWithAfterListFind interface {
+	AfterListFind(context.Context, *gorm1.DB, *[]CloudProviderORM, *query1.Filtering, *query1.Sorting, *query1.Pagination, *query1.FieldSelection) error
+}
+
+// DefaultCreateRegion executes a basic gorm create call
+func DefaultCreateRegion(ctx context.Context, in *Region, db *gorm1.DB) (*Region, error) {
+	if in == nil {
+		return nil, errors1.NilArgumentError
+	}
+	ormObj, err := in.ToORM(ctx)
+	if err != nil {
+		return nil, err
+	}
+	if hook, ok := interface{}(&ormObj).(RegionORMWithBeforeCreate_); ok {
+		if db, err = hook.BeforeCreate_(ctx, db); err != nil {
+			return nil, err
+		}
+	}
+	if err = db.Create(&ormObj).Error; err != nil {
+		return nil, err
+	}
+	if hook, ok := interface{}(&ormObj).(RegionORMWithAfterCreate_); ok {
+		if err = hook.AfterCreate_(ctx, db); err != nil {
+			return nil, err
+		}
+	}
+	pbResponse, err := ormObj.ToPB(ctx)
+	return &pbResponse, err
+}
+
+type RegionORMWithBeforeCreate_ interface {
+	BeforeCreate_(context.Context, *gorm1.DB) (*gorm1.DB, error)
+}
+type RegionORMWithAfterCreate_ interface {
+	AfterCreate_(context.Context, *gorm1.DB) error
+}
+
+// DefaultReadRegion executes a basic gorm read call
+func DefaultReadRegion(ctx context.Context, in *Region, db *gorm1.DB, fs *query1.FieldSelection) (*Region, error) {
+	if in == nil {
+		return nil, errors1.NilArgumentError
+	}
+	ormObj, err := in.ToORM(ctx)
+	if err != nil {
+		return nil, err
+	}
+	if ormObj.Id == 0 {
+		return nil, errors1.EmptyIdError
+	}
+	if hook, ok := interface{}(&ormObj).(RegionORMWithBeforeReadApplyQuery); ok {
+		if db, err = hook.BeforeReadApplyQuery(ctx, db, fs); err != nil {
+			return nil, err
+		}
+	}
+	if db, err = gorm2.ApplyFieldSelection(ctx, db, fs, &RegionORM{}); err != nil {
+		return nil, err
+	}
+	if hook, ok := interface{}(&ormObj).(RegionORMWithBeforeReadFind); ok {
+		if db, err = hook.BeforeReadFind(ctx, db, fs); err != nil {
+			return nil, err
+		}
+	}
+	ormResponse := RegionORM{}
+	if err = db.Where(&ormObj).First(&ormResponse).Error; err != nil {
+		return nil, err
+	}
+	if hook, ok := interface{}(&ormResponse).(RegionORMWithAfterReadFind); ok {
+		if err = hook.AfterReadFind(ctx, db, fs); err != nil {
+			return nil, err
+		}
+	}
+	pbResponse, err := ormResponse.ToPB(ctx)
+	return &pbResponse, err
+}
+
+type RegionORMWithBeforeReadApplyQuery interface {
+	BeforeReadApplyQuery(context.Context, *gorm1.DB, *query1.FieldSelection) (*gorm1.DB, error)
+}
+type RegionORMWithBeforeReadFind interface {
+	BeforeReadFind(context.Context, *gorm1.DB, *query1.FieldSelection) (*gorm1.DB, error)
+}
+type RegionORMWithAfterReadFind interface {
+	AfterReadFind(context.Context, *gorm1.DB, *query1.FieldSelection) error
+}
+
+func DefaultDeleteRegion(ctx context.Context, in *Region, db *gorm1.DB) error {
+	if in == nil {
+		return errors1.NilArgumentError
+	}
+	ormObj, err := in.ToORM(ctx)
+	if err != nil {
+		return err
+	}
+	if ormObj.Id == 0 {
+		return errors1.EmptyIdError
+	}
+	if hook, ok := interface{}(&ormObj).(RegionORMWithBeforeDelete_); ok {
+		if db, err = hook.BeforeDelete_(ctx, db); err != nil {
+			return err
+		}
+	}
+	err = db.Where(&ormObj).Delete(&RegionORM{}).Error
+	if err != nil {
+		return err
+	}
+	if hook, ok := interface{}(&ormObj).(RegionORMWithAfterDelete_); ok {
+		err = hook.AfterDelete_(ctx, db)
+	}
+	return err
+}
+
+type RegionORMWithBeforeDelete_ interface {
+	BeforeDelete_(context.Context, *gorm1.DB) (*gorm1.DB, error)
+}
+type RegionORMWithAfterDelete_ interface {
+	AfterDelete_(context.Context, *gorm1.DB) error
+}
+
+func DefaultDeleteRegionSet(ctx context.Context, in []*Region, db *gorm1.DB) error {
+	if in == nil {
+		return errors1.NilArgumentError
+	}
+	var err error
+	keys := []int64{}
+	for _, obj := range in {
+		ormObj, err := obj.ToORM(ctx)
+		if err != nil {
+			return err
+		}
+		if ormObj.Id == 0 {
+			return errors1.EmptyIdError
+		}
+		keys = append(keys, ormObj.Id)
+	}
+	if hook, ok := (interface{}(&RegionORM{})).(RegionORMWithBeforeDeleteSet); ok {
+		if db, err = hook.BeforeDeleteSet(ctx, in, db); err != nil {
+			return err
+		}
+	}
+	acctId, err := auth1.GetAccountID(ctx, nil)
+	if err != nil {
+		return err
+	}
+	err = db.Where("account_id = ? AND id in (?)", acctId, keys).Delete(&RegionORM{}).Error
+	if err != nil {
+		return err
+	}
+	if hook, ok := (interface{}(&RegionORM{})).(RegionORMWithAfterDeleteSet); ok {
+		err = hook.AfterDeleteSet(ctx, in, db)
+	}
+	return err
+}
+
+type RegionORMWithBeforeDeleteSet interface {
+	BeforeDeleteSet(context.Context, []*Region, *gorm1.DB) (*gorm1.DB, error)
+}
+type RegionORMWithAfterDeleteSet interface {
+	AfterDeleteSet(context.Context, []*Region, *gorm1.DB) error
+}
+
+// DefaultStrictUpdateRegion clears first level 1:many children and then executes a gorm update call
+func DefaultStrictUpdateRegion(ctx context.Context, in *Region, db *gorm1.DB) (*Region, error) {
+	if in == nil {
+		return nil, fmt.Errorf("Nil argument to DefaultStrictUpdateRegion")
+	}
+	ormObj, err := in.ToORM(ctx)
+	if err != nil {
+		return nil, err
 	}
 	accountID, err := auth1.GetAccountID(ctx, nil)
 	if err != nil {
-		return to, err
+		return nil, err
 	}
-	to.AccountID = accountID
-	if posthook, ok := interface{}(m).(RegionWithAfterToORM); ok {
-		err = posthook.AfterToORM(ctx, &to)
+	db = db.Where(map[string]interface{}{"account_id": accountID})
+	lockedRow := &RegionORM{}
+	db.Model(&ormObj).Set("gorm:query_option", "FOR UPDATE").Where("id=?", ormObj.Id).First(lockedRow)
+	if hook, ok := interface{}(&ormObj).(RegionORMWithBeforeStrictUpdateCleanup); ok {
+		if db, err = hook.BeforeStrictUpdateCleanup(ctx, db); err != nil {
+			return nil, err
+		}
 	}
-	return to, err
+	filterAwsServices := AwsServiceORM{}
+	if ormObj.Id == 0 {
+		return nil, errors1.EmptyIdError
+	}
+	filterAwsServices.RegionId = new(int64)
+	*filterAwsServices.RegionId = ormObj.Id
+	if err = db.Where(filterAwsServices).Delete(AwsServiceORM{}).Error; err != nil {
+		return nil, err
+	}
+	filterStages := StageORM{}
+	if ormObj.Id == 0 {
+		return nil, errors1.EmptyIdError
+	}
+	filterStages.RegionId = new(int64)
+	*filterStages.RegionId = ormObj.Id
+	if err = db.Where(filterStages).Delete(StageORM{}).Error; err != nil {
+		return nil, err
+	}
+	filterValue := ValueORM{}
+	if ormObj.Id == 0 {
+		return nil, errors1.EmptyIdError
+	}
+	filterValue.RegionId = new(int64)
+	*filterValue.RegionId = ormObj.Id
+	if err = db.Where(filterValue).Delete(ValueORM{}).Error; err != nil {
+		return nil, err
+	}
+	if hook, ok := interface{}(&ormObj).(RegionORMWithBeforeStrictUpdateSave); ok {
+		if db, err = hook.BeforeStrictUpdateSave(ctx, db); err != nil {
+			return nil, err
+		}
+	}
+	if err = db.Save(&ormObj).Error; err != nil {
+		return nil, err
+	}
+	if hook, ok := interface{}(&ormObj).(RegionORMWithAfterStrictUpdateSave); ok {
+		if err = hook.AfterStrictUpdateSave(ctx, db); err != nil {
+			return nil, err
+		}
+	}
+	pbResponse, err := ormObj.ToPB(ctx)
+	if err != nil {
+		return nil, err
+	}
+	return &pbResponse, err
 }
 
-// ToPB runs the BeforeToPB hook if present, converts the fields of this
-// object to PB format, runs the AfterToPB hook, then returns the PB object
-func (m *RegionORM) ToPB(ctx context.Context) (Region, error) {
-	to := Region{}
+type RegionORMWithBeforeStrictUpdateCleanup interface {
+	BeforeStrictUpdateCleanup(context.Context, *gorm1.DB) (*gorm1.DB, error)
+}
+type RegionORMWithBeforeStrictUpdateSave interface {
+	BeforeStrictUpdateSave(context.Context, *gorm1.DB) (*gorm1.DB, error)
+}
+type RegionORMWithAfterStrictUpdateSave interface {
+	AfterStrictUpdateSave(context.Context, *gorm1.DB) error
+}
+
+// DefaultPatchRegion executes a basic gorm update call with patch behavior
+func DefaultPatchRegion(ctx context.Context, in *Region, updateMask *field_mask1.FieldMask, db *gorm1.DB) (*Region, error) {
+	if in == nil {
+		return nil, errors1.NilArgumentError
+	}
+	var pbObj Region
 	var err error
-	if prehook, ok := interface{}(m).(RegionWithBeforeToPB); ok {
-		if err = prehook.BeforeToPB(ctx, &to); err != nil {
-			return to, err
+	if hook, ok := interface{}(&pbObj).(RegionWithBeforePatchRead); ok {
+		if db, err = hook.BeforePatchRead(ctx, in, updateMask, db); err != nil {
+			return nil, err
 		}
 	}
-	if v, err := resource1.Encode(&Region{}, m.Id); err != nil {
-		return to, err
-	} else {
-		to.Id = v
+	pbReadRes, err := DefaultReadRegion(ctx, &Region{Id: in.GetId()}, db, nil)
+	if err != nil {
+		return nil, err
 	}
-	to.Name = m.Name
-	to.Description = m.Description
-	for _, v := range m.Environments {
-		if v != nil {
-			if tempEnvironments, cErr := v.ToPB(ctx); cErr == nil {
-				to.Environments = append(to.Environments, &tempEnvironments)
-			} else {
-				return to, cErr
+	pbObj = *pbReadRes
+	if hook, ok := interface{}(&pbObj).(RegionWithBeforePatchApplyFieldMask); ok {
+		if db, err = hook.BeforePatchApplyFieldMask(ctx, in, updateMask, db); err != nil {
+			return nil, err
+		}
+	}
+	if _, err := DefaultApplyFieldMaskRegion(ctx, &pbObj, in, updateMask, "", db); err != nil {
+		return nil, err
+	}
+	if hook, ok := interface{}(&pbObj).(RegionWithBeforePatchSave); ok {
+		if db, err = hook.BeforePatchSave(ctx, in, updateMask, db); err != nil {
+			return nil, err
+		}
+	}
+	pbResponse, err := DefaultStrictUpdateRegion(ctx, &pbObj, db)
+	if err != nil {
+		return nil, err
+	}
+	if hook, ok := interface{}(pbResponse).(RegionWithAfterPatchSave); ok {
+		if err = hook.AfterPatchSave(ctx, in, updateMask, db); err != nil {
+			return nil, err
+		}
+	}
+	return pbResponse, nil
+}
+
+type RegionWithBeforePatchRead interface {
+	BeforePatchRead(context.Context, *Region, *field_mask1.FieldMask, *gorm1.DB) (*gorm1.DB, error)
+}
+type RegionWithBeforePatchApplyFieldMask interface {
+	BeforePatchApplyFieldMask(context.Context, *Region, *field_mask1.FieldMask, *gorm1.DB) (*gorm1.DB, error)
+}
+type RegionWithBeforePatchSave interface {
+	BeforePatchSave(context.Context, *Region, *field_mask1.FieldMask, *gorm1.DB) (*gorm1.DB, error)
+}
+type RegionWithAfterPatchSave interface {
+	AfterPatchSave(context.Context, *Region, *field_mask1.FieldMask, *gorm1.DB) error
+}
+
+// DefaultPatchSetRegion executes a bulk gorm update call with patch behavior
+func DefaultPatchSetRegion(ctx context.Context, objects []*Region, updateMasks []*field_mask1.FieldMask, db *gorm1.DB) ([]*Region, error) {
+	if len(objects) != len(updateMasks) {
+		return nil, fmt.Errorf(errors1.BadRepeatedFieldMaskTpl, len(updateMasks), len(objects))
+	}
+
+	results := make([]*Region, 0, len(objects))
+	for i, patcher := range objects {
+		pbResponse, err := DefaultPatchRegion(ctx, patcher, updateMasks[i], db)
+		if err != nil {
+			return nil, err
+		}
+
+		results = append(results, pbResponse)
+	}
+
+	return results, nil
+}
+
+// DefaultApplyFieldMaskRegion patches an pbObject with patcher according to a field mask.
+func DefaultApplyFieldMaskRegion(ctx context.Context, patchee *Region, patcher *Region, updateMask *field_mask1.FieldMask, prefix string, db *gorm1.DB) (*Region, error) {
+	if patcher == nil {
+		return nil, nil
+	} else if patchee == nil {
+		return nil, errors1.NilArgumentError
+	}
+	var err error
+	var updatedValue bool
+	for i, f := range updateMask.Paths {
+		if f == prefix+"Id" {
+			patchee.Id = patcher.Id
+			continue
+		}
+		if f == prefix+"Name" {
+			patchee.Name = patcher.Name
+			continue
+		}
+		if f == prefix+"Description" {
+			patchee.Description = patcher.Description
+			continue
+		}
+		if f == prefix+"Stages" {
+			patchee.Stages = patcher.Stages
+			continue
+		}
+		if !updatedValue && strings.HasPrefix(f, prefix+"Value.") {
+			updatedValue = true
+			if patcher.Value == nil {
+				patchee.Value = nil
+				continue
 			}
-		} else {
-			to.Environments = append(to.Environments, nil)
+			if patchee.Value == nil {
+				patchee.Value = &Value{}
+			}
+			if o, err := DefaultApplyFieldMaskValue(ctx, patchee.Value, patcher.Value, &field_mask1.FieldMask{Paths: updateMask.Paths[i:]}, prefix+"Value.", db); err != nil {
+				return nil, err
+			} else {
+				patchee.Value = o
+			}
+			continue
+		}
+		if f == prefix+"Value" {
+			updatedValue = true
+			patchee.Value = patcher.Value
+			continue
+		}
+		if f == prefix+"AwsServices" {
+			patchee.AwsServices = patcher.AwsServices
+			continue
+		}
+		if f == prefix+"CloudProviderId" {
+			patchee.CloudProviderId = patcher.CloudProviderId
+			continue
 		}
 	}
-	if m.CloudProviderId != nil {
-		if v, err := resource1.Encode(&CloudProvider{}, *m.CloudProviderId); err != nil {
-			return to, err
-		} else {
-			to.CloudProviderId = v
+	if err != nil {
+		return nil, err
+	}
+	return patchee, nil
+}
+
+// DefaultListRegion executes a gorm list call
+func DefaultListRegion(ctx context.Context, db *gorm1.DB, f *query1.Filtering, s *query1.Sorting, p *query1.Pagination, fs *query1.FieldSelection) ([]*Region, error) {
+	in := Region{}
+	ormObj, err := in.ToORM(ctx)
+	if err != nil {
+		return nil, err
+	}
+	if hook, ok := interface{}(&ormObj).(RegionORMWithBeforeListApplyQuery); ok {
+		if db, err = hook.BeforeListApplyQuery(ctx, db, f, s, p, fs); err != nil {
+			return nil, err
 		}
 	}
-	if posthook, ok := interface{}(m).(RegionWithAfterToPB); ok {
-		err = posthook.AfterToPB(ctx, &to)
+	db, err = gorm2.ApplyCollectionOperators(ctx, db, &RegionORM{}, &Region{}, f, s, p, fs)
+	if err != nil {
+		return nil, err
 	}
-	return to, err
+	if hook, ok := interface{}(&ormObj).(RegionORMWithBeforeListFind); ok {
+		if db, err = hook.BeforeListFind(ctx, db, f, s, p, fs); err != nil {
+			return nil, err
+		}
+	}
+	db = db.Where(&ormObj)
+	db = db.Order("id")
+	ormResponse := []RegionORM{}
+	if err := db.Find(&ormResponse).Error; err != nil {
+		return nil, err
+	}
+	if hook, ok := interface{}(&ormObj).(RegionORMWithAfterListFind); ok {
+		if err = hook.AfterListFind(ctx, db, &ormResponse, f, s, p, fs); err != nil {
+			return nil, err
+		}
+	}
+	pbResponse := []*Region{}
+	for _, responseEntry := range ormResponse {
+		temp, err := responseEntry.ToPB(ctx)
+		if err != nil {
+			return nil, err
+		}
+		pbResponse = append(pbResponse, &temp)
+	}
+	return pbResponse, nil
 }
 
-// The following are interfaces you can implement for special behavior during ORM/PB conversions
-// of type Region the arg will be the target, the caller the one being converted from
-
-// RegionBeforeToORM called before default ToORM code
-type RegionWithBeforeToORM interface {
-	BeforeToORM(context.Context, *RegionORM) error
+type RegionORMWithBeforeListApplyQuery interface {
+	BeforeListApplyQuery(context.Context, *gorm1.DB, *query1.Filtering, *query1.Sorting, *query1.Pagination, *query1.FieldSelection) (*gorm1.DB, error)
+}
+type RegionORMWithBeforeListFind interface {
+	BeforeListFind(context.Context, *gorm1.DB, *query1.Filtering, *query1.Sorting, *query1.Pagination, *query1.FieldSelection) (*gorm1.DB, error)
+}
+type RegionORMWithAfterListFind interface {
+	AfterListFind(context.Context, *gorm1.DB, *[]RegionORM, *query1.Filtering, *query1.Sorting, *query1.Pagination, *query1.FieldSelection) error
 }
 
-// RegionAfterToORM called after default ToORM code
-type RegionWithAfterToORM interface {
-	AfterToORM(context.Context, *RegionORM) error
+// DefaultCreateStage executes a basic gorm create call
+func DefaultCreateStage(ctx context.Context, in *Stage, db *gorm1.DB) (*Stage, error) {
+	if in == nil {
+		return nil, errors1.NilArgumentError
+	}
+	ormObj, err := in.ToORM(ctx)
+	if err != nil {
+		return nil, err
+	}
+	if hook, ok := interface{}(&ormObj).(StageORMWithBeforeCreate_); ok {
+		if db, err = hook.BeforeCreate_(ctx, db); err != nil {
+			return nil, err
+		}
+	}
+	if err = db.Create(&ormObj).Error; err != nil {
+		return nil, err
+	}
+	if hook, ok := interface{}(&ormObj).(StageORMWithAfterCreate_); ok {
+		if err = hook.AfterCreate_(ctx, db); err != nil {
+			return nil, err
+		}
+	}
+	pbResponse, err := ormObj.ToPB(ctx)
+	return &pbResponse, err
 }
 
-// RegionBeforeToPB called before default ToPB code
-type RegionWithBeforeToPB interface {
-	BeforeToPB(context.Context, *Region) error
+type StageORMWithBeforeCreate_ interface {
+	BeforeCreate_(context.Context, *gorm1.DB) (*gorm1.DB, error)
+}
+type StageORMWithAfterCreate_ interface {
+	AfterCreate_(context.Context, *gorm1.DB) error
 }
 
-// RegionAfterToPB called after default ToPB code
-type RegionWithAfterToPB interface {
-	AfterToPB(context.Context, *Region) error
+// DefaultReadStage executes a basic gorm read call
+func DefaultReadStage(ctx context.Context, in *Stage, db *gorm1.DB, fs *query1.FieldSelection) (*Stage, error) {
+	if in == nil {
+		return nil, errors1.NilArgumentError
+	}
+	ormObj, err := in.ToORM(ctx)
+	if err != nil {
+		return nil, err
+	}
+	if ormObj.Id == 0 {
+		return nil, errors1.EmptyIdError
+	}
+	if hook, ok := interface{}(&ormObj).(StageORMWithBeforeReadApplyQuery); ok {
+		if db, err = hook.BeforeReadApplyQuery(ctx, db, fs); err != nil {
+			return nil, err
+		}
+	}
+	if db, err = gorm2.ApplyFieldSelection(ctx, db, fs, &StageORM{}); err != nil {
+		return nil, err
+	}
+	if hook, ok := interface{}(&ormObj).(StageORMWithBeforeReadFind); ok {
+		if db, err = hook.BeforeReadFind(ctx, db, fs); err != nil {
+			return nil, err
+		}
+	}
+	ormResponse := StageORM{}
+	if err = db.Where(&ormObj).First(&ormResponse).Error; err != nil {
+		return nil, err
+	}
+	if hook, ok := interface{}(&ormResponse).(StageORMWithAfterReadFind); ok {
+		if err = hook.AfterReadFind(ctx, db, fs); err != nil {
+			return nil, err
+		}
+	}
+	pbResponse, err := ormResponse.ToPB(ctx)
+	return &pbResponse, err
+}
+
+type StageORMWithBeforeReadApplyQuery interface {
+	BeforeReadApplyQuery(context.Context, *gorm1.DB, *query1.FieldSelection) (*gorm1.DB, error)
+}
+type StageORMWithBeforeReadFind interface {
+	BeforeReadFind(context.Context, *gorm1.DB, *query1.FieldSelection) (*gorm1.DB, error)
+}
+type StageORMWithAfterReadFind interface {
+	AfterReadFind(context.Context, *gorm1.DB, *query1.FieldSelection) error
+}
+
+func DefaultDeleteStage(ctx context.Context, in *Stage, db *gorm1.DB) error {
+	if in == nil {
+		return errors1.NilArgumentError
+	}
+	ormObj, err := in.ToORM(ctx)
+	if err != nil {
+		return err
+	}
+	if ormObj.Id == 0 {
+		return errors1.EmptyIdError
+	}
+	if hook, ok := interface{}(&ormObj).(StageORMWithBeforeDelete_); ok {
+		if db, err = hook.BeforeDelete_(ctx, db); err != nil {
+			return err
+		}
+	}
+	err = db.Where(&ormObj).Delete(&StageORM{}).Error
+	if err != nil {
+		return err
+	}
+	if hook, ok := interface{}(&ormObj).(StageORMWithAfterDelete_); ok {
+		err = hook.AfterDelete_(ctx, db)
+	}
+	return err
+}
+
+type StageORMWithBeforeDelete_ interface {
+	BeforeDelete_(context.Context, *gorm1.DB) (*gorm1.DB, error)
+}
+type StageORMWithAfterDelete_ interface {
+	AfterDelete_(context.Context, *gorm1.DB) error
+}
+
+func DefaultDeleteStageSet(ctx context.Context, in []*Stage, db *gorm1.DB) error {
+	if in == nil {
+		return errors1.NilArgumentError
+	}
+	var err error
+	keys := []int64{}
+	for _, obj := range in {
+		ormObj, err := obj.ToORM(ctx)
+		if err != nil {
+			return err
+		}
+		if ormObj.Id == 0 {
+			return errors1.EmptyIdError
+		}
+		keys = append(keys, ormObj.Id)
+	}
+	if hook, ok := (interface{}(&StageORM{})).(StageORMWithBeforeDeleteSet); ok {
+		if db, err = hook.BeforeDeleteSet(ctx, in, db); err != nil {
+			return err
+		}
+	}
+	acctId, err := auth1.GetAccountID(ctx, nil)
+	if err != nil {
+		return err
+	}
+	err = db.Where("account_id = ? AND id in (?)", acctId, keys).Delete(&StageORM{}).Error
+	if err != nil {
+		return err
+	}
+	if hook, ok := (interface{}(&StageORM{})).(StageORMWithAfterDeleteSet); ok {
+		err = hook.AfterDeleteSet(ctx, in, db)
+	}
+	return err
+}
+
+type StageORMWithBeforeDeleteSet interface {
+	BeforeDeleteSet(context.Context, []*Stage, *gorm1.DB) (*gorm1.DB, error)
+}
+type StageORMWithAfterDeleteSet interface {
+	AfterDeleteSet(context.Context, []*Stage, *gorm1.DB) error
+}
+
+// DefaultStrictUpdateStage clears first level 1:many children and then executes a gorm update call
+func DefaultStrictUpdateStage(ctx context.Context, in *Stage, db *gorm1.DB) (*Stage, error) {
+	if in == nil {
+		return nil, fmt.Errorf("Nil argument to DefaultStrictUpdateStage")
+	}
+	ormObj, err := in.ToORM(ctx)
+	if err != nil {
+		return nil, err
+	}
+	accountID, err := auth1.GetAccountID(ctx, nil)
+	if err != nil {
+		return nil, err
+	}
+	db = db.Where(map[string]interface{}{"account_id": accountID})
+	lockedRow := &StageORM{}
+	db.Model(&ormObj).Set("gorm:query_option", "FOR UPDATE").Where("id=?", ormObj.Id).First(lockedRow)
+	if hook, ok := interface{}(&ormObj).(StageORMWithBeforeStrictUpdateCleanup); ok {
+		if db, err = hook.BeforeStrictUpdateCleanup(ctx, db); err != nil {
+			return nil, err
+		}
+	}
+	if hook, ok := interface{}(&ormObj).(StageORMWithBeforeStrictUpdateSave); ok {
+		if db, err = hook.BeforeStrictUpdateSave(ctx, db); err != nil {
+			return nil, err
+		}
+	}
+	if err = db.Save(&ormObj).Error; err != nil {
+		return nil, err
+	}
+	if hook, ok := interface{}(&ormObj).(StageORMWithAfterStrictUpdateSave); ok {
+		if err = hook.AfterStrictUpdateSave(ctx, db); err != nil {
+			return nil, err
+		}
+	}
+	pbResponse, err := ormObj.ToPB(ctx)
+	if err != nil {
+		return nil, err
+	}
+	return &pbResponse, err
+}
+
+type StageORMWithBeforeStrictUpdateCleanup interface {
+	BeforeStrictUpdateCleanup(context.Context, *gorm1.DB) (*gorm1.DB, error)
+}
+type StageORMWithBeforeStrictUpdateSave interface {
+	BeforeStrictUpdateSave(context.Context, *gorm1.DB) (*gorm1.DB, error)
+}
+type StageORMWithAfterStrictUpdateSave interface {
+	AfterStrictUpdateSave(context.Context, *gorm1.DB) error
+}
+
+// DefaultPatchStage executes a basic gorm update call with patch behavior
+func DefaultPatchStage(ctx context.Context, in *Stage, updateMask *field_mask1.FieldMask, db *gorm1.DB) (*Stage, error) {
+	if in == nil {
+		return nil, errors1.NilArgumentError
+	}
+	var pbObj Stage
+	var err error
+	if hook, ok := interface{}(&pbObj).(StageWithBeforePatchRead); ok {
+		if db, err = hook.BeforePatchRead(ctx, in, updateMask, db); err != nil {
+			return nil, err
+		}
+	}
+	pbReadRes, err := DefaultReadStage(ctx, &Stage{Id: in.GetId()}, db, nil)
+	if err != nil {
+		return nil, err
+	}
+	pbObj = *pbReadRes
+	if hook, ok := interface{}(&pbObj).(StageWithBeforePatchApplyFieldMask); ok {
+		if db, err = hook.BeforePatchApplyFieldMask(ctx, in, updateMask, db); err != nil {
+			return nil, err
+		}
+	}
+	if _, err := DefaultApplyFieldMaskStage(ctx, &pbObj, in, updateMask, "", db); err != nil {
+		return nil, err
+	}
+	if hook, ok := interface{}(&pbObj).(StageWithBeforePatchSave); ok {
+		if db, err = hook.BeforePatchSave(ctx, in, updateMask, db); err != nil {
+			return nil, err
+		}
+	}
+	pbResponse, err := DefaultStrictUpdateStage(ctx, &pbObj, db)
+	if err != nil {
+		return nil, err
+	}
+	if hook, ok := interface{}(pbResponse).(StageWithAfterPatchSave); ok {
+		if err = hook.AfterPatchSave(ctx, in, updateMask, db); err != nil {
+			return nil, err
+		}
+	}
+	return pbResponse, nil
+}
+
+type StageWithBeforePatchRead interface {
+	BeforePatchRead(context.Context, *Stage, *field_mask1.FieldMask, *gorm1.DB) (*gorm1.DB, error)
+}
+type StageWithBeforePatchApplyFieldMask interface {
+	BeforePatchApplyFieldMask(context.Context, *Stage, *field_mask1.FieldMask, *gorm1.DB) (*gorm1.DB, error)
+}
+type StageWithBeforePatchSave interface {
+	BeforePatchSave(context.Context, *Stage, *field_mask1.FieldMask, *gorm1.DB) (*gorm1.DB, error)
+}
+type StageWithAfterPatchSave interface {
+	AfterPatchSave(context.Context, *Stage, *field_mask1.FieldMask, *gorm1.DB) error
+}
+
+// DefaultPatchSetStage executes a bulk gorm update call with patch behavior
+func DefaultPatchSetStage(ctx context.Context, objects []*Stage, updateMasks []*field_mask1.FieldMask, db *gorm1.DB) ([]*Stage, error) {
+	if len(objects) != len(updateMasks) {
+		return nil, fmt.Errorf(errors1.BadRepeatedFieldMaskTpl, len(updateMasks), len(objects))
+	}
+
+	results := make([]*Stage, 0, len(objects))
+	for i, patcher := range objects {
+		pbResponse, err := DefaultPatchStage(ctx, patcher, updateMasks[i], db)
+		if err != nil {
+			return nil, err
+		}
+
+		results = append(results, pbResponse)
+	}
+
+	return results, nil
+}
+
+// DefaultApplyFieldMaskStage patches an pbObject with patcher according to a field mask.
+func DefaultApplyFieldMaskStage(ctx context.Context, patchee *Stage, patcher *Stage, updateMask *field_mask1.FieldMask, prefix string, db *gorm1.DB) (*Stage, error) {
+	if patcher == nil {
+		return nil, nil
+	} else if patchee == nil {
+		return nil, errors1.NilArgumentError
+	}
+	var err error
+	for _, f := range updateMask.Paths {
+		if f == prefix+"Id" {
+			patchee.Id = patcher.Id
+			continue
+		}
+		if f == prefix+"Name" {
+			patchee.Name = patcher.Name
+			continue
+		}
+		if f == prefix+"Description" {
+			patchee.Description = patcher.Description
+			continue
+		}
+		if f == prefix+"Type" {
+			patchee.Type = patcher.Type
+			continue
+		}
+		if f == prefix+"RegionId" {
+			patchee.RegionId = patcher.RegionId
+			continue
+		}
+	}
+	if err != nil {
+		return nil, err
+	}
+	return patchee, nil
+}
+
+// DefaultListStage executes a gorm list call
+func DefaultListStage(ctx context.Context, db *gorm1.DB, f *query1.Filtering, s *query1.Sorting, p *query1.Pagination, fs *query1.FieldSelection) ([]*Stage, error) {
+	in := Stage{}
+	ormObj, err := in.ToORM(ctx)
+	if err != nil {
+		return nil, err
+	}
+	if hook, ok := interface{}(&ormObj).(StageORMWithBeforeListApplyQuery); ok {
+		if db, err = hook.BeforeListApplyQuery(ctx, db, f, s, p, fs); err != nil {
+			return nil, err
+		}
+	}
+	db, err = gorm2.ApplyCollectionOperators(ctx, db, &StageORM{}, &Stage{}, f, s, p, fs)
+	if err != nil {
+		return nil, err
+	}
+	if hook, ok := interface{}(&ormObj).(StageORMWithBeforeListFind); ok {
+		if db, err = hook.BeforeListFind(ctx, db, f, s, p, fs); err != nil {
+			return nil, err
+		}
+	}
+	db = db.Where(&ormObj)
+	db = db.Order("id")
+	ormResponse := []StageORM{}
+	if err := db.Find(&ormResponse).Error; err != nil {
+		return nil, err
+	}
+	if hook, ok := interface{}(&ormObj).(StageORMWithAfterListFind); ok {
+		if err = hook.AfterListFind(ctx, db, &ormResponse, f, s, p, fs); err != nil {
+			return nil, err
+		}
+	}
+	pbResponse := []*Stage{}
+	for _, responseEntry := range ormResponse {
+		temp, err := responseEntry.ToPB(ctx)
+		if err != nil {
+			return nil, err
+		}
+		pbResponse = append(pbResponse, &temp)
+	}
+	return pbResponse, nil
+}
+
+type StageORMWithBeforeListApplyQuery interface {
+	BeforeListApplyQuery(context.Context, *gorm1.DB, *query1.Filtering, *query1.Sorting, *query1.Pagination, *query1.FieldSelection) (*gorm1.DB, error)
+}
+type StageORMWithBeforeListFind interface {
+	BeforeListFind(context.Context, *gorm1.DB, *query1.Filtering, *query1.Sorting, *query1.Pagination, *query1.FieldSelection) (*gorm1.DB, error)
+}
+type StageORMWithAfterListFind interface {
+	AfterListFind(context.Context, *gorm1.DB, *[]StageORM, *query1.Filtering, *query1.Sorting, *query1.Pagination, *query1.FieldSelection) error
+}
+
+// DefaultCreateEnvironment executes a basic gorm create call
+func DefaultCreateEnvironment(ctx context.Context, in *Environment, db *gorm1.DB) (*Environment, error) {
+	if in == nil {
+		return nil, errors1.NilArgumentError
+	}
+	ormObj, err := in.ToORM(ctx)
+	if err != nil {
+		return nil, err
+	}
+	if hook, ok := interface{}(&ormObj).(EnvironmentORMWithBeforeCreate_); ok {
+		if db, err = hook.BeforeCreate_(ctx, db); err != nil {
+			return nil, err
+		}
+	}
+	if err = db.Create(&ormObj).Error; err != nil {
+		return nil, err
+	}
+	if hook, ok := interface{}(&ormObj).(EnvironmentORMWithAfterCreate_); ok {
+		if err = hook.AfterCreate_(ctx, db); err != nil {
+			return nil, err
+		}
+	}
+	pbResponse, err := ormObj.ToPB(ctx)
+	return &pbResponse, err
+}
+
+type EnvironmentORMWithBeforeCreate_ interface {
+	BeforeCreate_(context.Context, *gorm1.DB) (*gorm1.DB, error)
+}
+type EnvironmentORMWithAfterCreate_ interface {
+	AfterCreate_(context.Context, *gorm1.DB) error
+}
+
+// DefaultReadEnvironment executes a basic gorm read call
+func DefaultReadEnvironment(ctx context.Context, in *Environment, db *gorm1.DB, fs *query1.FieldSelection) (*Environment, error) {
+	if in == nil {
+		return nil, errors1.NilArgumentError
+	}
+	ormObj, err := in.ToORM(ctx)
+	if err != nil {
+		return nil, err
+	}
+	if ormObj.Id == 0 {
+		return nil, errors1.EmptyIdError
+	}
+	if hook, ok := interface{}(&ormObj).(EnvironmentORMWithBeforeReadApplyQuery); ok {
+		if db, err = hook.BeforeReadApplyQuery(ctx, db, fs); err != nil {
+			return nil, err
+		}
+	}
+	if db, err = gorm2.ApplyFieldSelection(ctx, db, fs, &EnvironmentORM{}); err != nil {
+		return nil, err
+	}
+	if hook, ok := interface{}(&ormObj).(EnvironmentORMWithBeforeReadFind); ok {
+		if db, err = hook.BeforeReadFind(ctx, db, fs); err != nil {
+			return nil, err
+		}
+	}
+	ormResponse := EnvironmentORM{}
+	if err = db.Where(&ormObj).First(&ormResponse).Error; err != nil {
+		return nil, err
+	}
+	if hook, ok := interface{}(&ormResponse).(EnvironmentORMWithAfterReadFind); ok {
+		if err = hook.AfterReadFind(ctx, db, fs); err != nil {
+			return nil, err
+		}
+	}
+	pbResponse, err := ormResponse.ToPB(ctx)
+	return &pbResponse, err
+}
+
+type EnvironmentORMWithBeforeReadApplyQuery interface {
+	BeforeReadApplyQuery(context.Context, *gorm1.DB, *query1.FieldSelection) (*gorm1.DB, error)
+}
+type EnvironmentORMWithBeforeReadFind interface {
+	BeforeReadFind(context.Context, *gorm1.DB, *query1.FieldSelection) (*gorm1.DB, error)
+}
+type EnvironmentORMWithAfterReadFind interface {
+	AfterReadFind(context.Context, *gorm1.DB, *query1.FieldSelection) error
+}
+
+func DefaultDeleteEnvironment(ctx context.Context, in *Environment, db *gorm1.DB) error {
+	if in == nil {
+		return errors1.NilArgumentError
+	}
+	ormObj, err := in.ToORM(ctx)
+	if err != nil {
+		return err
+	}
+	if ormObj.Id == 0 {
+		return errors1.EmptyIdError
+	}
+	if hook, ok := interface{}(&ormObj).(EnvironmentORMWithBeforeDelete_); ok {
+		if db, err = hook.BeforeDelete_(ctx, db); err != nil {
+			return err
+		}
+	}
+	err = db.Where(&ormObj).Delete(&EnvironmentORM{}).Error
+	if err != nil {
+		return err
+	}
+	if hook, ok := interface{}(&ormObj).(EnvironmentORMWithAfterDelete_); ok {
+		err = hook.AfterDelete_(ctx, db)
+	}
+	return err
+}
+
+type EnvironmentORMWithBeforeDelete_ interface {
+	BeforeDelete_(context.Context, *gorm1.DB) (*gorm1.DB, error)
+}
+type EnvironmentORMWithAfterDelete_ interface {
+	AfterDelete_(context.Context, *gorm1.DB) error
+}
+
+func DefaultDeleteEnvironmentSet(ctx context.Context, in []*Environment, db *gorm1.DB) error {
+	if in == nil {
+		return errors1.NilArgumentError
+	}
+	var err error
+	keys := []int64{}
+	for _, obj := range in {
+		ormObj, err := obj.ToORM(ctx)
+		if err != nil {
+			return err
+		}
+		if ormObj.Id == 0 {
+			return errors1.EmptyIdError
+		}
+		keys = append(keys, ormObj.Id)
+	}
+	if hook, ok := (interface{}(&EnvironmentORM{})).(EnvironmentORMWithBeforeDeleteSet); ok {
+		if db, err = hook.BeforeDeleteSet(ctx, in, db); err != nil {
+			return err
+		}
+	}
+	acctId, err := auth1.GetAccountID(ctx, nil)
+	if err != nil {
+		return err
+	}
+	err = db.Where("account_id = ? AND id in (?)", acctId, keys).Delete(&EnvironmentORM{}).Error
+	if err != nil {
+		return err
+	}
+	if hook, ok := (interface{}(&EnvironmentORM{})).(EnvironmentORMWithAfterDeleteSet); ok {
+		err = hook.AfterDeleteSet(ctx, in, db)
+	}
+	return err
+}
+
+type EnvironmentORMWithBeforeDeleteSet interface {
+	BeforeDeleteSet(context.Context, []*Environment, *gorm1.DB) (*gorm1.DB, error)
+}
+type EnvironmentORMWithAfterDeleteSet interface {
+	AfterDeleteSet(context.Context, []*Environment, *gorm1.DB) error
+}
+
+// DefaultStrictUpdateEnvironment clears first level 1:many children and then executes a gorm update call
+func DefaultStrictUpdateEnvironment(ctx context.Context, in *Environment, db *gorm1.DB) (*Environment, error) {
+	if in == nil {
+		return nil, fmt.Errorf("Nil argument to DefaultStrictUpdateEnvironment")
+	}
+	ormObj, err := in.ToORM(ctx)
+	if err != nil {
+		return nil, err
+	}
+	accountID, err := auth1.GetAccountID(ctx, nil)
+	if err != nil {
+		return nil, err
+	}
+	db = db.Where(map[string]interface{}{"account_id": accountID})
+	lockedRow := &EnvironmentORM{}
+	db.Model(&ormObj).Set("gorm:query_option", "FOR UPDATE").Where("id=?", ormObj.Id).First(lockedRow)
+	if hook, ok := interface{}(&ormObj).(EnvironmentORMWithBeforeStrictUpdateCleanup); ok {
+		if db, err = hook.BeforeStrictUpdateCleanup(ctx, db); err != nil {
+			return nil, err
+		}
+	}
+	filterApplicationInstances := ApplicationInstanceORM{}
+	if ormObj.Id == 0 {
+		return nil, errors1.EmptyIdError
+	}
+	filterApplicationInstances.EnvironmentId = new(int64)
+	*filterApplicationInstances.EnvironmentId = ormObj.Id
+	if err = db.Where(filterApplicationInstances).Delete(ApplicationInstanceORM{}).Error; err != nil {
+		return nil, err
+	}
+	filterValue := ValueORM{}
+	if ormObj.Id == 0 {
+		return nil, errors1.EmptyIdError
+	}
+	filterValue.EnvironmentId = new(int64)
+	*filterValue.EnvironmentId = ormObj.Id
+	if err = db.Where(filterValue).Delete(ValueORM{}).Error; err != nil {
+		return nil, err
+	}
+	if hook, ok := interface{}(&ormObj).(EnvironmentORMWithBeforeStrictUpdateSave); ok {
+		if db, err = hook.BeforeStrictUpdateSave(ctx, db); err != nil {
+			return nil, err
+		}
+	}
+	if err = db.Save(&ormObj).Error; err != nil {
+		return nil, err
+	}
+	if hook, ok := interface{}(&ormObj).(EnvironmentORMWithAfterStrictUpdateSave); ok {
+		if err = hook.AfterStrictUpdateSave(ctx, db); err != nil {
+			return nil, err
+		}
+	}
+	pbResponse, err := ormObj.ToPB(ctx)
+	if err != nil {
+		return nil, err
+	}
+	return &pbResponse, err
+}
+
+type EnvironmentORMWithBeforeStrictUpdateCleanup interface {
+	BeforeStrictUpdateCleanup(context.Context, *gorm1.DB) (*gorm1.DB, error)
+}
+type EnvironmentORMWithBeforeStrictUpdateSave interface {
+	BeforeStrictUpdateSave(context.Context, *gorm1.DB) (*gorm1.DB, error)
+}
+type EnvironmentORMWithAfterStrictUpdateSave interface {
+	AfterStrictUpdateSave(context.Context, *gorm1.DB) error
+}
+
+// DefaultPatchEnvironment executes a basic gorm update call with patch behavior
+func DefaultPatchEnvironment(ctx context.Context, in *Environment, updateMask *field_mask1.FieldMask, db *gorm1.DB) (*Environment, error) {
+	if in == nil {
+		return nil, errors1.NilArgumentError
+	}
+	var pbObj Environment
+	var err error
+	if hook, ok := interface{}(&pbObj).(EnvironmentWithBeforePatchRead); ok {
+		if db, err = hook.BeforePatchRead(ctx, in, updateMask, db); err != nil {
+			return nil, err
+		}
+	}
+	pbReadRes, err := DefaultReadEnvironment(ctx, &Environment{Id: in.GetId()}, db, nil)
+	if err != nil {
+		return nil, err
+	}
+	pbObj = *pbReadRes
+	if hook, ok := interface{}(&pbObj).(EnvironmentWithBeforePatchApplyFieldMask); ok {
+		if db, err = hook.BeforePatchApplyFieldMask(ctx, in, updateMask, db); err != nil {
+			return nil, err
+		}
+	}
+	if _, err := DefaultApplyFieldMaskEnvironment(ctx, &pbObj, in, updateMask, "", db); err != nil {
+		return nil, err
+	}
+	if hook, ok := interface{}(&pbObj).(EnvironmentWithBeforePatchSave); ok {
+		if db, err = hook.BeforePatchSave(ctx, in, updateMask, db); err != nil {
+			return nil, err
+		}
+	}
+	pbResponse, err := DefaultStrictUpdateEnvironment(ctx, &pbObj, db)
+	if err != nil {
+		return nil, err
+	}
+	if hook, ok := interface{}(pbResponse).(EnvironmentWithAfterPatchSave); ok {
+		if err = hook.AfterPatchSave(ctx, in, updateMask, db); err != nil {
+			return nil, err
+		}
+	}
+	return pbResponse, nil
+}
+
+type EnvironmentWithBeforePatchRead interface {
+	BeforePatchRead(context.Context, *Environment, *field_mask1.FieldMask, *gorm1.DB) (*gorm1.DB, error)
+}
+type EnvironmentWithBeforePatchApplyFieldMask interface {
+	BeforePatchApplyFieldMask(context.Context, *Environment, *field_mask1.FieldMask, *gorm1.DB) (*gorm1.DB, error)
+}
+type EnvironmentWithBeforePatchSave interface {
+	BeforePatchSave(context.Context, *Environment, *field_mask1.FieldMask, *gorm1.DB) (*gorm1.DB, error)
+}
+type EnvironmentWithAfterPatchSave interface {
+	AfterPatchSave(context.Context, *Environment, *field_mask1.FieldMask, *gorm1.DB) error
+}
+
+// DefaultPatchSetEnvironment executes a bulk gorm update call with patch behavior
+func DefaultPatchSetEnvironment(ctx context.Context, objects []*Environment, updateMasks []*field_mask1.FieldMask, db *gorm1.DB) ([]*Environment, error) {
+	if len(objects) != len(updateMasks) {
+		return nil, fmt.Errorf(errors1.BadRepeatedFieldMaskTpl, len(updateMasks), len(objects))
+	}
+
+	results := make([]*Environment, 0, len(objects))
+	for i, patcher := range objects {
+		pbResponse, err := DefaultPatchEnvironment(ctx, patcher, updateMasks[i], db)
+		if err != nil {
+			return nil, err
+		}
+
+		results = append(results, pbResponse)
+	}
+
+	return results, nil
+}
+
+// DefaultApplyFieldMaskEnvironment patches an pbObject with patcher according to a field mask.
+func DefaultApplyFieldMaskEnvironment(ctx context.Context, patchee *Environment, patcher *Environment, updateMask *field_mask1.FieldMask, prefix string, db *gorm1.DB) (*Environment, error) {
+	if patcher == nil {
+		return nil, nil
+	} else if patchee == nil {
+		return nil, errors1.NilArgumentError
+	}
+	var err error
+	var updatedValue bool
+	for i, f := range updateMask.Paths {
+		if f == prefix+"Id" {
+			patchee.Id = patcher.Id
+			continue
+		}
+		if f == prefix+"Name" {
+			patchee.Name = patcher.Name
+			continue
+		}
+		if f == prefix+"Description" {
+			patchee.Description = patcher.Description
+			continue
+		}
+		if !updatedValue && strings.HasPrefix(f, prefix+"Value.") {
+			updatedValue = true
+			if patcher.Value == nil {
+				patchee.Value = nil
+				continue
+			}
+			if patchee.Value == nil {
+				patchee.Value = &Value{}
+			}
+			if o, err := DefaultApplyFieldMaskValue(ctx, patchee.Value, patcher.Value, &field_mask1.FieldMask{Paths: updateMask.Paths[i:]}, prefix+"Value.", db); err != nil {
+				return nil, err
+			} else {
+				patchee.Value = o
+			}
+			continue
+		}
+		if f == prefix+"Value" {
+			updatedValue = true
+			patchee.Value = patcher.Value
+			continue
+		}
+		if f == prefix+"ApplicationInstances" {
+			patchee.ApplicationInstances = patcher.ApplicationInstances
+			continue
+		}
+		if f == prefix+"StageId" {
+			patchee.StageId = patcher.StageId
+			continue
+		}
+	}
+	if err != nil {
+		return nil, err
+	}
+	return patchee, nil
+}
+
+// DefaultListEnvironment executes a gorm list call
+func DefaultListEnvironment(ctx context.Context, db *gorm1.DB, f *query1.Filtering, s *query1.Sorting, p *query1.Pagination, fs *query1.FieldSelection) ([]*Environment, error) {
+	in := Environment{}
+	ormObj, err := in.ToORM(ctx)
+	if err != nil {
+		return nil, err
+	}
+	if hook, ok := interface{}(&ormObj).(EnvironmentORMWithBeforeListApplyQuery); ok {
+		if db, err = hook.BeforeListApplyQuery(ctx, db, f, s, p, fs); err != nil {
+			return nil, err
+		}
+	}
+	db, err = gorm2.ApplyCollectionOperators(ctx, db, &EnvironmentORM{}, &Environment{}, f, s, p, fs)
+	if err != nil {
+		return nil, err
+	}
+	if hook, ok := interface{}(&ormObj).(EnvironmentORMWithBeforeListFind); ok {
+		if db, err = hook.BeforeListFind(ctx, db, f, s, p, fs); err != nil {
+			return nil, err
+		}
+	}
+	db = db.Where(&ormObj)
+	db = db.Order("id")
+	ormResponse := []EnvironmentORM{}
+	if err := db.Find(&ormResponse).Error; err != nil {
+		return nil, err
+	}
+	if hook, ok := interface{}(&ormObj).(EnvironmentORMWithAfterListFind); ok {
+		if err = hook.AfterListFind(ctx, db, &ormResponse, f, s, p, fs); err != nil {
+			return nil, err
+		}
+	}
+	pbResponse := []*Environment{}
+	for _, responseEntry := range ormResponse {
+		temp, err := responseEntry.ToPB(ctx)
+		if err != nil {
+			return nil, err
+		}
+		pbResponse = append(pbResponse, &temp)
+	}
+	return pbResponse, nil
+}
+
+type EnvironmentORMWithBeforeListApplyQuery interface {
+	BeforeListApplyQuery(context.Context, *gorm1.DB, *query1.Filtering, *query1.Sorting, *query1.Pagination, *query1.FieldSelection) (*gorm1.DB, error)
+}
+type EnvironmentORMWithBeforeListFind interface {
+	BeforeListFind(context.Context, *gorm1.DB, *query1.Filtering, *query1.Sorting, *query1.Pagination, *query1.FieldSelection) (*gorm1.DB, error)
+}
+type EnvironmentORMWithAfterListFind interface {
+	AfterListFind(context.Context, *gorm1.DB, *[]EnvironmentORM, *query1.Filtering, *query1.Sorting, *query1.Pagination, *query1.FieldSelection) error
+}
+
+// DefaultCreateApplication executes a basic gorm create call
+func DefaultCreateApplication(ctx context.Context, in *Application, db *gorm1.DB) (*Application, error) {
+	if in == nil {
+		return nil, errors1.NilArgumentError
+	}
+	ormObj, err := in.ToORM(ctx)
+	if err != nil {
+		return nil, err
+	}
+	if hook, ok := interface{}(&ormObj).(ApplicationORMWithBeforeCreate_); ok {
+		if db, err = hook.BeforeCreate_(ctx, db); err != nil {
+			return nil, err
+		}
+	}
+	if err = db.Create(&ormObj).Error; err != nil {
+		return nil, err
+	}
+	if hook, ok := interface{}(&ormObj).(ApplicationORMWithAfterCreate_); ok {
+		if err = hook.AfterCreate_(ctx, db); err != nil {
+			return nil, err
+		}
+	}
+	pbResponse, err := ormObj.ToPB(ctx)
+	return &pbResponse, err
+}
+
+type ApplicationORMWithBeforeCreate_ interface {
+	BeforeCreate_(context.Context, *gorm1.DB) (*gorm1.DB, error)
+}
+type ApplicationORMWithAfterCreate_ interface {
+	AfterCreate_(context.Context, *gorm1.DB) error
+}
+
+// DefaultReadApplication executes a basic gorm read call
+func DefaultReadApplication(ctx context.Context, in *Application, db *gorm1.DB, fs *query1.FieldSelection) (*Application, error) {
+	if in == nil {
+		return nil, errors1.NilArgumentError
+	}
+	ormObj, err := in.ToORM(ctx)
+	if err != nil {
+		return nil, err
+	}
+	if ormObj.Id == 0 {
+		return nil, errors1.EmptyIdError
+	}
+	if hook, ok := interface{}(&ormObj).(ApplicationORMWithBeforeReadApplyQuery); ok {
+		if db, err = hook.BeforeReadApplyQuery(ctx, db, fs); err != nil {
+			return nil, err
+		}
+	}
+	if db, err = gorm2.ApplyFieldSelection(ctx, db, fs, &ApplicationORM{}); err != nil {
+		return nil, err
+	}
+	if hook, ok := interface{}(&ormObj).(ApplicationORMWithBeforeReadFind); ok {
+		if db, err = hook.BeforeReadFind(ctx, db, fs); err != nil {
+			return nil, err
+		}
+	}
+	ormResponse := ApplicationORM{}
+	if err = db.Where(&ormObj).First(&ormResponse).Error; err != nil {
+		return nil, err
+	}
+	if hook, ok := interface{}(&ormResponse).(ApplicationORMWithAfterReadFind); ok {
+		if err = hook.AfterReadFind(ctx, db, fs); err != nil {
+			return nil, err
+		}
+	}
+	pbResponse, err := ormResponse.ToPB(ctx)
+	return &pbResponse, err
+}
+
+type ApplicationORMWithBeforeReadApplyQuery interface {
+	BeforeReadApplyQuery(context.Context, *gorm1.DB, *query1.FieldSelection) (*gorm1.DB, error)
+}
+type ApplicationORMWithBeforeReadFind interface {
+	BeforeReadFind(context.Context, *gorm1.DB, *query1.FieldSelection) (*gorm1.DB, error)
+}
+type ApplicationORMWithAfterReadFind interface {
+	AfterReadFind(context.Context, *gorm1.DB, *query1.FieldSelection) error
+}
+
+func DefaultDeleteApplication(ctx context.Context, in *Application, db *gorm1.DB) error {
+	if in == nil {
+		return errors1.NilArgumentError
+	}
+	ormObj, err := in.ToORM(ctx)
+	if err != nil {
+		return err
+	}
+	if ormObj.Id == 0 {
+		return errors1.EmptyIdError
+	}
+	if hook, ok := interface{}(&ormObj).(ApplicationORMWithBeforeDelete_); ok {
+		if db, err = hook.BeforeDelete_(ctx, db); err != nil {
+			return err
+		}
+	}
+	err = db.Where(&ormObj).Delete(&ApplicationORM{}).Error
+	if err != nil {
+		return err
+	}
+	if hook, ok := interface{}(&ormObj).(ApplicationORMWithAfterDelete_); ok {
+		err = hook.AfterDelete_(ctx, db)
+	}
+	return err
+}
+
+type ApplicationORMWithBeforeDelete_ interface {
+	BeforeDelete_(context.Context, *gorm1.DB) (*gorm1.DB, error)
+}
+type ApplicationORMWithAfterDelete_ interface {
+	AfterDelete_(context.Context, *gorm1.DB) error
+}
+
+func DefaultDeleteApplicationSet(ctx context.Context, in []*Application, db *gorm1.DB) error {
+	if in == nil {
+		return errors1.NilArgumentError
+	}
+	var err error
+	keys := []int64{}
+	for _, obj := range in {
+		ormObj, err := obj.ToORM(ctx)
+		if err != nil {
+			return err
+		}
+		if ormObj.Id == 0 {
+			return errors1.EmptyIdError
+		}
+		keys = append(keys, ormObj.Id)
+	}
+	if hook, ok := (interface{}(&ApplicationORM{})).(ApplicationORMWithBeforeDeleteSet); ok {
+		if db, err = hook.BeforeDeleteSet(ctx, in, db); err != nil {
+			return err
+		}
+	}
+	acctId, err := auth1.GetAccountID(ctx, nil)
+	if err != nil {
+		return err
+	}
+	err = db.Where("account_id = ? AND id in (?)", acctId, keys).Delete(&ApplicationORM{}).Error
+	if err != nil {
+		return err
+	}
+	if hook, ok := (interface{}(&ApplicationORM{})).(ApplicationORMWithAfterDeleteSet); ok {
+		err = hook.AfterDeleteSet(ctx, in, db)
+	}
+	return err
+}
+
+type ApplicationORMWithBeforeDeleteSet interface {
+	BeforeDeleteSet(context.Context, []*Application, *gorm1.DB) (*gorm1.DB, error)
+}
+type ApplicationORMWithAfterDeleteSet interface {
+	AfterDeleteSet(context.Context, []*Application, *gorm1.DB) error
+}
+
+// DefaultStrictUpdateApplication clears first level 1:many children and then executes a gorm update call
+func DefaultStrictUpdateApplication(ctx context.Context, in *Application, db *gorm1.DB) (*Application, error) {
+	if in == nil {
+		return nil, fmt.Errorf("Nil argument to DefaultStrictUpdateApplication")
+	}
+	ormObj, err := in.ToORM(ctx)
+	if err != nil {
+		return nil, err
+	}
+	accountID, err := auth1.GetAccountID(ctx, nil)
+	if err != nil {
+		return nil, err
+	}
+	db = db.Where(map[string]interface{}{"account_id": accountID})
+	lockedRow := &ApplicationORM{}
+	db.Model(&ormObj).Set("gorm:query_option", "FOR UPDATE").Where("id=?", ormObj.Id).First(lockedRow)
+	if hook, ok := interface{}(&ormObj).(ApplicationORMWithBeforeStrictUpdateCleanup); ok {
+		if db, err = hook.BeforeStrictUpdateCleanup(ctx, db); err != nil {
+			return nil, err
+		}
+	}
+	filterApplicationInstances := ApplicationInstanceORM{}
+	if ormObj.Id == 0 {
+		return nil, errors1.EmptyIdError
+	}
+	filterApplicationInstances.ApplicationId = new(int64)
+	*filterApplicationInstances.ApplicationId = ormObj.Id
+	if err = db.Where(filterApplicationInstances).Delete(ApplicationInstanceORM{}).Error; err != nil {
+		return nil, err
+	}
+	filterValue := ValueORM{}
+	if ormObj.Id == 0 {
+		return nil, errors1.EmptyIdError
+	}
+	filterValue.ApplicationId = new(int64)
+	*filterValue.ApplicationId = ormObj.Id
+	if err = db.Where(filterValue).Delete(ValueORM{}).Error; err != nil {
+		return nil, err
+	}
+	if hook, ok := interface{}(&ormObj).(ApplicationORMWithBeforeStrictUpdateSave); ok {
+		if db, err = hook.BeforeStrictUpdateSave(ctx, db); err != nil {
+			return nil, err
+		}
+	}
+	if err = db.Save(&ormObj).Error; err != nil {
+		return nil, err
+	}
+	if hook, ok := interface{}(&ormObj).(ApplicationORMWithAfterStrictUpdateSave); ok {
+		if err = hook.AfterStrictUpdateSave(ctx, db); err != nil {
+			return nil, err
+		}
+	}
+	pbResponse, err := ormObj.ToPB(ctx)
+	if err != nil {
+		return nil, err
+	}
+	return &pbResponse, err
+}
+
+type ApplicationORMWithBeforeStrictUpdateCleanup interface {
+	BeforeStrictUpdateCleanup(context.Context, *gorm1.DB) (*gorm1.DB, error)
+}
+type ApplicationORMWithBeforeStrictUpdateSave interface {
+	BeforeStrictUpdateSave(context.Context, *gorm1.DB) (*gorm1.DB, error)
+}
+type ApplicationORMWithAfterStrictUpdateSave interface {
+	AfterStrictUpdateSave(context.Context, *gorm1.DB) error
+}
+
+// DefaultPatchApplication executes a basic gorm update call with patch behavior
+func DefaultPatchApplication(ctx context.Context, in *Application, updateMask *field_mask1.FieldMask, db *gorm1.DB) (*Application, error) {
+	if in == nil {
+		return nil, errors1.NilArgumentError
+	}
+	var pbObj Application
+	var err error
+	if hook, ok := interface{}(&pbObj).(ApplicationWithBeforePatchRead); ok {
+		if db, err = hook.BeforePatchRead(ctx, in, updateMask, db); err != nil {
+			return nil, err
+		}
+	}
+	pbReadRes, err := DefaultReadApplication(ctx, &Application{Id: in.GetId()}, db, nil)
+	if err != nil {
+		return nil, err
+	}
+	pbObj = *pbReadRes
+	if hook, ok := interface{}(&pbObj).(ApplicationWithBeforePatchApplyFieldMask); ok {
+		if db, err = hook.BeforePatchApplyFieldMask(ctx, in, updateMask, db); err != nil {
+			return nil, err
+		}
+	}
+	if _, err := DefaultApplyFieldMaskApplication(ctx, &pbObj, in, updateMask, "", db); err != nil {
+		return nil, err
+	}
+	if hook, ok := interface{}(&pbObj).(ApplicationWithBeforePatchSave); ok {
+		if db, err = hook.BeforePatchSave(ctx, in, updateMask, db); err != nil {
+			return nil, err
+		}
+	}
+	pbResponse, err := DefaultStrictUpdateApplication(ctx, &pbObj, db)
+	if err != nil {
+		return nil, err
+	}
+	if hook, ok := interface{}(pbResponse).(ApplicationWithAfterPatchSave); ok {
+		if err = hook.AfterPatchSave(ctx, in, updateMask, db); err != nil {
+			return nil, err
+		}
+	}
+	return pbResponse, nil
+}
+
+type ApplicationWithBeforePatchRead interface {
+	BeforePatchRead(context.Context, *Application, *field_mask1.FieldMask, *gorm1.DB) (*gorm1.DB, error)
+}
+type ApplicationWithBeforePatchApplyFieldMask interface {
+	BeforePatchApplyFieldMask(context.Context, *Application, *field_mask1.FieldMask, *gorm1.DB) (*gorm1.DB, error)
+}
+type ApplicationWithBeforePatchSave interface {
+	BeforePatchSave(context.Context, *Application, *field_mask1.FieldMask, *gorm1.DB) (*gorm1.DB, error)
+}
+type ApplicationWithAfterPatchSave interface {
+	AfterPatchSave(context.Context, *Application, *field_mask1.FieldMask, *gorm1.DB) error
+}
+
+// DefaultPatchSetApplication executes a bulk gorm update call with patch behavior
+func DefaultPatchSetApplication(ctx context.Context, objects []*Application, updateMasks []*field_mask1.FieldMask, db *gorm1.DB) ([]*Application, error) {
+	if len(objects) != len(updateMasks) {
+		return nil, fmt.Errorf(errors1.BadRepeatedFieldMaskTpl, len(updateMasks), len(objects))
+	}
+
+	results := make([]*Application, 0, len(objects))
+	for i, patcher := range objects {
+		pbResponse, err := DefaultPatchApplication(ctx, patcher, updateMasks[i], db)
+		if err != nil {
+			return nil, err
+		}
+
+		results = append(results, pbResponse)
+	}
+
+	return results, nil
+}
+
+// DefaultApplyFieldMaskApplication patches an pbObject with patcher according to a field mask.
+func DefaultApplyFieldMaskApplication(ctx context.Context, patchee *Application, patcher *Application, updateMask *field_mask1.FieldMask, prefix string, db *gorm1.DB) (*Application, error) {
+	if patcher == nil {
+		return nil, nil
+	} else if patchee == nil {
+		return nil, errors1.NilArgumentError
+	}
+	var err error
+	var updatedValue bool
+	for i, f := range updateMask.Paths {
+		if f == prefix+"Id" {
+			patchee.Id = patcher.Id
+			continue
+		}
+		if f == prefix+"Name" {
+			patchee.Name = patcher.Name
+			continue
+		}
+		if f == prefix+"Description" {
+			patchee.Description = patcher.Description
+			continue
+		}
+		if !updatedValue && strings.HasPrefix(f, prefix+"Value.") {
+			updatedValue = true
+			if patcher.Value == nil {
+				patchee.Value = nil
+				continue
+			}
+			if patchee.Value == nil {
+				patchee.Value = &Value{}
+			}
+			if o, err := DefaultApplyFieldMaskValue(ctx, patchee.Value, patcher.Value, &field_mask1.FieldMask{Paths: updateMask.Paths[i:]}, prefix+"Value.", db); err != nil {
+				return nil, err
+			} else {
+				patchee.Value = o
+			}
+			continue
+		}
+		if f == prefix+"Value" {
+			updatedValue = true
+			patchee.Value = patcher.Value
+			continue
+		}
+		if f == prefix+"ApplicationInstances" {
+			patchee.ApplicationInstances = patcher.ApplicationInstances
+			continue
+		}
+		if f == prefix+"StageId" {
+			patchee.StageId = patcher.StageId
+			continue
+		}
+	}
+	if err != nil {
+		return nil, err
+	}
+	return patchee, nil
+}
+
+// DefaultListApplication executes a gorm list call
+func DefaultListApplication(ctx context.Context, db *gorm1.DB, f *query1.Filtering, s *query1.Sorting, p *query1.Pagination, fs *query1.FieldSelection) ([]*Application, error) {
+	in := Application{}
+	ormObj, err := in.ToORM(ctx)
+	if err != nil {
+		return nil, err
+	}
+	if hook, ok := interface{}(&ormObj).(ApplicationORMWithBeforeListApplyQuery); ok {
+		if db, err = hook.BeforeListApplyQuery(ctx, db, f, s, p, fs); err != nil {
+			return nil, err
+		}
+	}
+	db, err = gorm2.ApplyCollectionOperators(ctx, db, &ApplicationORM{}, &Application{}, f, s, p, fs)
+	if err != nil {
+		return nil, err
+	}
+	if hook, ok := interface{}(&ormObj).(ApplicationORMWithBeforeListFind); ok {
+		if db, err = hook.BeforeListFind(ctx, db, f, s, p, fs); err != nil {
+			return nil, err
+		}
+	}
+	db = db.Where(&ormObj)
+	db = db.Order("id")
+	ormResponse := []ApplicationORM{}
+	if err := db.Find(&ormResponse).Error; err != nil {
+		return nil, err
+	}
+	if hook, ok := interface{}(&ormObj).(ApplicationORMWithAfterListFind); ok {
+		if err = hook.AfterListFind(ctx, db, &ormResponse, f, s, p, fs); err != nil {
+			return nil, err
+		}
+	}
+	pbResponse := []*Application{}
+	for _, responseEntry := range ormResponse {
+		temp, err := responseEntry.ToPB(ctx)
+		if err != nil {
+			return nil, err
+		}
+		pbResponse = append(pbResponse, &temp)
+	}
+	return pbResponse, nil
+}
+
+type ApplicationORMWithBeforeListApplyQuery interface {
+	BeforeListApplyQuery(context.Context, *gorm1.DB, *query1.Filtering, *query1.Sorting, *query1.Pagination, *query1.FieldSelection) (*gorm1.DB, error)
+}
+type ApplicationORMWithBeforeListFind interface {
+	BeforeListFind(context.Context, *gorm1.DB, *query1.Filtering, *query1.Sorting, *query1.Pagination, *query1.FieldSelection) (*gorm1.DB, error)
+}
+type ApplicationORMWithAfterListFind interface {
+	AfterListFind(context.Context, *gorm1.DB, *[]ApplicationORM, *query1.Filtering, *query1.Sorting, *query1.Pagination, *query1.FieldSelection) error
+}
+
+// DefaultCreateChartVersion executes a basic gorm create call
+func DefaultCreateChartVersion(ctx context.Context, in *ChartVersion, db *gorm1.DB) (*ChartVersion, error) {
+	if in == nil {
+		return nil, errors1.NilArgumentError
+	}
+	ormObj, err := in.ToORM(ctx)
+	if err != nil {
+		return nil, err
+	}
+	if hook, ok := interface{}(&ormObj).(ChartVersionORMWithBeforeCreate_); ok {
+		if db, err = hook.BeforeCreate_(ctx, db); err != nil {
+			return nil, err
+		}
+	}
+	if err = db.Create(&ormObj).Error; err != nil {
+		return nil, err
+	}
+	if hook, ok := interface{}(&ormObj).(ChartVersionORMWithAfterCreate_); ok {
+		if err = hook.AfterCreate_(ctx, db); err != nil {
+			return nil, err
+		}
+	}
+	pbResponse, err := ormObj.ToPB(ctx)
+	return &pbResponse, err
+}
+
+type ChartVersionORMWithBeforeCreate_ interface {
+	BeforeCreate_(context.Context, *gorm1.DB) (*gorm1.DB, error)
+}
+type ChartVersionORMWithAfterCreate_ interface {
+	AfterCreate_(context.Context, *gorm1.DB) error
+}
+
+// DefaultReadChartVersion executes a basic gorm read call
+func DefaultReadChartVersion(ctx context.Context, in *ChartVersion, db *gorm1.DB, fs *query1.FieldSelection) (*ChartVersion, error) {
+	if in == nil {
+		return nil, errors1.NilArgumentError
+	}
+	ormObj, err := in.ToORM(ctx)
+	if err != nil {
+		return nil, err
+	}
+	if ormObj.Id == 0 {
+		return nil, errors1.EmptyIdError
+	}
+	if hook, ok := interface{}(&ormObj).(ChartVersionORMWithBeforeReadApplyQuery); ok {
+		if db, err = hook.BeforeReadApplyQuery(ctx, db, fs); err != nil {
+			return nil, err
+		}
+	}
+	if db, err = gorm2.ApplyFieldSelection(ctx, db, fs, &ChartVersionORM{}); err != nil {
+		return nil, err
+	}
+	if hook, ok := interface{}(&ormObj).(ChartVersionORMWithBeforeReadFind); ok {
+		if db, err = hook.BeforeReadFind(ctx, db, fs); err != nil {
+			return nil, err
+		}
+	}
+	ormResponse := ChartVersionORM{}
+	if err = db.Where(&ormObj).First(&ormResponse).Error; err != nil {
+		return nil, err
+	}
+	if hook, ok := interface{}(&ormResponse).(ChartVersionORMWithAfterReadFind); ok {
+		if err = hook.AfterReadFind(ctx, db, fs); err != nil {
+			return nil, err
+		}
+	}
+	pbResponse, err := ormResponse.ToPB(ctx)
+	return &pbResponse, err
+}
+
+type ChartVersionORMWithBeforeReadApplyQuery interface {
+	BeforeReadApplyQuery(context.Context, *gorm1.DB, *query1.FieldSelection) (*gorm1.DB, error)
+}
+type ChartVersionORMWithBeforeReadFind interface {
+	BeforeReadFind(context.Context, *gorm1.DB, *query1.FieldSelection) (*gorm1.DB, error)
+}
+type ChartVersionORMWithAfterReadFind interface {
+	AfterReadFind(context.Context, *gorm1.DB, *query1.FieldSelection) error
+}
+
+func DefaultDeleteChartVersion(ctx context.Context, in *ChartVersion, db *gorm1.DB) error {
+	if in == nil {
+		return errors1.NilArgumentError
+	}
+	ormObj, err := in.ToORM(ctx)
+	if err != nil {
+		return err
+	}
+	if ormObj.Id == 0 {
+		return errors1.EmptyIdError
+	}
+	if hook, ok := interface{}(&ormObj).(ChartVersionORMWithBeforeDelete_); ok {
+		if db, err = hook.BeforeDelete_(ctx, db); err != nil {
+			return err
+		}
+	}
+	err = db.Where(&ormObj).Delete(&ChartVersionORM{}).Error
+	if err != nil {
+		return err
+	}
+	if hook, ok := interface{}(&ormObj).(ChartVersionORMWithAfterDelete_); ok {
+		err = hook.AfterDelete_(ctx, db)
+	}
+	return err
+}
+
+type ChartVersionORMWithBeforeDelete_ interface {
+	BeforeDelete_(context.Context, *gorm1.DB) (*gorm1.DB, error)
+}
+type ChartVersionORMWithAfterDelete_ interface {
+	AfterDelete_(context.Context, *gorm1.DB) error
+}
+
+func DefaultDeleteChartVersionSet(ctx context.Context, in []*ChartVersion, db *gorm1.DB) error {
+	if in == nil {
+		return errors1.NilArgumentError
+	}
+	var err error
+	keys := []int64{}
+	for _, obj := range in {
+		ormObj, err := obj.ToORM(ctx)
+		if err != nil {
+			return err
+		}
+		if ormObj.Id == 0 {
+			return errors1.EmptyIdError
+		}
+		keys = append(keys, ormObj.Id)
+	}
+	if hook, ok := (interface{}(&ChartVersionORM{})).(ChartVersionORMWithBeforeDeleteSet); ok {
+		if db, err = hook.BeforeDeleteSet(ctx, in, db); err != nil {
+			return err
+		}
+	}
+	acctId, err := auth1.GetAccountID(ctx, nil)
+	if err != nil {
+		return err
+	}
+	err = db.Where("account_id = ? AND id in (?)", acctId, keys).Delete(&ChartVersionORM{}).Error
+	if err != nil {
+		return err
+	}
+	if hook, ok := (interface{}(&ChartVersionORM{})).(ChartVersionORMWithAfterDeleteSet); ok {
+		err = hook.AfterDeleteSet(ctx, in, db)
+	}
+	return err
+}
+
+type ChartVersionORMWithBeforeDeleteSet interface {
+	BeforeDeleteSet(context.Context, []*ChartVersion, *gorm1.DB) (*gorm1.DB, error)
+}
+type ChartVersionORMWithAfterDeleteSet interface {
+	AfterDeleteSet(context.Context, []*ChartVersion, *gorm1.DB) error
+}
+
+// DefaultStrictUpdateChartVersion clears first level 1:many children and then executes a gorm update call
+func DefaultStrictUpdateChartVersion(ctx context.Context, in *ChartVersion, db *gorm1.DB) (*ChartVersion, error) {
+	if in == nil {
+		return nil, fmt.Errorf("Nil argument to DefaultStrictUpdateChartVersion")
+	}
+	ormObj, err := in.ToORM(ctx)
+	if err != nil {
+		return nil, err
+	}
+	accountID, err := auth1.GetAccountID(ctx, nil)
+	if err != nil {
+		return nil, err
+	}
+	db = db.Where(map[string]interface{}{"account_id": accountID})
+	lockedRow := &ChartVersionORM{}
+	db.Model(&ormObj).Set("gorm:query_option", "FOR UPDATE").Where("id=?", ormObj.Id).First(lockedRow)
+	if hook, ok := interface{}(&ormObj).(ChartVersionORMWithBeforeStrictUpdateCleanup); ok {
+		if db, err = hook.BeforeStrictUpdateCleanup(ctx, db); err != nil {
+			return nil, err
+		}
+	}
+	if hook, ok := interface{}(&ormObj).(ChartVersionORMWithBeforeStrictUpdateSave); ok {
+		if db, err = hook.BeforeStrictUpdateSave(ctx, db); err != nil {
+			return nil, err
+		}
+	}
+	if err = db.Save(&ormObj).Error; err != nil {
+		return nil, err
+	}
+	if hook, ok := interface{}(&ormObj).(ChartVersionORMWithAfterStrictUpdateSave); ok {
+		if err = hook.AfterStrictUpdateSave(ctx, db); err != nil {
+			return nil, err
+		}
+	}
+	pbResponse, err := ormObj.ToPB(ctx)
+	if err != nil {
+		return nil, err
+	}
+	return &pbResponse, err
+}
+
+type ChartVersionORMWithBeforeStrictUpdateCleanup interface {
+	BeforeStrictUpdateCleanup(context.Context, *gorm1.DB) (*gorm1.DB, error)
+}
+type ChartVersionORMWithBeforeStrictUpdateSave interface {
+	BeforeStrictUpdateSave(context.Context, *gorm1.DB) (*gorm1.DB, error)
+}
+type ChartVersionORMWithAfterStrictUpdateSave interface {
+	AfterStrictUpdateSave(context.Context, *gorm1.DB) error
+}
+
+// DefaultPatchChartVersion executes a basic gorm update call with patch behavior
+func DefaultPatchChartVersion(ctx context.Context, in *ChartVersion, updateMask *field_mask1.FieldMask, db *gorm1.DB) (*ChartVersion, error) {
+	if in == nil {
+		return nil, errors1.NilArgumentError
+	}
+	var pbObj ChartVersion
+	var err error
+	if hook, ok := interface{}(&pbObj).(ChartVersionWithBeforePatchRead); ok {
+		if db, err = hook.BeforePatchRead(ctx, in, updateMask, db); err != nil {
+			return nil, err
+		}
+	}
+	pbReadRes, err := DefaultReadChartVersion(ctx, &ChartVersion{Id: in.GetId()}, db, nil)
+	if err != nil {
+		return nil, err
+	}
+	pbObj = *pbReadRes
+	if hook, ok := interface{}(&pbObj).(ChartVersionWithBeforePatchApplyFieldMask); ok {
+		if db, err = hook.BeforePatchApplyFieldMask(ctx, in, updateMask, db); err != nil {
+			return nil, err
+		}
+	}
+	if _, err := DefaultApplyFieldMaskChartVersion(ctx, &pbObj, in, updateMask, "", db); err != nil {
+		return nil, err
+	}
+	if hook, ok := interface{}(&pbObj).(ChartVersionWithBeforePatchSave); ok {
+		if db, err = hook.BeforePatchSave(ctx, in, updateMask, db); err != nil {
+			return nil, err
+		}
+	}
+	pbResponse, err := DefaultStrictUpdateChartVersion(ctx, &pbObj, db)
+	if err != nil {
+		return nil, err
+	}
+	if hook, ok := interface{}(pbResponse).(ChartVersionWithAfterPatchSave); ok {
+		if err = hook.AfterPatchSave(ctx, in, updateMask, db); err != nil {
+			return nil, err
+		}
+	}
+	return pbResponse, nil
+}
+
+type ChartVersionWithBeforePatchRead interface {
+	BeforePatchRead(context.Context, *ChartVersion, *field_mask1.FieldMask, *gorm1.DB) (*gorm1.DB, error)
+}
+type ChartVersionWithBeforePatchApplyFieldMask interface {
+	BeforePatchApplyFieldMask(context.Context, *ChartVersion, *field_mask1.FieldMask, *gorm1.DB) (*gorm1.DB, error)
+}
+type ChartVersionWithBeforePatchSave interface {
+	BeforePatchSave(context.Context, *ChartVersion, *field_mask1.FieldMask, *gorm1.DB) (*gorm1.DB, error)
+}
+type ChartVersionWithAfterPatchSave interface {
+	AfterPatchSave(context.Context, *ChartVersion, *field_mask1.FieldMask, *gorm1.DB) error
+}
+
+// DefaultPatchSetChartVersion executes a bulk gorm update call with patch behavior
+func DefaultPatchSetChartVersion(ctx context.Context, objects []*ChartVersion, updateMasks []*field_mask1.FieldMask, db *gorm1.DB) ([]*ChartVersion, error) {
+	if len(objects) != len(updateMasks) {
+		return nil, fmt.Errorf(errors1.BadRepeatedFieldMaskTpl, len(updateMasks), len(objects))
+	}
+
+	results := make([]*ChartVersion, 0, len(objects))
+	for i, patcher := range objects {
+		pbResponse, err := DefaultPatchChartVersion(ctx, patcher, updateMasks[i], db)
+		if err != nil {
+			return nil, err
+		}
+
+		results = append(results, pbResponse)
+	}
+
+	return results, nil
+}
+
+// DefaultApplyFieldMaskChartVersion patches an pbObject with patcher according to a field mask.
+func DefaultApplyFieldMaskChartVersion(ctx context.Context, patchee *ChartVersion, patcher *ChartVersion, updateMask *field_mask1.FieldMask, prefix string, db *gorm1.DB) (*ChartVersion, error) {
+	if patcher == nil {
+		return nil, nil
+	} else if patchee == nil {
+		return nil, errors1.NilArgumentError
+	}
+	var err error
+	for _, f := range updateMask.Paths {
+		if f == prefix+"Id" {
+			patchee.Id = patcher.Id
+			continue
+		}
+		if f == prefix+"Name" {
+			patchee.Name = patcher.Name
+			continue
+		}
+		if f == prefix+"Description" {
+			patchee.Description = patcher.Description
+			continue
+		}
+		if f == prefix+"Repo" {
+			patchee.Repo = patcher.Repo
+			continue
+		}
+		if f == prefix+"Version" {
+			patchee.Version = patcher.Version
+			continue
+		}
+	}
+	if err != nil {
+		return nil, err
+	}
+	return patchee, nil
+}
+
+// DefaultListChartVersion executes a gorm list call
+func DefaultListChartVersion(ctx context.Context, db *gorm1.DB, f *query1.Filtering, s *query1.Sorting, p *query1.Pagination, fs *query1.FieldSelection) ([]*ChartVersion, error) {
+	in := ChartVersion{}
+	ormObj, err := in.ToORM(ctx)
+	if err != nil {
+		return nil, err
+	}
+	if hook, ok := interface{}(&ormObj).(ChartVersionORMWithBeforeListApplyQuery); ok {
+		if db, err = hook.BeforeListApplyQuery(ctx, db, f, s, p, fs); err != nil {
+			return nil, err
+		}
+	}
+	db, err = gorm2.ApplyCollectionOperators(ctx, db, &ChartVersionORM{}, &ChartVersion{}, f, s, p, fs)
+	if err != nil {
+		return nil, err
+	}
+	if hook, ok := interface{}(&ormObj).(ChartVersionORMWithBeforeListFind); ok {
+		if db, err = hook.BeforeListFind(ctx, db, f, s, p, fs); err != nil {
+			return nil, err
+		}
+	}
+	db = db.Where(&ormObj)
+	db = db.Order("id")
+	ormResponse := []ChartVersionORM{}
+	if err := db.Find(&ormResponse).Error; err != nil {
+		return nil, err
+	}
+	if hook, ok := interface{}(&ormObj).(ChartVersionORMWithAfterListFind); ok {
+		if err = hook.AfterListFind(ctx, db, &ormResponse, f, s, p, fs); err != nil {
+			return nil, err
+		}
+	}
+	pbResponse := []*ChartVersion{}
+	for _, responseEntry := range ormResponse {
+		temp, err := responseEntry.ToPB(ctx)
+		if err != nil {
+			return nil, err
+		}
+		pbResponse = append(pbResponse, &temp)
+	}
+	return pbResponse, nil
+}
+
+type ChartVersionORMWithBeforeListApplyQuery interface {
+	BeforeListApplyQuery(context.Context, *gorm1.DB, *query1.Filtering, *query1.Sorting, *query1.Pagination, *query1.FieldSelection) (*gorm1.DB, error)
+}
+type ChartVersionORMWithBeforeListFind interface {
+	BeforeListFind(context.Context, *gorm1.DB, *query1.Filtering, *query1.Sorting, *query1.Pagination, *query1.FieldSelection) (*gorm1.DB, error)
+}
+type ChartVersionORMWithAfterListFind interface {
+	AfterListFind(context.Context, *gorm1.DB, *[]ChartVersionORM, *query1.Filtering, *query1.Sorting, *query1.Pagination, *query1.FieldSelection) error
+}
+
+// DefaultCreateApplicationInstance executes a basic gorm create call
+func DefaultCreateApplicationInstance(ctx context.Context, in *ApplicationInstance, db *gorm1.DB) (*ApplicationInstance, error) {
+	if in == nil {
+		return nil, errors1.NilArgumentError
+	}
+	ormObj, err := in.ToORM(ctx)
+	if err != nil {
+		return nil, err
+	}
+	if hook, ok := interface{}(&ormObj).(ApplicationInstanceORMWithBeforeCreate_); ok {
+		if db, err = hook.BeforeCreate_(ctx, db); err != nil {
+			return nil, err
+		}
+	}
+	if err = db.Create(&ormObj).Error; err != nil {
+		return nil, err
+	}
+	if hook, ok := interface{}(&ormObj).(ApplicationInstanceORMWithAfterCreate_); ok {
+		if err = hook.AfterCreate_(ctx, db); err != nil {
+			return nil, err
+		}
+	}
+	pbResponse, err := ormObj.ToPB(ctx)
+	return &pbResponse, err
+}
+
+type ApplicationInstanceORMWithBeforeCreate_ interface {
+	BeforeCreate_(context.Context, *gorm1.DB) (*gorm1.DB, error)
+}
+type ApplicationInstanceORMWithAfterCreate_ interface {
+	AfterCreate_(context.Context, *gorm1.DB) error
+}
+
+// DefaultReadApplicationInstance executes a basic gorm read call
+func DefaultReadApplicationInstance(ctx context.Context, in *ApplicationInstance, db *gorm1.DB, fs *query1.FieldSelection) (*ApplicationInstance, error) {
+	if in == nil {
+		return nil, errors1.NilArgumentError
+	}
+	ormObj, err := in.ToORM(ctx)
+	if err != nil {
+		return nil, err
+	}
+	if ormObj.Id == 0 {
+		return nil, errors1.EmptyIdError
+	}
+	if hook, ok := interface{}(&ormObj).(ApplicationInstanceORMWithBeforeReadApplyQuery); ok {
+		if db, err = hook.BeforeReadApplyQuery(ctx, db, fs); err != nil {
+			return nil, err
+		}
+	}
+	if db, err = gorm2.ApplyFieldSelection(ctx, db, fs, &ApplicationInstanceORM{}); err != nil {
+		return nil, err
+	}
+	if hook, ok := interface{}(&ormObj).(ApplicationInstanceORMWithBeforeReadFind); ok {
+		if db, err = hook.BeforeReadFind(ctx, db, fs); err != nil {
+			return nil, err
+		}
+	}
+	ormResponse := ApplicationInstanceORM{}
+	if err = db.Where(&ormObj).First(&ormResponse).Error; err != nil {
+		return nil, err
+	}
+	if hook, ok := interface{}(&ormResponse).(ApplicationInstanceORMWithAfterReadFind); ok {
+		if err = hook.AfterReadFind(ctx, db, fs); err != nil {
+			return nil, err
+		}
+	}
+	pbResponse, err := ormResponse.ToPB(ctx)
+	return &pbResponse, err
+}
+
+type ApplicationInstanceORMWithBeforeReadApplyQuery interface {
+	BeforeReadApplyQuery(context.Context, *gorm1.DB, *query1.FieldSelection) (*gorm1.DB, error)
+}
+type ApplicationInstanceORMWithBeforeReadFind interface {
+	BeforeReadFind(context.Context, *gorm1.DB, *query1.FieldSelection) (*gorm1.DB, error)
+}
+type ApplicationInstanceORMWithAfterReadFind interface {
+	AfterReadFind(context.Context, *gorm1.DB, *query1.FieldSelection) error
+}
+
+func DefaultDeleteApplicationInstance(ctx context.Context, in *ApplicationInstance, db *gorm1.DB) error {
+	if in == nil {
+		return errors1.NilArgumentError
+	}
+	ormObj, err := in.ToORM(ctx)
+	if err != nil {
+		return err
+	}
+	if ormObj.Id == 0 {
+		return errors1.EmptyIdError
+	}
+	if hook, ok := interface{}(&ormObj).(ApplicationInstanceORMWithBeforeDelete_); ok {
+		if db, err = hook.BeforeDelete_(ctx, db); err != nil {
+			return err
+		}
+	}
+	err = db.Where(&ormObj).Delete(&ApplicationInstanceORM{}).Error
+	if err != nil {
+		return err
+	}
+	if hook, ok := interface{}(&ormObj).(ApplicationInstanceORMWithAfterDelete_); ok {
+		err = hook.AfterDelete_(ctx, db)
+	}
+	return err
+}
+
+type ApplicationInstanceORMWithBeforeDelete_ interface {
+	BeforeDelete_(context.Context, *gorm1.DB) (*gorm1.DB, error)
+}
+type ApplicationInstanceORMWithAfterDelete_ interface {
+	AfterDelete_(context.Context, *gorm1.DB) error
+}
+
+func DefaultDeleteApplicationInstanceSet(ctx context.Context, in []*ApplicationInstance, db *gorm1.DB) error {
+	if in == nil {
+		return errors1.NilArgumentError
+	}
+	var err error
+	keys := []int64{}
+	for _, obj := range in {
+		ormObj, err := obj.ToORM(ctx)
+		if err != nil {
+			return err
+		}
+		if ormObj.Id == 0 {
+			return errors1.EmptyIdError
+		}
+		keys = append(keys, ormObj.Id)
+	}
+	if hook, ok := (interface{}(&ApplicationInstanceORM{})).(ApplicationInstanceORMWithBeforeDeleteSet); ok {
+		if db, err = hook.BeforeDeleteSet(ctx, in, db); err != nil {
+			return err
+		}
+	}
+	acctId, err := auth1.GetAccountID(ctx, nil)
+	if err != nil {
+		return err
+	}
+	err = db.Where("account_id = ? AND id in (?)", acctId, keys).Delete(&ApplicationInstanceORM{}).Error
+	if err != nil {
+		return err
+	}
+	if hook, ok := (interface{}(&ApplicationInstanceORM{})).(ApplicationInstanceORMWithAfterDeleteSet); ok {
+		err = hook.AfterDeleteSet(ctx, in, db)
+	}
+	return err
+}
+
+type ApplicationInstanceORMWithBeforeDeleteSet interface {
+	BeforeDeleteSet(context.Context, []*ApplicationInstance, *gorm1.DB) (*gorm1.DB, error)
+}
+type ApplicationInstanceORMWithAfterDeleteSet interface {
+	AfterDeleteSet(context.Context, []*ApplicationInstance, *gorm1.DB) error
+}
+
+// DefaultStrictUpdateApplicationInstance clears first level 1:many children and then executes a gorm update call
+func DefaultStrictUpdateApplicationInstance(ctx context.Context, in *ApplicationInstance, db *gorm1.DB) (*ApplicationInstance, error) {
+	if in == nil {
+		return nil, fmt.Errorf("Nil argument to DefaultStrictUpdateApplicationInstance")
+	}
+	ormObj, err := in.ToORM(ctx)
+	if err != nil {
+		return nil, err
+	}
+	accountID, err := auth1.GetAccountID(ctx, nil)
+	if err != nil {
+		return nil, err
+	}
+	db = db.Where(map[string]interface{}{"account_id": accountID})
+	lockedRow := &ApplicationInstanceORM{}
+	db.Model(&ormObj).Set("gorm:query_option", "FOR UPDATE").Where("id=?", ormObj.Id).First(lockedRow)
+	if hook, ok := interface{}(&ormObj).(ApplicationInstanceORMWithBeforeStrictUpdateCleanup); ok {
+		if db, err = hook.BeforeStrictUpdateCleanup(ctx, db); err != nil {
+			return nil, err
+		}
+	}
+	filterDeployment := DeploymentORM{}
+	if ormObj.Id == 0 {
+		return nil, errors1.EmptyIdError
+	}
+	filterDeployment.ApplicationInstanceId = new(int64)
+	*filterDeployment.ApplicationInstanceId = ormObj.Id
+	if err = db.Where(filterDeployment).Delete(DeploymentORM{}).Error; err != nil {
+		return nil, err
+	}
+	filterValue := ValueORM{}
+	if ormObj.Id == 0 {
+		return nil, errors1.EmptyIdError
+	}
+	filterValue.ApplicationInstanceId = new(int64)
+	*filterValue.ApplicationInstanceId = ormObj.Id
+	if err = db.Where(filterValue).Delete(ValueORM{}).Error; err != nil {
+		return nil, err
+	}
+	if hook, ok := interface{}(&ormObj).(ApplicationInstanceORMWithBeforeStrictUpdateSave); ok {
+		if db, err = hook.BeforeStrictUpdateSave(ctx, db); err != nil {
+			return nil, err
+		}
+	}
+	if err = db.Save(&ormObj).Error; err != nil {
+		return nil, err
+	}
+	if hook, ok := interface{}(&ormObj).(ApplicationInstanceORMWithAfterStrictUpdateSave); ok {
+		if err = hook.AfterStrictUpdateSave(ctx, db); err != nil {
+			return nil, err
+		}
+	}
+	pbResponse, err := ormObj.ToPB(ctx)
+	if err != nil {
+		return nil, err
+	}
+	return &pbResponse, err
+}
+
+type ApplicationInstanceORMWithBeforeStrictUpdateCleanup interface {
+	BeforeStrictUpdateCleanup(context.Context, *gorm1.DB) (*gorm1.DB, error)
+}
+type ApplicationInstanceORMWithBeforeStrictUpdateSave interface {
+	BeforeStrictUpdateSave(context.Context, *gorm1.DB) (*gorm1.DB, error)
+}
+type ApplicationInstanceORMWithAfterStrictUpdateSave interface {
+	AfterStrictUpdateSave(context.Context, *gorm1.DB) error
+}
+
+// DefaultPatchApplicationInstance executes a basic gorm update call with patch behavior
+func DefaultPatchApplicationInstance(ctx context.Context, in *ApplicationInstance, updateMask *field_mask1.FieldMask, db *gorm1.DB) (*ApplicationInstance, error) {
+	if in == nil {
+		return nil, errors1.NilArgumentError
+	}
+	var pbObj ApplicationInstance
+	var err error
+	if hook, ok := interface{}(&pbObj).(ApplicationInstanceWithBeforePatchRead); ok {
+		if db, err = hook.BeforePatchRead(ctx, in, updateMask, db); err != nil {
+			return nil, err
+		}
+	}
+	pbReadRes, err := DefaultReadApplicationInstance(ctx, &ApplicationInstance{Id: in.GetId()}, db, nil)
+	if err != nil {
+		return nil, err
+	}
+	pbObj = *pbReadRes
+	if hook, ok := interface{}(&pbObj).(ApplicationInstanceWithBeforePatchApplyFieldMask); ok {
+		if db, err = hook.BeforePatchApplyFieldMask(ctx, in, updateMask, db); err != nil {
+			return nil, err
+		}
+	}
+	if _, err := DefaultApplyFieldMaskApplicationInstance(ctx, &pbObj, in, updateMask, "", db); err != nil {
+		return nil, err
+	}
+	if hook, ok := interface{}(&pbObj).(ApplicationInstanceWithBeforePatchSave); ok {
+		if db, err = hook.BeforePatchSave(ctx, in, updateMask, db); err != nil {
+			return nil, err
+		}
+	}
+	pbResponse, err := DefaultStrictUpdateApplicationInstance(ctx, &pbObj, db)
+	if err != nil {
+		return nil, err
+	}
+	if hook, ok := interface{}(pbResponse).(ApplicationInstanceWithAfterPatchSave); ok {
+		if err = hook.AfterPatchSave(ctx, in, updateMask, db); err != nil {
+			return nil, err
+		}
+	}
+	return pbResponse, nil
+}
+
+type ApplicationInstanceWithBeforePatchRead interface {
+	BeforePatchRead(context.Context, *ApplicationInstance, *field_mask1.FieldMask, *gorm1.DB) (*gorm1.DB, error)
+}
+type ApplicationInstanceWithBeforePatchApplyFieldMask interface {
+	BeforePatchApplyFieldMask(context.Context, *ApplicationInstance, *field_mask1.FieldMask, *gorm1.DB) (*gorm1.DB, error)
+}
+type ApplicationInstanceWithBeforePatchSave interface {
+	BeforePatchSave(context.Context, *ApplicationInstance, *field_mask1.FieldMask, *gorm1.DB) (*gorm1.DB, error)
+}
+type ApplicationInstanceWithAfterPatchSave interface {
+	AfterPatchSave(context.Context, *ApplicationInstance, *field_mask1.FieldMask, *gorm1.DB) error
+}
+
+// DefaultPatchSetApplicationInstance executes a bulk gorm update call with patch behavior
+func DefaultPatchSetApplicationInstance(ctx context.Context, objects []*ApplicationInstance, updateMasks []*field_mask1.FieldMask, db *gorm1.DB) ([]*ApplicationInstance, error) {
+	if len(objects) != len(updateMasks) {
+		return nil, fmt.Errorf(errors1.BadRepeatedFieldMaskTpl, len(updateMasks), len(objects))
+	}
+
+	results := make([]*ApplicationInstance, 0, len(objects))
+	for i, patcher := range objects {
+		pbResponse, err := DefaultPatchApplicationInstance(ctx, patcher, updateMasks[i], db)
+		if err != nil {
+			return nil, err
+		}
+
+		results = append(results, pbResponse)
+	}
+
+	return results, nil
+}
+
+// DefaultApplyFieldMaskApplicationInstance patches an pbObject with patcher according to a field mask.
+func DefaultApplyFieldMaskApplicationInstance(ctx context.Context, patchee *ApplicationInstance, patcher *ApplicationInstance, updateMask *field_mask1.FieldMask, prefix string, db *gorm1.DB) (*ApplicationInstance, error) {
+	if patcher == nil {
+		return nil, nil
+	} else if patchee == nil {
+		return nil, errors1.NilArgumentError
+	}
+	var err error
+	var updatedValue bool
+	var updatedDeployment bool
+	var updatedChartVersion bool
+	for i, f := range updateMask.Paths {
+		if f == prefix+"Id" {
+			patchee.Id = patcher.Id
+			continue
+		}
+		if f == prefix+"Name" {
+			patchee.Name = patcher.Name
+			continue
+		}
+		if f == prefix+"Description" {
+			patchee.Description = patcher.Description
+			continue
+		}
+		if !updatedValue && strings.HasPrefix(f, prefix+"Value.") {
+			updatedValue = true
+			if patcher.Value == nil {
+				patchee.Value = nil
+				continue
+			}
+			if patchee.Value == nil {
+				patchee.Value = &Value{}
+			}
+			if o, err := DefaultApplyFieldMaskValue(ctx, patchee.Value, patcher.Value, &field_mask1.FieldMask{Paths: updateMask.Paths[i:]}, prefix+"Value.", db); err != nil {
+				return nil, err
+			} else {
+				patchee.Value = o
+			}
+			continue
+		}
+		if f == prefix+"Value" {
+			updatedValue = true
+			patchee.Value = patcher.Value
+			continue
+		}
+		if !updatedDeployment && strings.HasPrefix(f, prefix+"Deployment.") {
+			updatedDeployment = true
+			if patcher.Deployment == nil {
+				patchee.Deployment = nil
+				continue
+			}
+			if patchee.Deployment == nil {
+				patchee.Deployment = &Deployment{}
+			}
+			if o, err := DefaultApplyFieldMaskDeployment(ctx, patchee.Deployment, patcher.Deployment, &field_mask1.FieldMask{Paths: updateMask.Paths[i:]}, prefix+"Deployment.", db); err != nil {
+				return nil, err
+			} else {
+				patchee.Deployment = o
+			}
+			continue
+		}
+		if f == prefix+"Deployment" {
+			updatedDeployment = true
+			patchee.Deployment = patcher.Deployment
+			continue
+		}
+		if !updatedChartVersion && strings.HasPrefix(f, prefix+"ChartVersion.") {
+			updatedChartVersion = true
+			if patcher.ChartVersion == nil {
+				patchee.ChartVersion = nil
+				continue
+			}
+			if patchee.ChartVersion == nil {
+				patchee.ChartVersion = &ChartVersion{}
+			}
+			if o, err := DefaultApplyFieldMaskChartVersion(ctx, patchee.ChartVersion, patcher.ChartVersion, &field_mask1.FieldMask{Paths: updateMask.Paths[i:]}, prefix+"ChartVersion.", db); err != nil {
+				return nil, err
+			} else {
+				patchee.ChartVersion = o
+			}
+			continue
+		}
+		if f == prefix+"ChartVersion" {
+			updatedChartVersion = true
+			patchee.ChartVersion = patcher.ChartVersion
+			continue
+		}
+		if f == prefix+"ChartVersionId" {
+			patchee.ChartVersionId = patcher.ChartVersionId
+			continue
+		}
+		if f == prefix+"EnvironmentId" {
+			patchee.EnvironmentId = patcher.EnvironmentId
+			continue
+		}
+	}
+	if err != nil {
+		return nil, err
+	}
+	return patchee, nil
+}
+
+// DefaultListApplicationInstance executes a gorm list call
+func DefaultListApplicationInstance(ctx context.Context, db *gorm1.DB, f *query1.Filtering, s *query1.Sorting, p *query1.Pagination, fs *query1.FieldSelection) ([]*ApplicationInstance, error) {
+	in := ApplicationInstance{}
+	ormObj, err := in.ToORM(ctx)
+	if err != nil {
+		return nil, err
+	}
+	if hook, ok := interface{}(&ormObj).(ApplicationInstanceORMWithBeforeListApplyQuery); ok {
+		if db, err = hook.BeforeListApplyQuery(ctx, db, f, s, p, fs); err != nil {
+			return nil, err
+		}
+	}
+	db, err = gorm2.ApplyCollectionOperators(ctx, db, &ApplicationInstanceORM{}, &ApplicationInstance{}, f, s, p, fs)
+	if err != nil {
+		return nil, err
+	}
+	if hook, ok := interface{}(&ormObj).(ApplicationInstanceORMWithBeforeListFind); ok {
+		if db, err = hook.BeforeListFind(ctx, db, f, s, p, fs); err != nil {
+			return nil, err
+		}
+	}
+	db = db.Where(&ormObj)
+	db = db.Order("id")
+	ormResponse := []ApplicationInstanceORM{}
+	if err := db.Find(&ormResponse).Error; err != nil {
+		return nil, err
+	}
+	if hook, ok := interface{}(&ormObj).(ApplicationInstanceORMWithAfterListFind); ok {
+		if err = hook.AfterListFind(ctx, db, &ormResponse, f, s, p, fs); err != nil {
+			return nil, err
+		}
+	}
+	pbResponse := []*ApplicationInstance{}
+	for _, responseEntry := range ormResponse {
+		temp, err := responseEntry.ToPB(ctx)
+		if err != nil {
+			return nil, err
+		}
+		pbResponse = append(pbResponse, &temp)
+	}
+	return pbResponse, nil
+}
+
+type ApplicationInstanceORMWithBeforeListApplyQuery interface {
+	BeforeListApplyQuery(context.Context, *gorm1.DB, *query1.Filtering, *query1.Sorting, *query1.Pagination, *query1.FieldSelection) (*gorm1.DB, error)
+}
+type ApplicationInstanceORMWithBeforeListFind interface {
+	BeforeListFind(context.Context, *gorm1.DB, *query1.Filtering, *query1.Sorting, *query1.Pagination, *query1.FieldSelection) (*gorm1.DB, error)
+}
+type ApplicationInstanceORMWithAfterListFind interface {
+	AfterListFind(context.Context, *gorm1.DB, *[]ApplicationInstanceORM, *query1.Filtering, *query1.Sorting, *query1.Pagination, *query1.FieldSelection) error
 }
 
 // DefaultCreateVault executes a basic gorm create call
@@ -2361,10 +5201,6 @@ func DefaultApplyFieldMaskVault(ctx context.Context, patchee *Vault, patcher *Va
 			patchee.Description = patcher.Description
 			continue
 		}
-		if f == prefix+"Path" {
-			patchee.Path = patcher.Path
-			continue
-		}
 		if f == prefix+"Secrets" {
 			patchee.Secrets = patcher.Secrets
 			continue
@@ -2429,8 +5265,8 @@ type VaultORMWithAfterListFind interface {
 	AfterListFind(context.Context, *gorm1.DB, *[]VaultORM, *query1.Filtering, *query1.Sorting, *query1.Pagination, *query1.FieldSelection) error
 }
 
-// DefaultCreateVersionTag executes a basic gorm create call
-func DefaultCreateVersionTag(ctx context.Context, in *VersionTag, db *gorm1.DB) (*VersionTag, error) {
+// DefaultCreateSecret executes a basic gorm create call
+func DefaultCreateSecret(ctx context.Context, in *Secret, db *gorm1.DB) (*Secret, error) {
 	if in == nil {
 		return nil, errors1.NilArgumentError
 	}
@@ -2438,7 +5274,7 @@ func DefaultCreateVersionTag(ctx context.Context, in *VersionTag, db *gorm1.DB) 
 	if err != nil {
 		return nil, err
 	}
-	if hook, ok := interface{}(&ormObj).(VersionTagORMWithBeforeCreate_); ok {
+	if hook, ok := interface{}(&ormObj).(SecretORMWithBeforeCreate_); ok {
 		if db, err = hook.BeforeCreate_(ctx, db); err != nil {
 			return nil, err
 		}
@@ -2446,7 +5282,7 @@ func DefaultCreateVersionTag(ctx context.Context, in *VersionTag, db *gorm1.DB) 
 	if err = db.Create(&ormObj).Error; err != nil {
 		return nil, err
 	}
-	if hook, ok := interface{}(&ormObj).(VersionTagORMWithAfterCreate_); ok {
+	if hook, ok := interface{}(&ormObj).(SecretORMWithAfterCreate_); ok {
 		if err = hook.AfterCreate_(ctx, db); err != nil {
 			return nil, err
 		}
@@ -2455,15 +5291,15 @@ func DefaultCreateVersionTag(ctx context.Context, in *VersionTag, db *gorm1.DB) 
 	return &pbResponse, err
 }
 
-type VersionTagORMWithBeforeCreate_ interface {
+type SecretORMWithBeforeCreate_ interface {
 	BeforeCreate_(context.Context, *gorm1.DB) (*gorm1.DB, error)
 }
-type VersionTagORMWithAfterCreate_ interface {
+type SecretORMWithAfterCreate_ interface {
 	AfterCreate_(context.Context, *gorm1.DB) error
 }
 
-// DefaultReadVersionTag executes a basic gorm read call
-func DefaultReadVersionTag(ctx context.Context, in *VersionTag, db *gorm1.DB, fs *query1.FieldSelection) (*VersionTag, error) {
+// DefaultReadSecret executes a basic gorm read call
+func DefaultReadSecret(ctx context.Context, in *Secret, db *gorm1.DB, fs *query1.FieldSelection) (*Secret, error) {
 	if in == nil {
 		return nil, errors1.NilArgumentError
 	}
@@ -2474,24 +5310,24 @@ func DefaultReadVersionTag(ctx context.Context, in *VersionTag, db *gorm1.DB, fs
 	if ormObj.Id == 0 {
 		return nil, errors1.EmptyIdError
 	}
-	if hook, ok := interface{}(&ormObj).(VersionTagORMWithBeforeReadApplyQuery); ok {
+	if hook, ok := interface{}(&ormObj).(SecretORMWithBeforeReadApplyQuery); ok {
 		if db, err = hook.BeforeReadApplyQuery(ctx, db, fs); err != nil {
 			return nil, err
 		}
 	}
-	if db, err = gorm2.ApplyFieldSelection(ctx, db, fs, &VersionTagORM{}); err != nil {
+	if db, err = gorm2.ApplyFieldSelection(ctx, db, fs, &SecretORM{}); err != nil {
 		return nil, err
 	}
-	if hook, ok := interface{}(&ormObj).(VersionTagORMWithBeforeReadFind); ok {
+	if hook, ok := interface{}(&ormObj).(SecretORMWithBeforeReadFind); ok {
 		if db, err = hook.BeforeReadFind(ctx, db, fs); err != nil {
 			return nil, err
 		}
 	}
-	ormResponse := VersionTagORM{}
+	ormResponse := SecretORM{}
 	if err = db.Where(&ormObj).First(&ormResponse).Error; err != nil {
 		return nil, err
 	}
-	if hook, ok := interface{}(&ormResponse).(VersionTagORMWithAfterReadFind); ok {
+	if hook, ok := interface{}(&ormResponse).(SecretORMWithAfterReadFind); ok {
 		if err = hook.AfterReadFind(ctx, db, fs); err != nil {
 			return nil, err
 		}
@@ -2500,17 +5336,17 @@ func DefaultReadVersionTag(ctx context.Context, in *VersionTag, db *gorm1.DB, fs
 	return &pbResponse, err
 }
 
-type VersionTagORMWithBeforeReadApplyQuery interface {
+type SecretORMWithBeforeReadApplyQuery interface {
 	BeforeReadApplyQuery(context.Context, *gorm1.DB, *query1.FieldSelection) (*gorm1.DB, error)
 }
-type VersionTagORMWithBeforeReadFind interface {
+type SecretORMWithBeforeReadFind interface {
 	BeforeReadFind(context.Context, *gorm1.DB, *query1.FieldSelection) (*gorm1.DB, error)
 }
-type VersionTagORMWithAfterReadFind interface {
+type SecretORMWithAfterReadFind interface {
 	AfterReadFind(context.Context, *gorm1.DB, *query1.FieldSelection) error
 }
 
-func DefaultDeleteVersionTag(ctx context.Context, in *VersionTag, db *gorm1.DB) error {
+func DefaultDeleteSecret(ctx context.Context, in *Secret, db *gorm1.DB) error {
 	if in == nil {
 		return errors1.NilArgumentError
 	}
@@ -2521,29 +5357,29 @@ func DefaultDeleteVersionTag(ctx context.Context, in *VersionTag, db *gorm1.DB) 
 	if ormObj.Id == 0 {
 		return errors1.EmptyIdError
 	}
-	if hook, ok := interface{}(&ormObj).(VersionTagORMWithBeforeDelete_); ok {
+	if hook, ok := interface{}(&ormObj).(SecretORMWithBeforeDelete_); ok {
 		if db, err = hook.BeforeDelete_(ctx, db); err != nil {
 			return err
 		}
 	}
-	err = db.Where(&ormObj).Delete(&VersionTagORM{}).Error
+	err = db.Where(&ormObj).Delete(&SecretORM{}).Error
 	if err != nil {
 		return err
 	}
-	if hook, ok := interface{}(&ormObj).(VersionTagORMWithAfterDelete_); ok {
+	if hook, ok := interface{}(&ormObj).(SecretORMWithAfterDelete_); ok {
 		err = hook.AfterDelete_(ctx, db)
 	}
 	return err
 }
 
-type VersionTagORMWithBeforeDelete_ interface {
+type SecretORMWithBeforeDelete_ interface {
 	BeforeDelete_(context.Context, *gorm1.DB) (*gorm1.DB, error)
 }
-type VersionTagORMWithAfterDelete_ interface {
+type SecretORMWithAfterDelete_ interface {
 	AfterDelete_(context.Context, *gorm1.DB) error
 }
 
-func DefaultDeleteVersionTagSet(ctx context.Context, in []*VersionTag, db *gorm1.DB) error {
+func DefaultDeleteSecretSet(ctx context.Context, in []*Secret, db *gorm1.DB) error {
 	if in == nil {
 		return errors1.NilArgumentError
 	}
@@ -2559,7 +5395,7 @@ func DefaultDeleteVersionTagSet(ctx context.Context, in []*VersionTag, db *gorm1
 		}
 		keys = append(keys, ormObj.Id)
 	}
-	if hook, ok := (interface{}(&VersionTagORM{})).(VersionTagORMWithBeforeDeleteSet); ok {
+	if hook, ok := (interface{}(&SecretORM{})).(SecretORMWithBeforeDeleteSet); ok {
 		if db, err = hook.BeforeDeleteSet(ctx, in, db); err != nil {
 			return err
 		}
@@ -2568,27 +5404,27 @@ func DefaultDeleteVersionTagSet(ctx context.Context, in []*VersionTag, db *gorm1
 	if err != nil {
 		return err
 	}
-	err = db.Where("account_id = ? AND id in (?)", acctId, keys).Delete(&VersionTagORM{}).Error
+	err = db.Where("account_id = ? AND id in (?)", acctId, keys).Delete(&SecretORM{}).Error
 	if err != nil {
 		return err
 	}
-	if hook, ok := (interface{}(&VersionTagORM{})).(VersionTagORMWithAfterDeleteSet); ok {
+	if hook, ok := (interface{}(&SecretORM{})).(SecretORMWithAfterDeleteSet); ok {
 		err = hook.AfterDeleteSet(ctx, in, db)
 	}
 	return err
 }
 
-type VersionTagORMWithBeforeDeleteSet interface {
-	BeforeDeleteSet(context.Context, []*VersionTag, *gorm1.DB) (*gorm1.DB, error)
+type SecretORMWithBeforeDeleteSet interface {
+	BeforeDeleteSet(context.Context, []*Secret, *gorm1.DB) (*gorm1.DB, error)
 }
-type VersionTagORMWithAfterDeleteSet interface {
-	AfterDeleteSet(context.Context, []*VersionTag, *gorm1.DB) error
+type SecretORMWithAfterDeleteSet interface {
+	AfterDeleteSet(context.Context, []*Secret, *gorm1.DB) error
 }
 
-// DefaultStrictUpdateVersionTag clears first level 1:many children and then executes a gorm update call
-func DefaultStrictUpdateVersionTag(ctx context.Context, in *VersionTag, db *gorm1.DB) (*VersionTag, error) {
+// DefaultStrictUpdateSecret clears first level 1:many children and then executes a gorm update call
+func DefaultStrictUpdateSecret(ctx context.Context, in *Secret, db *gorm1.DB) (*Secret, error) {
 	if in == nil {
-		return nil, fmt.Errorf("Nil argument to DefaultStrictUpdateVersionTag")
+		return nil, fmt.Errorf("Nil argument to DefaultStrictUpdateSecret")
 	}
 	ormObj, err := in.ToORM(ctx)
 	if err != nil {
@@ -2599,23 +5435,14 @@ func DefaultStrictUpdateVersionTag(ctx context.Context, in *VersionTag, db *gorm
 		return nil, err
 	}
 	db = db.Where(map[string]interface{}{"account_id": accountID})
-	lockedRow := &VersionTagORM{}
+	lockedRow := &SecretORM{}
 	db.Model(&ormObj).Set("gorm:query_option", "FOR UPDATE").Where("id=?", ormObj.Id).First(lockedRow)
-	if hook, ok := interface{}(&ormObj).(VersionTagORMWithBeforeStrictUpdateCleanup); ok {
+	if hook, ok := interface{}(&ormObj).(SecretORMWithBeforeStrictUpdateCleanup); ok {
 		if db, err = hook.BeforeStrictUpdateCleanup(ctx, db); err != nil {
 			return nil, err
 		}
 	}
-	filterArtifacts := ArtifactORM{}
-	if ormObj.Id == 0 {
-		return nil, errors1.EmptyIdError
-	}
-	filterArtifacts.VersionTagId = new(int64)
-	*filterArtifacts.VersionTagId = ormObj.Id
-	if err = db.Where(filterArtifacts).Delete(ArtifactORM{}).Error; err != nil {
-		return nil, err
-	}
-	if hook, ok := interface{}(&ormObj).(VersionTagORMWithBeforeStrictUpdateSave); ok {
+	if hook, ok := interface{}(&ormObj).(SecretORMWithBeforeStrictUpdateSave); ok {
 		if db, err = hook.BeforeStrictUpdateSave(ctx, db); err != nil {
 			return nil, err
 		}
@@ -2623,7 +5450,7 @@ func DefaultStrictUpdateVersionTag(ctx context.Context, in *VersionTag, db *gorm
 	if err = db.Save(&ormObj).Error; err != nil {
 		return nil, err
 	}
-	if hook, ok := interface{}(&ormObj).(VersionTagORMWithAfterStrictUpdateSave); ok {
+	if hook, ok := interface{}(&ormObj).(SecretORMWithAfterStrictUpdateSave); ok {
 		if err = hook.AfterStrictUpdateSave(ctx, db); err != nil {
 			return nil, err
 		}
@@ -2635,51 +5462,51 @@ func DefaultStrictUpdateVersionTag(ctx context.Context, in *VersionTag, db *gorm
 	return &pbResponse, err
 }
 
-type VersionTagORMWithBeforeStrictUpdateCleanup interface {
+type SecretORMWithBeforeStrictUpdateCleanup interface {
 	BeforeStrictUpdateCleanup(context.Context, *gorm1.DB) (*gorm1.DB, error)
 }
-type VersionTagORMWithBeforeStrictUpdateSave interface {
+type SecretORMWithBeforeStrictUpdateSave interface {
 	BeforeStrictUpdateSave(context.Context, *gorm1.DB) (*gorm1.DB, error)
 }
-type VersionTagORMWithAfterStrictUpdateSave interface {
+type SecretORMWithAfterStrictUpdateSave interface {
 	AfterStrictUpdateSave(context.Context, *gorm1.DB) error
 }
 
-// DefaultPatchVersionTag executes a basic gorm update call with patch behavior
-func DefaultPatchVersionTag(ctx context.Context, in *VersionTag, updateMask *field_mask1.FieldMask, db *gorm1.DB) (*VersionTag, error) {
+// DefaultPatchSecret executes a basic gorm update call with patch behavior
+func DefaultPatchSecret(ctx context.Context, in *Secret, updateMask *field_mask1.FieldMask, db *gorm1.DB) (*Secret, error) {
 	if in == nil {
 		return nil, errors1.NilArgumentError
 	}
-	var pbObj VersionTag
+	var pbObj Secret
 	var err error
-	if hook, ok := interface{}(&pbObj).(VersionTagWithBeforePatchRead); ok {
+	if hook, ok := interface{}(&pbObj).(SecretWithBeforePatchRead); ok {
 		if db, err = hook.BeforePatchRead(ctx, in, updateMask, db); err != nil {
 			return nil, err
 		}
 	}
-	pbReadRes, err := DefaultReadVersionTag(ctx, &VersionTag{Id: in.GetId()}, db, nil)
+	pbReadRes, err := DefaultReadSecret(ctx, &Secret{Id: in.GetId()}, db, nil)
 	if err != nil {
 		return nil, err
 	}
 	pbObj = *pbReadRes
-	if hook, ok := interface{}(&pbObj).(VersionTagWithBeforePatchApplyFieldMask); ok {
+	if hook, ok := interface{}(&pbObj).(SecretWithBeforePatchApplyFieldMask); ok {
 		if db, err = hook.BeforePatchApplyFieldMask(ctx, in, updateMask, db); err != nil {
 			return nil, err
 		}
 	}
-	if _, err := DefaultApplyFieldMaskVersionTag(ctx, &pbObj, in, updateMask, "", db); err != nil {
+	if _, err := DefaultApplyFieldMaskSecret(ctx, &pbObj, in, updateMask, "", db); err != nil {
 		return nil, err
 	}
-	if hook, ok := interface{}(&pbObj).(VersionTagWithBeforePatchSave); ok {
+	if hook, ok := interface{}(&pbObj).(SecretWithBeforePatchSave); ok {
 		if db, err = hook.BeforePatchSave(ctx, in, updateMask, db); err != nil {
 			return nil, err
 		}
 	}
-	pbResponse, err := DefaultStrictUpdateVersionTag(ctx, &pbObj, db)
+	pbResponse, err := DefaultStrictUpdateSecret(ctx, &pbObj, db)
 	if err != nil {
 		return nil, err
 	}
-	if hook, ok := interface{}(pbResponse).(VersionTagWithAfterPatchSave); ok {
+	if hook, ok := interface{}(pbResponse).(SecretWithAfterPatchSave); ok {
 		if err = hook.AfterPatchSave(ctx, in, updateMask, db); err != nil {
 			return nil, err
 		}
@@ -2687,28 +5514,28 @@ func DefaultPatchVersionTag(ctx context.Context, in *VersionTag, updateMask *fie
 	return pbResponse, nil
 }
 
-type VersionTagWithBeforePatchRead interface {
-	BeforePatchRead(context.Context, *VersionTag, *field_mask1.FieldMask, *gorm1.DB) (*gorm1.DB, error)
+type SecretWithBeforePatchRead interface {
+	BeforePatchRead(context.Context, *Secret, *field_mask1.FieldMask, *gorm1.DB) (*gorm1.DB, error)
 }
-type VersionTagWithBeforePatchApplyFieldMask interface {
-	BeforePatchApplyFieldMask(context.Context, *VersionTag, *field_mask1.FieldMask, *gorm1.DB) (*gorm1.DB, error)
+type SecretWithBeforePatchApplyFieldMask interface {
+	BeforePatchApplyFieldMask(context.Context, *Secret, *field_mask1.FieldMask, *gorm1.DB) (*gorm1.DB, error)
 }
-type VersionTagWithBeforePatchSave interface {
-	BeforePatchSave(context.Context, *VersionTag, *field_mask1.FieldMask, *gorm1.DB) (*gorm1.DB, error)
+type SecretWithBeforePatchSave interface {
+	BeforePatchSave(context.Context, *Secret, *field_mask1.FieldMask, *gorm1.DB) (*gorm1.DB, error)
 }
-type VersionTagWithAfterPatchSave interface {
-	AfterPatchSave(context.Context, *VersionTag, *field_mask1.FieldMask, *gorm1.DB) error
+type SecretWithAfterPatchSave interface {
+	AfterPatchSave(context.Context, *Secret, *field_mask1.FieldMask, *gorm1.DB) error
 }
 
-// DefaultPatchSetVersionTag executes a bulk gorm update call with patch behavior
-func DefaultPatchSetVersionTag(ctx context.Context, objects []*VersionTag, updateMasks []*field_mask1.FieldMask, db *gorm1.DB) ([]*VersionTag, error) {
+// DefaultPatchSetSecret executes a bulk gorm update call with patch behavior
+func DefaultPatchSetSecret(ctx context.Context, objects []*Secret, updateMasks []*field_mask1.FieldMask, db *gorm1.DB) ([]*Secret, error) {
 	if len(objects) != len(updateMasks) {
 		return nil, fmt.Errorf(errors1.BadRepeatedFieldMaskTpl, len(updateMasks), len(objects))
 	}
 
-	results := make([]*VersionTag, 0, len(objects))
+	results := make([]*Secret, 0, len(objects))
 	for i, patcher := range objects {
-		pbResponse, err := DefaultPatchVersionTag(ctx, patcher, updateMasks[i], db)
+		pbResponse, err := DefaultPatchSecret(ctx, patcher, updateMasks[i], db)
 		if err != nil {
 			return nil, err
 		}
@@ -2719,8 +5546,8 @@ func DefaultPatchSetVersionTag(ctx context.Context, objects []*VersionTag, updat
 	return results, nil
 }
 
-// DefaultApplyFieldMaskVersionTag patches an pbObject with patcher according to a field mask.
-func DefaultApplyFieldMaskVersionTag(ctx context.Context, patchee *VersionTag, patcher *VersionTag, updateMask *field_mask1.FieldMask, prefix string, db *gorm1.DB) (*VersionTag, error) {
+// DefaultApplyFieldMaskSecret patches an pbObject with patcher according to a field mask.
+func DefaultApplyFieldMaskSecret(ctx context.Context, patchee *Secret, patcher *Secret, updateMask *field_mask1.FieldMask, prefix string, db *gorm1.DB) (*Secret, error) {
 	if patcher == nil {
 		return nil, nil
 	} else if patchee == nil {
@@ -2740,12 +5567,28 @@ func DefaultApplyFieldMaskVersionTag(ctx context.Context, patchee *VersionTag, p
 			patchee.Description = patcher.Description
 			continue
 		}
-		if f == prefix+"Version" {
-			patchee.Version = patcher.Version
+		if f == prefix+"Path" {
+			patchee.Path = patcher.Path
 			continue
 		}
-		if f == prefix+"Artifacts" {
-			patchee.Artifacts = patcher.Artifacts
+		if f == prefix+"Type" {
+			patchee.Type = patcher.Type
+			continue
+		}
+		if f == prefix+"Key" {
+			patchee.Key = patcher.Key
+			continue
+		}
+		if f == prefix+"VaultId" {
+			patchee.VaultId = patcher.VaultId
+			continue
+		}
+		if f == prefix+"ValueId" {
+			patchee.ValueId = patcher.ValueId
+			continue
+		}
+		if f == prefix+"AwsRdsInstanceId" {
+			patchee.AwsRdsInstanceId = patcher.AwsRdsInstanceId
 			continue
 		}
 	}
@@ -2755,39 +5598,39 @@ func DefaultApplyFieldMaskVersionTag(ctx context.Context, patchee *VersionTag, p
 	return patchee, nil
 }
 
-// DefaultListVersionTag executes a gorm list call
-func DefaultListVersionTag(ctx context.Context, db *gorm1.DB, f *query1.Filtering, s *query1.Sorting, p *query1.Pagination, fs *query1.FieldSelection) ([]*VersionTag, error) {
-	in := VersionTag{}
+// DefaultListSecret executes a gorm list call
+func DefaultListSecret(ctx context.Context, db *gorm1.DB, f *query1.Filtering, s *query1.Sorting, p *query1.Pagination, fs *query1.FieldSelection) ([]*Secret, error) {
+	in := Secret{}
 	ormObj, err := in.ToORM(ctx)
 	if err != nil {
 		return nil, err
 	}
-	if hook, ok := interface{}(&ormObj).(VersionTagORMWithBeforeListApplyQuery); ok {
+	if hook, ok := interface{}(&ormObj).(SecretORMWithBeforeListApplyQuery); ok {
 		if db, err = hook.BeforeListApplyQuery(ctx, db, f, s, p, fs); err != nil {
 			return nil, err
 		}
 	}
-	db, err = gorm2.ApplyCollectionOperators(ctx, db, &VersionTagORM{}, &VersionTag{}, f, s, p, fs)
+	db, err = gorm2.ApplyCollectionOperators(ctx, db, &SecretORM{}, &Secret{}, f, s, p, fs)
 	if err != nil {
 		return nil, err
 	}
-	if hook, ok := interface{}(&ormObj).(VersionTagORMWithBeforeListFind); ok {
+	if hook, ok := interface{}(&ormObj).(SecretORMWithBeforeListFind); ok {
 		if db, err = hook.BeforeListFind(ctx, db, f, s, p, fs); err != nil {
 			return nil, err
 		}
 	}
 	db = db.Where(&ormObj)
 	db = db.Order("id")
-	ormResponse := []VersionTagORM{}
+	ormResponse := []SecretORM{}
 	if err := db.Find(&ormResponse).Error; err != nil {
 		return nil, err
 	}
-	if hook, ok := interface{}(&ormObj).(VersionTagORMWithAfterListFind); ok {
+	if hook, ok := interface{}(&ormObj).(SecretORMWithAfterListFind); ok {
 		if err = hook.AfterListFind(ctx, db, &ormResponse, f, s, p, fs); err != nil {
 			return nil, err
 		}
 	}
-	pbResponse := []*VersionTag{}
+	pbResponse := []*Secret{}
 	for _, responseEntry := range ormResponse {
 		temp, err := responseEntry.ToPB(ctx)
 		if err != nil {
@@ -2798,18 +5641,18 @@ func DefaultListVersionTag(ctx context.Context, db *gorm1.DB, f *query1.Filterin
 	return pbResponse, nil
 }
 
-type VersionTagORMWithBeforeListApplyQuery interface {
+type SecretORMWithBeforeListApplyQuery interface {
 	BeforeListApplyQuery(context.Context, *gorm1.DB, *query1.Filtering, *query1.Sorting, *query1.Pagination, *query1.FieldSelection) (*gorm1.DB, error)
 }
-type VersionTagORMWithBeforeListFind interface {
+type SecretORMWithBeforeListFind interface {
 	BeforeListFind(context.Context, *gorm1.DB, *query1.Filtering, *query1.Sorting, *query1.Pagination, *query1.FieldSelection) (*gorm1.DB, error)
 }
-type VersionTagORMWithAfterListFind interface {
-	AfterListFind(context.Context, *gorm1.DB, *[]VersionTagORM, *query1.Filtering, *query1.Sorting, *query1.Pagination, *query1.FieldSelection) error
+type SecretORMWithAfterListFind interface {
+	AfterListFind(context.Context, *gorm1.DB, *[]SecretORM, *query1.Filtering, *query1.Sorting, *query1.Pagination, *query1.FieldSelection) error
 }
 
-// DefaultCreateApplicationInstance executes a basic gorm create call
-func DefaultCreateApplicationInstance(ctx context.Context, in *ApplicationInstance, db *gorm1.DB) (*ApplicationInstance, error) {
+// DefaultCreateAwsService executes a basic gorm create call
+func DefaultCreateAwsService(ctx context.Context, in *AwsService, db *gorm1.DB) (*AwsService, error) {
 	if in == nil {
 		return nil, errors1.NilArgumentError
 	}
@@ -2817,7 +5660,7 @@ func DefaultCreateApplicationInstance(ctx context.Context, in *ApplicationInstan
 	if err != nil {
 		return nil, err
 	}
-	if hook, ok := interface{}(&ormObj).(ApplicationInstanceORMWithBeforeCreate_); ok {
+	if hook, ok := interface{}(&ormObj).(AwsServiceORMWithBeforeCreate_); ok {
 		if db, err = hook.BeforeCreate_(ctx, db); err != nil {
 			return nil, err
 		}
@@ -2825,7 +5668,7 @@ func DefaultCreateApplicationInstance(ctx context.Context, in *ApplicationInstan
 	if err = db.Create(&ormObj).Error; err != nil {
 		return nil, err
 	}
-	if hook, ok := interface{}(&ormObj).(ApplicationInstanceORMWithAfterCreate_); ok {
+	if hook, ok := interface{}(&ormObj).(AwsServiceORMWithAfterCreate_); ok {
 		if err = hook.AfterCreate_(ctx, db); err != nil {
 			return nil, err
 		}
@@ -2834,15 +5677,15 @@ func DefaultCreateApplicationInstance(ctx context.Context, in *ApplicationInstan
 	return &pbResponse, err
 }
 
-type ApplicationInstanceORMWithBeforeCreate_ interface {
+type AwsServiceORMWithBeforeCreate_ interface {
 	BeforeCreate_(context.Context, *gorm1.DB) (*gorm1.DB, error)
 }
-type ApplicationInstanceORMWithAfterCreate_ interface {
+type AwsServiceORMWithAfterCreate_ interface {
 	AfterCreate_(context.Context, *gorm1.DB) error
 }
 
-// DefaultReadApplicationInstance executes a basic gorm read call
-func DefaultReadApplicationInstance(ctx context.Context, in *ApplicationInstance, db *gorm1.DB, fs *query1.FieldSelection) (*ApplicationInstance, error) {
+// DefaultReadAwsService executes a basic gorm read call
+func DefaultReadAwsService(ctx context.Context, in *AwsService, db *gorm1.DB, fs *query1.FieldSelection) (*AwsService, error) {
 	if in == nil {
 		return nil, errors1.NilArgumentError
 	}
@@ -2853,24 +5696,24 @@ func DefaultReadApplicationInstance(ctx context.Context, in *ApplicationInstance
 	if ormObj.Id == 0 {
 		return nil, errors1.EmptyIdError
 	}
-	if hook, ok := interface{}(&ormObj).(ApplicationInstanceORMWithBeforeReadApplyQuery); ok {
+	if hook, ok := interface{}(&ormObj).(AwsServiceORMWithBeforeReadApplyQuery); ok {
 		if db, err = hook.BeforeReadApplyQuery(ctx, db, fs); err != nil {
 			return nil, err
 		}
 	}
-	if db, err = gorm2.ApplyFieldSelection(ctx, db, fs, &ApplicationInstanceORM{}); err != nil {
+	if db, err = gorm2.ApplyFieldSelection(ctx, db, fs, &AwsServiceORM{}); err != nil {
 		return nil, err
 	}
-	if hook, ok := interface{}(&ormObj).(ApplicationInstanceORMWithBeforeReadFind); ok {
+	if hook, ok := interface{}(&ormObj).(AwsServiceORMWithBeforeReadFind); ok {
 		if db, err = hook.BeforeReadFind(ctx, db, fs); err != nil {
 			return nil, err
 		}
 	}
-	ormResponse := ApplicationInstanceORM{}
+	ormResponse := AwsServiceORM{}
 	if err = db.Where(&ormObj).First(&ormResponse).Error; err != nil {
 		return nil, err
 	}
-	if hook, ok := interface{}(&ormResponse).(ApplicationInstanceORMWithAfterReadFind); ok {
+	if hook, ok := interface{}(&ormResponse).(AwsServiceORMWithAfterReadFind); ok {
 		if err = hook.AfterReadFind(ctx, db, fs); err != nil {
 			return nil, err
 		}
@@ -2879,17 +5722,17 @@ func DefaultReadApplicationInstance(ctx context.Context, in *ApplicationInstance
 	return &pbResponse, err
 }
 
-type ApplicationInstanceORMWithBeforeReadApplyQuery interface {
+type AwsServiceORMWithBeforeReadApplyQuery interface {
 	BeforeReadApplyQuery(context.Context, *gorm1.DB, *query1.FieldSelection) (*gorm1.DB, error)
 }
-type ApplicationInstanceORMWithBeforeReadFind interface {
+type AwsServiceORMWithBeforeReadFind interface {
 	BeforeReadFind(context.Context, *gorm1.DB, *query1.FieldSelection) (*gorm1.DB, error)
 }
-type ApplicationInstanceORMWithAfterReadFind interface {
+type AwsServiceORMWithAfterReadFind interface {
 	AfterReadFind(context.Context, *gorm1.DB, *query1.FieldSelection) error
 }
 
-func DefaultDeleteApplicationInstance(ctx context.Context, in *ApplicationInstance, db *gorm1.DB) error {
+func DefaultDeleteAwsService(ctx context.Context, in *AwsService, db *gorm1.DB) error {
 	if in == nil {
 		return errors1.NilArgumentError
 	}
@@ -2900,29 +5743,29 @@ func DefaultDeleteApplicationInstance(ctx context.Context, in *ApplicationInstan
 	if ormObj.Id == 0 {
 		return errors1.EmptyIdError
 	}
-	if hook, ok := interface{}(&ormObj).(ApplicationInstanceORMWithBeforeDelete_); ok {
+	if hook, ok := interface{}(&ormObj).(AwsServiceORMWithBeforeDelete_); ok {
 		if db, err = hook.BeforeDelete_(ctx, db); err != nil {
 			return err
 		}
 	}
-	err = db.Where(&ormObj).Delete(&ApplicationInstanceORM{}).Error
+	err = db.Where(&ormObj).Delete(&AwsServiceORM{}).Error
 	if err != nil {
 		return err
 	}
-	if hook, ok := interface{}(&ormObj).(ApplicationInstanceORMWithAfterDelete_); ok {
+	if hook, ok := interface{}(&ormObj).(AwsServiceORMWithAfterDelete_); ok {
 		err = hook.AfterDelete_(ctx, db)
 	}
 	return err
 }
 
-type ApplicationInstanceORMWithBeforeDelete_ interface {
+type AwsServiceORMWithBeforeDelete_ interface {
 	BeforeDelete_(context.Context, *gorm1.DB) (*gorm1.DB, error)
 }
-type ApplicationInstanceORMWithAfterDelete_ interface {
+type AwsServiceORMWithAfterDelete_ interface {
 	AfterDelete_(context.Context, *gorm1.DB) error
 }
 
-func DefaultDeleteApplicationInstanceSet(ctx context.Context, in []*ApplicationInstance, db *gorm1.DB) error {
+func DefaultDeleteAwsServiceSet(ctx context.Context, in []*AwsService, db *gorm1.DB) error {
 	if in == nil {
 		return errors1.NilArgumentError
 	}
@@ -2938,7 +5781,7 @@ func DefaultDeleteApplicationInstanceSet(ctx context.Context, in []*ApplicationI
 		}
 		keys = append(keys, ormObj.Id)
 	}
-	if hook, ok := (interface{}(&ApplicationInstanceORM{})).(ApplicationInstanceORMWithBeforeDeleteSet); ok {
+	if hook, ok := (interface{}(&AwsServiceORM{})).(AwsServiceORMWithBeforeDeleteSet); ok {
 		if db, err = hook.BeforeDeleteSet(ctx, in, db); err != nil {
 			return err
 		}
@@ -2947,27 +5790,27 @@ func DefaultDeleteApplicationInstanceSet(ctx context.Context, in []*ApplicationI
 	if err != nil {
 		return err
 	}
-	err = db.Where("account_id = ? AND id in (?)", acctId, keys).Delete(&ApplicationInstanceORM{}).Error
+	err = db.Where("account_id = ? AND id in (?)", acctId, keys).Delete(&AwsServiceORM{}).Error
 	if err != nil {
 		return err
 	}
-	if hook, ok := (interface{}(&ApplicationInstanceORM{})).(ApplicationInstanceORMWithAfterDeleteSet); ok {
+	if hook, ok := (interface{}(&AwsServiceORM{})).(AwsServiceORMWithAfterDeleteSet); ok {
 		err = hook.AfterDeleteSet(ctx, in, db)
 	}
 	return err
 }
 
-type ApplicationInstanceORMWithBeforeDeleteSet interface {
-	BeforeDeleteSet(context.Context, []*ApplicationInstance, *gorm1.DB) (*gorm1.DB, error)
+type AwsServiceORMWithBeforeDeleteSet interface {
+	BeforeDeleteSet(context.Context, []*AwsService, *gorm1.DB) (*gorm1.DB, error)
 }
-type ApplicationInstanceORMWithAfterDeleteSet interface {
-	AfterDeleteSet(context.Context, []*ApplicationInstance, *gorm1.DB) error
+type AwsServiceORMWithAfterDeleteSet interface {
+	AfterDeleteSet(context.Context, []*AwsService, *gorm1.DB) error
 }
 
-// DefaultStrictUpdateApplicationInstance clears first level 1:many children and then executes a gorm update call
-func DefaultStrictUpdateApplicationInstance(ctx context.Context, in *ApplicationInstance, db *gorm1.DB) (*ApplicationInstance, error) {
+// DefaultStrictUpdateAwsService clears first level 1:many children and then executes a gorm update call
+func DefaultStrictUpdateAwsService(ctx context.Context, in *AwsService, db *gorm1.DB) (*AwsService, error) {
 	if in == nil {
-		return nil, fmt.Errorf("Nil argument to DefaultStrictUpdateApplicationInstance")
+		return nil, fmt.Errorf("Nil argument to DefaultStrictUpdateAwsService")
 	}
 	ormObj, err := in.ToORM(ctx)
 	if err != nil {
@@ -2978,32 +5821,23 @@ func DefaultStrictUpdateApplicationInstance(ctx context.Context, in *Application
 		return nil, err
 	}
 	db = db.Where(map[string]interface{}{"account_id": accountID})
-	lockedRow := &ApplicationInstanceORM{}
+	lockedRow := &AwsServiceORM{}
 	db.Model(&ormObj).Set("gorm:query_option", "FOR UPDATE").Where("id=?", ormObj.Id).First(lockedRow)
-	if hook, ok := interface{}(&ormObj).(ApplicationInstanceORMWithBeforeStrictUpdateCleanup); ok {
+	if hook, ok := interface{}(&ormObj).(AwsServiceORMWithBeforeStrictUpdateCleanup); ok {
 		if db, err = hook.BeforeStrictUpdateCleanup(ctx, db); err != nil {
 			return nil, err
 		}
 	}
-	filterContainers := ContainerORM{}
+	filterAwsRdsInstances := AwsRdsInstanceORM{}
 	if ormObj.Id == 0 {
 		return nil, errors1.EmptyIdError
 	}
-	filterContainers.ApplicationInstanceId = new(int64)
-	*filterContainers.ApplicationInstanceId = ormObj.Id
-	if err = db.Where(filterContainers).Delete(ContainerORM{}).Error; err != nil {
+	filterAwsRdsInstances.AwsServiceId = new(int64)
+	*filterAwsRdsInstances.AwsServiceId = ormObj.Id
+	if err = db.Where(filterAwsRdsInstances).Delete(AwsRdsInstanceORM{}).Error; err != nil {
 		return nil, err
 	}
-	filterDeployment := DeploymentORM{}
-	if ormObj.Id == 0 {
-		return nil, errors1.EmptyIdError
-	}
-	filterDeployment.ApplicationInstanceId = new(int64)
-	*filterDeployment.ApplicationInstanceId = ormObj.Id
-	if err = db.Where(filterDeployment).Delete(DeploymentORM{}).Error; err != nil {
-		return nil, err
-	}
-	if hook, ok := interface{}(&ormObj).(ApplicationInstanceORMWithBeforeStrictUpdateSave); ok {
+	if hook, ok := interface{}(&ormObj).(AwsServiceORMWithBeforeStrictUpdateSave); ok {
 		if db, err = hook.BeforeStrictUpdateSave(ctx, db); err != nil {
 			return nil, err
 		}
@@ -3011,7 +5845,7 @@ func DefaultStrictUpdateApplicationInstance(ctx context.Context, in *Application
 	if err = db.Save(&ormObj).Error; err != nil {
 		return nil, err
 	}
-	if hook, ok := interface{}(&ormObj).(ApplicationInstanceORMWithAfterStrictUpdateSave); ok {
+	if hook, ok := interface{}(&ormObj).(AwsServiceORMWithAfterStrictUpdateSave); ok {
 		if err = hook.AfterStrictUpdateSave(ctx, db); err != nil {
 			return nil, err
 		}
@@ -3023,51 +5857,51 @@ func DefaultStrictUpdateApplicationInstance(ctx context.Context, in *Application
 	return &pbResponse, err
 }
 
-type ApplicationInstanceORMWithBeforeStrictUpdateCleanup interface {
+type AwsServiceORMWithBeforeStrictUpdateCleanup interface {
 	BeforeStrictUpdateCleanup(context.Context, *gorm1.DB) (*gorm1.DB, error)
 }
-type ApplicationInstanceORMWithBeforeStrictUpdateSave interface {
+type AwsServiceORMWithBeforeStrictUpdateSave interface {
 	BeforeStrictUpdateSave(context.Context, *gorm1.DB) (*gorm1.DB, error)
 }
-type ApplicationInstanceORMWithAfterStrictUpdateSave interface {
+type AwsServiceORMWithAfterStrictUpdateSave interface {
 	AfterStrictUpdateSave(context.Context, *gorm1.DB) error
 }
 
-// DefaultPatchApplicationInstance executes a basic gorm update call with patch behavior
-func DefaultPatchApplicationInstance(ctx context.Context, in *ApplicationInstance, updateMask *field_mask1.FieldMask, db *gorm1.DB) (*ApplicationInstance, error) {
+// DefaultPatchAwsService executes a basic gorm update call with patch behavior
+func DefaultPatchAwsService(ctx context.Context, in *AwsService, updateMask *field_mask1.FieldMask, db *gorm1.DB) (*AwsService, error) {
 	if in == nil {
 		return nil, errors1.NilArgumentError
 	}
-	var pbObj ApplicationInstance
+	var pbObj AwsService
 	var err error
-	if hook, ok := interface{}(&pbObj).(ApplicationInstanceWithBeforePatchRead); ok {
+	if hook, ok := interface{}(&pbObj).(AwsServiceWithBeforePatchRead); ok {
 		if db, err = hook.BeforePatchRead(ctx, in, updateMask, db); err != nil {
 			return nil, err
 		}
 	}
-	pbReadRes, err := DefaultReadApplicationInstance(ctx, &ApplicationInstance{Id: in.GetId()}, db, nil)
+	pbReadRes, err := DefaultReadAwsService(ctx, &AwsService{Id: in.GetId()}, db, nil)
 	if err != nil {
 		return nil, err
 	}
 	pbObj = *pbReadRes
-	if hook, ok := interface{}(&pbObj).(ApplicationInstanceWithBeforePatchApplyFieldMask); ok {
+	if hook, ok := interface{}(&pbObj).(AwsServiceWithBeforePatchApplyFieldMask); ok {
 		if db, err = hook.BeforePatchApplyFieldMask(ctx, in, updateMask, db); err != nil {
 			return nil, err
 		}
 	}
-	if _, err := DefaultApplyFieldMaskApplicationInstance(ctx, &pbObj, in, updateMask, "", db); err != nil {
+	if _, err := DefaultApplyFieldMaskAwsService(ctx, &pbObj, in, updateMask, "", db); err != nil {
 		return nil, err
 	}
-	if hook, ok := interface{}(&pbObj).(ApplicationInstanceWithBeforePatchSave); ok {
+	if hook, ok := interface{}(&pbObj).(AwsServiceWithBeforePatchSave); ok {
 		if db, err = hook.BeforePatchSave(ctx, in, updateMask, db); err != nil {
 			return nil, err
 		}
 	}
-	pbResponse, err := DefaultStrictUpdateApplicationInstance(ctx, &pbObj, db)
+	pbResponse, err := DefaultStrictUpdateAwsService(ctx, &pbObj, db)
 	if err != nil {
 		return nil, err
 	}
-	if hook, ok := interface{}(pbResponse).(ApplicationInstanceWithAfterPatchSave); ok {
+	if hook, ok := interface{}(pbResponse).(AwsServiceWithAfterPatchSave); ok {
 		if err = hook.AfterPatchSave(ctx, in, updateMask, db); err != nil {
 			return nil, err
 		}
@@ -3075,28 +5909,28 @@ func DefaultPatchApplicationInstance(ctx context.Context, in *ApplicationInstanc
 	return pbResponse, nil
 }
 
-type ApplicationInstanceWithBeforePatchRead interface {
-	BeforePatchRead(context.Context, *ApplicationInstance, *field_mask1.FieldMask, *gorm1.DB) (*gorm1.DB, error)
+type AwsServiceWithBeforePatchRead interface {
+	BeforePatchRead(context.Context, *AwsService, *field_mask1.FieldMask, *gorm1.DB) (*gorm1.DB, error)
 }
-type ApplicationInstanceWithBeforePatchApplyFieldMask interface {
-	BeforePatchApplyFieldMask(context.Context, *ApplicationInstance, *field_mask1.FieldMask, *gorm1.DB) (*gorm1.DB, error)
+type AwsServiceWithBeforePatchApplyFieldMask interface {
+	BeforePatchApplyFieldMask(context.Context, *AwsService, *field_mask1.FieldMask, *gorm1.DB) (*gorm1.DB, error)
 }
-type ApplicationInstanceWithBeforePatchSave interface {
-	BeforePatchSave(context.Context, *ApplicationInstance, *field_mask1.FieldMask, *gorm1.DB) (*gorm1.DB, error)
+type AwsServiceWithBeforePatchSave interface {
+	BeforePatchSave(context.Context, *AwsService, *field_mask1.FieldMask, *gorm1.DB) (*gorm1.DB, error)
 }
-type ApplicationInstanceWithAfterPatchSave interface {
-	AfterPatchSave(context.Context, *ApplicationInstance, *field_mask1.FieldMask, *gorm1.DB) error
+type AwsServiceWithAfterPatchSave interface {
+	AfterPatchSave(context.Context, *AwsService, *field_mask1.FieldMask, *gorm1.DB) error
 }
 
-// DefaultPatchSetApplicationInstance executes a bulk gorm update call with patch behavior
-func DefaultPatchSetApplicationInstance(ctx context.Context, objects []*ApplicationInstance, updateMasks []*field_mask1.FieldMask, db *gorm1.DB) ([]*ApplicationInstance, error) {
+// DefaultPatchSetAwsService executes a bulk gorm update call with patch behavior
+func DefaultPatchSetAwsService(ctx context.Context, objects []*AwsService, updateMasks []*field_mask1.FieldMask, db *gorm1.DB) ([]*AwsService, error) {
 	if len(objects) != len(updateMasks) {
 		return nil, fmt.Errorf(errors1.BadRepeatedFieldMaskTpl, len(updateMasks), len(objects))
 	}
 
-	results := make([]*ApplicationInstance, 0, len(objects))
+	results := make([]*AwsService, 0, len(objects))
 	for i, patcher := range objects {
-		pbResponse, err := DefaultPatchApplicationInstance(ctx, patcher, updateMasks[i], db)
+		pbResponse, err := DefaultPatchAwsService(ctx, patcher, updateMasks[i], db)
 		if err != nil {
 			return nil, err
 		}
@@ -3107,18 +5941,15 @@ func DefaultPatchSetApplicationInstance(ctx context.Context, objects []*Applicat
 	return results, nil
 }
 
-// DefaultApplyFieldMaskApplicationInstance patches an pbObject with patcher according to a field mask.
-func DefaultApplyFieldMaskApplicationInstance(ctx context.Context, patchee *ApplicationInstance, patcher *ApplicationInstance, updateMask *field_mask1.FieldMask, prefix string, db *gorm1.DB) (*ApplicationInstance, error) {
+// DefaultApplyFieldMaskAwsService patches an pbObject with patcher according to a field mask.
+func DefaultApplyFieldMaskAwsService(ctx context.Context, patchee *AwsService, patcher *AwsService, updateMask *field_mask1.FieldMask, prefix string, db *gorm1.DB) (*AwsService, error) {
 	if patcher == nil {
 		return nil, nil
 	} else if patchee == nil {
 		return nil, errors1.NilArgumentError
 	}
 	var err error
-	var updatedVersionTag bool
-	var updatedManifest bool
-	var updatedDeployment bool
-	for i, f := range updateMask.Paths {
+	for _, f := range updateMask.Paths {
 		if f == prefix+"Id" {
 			patchee.Id = patcher.Id
 			continue
@@ -3131,91 +5962,12 @@ func DefaultApplyFieldMaskApplicationInstance(ctx context.Context, patchee *Appl
 			patchee.Description = patcher.Description
 			continue
 		}
-		if f == prefix+"AppName" {
-			patchee.AppName = patcher.AppName
+		if f == prefix+"AwsRdsInstances" {
+			patchee.AwsRdsInstances = patcher.AwsRdsInstances
 			continue
 		}
-		if f == prefix+"Repo" {
-			patchee.Repo = patcher.Repo
-			continue
-		}
-		if !updatedVersionTag && strings.HasPrefix(f, prefix+"VersionTag.") {
-			updatedVersionTag = true
-			if patcher.VersionTag == nil {
-				patchee.VersionTag = nil
-				continue
-			}
-			if patchee.VersionTag == nil {
-				patchee.VersionTag = &VersionTag{}
-			}
-			if o, err := DefaultApplyFieldMaskVersionTag(ctx, patchee.VersionTag, patcher.VersionTag, &field_mask1.FieldMask{Paths: updateMask.Paths[i:]}, prefix+"VersionTag.", db); err != nil {
-				return nil, err
-			} else {
-				patchee.VersionTag = o
-			}
-			continue
-		}
-		if f == prefix+"VersionTag" {
-			updatedVersionTag = true
-			patchee.VersionTag = patcher.VersionTag
-			continue
-		}
-		if f == prefix+"VersionTagId" {
-			patchee.VersionTagId = patcher.VersionTagId
-			continue
-		}
-		if !updatedManifest && strings.HasPrefix(f, prefix+"Manifest.") {
-			updatedManifest = true
-			if patcher.Manifest == nil {
-				patchee.Manifest = nil
-				continue
-			}
-			if patchee.Manifest == nil {
-				patchee.Manifest = &Manifest{}
-			}
-			if o, err := DefaultApplyFieldMaskManifest(ctx, patchee.Manifest, patcher.Manifest, &field_mask1.FieldMask{Paths: updateMask.Paths[i:]}, prefix+"Manifest.", db); err != nil {
-				return nil, err
-			} else {
-				patchee.Manifest = o
-			}
-			continue
-		}
-		if f == prefix+"Manifest" {
-			updatedManifest = true
-			patchee.Manifest = patcher.Manifest
-			continue
-		}
-		if f == prefix+"ManifestId" {
-			patchee.ManifestId = patcher.ManifestId
-			continue
-		}
-		if f == prefix+"Containers" {
-			patchee.Containers = patcher.Containers
-			continue
-		}
-		if f == prefix+"EnvironmentId" {
-			patchee.EnvironmentId = patcher.EnvironmentId
-			continue
-		}
-		if !updatedDeployment && strings.HasPrefix(f, prefix+"Deployment.") {
-			updatedDeployment = true
-			if patcher.Deployment == nil {
-				patchee.Deployment = nil
-				continue
-			}
-			if patchee.Deployment == nil {
-				patchee.Deployment = &Deployment{}
-			}
-			if o, err := DefaultApplyFieldMaskDeployment(ctx, patchee.Deployment, patcher.Deployment, &field_mask1.FieldMask{Paths: updateMask.Paths[i:]}, prefix+"Deployment.", db); err != nil {
-				return nil, err
-			} else {
-				patchee.Deployment = o
-			}
-			continue
-		}
-		if f == prefix+"Deployment" {
-			updatedDeployment = true
-			patchee.Deployment = patcher.Deployment
+		if f == prefix+"RegionId" {
+			patchee.RegionId = patcher.RegionId
 			continue
 		}
 	}
@@ -3225,39 +5977,39 @@ func DefaultApplyFieldMaskApplicationInstance(ctx context.Context, patchee *Appl
 	return patchee, nil
 }
 
-// DefaultListApplicationInstance executes a gorm list call
-func DefaultListApplicationInstance(ctx context.Context, db *gorm1.DB, f *query1.Filtering, s *query1.Sorting, p *query1.Pagination, fs *query1.FieldSelection) ([]*ApplicationInstance, error) {
-	in := ApplicationInstance{}
+// DefaultListAwsService executes a gorm list call
+func DefaultListAwsService(ctx context.Context, db *gorm1.DB, f *query1.Filtering, s *query1.Sorting, p *query1.Pagination, fs *query1.FieldSelection) ([]*AwsService, error) {
+	in := AwsService{}
 	ormObj, err := in.ToORM(ctx)
 	if err != nil {
 		return nil, err
 	}
-	if hook, ok := interface{}(&ormObj).(ApplicationInstanceORMWithBeforeListApplyQuery); ok {
+	if hook, ok := interface{}(&ormObj).(AwsServiceORMWithBeforeListApplyQuery); ok {
 		if db, err = hook.BeforeListApplyQuery(ctx, db, f, s, p, fs); err != nil {
 			return nil, err
 		}
 	}
-	db, err = gorm2.ApplyCollectionOperators(ctx, db, &ApplicationInstanceORM{}, &ApplicationInstance{}, f, s, p, fs)
+	db, err = gorm2.ApplyCollectionOperators(ctx, db, &AwsServiceORM{}, &AwsService{}, f, s, p, fs)
 	if err != nil {
 		return nil, err
 	}
-	if hook, ok := interface{}(&ormObj).(ApplicationInstanceORMWithBeforeListFind); ok {
+	if hook, ok := interface{}(&ormObj).(AwsServiceORMWithBeforeListFind); ok {
 		if db, err = hook.BeforeListFind(ctx, db, f, s, p, fs); err != nil {
 			return nil, err
 		}
 	}
 	db = db.Where(&ormObj)
 	db = db.Order("id")
-	ormResponse := []ApplicationInstanceORM{}
+	ormResponse := []AwsServiceORM{}
 	if err := db.Find(&ormResponse).Error; err != nil {
 		return nil, err
 	}
-	if hook, ok := interface{}(&ormObj).(ApplicationInstanceORMWithAfterListFind); ok {
+	if hook, ok := interface{}(&ormObj).(AwsServiceORMWithAfterListFind); ok {
 		if err = hook.AfterListFind(ctx, db, &ormResponse, f, s, p, fs); err != nil {
 			return nil, err
 		}
 	}
-	pbResponse := []*ApplicationInstance{}
+	pbResponse := []*AwsService{}
 	for _, responseEntry := range ormResponse {
 		temp, err := responseEntry.ToPB(ctx)
 		if err != nil {
@@ -3268,14 +6020,14 @@ func DefaultListApplicationInstance(ctx context.Context, db *gorm1.DB, f *query1
 	return pbResponse, nil
 }
 
-type ApplicationInstanceORMWithBeforeListApplyQuery interface {
+type AwsServiceORMWithBeforeListApplyQuery interface {
 	BeforeListApplyQuery(context.Context, *gorm1.DB, *query1.Filtering, *query1.Sorting, *query1.Pagination, *query1.FieldSelection) (*gorm1.DB, error)
 }
-type ApplicationInstanceORMWithBeforeListFind interface {
+type AwsServiceORMWithBeforeListFind interface {
 	BeforeListFind(context.Context, *gorm1.DB, *query1.Filtering, *query1.Sorting, *query1.Pagination, *query1.FieldSelection) (*gorm1.DB, error)
 }
-type ApplicationInstanceORMWithAfterListFind interface {
-	AfterListFind(context.Context, *gorm1.DB, *[]ApplicationInstanceORM, *query1.Filtering, *query1.Sorting, *query1.Pagination, *query1.FieldSelection) error
+type AwsServiceORMWithAfterListFind interface {
+	AfterListFind(context.Context, *gorm1.DB, *[]AwsServiceORM, *query1.Filtering, *query1.Sorting, *query1.Pagination, *query1.FieldSelection) error
 }
 
 // DefaultCreateAwsRdsInstance executes a basic gorm create call
@@ -3687,8 +6439,8 @@ type AwsRdsInstanceORMWithAfterListFind interface {
 	AfterListFind(context.Context, *gorm1.DB, *[]AwsRdsInstanceORM, *query1.Filtering, *query1.Sorting, *query1.Pagination, *query1.FieldSelection) error
 }
 
-// DefaultCreateContainer executes a basic gorm create call
-func DefaultCreateContainer(ctx context.Context, in *Container, db *gorm1.DB) (*Container, error) {
+// DefaultCreateValue executes a basic gorm create call
+func DefaultCreateValue(ctx context.Context, in *Value, db *gorm1.DB) (*Value, error) {
 	if in == nil {
 		return nil, errors1.NilArgumentError
 	}
@@ -3696,7 +6448,7 @@ func DefaultCreateContainer(ctx context.Context, in *Container, db *gorm1.DB) (*
 	if err != nil {
 		return nil, err
 	}
-	if hook, ok := interface{}(&ormObj).(ContainerORMWithBeforeCreate_); ok {
+	if hook, ok := interface{}(&ormObj).(ValueORMWithBeforeCreate_); ok {
 		if db, err = hook.BeforeCreate_(ctx, db); err != nil {
 			return nil, err
 		}
@@ -3704,7 +6456,7 @@ func DefaultCreateContainer(ctx context.Context, in *Container, db *gorm1.DB) (*
 	if err = db.Create(&ormObj).Error; err != nil {
 		return nil, err
 	}
-	if hook, ok := interface{}(&ormObj).(ContainerORMWithAfterCreate_); ok {
+	if hook, ok := interface{}(&ormObj).(ValueORMWithAfterCreate_); ok {
 		if err = hook.AfterCreate_(ctx, db); err != nil {
 			return nil, err
 		}
@@ -3713,15 +6465,15 @@ func DefaultCreateContainer(ctx context.Context, in *Container, db *gorm1.DB) (*
 	return &pbResponse, err
 }
 
-type ContainerORMWithBeforeCreate_ interface {
+type ValueORMWithBeforeCreate_ interface {
 	BeforeCreate_(context.Context, *gorm1.DB) (*gorm1.DB, error)
 }
-type ContainerORMWithAfterCreate_ interface {
+type ValueORMWithAfterCreate_ interface {
 	AfterCreate_(context.Context, *gorm1.DB) error
 }
 
-// DefaultReadContainer executes a basic gorm read call
-func DefaultReadContainer(ctx context.Context, in *Container, db *gorm1.DB, fs *query1.FieldSelection) (*Container, error) {
+// DefaultReadValue executes a basic gorm read call
+func DefaultReadValue(ctx context.Context, in *Value, db *gorm1.DB, fs *query1.FieldSelection) (*Value, error) {
 	if in == nil {
 		return nil, errors1.NilArgumentError
 	}
@@ -3732,24 +6484,24 @@ func DefaultReadContainer(ctx context.Context, in *Container, db *gorm1.DB, fs *
 	if ormObj.Id == 0 {
 		return nil, errors1.EmptyIdError
 	}
-	if hook, ok := interface{}(&ormObj).(ContainerORMWithBeforeReadApplyQuery); ok {
+	if hook, ok := interface{}(&ormObj).(ValueORMWithBeforeReadApplyQuery); ok {
 		if db, err = hook.BeforeReadApplyQuery(ctx, db, fs); err != nil {
 			return nil, err
 		}
 	}
-	if db, err = gorm2.ApplyFieldSelection(ctx, db, fs, &ContainerORM{}); err != nil {
+	if db, err = gorm2.ApplyFieldSelection(ctx, db, fs, &ValueORM{}); err != nil {
 		return nil, err
 	}
-	if hook, ok := interface{}(&ormObj).(ContainerORMWithBeforeReadFind); ok {
+	if hook, ok := interface{}(&ormObj).(ValueORMWithBeforeReadFind); ok {
 		if db, err = hook.BeforeReadFind(ctx, db, fs); err != nil {
 			return nil, err
 		}
 	}
-	ormResponse := ContainerORM{}
+	ormResponse := ValueORM{}
 	if err = db.Where(&ormObj).First(&ormResponse).Error; err != nil {
 		return nil, err
 	}
-	if hook, ok := interface{}(&ormResponse).(ContainerORMWithAfterReadFind); ok {
+	if hook, ok := interface{}(&ormResponse).(ValueORMWithAfterReadFind); ok {
 		if err = hook.AfterReadFind(ctx, db, fs); err != nil {
 			return nil, err
 		}
@@ -3758,17 +6510,17 @@ func DefaultReadContainer(ctx context.Context, in *Container, db *gorm1.DB, fs *
 	return &pbResponse, err
 }
 
-type ContainerORMWithBeforeReadApplyQuery interface {
+type ValueORMWithBeforeReadApplyQuery interface {
 	BeforeReadApplyQuery(context.Context, *gorm1.DB, *query1.FieldSelection) (*gorm1.DB, error)
 }
-type ContainerORMWithBeforeReadFind interface {
+type ValueORMWithBeforeReadFind interface {
 	BeforeReadFind(context.Context, *gorm1.DB, *query1.FieldSelection) (*gorm1.DB, error)
 }
-type ContainerORMWithAfterReadFind interface {
+type ValueORMWithAfterReadFind interface {
 	AfterReadFind(context.Context, *gorm1.DB, *query1.FieldSelection) error
 }
 
-func DefaultDeleteContainer(ctx context.Context, in *Container, db *gorm1.DB) error {
+func DefaultDeleteValue(ctx context.Context, in *Value, db *gorm1.DB) error {
 	if in == nil {
 		return errors1.NilArgumentError
 	}
@@ -3779,29 +6531,29 @@ func DefaultDeleteContainer(ctx context.Context, in *Container, db *gorm1.DB) er
 	if ormObj.Id == 0 {
 		return errors1.EmptyIdError
 	}
-	if hook, ok := interface{}(&ormObj).(ContainerORMWithBeforeDelete_); ok {
+	if hook, ok := interface{}(&ormObj).(ValueORMWithBeforeDelete_); ok {
 		if db, err = hook.BeforeDelete_(ctx, db); err != nil {
 			return err
 		}
 	}
-	err = db.Where(&ormObj).Delete(&ContainerORM{}).Error
+	err = db.Where(&ormObj).Delete(&ValueORM{}).Error
 	if err != nil {
 		return err
 	}
-	if hook, ok := interface{}(&ormObj).(ContainerORMWithAfterDelete_); ok {
+	if hook, ok := interface{}(&ormObj).(ValueORMWithAfterDelete_); ok {
 		err = hook.AfterDelete_(ctx, db)
 	}
 	return err
 }
 
-type ContainerORMWithBeforeDelete_ interface {
+type ValueORMWithBeforeDelete_ interface {
 	BeforeDelete_(context.Context, *gorm1.DB) (*gorm1.DB, error)
 }
-type ContainerORMWithAfterDelete_ interface {
+type ValueORMWithAfterDelete_ interface {
 	AfterDelete_(context.Context, *gorm1.DB) error
 }
 
-func DefaultDeleteContainerSet(ctx context.Context, in []*Container, db *gorm1.DB) error {
+func DefaultDeleteValueSet(ctx context.Context, in []*Value, db *gorm1.DB) error {
 	if in == nil {
 		return errors1.NilArgumentError
 	}
@@ -3817,7 +6569,7 @@ func DefaultDeleteContainerSet(ctx context.Context, in []*Container, db *gorm1.D
 		}
 		keys = append(keys, ormObj.Id)
 	}
-	if hook, ok := (interface{}(&ContainerORM{})).(ContainerORMWithBeforeDeleteSet); ok {
+	if hook, ok := (interface{}(&ValueORM{})).(ValueORMWithBeforeDeleteSet); ok {
 		if db, err = hook.BeforeDeleteSet(ctx, in, db); err != nil {
 			return err
 		}
@@ -3826,27 +6578,27 @@ func DefaultDeleteContainerSet(ctx context.Context, in []*Container, db *gorm1.D
 	if err != nil {
 		return err
 	}
-	err = db.Where("account_id = ? AND id in (?)", acctId, keys).Delete(&ContainerORM{}).Error
+	err = db.Where("account_id = ? AND id in (?)", acctId, keys).Delete(&ValueORM{}).Error
 	if err != nil {
 		return err
 	}
-	if hook, ok := (interface{}(&ContainerORM{})).(ContainerORMWithAfterDeleteSet); ok {
+	if hook, ok := (interface{}(&ValueORM{})).(ValueORMWithAfterDeleteSet); ok {
 		err = hook.AfterDeleteSet(ctx, in, db)
 	}
 	return err
 }
 
-type ContainerORMWithBeforeDeleteSet interface {
-	BeforeDeleteSet(context.Context, []*Container, *gorm1.DB) (*gorm1.DB, error)
+type ValueORMWithBeforeDeleteSet interface {
+	BeforeDeleteSet(context.Context, []*Value, *gorm1.DB) (*gorm1.DB, error)
 }
-type ContainerORMWithAfterDeleteSet interface {
-	AfterDeleteSet(context.Context, []*Container, *gorm1.DB) error
+type ValueORMWithAfterDeleteSet interface {
+	AfterDeleteSet(context.Context, []*Value, *gorm1.DB) error
 }
 
-// DefaultStrictUpdateContainer clears first level 1:many children and then executes a gorm update call
-func DefaultStrictUpdateContainer(ctx context.Context, in *Container, db *gorm1.DB) (*Container, error) {
+// DefaultStrictUpdateValue clears first level 1:many children and then executes a gorm update call
+func DefaultStrictUpdateValue(ctx context.Context, in *Value, db *gorm1.DB) (*Value, error) {
 	if in == nil {
-		return nil, fmt.Errorf("Nil argument to DefaultStrictUpdateContainer")
+		return nil, fmt.Errorf("Nil argument to DefaultStrictUpdateValue")
 	}
 	ormObj, err := in.ToORM(ctx)
 	if err != nil {
@@ -3857,14 +6609,14 @@ func DefaultStrictUpdateContainer(ctx context.Context, in *Container, db *gorm1.
 		return nil, err
 	}
 	db = db.Where(map[string]interface{}{"account_id": accountID})
-	lockedRow := &ContainerORM{}
+	lockedRow := &ValueORM{}
 	db.Model(&ormObj).Set("gorm:query_option", "FOR UPDATE").Where("id=?", ormObj.Id).First(lockedRow)
-	if hook, ok := interface{}(&ormObj).(ContainerORMWithBeforeStrictUpdateCleanup); ok {
+	if hook, ok := interface{}(&ormObj).(ValueORMWithBeforeStrictUpdateCleanup); ok {
 		if db, err = hook.BeforeStrictUpdateCleanup(ctx, db); err != nil {
 			return nil, err
 		}
 	}
-	if hook, ok := interface{}(&ormObj).(ContainerORMWithBeforeStrictUpdateSave); ok {
+	if hook, ok := interface{}(&ormObj).(ValueORMWithBeforeStrictUpdateSave); ok {
 		if db, err = hook.BeforeStrictUpdateSave(ctx, db); err != nil {
 			return nil, err
 		}
@@ -3872,7 +6624,7 @@ func DefaultStrictUpdateContainer(ctx context.Context, in *Container, db *gorm1.
 	if err = db.Save(&ormObj).Error; err != nil {
 		return nil, err
 	}
-	if hook, ok := interface{}(&ormObj).(ContainerORMWithAfterStrictUpdateSave); ok {
+	if hook, ok := interface{}(&ormObj).(ValueORMWithAfterStrictUpdateSave); ok {
 		if err = hook.AfterStrictUpdateSave(ctx, db); err != nil {
 			return nil, err
 		}
@@ -3884,51 +6636,51 @@ func DefaultStrictUpdateContainer(ctx context.Context, in *Container, db *gorm1.
 	return &pbResponse, err
 }
 
-type ContainerORMWithBeforeStrictUpdateCleanup interface {
+type ValueORMWithBeforeStrictUpdateCleanup interface {
 	BeforeStrictUpdateCleanup(context.Context, *gorm1.DB) (*gorm1.DB, error)
 }
-type ContainerORMWithBeforeStrictUpdateSave interface {
+type ValueORMWithBeforeStrictUpdateSave interface {
 	BeforeStrictUpdateSave(context.Context, *gorm1.DB) (*gorm1.DB, error)
 }
-type ContainerORMWithAfterStrictUpdateSave interface {
+type ValueORMWithAfterStrictUpdateSave interface {
 	AfterStrictUpdateSave(context.Context, *gorm1.DB) error
 }
 
-// DefaultPatchContainer executes a basic gorm update call with patch behavior
-func DefaultPatchContainer(ctx context.Context, in *Container, updateMask *field_mask1.FieldMask, db *gorm1.DB) (*Container, error) {
+// DefaultPatchValue executes a basic gorm update call with patch behavior
+func DefaultPatchValue(ctx context.Context, in *Value, updateMask *field_mask1.FieldMask, db *gorm1.DB) (*Value, error) {
 	if in == nil {
 		return nil, errors1.NilArgumentError
 	}
-	var pbObj Container
+	var pbObj Value
 	var err error
-	if hook, ok := interface{}(&pbObj).(ContainerWithBeforePatchRead); ok {
+	if hook, ok := interface{}(&pbObj).(ValueWithBeforePatchRead); ok {
 		if db, err = hook.BeforePatchRead(ctx, in, updateMask, db); err != nil {
 			return nil, err
 		}
 	}
-	pbReadRes, err := DefaultReadContainer(ctx, &Container{Id: in.GetId()}, db, nil)
+	pbReadRes, err := DefaultReadValue(ctx, &Value{Id: in.GetId()}, db, nil)
 	if err != nil {
 		return nil, err
 	}
 	pbObj = *pbReadRes
-	if hook, ok := interface{}(&pbObj).(ContainerWithBeforePatchApplyFieldMask); ok {
+	if hook, ok := interface{}(&pbObj).(ValueWithBeforePatchApplyFieldMask); ok {
 		if db, err = hook.BeforePatchApplyFieldMask(ctx, in, updateMask, db); err != nil {
 			return nil, err
 		}
 	}
-	if _, err := DefaultApplyFieldMaskContainer(ctx, &pbObj, in, updateMask, "", db); err != nil {
+	if _, err := DefaultApplyFieldMaskValue(ctx, &pbObj, in, updateMask, "", db); err != nil {
 		return nil, err
 	}
-	if hook, ok := interface{}(&pbObj).(ContainerWithBeforePatchSave); ok {
+	if hook, ok := interface{}(&pbObj).(ValueWithBeforePatchSave); ok {
 		if db, err = hook.BeforePatchSave(ctx, in, updateMask, db); err != nil {
 			return nil, err
 		}
 	}
-	pbResponse, err := DefaultStrictUpdateContainer(ctx, &pbObj, db)
+	pbResponse, err := DefaultStrictUpdateValue(ctx, &pbObj, db)
 	if err != nil {
 		return nil, err
 	}
-	if hook, ok := interface{}(pbResponse).(ContainerWithAfterPatchSave); ok {
+	if hook, ok := interface{}(pbResponse).(ValueWithAfterPatchSave); ok {
 		if err = hook.AfterPatchSave(ctx, in, updateMask, db); err != nil {
 			return nil, err
 		}
@@ -3936,28 +6688,28 @@ func DefaultPatchContainer(ctx context.Context, in *Container, updateMask *field
 	return pbResponse, nil
 }
 
-type ContainerWithBeforePatchRead interface {
-	BeforePatchRead(context.Context, *Container, *field_mask1.FieldMask, *gorm1.DB) (*gorm1.DB, error)
+type ValueWithBeforePatchRead interface {
+	BeforePatchRead(context.Context, *Value, *field_mask1.FieldMask, *gorm1.DB) (*gorm1.DB, error)
 }
-type ContainerWithBeforePatchApplyFieldMask interface {
-	BeforePatchApplyFieldMask(context.Context, *Container, *field_mask1.FieldMask, *gorm1.DB) (*gorm1.DB, error)
+type ValueWithBeforePatchApplyFieldMask interface {
+	BeforePatchApplyFieldMask(context.Context, *Value, *field_mask1.FieldMask, *gorm1.DB) (*gorm1.DB, error)
 }
-type ContainerWithBeforePatchSave interface {
-	BeforePatchSave(context.Context, *Container, *field_mask1.FieldMask, *gorm1.DB) (*gorm1.DB, error)
+type ValueWithBeforePatchSave interface {
+	BeforePatchSave(context.Context, *Value, *field_mask1.FieldMask, *gorm1.DB) (*gorm1.DB, error)
 }
-type ContainerWithAfterPatchSave interface {
-	AfterPatchSave(context.Context, *Container, *field_mask1.FieldMask, *gorm1.DB) error
+type ValueWithAfterPatchSave interface {
+	AfterPatchSave(context.Context, *Value, *field_mask1.FieldMask, *gorm1.DB) error
 }
 
-// DefaultPatchSetContainer executes a bulk gorm update call with patch behavior
-func DefaultPatchSetContainer(ctx context.Context, objects []*Container, updateMasks []*field_mask1.FieldMask, db *gorm1.DB) ([]*Container, error) {
+// DefaultPatchSetValue executes a bulk gorm update call with patch behavior
+func DefaultPatchSetValue(ctx context.Context, objects []*Value, updateMasks []*field_mask1.FieldMask, db *gorm1.DB) ([]*Value, error) {
 	if len(objects) != len(updateMasks) {
 		return nil, fmt.Errorf(errors1.BadRepeatedFieldMaskTpl, len(updateMasks), len(objects))
 	}
 
-	results := make([]*Container, 0, len(objects))
+	results := make([]*Value, 0, len(objects))
 	for i, patcher := range objects {
-		pbResponse, err := DefaultPatchContainer(ctx, patcher, updateMasks[i], db)
+		pbResponse, err := DefaultPatchValue(ctx, patcher, updateMasks[i], db)
 		if err != nil {
 			return nil, err
 		}
@@ -3968,14 +6720,15 @@ func DefaultPatchSetContainer(ctx context.Context, objects []*Container, updateM
 	return results, nil
 }
 
-// DefaultApplyFieldMaskContainer patches an pbObject with patcher according to a field mask.
-func DefaultApplyFieldMaskContainer(ctx context.Context, patchee *Container, patcher *Container, updateMask *field_mask1.FieldMask, prefix string, db *gorm1.DB) (*Container, error) {
+// DefaultApplyFieldMaskValue patches an pbObject with patcher according to a field mask.
+func DefaultApplyFieldMaskValue(ctx context.Context, patchee *Value, patcher *Value, updateMask *field_mask1.FieldMask, prefix string, db *gorm1.DB) (*Value, error) {
 	if patcher == nil {
 		return nil, nil
 	} else if patchee == nil {
 		return nil, errors1.NilArgumentError
 	}
 	var err error
+	var updatedKeys bool
 	for _, f := range updateMask.Paths {
 		if f == prefix+"Id" {
 			patchee.Id = patcher.Id
@@ -3989,897 +6742,9 @@ func DefaultApplyFieldMaskContainer(ctx context.Context, patchee *Container, pat
 			patchee.Description = patcher.Description
 			continue
 		}
-		if f == prefix+"ContainerName" {
-			patchee.ContainerName = patcher.ContainerName
-			continue
-		}
-		if f == prefix+"ImageRepo" {
-			patchee.ImageRepo = patcher.ImageRepo
-			continue
-		}
-		if f == prefix+"ImageTag" {
-			patchee.ImageTag = patcher.ImageTag
-			continue
-		}
-		if f == prefix+"ImagePullPolicy" {
-			patchee.ImagePullPolicy = patcher.ImagePullPolicy
-			continue
-		}
-		if f == prefix+"Digest" {
-			patchee.Digest = patcher.Digest
-			continue
-		}
-		if f == prefix+"ApplicationInstanceId" {
-			patchee.ApplicationInstanceId = patcher.ApplicationInstanceId
-			continue
-		}
-	}
-	if err != nil {
-		return nil, err
-	}
-	return patchee, nil
-}
-
-// DefaultListContainer executes a gorm list call
-func DefaultListContainer(ctx context.Context, db *gorm1.DB, f *query1.Filtering, s *query1.Sorting, p *query1.Pagination, fs *query1.FieldSelection) ([]*Container, error) {
-	in := Container{}
-	ormObj, err := in.ToORM(ctx)
-	if err != nil {
-		return nil, err
-	}
-	if hook, ok := interface{}(&ormObj).(ContainerORMWithBeforeListApplyQuery); ok {
-		if db, err = hook.BeforeListApplyQuery(ctx, db, f, s, p, fs); err != nil {
-			return nil, err
-		}
-	}
-	db, err = gorm2.ApplyCollectionOperators(ctx, db, &ContainerORM{}, &Container{}, f, s, p, fs)
-	if err != nil {
-		return nil, err
-	}
-	if hook, ok := interface{}(&ormObj).(ContainerORMWithBeforeListFind); ok {
-		if db, err = hook.BeforeListFind(ctx, db, f, s, p, fs); err != nil {
-			return nil, err
-		}
-	}
-	db = db.Where(&ormObj)
-	db = db.Order("id")
-	ormResponse := []ContainerORM{}
-	if err := db.Find(&ormResponse).Error; err != nil {
-		return nil, err
-	}
-	if hook, ok := interface{}(&ormObj).(ContainerORMWithAfterListFind); ok {
-		if err = hook.AfterListFind(ctx, db, &ormResponse, f, s, p, fs); err != nil {
-			return nil, err
-		}
-	}
-	pbResponse := []*Container{}
-	for _, responseEntry := range ormResponse {
-		temp, err := responseEntry.ToPB(ctx)
-		if err != nil {
-			return nil, err
-		}
-		pbResponse = append(pbResponse, &temp)
-	}
-	return pbResponse, nil
-}
-
-type ContainerORMWithBeforeListApplyQuery interface {
-	BeforeListApplyQuery(context.Context, *gorm1.DB, *query1.Filtering, *query1.Sorting, *query1.Pagination, *query1.FieldSelection) (*gorm1.DB, error)
-}
-type ContainerORMWithBeforeListFind interface {
-	BeforeListFind(context.Context, *gorm1.DB, *query1.Filtering, *query1.Sorting, *query1.Pagination, *query1.FieldSelection) (*gorm1.DB, error)
-}
-type ContainerORMWithAfterListFind interface {
-	AfterListFind(context.Context, *gorm1.DB, *[]ContainerORM, *query1.Filtering, *query1.Sorting, *query1.Pagination, *query1.FieldSelection) error
-}
-
-// DefaultCreateEnvironment executes a basic gorm create call
-func DefaultCreateEnvironment(ctx context.Context, in *Environment, db *gorm1.DB) (*Environment, error) {
-	if in == nil {
-		return nil, errors1.NilArgumentError
-	}
-	ormObj, err := in.ToORM(ctx)
-	if err != nil {
-		return nil, err
-	}
-	if hook, ok := interface{}(&ormObj).(EnvironmentORMWithBeforeCreate_); ok {
-		if db, err = hook.BeforeCreate_(ctx, db); err != nil {
-			return nil, err
-		}
-	}
-	if err = db.Create(&ormObj).Error; err != nil {
-		return nil, err
-	}
-	if hook, ok := interface{}(&ormObj).(EnvironmentORMWithAfterCreate_); ok {
-		if err = hook.AfterCreate_(ctx, db); err != nil {
-			return nil, err
-		}
-	}
-	pbResponse, err := ormObj.ToPB(ctx)
-	return &pbResponse, err
-}
-
-type EnvironmentORMWithBeforeCreate_ interface {
-	BeforeCreate_(context.Context, *gorm1.DB) (*gorm1.DB, error)
-}
-type EnvironmentORMWithAfterCreate_ interface {
-	AfterCreate_(context.Context, *gorm1.DB) error
-}
-
-// DefaultReadEnvironment executes a basic gorm read call
-func DefaultReadEnvironment(ctx context.Context, in *Environment, db *gorm1.DB, fs *query1.FieldSelection) (*Environment, error) {
-	if in == nil {
-		return nil, errors1.NilArgumentError
-	}
-	ormObj, err := in.ToORM(ctx)
-	if err != nil {
-		return nil, err
-	}
-	if ormObj.Id == 0 {
-		return nil, errors1.EmptyIdError
-	}
-	if hook, ok := interface{}(&ormObj).(EnvironmentORMWithBeforeReadApplyQuery); ok {
-		if db, err = hook.BeforeReadApplyQuery(ctx, db, fs); err != nil {
-			return nil, err
-		}
-	}
-	if db, err = gorm2.ApplyFieldSelection(ctx, db, fs, &EnvironmentORM{}); err != nil {
-		return nil, err
-	}
-	if hook, ok := interface{}(&ormObj).(EnvironmentORMWithBeforeReadFind); ok {
-		if db, err = hook.BeforeReadFind(ctx, db, fs); err != nil {
-			return nil, err
-		}
-	}
-	ormResponse := EnvironmentORM{}
-	if err = db.Where(&ormObj).First(&ormResponse).Error; err != nil {
-		return nil, err
-	}
-	if hook, ok := interface{}(&ormResponse).(EnvironmentORMWithAfterReadFind); ok {
-		if err = hook.AfterReadFind(ctx, db, fs); err != nil {
-			return nil, err
-		}
-	}
-	pbResponse, err := ormResponse.ToPB(ctx)
-	return &pbResponse, err
-}
-
-type EnvironmentORMWithBeforeReadApplyQuery interface {
-	BeforeReadApplyQuery(context.Context, *gorm1.DB, *query1.FieldSelection) (*gorm1.DB, error)
-}
-type EnvironmentORMWithBeforeReadFind interface {
-	BeforeReadFind(context.Context, *gorm1.DB, *query1.FieldSelection) (*gorm1.DB, error)
-}
-type EnvironmentORMWithAfterReadFind interface {
-	AfterReadFind(context.Context, *gorm1.DB, *query1.FieldSelection) error
-}
-
-func DefaultDeleteEnvironment(ctx context.Context, in *Environment, db *gorm1.DB) error {
-	if in == nil {
-		return errors1.NilArgumentError
-	}
-	ormObj, err := in.ToORM(ctx)
-	if err != nil {
-		return err
-	}
-	if ormObj.Id == 0 {
-		return errors1.EmptyIdError
-	}
-	if hook, ok := interface{}(&ormObj).(EnvironmentORMWithBeforeDelete_); ok {
-		if db, err = hook.BeforeDelete_(ctx, db); err != nil {
-			return err
-		}
-	}
-	err = db.Where(&ormObj).Delete(&EnvironmentORM{}).Error
-	if err != nil {
-		return err
-	}
-	if hook, ok := interface{}(&ormObj).(EnvironmentORMWithAfterDelete_); ok {
-		err = hook.AfterDelete_(ctx, db)
-	}
-	return err
-}
-
-type EnvironmentORMWithBeforeDelete_ interface {
-	BeforeDelete_(context.Context, *gorm1.DB) (*gorm1.DB, error)
-}
-type EnvironmentORMWithAfterDelete_ interface {
-	AfterDelete_(context.Context, *gorm1.DB) error
-}
-
-func DefaultDeleteEnvironmentSet(ctx context.Context, in []*Environment, db *gorm1.DB) error {
-	if in == nil {
-		return errors1.NilArgumentError
-	}
-	var err error
-	keys := []int64{}
-	for _, obj := range in {
-		ormObj, err := obj.ToORM(ctx)
-		if err != nil {
-			return err
-		}
-		if ormObj.Id == 0 {
-			return errors1.EmptyIdError
-		}
-		keys = append(keys, ormObj.Id)
-	}
-	if hook, ok := (interface{}(&EnvironmentORM{})).(EnvironmentORMWithBeforeDeleteSet); ok {
-		if db, err = hook.BeforeDeleteSet(ctx, in, db); err != nil {
-			return err
-		}
-	}
-	acctId, err := auth1.GetAccountID(ctx, nil)
-	if err != nil {
-		return err
-	}
-	err = db.Where("account_id = ? AND id in (?)", acctId, keys).Delete(&EnvironmentORM{}).Error
-	if err != nil {
-		return err
-	}
-	if hook, ok := (interface{}(&EnvironmentORM{})).(EnvironmentORMWithAfterDeleteSet); ok {
-		err = hook.AfterDeleteSet(ctx, in, db)
-	}
-	return err
-}
-
-type EnvironmentORMWithBeforeDeleteSet interface {
-	BeforeDeleteSet(context.Context, []*Environment, *gorm1.DB) (*gorm1.DB, error)
-}
-type EnvironmentORMWithAfterDeleteSet interface {
-	AfterDeleteSet(context.Context, []*Environment, *gorm1.DB) error
-}
-
-// DefaultStrictUpdateEnvironment clears first level 1:many children and then executes a gorm update call
-func DefaultStrictUpdateEnvironment(ctx context.Context, in *Environment, db *gorm1.DB) (*Environment, error) {
-	if in == nil {
-		return nil, fmt.Errorf("Nil argument to DefaultStrictUpdateEnvironment")
-	}
-	ormObj, err := in.ToORM(ctx)
-	if err != nil {
-		return nil, err
-	}
-	accountID, err := auth1.GetAccountID(ctx, nil)
-	if err != nil {
-		return nil, err
-	}
-	db = db.Where(map[string]interface{}{"account_id": accountID})
-	lockedRow := &EnvironmentORM{}
-	db.Model(&ormObj).Set("gorm:query_option", "FOR UPDATE").Where("id=?", ormObj.Id).First(lockedRow)
-	if hook, ok := interface{}(&ormObj).(EnvironmentORMWithBeforeStrictUpdateCleanup); ok {
-		if db, err = hook.BeforeStrictUpdateCleanup(ctx, db); err != nil {
-			return nil, err
-		}
-	}
-	filterApplicationInstances := ApplicationInstanceORM{}
-	if ormObj.Id == 0 {
-		return nil, errors1.EmptyIdError
-	}
-	filterApplicationInstances.EnvironmentId = new(int64)
-	*filterApplicationInstances.EnvironmentId = ormObj.Id
-	if err = db.Where(filterApplicationInstances).Delete(ApplicationInstanceORM{}).Error; err != nil {
-		return nil, err
-	}
-	if hook, ok := interface{}(&ormObj).(EnvironmentORMWithBeforeStrictUpdateSave); ok {
-		if db, err = hook.BeforeStrictUpdateSave(ctx, db); err != nil {
-			return nil, err
-		}
-	}
-	if err = db.Save(&ormObj).Error; err != nil {
-		return nil, err
-	}
-	if hook, ok := interface{}(&ormObj).(EnvironmentORMWithAfterStrictUpdateSave); ok {
-		if err = hook.AfterStrictUpdateSave(ctx, db); err != nil {
-			return nil, err
-		}
-	}
-	pbResponse, err := ormObj.ToPB(ctx)
-	if err != nil {
-		return nil, err
-	}
-	return &pbResponse, err
-}
-
-type EnvironmentORMWithBeforeStrictUpdateCleanup interface {
-	BeforeStrictUpdateCleanup(context.Context, *gorm1.DB) (*gorm1.DB, error)
-}
-type EnvironmentORMWithBeforeStrictUpdateSave interface {
-	BeforeStrictUpdateSave(context.Context, *gorm1.DB) (*gorm1.DB, error)
-}
-type EnvironmentORMWithAfterStrictUpdateSave interface {
-	AfterStrictUpdateSave(context.Context, *gorm1.DB) error
-}
-
-// DefaultPatchEnvironment executes a basic gorm update call with patch behavior
-func DefaultPatchEnvironment(ctx context.Context, in *Environment, updateMask *field_mask1.FieldMask, db *gorm1.DB) (*Environment, error) {
-	if in == nil {
-		return nil, errors1.NilArgumentError
-	}
-	var pbObj Environment
-	var err error
-	if hook, ok := interface{}(&pbObj).(EnvironmentWithBeforePatchRead); ok {
-		if db, err = hook.BeforePatchRead(ctx, in, updateMask, db); err != nil {
-			return nil, err
-		}
-	}
-	pbReadRes, err := DefaultReadEnvironment(ctx, &Environment{Id: in.GetId()}, db, nil)
-	if err != nil {
-		return nil, err
-	}
-	pbObj = *pbReadRes
-	if hook, ok := interface{}(&pbObj).(EnvironmentWithBeforePatchApplyFieldMask); ok {
-		if db, err = hook.BeforePatchApplyFieldMask(ctx, in, updateMask, db); err != nil {
-			return nil, err
-		}
-	}
-	if _, err := DefaultApplyFieldMaskEnvironment(ctx, &pbObj, in, updateMask, "", db); err != nil {
-		return nil, err
-	}
-	if hook, ok := interface{}(&pbObj).(EnvironmentWithBeforePatchSave); ok {
-		if db, err = hook.BeforePatchSave(ctx, in, updateMask, db); err != nil {
-			return nil, err
-		}
-	}
-	pbResponse, err := DefaultStrictUpdateEnvironment(ctx, &pbObj, db)
-	if err != nil {
-		return nil, err
-	}
-	if hook, ok := interface{}(pbResponse).(EnvironmentWithAfterPatchSave); ok {
-		if err = hook.AfterPatchSave(ctx, in, updateMask, db); err != nil {
-			return nil, err
-		}
-	}
-	return pbResponse, nil
-}
-
-type EnvironmentWithBeforePatchRead interface {
-	BeforePatchRead(context.Context, *Environment, *field_mask1.FieldMask, *gorm1.DB) (*gorm1.DB, error)
-}
-type EnvironmentWithBeforePatchApplyFieldMask interface {
-	BeforePatchApplyFieldMask(context.Context, *Environment, *field_mask1.FieldMask, *gorm1.DB) (*gorm1.DB, error)
-}
-type EnvironmentWithBeforePatchSave interface {
-	BeforePatchSave(context.Context, *Environment, *field_mask1.FieldMask, *gorm1.DB) (*gorm1.DB, error)
-}
-type EnvironmentWithAfterPatchSave interface {
-	AfterPatchSave(context.Context, *Environment, *field_mask1.FieldMask, *gorm1.DB) error
-}
-
-// DefaultPatchSetEnvironment executes a bulk gorm update call with patch behavior
-func DefaultPatchSetEnvironment(ctx context.Context, objects []*Environment, updateMasks []*field_mask1.FieldMask, db *gorm1.DB) ([]*Environment, error) {
-	if len(objects) != len(updateMasks) {
-		return nil, fmt.Errorf(errors1.BadRepeatedFieldMaskTpl, len(updateMasks), len(objects))
-	}
-
-	results := make([]*Environment, 0, len(objects))
-	for i, patcher := range objects {
-		pbResponse, err := DefaultPatchEnvironment(ctx, patcher, updateMasks[i], db)
-		if err != nil {
-			return nil, err
-		}
-
-		results = append(results, pbResponse)
-	}
-
-	return results, nil
-}
-
-// DefaultApplyFieldMaskEnvironment patches an pbObject with patcher according to a field mask.
-func DefaultApplyFieldMaskEnvironment(ctx context.Context, patchee *Environment, patcher *Environment, updateMask *field_mask1.FieldMask, prefix string, db *gorm1.DB) (*Environment, error) {
-	if patcher == nil {
-		return nil, nil
-	} else if patchee == nil {
-		return nil, errors1.NilArgumentError
-	}
-	var err error
-	for _, f := range updateMask.Paths {
-		if f == prefix+"Id" {
-			patchee.Id = patcher.Id
-			continue
-		}
-		if f == prefix+"Name" {
-			patchee.Name = patcher.Name
-			continue
-		}
-		if f == prefix+"Description" {
-			patchee.Description = patcher.Description
-			continue
-		}
-		if f == prefix+"Code" {
-			patchee.Code = patcher.Code
-			continue
-		}
-		if f == prefix+"ApplicationInstances" {
-			patchee.ApplicationInstances = patcher.ApplicationInstances
-			continue
-		}
-		if f == prefix+"RegionId" {
-			patchee.RegionId = patcher.RegionId
-			continue
-		}
-	}
-	if err != nil {
-		return nil, err
-	}
-	return patchee, nil
-}
-
-// DefaultListEnvironment executes a gorm list call
-func DefaultListEnvironment(ctx context.Context, db *gorm1.DB, f *query1.Filtering, s *query1.Sorting, p *query1.Pagination, fs *query1.FieldSelection) ([]*Environment, error) {
-	in := Environment{}
-	ormObj, err := in.ToORM(ctx)
-	if err != nil {
-		return nil, err
-	}
-	if hook, ok := interface{}(&ormObj).(EnvironmentORMWithBeforeListApplyQuery); ok {
-		if db, err = hook.BeforeListApplyQuery(ctx, db, f, s, p, fs); err != nil {
-			return nil, err
-		}
-	}
-	db, err = gorm2.ApplyCollectionOperators(ctx, db, &EnvironmentORM{}, &Environment{}, f, s, p, fs)
-	if err != nil {
-		return nil, err
-	}
-	if hook, ok := interface{}(&ormObj).(EnvironmentORMWithBeforeListFind); ok {
-		if db, err = hook.BeforeListFind(ctx, db, f, s, p, fs); err != nil {
-			return nil, err
-		}
-	}
-	db = db.Where(&ormObj)
-	db = db.Order("id")
-	ormResponse := []EnvironmentORM{}
-	if err := db.Find(&ormResponse).Error; err != nil {
-		return nil, err
-	}
-	if hook, ok := interface{}(&ormObj).(EnvironmentORMWithAfterListFind); ok {
-		if err = hook.AfterListFind(ctx, db, &ormResponse, f, s, p, fs); err != nil {
-			return nil, err
-		}
-	}
-	pbResponse := []*Environment{}
-	for _, responseEntry := range ormResponse {
-		temp, err := responseEntry.ToPB(ctx)
-		if err != nil {
-			return nil, err
-		}
-		pbResponse = append(pbResponse, &temp)
-	}
-	return pbResponse, nil
-}
-
-type EnvironmentORMWithBeforeListApplyQuery interface {
-	BeforeListApplyQuery(context.Context, *gorm1.DB, *query1.Filtering, *query1.Sorting, *query1.Pagination, *query1.FieldSelection) (*gorm1.DB, error)
-}
-type EnvironmentORMWithBeforeListFind interface {
-	BeforeListFind(context.Context, *gorm1.DB, *query1.Filtering, *query1.Sorting, *query1.Pagination, *query1.FieldSelection) (*gorm1.DB, error)
-}
-type EnvironmentORMWithAfterListFind interface {
-	AfterListFind(context.Context, *gorm1.DB, *[]EnvironmentORM, *query1.Filtering, *query1.Sorting, *query1.Pagination, *query1.FieldSelection) error
-}
-
-// DefaultCreateManifest executes a basic gorm create call
-func DefaultCreateManifest(ctx context.Context, in *Manifest, db *gorm1.DB) (*Manifest, error) {
-	if in == nil {
-		return nil, errors1.NilArgumentError
-	}
-	ormObj, err := in.ToORM(ctx)
-	if err != nil {
-		return nil, err
-	}
-	if hook, ok := interface{}(&ormObj).(ManifestORMWithBeforeCreate_); ok {
-		if db, err = hook.BeforeCreate_(ctx, db); err != nil {
-			return nil, err
-		}
-	}
-	if err = db.Create(&ormObj).Error; err != nil {
-		return nil, err
-	}
-	if hook, ok := interface{}(&ormObj).(ManifestORMWithAfterCreate_); ok {
-		if err = hook.AfterCreate_(ctx, db); err != nil {
-			return nil, err
-		}
-	}
-	pbResponse, err := ormObj.ToPB(ctx)
-	return &pbResponse, err
-}
-
-type ManifestORMWithBeforeCreate_ interface {
-	BeforeCreate_(context.Context, *gorm1.DB) (*gorm1.DB, error)
-}
-type ManifestORMWithAfterCreate_ interface {
-	AfterCreate_(context.Context, *gorm1.DB) error
-}
-
-// DefaultReadManifest executes a basic gorm read call
-func DefaultReadManifest(ctx context.Context, in *Manifest, db *gorm1.DB, fs *query1.FieldSelection) (*Manifest, error) {
-	if in == nil {
-		return nil, errors1.NilArgumentError
-	}
-	ormObj, err := in.ToORM(ctx)
-	if err != nil {
-		return nil, err
-	}
-	if ormObj.Id == 0 {
-		return nil, errors1.EmptyIdError
-	}
-	if hook, ok := interface{}(&ormObj).(ManifestORMWithBeforeReadApplyQuery); ok {
-		if db, err = hook.BeforeReadApplyQuery(ctx, db, fs); err != nil {
-			return nil, err
-		}
-	}
-	if db, err = gorm2.ApplyFieldSelection(ctx, db, fs, &ManifestORM{}); err != nil {
-		return nil, err
-	}
-	if hook, ok := interface{}(&ormObj).(ManifestORMWithBeforeReadFind); ok {
-		if db, err = hook.BeforeReadFind(ctx, db, fs); err != nil {
-			return nil, err
-		}
-	}
-	ormResponse := ManifestORM{}
-	if err = db.Where(&ormObj).First(&ormResponse).Error; err != nil {
-		return nil, err
-	}
-	if hook, ok := interface{}(&ormResponse).(ManifestORMWithAfterReadFind); ok {
-		if err = hook.AfterReadFind(ctx, db, fs); err != nil {
-			return nil, err
-		}
-	}
-	pbResponse, err := ormResponse.ToPB(ctx)
-	return &pbResponse, err
-}
-
-type ManifestORMWithBeforeReadApplyQuery interface {
-	BeforeReadApplyQuery(context.Context, *gorm1.DB, *query1.FieldSelection) (*gorm1.DB, error)
-}
-type ManifestORMWithBeforeReadFind interface {
-	BeforeReadFind(context.Context, *gorm1.DB, *query1.FieldSelection) (*gorm1.DB, error)
-}
-type ManifestORMWithAfterReadFind interface {
-	AfterReadFind(context.Context, *gorm1.DB, *query1.FieldSelection) error
-}
-
-func DefaultDeleteManifest(ctx context.Context, in *Manifest, db *gorm1.DB) error {
-	if in == nil {
-		return errors1.NilArgumentError
-	}
-	ormObj, err := in.ToORM(ctx)
-	if err != nil {
-		return err
-	}
-	if ormObj.Id == 0 {
-		return errors1.EmptyIdError
-	}
-	if hook, ok := interface{}(&ormObj).(ManifestORMWithBeforeDelete_); ok {
-		if db, err = hook.BeforeDelete_(ctx, db); err != nil {
-			return err
-		}
-	}
-	err = db.Where(&ormObj).Delete(&ManifestORM{}).Error
-	if err != nil {
-		return err
-	}
-	if hook, ok := interface{}(&ormObj).(ManifestORMWithAfterDelete_); ok {
-		err = hook.AfterDelete_(ctx, db)
-	}
-	return err
-}
-
-type ManifestORMWithBeforeDelete_ interface {
-	BeforeDelete_(context.Context, *gorm1.DB) (*gorm1.DB, error)
-}
-type ManifestORMWithAfterDelete_ interface {
-	AfterDelete_(context.Context, *gorm1.DB) error
-}
-
-func DefaultDeleteManifestSet(ctx context.Context, in []*Manifest, db *gorm1.DB) error {
-	if in == nil {
-		return errors1.NilArgumentError
-	}
-	var err error
-	keys := []int64{}
-	for _, obj := range in {
-		ormObj, err := obj.ToORM(ctx)
-		if err != nil {
-			return err
-		}
-		if ormObj.Id == 0 {
-			return errors1.EmptyIdError
-		}
-		keys = append(keys, ormObj.Id)
-	}
-	if hook, ok := (interface{}(&ManifestORM{})).(ManifestORMWithBeforeDeleteSet); ok {
-		if db, err = hook.BeforeDeleteSet(ctx, in, db); err != nil {
-			return err
-		}
-	}
-	acctId, err := auth1.GetAccountID(ctx, nil)
-	if err != nil {
-		return err
-	}
-	err = db.Where("account_id = ? AND id in (?)", acctId, keys).Delete(&ManifestORM{}).Error
-	if err != nil {
-		return err
-	}
-	if hook, ok := (interface{}(&ManifestORM{})).(ManifestORMWithAfterDeleteSet); ok {
-		err = hook.AfterDeleteSet(ctx, in, db)
-	}
-	return err
-}
-
-type ManifestORMWithBeforeDeleteSet interface {
-	BeforeDeleteSet(context.Context, []*Manifest, *gorm1.DB) (*gorm1.DB, error)
-}
-type ManifestORMWithAfterDeleteSet interface {
-	AfterDeleteSet(context.Context, []*Manifest, *gorm1.DB) error
-}
-
-// DefaultStrictUpdateManifest clears first level 1:many children and then executes a gorm update call
-func DefaultStrictUpdateManifest(ctx context.Context, in *Manifest, db *gorm1.DB) (*Manifest, error) {
-	if in == nil {
-		return nil, fmt.Errorf("Nil argument to DefaultStrictUpdateManifest")
-	}
-	ormObj, err := in.ToORM(ctx)
-	if err != nil {
-		return nil, err
-	}
-	accountID, err := auth1.GetAccountID(ctx, nil)
-	if err != nil {
-		return nil, err
-	}
-	db = db.Where(map[string]interface{}{"account_id": accountID})
-	lockedRow := &ManifestORM{}
-	db.Model(&ormObj).Set("gorm:query_option", "FOR UPDATE").Where("id=?", ormObj.Id).First(lockedRow)
-	if hook, ok := interface{}(&ormObj).(ManifestORMWithBeforeStrictUpdateCleanup); ok {
-		if db, err = hook.BeforeStrictUpdateCleanup(ctx, db); err != nil {
-			return nil, err
-		}
-	}
-	if hook, ok := interface{}(&ormObj).(ManifestORMWithBeforeStrictUpdateSave); ok {
-		if db, err = hook.BeforeStrictUpdateSave(ctx, db); err != nil {
-			return nil, err
-		}
-	}
-	if err = db.Save(&ormObj).Error; err != nil {
-		return nil, err
-	}
-	if hook, ok := interface{}(&ormObj).(ManifestORMWithAfterStrictUpdateSave); ok {
-		if err = hook.AfterStrictUpdateSave(ctx, db); err != nil {
-			return nil, err
-		}
-	}
-	pbResponse, err := ormObj.ToPB(ctx)
-	if err != nil {
-		return nil, err
-	}
-	return &pbResponse, err
-}
-
-type ManifestORMWithBeforeStrictUpdateCleanup interface {
-	BeforeStrictUpdateCleanup(context.Context, *gorm1.DB) (*gorm1.DB, error)
-}
-type ManifestORMWithBeforeStrictUpdateSave interface {
-	BeforeStrictUpdateSave(context.Context, *gorm1.DB) (*gorm1.DB, error)
-}
-type ManifestORMWithAfterStrictUpdateSave interface {
-	AfterStrictUpdateSave(context.Context, *gorm1.DB) error
-}
-
-// DefaultPatchManifest executes a basic gorm update call with patch behavior
-func DefaultPatchManifest(ctx context.Context, in *Manifest, updateMask *field_mask1.FieldMask, db *gorm1.DB) (*Manifest, error) {
-	if in == nil {
-		return nil, errors1.NilArgumentError
-	}
-	var pbObj Manifest
-	var err error
-	if hook, ok := interface{}(&pbObj).(ManifestWithBeforePatchRead); ok {
-		if db, err = hook.BeforePatchRead(ctx, in, updateMask, db); err != nil {
-			return nil, err
-		}
-	}
-	pbReadRes, err := DefaultReadManifest(ctx, &Manifest{Id: in.GetId()}, db, nil)
-	if err != nil {
-		return nil, err
-	}
-	pbObj = *pbReadRes
-	if hook, ok := interface{}(&pbObj).(ManifestWithBeforePatchApplyFieldMask); ok {
-		if db, err = hook.BeforePatchApplyFieldMask(ctx, in, updateMask, db); err != nil {
-			return nil, err
-		}
-	}
-	if _, err := DefaultApplyFieldMaskManifest(ctx, &pbObj, in, updateMask, "", db); err != nil {
-		return nil, err
-	}
-	if hook, ok := interface{}(&pbObj).(ManifestWithBeforePatchSave); ok {
-		if db, err = hook.BeforePatchSave(ctx, in, updateMask, db); err != nil {
-			return nil, err
-		}
-	}
-	pbResponse, err := DefaultStrictUpdateManifest(ctx, &pbObj, db)
-	if err != nil {
-		return nil, err
-	}
-	if hook, ok := interface{}(pbResponse).(ManifestWithAfterPatchSave); ok {
-		if err = hook.AfterPatchSave(ctx, in, updateMask, db); err != nil {
-			return nil, err
-		}
-	}
-	return pbResponse, nil
-}
-
-type ManifestWithBeforePatchRead interface {
-	BeforePatchRead(context.Context, *Manifest, *field_mask1.FieldMask, *gorm1.DB) (*gorm1.DB, error)
-}
-type ManifestWithBeforePatchApplyFieldMask interface {
-	BeforePatchApplyFieldMask(context.Context, *Manifest, *field_mask1.FieldMask, *gorm1.DB) (*gorm1.DB, error)
-}
-type ManifestWithBeforePatchSave interface {
-	BeforePatchSave(context.Context, *Manifest, *field_mask1.FieldMask, *gorm1.DB) (*gorm1.DB, error)
-}
-type ManifestWithAfterPatchSave interface {
-	AfterPatchSave(context.Context, *Manifest, *field_mask1.FieldMask, *gorm1.DB) error
-}
-
-// DefaultPatchSetManifest executes a bulk gorm update call with patch behavior
-func DefaultPatchSetManifest(ctx context.Context, objects []*Manifest, updateMasks []*field_mask1.FieldMask, db *gorm1.DB) ([]*Manifest, error) {
-	if len(objects) != len(updateMasks) {
-		return nil, fmt.Errorf(errors1.BadRepeatedFieldMaskTpl, len(updateMasks), len(objects))
-	}
-
-	results := make([]*Manifest, 0, len(objects))
-	for i, patcher := range objects {
-		pbResponse, err := DefaultPatchManifest(ctx, patcher, updateMasks[i], db)
-		if err != nil {
-			return nil, err
-		}
-
-		results = append(results, pbResponse)
-	}
-
-	return results, nil
-}
-
-// DefaultApplyFieldMaskManifest patches an pbObject with patcher according to a field mask.
-func DefaultApplyFieldMaskManifest(ctx context.Context, patchee *Manifest, patcher *Manifest, updateMask *field_mask1.FieldMask, prefix string, db *gorm1.DB) (*Manifest, error) {
-	if patcher == nil {
-		return nil, nil
-	} else if patchee == nil {
-		return nil, errors1.NilArgumentError
-	}
-	var err error
-	var updatedValues bool
-	var updatedServices bool
-	var updatedIngress bool
-	var updatedResources bool
-	var updatedNodeSelector bool
-	var updatedTolerations bool
-	var updatedAffinity bool
-	var updatedArtifact bool
-	var updatedVault bool
-	var updatedAwsService bool
-	for i, f := range updateMask.Paths {
-		if f == prefix+"Id" {
-			patchee.Id = patcher.Id
-			continue
-		}
-		if f == prefix+"Name" {
-			patchee.Name = patcher.Name
-			continue
-		}
-		if f == prefix+"Description" {
-			patchee.Description = patcher.Description
-			continue
-		}
-		if f == prefix+"Repo" {
-			patchee.Repo = patcher.Repo
-			continue
-		}
-		if f == prefix+"Commit" {
-			patchee.Commit = patcher.Commit
-			continue
-		}
-		if !updatedValues && strings.HasPrefix(f, prefix+"Values") {
-			patchee.Values = patcher.Values
-			updatedValues = true
-			continue
-		}
-		if !updatedServices && strings.HasPrefix(f, prefix+"Services") {
-			patchee.Services = patcher.Services
-			updatedServices = true
-			continue
-		}
-		if !updatedIngress && strings.HasPrefix(f, prefix+"Ingress") {
-			patchee.Ingress = patcher.Ingress
-			updatedIngress = true
-			continue
-		}
-		if !updatedResources && strings.HasPrefix(f, prefix+"Resources") {
-			patchee.Resources = patcher.Resources
-			updatedResources = true
-			continue
-		}
-		if !updatedNodeSelector && strings.HasPrefix(f, prefix+"NodeSelector") {
-			patchee.NodeSelector = patcher.NodeSelector
-			updatedNodeSelector = true
-			continue
-		}
-		if !updatedTolerations && strings.HasPrefix(f, prefix+"Tolerations") {
-			patchee.Tolerations = patcher.Tolerations
-			updatedTolerations = true
-			continue
-		}
-		if !updatedAffinity && strings.HasPrefix(f, prefix+"Affinity") {
-			patchee.Affinity = patcher.Affinity
-			updatedAffinity = true
-			continue
-		}
-		if !updatedArtifact && strings.HasPrefix(f, prefix+"Artifact.") {
-			updatedArtifact = true
-			if patcher.Artifact == nil {
-				patchee.Artifact = nil
-				continue
-			}
-			if patchee.Artifact == nil {
-				patchee.Artifact = &Artifact{}
-			}
-			if o, err := DefaultApplyFieldMaskArtifact(ctx, patchee.Artifact, patcher.Artifact, &field_mask1.FieldMask{Paths: updateMask.Paths[i:]}, prefix+"Artifact.", db); err != nil {
-				return nil, err
-			} else {
-				patchee.Artifact = o
-			}
-			continue
-		}
-		if f == prefix+"Artifact" {
-			updatedArtifact = true
-			patchee.Artifact = patcher.Artifact
-			continue
-		}
-		if f == prefix+"ArtifactId" {
-			patchee.ArtifactId = patcher.ArtifactId
-			continue
-		}
-		if !updatedVault && strings.HasPrefix(f, prefix+"Vault.") {
-			updatedVault = true
-			if patcher.Vault == nil {
-				patchee.Vault = nil
-				continue
-			}
-			if patchee.Vault == nil {
-				patchee.Vault = &Vault{}
-			}
-			if o, err := DefaultApplyFieldMaskVault(ctx, patchee.Vault, patcher.Vault, &field_mask1.FieldMask{Paths: updateMask.Paths[i:]}, prefix+"Vault.", db); err != nil {
-				return nil, err
-			} else {
-				patchee.Vault = o
-			}
-			continue
-		}
-		if f == prefix+"Vault" {
-			updatedVault = true
-			patchee.Vault = patcher.Vault
-			continue
-		}
-		if f == prefix+"VaultId" {
-			patchee.VaultId = patcher.VaultId
-			continue
-		}
-		if !updatedAwsService && strings.HasPrefix(f, prefix+"AwsService.") {
-			updatedAwsService = true
-			if patcher.AwsService == nil {
-				patchee.AwsService = nil
-				continue
-			}
-			if patchee.AwsService == nil {
-				patchee.AwsService = &AwsService{}
-			}
-			if o, err := DefaultApplyFieldMaskAwsService(ctx, patchee.AwsService, patcher.AwsService, &field_mask1.FieldMask{Paths: updateMask.Paths[i:]}, prefix+"AwsService.", db); err != nil {
-				return nil, err
-			} else {
-				patchee.AwsService = o
-			}
-			continue
-		}
-		if f == prefix+"AwsService" {
-			updatedAwsService = true
-			patchee.AwsService = patcher.AwsService
+		if !updatedKeys && strings.HasPrefix(f, prefix+"Keys") {
+			patchee.Keys = patcher.Keys
+			updatedKeys = true
 			continue
 		}
 		if f == prefix+"AwsServiceId" {
@@ -4893,39 +6758,39 @@ func DefaultApplyFieldMaskManifest(ctx context.Context, patchee *Manifest, patch
 	return patchee, nil
 }
 
-// DefaultListManifest executes a gorm list call
-func DefaultListManifest(ctx context.Context, db *gorm1.DB, f *query1.Filtering, s *query1.Sorting, p *query1.Pagination, fs *query1.FieldSelection) ([]*Manifest, error) {
-	in := Manifest{}
+// DefaultListValue executes a gorm list call
+func DefaultListValue(ctx context.Context, db *gorm1.DB, f *query1.Filtering, s *query1.Sorting, p *query1.Pagination, fs *query1.FieldSelection) ([]*Value, error) {
+	in := Value{}
 	ormObj, err := in.ToORM(ctx)
 	if err != nil {
 		return nil, err
 	}
-	if hook, ok := interface{}(&ormObj).(ManifestORMWithBeforeListApplyQuery); ok {
+	if hook, ok := interface{}(&ormObj).(ValueORMWithBeforeListApplyQuery); ok {
 		if db, err = hook.BeforeListApplyQuery(ctx, db, f, s, p, fs); err != nil {
 			return nil, err
 		}
 	}
-	db, err = gorm2.ApplyCollectionOperators(ctx, db, &ManifestORM{}, &Manifest{}, f, s, p, fs)
+	db, err = gorm2.ApplyCollectionOperators(ctx, db, &ValueORM{}, &Value{}, f, s, p, fs)
 	if err != nil {
 		return nil, err
 	}
-	if hook, ok := interface{}(&ormObj).(ManifestORMWithBeforeListFind); ok {
+	if hook, ok := interface{}(&ormObj).(ValueORMWithBeforeListFind); ok {
 		if db, err = hook.BeforeListFind(ctx, db, f, s, p, fs); err != nil {
 			return nil, err
 		}
 	}
 	db = db.Where(&ormObj)
 	db = db.Order("id")
-	ormResponse := []ManifestORM{}
+	ormResponse := []ValueORM{}
 	if err := db.Find(&ormResponse).Error; err != nil {
 		return nil, err
 	}
-	if hook, ok := interface{}(&ormObj).(ManifestORMWithAfterListFind); ok {
+	if hook, ok := interface{}(&ormObj).(ValueORMWithAfterListFind); ok {
 		if err = hook.AfterListFind(ctx, db, &ormResponse, f, s, p, fs); err != nil {
 			return nil, err
 		}
 	}
-	pbResponse := []*Manifest{}
+	pbResponse := []*Value{}
 	for _, responseEntry := range ormResponse {
 		temp, err := responseEntry.ToPB(ctx)
 		if err != nil {
@@ -4936,392 +6801,14 @@ func DefaultListManifest(ctx context.Context, db *gorm1.DB, f *query1.Filtering,
 	return pbResponse, nil
 }
 
-type ManifestORMWithBeforeListApplyQuery interface {
+type ValueORMWithBeforeListApplyQuery interface {
 	BeforeListApplyQuery(context.Context, *gorm1.DB, *query1.Filtering, *query1.Sorting, *query1.Pagination, *query1.FieldSelection) (*gorm1.DB, error)
 }
-type ManifestORMWithBeforeListFind interface {
+type ValueORMWithBeforeListFind interface {
 	BeforeListFind(context.Context, *gorm1.DB, *query1.Filtering, *query1.Sorting, *query1.Pagination, *query1.FieldSelection) (*gorm1.DB, error)
 }
-type ManifestORMWithAfterListFind interface {
-	AfterListFind(context.Context, *gorm1.DB, *[]ManifestORM, *query1.Filtering, *query1.Sorting, *query1.Pagination, *query1.FieldSelection) error
-}
-
-// DefaultCreateSecret executes a basic gorm create call
-func DefaultCreateSecret(ctx context.Context, in *Secret, db *gorm1.DB) (*Secret, error) {
-	if in == nil {
-		return nil, errors1.NilArgumentError
-	}
-	ormObj, err := in.ToORM(ctx)
-	if err != nil {
-		return nil, err
-	}
-	if hook, ok := interface{}(&ormObj).(SecretORMWithBeforeCreate_); ok {
-		if db, err = hook.BeforeCreate_(ctx, db); err != nil {
-			return nil, err
-		}
-	}
-	if err = db.Create(&ormObj).Error; err != nil {
-		return nil, err
-	}
-	if hook, ok := interface{}(&ormObj).(SecretORMWithAfterCreate_); ok {
-		if err = hook.AfterCreate_(ctx, db); err != nil {
-			return nil, err
-		}
-	}
-	pbResponse, err := ormObj.ToPB(ctx)
-	return &pbResponse, err
-}
-
-type SecretORMWithBeforeCreate_ interface {
-	BeforeCreate_(context.Context, *gorm1.DB) (*gorm1.DB, error)
-}
-type SecretORMWithAfterCreate_ interface {
-	AfterCreate_(context.Context, *gorm1.DB) error
-}
-
-// DefaultReadSecret executes a basic gorm read call
-func DefaultReadSecret(ctx context.Context, in *Secret, db *gorm1.DB, fs *query1.FieldSelection) (*Secret, error) {
-	if in == nil {
-		return nil, errors1.NilArgumentError
-	}
-	ormObj, err := in.ToORM(ctx)
-	if err != nil {
-		return nil, err
-	}
-	if ormObj.Id == 0 {
-		return nil, errors1.EmptyIdError
-	}
-	if hook, ok := interface{}(&ormObj).(SecretORMWithBeforeReadApplyQuery); ok {
-		if db, err = hook.BeforeReadApplyQuery(ctx, db, fs); err != nil {
-			return nil, err
-		}
-	}
-	if db, err = gorm2.ApplyFieldSelection(ctx, db, fs, &SecretORM{}); err != nil {
-		return nil, err
-	}
-	if hook, ok := interface{}(&ormObj).(SecretORMWithBeforeReadFind); ok {
-		if db, err = hook.BeforeReadFind(ctx, db, fs); err != nil {
-			return nil, err
-		}
-	}
-	ormResponse := SecretORM{}
-	if err = db.Where(&ormObj).First(&ormResponse).Error; err != nil {
-		return nil, err
-	}
-	if hook, ok := interface{}(&ormResponse).(SecretORMWithAfterReadFind); ok {
-		if err = hook.AfterReadFind(ctx, db, fs); err != nil {
-			return nil, err
-		}
-	}
-	pbResponse, err := ormResponse.ToPB(ctx)
-	return &pbResponse, err
-}
-
-type SecretORMWithBeforeReadApplyQuery interface {
-	BeforeReadApplyQuery(context.Context, *gorm1.DB, *query1.FieldSelection) (*gorm1.DB, error)
-}
-type SecretORMWithBeforeReadFind interface {
-	BeforeReadFind(context.Context, *gorm1.DB, *query1.FieldSelection) (*gorm1.DB, error)
-}
-type SecretORMWithAfterReadFind interface {
-	AfterReadFind(context.Context, *gorm1.DB, *query1.FieldSelection) error
-}
-
-func DefaultDeleteSecret(ctx context.Context, in *Secret, db *gorm1.DB) error {
-	if in == nil {
-		return errors1.NilArgumentError
-	}
-	ormObj, err := in.ToORM(ctx)
-	if err != nil {
-		return err
-	}
-	if ormObj.Id == 0 {
-		return errors1.EmptyIdError
-	}
-	if hook, ok := interface{}(&ormObj).(SecretORMWithBeforeDelete_); ok {
-		if db, err = hook.BeforeDelete_(ctx, db); err != nil {
-			return err
-		}
-	}
-	err = db.Where(&ormObj).Delete(&SecretORM{}).Error
-	if err != nil {
-		return err
-	}
-	if hook, ok := interface{}(&ormObj).(SecretORMWithAfterDelete_); ok {
-		err = hook.AfterDelete_(ctx, db)
-	}
-	return err
-}
-
-type SecretORMWithBeforeDelete_ interface {
-	BeforeDelete_(context.Context, *gorm1.DB) (*gorm1.DB, error)
-}
-type SecretORMWithAfterDelete_ interface {
-	AfterDelete_(context.Context, *gorm1.DB) error
-}
-
-func DefaultDeleteSecretSet(ctx context.Context, in []*Secret, db *gorm1.DB) error {
-	if in == nil {
-		return errors1.NilArgumentError
-	}
-	var err error
-	keys := []int64{}
-	for _, obj := range in {
-		ormObj, err := obj.ToORM(ctx)
-		if err != nil {
-			return err
-		}
-		if ormObj.Id == 0 {
-			return errors1.EmptyIdError
-		}
-		keys = append(keys, ormObj.Id)
-	}
-	if hook, ok := (interface{}(&SecretORM{})).(SecretORMWithBeforeDeleteSet); ok {
-		if db, err = hook.BeforeDeleteSet(ctx, in, db); err != nil {
-			return err
-		}
-	}
-	acctId, err := auth1.GetAccountID(ctx, nil)
-	if err != nil {
-		return err
-	}
-	err = db.Where("account_id = ? AND id in (?)", acctId, keys).Delete(&SecretORM{}).Error
-	if err != nil {
-		return err
-	}
-	if hook, ok := (interface{}(&SecretORM{})).(SecretORMWithAfterDeleteSet); ok {
-		err = hook.AfterDeleteSet(ctx, in, db)
-	}
-	return err
-}
-
-type SecretORMWithBeforeDeleteSet interface {
-	BeforeDeleteSet(context.Context, []*Secret, *gorm1.DB) (*gorm1.DB, error)
-}
-type SecretORMWithAfterDeleteSet interface {
-	AfterDeleteSet(context.Context, []*Secret, *gorm1.DB) error
-}
-
-// DefaultStrictUpdateSecret clears first level 1:many children and then executes a gorm update call
-func DefaultStrictUpdateSecret(ctx context.Context, in *Secret, db *gorm1.DB) (*Secret, error) {
-	if in == nil {
-		return nil, fmt.Errorf("Nil argument to DefaultStrictUpdateSecret")
-	}
-	ormObj, err := in.ToORM(ctx)
-	if err != nil {
-		return nil, err
-	}
-	accountID, err := auth1.GetAccountID(ctx, nil)
-	if err != nil {
-		return nil, err
-	}
-	db = db.Where(map[string]interface{}{"account_id": accountID})
-	lockedRow := &SecretORM{}
-	db.Model(&ormObj).Set("gorm:query_option", "FOR UPDATE").Where("id=?", ormObj.Id).First(lockedRow)
-	if hook, ok := interface{}(&ormObj).(SecretORMWithBeforeStrictUpdateCleanup); ok {
-		if db, err = hook.BeforeStrictUpdateCleanup(ctx, db); err != nil {
-			return nil, err
-		}
-	}
-	if hook, ok := interface{}(&ormObj).(SecretORMWithBeforeStrictUpdateSave); ok {
-		if db, err = hook.BeforeStrictUpdateSave(ctx, db); err != nil {
-			return nil, err
-		}
-	}
-	if err = db.Save(&ormObj).Error; err != nil {
-		return nil, err
-	}
-	if hook, ok := interface{}(&ormObj).(SecretORMWithAfterStrictUpdateSave); ok {
-		if err = hook.AfterStrictUpdateSave(ctx, db); err != nil {
-			return nil, err
-		}
-	}
-	pbResponse, err := ormObj.ToPB(ctx)
-	if err != nil {
-		return nil, err
-	}
-	return &pbResponse, err
-}
-
-type SecretORMWithBeforeStrictUpdateCleanup interface {
-	BeforeStrictUpdateCleanup(context.Context, *gorm1.DB) (*gorm1.DB, error)
-}
-type SecretORMWithBeforeStrictUpdateSave interface {
-	BeforeStrictUpdateSave(context.Context, *gorm1.DB) (*gorm1.DB, error)
-}
-type SecretORMWithAfterStrictUpdateSave interface {
-	AfterStrictUpdateSave(context.Context, *gorm1.DB) error
-}
-
-// DefaultPatchSecret executes a basic gorm update call with patch behavior
-func DefaultPatchSecret(ctx context.Context, in *Secret, updateMask *field_mask1.FieldMask, db *gorm1.DB) (*Secret, error) {
-	if in == nil {
-		return nil, errors1.NilArgumentError
-	}
-	var pbObj Secret
-	var err error
-	if hook, ok := interface{}(&pbObj).(SecretWithBeforePatchRead); ok {
-		if db, err = hook.BeforePatchRead(ctx, in, updateMask, db); err != nil {
-			return nil, err
-		}
-	}
-	pbReadRes, err := DefaultReadSecret(ctx, &Secret{Id: in.GetId()}, db, nil)
-	if err != nil {
-		return nil, err
-	}
-	pbObj = *pbReadRes
-	if hook, ok := interface{}(&pbObj).(SecretWithBeforePatchApplyFieldMask); ok {
-		if db, err = hook.BeforePatchApplyFieldMask(ctx, in, updateMask, db); err != nil {
-			return nil, err
-		}
-	}
-	if _, err := DefaultApplyFieldMaskSecret(ctx, &pbObj, in, updateMask, "", db); err != nil {
-		return nil, err
-	}
-	if hook, ok := interface{}(&pbObj).(SecretWithBeforePatchSave); ok {
-		if db, err = hook.BeforePatchSave(ctx, in, updateMask, db); err != nil {
-			return nil, err
-		}
-	}
-	pbResponse, err := DefaultStrictUpdateSecret(ctx, &pbObj, db)
-	if err != nil {
-		return nil, err
-	}
-	if hook, ok := interface{}(pbResponse).(SecretWithAfterPatchSave); ok {
-		if err = hook.AfterPatchSave(ctx, in, updateMask, db); err != nil {
-			return nil, err
-		}
-	}
-	return pbResponse, nil
-}
-
-type SecretWithBeforePatchRead interface {
-	BeforePatchRead(context.Context, *Secret, *field_mask1.FieldMask, *gorm1.DB) (*gorm1.DB, error)
-}
-type SecretWithBeforePatchApplyFieldMask interface {
-	BeforePatchApplyFieldMask(context.Context, *Secret, *field_mask1.FieldMask, *gorm1.DB) (*gorm1.DB, error)
-}
-type SecretWithBeforePatchSave interface {
-	BeforePatchSave(context.Context, *Secret, *field_mask1.FieldMask, *gorm1.DB) (*gorm1.DB, error)
-}
-type SecretWithAfterPatchSave interface {
-	AfterPatchSave(context.Context, *Secret, *field_mask1.FieldMask, *gorm1.DB) error
-}
-
-// DefaultPatchSetSecret executes a bulk gorm update call with patch behavior
-func DefaultPatchSetSecret(ctx context.Context, objects []*Secret, updateMasks []*field_mask1.FieldMask, db *gorm1.DB) ([]*Secret, error) {
-	if len(objects) != len(updateMasks) {
-		return nil, fmt.Errorf(errors1.BadRepeatedFieldMaskTpl, len(updateMasks), len(objects))
-	}
-
-	results := make([]*Secret, 0, len(objects))
-	for i, patcher := range objects {
-		pbResponse, err := DefaultPatchSecret(ctx, patcher, updateMasks[i], db)
-		if err != nil {
-			return nil, err
-		}
-
-		results = append(results, pbResponse)
-	}
-
-	return results, nil
-}
-
-// DefaultApplyFieldMaskSecret patches an pbObject with patcher according to a field mask.
-func DefaultApplyFieldMaskSecret(ctx context.Context, patchee *Secret, patcher *Secret, updateMask *field_mask1.FieldMask, prefix string, db *gorm1.DB) (*Secret, error) {
-	if patcher == nil {
-		return nil, nil
-	} else if patchee == nil {
-		return nil, errors1.NilArgumentError
-	}
-	var err error
-	for _, f := range updateMask.Paths {
-		if f == prefix+"Id" {
-			patchee.Id = patcher.Id
-			continue
-		}
-		if f == prefix+"Name" {
-			patchee.Name = patcher.Name
-			continue
-		}
-		if f == prefix+"Description" {
-			patchee.Description = patcher.Description
-			continue
-		}
-		if f == prefix+"Type" {
-			patchee.Type = patcher.Type
-			continue
-		}
-		if f == prefix+"Key" {
-			patchee.Key = patcher.Key
-			continue
-		}
-		if f == prefix+"VaultId" {
-			patchee.VaultId = patcher.VaultId
-			continue
-		}
-		if f == prefix+"AwsRdsInstanceId" {
-			patchee.AwsRdsInstanceId = patcher.AwsRdsInstanceId
-			continue
-		}
-	}
-	if err != nil {
-		return nil, err
-	}
-	return patchee, nil
-}
-
-// DefaultListSecret executes a gorm list call
-func DefaultListSecret(ctx context.Context, db *gorm1.DB, f *query1.Filtering, s *query1.Sorting, p *query1.Pagination, fs *query1.FieldSelection) ([]*Secret, error) {
-	in := Secret{}
-	ormObj, err := in.ToORM(ctx)
-	if err != nil {
-		return nil, err
-	}
-	if hook, ok := interface{}(&ormObj).(SecretORMWithBeforeListApplyQuery); ok {
-		if db, err = hook.BeforeListApplyQuery(ctx, db, f, s, p, fs); err != nil {
-			return nil, err
-		}
-	}
-	db, err = gorm2.ApplyCollectionOperators(ctx, db, &SecretORM{}, &Secret{}, f, s, p, fs)
-	if err != nil {
-		return nil, err
-	}
-	if hook, ok := interface{}(&ormObj).(SecretORMWithBeforeListFind); ok {
-		if db, err = hook.BeforeListFind(ctx, db, f, s, p, fs); err != nil {
-			return nil, err
-		}
-	}
-	db = db.Where(&ormObj)
-	db = db.Order("id")
-	ormResponse := []SecretORM{}
-	if err := db.Find(&ormResponse).Error; err != nil {
-		return nil, err
-	}
-	if hook, ok := interface{}(&ormObj).(SecretORMWithAfterListFind); ok {
-		if err = hook.AfterListFind(ctx, db, &ormResponse, f, s, p, fs); err != nil {
-			return nil, err
-		}
-	}
-	pbResponse := []*Secret{}
-	for _, responseEntry := range ormResponse {
-		temp, err := responseEntry.ToPB(ctx)
-		if err != nil {
-			return nil, err
-		}
-		pbResponse = append(pbResponse, &temp)
-	}
-	return pbResponse, nil
-}
-
-type SecretORMWithBeforeListApplyQuery interface {
-	BeforeListApplyQuery(context.Context, *gorm1.DB, *query1.Filtering, *query1.Sorting, *query1.Pagination, *query1.FieldSelection) (*gorm1.DB, error)
-}
-type SecretORMWithBeforeListFind interface {
-	BeforeListFind(context.Context, *gorm1.DB, *query1.Filtering, *query1.Sorting, *query1.Pagination, *query1.FieldSelection) (*gorm1.DB, error)
-}
-type SecretORMWithAfterListFind interface {
-	AfterListFind(context.Context, *gorm1.DB, *[]SecretORM, *query1.Filtering, *query1.Sorting, *query1.Pagination, *query1.FieldSelection) error
+type ValueORMWithAfterListFind interface {
+	AfterListFind(context.Context, *gorm1.DB, *[]ValueORM, *query1.Filtering, *query1.Sorting, *query1.Pagination, *query1.FieldSelection) error
 }
 
 // DefaultCreateArtifact executes a basic gorm create call
@@ -5634,8 +7121,8 @@ func DefaultApplyFieldMaskArtifact(ctx context.Context, patchee *Artifact, patch
 			patchee.Commit = patcher.Commit
 			continue
 		}
-		if f == prefix+"VersionTagId" {
-			patchee.VersionTagId = patcher.VersionTagId
+		if f == prefix+"ChartVersionId" {
+			patchee.ChartVersionId = patcher.ChartVersionId
 			continue
 		}
 	}
@@ -5696,381 +7183,6 @@ type ArtifactORMWithBeforeListFind interface {
 }
 type ArtifactORMWithAfterListFind interface {
 	AfterListFind(context.Context, *gorm1.DB, *[]ArtifactORM, *query1.Filtering, *query1.Sorting, *query1.Pagination, *query1.FieldSelection) error
-}
-
-// DefaultCreateAwsService executes a basic gorm create call
-func DefaultCreateAwsService(ctx context.Context, in *AwsService, db *gorm1.DB) (*AwsService, error) {
-	if in == nil {
-		return nil, errors1.NilArgumentError
-	}
-	ormObj, err := in.ToORM(ctx)
-	if err != nil {
-		return nil, err
-	}
-	if hook, ok := interface{}(&ormObj).(AwsServiceORMWithBeforeCreate_); ok {
-		if db, err = hook.BeforeCreate_(ctx, db); err != nil {
-			return nil, err
-		}
-	}
-	if err = db.Create(&ormObj).Error; err != nil {
-		return nil, err
-	}
-	if hook, ok := interface{}(&ormObj).(AwsServiceORMWithAfterCreate_); ok {
-		if err = hook.AfterCreate_(ctx, db); err != nil {
-			return nil, err
-		}
-	}
-	pbResponse, err := ormObj.ToPB(ctx)
-	return &pbResponse, err
-}
-
-type AwsServiceORMWithBeforeCreate_ interface {
-	BeforeCreate_(context.Context, *gorm1.DB) (*gorm1.DB, error)
-}
-type AwsServiceORMWithAfterCreate_ interface {
-	AfterCreate_(context.Context, *gorm1.DB) error
-}
-
-// DefaultReadAwsService executes a basic gorm read call
-func DefaultReadAwsService(ctx context.Context, in *AwsService, db *gorm1.DB, fs *query1.FieldSelection) (*AwsService, error) {
-	if in == nil {
-		return nil, errors1.NilArgumentError
-	}
-	ormObj, err := in.ToORM(ctx)
-	if err != nil {
-		return nil, err
-	}
-	if ormObj.Id == 0 {
-		return nil, errors1.EmptyIdError
-	}
-	if hook, ok := interface{}(&ormObj).(AwsServiceORMWithBeforeReadApplyQuery); ok {
-		if db, err = hook.BeforeReadApplyQuery(ctx, db, fs); err != nil {
-			return nil, err
-		}
-	}
-	if db, err = gorm2.ApplyFieldSelection(ctx, db, fs, &AwsServiceORM{}); err != nil {
-		return nil, err
-	}
-	if hook, ok := interface{}(&ormObj).(AwsServiceORMWithBeforeReadFind); ok {
-		if db, err = hook.BeforeReadFind(ctx, db, fs); err != nil {
-			return nil, err
-		}
-	}
-	ormResponse := AwsServiceORM{}
-	if err = db.Where(&ormObj).First(&ormResponse).Error; err != nil {
-		return nil, err
-	}
-	if hook, ok := interface{}(&ormResponse).(AwsServiceORMWithAfterReadFind); ok {
-		if err = hook.AfterReadFind(ctx, db, fs); err != nil {
-			return nil, err
-		}
-	}
-	pbResponse, err := ormResponse.ToPB(ctx)
-	return &pbResponse, err
-}
-
-type AwsServiceORMWithBeforeReadApplyQuery interface {
-	BeforeReadApplyQuery(context.Context, *gorm1.DB, *query1.FieldSelection) (*gorm1.DB, error)
-}
-type AwsServiceORMWithBeforeReadFind interface {
-	BeforeReadFind(context.Context, *gorm1.DB, *query1.FieldSelection) (*gorm1.DB, error)
-}
-type AwsServiceORMWithAfterReadFind interface {
-	AfterReadFind(context.Context, *gorm1.DB, *query1.FieldSelection) error
-}
-
-func DefaultDeleteAwsService(ctx context.Context, in *AwsService, db *gorm1.DB) error {
-	if in == nil {
-		return errors1.NilArgumentError
-	}
-	ormObj, err := in.ToORM(ctx)
-	if err != nil {
-		return err
-	}
-	if ormObj.Id == 0 {
-		return errors1.EmptyIdError
-	}
-	if hook, ok := interface{}(&ormObj).(AwsServiceORMWithBeforeDelete_); ok {
-		if db, err = hook.BeforeDelete_(ctx, db); err != nil {
-			return err
-		}
-	}
-	err = db.Where(&ormObj).Delete(&AwsServiceORM{}).Error
-	if err != nil {
-		return err
-	}
-	if hook, ok := interface{}(&ormObj).(AwsServiceORMWithAfterDelete_); ok {
-		err = hook.AfterDelete_(ctx, db)
-	}
-	return err
-}
-
-type AwsServiceORMWithBeforeDelete_ interface {
-	BeforeDelete_(context.Context, *gorm1.DB) (*gorm1.DB, error)
-}
-type AwsServiceORMWithAfterDelete_ interface {
-	AfterDelete_(context.Context, *gorm1.DB) error
-}
-
-func DefaultDeleteAwsServiceSet(ctx context.Context, in []*AwsService, db *gorm1.DB) error {
-	if in == nil {
-		return errors1.NilArgumentError
-	}
-	var err error
-	keys := []int64{}
-	for _, obj := range in {
-		ormObj, err := obj.ToORM(ctx)
-		if err != nil {
-			return err
-		}
-		if ormObj.Id == 0 {
-			return errors1.EmptyIdError
-		}
-		keys = append(keys, ormObj.Id)
-	}
-	if hook, ok := (interface{}(&AwsServiceORM{})).(AwsServiceORMWithBeforeDeleteSet); ok {
-		if db, err = hook.BeforeDeleteSet(ctx, in, db); err != nil {
-			return err
-		}
-	}
-	acctId, err := auth1.GetAccountID(ctx, nil)
-	if err != nil {
-		return err
-	}
-	err = db.Where("account_id = ? AND id in (?)", acctId, keys).Delete(&AwsServiceORM{}).Error
-	if err != nil {
-		return err
-	}
-	if hook, ok := (interface{}(&AwsServiceORM{})).(AwsServiceORMWithAfterDeleteSet); ok {
-		err = hook.AfterDeleteSet(ctx, in, db)
-	}
-	return err
-}
-
-type AwsServiceORMWithBeforeDeleteSet interface {
-	BeforeDeleteSet(context.Context, []*AwsService, *gorm1.DB) (*gorm1.DB, error)
-}
-type AwsServiceORMWithAfterDeleteSet interface {
-	AfterDeleteSet(context.Context, []*AwsService, *gorm1.DB) error
-}
-
-// DefaultStrictUpdateAwsService clears first level 1:many children and then executes a gorm update call
-func DefaultStrictUpdateAwsService(ctx context.Context, in *AwsService, db *gorm1.DB) (*AwsService, error) {
-	if in == nil {
-		return nil, fmt.Errorf("Nil argument to DefaultStrictUpdateAwsService")
-	}
-	ormObj, err := in.ToORM(ctx)
-	if err != nil {
-		return nil, err
-	}
-	accountID, err := auth1.GetAccountID(ctx, nil)
-	if err != nil {
-		return nil, err
-	}
-	db = db.Where(map[string]interface{}{"account_id": accountID})
-	lockedRow := &AwsServiceORM{}
-	db.Model(&ormObj).Set("gorm:query_option", "FOR UPDATE").Where("id=?", ormObj.Id).First(lockedRow)
-	if hook, ok := interface{}(&ormObj).(AwsServiceORMWithBeforeStrictUpdateCleanup); ok {
-		if db, err = hook.BeforeStrictUpdateCleanup(ctx, db); err != nil {
-			return nil, err
-		}
-	}
-	filterAwsRdsInstances := AwsRdsInstanceORM{}
-	if ormObj.Id == 0 {
-		return nil, errors1.EmptyIdError
-	}
-	filterAwsRdsInstances.AwsServiceId = new(int64)
-	*filterAwsRdsInstances.AwsServiceId = ormObj.Id
-	if err = db.Where(filterAwsRdsInstances).Delete(AwsRdsInstanceORM{}).Error; err != nil {
-		return nil, err
-	}
-	if hook, ok := interface{}(&ormObj).(AwsServiceORMWithBeforeStrictUpdateSave); ok {
-		if db, err = hook.BeforeStrictUpdateSave(ctx, db); err != nil {
-			return nil, err
-		}
-	}
-	if err = db.Save(&ormObj).Error; err != nil {
-		return nil, err
-	}
-	if hook, ok := interface{}(&ormObj).(AwsServiceORMWithAfterStrictUpdateSave); ok {
-		if err = hook.AfterStrictUpdateSave(ctx, db); err != nil {
-			return nil, err
-		}
-	}
-	pbResponse, err := ormObj.ToPB(ctx)
-	if err != nil {
-		return nil, err
-	}
-	return &pbResponse, err
-}
-
-type AwsServiceORMWithBeforeStrictUpdateCleanup interface {
-	BeforeStrictUpdateCleanup(context.Context, *gorm1.DB) (*gorm1.DB, error)
-}
-type AwsServiceORMWithBeforeStrictUpdateSave interface {
-	BeforeStrictUpdateSave(context.Context, *gorm1.DB) (*gorm1.DB, error)
-}
-type AwsServiceORMWithAfterStrictUpdateSave interface {
-	AfterStrictUpdateSave(context.Context, *gorm1.DB) error
-}
-
-// DefaultPatchAwsService executes a basic gorm update call with patch behavior
-func DefaultPatchAwsService(ctx context.Context, in *AwsService, updateMask *field_mask1.FieldMask, db *gorm1.DB) (*AwsService, error) {
-	if in == nil {
-		return nil, errors1.NilArgumentError
-	}
-	var pbObj AwsService
-	var err error
-	if hook, ok := interface{}(&pbObj).(AwsServiceWithBeforePatchRead); ok {
-		if db, err = hook.BeforePatchRead(ctx, in, updateMask, db); err != nil {
-			return nil, err
-		}
-	}
-	pbReadRes, err := DefaultReadAwsService(ctx, &AwsService{Id: in.GetId()}, db, nil)
-	if err != nil {
-		return nil, err
-	}
-	pbObj = *pbReadRes
-	if hook, ok := interface{}(&pbObj).(AwsServiceWithBeforePatchApplyFieldMask); ok {
-		if db, err = hook.BeforePatchApplyFieldMask(ctx, in, updateMask, db); err != nil {
-			return nil, err
-		}
-	}
-	if _, err := DefaultApplyFieldMaskAwsService(ctx, &pbObj, in, updateMask, "", db); err != nil {
-		return nil, err
-	}
-	if hook, ok := interface{}(&pbObj).(AwsServiceWithBeforePatchSave); ok {
-		if db, err = hook.BeforePatchSave(ctx, in, updateMask, db); err != nil {
-			return nil, err
-		}
-	}
-	pbResponse, err := DefaultStrictUpdateAwsService(ctx, &pbObj, db)
-	if err != nil {
-		return nil, err
-	}
-	if hook, ok := interface{}(pbResponse).(AwsServiceWithAfterPatchSave); ok {
-		if err = hook.AfterPatchSave(ctx, in, updateMask, db); err != nil {
-			return nil, err
-		}
-	}
-	return pbResponse, nil
-}
-
-type AwsServiceWithBeforePatchRead interface {
-	BeforePatchRead(context.Context, *AwsService, *field_mask1.FieldMask, *gorm1.DB) (*gorm1.DB, error)
-}
-type AwsServiceWithBeforePatchApplyFieldMask interface {
-	BeforePatchApplyFieldMask(context.Context, *AwsService, *field_mask1.FieldMask, *gorm1.DB) (*gorm1.DB, error)
-}
-type AwsServiceWithBeforePatchSave interface {
-	BeforePatchSave(context.Context, *AwsService, *field_mask1.FieldMask, *gorm1.DB) (*gorm1.DB, error)
-}
-type AwsServiceWithAfterPatchSave interface {
-	AfterPatchSave(context.Context, *AwsService, *field_mask1.FieldMask, *gorm1.DB) error
-}
-
-// DefaultPatchSetAwsService executes a bulk gorm update call with patch behavior
-func DefaultPatchSetAwsService(ctx context.Context, objects []*AwsService, updateMasks []*field_mask1.FieldMask, db *gorm1.DB) ([]*AwsService, error) {
-	if len(objects) != len(updateMasks) {
-		return nil, fmt.Errorf(errors1.BadRepeatedFieldMaskTpl, len(updateMasks), len(objects))
-	}
-
-	results := make([]*AwsService, 0, len(objects))
-	for i, patcher := range objects {
-		pbResponse, err := DefaultPatchAwsService(ctx, patcher, updateMasks[i], db)
-		if err != nil {
-			return nil, err
-		}
-
-		results = append(results, pbResponse)
-	}
-
-	return results, nil
-}
-
-// DefaultApplyFieldMaskAwsService patches an pbObject with patcher according to a field mask.
-func DefaultApplyFieldMaskAwsService(ctx context.Context, patchee *AwsService, patcher *AwsService, updateMask *field_mask1.FieldMask, prefix string, db *gorm1.DB) (*AwsService, error) {
-	if patcher == nil {
-		return nil, nil
-	} else if patchee == nil {
-		return nil, errors1.NilArgumentError
-	}
-	var err error
-	for _, f := range updateMask.Paths {
-		if f == prefix+"Id" {
-			patchee.Id = patcher.Id
-			continue
-		}
-		if f == prefix+"Name" {
-			patchee.Name = patcher.Name
-			continue
-		}
-		if f == prefix+"Description" {
-			patchee.Description = patcher.Description
-			continue
-		}
-		if f == prefix+"AwsRdsInstances" {
-			patchee.AwsRdsInstances = patcher.AwsRdsInstances
-			continue
-		}
-	}
-	if err != nil {
-		return nil, err
-	}
-	return patchee, nil
-}
-
-// DefaultListAwsService executes a gorm list call
-func DefaultListAwsService(ctx context.Context, db *gorm1.DB, f *query1.Filtering, s *query1.Sorting, p *query1.Pagination, fs *query1.FieldSelection) ([]*AwsService, error) {
-	in := AwsService{}
-	ormObj, err := in.ToORM(ctx)
-	if err != nil {
-		return nil, err
-	}
-	if hook, ok := interface{}(&ormObj).(AwsServiceORMWithBeforeListApplyQuery); ok {
-		if db, err = hook.BeforeListApplyQuery(ctx, db, f, s, p, fs); err != nil {
-			return nil, err
-		}
-	}
-	db, err = gorm2.ApplyCollectionOperators(ctx, db, &AwsServiceORM{}, &AwsService{}, f, s, p, fs)
-	if err != nil {
-		return nil, err
-	}
-	if hook, ok := interface{}(&ormObj).(AwsServiceORMWithBeforeListFind); ok {
-		if db, err = hook.BeforeListFind(ctx, db, f, s, p, fs); err != nil {
-			return nil, err
-		}
-	}
-	db = db.Where(&ormObj)
-	db = db.Order("id")
-	ormResponse := []AwsServiceORM{}
-	if err := db.Find(&ormResponse).Error; err != nil {
-		return nil, err
-	}
-	if hook, ok := interface{}(&ormObj).(AwsServiceORMWithAfterListFind); ok {
-		if err = hook.AfterListFind(ctx, db, &ormResponse, f, s, p, fs); err != nil {
-			return nil, err
-		}
-	}
-	pbResponse := []*AwsService{}
-	for _, responseEntry := range ormResponse {
-		temp, err := responseEntry.ToPB(ctx)
-		if err != nil {
-			return nil, err
-		}
-		pbResponse = append(pbResponse, &temp)
-	}
-	return pbResponse, nil
-}
-
-type AwsServiceORMWithBeforeListApplyQuery interface {
-	BeforeListApplyQuery(context.Context, *gorm1.DB, *query1.Filtering, *query1.Sorting, *query1.Pagination, *query1.FieldSelection) (*gorm1.DB, error)
-}
-type AwsServiceORMWithBeforeListFind interface {
-	BeforeListFind(context.Context, *gorm1.DB, *query1.Filtering, *query1.Sorting, *query1.Pagination, *query1.FieldSelection) (*gorm1.DB, error)
-}
-type AwsServiceORMWithAfterListFind interface {
-	AfterListFind(context.Context, *gorm1.DB, *[]AwsServiceORM, *query1.Filtering, *query1.Sorting, *query1.Pagination, *query1.FieldSelection) error
 }
 
 // DefaultCreateDeployment executes a basic gorm create call
@@ -6852,773 +7964,11 @@ type KubeClusterORMWithBeforeListFind interface {
 type KubeClusterORMWithAfterListFind interface {
 	AfterListFind(context.Context, *gorm1.DB, *[]KubeClusterORM, *query1.Filtering, *query1.Sorting, *query1.Pagination, *query1.FieldSelection) error
 }
-
-// DefaultCreateCloudProvider executes a basic gorm create call
-func DefaultCreateCloudProvider(ctx context.Context, in *CloudProvider, db *gorm1.DB) (*CloudProvider, error) {
-	if in == nil {
-		return nil, errors1.NilArgumentError
-	}
-	ormObj, err := in.ToORM(ctx)
-	if err != nil {
-		return nil, err
-	}
-	if hook, ok := interface{}(&ormObj).(CloudProviderORMWithBeforeCreate_); ok {
-		if db, err = hook.BeforeCreate_(ctx, db); err != nil {
-			return nil, err
-		}
-	}
-	if err = db.Create(&ormObj).Error; err != nil {
-		return nil, err
-	}
-	if hook, ok := interface{}(&ormObj).(CloudProviderORMWithAfterCreate_); ok {
-		if err = hook.AfterCreate_(ctx, db); err != nil {
-			return nil, err
-		}
-	}
-	pbResponse, err := ormObj.ToPB(ctx)
-	return &pbResponse, err
-}
-
-type CloudProviderORMWithBeforeCreate_ interface {
-	BeforeCreate_(context.Context, *gorm1.DB) (*gorm1.DB, error)
-}
-type CloudProviderORMWithAfterCreate_ interface {
-	AfterCreate_(context.Context, *gorm1.DB) error
-}
-
-// DefaultReadCloudProvider executes a basic gorm read call
-func DefaultReadCloudProvider(ctx context.Context, in *CloudProvider, db *gorm1.DB, fs *query1.FieldSelection) (*CloudProvider, error) {
-	if in == nil {
-		return nil, errors1.NilArgumentError
-	}
-	ormObj, err := in.ToORM(ctx)
-	if err != nil {
-		return nil, err
-	}
-	if ormObj.Id == 0 {
-		return nil, errors1.EmptyIdError
-	}
-	if hook, ok := interface{}(&ormObj).(CloudProviderORMWithBeforeReadApplyQuery); ok {
-		if db, err = hook.BeforeReadApplyQuery(ctx, db, fs); err != nil {
-			return nil, err
-		}
-	}
-	if db, err = gorm2.ApplyFieldSelection(ctx, db, fs, &CloudProviderORM{}); err != nil {
-		return nil, err
-	}
-	if hook, ok := interface{}(&ormObj).(CloudProviderORMWithBeforeReadFind); ok {
-		if db, err = hook.BeforeReadFind(ctx, db, fs); err != nil {
-			return nil, err
-		}
-	}
-	ormResponse := CloudProviderORM{}
-	if err = db.Where(&ormObj).First(&ormResponse).Error; err != nil {
-		return nil, err
-	}
-	if hook, ok := interface{}(&ormResponse).(CloudProviderORMWithAfterReadFind); ok {
-		if err = hook.AfterReadFind(ctx, db, fs); err != nil {
-			return nil, err
-		}
-	}
-	pbResponse, err := ormResponse.ToPB(ctx)
-	return &pbResponse, err
-}
-
-type CloudProviderORMWithBeforeReadApplyQuery interface {
-	BeforeReadApplyQuery(context.Context, *gorm1.DB, *query1.FieldSelection) (*gorm1.DB, error)
-}
-type CloudProviderORMWithBeforeReadFind interface {
-	BeforeReadFind(context.Context, *gorm1.DB, *query1.FieldSelection) (*gorm1.DB, error)
-}
-type CloudProviderORMWithAfterReadFind interface {
-	AfterReadFind(context.Context, *gorm1.DB, *query1.FieldSelection) error
-}
-
-func DefaultDeleteCloudProvider(ctx context.Context, in *CloudProvider, db *gorm1.DB) error {
-	if in == nil {
-		return errors1.NilArgumentError
-	}
-	ormObj, err := in.ToORM(ctx)
-	if err != nil {
-		return err
-	}
-	if ormObj.Id == 0 {
-		return errors1.EmptyIdError
-	}
-	if hook, ok := interface{}(&ormObj).(CloudProviderORMWithBeforeDelete_); ok {
-		if db, err = hook.BeforeDelete_(ctx, db); err != nil {
-			return err
-		}
-	}
-	err = db.Where(&ormObj).Delete(&CloudProviderORM{}).Error
-	if err != nil {
-		return err
-	}
-	if hook, ok := interface{}(&ormObj).(CloudProviderORMWithAfterDelete_); ok {
-		err = hook.AfterDelete_(ctx, db)
-	}
-	return err
-}
-
-type CloudProviderORMWithBeforeDelete_ interface {
-	BeforeDelete_(context.Context, *gorm1.DB) (*gorm1.DB, error)
-}
-type CloudProviderORMWithAfterDelete_ interface {
-	AfterDelete_(context.Context, *gorm1.DB) error
-}
-
-func DefaultDeleteCloudProviderSet(ctx context.Context, in []*CloudProvider, db *gorm1.DB) error {
-	if in == nil {
-		return errors1.NilArgumentError
-	}
-	var err error
-	keys := []int64{}
-	for _, obj := range in {
-		ormObj, err := obj.ToORM(ctx)
-		if err != nil {
-			return err
-		}
-		if ormObj.Id == 0 {
-			return errors1.EmptyIdError
-		}
-		keys = append(keys, ormObj.Id)
-	}
-	if hook, ok := (interface{}(&CloudProviderORM{})).(CloudProviderORMWithBeforeDeleteSet); ok {
-		if db, err = hook.BeforeDeleteSet(ctx, in, db); err != nil {
-			return err
-		}
-	}
-	acctId, err := auth1.GetAccountID(ctx, nil)
-	if err != nil {
-		return err
-	}
-	err = db.Where("account_id = ? AND id in (?)", acctId, keys).Delete(&CloudProviderORM{}).Error
-	if err != nil {
-		return err
-	}
-	if hook, ok := (interface{}(&CloudProviderORM{})).(CloudProviderORMWithAfterDeleteSet); ok {
-		err = hook.AfterDeleteSet(ctx, in, db)
-	}
-	return err
-}
-
-type CloudProviderORMWithBeforeDeleteSet interface {
-	BeforeDeleteSet(context.Context, []*CloudProvider, *gorm1.DB) (*gorm1.DB, error)
-}
-type CloudProviderORMWithAfterDeleteSet interface {
-	AfterDeleteSet(context.Context, []*CloudProvider, *gorm1.DB) error
-}
-
-// DefaultStrictUpdateCloudProvider clears first level 1:many children and then executes a gorm update call
-func DefaultStrictUpdateCloudProvider(ctx context.Context, in *CloudProvider, db *gorm1.DB) (*CloudProvider, error) {
-	if in == nil {
-		return nil, fmt.Errorf("Nil argument to DefaultStrictUpdateCloudProvider")
-	}
-	ormObj, err := in.ToORM(ctx)
-	if err != nil {
-		return nil, err
-	}
-	accountID, err := auth1.GetAccountID(ctx, nil)
-	if err != nil {
-		return nil, err
-	}
-	db = db.Where(map[string]interface{}{"account_id": accountID})
-	lockedRow := &CloudProviderORM{}
-	db.Model(&ormObj).Set("gorm:query_option", "FOR UPDATE").Where("id=?", ormObj.Id).First(lockedRow)
-	if hook, ok := interface{}(&ormObj).(CloudProviderORMWithBeforeStrictUpdateCleanup); ok {
-		if db, err = hook.BeforeStrictUpdateCleanup(ctx, db); err != nil {
-			return nil, err
-		}
-	}
-	filterRegions := RegionORM{}
-	if ormObj.Id == 0 {
-		return nil, errors1.EmptyIdError
-	}
-	filterRegions.CloudProviderId = new(int64)
-	*filterRegions.CloudProviderId = ormObj.Id
-	if err = db.Where(filterRegions).Delete(RegionORM{}).Error; err != nil {
-		return nil, err
-	}
-	if hook, ok := interface{}(&ormObj).(CloudProviderORMWithBeforeStrictUpdateSave); ok {
-		if db, err = hook.BeforeStrictUpdateSave(ctx, db); err != nil {
-			return nil, err
-		}
-	}
-	if err = db.Save(&ormObj).Error; err != nil {
-		return nil, err
-	}
-	if hook, ok := interface{}(&ormObj).(CloudProviderORMWithAfterStrictUpdateSave); ok {
-		if err = hook.AfterStrictUpdateSave(ctx, db); err != nil {
-			return nil, err
-		}
-	}
-	pbResponse, err := ormObj.ToPB(ctx)
-	if err != nil {
-		return nil, err
-	}
-	return &pbResponse, err
-}
-
-type CloudProviderORMWithBeforeStrictUpdateCleanup interface {
-	BeforeStrictUpdateCleanup(context.Context, *gorm1.DB) (*gorm1.DB, error)
-}
-type CloudProviderORMWithBeforeStrictUpdateSave interface {
-	BeforeStrictUpdateSave(context.Context, *gorm1.DB) (*gorm1.DB, error)
-}
-type CloudProviderORMWithAfterStrictUpdateSave interface {
-	AfterStrictUpdateSave(context.Context, *gorm1.DB) error
-}
-
-// DefaultPatchCloudProvider executes a basic gorm update call with patch behavior
-func DefaultPatchCloudProvider(ctx context.Context, in *CloudProvider, updateMask *field_mask1.FieldMask, db *gorm1.DB) (*CloudProvider, error) {
-	if in == nil {
-		return nil, errors1.NilArgumentError
-	}
-	var pbObj CloudProvider
-	var err error
-	if hook, ok := interface{}(&pbObj).(CloudProviderWithBeforePatchRead); ok {
-		if db, err = hook.BeforePatchRead(ctx, in, updateMask, db); err != nil {
-			return nil, err
-		}
-	}
-	pbReadRes, err := DefaultReadCloudProvider(ctx, &CloudProvider{Id: in.GetId()}, db, nil)
-	if err != nil {
-		return nil, err
-	}
-	pbObj = *pbReadRes
-	if hook, ok := interface{}(&pbObj).(CloudProviderWithBeforePatchApplyFieldMask); ok {
-		if db, err = hook.BeforePatchApplyFieldMask(ctx, in, updateMask, db); err != nil {
-			return nil, err
-		}
-	}
-	if _, err := DefaultApplyFieldMaskCloudProvider(ctx, &pbObj, in, updateMask, "", db); err != nil {
-		return nil, err
-	}
-	if hook, ok := interface{}(&pbObj).(CloudProviderWithBeforePatchSave); ok {
-		if db, err = hook.BeforePatchSave(ctx, in, updateMask, db); err != nil {
-			return nil, err
-		}
-	}
-	pbResponse, err := DefaultStrictUpdateCloudProvider(ctx, &pbObj, db)
-	if err != nil {
-		return nil, err
-	}
-	if hook, ok := interface{}(pbResponse).(CloudProviderWithAfterPatchSave); ok {
-		if err = hook.AfterPatchSave(ctx, in, updateMask, db); err != nil {
-			return nil, err
-		}
-	}
-	return pbResponse, nil
-}
-
-type CloudProviderWithBeforePatchRead interface {
-	BeforePatchRead(context.Context, *CloudProvider, *field_mask1.FieldMask, *gorm1.DB) (*gorm1.DB, error)
-}
-type CloudProviderWithBeforePatchApplyFieldMask interface {
-	BeforePatchApplyFieldMask(context.Context, *CloudProvider, *field_mask1.FieldMask, *gorm1.DB) (*gorm1.DB, error)
-}
-type CloudProviderWithBeforePatchSave interface {
-	BeforePatchSave(context.Context, *CloudProvider, *field_mask1.FieldMask, *gorm1.DB) (*gorm1.DB, error)
-}
-type CloudProviderWithAfterPatchSave interface {
-	AfterPatchSave(context.Context, *CloudProvider, *field_mask1.FieldMask, *gorm1.DB) error
-}
-
-// DefaultPatchSetCloudProvider executes a bulk gorm update call with patch behavior
-func DefaultPatchSetCloudProvider(ctx context.Context, objects []*CloudProvider, updateMasks []*field_mask1.FieldMask, db *gorm1.DB) ([]*CloudProvider, error) {
-	if len(objects) != len(updateMasks) {
-		return nil, fmt.Errorf(errors1.BadRepeatedFieldMaskTpl, len(updateMasks), len(objects))
-	}
-
-	results := make([]*CloudProvider, 0, len(objects))
-	for i, patcher := range objects {
-		pbResponse, err := DefaultPatchCloudProvider(ctx, patcher, updateMasks[i], db)
-		if err != nil {
-			return nil, err
-		}
-
-		results = append(results, pbResponse)
-	}
-
-	return results, nil
-}
-
-// DefaultApplyFieldMaskCloudProvider patches an pbObject with patcher according to a field mask.
-func DefaultApplyFieldMaskCloudProvider(ctx context.Context, patchee *CloudProvider, patcher *CloudProvider, updateMask *field_mask1.FieldMask, prefix string, db *gorm1.DB) (*CloudProvider, error) {
-	if patcher == nil {
-		return nil, nil
-	} else if patchee == nil {
-		return nil, errors1.NilArgumentError
-	}
-	var err error
-	for _, f := range updateMask.Paths {
-		if f == prefix+"Id" {
-			patchee.Id = patcher.Id
-			continue
-		}
-		if f == prefix+"Name" {
-			patchee.Name = patcher.Name
-			continue
-		}
-		if f == prefix+"Description" {
-			patchee.Description = patcher.Description
-			continue
-		}
-		if f == prefix+"Provider" {
-			patchee.Provider = patcher.Provider
-			continue
-		}
-		if f == prefix+"Account" {
-			patchee.Account = patcher.Account
-			continue
-		}
-		if f == prefix+"Regions" {
-			patchee.Regions = patcher.Regions
-			continue
-		}
-	}
-	if err != nil {
-		return nil, err
-	}
-	return patchee, nil
-}
-
-// DefaultListCloudProvider executes a gorm list call
-func DefaultListCloudProvider(ctx context.Context, db *gorm1.DB, f *query1.Filtering, s *query1.Sorting, p *query1.Pagination, fs *query1.FieldSelection) ([]*CloudProvider, error) {
-	in := CloudProvider{}
-	ormObj, err := in.ToORM(ctx)
-	if err != nil {
-		return nil, err
-	}
-	if hook, ok := interface{}(&ormObj).(CloudProviderORMWithBeforeListApplyQuery); ok {
-		if db, err = hook.BeforeListApplyQuery(ctx, db, f, s, p, fs); err != nil {
-			return nil, err
-		}
-	}
-	db, err = gorm2.ApplyCollectionOperators(ctx, db, &CloudProviderORM{}, &CloudProvider{}, f, s, p, fs)
-	if err != nil {
-		return nil, err
-	}
-	if hook, ok := interface{}(&ormObj).(CloudProviderORMWithBeforeListFind); ok {
-		if db, err = hook.BeforeListFind(ctx, db, f, s, p, fs); err != nil {
-			return nil, err
-		}
-	}
-	db = db.Where(&ormObj)
-	db = db.Order("id")
-	ormResponse := []CloudProviderORM{}
-	if err := db.Find(&ormResponse).Error; err != nil {
-		return nil, err
-	}
-	if hook, ok := interface{}(&ormObj).(CloudProviderORMWithAfterListFind); ok {
-		if err = hook.AfterListFind(ctx, db, &ormResponse, f, s, p, fs); err != nil {
-			return nil, err
-		}
-	}
-	pbResponse := []*CloudProvider{}
-	for _, responseEntry := range ormResponse {
-		temp, err := responseEntry.ToPB(ctx)
-		if err != nil {
-			return nil, err
-		}
-		pbResponse = append(pbResponse, &temp)
-	}
-	return pbResponse, nil
-}
-
-type CloudProviderORMWithBeforeListApplyQuery interface {
-	BeforeListApplyQuery(context.Context, *gorm1.DB, *query1.Filtering, *query1.Sorting, *query1.Pagination, *query1.FieldSelection) (*gorm1.DB, error)
-}
-type CloudProviderORMWithBeforeListFind interface {
-	BeforeListFind(context.Context, *gorm1.DB, *query1.Filtering, *query1.Sorting, *query1.Pagination, *query1.FieldSelection) (*gorm1.DB, error)
-}
-type CloudProviderORMWithAfterListFind interface {
-	AfterListFind(context.Context, *gorm1.DB, *[]CloudProviderORM, *query1.Filtering, *query1.Sorting, *query1.Pagination, *query1.FieldSelection) error
-}
-
-// DefaultCreateRegion executes a basic gorm create call
-func DefaultCreateRegion(ctx context.Context, in *Region, db *gorm1.DB) (*Region, error) {
-	if in == nil {
-		return nil, errors1.NilArgumentError
-	}
-	ormObj, err := in.ToORM(ctx)
-	if err != nil {
-		return nil, err
-	}
-	if hook, ok := interface{}(&ormObj).(RegionORMWithBeforeCreate_); ok {
-		if db, err = hook.BeforeCreate_(ctx, db); err != nil {
-			return nil, err
-		}
-	}
-	if err = db.Create(&ormObj).Error; err != nil {
-		return nil, err
-	}
-	if hook, ok := interface{}(&ormObj).(RegionORMWithAfterCreate_); ok {
-		if err = hook.AfterCreate_(ctx, db); err != nil {
-			return nil, err
-		}
-	}
-	pbResponse, err := ormObj.ToPB(ctx)
-	return &pbResponse, err
-}
-
-type RegionORMWithBeforeCreate_ interface {
-	BeforeCreate_(context.Context, *gorm1.DB) (*gorm1.DB, error)
-}
-type RegionORMWithAfterCreate_ interface {
-	AfterCreate_(context.Context, *gorm1.DB) error
-}
-
-// DefaultReadRegion executes a basic gorm read call
-func DefaultReadRegion(ctx context.Context, in *Region, db *gorm1.DB, fs *query1.FieldSelection) (*Region, error) {
-	if in == nil {
-		return nil, errors1.NilArgumentError
-	}
-	ormObj, err := in.ToORM(ctx)
-	if err != nil {
-		return nil, err
-	}
-	if ormObj.Id == 0 {
-		return nil, errors1.EmptyIdError
-	}
-	if hook, ok := interface{}(&ormObj).(RegionORMWithBeforeReadApplyQuery); ok {
-		if db, err = hook.BeforeReadApplyQuery(ctx, db, fs); err != nil {
-			return nil, err
-		}
-	}
-	if db, err = gorm2.ApplyFieldSelection(ctx, db, fs, &RegionORM{}); err != nil {
-		return nil, err
-	}
-	if hook, ok := interface{}(&ormObj).(RegionORMWithBeforeReadFind); ok {
-		if db, err = hook.BeforeReadFind(ctx, db, fs); err != nil {
-			return nil, err
-		}
-	}
-	ormResponse := RegionORM{}
-	if err = db.Where(&ormObj).First(&ormResponse).Error; err != nil {
-		return nil, err
-	}
-	if hook, ok := interface{}(&ormResponse).(RegionORMWithAfterReadFind); ok {
-		if err = hook.AfterReadFind(ctx, db, fs); err != nil {
-			return nil, err
-		}
-	}
-	pbResponse, err := ormResponse.ToPB(ctx)
-	return &pbResponse, err
-}
-
-type RegionORMWithBeforeReadApplyQuery interface {
-	BeforeReadApplyQuery(context.Context, *gorm1.DB, *query1.FieldSelection) (*gorm1.DB, error)
-}
-type RegionORMWithBeforeReadFind interface {
-	BeforeReadFind(context.Context, *gorm1.DB, *query1.FieldSelection) (*gorm1.DB, error)
-}
-type RegionORMWithAfterReadFind interface {
-	AfterReadFind(context.Context, *gorm1.DB, *query1.FieldSelection) error
-}
-
-func DefaultDeleteRegion(ctx context.Context, in *Region, db *gorm1.DB) error {
-	if in == nil {
-		return errors1.NilArgumentError
-	}
-	ormObj, err := in.ToORM(ctx)
-	if err != nil {
-		return err
-	}
-	if ormObj.Id == 0 {
-		return errors1.EmptyIdError
-	}
-	if hook, ok := interface{}(&ormObj).(RegionORMWithBeforeDelete_); ok {
-		if db, err = hook.BeforeDelete_(ctx, db); err != nil {
-			return err
-		}
-	}
-	err = db.Where(&ormObj).Delete(&RegionORM{}).Error
-	if err != nil {
-		return err
-	}
-	if hook, ok := interface{}(&ormObj).(RegionORMWithAfterDelete_); ok {
-		err = hook.AfterDelete_(ctx, db)
-	}
-	return err
-}
-
-type RegionORMWithBeforeDelete_ interface {
-	BeforeDelete_(context.Context, *gorm1.DB) (*gorm1.DB, error)
-}
-type RegionORMWithAfterDelete_ interface {
-	AfterDelete_(context.Context, *gorm1.DB) error
-}
-
-func DefaultDeleteRegionSet(ctx context.Context, in []*Region, db *gorm1.DB) error {
-	if in == nil {
-		return errors1.NilArgumentError
-	}
-	var err error
-	keys := []int64{}
-	for _, obj := range in {
-		ormObj, err := obj.ToORM(ctx)
-		if err != nil {
-			return err
-		}
-		if ormObj.Id == 0 {
-			return errors1.EmptyIdError
-		}
-		keys = append(keys, ormObj.Id)
-	}
-	if hook, ok := (interface{}(&RegionORM{})).(RegionORMWithBeforeDeleteSet); ok {
-		if db, err = hook.BeforeDeleteSet(ctx, in, db); err != nil {
-			return err
-		}
-	}
-	acctId, err := auth1.GetAccountID(ctx, nil)
-	if err != nil {
-		return err
-	}
-	err = db.Where("account_id = ? AND id in (?)", acctId, keys).Delete(&RegionORM{}).Error
-	if err != nil {
-		return err
-	}
-	if hook, ok := (interface{}(&RegionORM{})).(RegionORMWithAfterDeleteSet); ok {
-		err = hook.AfterDeleteSet(ctx, in, db)
-	}
-	return err
-}
-
-type RegionORMWithBeforeDeleteSet interface {
-	BeforeDeleteSet(context.Context, []*Region, *gorm1.DB) (*gorm1.DB, error)
-}
-type RegionORMWithAfterDeleteSet interface {
-	AfterDeleteSet(context.Context, []*Region, *gorm1.DB) error
-}
-
-// DefaultStrictUpdateRegion clears first level 1:many children and then executes a gorm update call
-func DefaultStrictUpdateRegion(ctx context.Context, in *Region, db *gorm1.DB) (*Region, error) {
-	if in == nil {
-		return nil, fmt.Errorf("Nil argument to DefaultStrictUpdateRegion")
-	}
-	ormObj, err := in.ToORM(ctx)
-	if err != nil {
-		return nil, err
-	}
-	accountID, err := auth1.GetAccountID(ctx, nil)
-	if err != nil {
-		return nil, err
-	}
-	db = db.Where(map[string]interface{}{"account_id": accountID})
-	lockedRow := &RegionORM{}
-	db.Model(&ormObj).Set("gorm:query_option", "FOR UPDATE").Where("id=?", ormObj.Id).First(lockedRow)
-	if hook, ok := interface{}(&ormObj).(RegionORMWithBeforeStrictUpdateCleanup); ok {
-		if db, err = hook.BeforeStrictUpdateCleanup(ctx, db); err != nil {
-			return nil, err
-		}
-	}
-	filterEnvironments := EnvironmentORM{}
-	if ormObj.Id == 0 {
-		return nil, errors1.EmptyIdError
-	}
-	filterEnvironments.RegionId = new(int64)
-	*filterEnvironments.RegionId = ormObj.Id
-	if err = db.Where(filterEnvironments).Delete(EnvironmentORM{}).Error; err != nil {
-		return nil, err
-	}
-	if hook, ok := interface{}(&ormObj).(RegionORMWithBeforeStrictUpdateSave); ok {
-		if db, err = hook.BeforeStrictUpdateSave(ctx, db); err != nil {
-			return nil, err
-		}
-	}
-	if err = db.Save(&ormObj).Error; err != nil {
-		return nil, err
-	}
-	if hook, ok := interface{}(&ormObj).(RegionORMWithAfterStrictUpdateSave); ok {
-		if err = hook.AfterStrictUpdateSave(ctx, db); err != nil {
-			return nil, err
-		}
-	}
-	pbResponse, err := ormObj.ToPB(ctx)
-	if err != nil {
-		return nil, err
-	}
-	return &pbResponse, err
-}
-
-type RegionORMWithBeforeStrictUpdateCleanup interface {
-	BeforeStrictUpdateCleanup(context.Context, *gorm1.DB) (*gorm1.DB, error)
-}
-type RegionORMWithBeforeStrictUpdateSave interface {
-	BeforeStrictUpdateSave(context.Context, *gorm1.DB) (*gorm1.DB, error)
-}
-type RegionORMWithAfterStrictUpdateSave interface {
-	AfterStrictUpdateSave(context.Context, *gorm1.DB) error
-}
-
-// DefaultPatchRegion executes a basic gorm update call with patch behavior
-func DefaultPatchRegion(ctx context.Context, in *Region, updateMask *field_mask1.FieldMask, db *gorm1.DB) (*Region, error) {
-	if in == nil {
-		return nil, errors1.NilArgumentError
-	}
-	var pbObj Region
-	var err error
-	if hook, ok := interface{}(&pbObj).(RegionWithBeforePatchRead); ok {
-		if db, err = hook.BeforePatchRead(ctx, in, updateMask, db); err != nil {
-			return nil, err
-		}
-	}
-	pbReadRes, err := DefaultReadRegion(ctx, &Region{Id: in.GetId()}, db, nil)
-	if err != nil {
-		return nil, err
-	}
-	pbObj = *pbReadRes
-	if hook, ok := interface{}(&pbObj).(RegionWithBeforePatchApplyFieldMask); ok {
-		if db, err = hook.BeforePatchApplyFieldMask(ctx, in, updateMask, db); err != nil {
-			return nil, err
-		}
-	}
-	if _, err := DefaultApplyFieldMaskRegion(ctx, &pbObj, in, updateMask, "", db); err != nil {
-		return nil, err
-	}
-	if hook, ok := interface{}(&pbObj).(RegionWithBeforePatchSave); ok {
-		if db, err = hook.BeforePatchSave(ctx, in, updateMask, db); err != nil {
-			return nil, err
-		}
-	}
-	pbResponse, err := DefaultStrictUpdateRegion(ctx, &pbObj, db)
-	if err != nil {
-		return nil, err
-	}
-	if hook, ok := interface{}(pbResponse).(RegionWithAfterPatchSave); ok {
-		if err = hook.AfterPatchSave(ctx, in, updateMask, db); err != nil {
-			return nil, err
-		}
-	}
-	return pbResponse, nil
-}
-
-type RegionWithBeforePatchRead interface {
-	BeforePatchRead(context.Context, *Region, *field_mask1.FieldMask, *gorm1.DB) (*gorm1.DB, error)
-}
-type RegionWithBeforePatchApplyFieldMask interface {
-	BeforePatchApplyFieldMask(context.Context, *Region, *field_mask1.FieldMask, *gorm1.DB) (*gorm1.DB, error)
-}
-type RegionWithBeforePatchSave interface {
-	BeforePatchSave(context.Context, *Region, *field_mask1.FieldMask, *gorm1.DB) (*gorm1.DB, error)
-}
-type RegionWithAfterPatchSave interface {
-	AfterPatchSave(context.Context, *Region, *field_mask1.FieldMask, *gorm1.DB) error
-}
-
-// DefaultPatchSetRegion executes a bulk gorm update call with patch behavior
-func DefaultPatchSetRegion(ctx context.Context, objects []*Region, updateMasks []*field_mask1.FieldMask, db *gorm1.DB) ([]*Region, error) {
-	if len(objects) != len(updateMasks) {
-		return nil, fmt.Errorf(errors1.BadRepeatedFieldMaskTpl, len(updateMasks), len(objects))
-	}
-
-	results := make([]*Region, 0, len(objects))
-	for i, patcher := range objects {
-		pbResponse, err := DefaultPatchRegion(ctx, patcher, updateMasks[i], db)
-		if err != nil {
-			return nil, err
-		}
-
-		results = append(results, pbResponse)
-	}
-
-	return results, nil
-}
-
-// DefaultApplyFieldMaskRegion patches an pbObject with patcher according to a field mask.
-func DefaultApplyFieldMaskRegion(ctx context.Context, patchee *Region, patcher *Region, updateMask *field_mask1.FieldMask, prefix string, db *gorm1.DB) (*Region, error) {
-	if patcher == nil {
-		return nil, nil
-	} else if patchee == nil {
-		return nil, errors1.NilArgumentError
-	}
-	var err error
-	for _, f := range updateMask.Paths {
-		if f == prefix+"Id" {
-			patchee.Id = patcher.Id
-			continue
-		}
-		if f == prefix+"Name" {
-			patchee.Name = patcher.Name
-			continue
-		}
-		if f == prefix+"Description" {
-			patchee.Description = patcher.Description
-			continue
-		}
-		if f == prefix+"Environments" {
-			patchee.Environments = patcher.Environments
-			continue
-		}
-		if f == prefix+"CloudProviderId" {
-			patchee.CloudProviderId = patcher.CloudProviderId
-			continue
-		}
-	}
-	if err != nil {
-		return nil, err
-	}
-	return patchee, nil
-}
-
-// DefaultListRegion executes a gorm list call
-func DefaultListRegion(ctx context.Context, db *gorm1.DB, f *query1.Filtering, s *query1.Sorting, p *query1.Pagination, fs *query1.FieldSelection) ([]*Region, error) {
-	in := Region{}
-	ormObj, err := in.ToORM(ctx)
-	if err != nil {
-		return nil, err
-	}
-	if hook, ok := interface{}(&ormObj).(RegionORMWithBeforeListApplyQuery); ok {
-		if db, err = hook.BeforeListApplyQuery(ctx, db, f, s, p, fs); err != nil {
-			return nil, err
-		}
-	}
-	db, err = gorm2.ApplyCollectionOperators(ctx, db, &RegionORM{}, &Region{}, f, s, p, fs)
-	if err != nil {
-		return nil, err
-	}
-	if hook, ok := interface{}(&ormObj).(RegionORMWithBeforeListFind); ok {
-		if db, err = hook.BeforeListFind(ctx, db, f, s, p, fs); err != nil {
-			return nil, err
-		}
-	}
-	db = db.Where(&ormObj)
-	db = db.Order("id")
-	ormResponse := []RegionORM{}
-	if err := db.Find(&ormResponse).Error; err != nil {
-		return nil, err
-	}
-	if hook, ok := interface{}(&ormObj).(RegionORMWithAfterListFind); ok {
-		if err = hook.AfterListFind(ctx, db, &ormResponse, f, s, p, fs); err != nil {
-			return nil, err
-		}
-	}
-	pbResponse := []*Region{}
-	for _, responseEntry := range ormResponse {
-		temp, err := responseEntry.ToPB(ctx)
-		if err != nil {
-			return nil, err
-		}
-		pbResponse = append(pbResponse, &temp)
-	}
-	return pbResponse, nil
-}
-
-type RegionORMWithBeforeListApplyQuery interface {
-	BeforeListApplyQuery(context.Context, *gorm1.DB, *query1.Filtering, *query1.Sorting, *query1.Pagination, *query1.FieldSelection) (*gorm1.DB, error)
-}
-type RegionORMWithBeforeListFind interface {
-	BeforeListFind(context.Context, *gorm1.DB, *query1.Filtering, *query1.Sorting, *query1.Pagination, *query1.FieldSelection) (*gorm1.DB, error)
-}
-type RegionORMWithAfterListFind interface {
-	AfterListFind(context.Context, *gorm1.DB, *[]RegionORM, *query1.Filtering, *query1.Sorting, *query1.Pagination, *query1.FieldSelection) error
-}
-type VaultsDefaultServer struct {
+type CloudProvidersDefaultServer struct {
 }
 
 // Create ...
-func (m *VaultsDefaultServer) Create(ctx context.Context, in *CreateVaultRequest) (*CreateVaultResponse, error) {
+func (m *CloudProvidersDefaultServer) Create(ctx context.Context, in *CreateCloudProviderRequest) (*CreateCloudProviderResponse, error) {
 	txn, ok := gorm2.FromContext(ctx)
 	if !ok {
 		return nil, errors1.NoTransactionError
@@ -7627,18 +7977,18 @@ func (m *VaultsDefaultServer) Create(ctx context.Context, in *CreateVaultRequest
 	if db.Error != nil {
 		return nil, db.Error
 	}
-	if custom, ok := interface{}(in).(VaultsVaultWithBeforeCreate); ok {
+	if custom, ok := interface{}(in).(CloudProvidersCloudProviderWithBeforeCreate); ok {
 		var err error
 		if db, err = custom.BeforeCreate(ctx, db); err != nil {
 			return nil, err
 		}
 	}
-	res, err := DefaultCreateVault(ctx, in.GetPayload(), db)
+	res, err := DefaultCreateCloudProvider(ctx, in.GetPayload(), db)
 	if err != nil {
 		return nil, err
 	}
-	out := &CreateVaultResponse{Result: res}
-	if custom, ok := interface{}(in).(VaultsVaultWithAfterCreate); ok {
+	out := &CreateCloudProviderResponse{Result: res}
+	if custom, ok := interface{}(in).(CloudProvidersCloudProviderWithAfterCreate); ok {
 		var err error
 		if err = custom.AfterCreate(ctx, out, db); err != nil {
 			return nil, err
@@ -7647,18 +7997,18 @@ func (m *VaultsDefaultServer) Create(ctx context.Context, in *CreateVaultRequest
 	return out, nil
 }
 
-// VaultsVaultWithBeforeCreate called before DefaultCreateVault in the default Create handler
-type VaultsVaultWithBeforeCreate interface {
+// CloudProvidersCloudProviderWithBeforeCreate called before DefaultCreateCloudProvider in the default Create handler
+type CloudProvidersCloudProviderWithBeforeCreate interface {
 	BeforeCreate(context.Context, *gorm1.DB) (*gorm1.DB, error)
 }
 
-// VaultsVaultWithAfterCreate called before DefaultCreateVault in the default Create handler
-type VaultsVaultWithAfterCreate interface {
-	AfterCreate(context.Context, *CreateVaultResponse, *gorm1.DB) error
+// CloudProvidersCloudProviderWithAfterCreate called before DefaultCreateCloudProvider in the default Create handler
+type CloudProvidersCloudProviderWithAfterCreate interface {
+	AfterCreate(context.Context, *CreateCloudProviderResponse, *gorm1.DB) error
 }
 
 // Read ...
-func (m *VaultsDefaultServer) Read(ctx context.Context, in *ReadVaultRequest) (*ReadVaultResponse, error) {
+func (m *CloudProvidersDefaultServer) Read(ctx context.Context, in *ReadCloudProviderRequest) (*ReadCloudProviderResponse, error) {
 	txn, ok := gorm2.FromContext(ctx)
 	if !ok {
 		return nil, errors1.NoTransactionError
@@ -7667,18 +8017,18 @@ func (m *VaultsDefaultServer) Read(ctx context.Context, in *ReadVaultRequest) (*
 	if db.Error != nil {
 		return nil, db.Error
 	}
-	if custom, ok := interface{}(in).(VaultsVaultWithBeforeRead); ok {
+	if custom, ok := interface{}(in).(CloudProvidersCloudProviderWithBeforeRead); ok {
 		var err error
 		if db, err = custom.BeforeRead(ctx, db); err != nil {
 			return nil, err
 		}
 	}
-	res, err := DefaultReadVault(ctx, &Vault{Id: in.GetId()}, db, in.Fields)
+	res, err := DefaultReadCloudProvider(ctx, &CloudProvider{Id: in.GetId()}, db, in.Fields)
 	if err != nil {
 		return nil, err
 	}
-	out := &ReadVaultResponse{Result: res}
-	if custom, ok := interface{}(in).(VaultsVaultWithAfterRead); ok {
+	out := &ReadCloudProviderResponse{Result: res}
+	if custom, ok := interface{}(in).(CloudProvidersCloudProviderWithAfterRead); ok {
 		var err error
 		if err = custom.AfterRead(ctx, out, db); err != nil {
 			return nil, err
@@ -7687,20 +8037,20 @@ func (m *VaultsDefaultServer) Read(ctx context.Context, in *ReadVaultRequest) (*
 	return out, nil
 }
 
-// VaultsVaultWithBeforeRead called before DefaultReadVault in the default Read handler
-type VaultsVaultWithBeforeRead interface {
+// CloudProvidersCloudProviderWithBeforeRead called before DefaultReadCloudProvider in the default Read handler
+type CloudProvidersCloudProviderWithBeforeRead interface {
 	BeforeRead(context.Context, *gorm1.DB) (*gorm1.DB, error)
 }
 
-// VaultsVaultWithAfterRead called before DefaultReadVault in the default Read handler
-type VaultsVaultWithAfterRead interface {
-	AfterRead(context.Context, *ReadVaultResponse, *gorm1.DB) error
+// CloudProvidersCloudProviderWithAfterRead called before DefaultReadCloudProvider in the default Read handler
+type CloudProvidersCloudProviderWithAfterRead interface {
+	AfterRead(context.Context, *ReadCloudProviderResponse, *gorm1.DB) error
 }
 
 // Update ...
-func (m *VaultsDefaultServer) Update(ctx context.Context, in *UpdateVaultRequest) (*UpdateVaultResponse, error) {
+func (m *CloudProvidersDefaultServer) Update(ctx context.Context, in *UpdateCloudProviderRequest) (*UpdateCloudProviderResponse, error) {
 	var err error
-	var res *Vault
+	var res *CloudProvider
 	txn, ok := gorm2.FromContext(ctx)
 	if !ok {
 		return nil, errors1.NoTransactionError
@@ -7709,22 +8059,22 @@ func (m *VaultsDefaultServer) Update(ctx context.Context, in *UpdateVaultRequest
 	if db.Error != nil {
 		return nil, db.Error
 	}
-	if custom, ok := interface{}(in).(VaultsVaultWithBeforeUpdate); ok {
+	if custom, ok := interface{}(in).(CloudProvidersCloudProviderWithBeforeUpdate); ok {
 		var err error
 		if db, err = custom.BeforeUpdate(ctx, db); err != nil {
 			return nil, err
 		}
 	}
 	if in.GetFields() == nil {
-		res, err = DefaultStrictUpdateVault(ctx, in.GetPayload(), db)
+		res, err = DefaultStrictUpdateCloudProvider(ctx, in.GetPayload(), db)
 	} else {
-		res, err = DefaultPatchVault(ctx, in.GetPayload(), in.GetFields(), db)
+		res, err = DefaultPatchCloudProvider(ctx, in.GetPayload(), in.GetFields(), db)
 	}
 	if err != nil {
 		return nil, err
 	}
-	out := &UpdateVaultResponse{Result: res}
-	if custom, ok := interface{}(in).(VaultsVaultWithAfterUpdate); ok {
+	out := &UpdateCloudProviderResponse{Result: res}
+	if custom, ok := interface{}(in).(CloudProvidersCloudProviderWithAfterUpdate); ok {
 		var err error
 		if err = custom.AfterUpdate(ctx, out, db); err != nil {
 			return nil, err
@@ -7733,18 +8083,18 @@ func (m *VaultsDefaultServer) Update(ctx context.Context, in *UpdateVaultRequest
 	return out, nil
 }
 
-// VaultsVaultWithBeforeUpdate called before DefaultUpdateVault in the default Update handler
-type VaultsVaultWithBeforeUpdate interface {
+// CloudProvidersCloudProviderWithBeforeUpdate called before DefaultUpdateCloudProvider in the default Update handler
+type CloudProvidersCloudProviderWithBeforeUpdate interface {
 	BeforeUpdate(context.Context, *gorm1.DB) (*gorm1.DB, error)
 }
 
-// VaultsVaultWithAfterUpdate called before DefaultUpdateVault in the default Update handler
-type VaultsVaultWithAfterUpdate interface {
-	AfterUpdate(context.Context, *UpdateVaultResponse, *gorm1.DB) error
+// CloudProvidersCloudProviderWithAfterUpdate called before DefaultUpdateCloudProvider in the default Update handler
+type CloudProvidersCloudProviderWithAfterUpdate interface {
+	AfterUpdate(context.Context, *UpdateCloudProviderResponse, *gorm1.DB) error
 }
 
 // Delete ...
-func (m *VaultsDefaultServer) Delete(ctx context.Context, in *DeleteVaultRequest) (*DeleteVaultResponse, error) {
+func (m *CloudProvidersDefaultServer) Delete(ctx context.Context, in *DeleteCloudProviderRequest) (*DeleteCloudProviderResponse, error) {
 	txn, ok := gorm2.FromContext(ctx)
 	if !ok {
 		return nil, errors1.NoTransactionError
@@ -7753,18 +8103,18 @@ func (m *VaultsDefaultServer) Delete(ctx context.Context, in *DeleteVaultRequest
 	if db.Error != nil {
 		return nil, db.Error
 	}
-	if custom, ok := interface{}(in).(VaultsVaultWithBeforeDelete); ok {
+	if custom, ok := interface{}(in).(CloudProvidersCloudProviderWithBeforeDelete); ok {
 		var err error
 		if db, err = custom.BeforeDelete(ctx, db); err != nil {
 			return nil, err
 		}
 	}
-	err := DefaultDeleteVault(ctx, &Vault{Id: in.GetId()}, db)
+	err := DefaultDeleteCloudProvider(ctx, &CloudProvider{Id: in.GetId()}, db)
 	if err != nil {
 		return nil, err
 	}
-	out := &DeleteVaultResponse{}
-	if custom, ok := interface{}(in).(VaultsVaultWithAfterDelete); ok {
+	out := &DeleteCloudProviderResponse{}
+	if custom, ok := interface{}(in).(CloudProvidersCloudProviderWithAfterDelete); ok {
 		var err error
 		if err = custom.AfterDelete(ctx, out, db); err != nil {
 			return nil, err
@@ -7773,18 +8123,18 @@ func (m *VaultsDefaultServer) Delete(ctx context.Context, in *DeleteVaultRequest
 	return out, nil
 }
 
-// VaultsVaultWithBeforeDelete called before DefaultDeleteVault in the default Delete handler
-type VaultsVaultWithBeforeDelete interface {
+// CloudProvidersCloudProviderWithBeforeDelete called before DefaultDeleteCloudProvider in the default Delete handler
+type CloudProvidersCloudProviderWithBeforeDelete interface {
 	BeforeDelete(context.Context, *gorm1.DB) (*gorm1.DB, error)
 }
 
-// VaultsVaultWithAfterDelete called before DefaultDeleteVault in the default Delete handler
-type VaultsVaultWithAfterDelete interface {
-	AfterDelete(context.Context, *DeleteVaultResponse, *gorm1.DB) error
+// CloudProvidersCloudProviderWithAfterDelete called before DefaultDeleteCloudProvider in the default Delete handler
+type CloudProvidersCloudProviderWithAfterDelete interface {
+	AfterDelete(context.Context, *DeleteCloudProviderResponse, *gorm1.DB) error
 }
 
 // List ...
-func (m *VaultsDefaultServer) List(ctx context.Context, in *ListVaultRequest) (*ListVaultsResponse, error) {
+func (m *CloudProvidersDefaultServer) List(ctx context.Context, in *ListCloudProviderRequest) (*ListCloudProvidersResponse, error) {
 	txn, ok := gorm2.FromContext(ctx)
 	if !ok {
 		return nil, errors1.NoTransactionError
@@ -7793,7 +8143,7 @@ func (m *VaultsDefaultServer) List(ctx context.Context, in *ListVaultRequest) (*
 	if db.Error != nil {
 		return nil, db.Error
 	}
-	if custom, ok := interface{}(in).(VaultsVaultWithBeforeList); ok {
+	if custom, ok := interface{}(in).(CloudProvidersCloudProviderWithBeforeList); ok {
 		var err error
 		if db, err = custom.BeforeList(ctx, db); err != nil {
 			return nil, err
@@ -7804,7 +8154,7 @@ func (m *VaultsDefaultServer) List(ctx context.Context, in *ListVaultRequest) (*
 		in.Paging.Limit++
 		pagedRequest = true
 	}
-	res, err := DefaultListVault(ctx, db, in.Filter, in.OrderBy, in.Paging, in.Fields)
+	res, err := DefaultListCloudProvider(ctx, db, in.Filter, in.OrderBy, in.Paging, in.Fields)
 	if err != nil {
 		return nil, err
 	}
@@ -7819,8 +8169,8 @@ func (m *VaultsDefaultServer) List(ctx context.Context, in *ListVaultRequest) (*
 		}
 		resPaging = &query1.PageInfo{Offset: offset}
 	}
-	out := &ListVaultsResponse{Results: res, Page: resPaging}
-	if custom, ok := interface{}(in).(VaultsVaultWithAfterList); ok {
+	out := &ListCloudProvidersResponse{Results: res, Page: resPaging}
+	if custom, ok := interface{}(in).(CloudProvidersCloudProviderWithAfterList); ok {
 		var err error
 		if err = custom.AfterList(ctx, out, db); err != nil {
 			return nil, err
@@ -7829,20 +8179,20 @@ func (m *VaultsDefaultServer) List(ctx context.Context, in *ListVaultRequest) (*
 	return out, nil
 }
 
-// VaultsVaultWithBeforeList called before DefaultListVault in the default List handler
-type VaultsVaultWithBeforeList interface {
+// CloudProvidersCloudProviderWithBeforeList called before DefaultListCloudProvider in the default List handler
+type CloudProvidersCloudProviderWithBeforeList interface {
 	BeforeList(context.Context, *gorm1.DB) (*gorm1.DB, error)
 }
 
-// VaultsVaultWithAfterList called before DefaultListVault in the default List handler
-type VaultsVaultWithAfterList interface {
-	AfterList(context.Context, *ListVaultsResponse, *gorm1.DB) error
+// CloudProvidersCloudProviderWithAfterList called before DefaultListCloudProvider in the default List handler
+type CloudProvidersCloudProviderWithAfterList interface {
+	AfterList(context.Context, *ListCloudProvidersResponse, *gorm1.DB) error
 }
-type VersionTagsDefaultServer struct {
+type RegionsDefaultServer struct {
 }
 
 // Create ...
-func (m *VersionTagsDefaultServer) Create(ctx context.Context, in *CreateVersionTagRequest) (*CreateVersionTagResponse, error) {
+func (m *RegionsDefaultServer) Create(ctx context.Context, in *CreateRegionRequest) (*CreateRegionResponse, error) {
 	txn, ok := gorm2.FromContext(ctx)
 	if !ok {
 		return nil, errors1.NoTransactionError
@@ -7851,18 +8201,18 @@ func (m *VersionTagsDefaultServer) Create(ctx context.Context, in *CreateVersion
 	if db.Error != nil {
 		return nil, db.Error
 	}
-	if custom, ok := interface{}(in).(VersionTagsVersionTagWithBeforeCreate); ok {
+	if custom, ok := interface{}(in).(RegionsRegionWithBeforeCreate); ok {
 		var err error
 		if db, err = custom.BeforeCreate(ctx, db); err != nil {
 			return nil, err
 		}
 	}
-	res, err := DefaultCreateVersionTag(ctx, in.GetPayload(), db)
+	res, err := DefaultCreateRegion(ctx, in.GetPayload(), db)
 	if err != nil {
 		return nil, err
 	}
-	out := &CreateVersionTagResponse{Result: res}
-	if custom, ok := interface{}(in).(VersionTagsVersionTagWithAfterCreate); ok {
+	out := &CreateRegionResponse{Result: res}
+	if custom, ok := interface{}(in).(RegionsRegionWithAfterCreate); ok {
 		var err error
 		if err = custom.AfterCreate(ctx, out, db); err != nil {
 			return nil, err
@@ -7871,18 +8221,18 @@ func (m *VersionTagsDefaultServer) Create(ctx context.Context, in *CreateVersion
 	return out, nil
 }
 
-// VersionTagsVersionTagWithBeforeCreate called before DefaultCreateVersionTag in the default Create handler
-type VersionTagsVersionTagWithBeforeCreate interface {
+// RegionsRegionWithBeforeCreate called before DefaultCreateRegion in the default Create handler
+type RegionsRegionWithBeforeCreate interface {
 	BeforeCreate(context.Context, *gorm1.DB) (*gorm1.DB, error)
 }
 
-// VersionTagsVersionTagWithAfterCreate called before DefaultCreateVersionTag in the default Create handler
-type VersionTagsVersionTagWithAfterCreate interface {
-	AfterCreate(context.Context, *CreateVersionTagResponse, *gorm1.DB) error
+// RegionsRegionWithAfterCreate called before DefaultCreateRegion in the default Create handler
+type RegionsRegionWithAfterCreate interface {
+	AfterCreate(context.Context, *CreateRegionResponse, *gorm1.DB) error
 }
 
 // Read ...
-func (m *VersionTagsDefaultServer) Read(ctx context.Context, in *ReadVersionTagRequest) (*ReadVersionTagResponse, error) {
+func (m *RegionsDefaultServer) Read(ctx context.Context, in *ReadRegionRequest) (*ReadRegionResponse, error) {
 	txn, ok := gorm2.FromContext(ctx)
 	if !ok {
 		return nil, errors1.NoTransactionError
@@ -7891,18 +8241,18 @@ func (m *VersionTagsDefaultServer) Read(ctx context.Context, in *ReadVersionTagR
 	if db.Error != nil {
 		return nil, db.Error
 	}
-	if custom, ok := interface{}(in).(VersionTagsVersionTagWithBeforeRead); ok {
+	if custom, ok := interface{}(in).(RegionsRegionWithBeforeRead); ok {
 		var err error
 		if db, err = custom.BeforeRead(ctx, db); err != nil {
 			return nil, err
 		}
 	}
-	res, err := DefaultReadVersionTag(ctx, &VersionTag{Id: in.GetId()}, db, in.Fields)
+	res, err := DefaultReadRegion(ctx, &Region{Id: in.GetId()}, db, in.Fields)
 	if err != nil {
 		return nil, err
 	}
-	out := &ReadVersionTagResponse{Result: res}
-	if custom, ok := interface{}(in).(VersionTagsVersionTagWithAfterRead); ok {
+	out := &ReadRegionResponse{Result: res}
+	if custom, ok := interface{}(in).(RegionsRegionWithAfterRead); ok {
 		var err error
 		if err = custom.AfterRead(ctx, out, db); err != nil {
 			return nil, err
@@ -7911,20 +8261,20 @@ func (m *VersionTagsDefaultServer) Read(ctx context.Context, in *ReadVersionTagR
 	return out, nil
 }
 
-// VersionTagsVersionTagWithBeforeRead called before DefaultReadVersionTag in the default Read handler
-type VersionTagsVersionTagWithBeforeRead interface {
+// RegionsRegionWithBeforeRead called before DefaultReadRegion in the default Read handler
+type RegionsRegionWithBeforeRead interface {
 	BeforeRead(context.Context, *gorm1.DB) (*gorm1.DB, error)
 }
 
-// VersionTagsVersionTagWithAfterRead called before DefaultReadVersionTag in the default Read handler
-type VersionTagsVersionTagWithAfterRead interface {
-	AfterRead(context.Context, *ReadVersionTagResponse, *gorm1.DB) error
+// RegionsRegionWithAfterRead called before DefaultReadRegion in the default Read handler
+type RegionsRegionWithAfterRead interface {
+	AfterRead(context.Context, *ReadRegionResponse, *gorm1.DB) error
 }
 
 // Update ...
-func (m *VersionTagsDefaultServer) Update(ctx context.Context, in *UpdateVersionTagRequest) (*UpdateVersionTagResponse, error) {
+func (m *RegionsDefaultServer) Update(ctx context.Context, in *UpdateRegionRequest) (*UpdateRegionResponse, error) {
 	var err error
-	var res *VersionTag
+	var res *Region
 	txn, ok := gorm2.FromContext(ctx)
 	if !ok {
 		return nil, errors1.NoTransactionError
@@ -7933,22 +8283,22 @@ func (m *VersionTagsDefaultServer) Update(ctx context.Context, in *UpdateVersion
 	if db.Error != nil {
 		return nil, db.Error
 	}
-	if custom, ok := interface{}(in).(VersionTagsVersionTagWithBeforeUpdate); ok {
+	if custom, ok := interface{}(in).(RegionsRegionWithBeforeUpdate); ok {
 		var err error
 		if db, err = custom.BeforeUpdate(ctx, db); err != nil {
 			return nil, err
 		}
 	}
 	if in.GetFields() == nil {
-		res, err = DefaultStrictUpdateVersionTag(ctx, in.GetPayload(), db)
+		res, err = DefaultStrictUpdateRegion(ctx, in.GetPayload(), db)
 	} else {
-		res, err = DefaultPatchVersionTag(ctx, in.GetPayload(), in.GetFields(), db)
+		res, err = DefaultPatchRegion(ctx, in.GetPayload(), in.GetFields(), db)
 	}
 	if err != nil {
 		return nil, err
 	}
-	out := &UpdateVersionTagResponse{Result: res}
-	if custom, ok := interface{}(in).(VersionTagsVersionTagWithAfterUpdate); ok {
+	out := &UpdateRegionResponse{Result: res}
+	if custom, ok := interface{}(in).(RegionsRegionWithAfterUpdate); ok {
 		var err error
 		if err = custom.AfterUpdate(ctx, out, db); err != nil {
 			return nil, err
@@ -7957,18 +8307,18 @@ func (m *VersionTagsDefaultServer) Update(ctx context.Context, in *UpdateVersion
 	return out, nil
 }
 
-// VersionTagsVersionTagWithBeforeUpdate called before DefaultUpdateVersionTag in the default Update handler
-type VersionTagsVersionTagWithBeforeUpdate interface {
+// RegionsRegionWithBeforeUpdate called before DefaultUpdateRegion in the default Update handler
+type RegionsRegionWithBeforeUpdate interface {
 	BeforeUpdate(context.Context, *gorm1.DB) (*gorm1.DB, error)
 }
 
-// VersionTagsVersionTagWithAfterUpdate called before DefaultUpdateVersionTag in the default Update handler
-type VersionTagsVersionTagWithAfterUpdate interface {
-	AfterUpdate(context.Context, *UpdateVersionTagResponse, *gorm1.DB) error
+// RegionsRegionWithAfterUpdate called before DefaultUpdateRegion in the default Update handler
+type RegionsRegionWithAfterUpdate interface {
+	AfterUpdate(context.Context, *UpdateRegionResponse, *gorm1.DB) error
 }
 
 // Delete ...
-func (m *VersionTagsDefaultServer) Delete(ctx context.Context, in *DeleteVersionTagRequest) (*DeleteVersionTagResponse, error) {
+func (m *RegionsDefaultServer) Delete(ctx context.Context, in *DeleteRegionRequest) (*DeleteRegionResponse, error) {
 	txn, ok := gorm2.FromContext(ctx)
 	if !ok {
 		return nil, errors1.NoTransactionError
@@ -7977,18 +8327,18 @@ func (m *VersionTagsDefaultServer) Delete(ctx context.Context, in *DeleteVersion
 	if db.Error != nil {
 		return nil, db.Error
 	}
-	if custom, ok := interface{}(in).(VersionTagsVersionTagWithBeforeDelete); ok {
+	if custom, ok := interface{}(in).(RegionsRegionWithBeforeDelete); ok {
 		var err error
 		if db, err = custom.BeforeDelete(ctx, db); err != nil {
 			return nil, err
 		}
 	}
-	err := DefaultDeleteVersionTag(ctx, &VersionTag{Id: in.GetId()}, db)
+	err := DefaultDeleteRegion(ctx, &Region{Id: in.GetId()}, db)
 	if err != nil {
 		return nil, err
 	}
-	out := &DeleteVersionTagResponse{}
-	if custom, ok := interface{}(in).(VersionTagsVersionTagWithAfterDelete); ok {
+	out := &DeleteRegionResponse{}
+	if custom, ok := interface{}(in).(RegionsRegionWithAfterDelete); ok {
 		var err error
 		if err = custom.AfterDelete(ctx, out, db); err != nil {
 			return nil, err
@@ -7997,18 +8347,18 @@ func (m *VersionTagsDefaultServer) Delete(ctx context.Context, in *DeleteVersion
 	return out, nil
 }
 
-// VersionTagsVersionTagWithBeforeDelete called before DefaultDeleteVersionTag in the default Delete handler
-type VersionTagsVersionTagWithBeforeDelete interface {
+// RegionsRegionWithBeforeDelete called before DefaultDeleteRegion in the default Delete handler
+type RegionsRegionWithBeforeDelete interface {
 	BeforeDelete(context.Context, *gorm1.DB) (*gorm1.DB, error)
 }
 
-// VersionTagsVersionTagWithAfterDelete called before DefaultDeleteVersionTag in the default Delete handler
-type VersionTagsVersionTagWithAfterDelete interface {
-	AfterDelete(context.Context, *DeleteVersionTagResponse, *gorm1.DB) error
+// RegionsRegionWithAfterDelete called before DefaultDeleteRegion in the default Delete handler
+type RegionsRegionWithAfterDelete interface {
+	AfterDelete(context.Context, *DeleteRegionResponse, *gorm1.DB) error
 }
 
 // List ...
-func (m *VersionTagsDefaultServer) List(ctx context.Context, in *ListVersionTagRequest) (*ListVersionTagsResponse, error) {
+func (m *RegionsDefaultServer) List(ctx context.Context, in *ListRegionRequest) (*ListRegionsResponse, error) {
 	txn, ok := gorm2.FromContext(ctx)
 	if !ok {
 		return nil, errors1.NoTransactionError
@@ -8017,7 +8367,7 @@ func (m *VersionTagsDefaultServer) List(ctx context.Context, in *ListVersionTagR
 	if db.Error != nil {
 		return nil, db.Error
 	}
-	if custom, ok := interface{}(in).(VersionTagsVersionTagWithBeforeList); ok {
+	if custom, ok := interface{}(in).(RegionsRegionWithBeforeList); ok {
 		var err error
 		if db, err = custom.BeforeList(ctx, db); err != nil {
 			return nil, err
@@ -8028,7 +8378,7 @@ func (m *VersionTagsDefaultServer) List(ctx context.Context, in *ListVersionTagR
 		in.Paging.Limit++
 		pagedRequest = true
 	}
-	res, err := DefaultListVersionTag(ctx, db, in.Filter, in.OrderBy, in.Paging, in.Fields)
+	res, err := DefaultListRegion(ctx, db, in.Filter, in.OrderBy, in.Paging, in.Fields)
 	if err != nil {
 		return nil, err
 	}
@@ -8043,8 +8393,8 @@ func (m *VersionTagsDefaultServer) List(ctx context.Context, in *ListVersionTagR
 		}
 		resPaging = &query1.PageInfo{Offset: offset}
 	}
-	out := &ListVersionTagsResponse{Results: res, Page: resPaging}
-	if custom, ok := interface{}(in).(VersionTagsVersionTagWithAfterList); ok {
+	out := &ListRegionsResponse{Results: res, Page: resPaging}
+	if custom, ok := interface{}(in).(RegionsRegionWithAfterList); ok {
 		var err error
 		if err = custom.AfterList(ctx, out, db); err != nil {
 			return nil, err
@@ -8053,20 +8403,20 @@ func (m *VersionTagsDefaultServer) List(ctx context.Context, in *ListVersionTagR
 	return out, nil
 }
 
-// VersionTagsVersionTagWithBeforeList called before DefaultListVersionTag in the default List handler
-type VersionTagsVersionTagWithBeforeList interface {
+// RegionsRegionWithBeforeList called before DefaultListRegion in the default List handler
+type RegionsRegionWithBeforeList interface {
 	BeforeList(context.Context, *gorm1.DB) (*gorm1.DB, error)
 }
 
-// VersionTagsVersionTagWithAfterList called before DefaultListVersionTag in the default List handler
-type VersionTagsVersionTagWithAfterList interface {
-	AfterList(context.Context, *ListVersionTagsResponse, *gorm1.DB) error
+// RegionsRegionWithAfterList called before DefaultListRegion in the default List handler
+type RegionsRegionWithAfterList interface {
+	AfterList(context.Context, *ListRegionsResponse, *gorm1.DB) error
 }
-type ApplicationInstancesDefaultServer struct {
+type StagesDefaultServer struct {
 }
 
 // Create ...
-func (m *ApplicationInstancesDefaultServer) Create(ctx context.Context, in *CreateApplicationInstanceRequest) (*CreateApplicationInstanceResponse, error) {
+func (m *StagesDefaultServer) Create(ctx context.Context, in *CreateStageRequest) (*CreateStageResponse, error) {
 	txn, ok := gorm2.FromContext(ctx)
 	if !ok {
 		return nil, errors1.NoTransactionError
@@ -8075,18 +8425,18 @@ func (m *ApplicationInstancesDefaultServer) Create(ctx context.Context, in *Crea
 	if db.Error != nil {
 		return nil, db.Error
 	}
-	if custom, ok := interface{}(in).(ApplicationInstancesApplicationInstanceWithBeforeCreate); ok {
+	if custom, ok := interface{}(in).(StagesStageWithBeforeCreate); ok {
 		var err error
 		if db, err = custom.BeforeCreate(ctx, db); err != nil {
 			return nil, err
 		}
 	}
-	res, err := DefaultCreateApplicationInstance(ctx, in.GetPayload(), db)
+	res, err := DefaultCreateStage(ctx, in.GetPayload(), db)
 	if err != nil {
 		return nil, err
 	}
-	out := &CreateApplicationInstanceResponse{Result: res}
-	if custom, ok := interface{}(in).(ApplicationInstancesApplicationInstanceWithAfterCreate); ok {
+	out := &CreateStageResponse{Result: res}
+	if custom, ok := interface{}(in).(StagesStageWithAfterCreate); ok {
 		var err error
 		if err = custom.AfterCreate(ctx, out, db); err != nil {
 			return nil, err
@@ -8095,18 +8445,18 @@ func (m *ApplicationInstancesDefaultServer) Create(ctx context.Context, in *Crea
 	return out, nil
 }
 
-// ApplicationInstancesApplicationInstanceWithBeforeCreate called before DefaultCreateApplicationInstance in the default Create handler
-type ApplicationInstancesApplicationInstanceWithBeforeCreate interface {
+// StagesStageWithBeforeCreate called before DefaultCreateStage in the default Create handler
+type StagesStageWithBeforeCreate interface {
 	BeforeCreate(context.Context, *gorm1.DB) (*gorm1.DB, error)
 }
 
-// ApplicationInstancesApplicationInstanceWithAfterCreate called before DefaultCreateApplicationInstance in the default Create handler
-type ApplicationInstancesApplicationInstanceWithAfterCreate interface {
-	AfterCreate(context.Context, *CreateApplicationInstanceResponse, *gorm1.DB) error
+// StagesStageWithAfterCreate called before DefaultCreateStage in the default Create handler
+type StagesStageWithAfterCreate interface {
+	AfterCreate(context.Context, *CreateStageResponse, *gorm1.DB) error
 }
 
 // Read ...
-func (m *ApplicationInstancesDefaultServer) Read(ctx context.Context, in *ReadApplicationInstanceRequest) (*ReadApplicationInstanceResponse, error) {
+func (m *StagesDefaultServer) Read(ctx context.Context, in *ReadStageRequest) (*ReadStageResponse, error) {
 	txn, ok := gorm2.FromContext(ctx)
 	if !ok {
 		return nil, errors1.NoTransactionError
@@ -8115,18 +8465,18 @@ func (m *ApplicationInstancesDefaultServer) Read(ctx context.Context, in *ReadAp
 	if db.Error != nil {
 		return nil, db.Error
 	}
-	if custom, ok := interface{}(in).(ApplicationInstancesApplicationInstanceWithBeforeRead); ok {
+	if custom, ok := interface{}(in).(StagesStageWithBeforeRead); ok {
 		var err error
 		if db, err = custom.BeforeRead(ctx, db); err != nil {
 			return nil, err
 		}
 	}
-	res, err := DefaultReadApplicationInstance(ctx, &ApplicationInstance{Id: in.GetId()}, db, in.Fields)
+	res, err := DefaultReadStage(ctx, &Stage{Id: in.GetId()}, db, in.Fields)
 	if err != nil {
 		return nil, err
 	}
-	out := &ReadApplicationInstanceResponse{Result: res}
-	if custom, ok := interface{}(in).(ApplicationInstancesApplicationInstanceWithAfterRead); ok {
+	out := &ReadStageResponse{Result: res}
+	if custom, ok := interface{}(in).(StagesStageWithAfterRead); ok {
 		var err error
 		if err = custom.AfterRead(ctx, out, db); err != nil {
 			return nil, err
@@ -8135,20 +8485,20 @@ func (m *ApplicationInstancesDefaultServer) Read(ctx context.Context, in *ReadAp
 	return out, nil
 }
 
-// ApplicationInstancesApplicationInstanceWithBeforeRead called before DefaultReadApplicationInstance in the default Read handler
-type ApplicationInstancesApplicationInstanceWithBeforeRead interface {
+// StagesStageWithBeforeRead called before DefaultReadStage in the default Read handler
+type StagesStageWithBeforeRead interface {
 	BeforeRead(context.Context, *gorm1.DB) (*gorm1.DB, error)
 }
 
-// ApplicationInstancesApplicationInstanceWithAfterRead called before DefaultReadApplicationInstance in the default Read handler
-type ApplicationInstancesApplicationInstanceWithAfterRead interface {
-	AfterRead(context.Context, *ReadApplicationInstanceResponse, *gorm1.DB) error
+// StagesStageWithAfterRead called before DefaultReadStage in the default Read handler
+type StagesStageWithAfterRead interface {
+	AfterRead(context.Context, *ReadStageResponse, *gorm1.DB) error
 }
 
 // Update ...
-func (m *ApplicationInstancesDefaultServer) Update(ctx context.Context, in *UpdateApplicationInstanceRequest) (*UpdateApplicationInstanceResponse, error) {
+func (m *StagesDefaultServer) Update(ctx context.Context, in *UpdateStageRequest) (*UpdateStageResponse, error) {
 	var err error
-	var res *ApplicationInstance
+	var res *Stage
 	txn, ok := gorm2.FromContext(ctx)
 	if !ok {
 		return nil, errors1.NoTransactionError
@@ -8157,22 +8507,22 @@ func (m *ApplicationInstancesDefaultServer) Update(ctx context.Context, in *Upda
 	if db.Error != nil {
 		return nil, db.Error
 	}
-	if custom, ok := interface{}(in).(ApplicationInstancesApplicationInstanceWithBeforeUpdate); ok {
+	if custom, ok := interface{}(in).(StagesStageWithBeforeUpdate); ok {
 		var err error
 		if db, err = custom.BeforeUpdate(ctx, db); err != nil {
 			return nil, err
 		}
 	}
 	if in.GetFields() == nil {
-		res, err = DefaultStrictUpdateApplicationInstance(ctx, in.GetPayload(), db)
+		res, err = DefaultStrictUpdateStage(ctx, in.GetPayload(), db)
 	} else {
-		res, err = DefaultPatchApplicationInstance(ctx, in.GetPayload(), in.GetFields(), db)
+		res, err = DefaultPatchStage(ctx, in.GetPayload(), in.GetFields(), db)
 	}
 	if err != nil {
 		return nil, err
 	}
-	out := &UpdateApplicationInstanceResponse{Result: res}
-	if custom, ok := interface{}(in).(ApplicationInstancesApplicationInstanceWithAfterUpdate); ok {
+	out := &UpdateStageResponse{Result: res}
+	if custom, ok := interface{}(in).(StagesStageWithAfterUpdate); ok {
 		var err error
 		if err = custom.AfterUpdate(ctx, out, db); err != nil {
 			return nil, err
@@ -8181,18 +8531,18 @@ func (m *ApplicationInstancesDefaultServer) Update(ctx context.Context, in *Upda
 	return out, nil
 }
 
-// ApplicationInstancesApplicationInstanceWithBeforeUpdate called before DefaultUpdateApplicationInstance in the default Update handler
-type ApplicationInstancesApplicationInstanceWithBeforeUpdate interface {
+// StagesStageWithBeforeUpdate called before DefaultUpdateStage in the default Update handler
+type StagesStageWithBeforeUpdate interface {
 	BeforeUpdate(context.Context, *gorm1.DB) (*gorm1.DB, error)
 }
 
-// ApplicationInstancesApplicationInstanceWithAfterUpdate called before DefaultUpdateApplicationInstance in the default Update handler
-type ApplicationInstancesApplicationInstanceWithAfterUpdate interface {
-	AfterUpdate(context.Context, *UpdateApplicationInstanceResponse, *gorm1.DB) error
+// StagesStageWithAfterUpdate called before DefaultUpdateStage in the default Update handler
+type StagesStageWithAfterUpdate interface {
+	AfterUpdate(context.Context, *UpdateStageResponse, *gorm1.DB) error
 }
 
 // Delete ...
-func (m *ApplicationInstancesDefaultServer) Delete(ctx context.Context, in *DeleteApplicationInstanceRequest) (*DeleteApplicationInstanceResponse, error) {
+func (m *StagesDefaultServer) Delete(ctx context.Context, in *DeleteStageRequest) (*DeleteStageResponse, error) {
 	txn, ok := gorm2.FromContext(ctx)
 	if !ok {
 		return nil, errors1.NoTransactionError
@@ -8201,18 +8551,18 @@ func (m *ApplicationInstancesDefaultServer) Delete(ctx context.Context, in *Dele
 	if db.Error != nil {
 		return nil, db.Error
 	}
-	if custom, ok := interface{}(in).(ApplicationInstancesApplicationInstanceWithBeforeDelete); ok {
+	if custom, ok := interface{}(in).(StagesStageWithBeforeDelete); ok {
 		var err error
 		if db, err = custom.BeforeDelete(ctx, db); err != nil {
 			return nil, err
 		}
 	}
-	err := DefaultDeleteApplicationInstance(ctx, &ApplicationInstance{Id: in.GetId()}, db)
+	err := DefaultDeleteStage(ctx, &Stage{Id: in.GetId()}, db)
 	if err != nil {
 		return nil, err
 	}
-	out := &DeleteApplicationInstanceResponse{}
-	if custom, ok := interface{}(in).(ApplicationInstancesApplicationInstanceWithAfterDelete); ok {
+	out := &DeleteStageResponse{}
+	if custom, ok := interface{}(in).(StagesStageWithAfterDelete); ok {
 		var err error
 		if err = custom.AfterDelete(ctx, out, db); err != nil {
 			return nil, err
@@ -8221,18 +8571,18 @@ func (m *ApplicationInstancesDefaultServer) Delete(ctx context.Context, in *Dele
 	return out, nil
 }
 
-// ApplicationInstancesApplicationInstanceWithBeforeDelete called before DefaultDeleteApplicationInstance in the default Delete handler
-type ApplicationInstancesApplicationInstanceWithBeforeDelete interface {
+// StagesStageWithBeforeDelete called before DefaultDeleteStage in the default Delete handler
+type StagesStageWithBeforeDelete interface {
 	BeforeDelete(context.Context, *gorm1.DB) (*gorm1.DB, error)
 }
 
-// ApplicationInstancesApplicationInstanceWithAfterDelete called before DefaultDeleteApplicationInstance in the default Delete handler
-type ApplicationInstancesApplicationInstanceWithAfterDelete interface {
-	AfterDelete(context.Context, *DeleteApplicationInstanceResponse, *gorm1.DB) error
+// StagesStageWithAfterDelete called before DefaultDeleteStage in the default Delete handler
+type StagesStageWithAfterDelete interface {
+	AfterDelete(context.Context, *DeleteStageResponse, *gorm1.DB) error
 }
 
 // List ...
-func (m *ApplicationInstancesDefaultServer) List(ctx context.Context, in *ListApplicationInstanceRequest) (*ListApplicationInstancesResponse, error) {
+func (m *StagesDefaultServer) List(ctx context.Context, in *ListStageRequest) (*ListStagesResponse, error) {
 	txn, ok := gorm2.FromContext(ctx)
 	if !ok {
 		return nil, errors1.NoTransactionError
@@ -8241,7 +8591,7 @@ func (m *ApplicationInstancesDefaultServer) List(ctx context.Context, in *ListAp
 	if db.Error != nil {
 		return nil, db.Error
 	}
-	if custom, ok := interface{}(in).(ApplicationInstancesApplicationInstanceWithBeforeList); ok {
+	if custom, ok := interface{}(in).(StagesStageWithBeforeList); ok {
 		var err error
 		if db, err = custom.BeforeList(ctx, db); err != nil {
 			return nil, err
@@ -8252,7 +8602,7 @@ func (m *ApplicationInstancesDefaultServer) List(ctx context.Context, in *ListAp
 		in.Paging.Limit++
 		pagedRequest = true
 	}
-	res, err := DefaultListApplicationInstance(ctx, db, in.Filter, in.OrderBy, in.Paging, in.Fields)
+	res, err := DefaultListStage(ctx, db, in.Filter, in.OrderBy, in.Paging, in.Fields)
 	if err != nil {
 		return nil, err
 	}
@@ -8267,8 +8617,8 @@ func (m *ApplicationInstancesDefaultServer) List(ctx context.Context, in *ListAp
 		}
 		resPaging = &query1.PageInfo{Offset: offset}
 	}
-	out := &ListApplicationInstancesResponse{Results: res, Page: resPaging}
-	if custom, ok := interface{}(in).(ApplicationInstancesApplicationInstanceWithAfterList); ok {
+	out := &ListStagesResponse{Results: res, Page: resPaging}
+	if custom, ok := interface{}(in).(StagesStageWithAfterList); ok {
 		var err error
 		if err = custom.AfterList(ctx, out, db); err != nil {
 			return nil, err
@@ -8277,462 +8627,14 @@ func (m *ApplicationInstancesDefaultServer) List(ctx context.Context, in *ListAp
 	return out, nil
 }
 
-// ApplicationInstancesApplicationInstanceWithBeforeList called before DefaultListApplicationInstance in the default List handler
-type ApplicationInstancesApplicationInstanceWithBeforeList interface {
+// StagesStageWithBeforeList called before DefaultListStage in the default List handler
+type StagesStageWithBeforeList interface {
 	BeforeList(context.Context, *gorm1.DB) (*gorm1.DB, error)
 }
 
-// ApplicationInstancesApplicationInstanceWithAfterList called before DefaultListApplicationInstance in the default List handler
-type ApplicationInstancesApplicationInstanceWithAfterList interface {
-	AfterList(context.Context, *ListApplicationInstancesResponse, *gorm1.DB) error
-}
-type AwsRdsInstancesDefaultServer struct {
-}
-
-// Create ...
-func (m *AwsRdsInstancesDefaultServer) Create(ctx context.Context, in *CreateAwsRdsInstanceRequest) (*CreateAwsRdsInstanceResponse, error) {
-	txn, ok := gorm2.FromContext(ctx)
-	if !ok {
-		return nil, errors1.NoTransactionError
-	}
-	db := txn.Begin()
-	if db.Error != nil {
-		return nil, db.Error
-	}
-	if custom, ok := interface{}(in).(AwsRdsInstancesAwsRdsInstanceWithBeforeCreate); ok {
-		var err error
-		if db, err = custom.BeforeCreate(ctx, db); err != nil {
-			return nil, err
-		}
-	}
-	res, err := DefaultCreateAwsRdsInstance(ctx, in.GetPayload(), db)
-	if err != nil {
-		return nil, err
-	}
-	out := &CreateAwsRdsInstanceResponse{Result: res}
-	if custom, ok := interface{}(in).(AwsRdsInstancesAwsRdsInstanceWithAfterCreate); ok {
-		var err error
-		if err = custom.AfterCreate(ctx, out, db); err != nil {
-			return nil, err
-		}
-	}
-	return out, nil
-}
-
-// AwsRdsInstancesAwsRdsInstanceWithBeforeCreate called before DefaultCreateAwsRdsInstance in the default Create handler
-type AwsRdsInstancesAwsRdsInstanceWithBeforeCreate interface {
-	BeforeCreate(context.Context, *gorm1.DB) (*gorm1.DB, error)
-}
-
-// AwsRdsInstancesAwsRdsInstanceWithAfterCreate called before DefaultCreateAwsRdsInstance in the default Create handler
-type AwsRdsInstancesAwsRdsInstanceWithAfterCreate interface {
-	AfterCreate(context.Context, *CreateAwsRdsInstanceResponse, *gorm1.DB) error
-}
-
-// Read ...
-func (m *AwsRdsInstancesDefaultServer) Read(ctx context.Context, in *ReadAwsRdsInstanceRequest) (*ReadAwsRdsInstanceResponse, error) {
-	txn, ok := gorm2.FromContext(ctx)
-	if !ok {
-		return nil, errors1.NoTransactionError
-	}
-	db := txn.Begin()
-	if db.Error != nil {
-		return nil, db.Error
-	}
-	if custom, ok := interface{}(in).(AwsRdsInstancesAwsRdsInstanceWithBeforeRead); ok {
-		var err error
-		if db, err = custom.BeforeRead(ctx, db); err != nil {
-			return nil, err
-		}
-	}
-	res, err := DefaultReadAwsRdsInstance(ctx, &AwsRdsInstance{Id: in.GetId()}, db, in.Fields)
-	if err != nil {
-		return nil, err
-	}
-	out := &ReadAwsRdsInstanceResponse{Result: res}
-	if custom, ok := interface{}(in).(AwsRdsInstancesAwsRdsInstanceWithAfterRead); ok {
-		var err error
-		if err = custom.AfterRead(ctx, out, db); err != nil {
-			return nil, err
-		}
-	}
-	return out, nil
-}
-
-// AwsRdsInstancesAwsRdsInstanceWithBeforeRead called before DefaultReadAwsRdsInstance in the default Read handler
-type AwsRdsInstancesAwsRdsInstanceWithBeforeRead interface {
-	BeforeRead(context.Context, *gorm1.DB) (*gorm1.DB, error)
-}
-
-// AwsRdsInstancesAwsRdsInstanceWithAfterRead called before DefaultReadAwsRdsInstance in the default Read handler
-type AwsRdsInstancesAwsRdsInstanceWithAfterRead interface {
-	AfterRead(context.Context, *ReadAwsRdsInstanceResponse, *gorm1.DB) error
-}
-
-// Update ...
-func (m *AwsRdsInstancesDefaultServer) Update(ctx context.Context, in *UpdateAwsRdsInstanceRequest) (*UpdateAwsRdsInstanceResponse, error) {
-	var err error
-	var res *AwsRdsInstance
-	txn, ok := gorm2.FromContext(ctx)
-	if !ok {
-		return nil, errors1.NoTransactionError
-	}
-	db := txn.Begin()
-	if db.Error != nil {
-		return nil, db.Error
-	}
-	if custom, ok := interface{}(in).(AwsRdsInstancesAwsRdsInstanceWithBeforeUpdate); ok {
-		var err error
-		if db, err = custom.BeforeUpdate(ctx, db); err != nil {
-			return nil, err
-		}
-	}
-	if in.GetFields() == nil {
-		res, err = DefaultStrictUpdateAwsRdsInstance(ctx, in.GetPayload(), db)
-	} else {
-		res, err = DefaultPatchAwsRdsInstance(ctx, in.GetPayload(), in.GetFields(), db)
-	}
-	if err != nil {
-		return nil, err
-	}
-	out := &UpdateAwsRdsInstanceResponse{Result: res}
-	if custom, ok := interface{}(in).(AwsRdsInstancesAwsRdsInstanceWithAfterUpdate); ok {
-		var err error
-		if err = custom.AfterUpdate(ctx, out, db); err != nil {
-			return nil, err
-		}
-	}
-	return out, nil
-}
-
-// AwsRdsInstancesAwsRdsInstanceWithBeforeUpdate called before DefaultUpdateAwsRdsInstance in the default Update handler
-type AwsRdsInstancesAwsRdsInstanceWithBeforeUpdate interface {
-	BeforeUpdate(context.Context, *gorm1.DB) (*gorm1.DB, error)
-}
-
-// AwsRdsInstancesAwsRdsInstanceWithAfterUpdate called before DefaultUpdateAwsRdsInstance in the default Update handler
-type AwsRdsInstancesAwsRdsInstanceWithAfterUpdate interface {
-	AfterUpdate(context.Context, *UpdateAwsRdsInstanceResponse, *gorm1.DB) error
-}
-
-// Delete ...
-func (m *AwsRdsInstancesDefaultServer) Delete(ctx context.Context, in *DeleteAwsRdsInstanceRequest) (*DeleteAwsRdsInstanceResponse, error) {
-	txn, ok := gorm2.FromContext(ctx)
-	if !ok {
-		return nil, errors1.NoTransactionError
-	}
-	db := txn.Begin()
-	if db.Error != nil {
-		return nil, db.Error
-	}
-	if custom, ok := interface{}(in).(AwsRdsInstancesAwsRdsInstanceWithBeforeDelete); ok {
-		var err error
-		if db, err = custom.BeforeDelete(ctx, db); err != nil {
-			return nil, err
-		}
-	}
-	err := DefaultDeleteAwsRdsInstance(ctx, &AwsRdsInstance{Id: in.GetId()}, db)
-	if err != nil {
-		return nil, err
-	}
-	out := &DeleteAwsRdsInstanceResponse{}
-	if custom, ok := interface{}(in).(AwsRdsInstancesAwsRdsInstanceWithAfterDelete); ok {
-		var err error
-		if err = custom.AfterDelete(ctx, out, db); err != nil {
-			return nil, err
-		}
-	}
-	return out, nil
-}
-
-// AwsRdsInstancesAwsRdsInstanceWithBeforeDelete called before DefaultDeleteAwsRdsInstance in the default Delete handler
-type AwsRdsInstancesAwsRdsInstanceWithBeforeDelete interface {
-	BeforeDelete(context.Context, *gorm1.DB) (*gorm1.DB, error)
-}
-
-// AwsRdsInstancesAwsRdsInstanceWithAfterDelete called before DefaultDeleteAwsRdsInstance in the default Delete handler
-type AwsRdsInstancesAwsRdsInstanceWithAfterDelete interface {
-	AfterDelete(context.Context, *DeleteAwsRdsInstanceResponse, *gorm1.DB) error
-}
-
-// List ...
-func (m *AwsRdsInstancesDefaultServer) List(ctx context.Context, in *ListAwsRdsInstanceRequest) (*ListAwsRdsInstancesResponse, error) {
-	txn, ok := gorm2.FromContext(ctx)
-	if !ok {
-		return nil, errors1.NoTransactionError
-	}
-	db := txn.Begin()
-	if db.Error != nil {
-		return nil, db.Error
-	}
-	if custom, ok := interface{}(in).(AwsRdsInstancesAwsRdsInstanceWithBeforeList); ok {
-		var err error
-		if db, err = custom.BeforeList(ctx, db); err != nil {
-			return nil, err
-		}
-	}
-	pagedRequest := false
-	if in.GetPaging().GetLimit() >= 1 {
-		in.Paging.Limit++
-		pagedRequest = true
-	}
-	res, err := DefaultListAwsRdsInstance(ctx, db, in.Filter, in.OrderBy, in.Paging, in.Fields)
-	if err != nil {
-		return nil, err
-	}
-	var resPaging *query1.PageInfo
-	if pagedRequest {
-		var offset int32
-		var size int32 = int32(len(res))
-		if size == in.GetPaging().GetLimit() {
-			size--
-			res = res[:size]
-			offset = in.GetPaging().GetOffset() + size
-		}
-		resPaging = &query1.PageInfo{Offset: offset}
-	}
-	out := &ListAwsRdsInstancesResponse{Results: res, Page: resPaging}
-	if custom, ok := interface{}(in).(AwsRdsInstancesAwsRdsInstanceWithAfterList); ok {
-		var err error
-		if err = custom.AfterList(ctx, out, db); err != nil {
-			return nil, err
-		}
-	}
-	return out, nil
-}
-
-// AwsRdsInstancesAwsRdsInstanceWithBeforeList called before DefaultListAwsRdsInstance in the default List handler
-type AwsRdsInstancesAwsRdsInstanceWithBeforeList interface {
-	BeforeList(context.Context, *gorm1.DB) (*gorm1.DB, error)
-}
-
-// AwsRdsInstancesAwsRdsInstanceWithAfterList called before DefaultListAwsRdsInstance in the default List handler
-type AwsRdsInstancesAwsRdsInstanceWithAfterList interface {
-	AfterList(context.Context, *ListAwsRdsInstancesResponse, *gorm1.DB) error
-}
-type ContainersDefaultServer struct {
-}
-
-// Create ...
-func (m *ContainersDefaultServer) Create(ctx context.Context, in *CreateContainerRequest) (*CreateContainerResponse, error) {
-	txn, ok := gorm2.FromContext(ctx)
-	if !ok {
-		return nil, errors1.NoTransactionError
-	}
-	db := txn.Begin()
-	if db.Error != nil {
-		return nil, db.Error
-	}
-	if custom, ok := interface{}(in).(ContainersContainerWithBeforeCreate); ok {
-		var err error
-		if db, err = custom.BeforeCreate(ctx, db); err != nil {
-			return nil, err
-		}
-	}
-	res, err := DefaultCreateContainer(ctx, in.GetPayload(), db)
-	if err != nil {
-		return nil, err
-	}
-	out := &CreateContainerResponse{Result: res}
-	if custom, ok := interface{}(in).(ContainersContainerWithAfterCreate); ok {
-		var err error
-		if err = custom.AfterCreate(ctx, out, db); err != nil {
-			return nil, err
-		}
-	}
-	return out, nil
-}
-
-// ContainersContainerWithBeforeCreate called before DefaultCreateContainer in the default Create handler
-type ContainersContainerWithBeforeCreate interface {
-	BeforeCreate(context.Context, *gorm1.DB) (*gorm1.DB, error)
-}
-
-// ContainersContainerWithAfterCreate called before DefaultCreateContainer in the default Create handler
-type ContainersContainerWithAfterCreate interface {
-	AfterCreate(context.Context, *CreateContainerResponse, *gorm1.DB) error
-}
-
-// Read ...
-func (m *ContainersDefaultServer) Read(ctx context.Context, in *ReadContainerRequest) (*ReadContainerResponse, error) {
-	txn, ok := gorm2.FromContext(ctx)
-	if !ok {
-		return nil, errors1.NoTransactionError
-	}
-	db := txn.Begin()
-	if db.Error != nil {
-		return nil, db.Error
-	}
-	if custom, ok := interface{}(in).(ContainersContainerWithBeforeRead); ok {
-		var err error
-		if db, err = custom.BeforeRead(ctx, db); err != nil {
-			return nil, err
-		}
-	}
-	res, err := DefaultReadContainer(ctx, &Container{Id: in.GetId()}, db, in.Fields)
-	if err != nil {
-		return nil, err
-	}
-	out := &ReadContainerResponse{Result: res}
-	if custom, ok := interface{}(in).(ContainersContainerWithAfterRead); ok {
-		var err error
-		if err = custom.AfterRead(ctx, out, db); err != nil {
-			return nil, err
-		}
-	}
-	return out, nil
-}
-
-// ContainersContainerWithBeforeRead called before DefaultReadContainer in the default Read handler
-type ContainersContainerWithBeforeRead interface {
-	BeforeRead(context.Context, *gorm1.DB) (*gorm1.DB, error)
-}
-
-// ContainersContainerWithAfterRead called before DefaultReadContainer in the default Read handler
-type ContainersContainerWithAfterRead interface {
-	AfterRead(context.Context, *ReadContainerResponse, *gorm1.DB) error
-}
-
-// Update ...
-func (m *ContainersDefaultServer) Update(ctx context.Context, in *UpdateContainerRequest) (*UpdateContainerResponse, error) {
-	var err error
-	var res *Container
-	txn, ok := gorm2.FromContext(ctx)
-	if !ok {
-		return nil, errors1.NoTransactionError
-	}
-	db := txn.Begin()
-	if db.Error != nil {
-		return nil, db.Error
-	}
-	if custom, ok := interface{}(in).(ContainersContainerWithBeforeUpdate); ok {
-		var err error
-		if db, err = custom.BeforeUpdate(ctx, db); err != nil {
-			return nil, err
-		}
-	}
-	if in.GetFields() == nil {
-		res, err = DefaultStrictUpdateContainer(ctx, in.GetPayload(), db)
-	} else {
-		res, err = DefaultPatchContainer(ctx, in.GetPayload(), in.GetFields(), db)
-	}
-	if err != nil {
-		return nil, err
-	}
-	out := &UpdateContainerResponse{Result: res}
-	if custom, ok := interface{}(in).(ContainersContainerWithAfterUpdate); ok {
-		var err error
-		if err = custom.AfterUpdate(ctx, out, db); err != nil {
-			return nil, err
-		}
-	}
-	return out, nil
-}
-
-// ContainersContainerWithBeforeUpdate called before DefaultUpdateContainer in the default Update handler
-type ContainersContainerWithBeforeUpdate interface {
-	BeforeUpdate(context.Context, *gorm1.DB) (*gorm1.DB, error)
-}
-
-// ContainersContainerWithAfterUpdate called before DefaultUpdateContainer in the default Update handler
-type ContainersContainerWithAfterUpdate interface {
-	AfterUpdate(context.Context, *UpdateContainerResponse, *gorm1.DB) error
-}
-
-// Delete ...
-func (m *ContainersDefaultServer) Delete(ctx context.Context, in *DeleteContainerRequest) (*DeleteContainerResponse, error) {
-	txn, ok := gorm2.FromContext(ctx)
-	if !ok {
-		return nil, errors1.NoTransactionError
-	}
-	db := txn.Begin()
-	if db.Error != nil {
-		return nil, db.Error
-	}
-	if custom, ok := interface{}(in).(ContainersContainerWithBeforeDelete); ok {
-		var err error
-		if db, err = custom.BeforeDelete(ctx, db); err != nil {
-			return nil, err
-		}
-	}
-	err := DefaultDeleteContainer(ctx, &Container{Id: in.GetId()}, db)
-	if err != nil {
-		return nil, err
-	}
-	out := &DeleteContainerResponse{}
-	if custom, ok := interface{}(in).(ContainersContainerWithAfterDelete); ok {
-		var err error
-		if err = custom.AfterDelete(ctx, out, db); err != nil {
-			return nil, err
-		}
-	}
-	return out, nil
-}
-
-// ContainersContainerWithBeforeDelete called before DefaultDeleteContainer in the default Delete handler
-type ContainersContainerWithBeforeDelete interface {
-	BeforeDelete(context.Context, *gorm1.DB) (*gorm1.DB, error)
-}
-
-// ContainersContainerWithAfterDelete called before DefaultDeleteContainer in the default Delete handler
-type ContainersContainerWithAfterDelete interface {
-	AfterDelete(context.Context, *DeleteContainerResponse, *gorm1.DB) error
-}
-
-// List ...
-func (m *ContainersDefaultServer) List(ctx context.Context, in *ListContainerRequest) (*ListContainersResponse, error) {
-	txn, ok := gorm2.FromContext(ctx)
-	if !ok {
-		return nil, errors1.NoTransactionError
-	}
-	db := txn.Begin()
-	if db.Error != nil {
-		return nil, db.Error
-	}
-	if custom, ok := interface{}(in).(ContainersContainerWithBeforeList); ok {
-		var err error
-		if db, err = custom.BeforeList(ctx, db); err != nil {
-			return nil, err
-		}
-	}
-	pagedRequest := false
-	if in.GetPaging().GetLimit() >= 1 {
-		in.Paging.Limit++
-		pagedRequest = true
-	}
-	res, err := DefaultListContainer(ctx, db, in.Filter, in.OrderBy, in.Paging, in.Fields)
-	if err != nil {
-		return nil, err
-	}
-	var resPaging *query1.PageInfo
-	if pagedRequest {
-		var offset int32
-		var size int32 = int32(len(res))
-		if size == in.GetPaging().GetLimit() {
-			size--
-			res = res[:size]
-			offset = in.GetPaging().GetOffset() + size
-		}
-		resPaging = &query1.PageInfo{Offset: offset}
-	}
-	out := &ListContainersResponse{Results: res, Page: resPaging}
-	if custom, ok := interface{}(in).(ContainersContainerWithAfterList); ok {
-		var err error
-		if err = custom.AfterList(ctx, out, db); err != nil {
-			return nil, err
-		}
-	}
-	return out, nil
-}
-
-// ContainersContainerWithBeforeList called before DefaultListContainer in the default List handler
-type ContainersContainerWithBeforeList interface {
-	BeforeList(context.Context, *gorm1.DB) (*gorm1.DB, error)
-}
-
-// ContainersContainerWithAfterList called before DefaultListContainer in the default List handler
-type ContainersContainerWithAfterList interface {
-	AfterList(context.Context, *ListContainersResponse, *gorm1.DB) error
+// StagesStageWithAfterList called before DefaultListStage in the default List handler
+type StagesStageWithAfterList interface {
+	AfterList(context.Context, *ListStagesResponse, *gorm1.DB) error
 }
 type EnvironmentsDefaultServer struct {
 }
@@ -8958,11 +8860,11 @@ type EnvironmentsEnvironmentWithBeforeList interface {
 type EnvironmentsEnvironmentWithAfterList interface {
 	AfterList(context.Context, *ListEnvironmentsResponse, *gorm1.DB) error
 }
-type ManifestsDefaultServer struct {
+type ApplicationsDefaultServer struct {
 }
 
 // Create ...
-func (m *ManifestsDefaultServer) Create(ctx context.Context, in *CreateManifestRequest) (*CreateManifestResponse, error) {
+func (m *ApplicationsDefaultServer) Create(ctx context.Context, in *CreateApplicationRequest) (*CreateApplicationResponse, error) {
 	txn, ok := gorm2.FromContext(ctx)
 	if !ok {
 		return nil, errors1.NoTransactionError
@@ -8971,18 +8873,18 @@ func (m *ManifestsDefaultServer) Create(ctx context.Context, in *CreateManifestR
 	if db.Error != nil {
 		return nil, db.Error
 	}
-	if custom, ok := interface{}(in).(ManifestsManifestWithBeforeCreate); ok {
+	if custom, ok := interface{}(in).(ApplicationsApplicationWithBeforeCreate); ok {
 		var err error
 		if db, err = custom.BeforeCreate(ctx, db); err != nil {
 			return nil, err
 		}
 	}
-	res, err := DefaultCreateManifest(ctx, in.GetPayload(), db)
+	res, err := DefaultCreateApplication(ctx, in.GetPayload(), db)
 	if err != nil {
 		return nil, err
 	}
-	out := &CreateManifestResponse{Result: res}
-	if custom, ok := interface{}(in).(ManifestsManifestWithAfterCreate); ok {
+	out := &CreateApplicationResponse{Result: res}
+	if custom, ok := interface{}(in).(ApplicationsApplicationWithAfterCreate); ok {
 		var err error
 		if err = custom.AfterCreate(ctx, out, db); err != nil {
 			return nil, err
@@ -8991,18 +8893,18 @@ func (m *ManifestsDefaultServer) Create(ctx context.Context, in *CreateManifestR
 	return out, nil
 }
 
-// ManifestsManifestWithBeforeCreate called before DefaultCreateManifest in the default Create handler
-type ManifestsManifestWithBeforeCreate interface {
+// ApplicationsApplicationWithBeforeCreate called before DefaultCreateApplication in the default Create handler
+type ApplicationsApplicationWithBeforeCreate interface {
 	BeforeCreate(context.Context, *gorm1.DB) (*gorm1.DB, error)
 }
 
-// ManifestsManifestWithAfterCreate called before DefaultCreateManifest in the default Create handler
-type ManifestsManifestWithAfterCreate interface {
-	AfterCreate(context.Context, *CreateManifestResponse, *gorm1.DB) error
+// ApplicationsApplicationWithAfterCreate called before DefaultCreateApplication in the default Create handler
+type ApplicationsApplicationWithAfterCreate interface {
+	AfterCreate(context.Context, *CreateApplicationResponse, *gorm1.DB) error
 }
 
 // Read ...
-func (m *ManifestsDefaultServer) Read(ctx context.Context, in *ReadManifestRequest) (*ReadManifestResponse, error) {
+func (m *ApplicationsDefaultServer) Read(ctx context.Context, in *ReadApplicationRequest) (*ReadApplicationResponse, error) {
 	txn, ok := gorm2.FromContext(ctx)
 	if !ok {
 		return nil, errors1.NoTransactionError
@@ -9011,18 +8913,18 @@ func (m *ManifestsDefaultServer) Read(ctx context.Context, in *ReadManifestReque
 	if db.Error != nil {
 		return nil, db.Error
 	}
-	if custom, ok := interface{}(in).(ManifestsManifestWithBeforeRead); ok {
+	if custom, ok := interface{}(in).(ApplicationsApplicationWithBeforeRead); ok {
 		var err error
 		if db, err = custom.BeforeRead(ctx, db); err != nil {
 			return nil, err
 		}
 	}
-	res, err := DefaultReadManifest(ctx, &Manifest{Id: in.GetId()}, db, in.Fields)
+	res, err := DefaultReadApplication(ctx, &Application{Id: in.GetId()}, db, in.Fields)
 	if err != nil {
 		return nil, err
 	}
-	out := &ReadManifestResponse{Result: res}
-	if custom, ok := interface{}(in).(ManifestsManifestWithAfterRead); ok {
+	out := &ReadApplicationResponse{Result: res}
+	if custom, ok := interface{}(in).(ApplicationsApplicationWithAfterRead); ok {
 		var err error
 		if err = custom.AfterRead(ctx, out, db); err != nil {
 			return nil, err
@@ -9031,20 +8933,20 @@ func (m *ManifestsDefaultServer) Read(ctx context.Context, in *ReadManifestReque
 	return out, nil
 }
 
-// ManifestsManifestWithBeforeRead called before DefaultReadManifest in the default Read handler
-type ManifestsManifestWithBeforeRead interface {
+// ApplicationsApplicationWithBeforeRead called before DefaultReadApplication in the default Read handler
+type ApplicationsApplicationWithBeforeRead interface {
 	BeforeRead(context.Context, *gorm1.DB) (*gorm1.DB, error)
 }
 
-// ManifestsManifestWithAfterRead called before DefaultReadManifest in the default Read handler
-type ManifestsManifestWithAfterRead interface {
-	AfterRead(context.Context, *ReadManifestResponse, *gorm1.DB) error
+// ApplicationsApplicationWithAfterRead called before DefaultReadApplication in the default Read handler
+type ApplicationsApplicationWithAfterRead interface {
+	AfterRead(context.Context, *ReadApplicationResponse, *gorm1.DB) error
 }
 
 // Update ...
-func (m *ManifestsDefaultServer) Update(ctx context.Context, in *UpdateManifestRequest) (*UpdateManifestResponse, error) {
+func (m *ApplicationsDefaultServer) Update(ctx context.Context, in *UpdateApplicationRequest) (*UpdateApplicationResponse, error) {
 	var err error
-	var res *Manifest
+	var res *Application
 	txn, ok := gorm2.FromContext(ctx)
 	if !ok {
 		return nil, errors1.NoTransactionError
@@ -9053,22 +8955,22 @@ func (m *ManifestsDefaultServer) Update(ctx context.Context, in *UpdateManifestR
 	if db.Error != nil {
 		return nil, db.Error
 	}
-	if custom, ok := interface{}(in).(ManifestsManifestWithBeforeUpdate); ok {
+	if custom, ok := interface{}(in).(ApplicationsApplicationWithBeforeUpdate); ok {
 		var err error
 		if db, err = custom.BeforeUpdate(ctx, db); err != nil {
 			return nil, err
 		}
 	}
 	if in.GetFields() == nil {
-		res, err = DefaultStrictUpdateManifest(ctx, in.GetPayload(), db)
+		res, err = DefaultStrictUpdateApplication(ctx, in.GetPayload(), db)
 	} else {
-		res, err = DefaultPatchManifest(ctx, in.GetPayload(), in.GetFields(), db)
+		res, err = DefaultPatchApplication(ctx, in.GetPayload(), in.GetFields(), db)
 	}
 	if err != nil {
 		return nil, err
 	}
-	out := &UpdateManifestResponse{Result: res}
-	if custom, ok := interface{}(in).(ManifestsManifestWithAfterUpdate); ok {
+	out := &UpdateApplicationResponse{Result: res}
+	if custom, ok := interface{}(in).(ApplicationsApplicationWithAfterUpdate); ok {
 		var err error
 		if err = custom.AfterUpdate(ctx, out, db); err != nil {
 			return nil, err
@@ -9077,18 +8979,18 @@ func (m *ManifestsDefaultServer) Update(ctx context.Context, in *UpdateManifestR
 	return out, nil
 }
 
-// ManifestsManifestWithBeforeUpdate called before DefaultUpdateManifest in the default Update handler
-type ManifestsManifestWithBeforeUpdate interface {
+// ApplicationsApplicationWithBeforeUpdate called before DefaultUpdateApplication in the default Update handler
+type ApplicationsApplicationWithBeforeUpdate interface {
 	BeforeUpdate(context.Context, *gorm1.DB) (*gorm1.DB, error)
 }
 
-// ManifestsManifestWithAfterUpdate called before DefaultUpdateManifest in the default Update handler
-type ManifestsManifestWithAfterUpdate interface {
-	AfterUpdate(context.Context, *UpdateManifestResponse, *gorm1.DB) error
+// ApplicationsApplicationWithAfterUpdate called before DefaultUpdateApplication in the default Update handler
+type ApplicationsApplicationWithAfterUpdate interface {
+	AfterUpdate(context.Context, *UpdateApplicationResponse, *gorm1.DB) error
 }
 
 // Delete ...
-func (m *ManifestsDefaultServer) Delete(ctx context.Context, in *DeleteManifestRequest) (*DeleteManifestResponse, error) {
+func (m *ApplicationsDefaultServer) Delete(ctx context.Context, in *DeleteApplicationRequest) (*DeleteApplicationResponse, error) {
 	txn, ok := gorm2.FromContext(ctx)
 	if !ok {
 		return nil, errors1.NoTransactionError
@@ -9097,18 +8999,18 @@ func (m *ManifestsDefaultServer) Delete(ctx context.Context, in *DeleteManifestR
 	if db.Error != nil {
 		return nil, db.Error
 	}
-	if custom, ok := interface{}(in).(ManifestsManifestWithBeforeDelete); ok {
+	if custom, ok := interface{}(in).(ApplicationsApplicationWithBeforeDelete); ok {
 		var err error
 		if db, err = custom.BeforeDelete(ctx, db); err != nil {
 			return nil, err
 		}
 	}
-	err := DefaultDeleteManifest(ctx, &Manifest{Id: in.GetId()}, db)
+	err := DefaultDeleteApplication(ctx, &Application{Id: in.GetId()}, db)
 	if err != nil {
 		return nil, err
 	}
-	out := &DeleteManifestResponse{}
-	if custom, ok := interface{}(in).(ManifestsManifestWithAfterDelete); ok {
+	out := &DeleteApplicationResponse{}
+	if custom, ok := interface{}(in).(ApplicationsApplicationWithAfterDelete); ok {
 		var err error
 		if err = custom.AfterDelete(ctx, out, db); err != nil {
 			return nil, err
@@ -9117,18 +9019,18 @@ func (m *ManifestsDefaultServer) Delete(ctx context.Context, in *DeleteManifestR
 	return out, nil
 }
 
-// ManifestsManifestWithBeforeDelete called before DefaultDeleteManifest in the default Delete handler
-type ManifestsManifestWithBeforeDelete interface {
+// ApplicationsApplicationWithBeforeDelete called before DefaultDeleteApplication in the default Delete handler
+type ApplicationsApplicationWithBeforeDelete interface {
 	BeforeDelete(context.Context, *gorm1.DB) (*gorm1.DB, error)
 }
 
-// ManifestsManifestWithAfterDelete called before DefaultDeleteManifest in the default Delete handler
-type ManifestsManifestWithAfterDelete interface {
-	AfterDelete(context.Context, *DeleteManifestResponse, *gorm1.DB) error
+// ApplicationsApplicationWithAfterDelete called before DefaultDeleteApplication in the default Delete handler
+type ApplicationsApplicationWithAfterDelete interface {
+	AfterDelete(context.Context, *DeleteApplicationResponse, *gorm1.DB) error
 }
 
 // List ...
-func (m *ManifestsDefaultServer) List(ctx context.Context, in *ListManifestRequest) (*ListManifestsResponse, error) {
+func (m *ApplicationsDefaultServer) List(ctx context.Context, in *ListApplicationRequest) (*ListApplicationsResponse, error) {
 	txn, ok := gorm2.FromContext(ctx)
 	if !ok {
 		return nil, errors1.NoTransactionError
@@ -9137,7 +9039,7 @@ func (m *ManifestsDefaultServer) List(ctx context.Context, in *ListManifestReque
 	if db.Error != nil {
 		return nil, db.Error
 	}
-	if custom, ok := interface{}(in).(ManifestsManifestWithBeforeList); ok {
+	if custom, ok := interface{}(in).(ApplicationsApplicationWithBeforeList); ok {
 		var err error
 		if db, err = custom.BeforeList(ctx, db); err != nil {
 			return nil, err
@@ -9148,7 +9050,7 @@ func (m *ManifestsDefaultServer) List(ctx context.Context, in *ListManifestReque
 		in.Paging.Limit++
 		pagedRequest = true
 	}
-	res, err := DefaultListManifest(ctx, db, in.Filter, in.OrderBy, in.Paging, in.Fields)
+	res, err := DefaultListApplication(ctx, db, in.Filter, in.OrderBy, in.Paging, in.Fields)
 	if err != nil {
 		return nil, err
 	}
@@ -9163,8 +9065,8 @@ func (m *ManifestsDefaultServer) List(ctx context.Context, in *ListManifestReque
 		}
 		resPaging = &query1.PageInfo{Offset: offset}
 	}
-	out := &ListManifestsResponse{Results: res, Page: resPaging}
-	if custom, ok := interface{}(in).(ManifestsManifestWithAfterList); ok {
+	out := &ListApplicationsResponse{Results: res, Page: resPaging}
+	if custom, ok := interface{}(in).(ApplicationsApplicationWithAfterList); ok {
 		var err error
 		if err = custom.AfterList(ctx, out, db); err != nil {
 			return nil, err
@@ -9173,14 +9075,686 @@ func (m *ManifestsDefaultServer) List(ctx context.Context, in *ListManifestReque
 	return out, nil
 }
 
-// ManifestsManifestWithBeforeList called before DefaultListManifest in the default List handler
-type ManifestsManifestWithBeforeList interface {
+// ApplicationsApplicationWithBeforeList called before DefaultListApplication in the default List handler
+type ApplicationsApplicationWithBeforeList interface {
 	BeforeList(context.Context, *gorm1.DB) (*gorm1.DB, error)
 }
 
-// ManifestsManifestWithAfterList called before DefaultListManifest in the default List handler
-type ManifestsManifestWithAfterList interface {
-	AfterList(context.Context, *ListManifestsResponse, *gorm1.DB) error
+// ApplicationsApplicationWithAfterList called before DefaultListApplication in the default List handler
+type ApplicationsApplicationWithAfterList interface {
+	AfterList(context.Context, *ListApplicationsResponse, *gorm1.DB) error
+}
+type ChartVersionsDefaultServer struct {
+}
+
+// Create ...
+func (m *ChartVersionsDefaultServer) Create(ctx context.Context, in *CreateChartVersionRequest) (*CreateChartVersionResponse, error) {
+	txn, ok := gorm2.FromContext(ctx)
+	if !ok {
+		return nil, errors1.NoTransactionError
+	}
+	db := txn.Begin()
+	if db.Error != nil {
+		return nil, db.Error
+	}
+	if custom, ok := interface{}(in).(ChartVersionsChartVersionWithBeforeCreate); ok {
+		var err error
+		if db, err = custom.BeforeCreate(ctx, db); err != nil {
+			return nil, err
+		}
+	}
+	res, err := DefaultCreateChartVersion(ctx, in.GetPayload(), db)
+	if err != nil {
+		return nil, err
+	}
+	out := &CreateChartVersionResponse{Result: res}
+	if custom, ok := interface{}(in).(ChartVersionsChartVersionWithAfterCreate); ok {
+		var err error
+		if err = custom.AfterCreate(ctx, out, db); err != nil {
+			return nil, err
+		}
+	}
+	return out, nil
+}
+
+// ChartVersionsChartVersionWithBeforeCreate called before DefaultCreateChartVersion in the default Create handler
+type ChartVersionsChartVersionWithBeforeCreate interface {
+	BeforeCreate(context.Context, *gorm1.DB) (*gorm1.DB, error)
+}
+
+// ChartVersionsChartVersionWithAfterCreate called before DefaultCreateChartVersion in the default Create handler
+type ChartVersionsChartVersionWithAfterCreate interface {
+	AfterCreate(context.Context, *CreateChartVersionResponse, *gorm1.DB) error
+}
+
+// Read ...
+func (m *ChartVersionsDefaultServer) Read(ctx context.Context, in *ReadChartVersionRequest) (*ReadChartVersionResponse, error) {
+	txn, ok := gorm2.FromContext(ctx)
+	if !ok {
+		return nil, errors1.NoTransactionError
+	}
+	db := txn.Begin()
+	if db.Error != nil {
+		return nil, db.Error
+	}
+	if custom, ok := interface{}(in).(ChartVersionsChartVersionWithBeforeRead); ok {
+		var err error
+		if db, err = custom.BeforeRead(ctx, db); err != nil {
+			return nil, err
+		}
+	}
+	res, err := DefaultReadChartVersion(ctx, &ChartVersion{Id: in.GetId()}, db, in.Fields)
+	if err != nil {
+		return nil, err
+	}
+	out := &ReadChartVersionResponse{Result: res}
+	if custom, ok := interface{}(in).(ChartVersionsChartVersionWithAfterRead); ok {
+		var err error
+		if err = custom.AfterRead(ctx, out, db); err != nil {
+			return nil, err
+		}
+	}
+	return out, nil
+}
+
+// ChartVersionsChartVersionWithBeforeRead called before DefaultReadChartVersion in the default Read handler
+type ChartVersionsChartVersionWithBeforeRead interface {
+	BeforeRead(context.Context, *gorm1.DB) (*gorm1.DB, error)
+}
+
+// ChartVersionsChartVersionWithAfterRead called before DefaultReadChartVersion in the default Read handler
+type ChartVersionsChartVersionWithAfterRead interface {
+	AfterRead(context.Context, *ReadChartVersionResponse, *gorm1.DB) error
+}
+
+// Update ...
+func (m *ChartVersionsDefaultServer) Update(ctx context.Context, in *UpdateChartVersionRequest) (*UpdateChartVersionResponse, error) {
+	var err error
+	var res *ChartVersion
+	txn, ok := gorm2.FromContext(ctx)
+	if !ok {
+		return nil, errors1.NoTransactionError
+	}
+	db := txn.Begin()
+	if db.Error != nil {
+		return nil, db.Error
+	}
+	if custom, ok := interface{}(in).(ChartVersionsChartVersionWithBeforeUpdate); ok {
+		var err error
+		if db, err = custom.BeforeUpdate(ctx, db); err != nil {
+			return nil, err
+		}
+	}
+	if in.GetFields() == nil {
+		res, err = DefaultStrictUpdateChartVersion(ctx, in.GetPayload(), db)
+	} else {
+		res, err = DefaultPatchChartVersion(ctx, in.GetPayload(), in.GetFields(), db)
+	}
+	if err != nil {
+		return nil, err
+	}
+	out := &UpdateChartVersionResponse{Result: res}
+	if custom, ok := interface{}(in).(ChartVersionsChartVersionWithAfterUpdate); ok {
+		var err error
+		if err = custom.AfterUpdate(ctx, out, db); err != nil {
+			return nil, err
+		}
+	}
+	return out, nil
+}
+
+// ChartVersionsChartVersionWithBeforeUpdate called before DefaultUpdateChartVersion in the default Update handler
+type ChartVersionsChartVersionWithBeforeUpdate interface {
+	BeforeUpdate(context.Context, *gorm1.DB) (*gorm1.DB, error)
+}
+
+// ChartVersionsChartVersionWithAfterUpdate called before DefaultUpdateChartVersion in the default Update handler
+type ChartVersionsChartVersionWithAfterUpdate interface {
+	AfterUpdate(context.Context, *UpdateChartVersionResponse, *gorm1.DB) error
+}
+
+// Delete ...
+func (m *ChartVersionsDefaultServer) Delete(ctx context.Context, in *DeleteChartVersionRequest) (*DeleteChartVersionResponse, error) {
+	txn, ok := gorm2.FromContext(ctx)
+	if !ok {
+		return nil, errors1.NoTransactionError
+	}
+	db := txn.Begin()
+	if db.Error != nil {
+		return nil, db.Error
+	}
+	if custom, ok := interface{}(in).(ChartVersionsChartVersionWithBeforeDelete); ok {
+		var err error
+		if db, err = custom.BeforeDelete(ctx, db); err != nil {
+			return nil, err
+		}
+	}
+	err := DefaultDeleteChartVersion(ctx, &ChartVersion{Id: in.GetId()}, db)
+	if err != nil {
+		return nil, err
+	}
+	out := &DeleteChartVersionResponse{}
+	if custom, ok := interface{}(in).(ChartVersionsChartVersionWithAfterDelete); ok {
+		var err error
+		if err = custom.AfterDelete(ctx, out, db); err != nil {
+			return nil, err
+		}
+	}
+	return out, nil
+}
+
+// ChartVersionsChartVersionWithBeforeDelete called before DefaultDeleteChartVersion in the default Delete handler
+type ChartVersionsChartVersionWithBeforeDelete interface {
+	BeforeDelete(context.Context, *gorm1.DB) (*gorm1.DB, error)
+}
+
+// ChartVersionsChartVersionWithAfterDelete called before DefaultDeleteChartVersion in the default Delete handler
+type ChartVersionsChartVersionWithAfterDelete interface {
+	AfterDelete(context.Context, *DeleteChartVersionResponse, *gorm1.DB) error
+}
+
+// List ...
+func (m *ChartVersionsDefaultServer) List(ctx context.Context, in *ListChartVersionRequest) (*ListChartVersionsResponse, error) {
+	txn, ok := gorm2.FromContext(ctx)
+	if !ok {
+		return nil, errors1.NoTransactionError
+	}
+	db := txn.Begin()
+	if db.Error != nil {
+		return nil, db.Error
+	}
+	if custom, ok := interface{}(in).(ChartVersionsChartVersionWithBeforeList); ok {
+		var err error
+		if db, err = custom.BeforeList(ctx, db); err != nil {
+			return nil, err
+		}
+	}
+	pagedRequest := false
+	if in.GetPaging().GetLimit() >= 1 {
+		in.Paging.Limit++
+		pagedRequest = true
+	}
+	res, err := DefaultListChartVersion(ctx, db, in.Filter, in.OrderBy, in.Paging, in.Fields)
+	if err != nil {
+		return nil, err
+	}
+	var resPaging *query1.PageInfo
+	if pagedRequest {
+		var offset int32
+		var size int32 = int32(len(res))
+		if size == in.GetPaging().GetLimit() {
+			size--
+			res = res[:size]
+			offset = in.GetPaging().GetOffset() + size
+		}
+		resPaging = &query1.PageInfo{Offset: offset}
+	}
+	out := &ListChartVersionsResponse{Results: res, Page: resPaging}
+	if custom, ok := interface{}(in).(ChartVersionsChartVersionWithAfterList); ok {
+		var err error
+		if err = custom.AfterList(ctx, out, db); err != nil {
+			return nil, err
+		}
+	}
+	return out, nil
+}
+
+// ChartVersionsChartVersionWithBeforeList called before DefaultListChartVersion in the default List handler
+type ChartVersionsChartVersionWithBeforeList interface {
+	BeforeList(context.Context, *gorm1.DB) (*gorm1.DB, error)
+}
+
+// ChartVersionsChartVersionWithAfterList called before DefaultListChartVersion in the default List handler
+type ChartVersionsChartVersionWithAfterList interface {
+	AfterList(context.Context, *ListChartVersionsResponse, *gorm1.DB) error
+}
+type ApplicationInstancesDefaultServer struct {
+}
+
+// Create ...
+func (m *ApplicationInstancesDefaultServer) Create(ctx context.Context, in *CreateApplicationInstanceRequest) (*CreateApplicationInstanceResponse, error) {
+	txn, ok := gorm2.FromContext(ctx)
+	if !ok {
+		return nil, errors1.NoTransactionError
+	}
+	db := txn.Begin()
+	if db.Error != nil {
+		return nil, db.Error
+	}
+	if custom, ok := interface{}(in).(ApplicationInstancesApplicationInstanceWithBeforeCreate); ok {
+		var err error
+		if db, err = custom.BeforeCreate(ctx, db); err != nil {
+			return nil, err
+		}
+	}
+	res, err := DefaultCreateApplicationInstance(ctx, in.GetPayload(), db)
+	if err != nil {
+		return nil, err
+	}
+	out := &CreateApplicationInstanceResponse{Result: res}
+	if custom, ok := interface{}(in).(ApplicationInstancesApplicationInstanceWithAfterCreate); ok {
+		var err error
+		if err = custom.AfterCreate(ctx, out, db); err != nil {
+			return nil, err
+		}
+	}
+	return out, nil
+}
+
+// ApplicationInstancesApplicationInstanceWithBeforeCreate called before DefaultCreateApplicationInstance in the default Create handler
+type ApplicationInstancesApplicationInstanceWithBeforeCreate interface {
+	BeforeCreate(context.Context, *gorm1.DB) (*gorm1.DB, error)
+}
+
+// ApplicationInstancesApplicationInstanceWithAfterCreate called before DefaultCreateApplicationInstance in the default Create handler
+type ApplicationInstancesApplicationInstanceWithAfterCreate interface {
+	AfterCreate(context.Context, *CreateApplicationInstanceResponse, *gorm1.DB) error
+}
+
+// Read ...
+func (m *ApplicationInstancesDefaultServer) Read(ctx context.Context, in *ReadApplicationInstanceRequest) (*ReadApplicationInstanceResponse, error) {
+	txn, ok := gorm2.FromContext(ctx)
+	if !ok {
+		return nil, errors1.NoTransactionError
+	}
+	db := txn.Begin()
+	if db.Error != nil {
+		return nil, db.Error
+	}
+	if custom, ok := interface{}(in).(ApplicationInstancesApplicationInstanceWithBeforeRead); ok {
+		var err error
+		if db, err = custom.BeforeRead(ctx, db); err != nil {
+			return nil, err
+		}
+	}
+	res, err := DefaultReadApplicationInstance(ctx, &ApplicationInstance{Id: in.GetId()}, db, in.Fields)
+	if err != nil {
+		return nil, err
+	}
+	out := &ReadApplicationInstanceResponse{Result: res}
+	if custom, ok := interface{}(in).(ApplicationInstancesApplicationInstanceWithAfterRead); ok {
+		var err error
+		if err = custom.AfterRead(ctx, out, db); err != nil {
+			return nil, err
+		}
+	}
+	return out, nil
+}
+
+// ApplicationInstancesApplicationInstanceWithBeforeRead called before DefaultReadApplicationInstance in the default Read handler
+type ApplicationInstancesApplicationInstanceWithBeforeRead interface {
+	BeforeRead(context.Context, *gorm1.DB) (*gorm1.DB, error)
+}
+
+// ApplicationInstancesApplicationInstanceWithAfterRead called before DefaultReadApplicationInstance in the default Read handler
+type ApplicationInstancesApplicationInstanceWithAfterRead interface {
+	AfterRead(context.Context, *ReadApplicationInstanceResponse, *gorm1.DB) error
+}
+
+// Update ...
+func (m *ApplicationInstancesDefaultServer) Update(ctx context.Context, in *UpdateApplicationInstanceRequest) (*UpdateApplicationInstanceResponse, error) {
+	var err error
+	var res *ApplicationInstance
+	txn, ok := gorm2.FromContext(ctx)
+	if !ok {
+		return nil, errors1.NoTransactionError
+	}
+	db := txn.Begin()
+	if db.Error != nil {
+		return nil, db.Error
+	}
+	if custom, ok := interface{}(in).(ApplicationInstancesApplicationInstanceWithBeforeUpdate); ok {
+		var err error
+		if db, err = custom.BeforeUpdate(ctx, db); err != nil {
+			return nil, err
+		}
+	}
+	if in.GetFields() == nil {
+		res, err = DefaultStrictUpdateApplicationInstance(ctx, in.GetPayload(), db)
+	} else {
+		res, err = DefaultPatchApplicationInstance(ctx, in.GetPayload(), in.GetFields(), db)
+	}
+	if err != nil {
+		return nil, err
+	}
+	out := &UpdateApplicationInstanceResponse{Result: res}
+	if custom, ok := interface{}(in).(ApplicationInstancesApplicationInstanceWithAfterUpdate); ok {
+		var err error
+		if err = custom.AfterUpdate(ctx, out, db); err != nil {
+			return nil, err
+		}
+	}
+	return out, nil
+}
+
+// ApplicationInstancesApplicationInstanceWithBeforeUpdate called before DefaultUpdateApplicationInstance in the default Update handler
+type ApplicationInstancesApplicationInstanceWithBeforeUpdate interface {
+	BeforeUpdate(context.Context, *gorm1.DB) (*gorm1.DB, error)
+}
+
+// ApplicationInstancesApplicationInstanceWithAfterUpdate called before DefaultUpdateApplicationInstance in the default Update handler
+type ApplicationInstancesApplicationInstanceWithAfterUpdate interface {
+	AfterUpdate(context.Context, *UpdateApplicationInstanceResponse, *gorm1.DB) error
+}
+
+// Delete ...
+func (m *ApplicationInstancesDefaultServer) Delete(ctx context.Context, in *DeleteApplicationInstanceRequest) (*DeleteApplicationInstanceResponse, error) {
+	txn, ok := gorm2.FromContext(ctx)
+	if !ok {
+		return nil, errors1.NoTransactionError
+	}
+	db := txn.Begin()
+	if db.Error != nil {
+		return nil, db.Error
+	}
+	if custom, ok := interface{}(in).(ApplicationInstancesApplicationInstanceWithBeforeDelete); ok {
+		var err error
+		if db, err = custom.BeforeDelete(ctx, db); err != nil {
+			return nil, err
+		}
+	}
+	err := DefaultDeleteApplicationInstance(ctx, &ApplicationInstance{Id: in.GetId()}, db)
+	if err != nil {
+		return nil, err
+	}
+	out := &DeleteApplicationInstanceResponse{}
+	if custom, ok := interface{}(in).(ApplicationInstancesApplicationInstanceWithAfterDelete); ok {
+		var err error
+		if err = custom.AfterDelete(ctx, out, db); err != nil {
+			return nil, err
+		}
+	}
+	return out, nil
+}
+
+// ApplicationInstancesApplicationInstanceWithBeforeDelete called before DefaultDeleteApplicationInstance in the default Delete handler
+type ApplicationInstancesApplicationInstanceWithBeforeDelete interface {
+	BeforeDelete(context.Context, *gorm1.DB) (*gorm1.DB, error)
+}
+
+// ApplicationInstancesApplicationInstanceWithAfterDelete called before DefaultDeleteApplicationInstance in the default Delete handler
+type ApplicationInstancesApplicationInstanceWithAfterDelete interface {
+	AfterDelete(context.Context, *DeleteApplicationInstanceResponse, *gorm1.DB) error
+}
+
+// List ...
+func (m *ApplicationInstancesDefaultServer) List(ctx context.Context, in *ListApplicationInstanceRequest) (*ListApplicationInstancesResponse, error) {
+	txn, ok := gorm2.FromContext(ctx)
+	if !ok {
+		return nil, errors1.NoTransactionError
+	}
+	db := txn.Begin()
+	if db.Error != nil {
+		return nil, db.Error
+	}
+	if custom, ok := interface{}(in).(ApplicationInstancesApplicationInstanceWithBeforeList); ok {
+		var err error
+		if db, err = custom.BeforeList(ctx, db); err != nil {
+			return nil, err
+		}
+	}
+	pagedRequest := false
+	if in.GetPaging().GetLimit() >= 1 {
+		in.Paging.Limit++
+		pagedRequest = true
+	}
+	res, err := DefaultListApplicationInstance(ctx, db, in.Filter, in.OrderBy, in.Paging, in.Fields)
+	if err != nil {
+		return nil, err
+	}
+	var resPaging *query1.PageInfo
+	if pagedRequest {
+		var offset int32
+		var size int32 = int32(len(res))
+		if size == in.GetPaging().GetLimit() {
+			size--
+			res = res[:size]
+			offset = in.GetPaging().GetOffset() + size
+		}
+		resPaging = &query1.PageInfo{Offset: offset}
+	}
+	out := &ListApplicationInstancesResponse{Results: res, Page: resPaging}
+	if custom, ok := interface{}(in).(ApplicationInstancesApplicationInstanceWithAfterList); ok {
+		var err error
+		if err = custom.AfterList(ctx, out, db); err != nil {
+			return nil, err
+		}
+	}
+	return out, nil
+}
+
+// ApplicationInstancesApplicationInstanceWithBeforeList called before DefaultListApplicationInstance in the default List handler
+type ApplicationInstancesApplicationInstanceWithBeforeList interface {
+	BeforeList(context.Context, *gorm1.DB) (*gorm1.DB, error)
+}
+
+// ApplicationInstancesApplicationInstanceWithAfterList called before DefaultListApplicationInstance in the default List handler
+type ApplicationInstancesApplicationInstanceWithAfterList interface {
+	AfterList(context.Context, *ListApplicationInstancesResponse, *gorm1.DB) error
+}
+type VaultsDefaultServer struct {
+}
+
+// Create ...
+func (m *VaultsDefaultServer) Create(ctx context.Context, in *CreateVaultRequest) (*CreateVaultResponse, error) {
+	txn, ok := gorm2.FromContext(ctx)
+	if !ok {
+		return nil, errors1.NoTransactionError
+	}
+	db := txn.Begin()
+	if db.Error != nil {
+		return nil, db.Error
+	}
+	if custom, ok := interface{}(in).(VaultsVaultWithBeforeCreate); ok {
+		var err error
+		if db, err = custom.BeforeCreate(ctx, db); err != nil {
+			return nil, err
+		}
+	}
+	res, err := DefaultCreateVault(ctx, in.GetPayload(), db)
+	if err != nil {
+		return nil, err
+	}
+	out := &CreateVaultResponse{Result: res}
+	if custom, ok := interface{}(in).(VaultsVaultWithAfterCreate); ok {
+		var err error
+		if err = custom.AfterCreate(ctx, out, db); err != nil {
+			return nil, err
+		}
+	}
+	return out, nil
+}
+
+// VaultsVaultWithBeforeCreate called before DefaultCreateVault in the default Create handler
+type VaultsVaultWithBeforeCreate interface {
+	BeforeCreate(context.Context, *gorm1.DB) (*gorm1.DB, error)
+}
+
+// VaultsVaultWithAfterCreate called before DefaultCreateVault in the default Create handler
+type VaultsVaultWithAfterCreate interface {
+	AfterCreate(context.Context, *CreateVaultResponse, *gorm1.DB) error
+}
+
+// Read ...
+func (m *VaultsDefaultServer) Read(ctx context.Context, in *ReadVaultRequest) (*ReadVaultResponse, error) {
+	txn, ok := gorm2.FromContext(ctx)
+	if !ok {
+		return nil, errors1.NoTransactionError
+	}
+	db := txn.Begin()
+	if db.Error != nil {
+		return nil, db.Error
+	}
+	if custom, ok := interface{}(in).(VaultsVaultWithBeforeRead); ok {
+		var err error
+		if db, err = custom.BeforeRead(ctx, db); err != nil {
+			return nil, err
+		}
+	}
+	res, err := DefaultReadVault(ctx, &Vault{Id: in.GetId()}, db, in.Fields)
+	if err != nil {
+		return nil, err
+	}
+	out := &ReadVaultResponse{Result: res}
+	if custom, ok := interface{}(in).(VaultsVaultWithAfterRead); ok {
+		var err error
+		if err = custom.AfterRead(ctx, out, db); err != nil {
+			return nil, err
+		}
+	}
+	return out, nil
+}
+
+// VaultsVaultWithBeforeRead called before DefaultReadVault in the default Read handler
+type VaultsVaultWithBeforeRead interface {
+	BeforeRead(context.Context, *gorm1.DB) (*gorm1.DB, error)
+}
+
+// VaultsVaultWithAfterRead called before DefaultReadVault in the default Read handler
+type VaultsVaultWithAfterRead interface {
+	AfterRead(context.Context, *ReadVaultResponse, *gorm1.DB) error
+}
+
+// Update ...
+func (m *VaultsDefaultServer) Update(ctx context.Context, in *UpdateVaultRequest) (*UpdateVaultResponse, error) {
+	var err error
+	var res *Vault
+	txn, ok := gorm2.FromContext(ctx)
+	if !ok {
+		return nil, errors1.NoTransactionError
+	}
+	db := txn.Begin()
+	if db.Error != nil {
+		return nil, db.Error
+	}
+	if custom, ok := interface{}(in).(VaultsVaultWithBeforeUpdate); ok {
+		var err error
+		if db, err = custom.BeforeUpdate(ctx, db); err != nil {
+			return nil, err
+		}
+	}
+	if in.GetFields() == nil {
+		res, err = DefaultStrictUpdateVault(ctx, in.GetPayload(), db)
+	} else {
+		res, err = DefaultPatchVault(ctx, in.GetPayload(), in.GetFields(), db)
+	}
+	if err != nil {
+		return nil, err
+	}
+	out := &UpdateVaultResponse{Result: res}
+	if custom, ok := interface{}(in).(VaultsVaultWithAfterUpdate); ok {
+		var err error
+		if err = custom.AfterUpdate(ctx, out, db); err != nil {
+			return nil, err
+		}
+	}
+	return out, nil
+}
+
+// VaultsVaultWithBeforeUpdate called before DefaultUpdateVault in the default Update handler
+type VaultsVaultWithBeforeUpdate interface {
+	BeforeUpdate(context.Context, *gorm1.DB) (*gorm1.DB, error)
+}
+
+// VaultsVaultWithAfterUpdate called before DefaultUpdateVault in the default Update handler
+type VaultsVaultWithAfterUpdate interface {
+	AfterUpdate(context.Context, *UpdateVaultResponse, *gorm1.DB) error
+}
+
+// Delete ...
+func (m *VaultsDefaultServer) Delete(ctx context.Context, in *DeleteVaultRequest) (*DeleteVaultResponse, error) {
+	txn, ok := gorm2.FromContext(ctx)
+	if !ok {
+		return nil, errors1.NoTransactionError
+	}
+	db := txn.Begin()
+	if db.Error != nil {
+		return nil, db.Error
+	}
+	if custom, ok := interface{}(in).(VaultsVaultWithBeforeDelete); ok {
+		var err error
+		if db, err = custom.BeforeDelete(ctx, db); err != nil {
+			return nil, err
+		}
+	}
+	err := DefaultDeleteVault(ctx, &Vault{Id: in.GetId()}, db)
+	if err != nil {
+		return nil, err
+	}
+	out := &DeleteVaultResponse{}
+	if custom, ok := interface{}(in).(VaultsVaultWithAfterDelete); ok {
+		var err error
+		if err = custom.AfterDelete(ctx, out, db); err != nil {
+			return nil, err
+		}
+	}
+	return out, nil
+}
+
+// VaultsVaultWithBeforeDelete called before DefaultDeleteVault in the default Delete handler
+type VaultsVaultWithBeforeDelete interface {
+	BeforeDelete(context.Context, *gorm1.DB) (*gorm1.DB, error)
+}
+
+// VaultsVaultWithAfterDelete called before DefaultDeleteVault in the default Delete handler
+type VaultsVaultWithAfterDelete interface {
+	AfterDelete(context.Context, *DeleteVaultResponse, *gorm1.DB) error
+}
+
+// List ...
+func (m *VaultsDefaultServer) List(ctx context.Context, in *ListVaultRequest) (*ListVaultsResponse, error) {
+	txn, ok := gorm2.FromContext(ctx)
+	if !ok {
+		return nil, errors1.NoTransactionError
+	}
+	db := txn.Begin()
+	if db.Error != nil {
+		return nil, db.Error
+	}
+	if custom, ok := interface{}(in).(VaultsVaultWithBeforeList); ok {
+		var err error
+		if db, err = custom.BeforeList(ctx, db); err != nil {
+			return nil, err
+		}
+	}
+	pagedRequest := false
+	if in.GetPaging().GetLimit() >= 1 {
+		in.Paging.Limit++
+		pagedRequest = true
+	}
+	res, err := DefaultListVault(ctx, db, in.Filter, in.OrderBy, in.Paging, in.Fields)
+	if err != nil {
+		return nil, err
+	}
+	var resPaging *query1.PageInfo
+	if pagedRequest {
+		var offset int32
+		var size int32 = int32(len(res))
+		if size == in.GetPaging().GetLimit() {
+			size--
+			res = res[:size]
+			offset = in.GetPaging().GetOffset() + size
+		}
+		resPaging = &query1.PageInfo{Offset: offset}
+	}
+	out := &ListVaultsResponse{Results: res, Page: resPaging}
+	if custom, ok := interface{}(in).(VaultsVaultWithAfterList); ok {
+		var err error
+		if err = custom.AfterList(ctx, out, db); err != nil {
+			return nil, err
+		}
+	}
+	return out, nil
+}
+
+// VaultsVaultWithBeforeList called before DefaultListVault in the default List handler
+type VaultsVaultWithBeforeList interface {
+	BeforeList(context.Context, *gorm1.DB) (*gorm1.DB, error)
+}
+
+// VaultsVaultWithAfterList called before DefaultListVault in the default List handler
+type VaultsVaultWithAfterList interface {
+	AfterList(context.Context, *ListVaultsResponse, *gorm1.DB) error
 }
 type SecretsDefaultServer struct {
 }
@@ -9406,230 +9980,6 @@ type SecretsSecretWithBeforeList interface {
 type SecretsSecretWithAfterList interface {
 	AfterList(context.Context, *ListSecretsResponse, *gorm1.DB) error
 }
-type ArtifactsDefaultServer struct {
-}
-
-// Create ...
-func (m *ArtifactsDefaultServer) Create(ctx context.Context, in *CreateArtifactRequest) (*CreateArtifactResponse, error) {
-	txn, ok := gorm2.FromContext(ctx)
-	if !ok {
-		return nil, errors1.NoTransactionError
-	}
-	db := txn.Begin()
-	if db.Error != nil {
-		return nil, db.Error
-	}
-	if custom, ok := interface{}(in).(ArtifactsArtifactWithBeforeCreate); ok {
-		var err error
-		if db, err = custom.BeforeCreate(ctx, db); err != nil {
-			return nil, err
-		}
-	}
-	res, err := DefaultCreateArtifact(ctx, in.GetPayload(), db)
-	if err != nil {
-		return nil, err
-	}
-	out := &CreateArtifactResponse{Result: res}
-	if custom, ok := interface{}(in).(ArtifactsArtifactWithAfterCreate); ok {
-		var err error
-		if err = custom.AfterCreate(ctx, out, db); err != nil {
-			return nil, err
-		}
-	}
-	return out, nil
-}
-
-// ArtifactsArtifactWithBeforeCreate called before DefaultCreateArtifact in the default Create handler
-type ArtifactsArtifactWithBeforeCreate interface {
-	BeforeCreate(context.Context, *gorm1.DB) (*gorm1.DB, error)
-}
-
-// ArtifactsArtifactWithAfterCreate called before DefaultCreateArtifact in the default Create handler
-type ArtifactsArtifactWithAfterCreate interface {
-	AfterCreate(context.Context, *CreateArtifactResponse, *gorm1.DB) error
-}
-
-// Read ...
-func (m *ArtifactsDefaultServer) Read(ctx context.Context, in *ReadArtifactRequest) (*ReadArtifactResponse, error) {
-	txn, ok := gorm2.FromContext(ctx)
-	if !ok {
-		return nil, errors1.NoTransactionError
-	}
-	db := txn.Begin()
-	if db.Error != nil {
-		return nil, db.Error
-	}
-	if custom, ok := interface{}(in).(ArtifactsArtifactWithBeforeRead); ok {
-		var err error
-		if db, err = custom.BeforeRead(ctx, db); err != nil {
-			return nil, err
-		}
-	}
-	res, err := DefaultReadArtifact(ctx, &Artifact{Id: in.GetId()}, db, in.Fields)
-	if err != nil {
-		return nil, err
-	}
-	out := &ReadArtifactResponse{Result: res}
-	if custom, ok := interface{}(in).(ArtifactsArtifactWithAfterRead); ok {
-		var err error
-		if err = custom.AfterRead(ctx, out, db); err != nil {
-			return nil, err
-		}
-	}
-	return out, nil
-}
-
-// ArtifactsArtifactWithBeforeRead called before DefaultReadArtifact in the default Read handler
-type ArtifactsArtifactWithBeforeRead interface {
-	BeforeRead(context.Context, *gorm1.DB) (*gorm1.DB, error)
-}
-
-// ArtifactsArtifactWithAfterRead called before DefaultReadArtifact in the default Read handler
-type ArtifactsArtifactWithAfterRead interface {
-	AfterRead(context.Context, *ReadArtifactResponse, *gorm1.DB) error
-}
-
-// Update ...
-func (m *ArtifactsDefaultServer) Update(ctx context.Context, in *UpdateArtifactRequest) (*UpdateArtifactResponse, error) {
-	var err error
-	var res *Artifact
-	txn, ok := gorm2.FromContext(ctx)
-	if !ok {
-		return nil, errors1.NoTransactionError
-	}
-	db := txn.Begin()
-	if db.Error != nil {
-		return nil, db.Error
-	}
-	if custom, ok := interface{}(in).(ArtifactsArtifactWithBeforeUpdate); ok {
-		var err error
-		if db, err = custom.BeforeUpdate(ctx, db); err != nil {
-			return nil, err
-		}
-	}
-	if in.GetFields() == nil {
-		res, err = DefaultStrictUpdateArtifact(ctx, in.GetPayload(), db)
-	} else {
-		res, err = DefaultPatchArtifact(ctx, in.GetPayload(), in.GetFields(), db)
-	}
-	if err != nil {
-		return nil, err
-	}
-	out := &UpdateArtifactResponse{Result: res}
-	if custom, ok := interface{}(in).(ArtifactsArtifactWithAfterUpdate); ok {
-		var err error
-		if err = custom.AfterUpdate(ctx, out, db); err != nil {
-			return nil, err
-		}
-	}
-	return out, nil
-}
-
-// ArtifactsArtifactWithBeforeUpdate called before DefaultUpdateArtifact in the default Update handler
-type ArtifactsArtifactWithBeforeUpdate interface {
-	BeforeUpdate(context.Context, *gorm1.DB) (*gorm1.DB, error)
-}
-
-// ArtifactsArtifactWithAfterUpdate called before DefaultUpdateArtifact in the default Update handler
-type ArtifactsArtifactWithAfterUpdate interface {
-	AfterUpdate(context.Context, *UpdateArtifactResponse, *gorm1.DB) error
-}
-
-// Delete ...
-func (m *ArtifactsDefaultServer) Delete(ctx context.Context, in *DeleteArtifactRequest) (*DeleteArtifactResponse, error) {
-	txn, ok := gorm2.FromContext(ctx)
-	if !ok {
-		return nil, errors1.NoTransactionError
-	}
-	db := txn.Begin()
-	if db.Error != nil {
-		return nil, db.Error
-	}
-	if custom, ok := interface{}(in).(ArtifactsArtifactWithBeforeDelete); ok {
-		var err error
-		if db, err = custom.BeforeDelete(ctx, db); err != nil {
-			return nil, err
-		}
-	}
-	err := DefaultDeleteArtifact(ctx, &Artifact{Id: in.GetId()}, db)
-	if err != nil {
-		return nil, err
-	}
-	out := &DeleteArtifactResponse{}
-	if custom, ok := interface{}(in).(ArtifactsArtifactWithAfterDelete); ok {
-		var err error
-		if err = custom.AfterDelete(ctx, out, db); err != nil {
-			return nil, err
-		}
-	}
-	return out, nil
-}
-
-// ArtifactsArtifactWithBeforeDelete called before DefaultDeleteArtifact in the default Delete handler
-type ArtifactsArtifactWithBeforeDelete interface {
-	BeforeDelete(context.Context, *gorm1.DB) (*gorm1.DB, error)
-}
-
-// ArtifactsArtifactWithAfterDelete called before DefaultDeleteArtifact in the default Delete handler
-type ArtifactsArtifactWithAfterDelete interface {
-	AfterDelete(context.Context, *DeleteArtifactResponse, *gorm1.DB) error
-}
-
-// List ...
-func (m *ArtifactsDefaultServer) List(ctx context.Context, in *ListArtifactRequest) (*ListArtifactsResponse, error) {
-	txn, ok := gorm2.FromContext(ctx)
-	if !ok {
-		return nil, errors1.NoTransactionError
-	}
-	db := txn.Begin()
-	if db.Error != nil {
-		return nil, db.Error
-	}
-	if custom, ok := interface{}(in).(ArtifactsArtifactWithBeforeList); ok {
-		var err error
-		if db, err = custom.BeforeList(ctx, db); err != nil {
-			return nil, err
-		}
-	}
-	pagedRequest := false
-	if in.GetPaging().GetLimit() >= 1 {
-		in.Paging.Limit++
-		pagedRequest = true
-	}
-	res, err := DefaultListArtifact(ctx, db, in.Filter, in.OrderBy, in.Paging, in.Fields)
-	if err != nil {
-		return nil, err
-	}
-	var resPaging *query1.PageInfo
-	if pagedRequest {
-		var offset int32
-		var size int32 = int32(len(res))
-		if size == in.GetPaging().GetLimit() {
-			size--
-			res = res[:size]
-			offset = in.GetPaging().GetOffset() + size
-		}
-		resPaging = &query1.PageInfo{Offset: offset}
-	}
-	out := &ListArtifactsResponse{Results: res, Page: resPaging}
-	if custom, ok := interface{}(in).(ArtifactsArtifactWithAfterList); ok {
-		var err error
-		if err = custom.AfterList(ctx, out, db); err != nil {
-			return nil, err
-		}
-	}
-	return out, nil
-}
-
-// ArtifactsArtifactWithBeforeList called before DefaultListArtifact in the default List handler
-type ArtifactsArtifactWithBeforeList interface {
-	BeforeList(context.Context, *gorm1.DB) (*gorm1.DB, error)
-}
-
-// ArtifactsArtifactWithAfterList called before DefaultListArtifact in the default List handler
-type ArtifactsArtifactWithAfterList interface {
-	AfterList(context.Context, *ListArtifactsResponse, *gorm1.DB) error
-}
 type AwsServicesDefaultServer struct {
 }
 
@@ -9853,6 +10203,678 @@ type AwsServicesAwsServiceWithBeforeList interface {
 // AwsServicesAwsServiceWithAfterList called before DefaultListAwsService in the default List handler
 type AwsServicesAwsServiceWithAfterList interface {
 	AfterList(context.Context, *ListAwsServicesResponse, *gorm1.DB) error
+}
+type AwsRdsInstancesDefaultServer struct {
+}
+
+// Create ...
+func (m *AwsRdsInstancesDefaultServer) Create(ctx context.Context, in *CreateAwsRdsInstanceRequest) (*CreateAwsRdsInstanceResponse, error) {
+	txn, ok := gorm2.FromContext(ctx)
+	if !ok {
+		return nil, errors1.NoTransactionError
+	}
+	db := txn.Begin()
+	if db.Error != nil {
+		return nil, db.Error
+	}
+	if custom, ok := interface{}(in).(AwsRdsInstancesAwsRdsInstanceWithBeforeCreate); ok {
+		var err error
+		if db, err = custom.BeforeCreate(ctx, db); err != nil {
+			return nil, err
+		}
+	}
+	res, err := DefaultCreateAwsRdsInstance(ctx, in.GetPayload(), db)
+	if err != nil {
+		return nil, err
+	}
+	out := &CreateAwsRdsInstanceResponse{Result: res}
+	if custom, ok := interface{}(in).(AwsRdsInstancesAwsRdsInstanceWithAfterCreate); ok {
+		var err error
+		if err = custom.AfterCreate(ctx, out, db); err != nil {
+			return nil, err
+		}
+	}
+	return out, nil
+}
+
+// AwsRdsInstancesAwsRdsInstanceWithBeforeCreate called before DefaultCreateAwsRdsInstance in the default Create handler
+type AwsRdsInstancesAwsRdsInstanceWithBeforeCreate interface {
+	BeforeCreate(context.Context, *gorm1.DB) (*gorm1.DB, error)
+}
+
+// AwsRdsInstancesAwsRdsInstanceWithAfterCreate called before DefaultCreateAwsRdsInstance in the default Create handler
+type AwsRdsInstancesAwsRdsInstanceWithAfterCreate interface {
+	AfterCreate(context.Context, *CreateAwsRdsInstanceResponse, *gorm1.DB) error
+}
+
+// Read ...
+func (m *AwsRdsInstancesDefaultServer) Read(ctx context.Context, in *ReadAwsRdsInstanceRequest) (*ReadAwsRdsInstanceResponse, error) {
+	txn, ok := gorm2.FromContext(ctx)
+	if !ok {
+		return nil, errors1.NoTransactionError
+	}
+	db := txn.Begin()
+	if db.Error != nil {
+		return nil, db.Error
+	}
+	if custom, ok := interface{}(in).(AwsRdsInstancesAwsRdsInstanceWithBeforeRead); ok {
+		var err error
+		if db, err = custom.BeforeRead(ctx, db); err != nil {
+			return nil, err
+		}
+	}
+	res, err := DefaultReadAwsRdsInstance(ctx, &AwsRdsInstance{Id: in.GetId()}, db, in.Fields)
+	if err != nil {
+		return nil, err
+	}
+	out := &ReadAwsRdsInstanceResponse{Result: res}
+	if custom, ok := interface{}(in).(AwsRdsInstancesAwsRdsInstanceWithAfterRead); ok {
+		var err error
+		if err = custom.AfterRead(ctx, out, db); err != nil {
+			return nil, err
+		}
+	}
+	return out, nil
+}
+
+// AwsRdsInstancesAwsRdsInstanceWithBeforeRead called before DefaultReadAwsRdsInstance in the default Read handler
+type AwsRdsInstancesAwsRdsInstanceWithBeforeRead interface {
+	BeforeRead(context.Context, *gorm1.DB) (*gorm1.DB, error)
+}
+
+// AwsRdsInstancesAwsRdsInstanceWithAfterRead called before DefaultReadAwsRdsInstance in the default Read handler
+type AwsRdsInstancesAwsRdsInstanceWithAfterRead interface {
+	AfterRead(context.Context, *ReadAwsRdsInstanceResponse, *gorm1.DB) error
+}
+
+// Update ...
+func (m *AwsRdsInstancesDefaultServer) Update(ctx context.Context, in *UpdateAwsRdsInstanceRequest) (*UpdateAwsRdsInstanceResponse, error) {
+	var err error
+	var res *AwsRdsInstance
+	txn, ok := gorm2.FromContext(ctx)
+	if !ok {
+		return nil, errors1.NoTransactionError
+	}
+	db := txn.Begin()
+	if db.Error != nil {
+		return nil, db.Error
+	}
+	if custom, ok := interface{}(in).(AwsRdsInstancesAwsRdsInstanceWithBeforeUpdate); ok {
+		var err error
+		if db, err = custom.BeforeUpdate(ctx, db); err != nil {
+			return nil, err
+		}
+	}
+	if in.GetFields() == nil {
+		res, err = DefaultStrictUpdateAwsRdsInstance(ctx, in.GetPayload(), db)
+	} else {
+		res, err = DefaultPatchAwsRdsInstance(ctx, in.GetPayload(), in.GetFields(), db)
+	}
+	if err != nil {
+		return nil, err
+	}
+	out := &UpdateAwsRdsInstanceResponse{Result: res}
+	if custom, ok := interface{}(in).(AwsRdsInstancesAwsRdsInstanceWithAfterUpdate); ok {
+		var err error
+		if err = custom.AfterUpdate(ctx, out, db); err != nil {
+			return nil, err
+		}
+	}
+	return out, nil
+}
+
+// AwsRdsInstancesAwsRdsInstanceWithBeforeUpdate called before DefaultUpdateAwsRdsInstance in the default Update handler
+type AwsRdsInstancesAwsRdsInstanceWithBeforeUpdate interface {
+	BeforeUpdate(context.Context, *gorm1.DB) (*gorm1.DB, error)
+}
+
+// AwsRdsInstancesAwsRdsInstanceWithAfterUpdate called before DefaultUpdateAwsRdsInstance in the default Update handler
+type AwsRdsInstancesAwsRdsInstanceWithAfterUpdate interface {
+	AfterUpdate(context.Context, *UpdateAwsRdsInstanceResponse, *gorm1.DB) error
+}
+
+// Delete ...
+func (m *AwsRdsInstancesDefaultServer) Delete(ctx context.Context, in *DeleteAwsRdsInstanceRequest) (*DeleteAwsRdsInstanceResponse, error) {
+	txn, ok := gorm2.FromContext(ctx)
+	if !ok {
+		return nil, errors1.NoTransactionError
+	}
+	db := txn.Begin()
+	if db.Error != nil {
+		return nil, db.Error
+	}
+	if custom, ok := interface{}(in).(AwsRdsInstancesAwsRdsInstanceWithBeforeDelete); ok {
+		var err error
+		if db, err = custom.BeforeDelete(ctx, db); err != nil {
+			return nil, err
+		}
+	}
+	err := DefaultDeleteAwsRdsInstance(ctx, &AwsRdsInstance{Id: in.GetId()}, db)
+	if err != nil {
+		return nil, err
+	}
+	out := &DeleteAwsRdsInstanceResponse{}
+	if custom, ok := interface{}(in).(AwsRdsInstancesAwsRdsInstanceWithAfterDelete); ok {
+		var err error
+		if err = custom.AfterDelete(ctx, out, db); err != nil {
+			return nil, err
+		}
+	}
+	return out, nil
+}
+
+// AwsRdsInstancesAwsRdsInstanceWithBeforeDelete called before DefaultDeleteAwsRdsInstance in the default Delete handler
+type AwsRdsInstancesAwsRdsInstanceWithBeforeDelete interface {
+	BeforeDelete(context.Context, *gorm1.DB) (*gorm1.DB, error)
+}
+
+// AwsRdsInstancesAwsRdsInstanceWithAfterDelete called before DefaultDeleteAwsRdsInstance in the default Delete handler
+type AwsRdsInstancesAwsRdsInstanceWithAfterDelete interface {
+	AfterDelete(context.Context, *DeleteAwsRdsInstanceResponse, *gorm1.DB) error
+}
+
+// List ...
+func (m *AwsRdsInstancesDefaultServer) List(ctx context.Context, in *ListAwsRdsInstanceRequest) (*ListAwsRdsInstancesResponse, error) {
+	txn, ok := gorm2.FromContext(ctx)
+	if !ok {
+		return nil, errors1.NoTransactionError
+	}
+	db := txn.Begin()
+	if db.Error != nil {
+		return nil, db.Error
+	}
+	if custom, ok := interface{}(in).(AwsRdsInstancesAwsRdsInstanceWithBeforeList); ok {
+		var err error
+		if db, err = custom.BeforeList(ctx, db); err != nil {
+			return nil, err
+		}
+	}
+	pagedRequest := false
+	if in.GetPaging().GetLimit() >= 1 {
+		in.Paging.Limit++
+		pagedRequest = true
+	}
+	res, err := DefaultListAwsRdsInstance(ctx, db, in.Filter, in.OrderBy, in.Paging, in.Fields)
+	if err != nil {
+		return nil, err
+	}
+	var resPaging *query1.PageInfo
+	if pagedRequest {
+		var offset int32
+		var size int32 = int32(len(res))
+		if size == in.GetPaging().GetLimit() {
+			size--
+			res = res[:size]
+			offset = in.GetPaging().GetOffset() + size
+		}
+		resPaging = &query1.PageInfo{Offset: offset}
+	}
+	out := &ListAwsRdsInstancesResponse{Results: res, Page: resPaging}
+	if custom, ok := interface{}(in).(AwsRdsInstancesAwsRdsInstanceWithAfterList); ok {
+		var err error
+		if err = custom.AfterList(ctx, out, db); err != nil {
+			return nil, err
+		}
+	}
+	return out, nil
+}
+
+// AwsRdsInstancesAwsRdsInstanceWithBeforeList called before DefaultListAwsRdsInstance in the default List handler
+type AwsRdsInstancesAwsRdsInstanceWithBeforeList interface {
+	BeforeList(context.Context, *gorm1.DB) (*gorm1.DB, error)
+}
+
+// AwsRdsInstancesAwsRdsInstanceWithAfterList called before DefaultListAwsRdsInstance in the default List handler
+type AwsRdsInstancesAwsRdsInstanceWithAfterList interface {
+	AfterList(context.Context, *ListAwsRdsInstancesResponse, *gorm1.DB) error
+}
+type ValuesDefaultServer struct {
+}
+
+// Create ...
+func (m *ValuesDefaultServer) Create(ctx context.Context, in *CreateValueRequest) (*CreateValueResponse, error) {
+	txn, ok := gorm2.FromContext(ctx)
+	if !ok {
+		return nil, errors1.NoTransactionError
+	}
+	db := txn.Begin()
+	if db.Error != nil {
+		return nil, db.Error
+	}
+	if custom, ok := interface{}(in).(ValuesValueWithBeforeCreate); ok {
+		var err error
+		if db, err = custom.BeforeCreate(ctx, db); err != nil {
+			return nil, err
+		}
+	}
+	res, err := DefaultCreateValue(ctx, in.GetPayload(), db)
+	if err != nil {
+		return nil, err
+	}
+	out := &CreateValueResponse{Result: res}
+	if custom, ok := interface{}(in).(ValuesValueWithAfterCreate); ok {
+		var err error
+		if err = custom.AfterCreate(ctx, out, db); err != nil {
+			return nil, err
+		}
+	}
+	return out, nil
+}
+
+// ValuesValueWithBeforeCreate called before DefaultCreateValue in the default Create handler
+type ValuesValueWithBeforeCreate interface {
+	BeforeCreate(context.Context, *gorm1.DB) (*gorm1.DB, error)
+}
+
+// ValuesValueWithAfterCreate called before DefaultCreateValue in the default Create handler
+type ValuesValueWithAfterCreate interface {
+	AfterCreate(context.Context, *CreateValueResponse, *gorm1.DB) error
+}
+
+// Read ...
+func (m *ValuesDefaultServer) Read(ctx context.Context, in *ReadValueRequest) (*ReadValueResponse, error) {
+	txn, ok := gorm2.FromContext(ctx)
+	if !ok {
+		return nil, errors1.NoTransactionError
+	}
+	db := txn.Begin()
+	if db.Error != nil {
+		return nil, db.Error
+	}
+	if custom, ok := interface{}(in).(ValuesValueWithBeforeRead); ok {
+		var err error
+		if db, err = custom.BeforeRead(ctx, db); err != nil {
+			return nil, err
+		}
+	}
+	res, err := DefaultReadValue(ctx, &Value{Id: in.GetId()}, db, in.Fields)
+	if err != nil {
+		return nil, err
+	}
+	out := &ReadValueResponse{Result: res}
+	if custom, ok := interface{}(in).(ValuesValueWithAfterRead); ok {
+		var err error
+		if err = custom.AfterRead(ctx, out, db); err != nil {
+			return nil, err
+		}
+	}
+	return out, nil
+}
+
+// ValuesValueWithBeforeRead called before DefaultReadValue in the default Read handler
+type ValuesValueWithBeforeRead interface {
+	BeforeRead(context.Context, *gorm1.DB) (*gorm1.DB, error)
+}
+
+// ValuesValueWithAfterRead called before DefaultReadValue in the default Read handler
+type ValuesValueWithAfterRead interface {
+	AfterRead(context.Context, *ReadValueResponse, *gorm1.DB) error
+}
+
+// Update ...
+func (m *ValuesDefaultServer) Update(ctx context.Context, in *UpdateValueRequest) (*UpdateValueResponse, error) {
+	var err error
+	var res *Value
+	txn, ok := gorm2.FromContext(ctx)
+	if !ok {
+		return nil, errors1.NoTransactionError
+	}
+	db := txn.Begin()
+	if db.Error != nil {
+		return nil, db.Error
+	}
+	if custom, ok := interface{}(in).(ValuesValueWithBeforeUpdate); ok {
+		var err error
+		if db, err = custom.BeforeUpdate(ctx, db); err != nil {
+			return nil, err
+		}
+	}
+	if in.GetFields() == nil {
+		res, err = DefaultStrictUpdateValue(ctx, in.GetPayload(), db)
+	} else {
+		res, err = DefaultPatchValue(ctx, in.GetPayload(), in.GetFields(), db)
+	}
+	if err != nil {
+		return nil, err
+	}
+	out := &UpdateValueResponse{Result: res}
+	if custom, ok := interface{}(in).(ValuesValueWithAfterUpdate); ok {
+		var err error
+		if err = custom.AfterUpdate(ctx, out, db); err != nil {
+			return nil, err
+		}
+	}
+	return out, nil
+}
+
+// ValuesValueWithBeforeUpdate called before DefaultUpdateValue in the default Update handler
+type ValuesValueWithBeforeUpdate interface {
+	BeforeUpdate(context.Context, *gorm1.DB) (*gorm1.DB, error)
+}
+
+// ValuesValueWithAfterUpdate called before DefaultUpdateValue in the default Update handler
+type ValuesValueWithAfterUpdate interface {
+	AfterUpdate(context.Context, *UpdateValueResponse, *gorm1.DB) error
+}
+
+// Delete ...
+func (m *ValuesDefaultServer) Delete(ctx context.Context, in *DeleteValueRequest) (*DeleteValueResponse, error) {
+	txn, ok := gorm2.FromContext(ctx)
+	if !ok {
+		return nil, errors1.NoTransactionError
+	}
+	db := txn.Begin()
+	if db.Error != nil {
+		return nil, db.Error
+	}
+	if custom, ok := interface{}(in).(ValuesValueWithBeforeDelete); ok {
+		var err error
+		if db, err = custom.BeforeDelete(ctx, db); err != nil {
+			return nil, err
+		}
+	}
+	err := DefaultDeleteValue(ctx, &Value{Id: in.GetId()}, db)
+	if err != nil {
+		return nil, err
+	}
+	out := &DeleteValueResponse{}
+	if custom, ok := interface{}(in).(ValuesValueWithAfterDelete); ok {
+		var err error
+		if err = custom.AfterDelete(ctx, out, db); err != nil {
+			return nil, err
+		}
+	}
+	return out, nil
+}
+
+// ValuesValueWithBeforeDelete called before DefaultDeleteValue in the default Delete handler
+type ValuesValueWithBeforeDelete interface {
+	BeforeDelete(context.Context, *gorm1.DB) (*gorm1.DB, error)
+}
+
+// ValuesValueWithAfterDelete called before DefaultDeleteValue in the default Delete handler
+type ValuesValueWithAfterDelete interface {
+	AfterDelete(context.Context, *DeleteValueResponse, *gorm1.DB) error
+}
+
+// List ...
+func (m *ValuesDefaultServer) List(ctx context.Context, in *ListValueRequest) (*ListValuesResponse, error) {
+	txn, ok := gorm2.FromContext(ctx)
+	if !ok {
+		return nil, errors1.NoTransactionError
+	}
+	db := txn.Begin()
+	if db.Error != nil {
+		return nil, db.Error
+	}
+	if custom, ok := interface{}(in).(ValuesValueWithBeforeList); ok {
+		var err error
+		if db, err = custom.BeforeList(ctx, db); err != nil {
+			return nil, err
+		}
+	}
+	pagedRequest := false
+	if in.GetPaging().GetLimit() >= 1 {
+		in.Paging.Limit++
+		pagedRequest = true
+	}
+	res, err := DefaultListValue(ctx, db, in.Filter, in.OrderBy, in.Paging, in.Fields)
+	if err != nil {
+		return nil, err
+	}
+	var resPaging *query1.PageInfo
+	if pagedRequest {
+		var offset int32
+		var size int32 = int32(len(res))
+		if size == in.GetPaging().GetLimit() {
+			size--
+			res = res[:size]
+			offset = in.GetPaging().GetOffset() + size
+		}
+		resPaging = &query1.PageInfo{Offset: offset}
+	}
+	out := &ListValuesResponse{Results: res, Page: resPaging}
+	if custom, ok := interface{}(in).(ValuesValueWithAfterList); ok {
+		var err error
+		if err = custom.AfterList(ctx, out, db); err != nil {
+			return nil, err
+		}
+	}
+	return out, nil
+}
+
+// ValuesValueWithBeforeList called before DefaultListValue in the default List handler
+type ValuesValueWithBeforeList interface {
+	BeforeList(context.Context, *gorm1.DB) (*gorm1.DB, error)
+}
+
+// ValuesValueWithAfterList called before DefaultListValue in the default List handler
+type ValuesValueWithAfterList interface {
+	AfterList(context.Context, *ListValuesResponse, *gorm1.DB) error
+}
+type ArtifactsDefaultServer struct {
+}
+
+// Create ...
+func (m *ArtifactsDefaultServer) Create(ctx context.Context, in *CreateArtifactRequest) (*CreateArtifactResponse, error) {
+	txn, ok := gorm2.FromContext(ctx)
+	if !ok {
+		return nil, errors1.NoTransactionError
+	}
+	db := txn.Begin()
+	if db.Error != nil {
+		return nil, db.Error
+	}
+	if custom, ok := interface{}(in).(ArtifactsArtifactWithBeforeCreate); ok {
+		var err error
+		if db, err = custom.BeforeCreate(ctx, db); err != nil {
+			return nil, err
+		}
+	}
+	res, err := DefaultCreateArtifact(ctx, in.GetPayload(), db)
+	if err != nil {
+		return nil, err
+	}
+	out := &CreateArtifactResponse{Result: res}
+	if custom, ok := interface{}(in).(ArtifactsArtifactWithAfterCreate); ok {
+		var err error
+		if err = custom.AfterCreate(ctx, out, db); err != nil {
+			return nil, err
+		}
+	}
+	return out, nil
+}
+
+// ArtifactsArtifactWithBeforeCreate called before DefaultCreateArtifact in the default Create handler
+type ArtifactsArtifactWithBeforeCreate interface {
+	BeforeCreate(context.Context, *gorm1.DB) (*gorm1.DB, error)
+}
+
+// ArtifactsArtifactWithAfterCreate called before DefaultCreateArtifact in the default Create handler
+type ArtifactsArtifactWithAfterCreate interface {
+	AfterCreate(context.Context, *CreateArtifactResponse, *gorm1.DB) error
+}
+
+// Read ...
+func (m *ArtifactsDefaultServer) Read(ctx context.Context, in *ReadArtifactRequest) (*ReadArtifactResponse, error) {
+	txn, ok := gorm2.FromContext(ctx)
+	if !ok {
+		return nil, errors1.NoTransactionError
+	}
+	db := txn.Begin()
+	if db.Error != nil {
+		return nil, db.Error
+	}
+	if custom, ok := interface{}(in).(ArtifactsArtifactWithBeforeRead); ok {
+		var err error
+		if db, err = custom.BeforeRead(ctx, db); err != nil {
+			return nil, err
+		}
+	}
+	res, err := DefaultReadArtifact(ctx, &Artifact{Id: in.GetId()}, db, in.Fields)
+	if err != nil {
+		return nil, err
+	}
+	out := &ReadArtifactResponse{Result: res}
+	if custom, ok := interface{}(in).(ArtifactsArtifactWithAfterRead); ok {
+		var err error
+		if err = custom.AfterRead(ctx, out, db); err != nil {
+			return nil, err
+		}
+	}
+	return out, nil
+}
+
+// ArtifactsArtifactWithBeforeRead called before DefaultReadArtifact in the default Read handler
+type ArtifactsArtifactWithBeforeRead interface {
+	BeforeRead(context.Context, *gorm1.DB) (*gorm1.DB, error)
+}
+
+// ArtifactsArtifactWithAfterRead called before DefaultReadArtifact in the default Read handler
+type ArtifactsArtifactWithAfterRead interface {
+	AfterRead(context.Context, *ReadArtifactResponse, *gorm1.DB) error
+}
+
+// Update ...
+func (m *ArtifactsDefaultServer) Update(ctx context.Context, in *UpdateArtifactRequest) (*UpdateArtifactResponse, error) {
+	var err error
+	var res *Artifact
+	txn, ok := gorm2.FromContext(ctx)
+	if !ok {
+		return nil, errors1.NoTransactionError
+	}
+	db := txn.Begin()
+	if db.Error != nil {
+		return nil, db.Error
+	}
+	if custom, ok := interface{}(in).(ArtifactsArtifactWithBeforeUpdate); ok {
+		var err error
+		if db, err = custom.BeforeUpdate(ctx, db); err != nil {
+			return nil, err
+		}
+	}
+	if in.GetFields() == nil {
+		res, err = DefaultStrictUpdateArtifact(ctx, in.GetPayload(), db)
+	} else {
+		res, err = DefaultPatchArtifact(ctx, in.GetPayload(), in.GetFields(), db)
+	}
+	if err != nil {
+		return nil, err
+	}
+	out := &UpdateArtifactResponse{Result: res}
+	if custom, ok := interface{}(in).(ArtifactsArtifactWithAfterUpdate); ok {
+		var err error
+		if err = custom.AfterUpdate(ctx, out, db); err != nil {
+			return nil, err
+		}
+	}
+	return out, nil
+}
+
+// ArtifactsArtifactWithBeforeUpdate called before DefaultUpdateArtifact in the default Update handler
+type ArtifactsArtifactWithBeforeUpdate interface {
+	BeforeUpdate(context.Context, *gorm1.DB) (*gorm1.DB, error)
+}
+
+// ArtifactsArtifactWithAfterUpdate called before DefaultUpdateArtifact in the default Update handler
+type ArtifactsArtifactWithAfterUpdate interface {
+	AfterUpdate(context.Context, *UpdateArtifactResponse, *gorm1.DB) error
+}
+
+// Delete ...
+func (m *ArtifactsDefaultServer) Delete(ctx context.Context, in *DeleteArtifactRequest) (*DeleteArtifactResponse, error) {
+	txn, ok := gorm2.FromContext(ctx)
+	if !ok {
+		return nil, errors1.NoTransactionError
+	}
+	db := txn.Begin()
+	if db.Error != nil {
+		return nil, db.Error
+	}
+	if custom, ok := interface{}(in).(ArtifactsArtifactWithBeforeDelete); ok {
+		var err error
+		if db, err = custom.BeforeDelete(ctx, db); err != nil {
+			return nil, err
+		}
+	}
+	err := DefaultDeleteArtifact(ctx, &Artifact{Id: in.GetId()}, db)
+	if err != nil {
+		return nil, err
+	}
+	out := &DeleteArtifactResponse{}
+	if custom, ok := interface{}(in).(ArtifactsArtifactWithAfterDelete); ok {
+		var err error
+		if err = custom.AfterDelete(ctx, out, db); err != nil {
+			return nil, err
+		}
+	}
+	return out, nil
+}
+
+// ArtifactsArtifactWithBeforeDelete called before DefaultDeleteArtifact in the default Delete handler
+type ArtifactsArtifactWithBeforeDelete interface {
+	BeforeDelete(context.Context, *gorm1.DB) (*gorm1.DB, error)
+}
+
+// ArtifactsArtifactWithAfterDelete called before DefaultDeleteArtifact in the default Delete handler
+type ArtifactsArtifactWithAfterDelete interface {
+	AfterDelete(context.Context, *DeleteArtifactResponse, *gorm1.DB) error
+}
+
+// List ...
+func (m *ArtifactsDefaultServer) List(ctx context.Context, in *ListArtifactRequest) (*ListArtifactsResponse, error) {
+	txn, ok := gorm2.FromContext(ctx)
+	if !ok {
+		return nil, errors1.NoTransactionError
+	}
+	db := txn.Begin()
+	if db.Error != nil {
+		return nil, db.Error
+	}
+	if custom, ok := interface{}(in).(ArtifactsArtifactWithBeforeList); ok {
+		var err error
+		if db, err = custom.BeforeList(ctx, db); err != nil {
+			return nil, err
+		}
+	}
+	pagedRequest := false
+	if in.GetPaging().GetLimit() >= 1 {
+		in.Paging.Limit++
+		pagedRequest = true
+	}
+	res, err := DefaultListArtifact(ctx, db, in.Filter, in.OrderBy, in.Paging, in.Fields)
+	if err != nil {
+		return nil, err
+	}
+	var resPaging *query1.PageInfo
+	if pagedRequest {
+		var offset int32
+		var size int32 = int32(len(res))
+		if size == in.GetPaging().GetLimit() {
+			size--
+			res = res[:size]
+			offset = in.GetPaging().GetOffset() + size
+		}
+		resPaging = &query1.PageInfo{Offset: offset}
+	}
+	out := &ListArtifactsResponse{Results: res, Page: resPaging}
+	if custom, ok := interface{}(in).(ArtifactsArtifactWithAfterList); ok {
+		var err error
+		if err = custom.AfterList(ctx, out, db); err != nil {
+			return nil, err
+		}
+	}
+	return out, nil
+}
+
+// ArtifactsArtifactWithBeforeList called before DefaultListArtifact in the default List handler
+type ArtifactsArtifactWithBeforeList interface {
+	BeforeList(context.Context, *gorm1.DB) (*gorm1.DB, error)
+}
+
+// ArtifactsArtifactWithAfterList called before DefaultListArtifact in the default List handler
+type ArtifactsArtifactWithAfterList interface {
+	AfterList(context.Context, *ListArtifactsResponse, *gorm1.DB) error
 }
 type DeploymentsDefaultServer struct {
 }
@@ -10301,452 +11323,4 @@ type KubeClustersKubeClusterWithBeforeList interface {
 // KubeClustersKubeClusterWithAfterList called before DefaultListKubeCluster in the default List handler
 type KubeClustersKubeClusterWithAfterList interface {
 	AfterList(context.Context, *ListKubeClustersResponse, *gorm1.DB) error
-}
-type CloudProvidersDefaultServer struct {
-}
-
-// Create ...
-func (m *CloudProvidersDefaultServer) Create(ctx context.Context, in *CreateCloudProviderRequest) (*CreateCloudProviderResponse, error) {
-	txn, ok := gorm2.FromContext(ctx)
-	if !ok {
-		return nil, errors1.NoTransactionError
-	}
-	db := txn.Begin()
-	if db.Error != nil {
-		return nil, db.Error
-	}
-	if custom, ok := interface{}(in).(CloudProvidersCloudProviderWithBeforeCreate); ok {
-		var err error
-		if db, err = custom.BeforeCreate(ctx, db); err != nil {
-			return nil, err
-		}
-	}
-	res, err := DefaultCreateCloudProvider(ctx, in.GetPayload(), db)
-	if err != nil {
-		return nil, err
-	}
-	out := &CreateCloudProviderResponse{Result: res}
-	if custom, ok := interface{}(in).(CloudProvidersCloudProviderWithAfterCreate); ok {
-		var err error
-		if err = custom.AfterCreate(ctx, out, db); err != nil {
-			return nil, err
-		}
-	}
-	return out, nil
-}
-
-// CloudProvidersCloudProviderWithBeforeCreate called before DefaultCreateCloudProvider in the default Create handler
-type CloudProvidersCloudProviderWithBeforeCreate interface {
-	BeforeCreate(context.Context, *gorm1.DB) (*gorm1.DB, error)
-}
-
-// CloudProvidersCloudProviderWithAfterCreate called before DefaultCreateCloudProvider in the default Create handler
-type CloudProvidersCloudProviderWithAfterCreate interface {
-	AfterCreate(context.Context, *CreateCloudProviderResponse, *gorm1.DB) error
-}
-
-// Read ...
-func (m *CloudProvidersDefaultServer) Read(ctx context.Context, in *ReadCloudProviderRequest) (*ReadCloudProviderResponse, error) {
-	txn, ok := gorm2.FromContext(ctx)
-	if !ok {
-		return nil, errors1.NoTransactionError
-	}
-	db := txn.Begin()
-	if db.Error != nil {
-		return nil, db.Error
-	}
-	if custom, ok := interface{}(in).(CloudProvidersCloudProviderWithBeforeRead); ok {
-		var err error
-		if db, err = custom.BeforeRead(ctx, db); err != nil {
-			return nil, err
-		}
-	}
-	res, err := DefaultReadCloudProvider(ctx, &CloudProvider{Id: in.GetId()}, db, in.Fields)
-	if err != nil {
-		return nil, err
-	}
-	out := &ReadCloudProviderResponse{Result: res}
-	if custom, ok := interface{}(in).(CloudProvidersCloudProviderWithAfterRead); ok {
-		var err error
-		if err = custom.AfterRead(ctx, out, db); err != nil {
-			return nil, err
-		}
-	}
-	return out, nil
-}
-
-// CloudProvidersCloudProviderWithBeforeRead called before DefaultReadCloudProvider in the default Read handler
-type CloudProvidersCloudProviderWithBeforeRead interface {
-	BeforeRead(context.Context, *gorm1.DB) (*gorm1.DB, error)
-}
-
-// CloudProvidersCloudProviderWithAfterRead called before DefaultReadCloudProvider in the default Read handler
-type CloudProvidersCloudProviderWithAfterRead interface {
-	AfterRead(context.Context, *ReadCloudProviderResponse, *gorm1.DB) error
-}
-
-// Update ...
-func (m *CloudProvidersDefaultServer) Update(ctx context.Context, in *UpdateCloudProviderRequest) (*UpdateCloudProviderResponse, error) {
-	var err error
-	var res *CloudProvider
-	txn, ok := gorm2.FromContext(ctx)
-	if !ok {
-		return nil, errors1.NoTransactionError
-	}
-	db := txn.Begin()
-	if db.Error != nil {
-		return nil, db.Error
-	}
-	if custom, ok := interface{}(in).(CloudProvidersCloudProviderWithBeforeUpdate); ok {
-		var err error
-		if db, err = custom.BeforeUpdate(ctx, db); err != nil {
-			return nil, err
-		}
-	}
-	if in.GetFields() == nil {
-		res, err = DefaultStrictUpdateCloudProvider(ctx, in.GetPayload(), db)
-	} else {
-		res, err = DefaultPatchCloudProvider(ctx, in.GetPayload(), in.GetFields(), db)
-	}
-	if err != nil {
-		return nil, err
-	}
-	out := &UpdateCloudProviderResponse{Result: res}
-	if custom, ok := interface{}(in).(CloudProvidersCloudProviderWithAfterUpdate); ok {
-		var err error
-		if err = custom.AfterUpdate(ctx, out, db); err != nil {
-			return nil, err
-		}
-	}
-	return out, nil
-}
-
-// CloudProvidersCloudProviderWithBeforeUpdate called before DefaultUpdateCloudProvider in the default Update handler
-type CloudProvidersCloudProviderWithBeforeUpdate interface {
-	BeforeUpdate(context.Context, *gorm1.DB) (*gorm1.DB, error)
-}
-
-// CloudProvidersCloudProviderWithAfterUpdate called before DefaultUpdateCloudProvider in the default Update handler
-type CloudProvidersCloudProviderWithAfterUpdate interface {
-	AfterUpdate(context.Context, *UpdateCloudProviderResponse, *gorm1.DB) error
-}
-
-// Delete ...
-func (m *CloudProvidersDefaultServer) Delete(ctx context.Context, in *DeleteCloudProviderRequest) (*DeleteCloudProviderResponse, error) {
-	txn, ok := gorm2.FromContext(ctx)
-	if !ok {
-		return nil, errors1.NoTransactionError
-	}
-	db := txn.Begin()
-	if db.Error != nil {
-		return nil, db.Error
-	}
-	if custom, ok := interface{}(in).(CloudProvidersCloudProviderWithBeforeDelete); ok {
-		var err error
-		if db, err = custom.BeforeDelete(ctx, db); err != nil {
-			return nil, err
-		}
-	}
-	err := DefaultDeleteCloudProvider(ctx, &CloudProvider{Id: in.GetId()}, db)
-	if err != nil {
-		return nil, err
-	}
-	out := &DeleteCloudProviderResponse{}
-	if custom, ok := interface{}(in).(CloudProvidersCloudProviderWithAfterDelete); ok {
-		var err error
-		if err = custom.AfterDelete(ctx, out, db); err != nil {
-			return nil, err
-		}
-	}
-	return out, nil
-}
-
-// CloudProvidersCloudProviderWithBeforeDelete called before DefaultDeleteCloudProvider in the default Delete handler
-type CloudProvidersCloudProviderWithBeforeDelete interface {
-	BeforeDelete(context.Context, *gorm1.DB) (*gorm1.DB, error)
-}
-
-// CloudProvidersCloudProviderWithAfterDelete called before DefaultDeleteCloudProvider in the default Delete handler
-type CloudProvidersCloudProviderWithAfterDelete interface {
-	AfterDelete(context.Context, *DeleteCloudProviderResponse, *gorm1.DB) error
-}
-
-// List ...
-func (m *CloudProvidersDefaultServer) List(ctx context.Context, in *ListCloudProviderRequest) (*ListCloudProvidersResponse, error) {
-	txn, ok := gorm2.FromContext(ctx)
-	if !ok {
-		return nil, errors1.NoTransactionError
-	}
-	db := txn.Begin()
-	if db.Error != nil {
-		return nil, db.Error
-	}
-	if custom, ok := interface{}(in).(CloudProvidersCloudProviderWithBeforeList); ok {
-		var err error
-		if db, err = custom.BeforeList(ctx, db); err != nil {
-			return nil, err
-		}
-	}
-	pagedRequest := false
-	if in.GetPaging().GetLimit() >= 1 {
-		in.Paging.Limit++
-		pagedRequest = true
-	}
-	res, err := DefaultListCloudProvider(ctx, db, in.Filter, in.OrderBy, in.Paging, in.Fields)
-	if err != nil {
-		return nil, err
-	}
-	var resPaging *query1.PageInfo
-	if pagedRequest {
-		var offset int32
-		var size int32 = int32(len(res))
-		if size == in.GetPaging().GetLimit() {
-			size--
-			res = res[:size]
-			offset = in.GetPaging().GetOffset() + size
-		}
-		resPaging = &query1.PageInfo{Offset: offset}
-	}
-	out := &ListCloudProvidersResponse{Results: res, Page: resPaging}
-	if custom, ok := interface{}(in).(CloudProvidersCloudProviderWithAfterList); ok {
-		var err error
-		if err = custom.AfterList(ctx, out, db); err != nil {
-			return nil, err
-		}
-	}
-	return out, nil
-}
-
-// CloudProvidersCloudProviderWithBeforeList called before DefaultListCloudProvider in the default List handler
-type CloudProvidersCloudProviderWithBeforeList interface {
-	BeforeList(context.Context, *gorm1.DB) (*gorm1.DB, error)
-}
-
-// CloudProvidersCloudProviderWithAfterList called before DefaultListCloudProvider in the default List handler
-type CloudProvidersCloudProviderWithAfterList interface {
-	AfterList(context.Context, *ListCloudProvidersResponse, *gorm1.DB) error
-}
-type RegionsDefaultServer struct {
-}
-
-// Create ...
-func (m *RegionsDefaultServer) Create(ctx context.Context, in *CreateRegionRequest) (*CreateRegionResponse, error) {
-	txn, ok := gorm2.FromContext(ctx)
-	if !ok {
-		return nil, errors1.NoTransactionError
-	}
-	db := txn.Begin()
-	if db.Error != nil {
-		return nil, db.Error
-	}
-	if custom, ok := interface{}(in).(RegionsRegionWithBeforeCreate); ok {
-		var err error
-		if db, err = custom.BeforeCreate(ctx, db); err != nil {
-			return nil, err
-		}
-	}
-	res, err := DefaultCreateRegion(ctx, in.GetPayload(), db)
-	if err != nil {
-		return nil, err
-	}
-	out := &CreateRegionResponse{Result: res}
-	if custom, ok := interface{}(in).(RegionsRegionWithAfterCreate); ok {
-		var err error
-		if err = custom.AfterCreate(ctx, out, db); err != nil {
-			return nil, err
-		}
-	}
-	return out, nil
-}
-
-// RegionsRegionWithBeforeCreate called before DefaultCreateRegion in the default Create handler
-type RegionsRegionWithBeforeCreate interface {
-	BeforeCreate(context.Context, *gorm1.DB) (*gorm1.DB, error)
-}
-
-// RegionsRegionWithAfterCreate called before DefaultCreateRegion in the default Create handler
-type RegionsRegionWithAfterCreate interface {
-	AfterCreate(context.Context, *CreateRegionResponse, *gorm1.DB) error
-}
-
-// Read ...
-func (m *RegionsDefaultServer) Read(ctx context.Context, in *ReadRegionRequest) (*ReadRegionResponse, error) {
-	txn, ok := gorm2.FromContext(ctx)
-	if !ok {
-		return nil, errors1.NoTransactionError
-	}
-	db := txn.Begin()
-	if db.Error != nil {
-		return nil, db.Error
-	}
-	if custom, ok := interface{}(in).(RegionsRegionWithBeforeRead); ok {
-		var err error
-		if db, err = custom.BeforeRead(ctx, db); err != nil {
-			return nil, err
-		}
-	}
-	res, err := DefaultReadRegion(ctx, &Region{Id: in.GetId()}, db, in.Fields)
-	if err != nil {
-		return nil, err
-	}
-	out := &ReadRegionResponse{Result: res}
-	if custom, ok := interface{}(in).(RegionsRegionWithAfterRead); ok {
-		var err error
-		if err = custom.AfterRead(ctx, out, db); err != nil {
-			return nil, err
-		}
-	}
-	return out, nil
-}
-
-// RegionsRegionWithBeforeRead called before DefaultReadRegion in the default Read handler
-type RegionsRegionWithBeforeRead interface {
-	BeforeRead(context.Context, *gorm1.DB) (*gorm1.DB, error)
-}
-
-// RegionsRegionWithAfterRead called before DefaultReadRegion in the default Read handler
-type RegionsRegionWithAfterRead interface {
-	AfterRead(context.Context, *ReadRegionResponse, *gorm1.DB) error
-}
-
-// Update ...
-func (m *RegionsDefaultServer) Update(ctx context.Context, in *UpdateRegionRequest) (*UpdateRegionResponse, error) {
-	var err error
-	var res *Region
-	txn, ok := gorm2.FromContext(ctx)
-	if !ok {
-		return nil, errors1.NoTransactionError
-	}
-	db := txn.Begin()
-	if db.Error != nil {
-		return nil, db.Error
-	}
-	if custom, ok := interface{}(in).(RegionsRegionWithBeforeUpdate); ok {
-		var err error
-		if db, err = custom.BeforeUpdate(ctx, db); err != nil {
-			return nil, err
-		}
-	}
-	if in.GetFields() == nil {
-		res, err = DefaultStrictUpdateRegion(ctx, in.GetPayload(), db)
-	} else {
-		res, err = DefaultPatchRegion(ctx, in.GetPayload(), in.GetFields(), db)
-	}
-	if err != nil {
-		return nil, err
-	}
-	out := &UpdateRegionResponse{Result: res}
-	if custom, ok := interface{}(in).(RegionsRegionWithAfterUpdate); ok {
-		var err error
-		if err = custom.AfterUpdate(ctx, out, db); err != nil {
-			return nil, err
-		}
-	}
-	return out, nil
-}
-
-// RegionsRegionWithBeforeUpdate called before DefaultUpdateRegion in the default Update handler
-type RegionsRegionWithBeforeUpdate interface {
-	BeforeUpdate(context.Context, *gorm1.DB) (*gorm1.DB, error)
-}
-
-// RegionsRegionWithAfterUpdate called before DefaultUpdateRegion in the default Update handler
-type RegionsRegionWithAfterUpdate interface {
-	AfterUpdate(context.Context, *UpdateRegionResponse, *gorm1.DB) error
-}
-
-// Delete ...
-func (m *RegionsDefaultServer) Delete(ctx context.Context, in *DeleteRegionRequest) (*DeleteRegionResponse, error) {
-	txn, ok := gorm2.FromContext(ctx)
-	if !ok {
-		return nil, errors1.NoTransactionError
-	}
-	db := txn.Begin()
-	if db.Error != nil {
-		return nil, db.Error
-	}
-	if custom, ok := interface{}(in).(RegionsRegionWithBeforeDelete); ok {
-		var err error
-		if db, err = custom.BeforeDelete(ctx, db); err != nil {
-			return nil, err
-		}
-	}
-	err := DefaultDeleteRegion(ctx, &Region{Id: in.GetId()}, db)
-	if err != nil {
-		return nil, err
-	}
-	out := &DeleteRegionResponse{}
-	if custom, ok := interface{}(in).(RegionsRegionWithAfterDelete); ok {
-		var err error
-		if err = custom.AfterDelete(ctx, out, db); err != nil {
-			return nil, err
-		}
-	}
-	return out, nil
-}
-
-// RegionsRegionWithBeforeDelete called before DefaultDeleteRegion in the default Delete handler
-type RegionsRegionWithBeforeDelete interface {
-	BeforeDelete(context.Context, *gorm1.DB) (*gorm1.DB, error)
-}
-
-// RegionsRegionWithAfterDelete called before DefaultDeleteRegion in the default Delete handler
-type RegionsRegionWithAfterDelete interface {
-	AfterDelete(context.Context, *DeleteRegionResponse, *gorm1.DB) error
-}
-
-// List ...
-func (m *RegionsDefaultServer) List(ctx context.Context, in *ListRegionRequest) (*ListRegionsResponse, error) {
-	txn, ok := gorm2.FromContext(ctx)
-	if !ok {
-		return nil, errors1.NoTransactionError
-	}
-	db := txn.Begin()
-	if db.Error != nil {
-		return nil, db.Error
-	}
-	if custom, ok := interface{}(in).(RegionsRegionWithBeforeList); ok {
-		var err error
-		if db, err = custom.BeforeList(ctx, db); err != nil {
-			return nil, err
-		}
-	}
-	pagedRequest := false
-	if in.GetPaging().GetLimit() >= 1 {
-		in.Paging.Limit++
-		pagedRequest = true
-	}
-	res, err := DefaultListRegion(ctx, db, in.Filter, in.OrderBy, in.Paging, in.Fields)
-	if err != nil {
-		return nil, err
-	}
-	var resPaging *query1.PageInfo
-	if pagedRequest {
-		var offset int32
-		var size int32 = int32(len(res))
-		if size == in.GetPaging().GetLimit() {
-			size--
-			res = res[:size]
-			offset = in.GetPaging().GetOffset() + size
-		}
-		resPaging = &query1.PageInfo{Offset: offset}
-	}
-	out := &ListRegionsResponse{Results: res, Page: resPaging}
-	if custom, ok := interface{}(in).(RegionsRegionWithAfterList); ok {
-		var err error
-		if err = custom.AfterList(ctx, out, db); err != nil {
-			return nil, err
-		}
-	}
-	return out, nil
-}
-
-// RegionsRegionWithBeforeList called before DefaultListRegion in the default List handler
-type RegionsRegionWithBeforeList interface {
-	BeforeList(context.Context, *gorm1.DB) (*gorm1.DB, error)
-}
-
-// RegionsRegionWithAfterList called before DefaultListRegion in the default List handler
-type RegionsRegionWithAfterList interface {
-	AfterList(context.Context, *ListRegionsResponse, *gorm1.DB) error
 }
