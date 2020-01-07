@@ -2412,6 +2412,21 @@ func validate_Object_Stage(ctx context.Context, r json.RawMessage, path string) 
 		case "name":
 		case "description":
 		case "type":
+		case "environments":
+			if v[k] == nil {
+				continue
+			}
+			var vArr []json.RawMessage
+			vArrPath := runtime1.JoinPath(path, k)
+			if err = json.Unmarshal(v[k], &vArr); err != nil {
+				return fmt.Errorf("invalid value for %q: expected array.", vArrPath)
+			}
+			for i, vv := range vArr {
+				vvPath := fmt.Sprintf("%s.[%d]", vArrPath, i)
+				if err = validate_Object_Environment(ctx, vv, vvPath); err != nil {
+					return err
+				}
+			}
 		case "value_id":
 			if v[k] == nil {
 				continue

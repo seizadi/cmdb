@@ -364,11 +364,14 @@ message Stage {
   // Code defines the various stages e.g. dev, qa, preprod, prod
   StageType type = 4;
 
+  // Evironments in this Stage
+  repeated Environment environments = 5;
+
   // Value for this Stage
-  atlas.rpc.Identifier value_id = 5 [(gorm.field) = {reference_of: "Value", tag: {type: "integer"}}];
+  atlas.rpc.Identifier value_id = 6 [(gorm.field) = {reference_of: "Value", tag: {type: "integer"}}];
 
   // Region that has this Stage deployed
-  atlas.rpc.Identifier region_id = 6 [(gorm.field) = {reference_of: "Region", tag: {type: "integer"}}];
+  atlas.rpc.Identifier region_id = 7 [(gorm.field) = {reference_of: "Region", tag: {type: "integer"}}];
 
 }
 

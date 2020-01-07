@@ -3893,6 +3893,13 @@
           "type": "string",
           "title": "The description of the Stage"
         },
+        "environments": {
+          "type": "array",
+          "title": "Evironments in this Stage",
+          "items": {
+            "$ref": "#/definitions/cmdbEnvironment"
+          }
+        },
         "id": {
           "description": "The resource identifier.",
           "type": "string",

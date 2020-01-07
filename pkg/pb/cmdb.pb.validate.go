@@ -2003,6 +2003,21 @@ func (m *Stage) Validate() error {
 
 	// no validation rules for Type
 
+	for idx, item := range m.GetEnvironments() {
+		_, _ = idx, item
+
+		if v, ok := interface{}(item).(interface{ Validate() error }); ok {
+			if err := v.Validate(); err != nil {
+				return StageValidationError{
+					field:  fmt.Sprintf("Environments[%v]", idx),
+					reason: "embedded message failed validation",
+					cause:  err,
+				}
+			}
+		}
+
+	}
+
 	if v, ok := interface{}(m.GetValueId()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
 			return StageValidationError{
