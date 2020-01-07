@@ -1063,16 +1063,6 @@ func (m *Region) Validate() error {
 
 	}
 
-	if v, ok := interface{}(m.GetValue()).(interface{ Validate() error }); ok {
-		if err := v.Validate(); err != nil {
-			return RegionValidationError{
-				field:  "Value",
-				reason: "embedded message failed validation",
-				cause:  err,
-			}
-		}
-	}
-
 	for idx, item := range m.GetAwsServices() {
 		_, _ = idx, item
 
@@ -1086,6 +1076,16 @@ func (m *Region) Validate() error {
 			}
 		}
 
+	}
+
+	if v, ok := interface{}(m.GetValueId()).(interface{ Validate() error }); ok {
+		if err := v.Validate(); err != nil {
+			return RegionValidationError{
+				field:  "ValueId",
+				reason: "embedded message failed validation",
+				cause:  err,
+			}
+		}
 	}
 
 	if v, ok := interface{}(m.GetCloudProviderId()).(interface{ Validate() error }); ok {
@@ -2003,6 +2003,16 @@ func (m *Stage) Validate() error {
 
 	// no validation rules for Type
 
+	if v, ok := interface{}(m.GetValueId()).(interface{ Validate() error }); ok {
+		if err := v.Validate(); err != nil {
+			return StageValidationError{
+				field:  "ValueId",
+				reason: "embedded message failed validation",
+				cause:  err,
+			}
+		}
+	}
+
 	if v, ok := interface{}(m.GetRegionId()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
 			return StageValidationError{
@@ -2913,16 +2923,6 @@ func (m *Environment) Validate() error {
 
 	// no validation rules for Description
 
-	if v, ok := interface{}(m.GetValue()).(interface{ Validate() error }); ok {
-		if err := v.Validate(); err != nil {
-			return EnvironmentValidationError{
-				field:  "Value",
-				reason: "embedded message failed validation",
-				cause:  err,
-			}
-		}
-	}
-
 	for idx, item := range m.GetApplicationInstances() {
 		_, _ = idx, item
 
@@ -2936,6 +2936,16 @@ func (m *Environment) Validate() error {
 			}
 		}
 
+	}
+
+	if v, ok := interface{}(m.GetValueId()).(interface{ Validate() error }); ok {
+		if err := v.Validate(); err != nil {
+			return EnvironmentValidationError{
+				field:  "ValueId",
+				reason: "embedded message failed validation",
+				cause:  err,
+			}
+		}
 	}
 
 	if v, ok := interface{}(m.GetStageId()).(interface{ Validate() error }); ok {
@@ -3852,16 +3862,6 @@ func (m *Application) Validate() error {
 
 	// no validation rules for Description
 
-	if v, ok := interface{}(m.GetValue()).(interface{ Validate() error }); ok {
-		if err := v.Validate(); err != nil {
-			return ApplicationValidationError{
-				field:  "Value",
-				reason: "embedded message failed validation",
-				cause:  err,
-			}
-		}
-	}
-
 	for idx, item := range m.GetApplicationInstances() {
 		_, _ = idx, item
 
@@ -3875,6 +3875,16 @@ func (m *Application) Validate() error {
 			}
 		}
 
+	}
+
+	if v, ok := interface{}(m.GetValueId()).(interface{ Validate() error }); ok {
+		if err := v.Validate(); err != nil {
+			return ApplicationValidationError{
+				field:  "ValueId",
+				reason: "embedded message failed validation",
+				cause:  err,
+			}
+		}
 	}
 
 	if v, ok := interface{}(m.GetStageId()).(interface{ Validate() error }); ok {
@@ -5699,16 +5709,6 @@ func (m *ApplicationInstance) Validate() error {
 
 	// no validation rules for Description
 
-	if v, ok := interface{}(m.GetValue()).(interface{ Validate() error }); ok {
-		if err := v.Validate(); err != nil {
-			return ApplicationInstanceValidationError{
-				field:  "Value",
-				reason: "embedded message failed validation",
-				cause:  err,
-			}
-		}
-	}
-
 	if v, ok := interface{}(m.GetDeployment()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
 			return ApplicationInstanceValidationError{
@@ -5719,10 +5719,20 @@ func (m *ApplicationInstance) Validate() error {
 		}
 	}
 
-	if v, ok := interface{}(m.GetChartVersion()).(interface{ Validate() error }); ok {
+	if v, ok := interface{}(m.GetValueId()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
 			return ApplicationInstanceValidationError{
-				field:  "ChartVersion",
+				field:  "ValueId",
+				reason: "embedded message failed validation",
+				cause:  err,
+			}
+		}
+	}
+
+	if v, ok := interface{}(m.GetApplicationId()).(interface{ Validate() error }); ok {
+		if err := v.Validate(); err != nil {
+			return ApplicationInstanceValidationError{
+				field:  "ApplicationId",
 				reason: "embedded message failed validation",
 				cause:  err,
 			}
@@ -10392,10 +10402,10 @@ func (m *Value) Validate() error {
 		}
 	}
 
-	if v, ok := interface{}(m.GetAwsServiceId()).(interface{ Validate() error }); ok {
+	if v, ok := interface{}(m.GetAwsRdsInstanceId()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
 			return ValueValidationError{
-				field:  "AwsServiceId",
+				field:  "AwsRdsInstanceId",
 				reason: "embedded message failed validation",
 				cause:  err,
 			}
@@ -12197,6 +12207,910 @@ var _ interface {
 	ErrorName() string
 } = ListArtifactsResponseValidationError{}
 
+// Validate checks the field values on KubeCluster with the rules defined in
+// the proto definition for this message. If any rules are violated, an error
+// is returned.
+func (m *KubeCluster) Validate() error {
+	if m == nil {
+		return nil
+	}
+
+	if v, ok := interface{}(m.GetId()).(interface{ Validate() error }); ok {
+		if err := v.Validate(); err != nil {
+			return KubeClusterValidationError{
+				field:  "Id",
+				reason: "embedded message failed validation",
+				cause:  err,
+			}
+		}
+	}
+
+	// no validation rules for Name
+
+	// no validation rules for Description
+
+	return nil
+}
+
+// KubeClusterValidationError is the validation error returned by
+// KubeCluster.Validate if the designated constraints aren't met.
+type KubeClusterValidationError struct {
+	field  string
+	reason string
+	cause  error
+	key    bool
+}
+
+// Field function returns field value.
+func (e KubeClusterValidationError) Field() string { return e.field }
+
+// Reason function returns reason value.
+func (e KubeClusterValidationError) Reason() string { return e.reason }
+
+// Cause function returns cause value.
+func (e KubeClusterValidationError) Cause() error { return e.cause }
+
+// Key function returns key value.
+func (e KubeClusterValidationError) Key() bool { return e.key }
+
+// ErrorName returns error name.
+func (e KubeClusterValidationError) ErrorName() string { return "KubeClusterValidationError" }
+
+// Error satisfies the builtin error interface
+func (e KubeClusterValidationError) Error() string {
+	cause := ""
+	if e.cause != nil {
+		cause = fmt.Sprintf(" | caused by: %v", e.cause)
+	}
+
+	key := ""
+	if e.key {
+		key = "key for "
+	}
+
+	return fmt.Sprintf(
+		"invalid %sKubeCluster.%s: %s%s",
+		key,
+		e.field,
+		e.reason,
+		cause)
+}
+
+var _ error = KubeClusterValidationError{}
+
+var _ interface {
+	Field() string
+	Reason() string
+	Key() bool
+	Cause() error
+	ErrorName() string
+} = KubeClusterValidationError{}
+
+// Validate checks the field values on CreateKubeClusterRequest with the rules
+// defined in the proto definition for this message. If any rules are
+// violated, an error is returned.
+func (m *CreateKubeClusterRequest) Validate() error {
+	if m == nil {
+		return nil
+	}
+
+	if v, ok := interface{}(m.GetPayload()).(interface{ Validate() error }); ok {
+		if err := v.Validate(); err != nil {
+			return CreateKubeClusterRequestValidationError{
+				field:  "Payload",
+				reason: "embedded message failed validation",
+				cause:  err,
+			}
+		}
+	}
+
+	return nil
+}
+
+// CreateKubeClusterRequestValidationError is the validation error returned by
+// CreateKubeClusterRequest.Validate if the designated constraints aren't met.
+type CreateKubeClusterRequestValidationError struct {
+	field  string
+	reason string
+	cause  error
+	key    bool
+}
+
+// Field function returns field value.
+func (e CreateKubeClusterRequestValidationError) Field() string { return e.field }
+
+// Reason function returns reason value.
+func (e CreateKubeClusterRequestValidationError) Reason() string { return e.reason }
+
+// Cause function returns cause value.
+func (e CreateKubeClusterRequestValidationError) Cause() error { return e.cause }
+
+// Key function returns key value.
+func (e CreateKubeClusterRequestValidationError) Key() bool { return e.key }
+
+// ErrorName returns error name.
+func (e CreateKubeClusterRequestValidationError) ErrorName() string {
+	return "CreateKubeClusterRequestValidationError"
+}
+
+// Error satisfies the builtin error interface
+func (e CreateKubeClusterRequestValidationError) Error() string {
+	cause := ""
+	if e.cause != nil {
+		cause = fmt.Sprintf(" | caused by: %v", e.cause)
+	}
+
+	key := ""
+	if e.key {
+		key = "key for "
+	}
+
+	return fmt.Sprintf(
+		"invalid %sCreateKubeClusterRequest.%s: %s%s",
+		key,
+		e.field,
+		e.reason,
+		cause)
+}
+
+var _ error = CreateKubeClusterRequestValidationError{}
+
+var _ interface {
+	Field() string
+	Reason() string
+	Key() bool
+	Cause() error
+	ErrorName() string
+} = CreateKubeClusterRequestValidationError{}
+
+// Validate checks the field values on CreateKubeClusterResponse with the rules
+// defined in the proto definition for this message. If any rules are
+// violated, an error is returned.
+func (m *CreateKubeClusterResponse) Validate() error {
+	if m == nil {
+		return nil
+	}
+
+	if v, ok := interface{}(m.GetResult()).(interface{ Validate() error }); ok {
+		if err := v.Validate(); err != nil {
+			return CreateKubeClusterResponseValidationError{
+				field:  "Result",
+				reason: "embedded message failed validation",
+				cause:  err,
+			}
+		}
+	}
+
+	return nil
+}
+
+// CreateKubeClusterResponseValidationError is the validation error returned by
+// CreateKubeClusterResponse.Validate if the designated constraints aren't met.
+type CreateKubeClusterResponseValidationError struct {
+	field  string
+	reason string
+	cause  error
+	key    bool
+}
+
+// Field function returns field value.
+func (e CreateKubeClusterResponseValidationError) Field() string { return e.field }
+
+// Reason function returns reason value.
+func (e CreateKubeClusterResponseValidationError) Reason() string { return e.reason }
+
+// Cause function returns cause value.
+func (e CreateKubeClusterResponseValidationError) Cause() error { return e.cause }
+
+// Key function returns key value.
+func (e CreateKubeClusterResponseValidationError) Key() bool { return e.key }
+
+// ErrorName returns error name.
+func (e CreateKubeClusterResponseValidationError) ErrorName() string {
+	return "CreateKubeClusterResponseValidationError"
+}
+
+// Error satisfies the builtin error interface
+func (e CreateKubeClusterResponseValidationError) Error() string {
+	cause := ""
+	if e.cause != nil {
+		cause = fmt.Sprintf(" | caused by: %v", e.cause)
+	}
+
+	key := ""
+	if e.key {
+		key = "key for "
+	}
+
+	return fmt.Sprintf(
+		"invalid %sCreateKubeClusterResponse.%s: %s%s",
+		key,
+		e.field,
+		e.reason,
+		cause)
+}
+
+var _ error = CreateKubeClusterResponseValidationError{}
+
+var _ interface {
+	Field() string
+	Reason() string
+	Key() bool
+	Cause() error
+	ErrorName() string
+} = CreateKubeClusterResponseValidationError{}
+
+// Validate checks the field values on ReadKubeClusterRequest with the rules
+// defined in the proto definition for this message. If any rules are
+// violated, an error is returned.
+func (m *ReadKubeClusterRequest) Validate() error {
+	if m == nil {
+		return nil
+	}
+
+	if v, ok := interface{}(m.GetId()).(interface{ Validate() error }); ok {
+		if err := v.Validate(); err != nil {
+			return ReadKubeClusterRequestValidationError{
+				field:  "Id",
+				reason: "embedded message failed validation",
+				cause:  err,
+			}
+		}
+	}
+
+	if v, ok := interface{}(m.GetFields()).(interface{ Validate() error }); ok {
+		if err := v.Validate(); err != nil {
+			return ReadKubeClusterRequestValidationError{
+				field:  "Fields",
+				reason: "embedded message failed validation",
+				cause:  err,
+			}
+		}
+	}
+
+	return nil
+}
+
+// ReadKubeClusterRequestValidationError is the validation error returned by
+// ReadKubeClusterRequest.Validate if the designated constraints aren't met.
+type ReadKubeClusterRequestValidationError struct {
+	field  string
+	reason string
+	cause  error
+	key    bool
+}
+
+// Field function returns field value.
+func (e ReadKubeClusterRequestValidationError) Field() string { return e.field }
+
+// Reason function returns reason value.
+func (e ReadKubeClusterRequestValidationError) Reason() string { return e.reason }
+
+// Cause function returns cause value.
+func (e ReadKubeClusterRequestValidationError) Cause() error { return e.cause }
+
+// Key function returns key value.
+func (e ReadKubeClusterRequestValidationError) Key() bool { return e.key }
+
+// ErrorName returns error name.
+func (e ReadKubeClusterRequestValidationError) ErrorName() string {
+	return "ReadKubeClusterRequestValidationError"
+}
+
+// Error satisfies the builtin error interface
+func (e ReadKubeClusterRequestValidationError) Error() string {
+	cause := ""
+	if e.cause != nil {
+		cause = fmt.Sprintf(" | caused by: %v", e.cause)
+	}
+
+	key := ""
+	if e.key {
+		key = "key for "
+	}
+
+	return fmt.Sprintf(
+		"invalid %sReadKubeClusterRequest.%s: %s%s",
+		key,
+		e.field,
+		e.reason,
+		cause)
+}
+
+var _ error = ReadKubeClusterRequestValidationError{}
+
+var _ interface {
+	Field() string
+	Reason() string
+	Key() bool
+	Cause() error
+	ErrorName() string
+} = ReadKubeClusterRequestValidationError{}
+
+// Validate checks the field values on ReadKubeClusterResponse with the rules
+// defined in the proto definition for this message. If any rules are
+// violated, an error is returned.
+func (m *ReadKubeClusterResponse) Validate() error {
+	if m == nil {
+		return nil
+	}
+
+	if v, ok := interface{}(m.GetResult()).(interface{ Validate() error }); ok {
+		if err := v.Validate(); err != nil {
+			return ReadKubeClusterResponseValidationError{
+				field:  "Result",
+				reason: "embedded message failed validation",
+				cause:  err,
+			}
+		}
+	}
+
+	return nil
+}
+
+// ReadKubeClusterResponseValidationError is the validation error returned by
+// ReadKubeClusterResponse.Validate if the designated constraints aren't met.
+type ReadKubeClusterResponseValidationError struct {
+	field  string
+	reason string
+	cause  error
+	key    bool
+}
+
+// Field function returns field value.
+func (e ReadKubeClusterResponseValidationError) Field() string { return e.field }
+
+// Reason function returns reason value.
+func (e ReadKubeClusterResponseValidationError) Reason() string { return e.reason }
+
+// Cause function returns cause value.
+func (e ReadKubeClusterResponseValidationError) Cause() error { return e.cause }
+
+// Key function returns key value.
+func (e ReadKubeClusterResponseValidationError) Key() bool { return e.key }
+
+// ErrorName returns error name.
+func (e ReadKubeClusterResponseValidationError) ErrorName() string {
+	return "ReadKubeClusterResponseValidationError"
+}
+
+// Error satisfies the builtin error interface
+func (e ReadKubeClusterResponseValidationError) Error() string {
+	cause := ""
+	if e.cause != nil {
+		cause = fmt.Sprintf(" | caused by: %v", e.cause)
+	}
+
+	key := ""
+	if e.key {
+		key = "key for "
+	}
+
+	return fmt.Sprintf(
+		"invalid %sReadKubeClusterResponse.%s: %s%s",
+		key,
+		e.field,
+		e.reason,
+		cause)
+}
+
+var _ error = ReadKubeClusterResponseValidationError{}
+
+var _ interface {
+	Field() string
+	Reason() string
+	Key() bool
+	Cause() error
+	ErrorName() string
+} = ReadKubeClusterResponseValidationError{}
+
+// Validate checks the field values on UpdateKubeClusterRequest with the rules
+// defined in the proto definition for this message. If any rules are
+// violated, an error is returned.
+func (m *UpdateKubeClusterRequest) Validate() error {
+	if m == nil {
+		return nil
+	}
+
+	if v, ok := interface{}(m.GetPayload()).(interface{ Validate() error }); ok {
+		if err := v.Validate(); err != nil {
+			return UpdateKubeClusterRequestValidationError{
+				field:  "Payload",
+				reason: "embedded message failed validation",
+				cause:  err,
+			}
+		}
+	}
+
+	if v, ok := interface{}(m.GetFields()).(interface{ Validate() error }); ok {
+		if err := v.Validate(); err != nil {
+			return UpdateKubeClusterRequestValidationError{
+				field:  "Fields",
+				reason: "embedded message failed validation",
+				cause:  err,
+			}
+		}
+	}
+
+	return nil
+}
+
+// UpdateKubeClusterRequestValidationError is the validation error returned by
+// UpdateKubeClusterRequest.Validate if the designated constraints aren't met.
+type UpdateKubeClusterRequestValidationError struct {
+	field  string
+	reason string
+	cause  error
+	key    bool
+}
+
+// Field function returns field value.
+func (e UpdateKubeClusterRequestValidationError) Field() string { return e.field }
+
+// Reason function returns reason value.
+func (e UpdateKubeClusterRequestValidationError) Reason() string { return e.reason }
+
+// Cause function returns cause value.
+func (e UpdateKubeClusterRequestValidationError) Cause() error { return e.cause }
+
+// Key function returns key value.
+func (e UpdateKubeClusterRequestValidationError) Key() bool { return e.key }
+
+// ErrorName returns error name.
+func (e UpdateKubeClusterRequestValidationError) ErrorName() string {
+	return "UpdateKubeClusterRequestValidationError"
+}
+
+// Error satisfies the builtin error interface
+func (e UpdateKubeClusterRequestValidationError) Error() string {
+	cause := ""
+	if e.cause != nil {
+		cause = fmt.Sprintf(" | caused by: %v", e.cause)
+	}
+
+	key := ""
+	if e.key {
+		key = "key for "
+	}
+
+	return fmt.Sprintf(
+		"invalid %sUpdateKubeClusterRequest.%s: %s%s",
+		key,
+		e.field,
+		e.reason,
+		cause)
+}
+
+var _ error = UpdateKubeClusterRequestValidationError{}
+
+var _ interface {
+	Field() string
+	Reason() string
+	Key() bool
+	Cause() error
+	ErrorName() string
+} = UpdateKubeClusterRequestValidationError{}
+
+// Validate checks the field values on UpdateKubeClusterResponse with the rules
+// defined in the proto definition for this message. If any rules are
+// violated, an error is returned.
+func (m *UpdateKubeClusterResponse) Validate() error {
+	if m == nil {
+		return nil
+	}
+
+	if v, ok := interface{}(m.GetResult()).(interface{ Validate() error }); ok {
+		if err := v.Validate(); err != nil {
+			return UpdateKubeClusterResponseValidationError{
+				field:  "Result",
+				reason: "embedded message failed validation",
+				cause:  err,
+			}
+		}
+	}
+
+	return nil
+}
+
+// UpdateKubeClusterResponseValidationError is the validation error returned by
+// UpdateKubeClusterResponse.Validate if the designated constraints aren't met.
+type UpdateKubeClusterResponseValidationError struct {
+	field  string
+	reason string
+	cause  error
+	key    bool
+}
+
+// Field function returns field value.
+func (e UpdateKubeClusterResponseValidationError) Field() string { return e.field }
+
+// Reason function returns reason value.
+func (e UpdateKubeClusterResponseValidationError) Reason() string { return e.reason }
+
+// Cause function returns cause value.
+func (e UpdateKubeClusterResponseValidationError) Cause() error { return e.cause }
+
+// Key function returns key value.
+func (e UpdateKubeClusterResponseValidationError) Key() bool { return e.key }
+
+// ErrorName returns error name.
+func (e UpdateKubeClusterResponseValidationError) ErrorName() string {
+	return "UpdateKubeClusterResponseValidationError"
+}
+
+// Error satisfies the builtin error interface
+func (e UpdateKubeClusterResponseValidationError) Error() string {
+	cause := ""
+	if e.cause != nil {
+		cause = fmt.Sprintf(" | caused by: %v", e.cause)
+	}
+
+	key := ""
+	if e.key {
+		key = "key for "
+	}
+
+	return fmt.Sprintf(
+		"invalid %sUpdateKubeClusterResponse.%s: %s%s",
+		key,
+		e.field,
+		e.reason,
+		cause)
+}
+
+var _ error = UpdateKubeClusterResponseValidationError{}
+
+var _ interface {
+	Field() string
+	Reason() string
+	Key() bool
+	Cause() error
+	ErrorName() string
+} = UpdateKubeClusterResponseValidationError{}
+
+// Validate checks the field values on DeleteKubeClusterRequest with the rules
+// defined in the proto definition for this message. If any rules are
+// violated, an error is returned.
+func (m *DeleteKubeClusterRequest) Validate() error {
+	if m == nil {
+		return nil
+	}
+
+	if v, ok := interface{}(m.GetId()).(interface{ Validate() error }); ok {
+		if err := v.Validate(); err != nil {
+			return DeleteKubeClusterRequestValidationError{
+				field:  "Id",
+				reason: "embedded message failed validation",
+				cause:  err,
+			}
+		}
+	}
+
+	return nil
+}
+
+// DeleteKubeClusterRequestValidationError is the validation error returned by
+// DeleteKubeClusterRequest.Validate if the designated constraints aren't met.
+type DeleteKubeClusterRequestValidationError struct {
+	field  string
+	reason string
+	cause  error
+	key    bool
+}
+
+// Field function returns field value.
+func (e DeleteKubeClusterRequestValidationError) Field() string { return e.field }
+
+// Reason function returns reason value.
+func (e DeleteKubeClusterRequestValidationError) Reason() string { return e.reason }
+
+// Cause function returns cause value.
+func (e DeleteKubeClusterRequestValidationError) Cause() error { return e.cause }
+
+// Key function returns key value.
+func (e DeleteKubeClusterRequestValidationError) Key() bool { return e.key }
+
+// ErrorName returns error name.
+func (e DeleteKubeClusterRequestValidationError) ErrorName() string {
+	return "DeleteKubeClusterRequestValidationError"
+}
+
+// Error satisfies the builtin error interface
+func (e DeleteKubeClusterRequestValidationError) Error() string {
+	cause := ""
+	if e.cause != nil {
+		cause = fmt.Sprintf(" | caused by: %v", e.cause)
+	}
+
+	key := ""
+	if e.key {
+		key = "key for "
+	}
+
+	return fmt.Sprintf(
+		"invalid %sDeleteKubeClusterRequest.%s: %s%s",
+		key,
+		e.field,
+		e.reason,
+		cause)
+}
+
+var _ error = DeleteKubeClusterRequestValidationError{}
+
+var _ interface {
+	Field() string
+	Reason() string
+	Key() bool
+	Cause() error
+	ErrorName() string
+} = DeleteKubeClusterRequestValidationError{}
+
+// Validate checks the field values on DeleteKubeClusterResponse with the rules
+// defined in the proto definition for this message. If any rules are
+// violated, an error is returned.
+func (m *DeleteKubeClusterResponse) Validate() error {
+	if m == nil {
+		return nil
+	}
+
+	return nil
+}
+
+// DeleteKubeClusterResponseValidationError is the validation error returned by
+// DeleteKubeClusterResponse.Validate if the designated constraints aren't met.
+type DeleteKubeClusterResponseValidationError struct {
+	field  string
+	reason string
+	cause  error
+	key    bool
+}
+
+// Field function returns field value.
+func (e DeleteKubeClusterResponseValidationError) Field() string { return e.field }
+
+// Reason function returns reason value.
+func (e DeleteKubeClusterResponseValidationError) Reason() string { return e.reason }
+
+// Cause function returns cause value.
+func (e DeleteKubeClusterResponseValidationError) Cause() error { return e.cause }
+
+// Key function returns key value.
+func (e DeleteKubeClusterResponseValidationError) Key() bool { return e.key }
+
+// ErrorName returns error name.
+func (e DeleteKubeClusterResponseValidationError) ErrorName() string {
+	return "DeleteKubeClusterResponseValidationError"
+}
+
+// Error satisfies the builtin error interface
+func (e DeleteKubeClusterResponseValidationError) Error() string {
+	cause := ""
+	if e.cause != nil {
+		cause = fmt.Sprintf(" | caused by: %v", e.cause)
+	}
+
+	key := ""
+	if e.key {
+		key = "key for "
+	}
+
+	return fmt.Sprintf(
+		"invalid %sDeleteKubeClusterResponse.%s: %s%s",
+		key,
+		e.field,
+		e.reason,
+		cause)
+}
+
+var _ error = DeleteKubeClusterResponseValidationError{}
+
+var _ interface {
+	Field() string
+	Reason() string
+	Key() bool
+	Cause() error
+	ErrorName() string
+} = DeleteKubeClusterResponseValidationError{}
+
+// Validate checks the field values on ListKubeClusterRequest with the rules
+// defined in the proto definition for this message. If any rules are
+// violated, an error is returned.
+func (m *ListKubeClusterRequest) Validate() error {
+	if m == nil {
+		return nil
+	}
+
+	if v, ok := interface{}(m.GetFilter()).(interface{ Validate() error }); ok {
+		if err := v.Validate(); err != nil {
+			return ListKubeClusterRequestValidationError{
+				field:  "Filter",
+				reason: "embedded message failed validation",
+				cause:  err,
+			}
+		}
+	}
+
+	if v, ok := interface{}(m.GetOrderBy()).(interface{ Validate() error }); ok {
+		if err := v.Validate(); err != nil {
+			return ListKubeClusterRequestValidationError{
+				field:  "OrderBy",
+				reason: "embedded message failed validation",
+				cause:  err,
+			}
+		}
+	}
+
+	if v, ok := interface{}(m.GetFields()).(interface{ Validate() error }); ok {
+		if err := v.Validate(); err != nil {
+			return ListKubeClusterRequestValidationError{
+				field:  "Fields",
+				reason: "embedded message failed validation",
+				cause:  err,
+			}
+		}
+	}
+
+	if v, ok := interface{}(m.GetPaging()).(interface{ Validate() error }); ok {
+		if err := v.Validate(); err != nil {
+			return ListKubeClusterRequestValidationError{
+				field:  "Paging",
+				reason: "embedded message failed validation",
+				cause:  err,
+			}
+		}
+	}
+
+	return nil
+}
+
+// ListKubeClusterRequestValidationError is the validation error returned by
+// ListKubeClusterRequest.Validate if the designated constraints aren't met.
+type ListKubeClusterRequestValidationError struct {
+	field  string
+	reason string
+	cause  error
+	key    bool
+}
+
+// Field function returns field value.
+func (e ListKubeClusterRequestValidationError) Field() string { return e.field }
+
+// Reason function returns reason value.
+func (e ListKubeClusterRequestValidationError) Reason() string { return e.reason }
+
+// Cause function returns cause value.
+func (e ListKubeClusterRequestValidationError) Cause() error { return e.cause }
+
+// Key function returns key value.
+func (e ListKubeClusterRequestValidationError) Key() bool { return e.key }
+
+// ErrorName returns error name.
+func (e ListKubeClusterRequestValidationError) ErrorName() string {
+	return "ListKubeClusterRequestValidationError"
+}
+
+// Error satisfies the builtin error interface
+func (e ListKubeClusterRequestValidationError) Error() string {
+	cause := ""
+	if e.cause != nil {
+		cause = fmt.Sprintf(" | caused by: %v", e.cause)
+	}
+
+	key := ""
+	if e.key {
+		key = "key for "
+	}
+
+	return fmt.Sprintf(
+		"invalid %sListKubeClusterRequest.%s: %s%s",
+		key,
+		e.field,
+		e.reason,
+		cause)
+}
+
+var _ error = ListKubeClusterRequestValidationError{}
+
+var _ interface {
+	Field() string
+	Reason() string
+	Key() bool
+	Cause() error
+	ErrorName() string
+} = ListKubeClusterRequestValidationError{}
+
+// Validate checks the field values on ListKubeClustersResponse with the rules
+// defined in the proto definition for this message. If any rules are
+// violated, an error is returned.
+func (m *ListKubeClustersResponse) Validate() error {
+	if m == nil {
+		return nil
+	}
+
+	for idx, item := range m.GetResults() {
+		_, _ = idx, item
+
+		if v, ok := interface{}(item).(interface{ Validate() error }); ok {
+			if err := v.Validate(); err != nil {
+				return ListKubeClustersResponseValidationError{
+					field:  fmt.Sprintf("Results[%v]", idx),
+					reason: "embedded message failed validation",
+					cause:  err,
+				}
+			}
+		}
+
+	}
+
+	if v, ok := interface{}(m.GetPage()).(interface{ Validate() error }); ok {
+		if err := v.Validate(); err != nil {
+			return ListKubeClustersResponseValidationError{
+				field:  "Page",
+				reason: "embedded message failed validation",
+				cause:  err,
+			}
+		}
+	}
+
+	return nil
+}
+
+// ListKubeClustersResponseValidationError is the validation error returned by
+// ListKubeClustersResponse.Validate if the designated constraints aren't met.
+type ListKubeClustersResponseValidationError struct {
+	field  string
+	reason string
+	cause  error
+	key    bool
+}
+
+// Field function returns field value.
+func (e ListKubeClustersResponseValidationError) Field() string { return e.field }
+
+// Reason function returns reason value.
+func (e ListKubeClustersResponseValidationError) Reason() string { return e.reason }
+
+// Cause function returns cause value.
+func (e ListKubeClustersResponseValidationError) Cause() error { return e.cause }
+
+// Key function returns key value.
+func (e ListKubeClustersResponseValidationError) Key() bool { return e.key }
+
+// ErrorName returns error name.
+func (e ListKubeClustersResponseValidationError) ErrorName() string {
+	return "ListKubeClustersResponseValidationError"
+}
+
+// Error satisfies the builtin error interface
+func (e ListKubeClustersResponseValidationError) Error() string {
+	cause := ""
+	if e.cause != nil {
+		cause = fmt.Sprintf(" | caused by: %v", e.cause)
+	}
+
+	key := ""
+	if e.key {
+		key = "key for "
+	}
+
+	return fmt.Sprintf(
+		"invalid %sListKubeClustersResponse.%s: %s%s",
+		key,
+		e.field,
+		e.reason,
+		cause)
+}
+
+var _ error = ListKubeClustersResponseValidationError{}
+
+var _ interface {
+	Field() string
+	Reason() string
+	Key() bool
+	Cause() error
+	ErrorName() string
+} = ListKubeClustersResponseValidationError{}
+
 // Validate checks the field values on Deployment with the rules defined in the
 // proto definition for this message. If any rules are violated, an error is returned.
 func (m *Deployment) Validate() error {
@@ -13149,907 +14063,3 @@ var _ interface {
 	Cause() error
 	ErrorName() string
 } = ListDeploymentsResponseValidationError{}
-
-// Validate checks the field values on KubeCluster with the rules defined in
-// the proto definition for this message. If any rules are violated, an error
-// is returned.
-func (m *KubeCluster) Validate() error {
-	if m == nil {
-		return nil
-	}
-
-	if v, ok := interface{}(m.GetId()).(interface{ Validate() error }); ok {
-		if err := v.Validate(); err != nil {
-			return KubeClusterValidationError{
-				field:  "Id",
-				reason: "embedded message failed validation",
-				cause:  err,
-			}
-		}
-	}
-
-	// no validation rules for Name
-
-	// no validation rules for Description
-
-	return nil
-}
-
-// KubeClusterValidationError is the validation error returned by
-// KubeCluster.Validate if the designated constraints aren't met.
-type KubeClusterValidationError struct {
-	field  string
-	reason string
-	cause  error
-	key    bool
-}
-
-// Field function returns field value.
-func (e KubeClusterValidationError) Field() string { return e.field }
-
-// Reason function returns reason value.
-func (e KubeClusterValidationError) Reason() string { return e.reason }
-
-// Cause function returns cause value.
-func (e KubeClusterValidationError) Cause() error { return e.cause }
-
-// Key function returns key value.
-func (e KubeClusterValidationError) Key() bool { return e.key }
-
-// ErrorName returns error name.
-func (e KubeClusterValidationError) ErrorName() string { return "KubeClusterValidationError" }
-
-// Error satisfies the builtin error interface
-func (e KubeClusterValidationError) Error() string {
-	cause := ""
-	if e.cause != nil {
-		cause = fmt.Sprintf(" | caused by: %v", e.cause)
-	}
-
-	key := ""
-	if e.key {
-		key = "key for "
-	}
-
-	return fmt.Sprintf(
-		"invalid %sKubeCluster.%s: %s%s",
-		key,
-		e.field,
-		e.reason,
-		cause)
-}
-
-var _ error = KubeClusterValidationError{}
-
-var _ interface {
-	Field() string
-	Reason() string
-	Key() bool
-	Cause() error
-	ErrorName() string
-} = KubeClusterValidationError{}
-
-// Validate checks the field values on CreateKubeClusterRequest with the rules
-// defined in the proto definition for this message. If any rules are
-// violated, an error is returned.
-func (m *CreateKubeClusterRequest) Validate() error {
-	if m == nil {
-		return nil
-	}
-
-	if v, ok := interface{}(m.GetPayload()).(interface{ Validate() error }); ok {
-		if err := v.Validate(); err != nil {
-			return CreateKubeClusterRequestValidationError{
-				field:  "Payload",
-				reason: "embedded message failed validation",
-				cause:  err,
-			}
-		}
-	}
-
-	return nil
-}
-
-// CreateKubeClusterRequestValidationError is the validation error returned by
-// CreateKubeClusterRequest.Validate if the designated constraints aren't met.
-type CreateKubeClusterRequestValidationError struct {
-	field  string
-	reason string
-	cause  error
-	key    bool
-}
-
-// Field function returns field value.
-func (e CreateKubeClusterRequestValidationError) Field() string { return e.field }
-
-// Reason function returns reason value.
-func (e CreateKubeClusterRequestValidationError) Reason() string { return e.reason }
-
-// Cause function returns cause value.
-func (e CreateKubeClusterRequestValidationError) Cause() error { return e.cause }
-
-// Key function returns key value.
-func (e CreateKubeClusterRequestValidationError) Key() bool { return e.key }
-
-// ErrorName returns error name.
-func (e CreateKubeClusterRequestValidationError) ErrorName() string {
-	return "CreateKubeClusterRequestValidationError"
-}
-
-// Error satisfies the builtin error interface
-func (e CreateKubeClusterRequestValidationError) Error() string {
-	cause := ""
-	if e.cause != nil {
-		cause = fmt.Sprintf(" | caused by: %v", e.cause)
-	}
-
-	key := ""
-	if e.key {
-		key = "key for "
-	}
-
-	return fmt.Sprintf(
-		"invalid %sCreateKubeClusterRequest.%s: %s%s",
-		key,
-		e.field,
-		e.reason,
-		cause)
-}
-
-var _ error = CreateKubeClusterRequestValidationError{}
-
-var _ interface {
-	Field() string
-	Reason() string
-	Key() bool
-	Cause() error
-	ErrorName() string
-} = CreateKubeClusterRequestValidationError{}
-
-// Validate checks the field values on CreateKubeClusterResponse with the rules
-// defined in the proto definition for this message. If any rules are
-// violated, an error is returned.
-func (m *CreateKubeClusterResponse) Validate() error {
-	if m == nil {
-		return nil
-	}
-
-	if v, ok := interface{}(m.GetResult()).(interface{ Validate() error }); ok {
-		if err := v.Validate(); err != nil {
-			return CreateKubeClusterResponseValidationError{
-				field:  "Result",
-				reason: "embedded message failed validation",
-				cause:  err,
-			}
-		}
-	}
-
-	return nil
-}
-
-// CreateKubeClusterResponseValidationError is the validation error returned by
-// CreateKubeClusterResponse.Validate if the designated constraints aren't met.
-type CreateKubeClusterResponseValidationError struct {
-	field  string
-	reason string
-	cause  error
-	key    bool
-}
-
-// Field function returns field value.
-func (e CreateKubeClusterResponseValidationError) Field() string { return e.field }
-
-// Reason function returns reason value.
-func (e CreateKubeClusterResponseValidationError) Reason() string { return e.reason }
-
-// Cause function returns cause value.
-func (e CreateKubeClusterResponseValidationError) Cause() error { return e.cause }
-
-// Key function returns key value.
-func (e CreateKubeClusterResponseValidationError) Key() bool { return e.key }
-
-// ErrorName returns error name.
-func (e CreateKubeClusterResponseValidationError) ErrorName() string {
-	return "CreateKubeClusterResponseValidationError"
-}
-
-// Error satisfies the builtin error interface
-func (e CreateKubeClusterResponseValidationError) Error() string {
-	cause := ""
-	if e.cause != nil {
-		cause = fmt.Sprintf(" | caused by: %v", e.cause)
-	}
-
-	key := ""
-	if e.key {
-		key = "key for "
-	}
-
-	return fmt.Sprintf(
-		"invalid %sCreateKubeClusterResponse.%s: %s%s",
-		key,
-		e.field,
-		e.reason,
-		cause)
-}
-
-var _ error = CreateKubeClusterResponseValidationError{}
-
-var _ interface {
-	Field() string
-	Reason() string
-	Key() bool
-	Cause() error
-	ErrorName() string
-} = CreateKubeClusterResponseValidationError{}
-
-// Validate checks the field values on ReadKubeClusterRequest with the rules
-// defined in the proto definition for this message. If any rules are
-// violated, an error is returned.
-func (m *ReadKubeClusterRequest) Validate() error {
-	if m == nil {
-		return nil
-	}
-
-	if v, ok := interface{}(m.GetId()).(interface{ Validate() error }); ok {
-		if err := v.Validate(); err != nil {
-			return ReadKubeClusterRequestValidationError{
-				field:  "Id",
-				reason: "embedded message failed validation",
-				cause:  err,
-			}
-		}
-	}
-
-	if v, ok := interface{}(m.GetFields()).(interface{ Validate() error }); ok {
-		if err := v.Validate(); err != nil {
-			return ReadKubeClusterRequestValidationError{
-				field:  "Fields",
-				reason: "embedded message failed validation",
-				cause:  err,
-			}
-		}
-	}
-
-	return nil
-}
-
-// ReadKubeClusterRequestValidationError is the validation error returned by
-// ReadKubeClusterRequest.Validate if the designated constraints aren't met.
-type ReadKubeClusterRequestValidationError struct {
-	field  string
-	reason string
-	cause  error
-	key    bool
-}
-
-// Field function returns field value.
-func (e ReadKubeClusterRequestValidationError) Field() string { return e.field }
-
-// Reason function returns reason value.
-func (e ReadKubeClusterRequestValidationError) Reason() string { return e.reason }
-
-// Cause function returns cause value.
-func (e ReadKubeClusterRequestValidationError) Cause() error { return e.cause }
-
-// Key function returns key value.
-func (e ReadKubeClusterRequestValidationError) Key() bool { return e.key }
-
-// ErrorName returns error name.
-func (e ReadKubeClusterRequestValidationError) ErrorName() string {
-	return "ReadKubeClusterRequestValidationError"
-}
-
-// Error satisfies the builtin error interface
-func (e ReadKubeClusterRequestValidationError) Error() string {
-	cause := ""
-	if e.cause != nil {
-		cause = fmt.Sprintf(" | caused by: %v", e.cause)
-	}
-
-	key := ""
-	if e.key {
-		key = "key for "
-	}
-
-	return fmt.Sprintf(
-		"invalid %sReadKubeClusterRequest.%s: %s%s",
-		key,
-		e.field,
-		e.reason,
-		cause)
-}
-
-var _ error = ReadKubeClusterRequestValidationError{}
-
-var _ interface {
-	Field() string
-	Reason() string
-	Key() bool
-	Cause() error
-	ErrorName() string
-} = ReadKubeClusterRequestValidationError{}
-
-// Validate checks the field values on ReadKubeClusterResponse with the rules
-// defined in the proto definition for this message. If any rules are
-// violated, an error is returned.
-func (m *ReadKubeClusterResponse) Validate() error {
-	if m == nil {
-		return nil
-	}
-
-	if v, ok := interface{}(m.GetResult()).(interface{ Validate() error }); ok {
-		if err := v.Validate(); err != nil {
-			return ReadKubeClusterResponseValidationError{
-				field:  "Result",
-				reason: "embedded message failed validation",
-				cause:  err,
-			}
-		}
-	}
-
-	return nil
-}
-
-// ReadKubeClusterResponseValidationError is the validation error returned by
-// ReadKubeClusterResponse.Validate if the designated constraints aren't met.
-type ReadKubeClusterResponseValidationError struct {
-	field  string
-	reason string
-	cause  error
-	key    bool
-}
-
-// Field function returns field value.
-func (e ReadKubeClusterResponseValidationError) Field() string { return e.field }
-
-// Reason function returns reason value.
-func (e ReadKubeClusterResponseValidationError) Reason() string { return e.reason }
-
-// Cause function returns cause value.
-func (e ReadKubeClusterResponseValidationError) Cause() error { return e.cause }
-
-// Key function returns key value.
-func (e ReadKubeClusterResponseValidationError) Key() bool { return e.key }
-
-// ErrorName returns error name.
-func (e ReadKubeClusterResponseValidationError) ErrorName() string {
-	return "ReadKubeClusterResponseValidationError"
-}
-
-// Error satisfies the builtin error interface
-func (e ReadKubeClusterResponseValidationError) Error() string {
-	cause := ""
-	if e.cause != nil {
-		cause = fmt.Sprintf(" | caused by: %v", e.cause)
-	}
-
-	key := ""
-	if e.key {
-		key = "key for "
-	}
-
-	return fmt.Sprintf(
-		"invalid %sReadKubeClusterResponse.%s: %s%s",
-		key,
-		e.field,
-		e.reason,
-		cause)
-}
-
-var _ error = ReadKubeClusterResponseValidationError{}
-
-var _ interface {
-	Field() string
-	Reason() string
-	Key() bool
-	Cause() error
-	ErrorName() string
-} = ReadKubeClusterResponseValidationError{}
-
-// Validate checks the field values on UpdateKubeClusterRequest with the rules
-// defined in the proto definition for this message. If any rules are
-// violated, an error is returned.
-func (m *UpdateKubeClusterRequest) Validate() error {
-	if m == nil {
-		return nil
-	}
-
-	if v, ok := interface{}(m.GetPayload()).(interface{ Validate() error }); ok {
-		if err := v.Validate(); err != nil {
-			return UpdateKubeClusterRequestValidationError{
-				field:  "Payload",
-				reason: "embedded message failed validation",
-				cause:  err,
-			}
-		}
-	}
-
-	if v, ok := interface{}(m.GetFields()).(interface{ Validate() error }); ok {
-		if err := v.Validate(); err != nil {
-			return UpdateKubeClusterRequestValidationError{
-				field:  "Fields",
-				reason: "embedded message failed validation",
-				cause:  err,
-			}
-		}
-	}
-
-	return nil
-}
-
-// UpdateKubeClusterRequestValidationError is the validation error returned by
-// UpdateKubeClusterRequest.Validate if the designated constraints aren't met.
-type UpdateKubeClusterRequestValidationError struct {
-	field  string
-	reason string
-	cause  error
-	key    bool
-}
-
-// Field function returns field value.
-func (e UpdateKubeClusterRequestValidationError) Field() string { return e.field }
-
-// Reason function returns reason value.
-func (e UpdateKubeClusterRequestValidationError) Reason() string { return e.reason }
-
-// Cause function returns cause value.
-func (e UpdateKubeClusterRequestValidationError) Cause() error { return e.cause }
-
-// Key function returns key value.
-func (e UpdateKubeClusterRequestValidationError) Key() bool { return e.key }
-
-// ErrorName returns error name.
-func (e UpdateKubeClusterRequestValidationError) ErrorName() string {
-	return "UpdateKubeClusterRequestValidationError"
-}
-
-// Error satisfies the builtin error interface
-func (e UpdateKubeClusterRequestValidationError) Error() string {
-	cause := ""
-	if e.cause != nil {
-		cause = fmt.Sprintf(" | caused by: %v", e.cause)
-	}
-
-	key := ""
-	if e.key {
-		key = "key for "
-	}
-
-	return fmt.Sprintf(
-		"invalid %sUpdateKubeClusterRequest.%s: %s%s",
-		key,
-		e.field,
-		e.reason,
-		cause)
-}
-
-var _ error = UpdateKubeClusterRequestValidationError{}
-
-var _ interface {
-	Field() string
-	Reason() string
-	Key() bool
-	Cause() error
-	ErrorName() string
-} = UpdateKubeClusterRequestValidationError{}
-
-// Validate checks the field values on UpdateKubeClusterResponse with the rules
-// defined in the proto definition for this message. If any rules are
-// violated, an error is returned.
-func (m *UpdateKubeClusterResponse) Validate() error {
-	if m == nil {
-		return nil
-	}
-
-	if v, ok := interface{}(m.GetResult()).(interface{ Validate() error }); ok {
-		if err := v.Validate(); err != nil {
-			return UpdateKubeClusterResponseValidationError{
-				field:  "Result",
-				reason: "embedded message failed validation",
-				cause:  err,
-			}
-		}
-	}
-
-	return nil
-}
-
-// UpdateKubeClusterResponseValidationError is the validation error returned by
-// UpdateKubeClusterResponse.Validate if the designated constraints aren't met.
-type UpdateKubeClusterResponseValidationError struct {
-	field  string
-	reason string
-	cause  error
-	key    bool
-}
-
-// Field function returns field value.
-func (e UpdateKubeClusterResponseValidationError) Field() string { return e.field }
-
-// Reason function returns reason value.
-func (e UpdateKubeClusterResponseValidationError) Reason() string { return e.reason }
-
-// Cause function returns cause value.
-func (e UpdateKubeClusterResponseValidationError) Cause() error { return e.cause }
-
-// Key function returns key value.
-func (e UpdateKubeClusterResponseValidationError) Key() bool { return e.key }
-
-// ErrorName returns error name.
-func (e UpdateKubeClusterResponseValidationError) ErrorName() string {
-	return "UpdateKubeClusterResponseValidationError"
-}
-
-// Error satisfies the builtin error interface
-func (e UpdateKubeClusterResponseValidationError) Error() string {
-	cause := ""
-	if e.cause != nil {
-		cause = fmt.Sprintf(" | caused by: %v", e.cause)
-	}
-
-	key := ""
-	if e.key {
-		key = "key for "
-	}
-
-	return fmt.Sprintf(
-		"invalid %sUpdateKubeClusterResponse.%s: %s%s",
-		key,
-		e.field,
-		e.reason,
-		cause)
-}
-
-var _ error = UpdateKubeClusterResponseValidationError{}
-
-var _ interface {
-	Field() string
-	Reason() string
-	Key() bool
-	Cause() error
-	ErrorName() string
-} = UpdateKubeClusterResponseValidationError{}
-
-// Validate checks the field values on DeleteKubeClusterRequest with the rules
-// defined in the proto definition for this message. If any rules are
-// violated, an error is returned.
-func (m *DeleteKubeClusterRequest) Validate() error {
-	if m == nil {
-		return nil
-	}
-
-	if v, ok := interface{}(m.GetId()).(interface{ Validate() error }); ok {
-		if err := v.Validate(); err != nil {
-			return DeleteKubeClusterRequestValidationError{
-				field:  "Id",
-				reason: "embedded message failed validation",
-				cause:  err,
-			}
-		}
-	}
-
-	return nil
-}
-
-// DeleteKubeClusterRequestValidationError is the validation error returned by
-// DeleteKubeClusterRequest.Validate if the designated constraints aren't met.
-type DeleteKubeClusterRequestValidationError struct {
-	field  string
-	reason string
-	cause  error
-	key    bool
-}
-
-// Field function returns field value.
-func (e DeleteKubeClusterRequestValidationError) Field() string { return e.field }
-
-// Reason function returns reason value.
-func (e DeleteKubeClusterRequestValidationError) Reason() string { return e.reason }
-
-// Cause function returns cause value.
-func (e DeleteKubeClusterRequestValidationError) Cause() error { return e.cause }
-
-// Key function returns key value.
-func (e DeleteKubeClusterRequestValidationError) Key() bool { return e.key }
-
-// ErrorName returns error name.
-func (e DeleteKubeClusterRequestValidationError) ErrorName() string {
-	return "DeleteKubeClusterRequestValidationError"
-}
-
-// Error satisfies the builtin error interface
-func (e DeleteKubeClusterRequestValidationError) Error() string {
-	cause := ""
-	if e.cause != nil {
-		cause = fmt.Sprintf(" | caused by: %v", e.cause)
-	}
-
-	key := ""
-	if e.key {
-		key = "key for "
-	}
-
-	return fmt.Sprintf(
-		"invalid %sDeleteKubeClusterRequest.%s: %s%s",
-		key,
-		e.field,
-		e.reason,
-		cause)
-}
-
-var _ error = DeleteKubeClusterRequestValidationError{}
-
-var _ interface {
-	Field() string
-	Reason() string
-	Key() bool
-	Cause() error
-	ErrorName() string
-} = DeleteKubeClusterRequestValidationError{}
-
-// Validate checks the field values on DeleteKubeClusterResponse with the rules
-// defined in the proto definition for this message. If any rules are
-// violated, an error is returned.
-func (m *DeleteKubeClusterResponse) Validate() error {
-	if m == nil {
-		return nil
-	}
-
-	return nil
-}
-
-// DeleteKubeClusterResponseValidationError is the validation error returned by
-// DeleteKubeClusterResponse.Validate if the designated constraints aren't met.
-type DeleteKubeClusterResponseValidationError struct {
-	field  string
-	reason string
-	cause  error
-	key    bool
-}
-
-// Field function returns field value.
-func (e DeleteKubeClusterResponseValidationError) Field() string { return e.field }
-
-// Reason function returns reason value.
-func (e DeleteKubeClusterResponseValidationError) Reason() string { return e.reason }
-
-// Cause function returns cause value.
-func (e DeleteKubeClusterResponseValidationError) Cause() error { return e.cause }
-
-// Key function returns key value.
-func (e DeleteKubeClusterResponseValidationError) Key() bool { return e.key }
-
-// ErrorName returns error name.
-func (e DeleteKubeClusterResponseValidationError) ErrorName() string {
-	return "DeleteKubeClusterResponseValidationError"
-}
-
-// Error satisfies the builtin error interface
-func (e DeleteKubeClusterResponseValidationError) Error() string {
-	cause := ""
-	if e.cause != nil {
-		cause = fmt.Sprintf(" | caused by: %v", e.cause)
-	}
-
-	key := ""
-	if e.key {
-		key = "key for "
-	}
-
-	return fmt.Sprintf(
-		"invalid %sDeleteKubeClusterResponse.%s: %s%s",
-		key,
-		e.field,
-		e.reason,
-		cause)
-}
-
-var _ error = DeleteKubeClusterResponseValidationError{}
-
-var _ interface {
-	Field() string
-	Reason() string
-	Key() bool
-	Cause() error
-	ErrorName() string
-} = DeleteKubeClusterResponseValidationError{}
-
-// Validate checks the field values on ListKubeClusterRequest with the rules
-// defined in the proto definition for this message. If any rules are
-// violated, an error is returned.
-func (m *ListKubeClusterRequest) Validate() error {
-	if m == nil {
-		return nil
-	}
-
-	if v, ok := interface{}(m.GetFilter()).(interface{ Validate() error }); ok {
-		if err := v.Validate(); err != nil {
-			return ListKubeClusterRequestValidationError{
-				field:  "Filter",
-				reason: "embedded message failed validation",
-				cause:  err,
-			}
-		}
-	}
-
-	if v, ok := interface{}(m.GetOrderBy()).(interface{ Validate() error }); ok {
-		if err := v.Validate(); err != nil {
-			return ListKubeClusterRequestValidationError{
-				field:  "OrderBy",
-				reason: "embedded message failed validation",
-				cause:  err,
-			}
-		}
-	}
-
-	if v, ok := interface{}(m.GetFields()).(interface{ Validate() error }); ok {
-		if err := v.Validate(); err != nil {
-			return ListKubeClusterRequestValidationError{
-				field:  "Fields",
-				reason: "embedded message failed validation",
-				cause:  err,
-			}
-		}
-	}
-
-	if v, ok := interface{}(m.GetPaging()).(interface{ Validate() error }); ok {
-		if err := v.Validate(); err != nil {
-			return ListKubeClusterRequestValidationError{
-				field:  "Paging",
-				reason: "embedded message failed validation",
-				cause:  err,
-			}
-		}
-	}
-
-	return nil
-}
-
-// ListKubeClusterRequestValidationError is the validation error returned by
-// ListKubeClusterRequest.Validate if the designated constraints aren't met.
-type ListKubeClusterRequestValidationError struct {
-	field  string
-	reason string
-	cause  error
-	key    bool
-}
-
-// Field function returns field value.
-func (e ListKubeClusterRequestValidationError) Field() string { return e.field }
-
-// Reason function returns reason value.
-func (e ListKubeClusterRequestValidationError) Reason() string { return e.reason }
-
-// Cause function returns cause value.
-func (e ListKubeClusterRequestValidationError) Cause() error { return e.cause }
-
-// Key function returns key value.
-func (e ListKubeClusterRequestValidationError) Key() bool { return e.key }
-
-// ErrorName returns error name.
-func (e ListKubeClusterRequestValidationError) ErrorName() string {
-	return "ListKubeClusterRequestValidationError"
-}
-
-// Error satisfies the builtin error interface
-func (e ListKubeClusterRequestValidationError) Error() string {
-	cause := ""
-	if e.cause != nil {
-		cause = fmt.Sprintf(" | caused by: %v", e.cause)
-	}
-
-	key := ""
-	if e.key {
-		key = "key for "
-	}
-
-	return fmt.Sprintf(
-		"invalid %sListKubeClusterRequest.%s: %s%s",
-		key,
-		e.field,
-		e.reason,
-		cause)
-}
-
-var _ error = ListKubeClusterRequestValidationError{}
-
-var _ interface {
-	Field() string
-	Reason() string
-	Key() bool
-	Cause() error
-	ErrorName() string
-} = ListKubeClusterRequestValidationError{}
-
-// Validate checks the field values on ListKubeClustersResponse with the rules
-// defined in the proto definition for this message. If any rules are
-// violated, an error is returned.
-func (m *ListKubeClustersResponse) Validate() error {
-	if m == nil {
-		return nil
-	}
-
-	for idx, item := range m.GetResults() {
-		_, _ = idx, item
-
-		if v, ok := interface{}(item).(interface{ Validate() error }); ok {
-			if err := v.Validate(); err != nil {
-				return ListKubeClustersResponseValidationError{
-					field:  fmt.Sprintf("Results[%v]", idx),
-					reason: "embedded message failed validation",
-					cause:  err,
-				}
-			}
-		}
-
-	}
-
-	if v, ok := interface{}(m.GetPage()).(interface{ Validate() error }); ok {
-		if err := v.Validate(); err != nil {
-			return ListKubeClustersResponseValidationError{
-				field:  "Page",
-				reason: "embedded message failed validation",
-				cause:  err,
-			}
-		}
-	}
-
-	return nil
-}
-
-// ListKubeClustersResponseValidationError is the validation error returned by
-// ListKubeClustersResponse.Validate if the designated constraints aren't met.
-type ListKubeClustersResponseValidationError struct {
-	field  string
-	reason string
-	cause  error
-	key    bool
-}
-
-// Field function returns field value.
-func (e ListKubeClustersResponseValidationError) Field() string { return e.field }
-
-// Reason function returns reason value.
-func (e ListKubeClustersResponseValidationError) Reason() string { return e.reason }
-
-// Cause function returns cause value.
-func (e ListKubeClustersResponseValidationError) Cause() error { return e.cause }
-
-// Key function returns key value.
-func (e ListKubeClustersResponseValidationError) Key() bool { return e.key }
-
-// ErrorName returns error name.
-func (e ListKubeClustersResponseValidationError) ErrorName() string {
-	return "ListKubeClustersResponseValidationError"
-}
-
-// Error satisfies the builtin error interface
-func (e ListKubeClustersResponseValidationError) Error() string {
-	cause := ""
-	if e.cause != nil {
-		cause = fmt.Sprintf(" | caused by: %v", e.cause)
-	}
-
-	key := ""
-	if e.key {
-		key = "key for "
-	}
-
-	return fmt.Sprintf(
-		"invalid %sListKubeClustersResponse.%s: %s%s",
-		key,
-		e.field,
-		e.reason,
-		cause)
-}
-
-var _ error = ListKubeClustersResponseValidationError{}
-
-var _ interface {
-	Field() string
-	Reason() string
-	Key() bool
-	Cause() error
-	ErrorName() string
-} = ListKubeClustersResponseValidationError{}

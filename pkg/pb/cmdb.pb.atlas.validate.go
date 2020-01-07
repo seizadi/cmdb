@@ -629,51 +629,6 @@ func validate_Artifacts_List_0(ctx context.Context, r json.RawMessage) (err erro
 	return nil
 }
 
-// validate_Deployments_Create_0 is an entrypoint for validating "POST" HTTP request
-// that match *.pb.gw.go/pattern_Deployments_Create_0.
-func validate_Deployments_Create_0(ctx context.Context, r json.RawMessage) (err error) {
-	return validate_Object_Deployment(ctx, r, "")
-}
-
-// validate_Deployments_Read_0 is an entrypoint for validating "GET" HTTP request
-// that match *.pb.gw.go/pattern_Deployments_Read_0.
-func validate_Deployments_Read_0(ctx context.Context, r json.RawMessage) (err error) {
-	if len(r) != 0 {
-		return fmt.Errorf("body is not allowed")
-	}
-	return nil
-}
-
-// validate_Deployments_Update_0 is an entrypoint for validating "PUT" HTTP request
-// that match *.pb.gw.go/pattern_Deployments_Update_0.
-func validate_Deployments_Update_0(ctx context.Context, r json.RawMessage) (err error) {
-	return validate_Object_Deployment(ctx, r, "")
-}
-
-// validate_Deployments_Update_1 is an entrypoint for validating "PATCH" HTTP request
-// that match *.pb.gw.go/pattern_Deployments_Update_1.
-func validate_Deployments_Update_1(ctx context.Context, r json.RawMessage) (err error) {
-	return validate_Object_Deployment(ctx, r, "")
-}
-
-// validate_Deployments_Delete_0 is an entrypoint for validating "DELETE" HTTP request
-// that match *.pb.gw.go/pattern_Deployments_Delete_0.
-func validate_Deployments_Delete_0(ctx context.Context, r json.RawMessage) (err error) {
-	if len(r) != 0 {
-		return fmt.Errorf("body is not allowed")
-	}
-	return nil
-}
-
-// validate_Deployments_List_0 is an entrypoint for validating "GET" HTTP request
-// that match *.pb.gw.go/pattern_Deployments_List_0.
-func validate_Deployments_List_0(ctx context.Context, r json.RawMessage) (err error) {
-	if len(r) != 0 {
-		return fmt.Errorf("body is not allowed")
-	}
-	return nil
-}
-
 // validate_KubeClusters_Create_0 is an entrypoint for validating "POST" HTTP request
 // that match *.pb.gw.go/pattern_KubeClusters_Create_0.
 func validate_KubeClusters_Create_0(ctx context.Context, r json.RawMessage) (err error) {
@@ -713,6 +668,51 @@ func validate_KubeClusters_Delete_0(ctx context.Context, r json.RawMessage) (err
 // validate_KubeClusters_List_0 is an entrypoint for validating "GET" HTTP request
 // that match *.pb.gw.go/pattern_KubeClusters_List_0.
 func validate_KubeClusters_List_0(ctx context.Context, r json.RawMessage) (err error) {
+	if len(r) != 0 {
+		return fmt.Errorf("body is not allowed")
+	}
+	return nil
+}
+
+// validate_Deployments_Create_0 is an entrypoint for validating "POST" HTTP request
+// that match *.pb.gw.go/pattern_Deployments_Create_0.
+func validate_Deployments_Create_0(ctx context.Context, r json.RawMessage) (err error) {
+	return validate_Object_Deployment(ctx, r, "")
+}
+
+// validate_Deployments_Read_0 is an entrypoint for validating "GET" HTTP request
+// that match *.pb.gw.go/pattern_Deployments_Read_0.
+func validate_Deployments_Read_0(ctx context.Context, r json.RawMessage) (err error) {
+	if len(r) != 0 {
+		return fmt.Errorf("body is not allowed")
+	}
+	return nil
+}
+
+// validate_Deployments_Update_0 is an entrypoint for validating "PUT" HTTP request
+// that match *.pb.gw.go/pattern_Deployments_Update_0.
+func validate_Deployments_Update_0(ctx context.Context, r json.RawMessage) (err error) {
+	return validate_Object_Deployment(ctx, r, "")
+}
+
+// validate_Deployments_Update_1 is an entrypoint for validating "PATCH" HTTP request
+// that match *.pb.gw.go/pattern_Deployments_Update_1.
+func validate_Deployments_Update_1(ctx context.Context, r json.RawMessage) (err error) {
+	return validate_Object_Deployment(ctx, r, "")
+}
+
+// validate_Deployments_Delete_0 is an entrypoint for validating "DELETE" HTTP request
+// that match *.pb.gw.go/pattern_Deployments_Delete_0.
+func validate_Deployments_Delete_0(ctx context.Context, r json.RawMessage) (err error) {
+	if len(r) != 0 {
+		return fmt.Errorf("body is not allowed")
+	}
+	return nil
+}
+
+// validate_Deployments_List_0 is an entrypoint for validating "GET" HTTP request
+// that match *.pb.gw.go/pattern_Deployments_List_0.
+func validate_Deployments_List_0(ctx context.Context, r json.RawMessage) (err error) {
 	if len(r) != 0 {
 		return fmt.Errorf("body is not allowed")
 	}
@@ -1604,15 +1604,6 @@ func validate_Object_Region(ctx context.Context, r json.RawMessage, path string)
 					return err
 				}
 			}
-		case "value":
-			if v[k] == nil {
-				continue
-			}
-			vv := v[k]
-			vvPath := runtime1.JoinPath(path, k)
-			if err = validate_Object_Value(ctx, vv, vvPath); err != nil {
-				return err
-			}
 		case "aws_services":
 			if v[k] == nil {
 				continue
@@ -1627,6 +1618,21 @@ func validate_Object_Region(ctx context.Context, r json.RawMessage, path string)
 				if err = validate_Object_AwsService(ctx, vv, vvPath); err != nil {
 					return err
 				}
+			}
+		case "value_id":
+			if v[k] == nil {
+				continue
+			}
+			vv := v[k]
+			vvPath := runtime1.JoinPath(path, k)
+			validator, ok := interface{}(&resource.Identifier{}).(interface {
+				AtlasValidateJSON(context.Context, json.RawMessage, string) error
+			})
+			if !ok {
+				continue
+			}
+			if err = validator.AtlasValidateJSON(ctx, vv, vvPath); err != nil {
+				return err
 			}
 		case "cloud_provider_id":
 			if v[k] == nil {
@@ -2406,6 +2412,21 @@ func validate_Object_Stage(ctx context.Context, r json.RawMessage, path string) 
 		case "name":
 		case "description":
 		case "type":
+		case "value_id":
+			if v[k] == nil {
+				continue
+			}
+			vv := v[k]
+			vvPath := runtime1.JoinPath(path, k)
+			validator, ok := interface{}(&resource.Identifier{}).(interface {
+				AtlasValidateJSON(context.Context, json.RawMessage, string) error
+			})
+			if !ok {
+				continue
+			}
+			if err = validator.AtlasValidateJSON(ctx, vv, vvPath); err != nil {
+				return err
+			}
 		case "region_id":
 			if v[k] == nil {
 				continue
@@ -3183,15 +3204,6 @@ func validate_Object_Environment(ctx context.Context, r json.RawMessage, path st
 			}
 		case "name":
 		case "description":
-		case "value":
-			if v[k] == nil {
-				continue
-			}
-			vv := v[k]
-			vvPath := runtime1.JoinPath(path, k)
-			if err = validate_Object_Value(ctx, vv, vvPath); err != nil {
-				return err
-			}
 		case "application_instances":
 			if v[k] == nil {
 				continue
@@ -3206,6 +3218,21 @@ func validate_Object_Environment(ctx context.Context, r json.RawMessage, path st
 				if err = validate_Object_ApplicationInstance(ctx, vv, vvPath); err != nil {
 					return err
 				}
+			}
+		case "value_id":
+			if v[k] == nil {
+				continue
+			}
+			vv := v[k]
+			vvPath := runtime1.JoinPath(path, k)
+			validator, ok := interface{}(&resource.Identifier{}).(interface {
+				AtlasValidateJSON(context.Context, json.RawMessage, string) error
+			})
+			if !ok {
+				continue
+			}
+			if err = validator.AtlasValidateJSON(ctx, vv, vvPath); err != nil {
+				return err
 			}
 		case "stage_id":
 			if v[k] == nil {
@@ -3984,15 +4011,6 @@ func validate_Object_Application(ctx context.Context, r json.RawMessage, path st
 			}
 		case "name":
 		case "description":
-		case "value":
-			if v[k] == nil {
-				continue
-			}
-			vv := v[k]
-			vvPath := runtime1.JoinPath(path, k)
-			if err = validate_Object_Value(ctx, vv, vvPath); err != nil {
-				return err
-			}
 		case "application_instances":
 			if v[k] == nil {
 				continue
@@ -4007,6 +4025,21 @@ func validate_Object_Application(ctx context.Context, r json.RawMessage, path st
 				if err = validate_Object_ApplicationInstance(ctx, vv, vvPath); err != nil {
 					return err
 				}
+			}
+		case "value_id":
+			if v[k] == nil {
+				continue
+			}
+			vv := v[k]
+			vvPath := runtime1.JoinPath(path, k)
+			validator, ok := interface{}(&resource.Identifier{}).(interface {
+				AtlasValidateJSON(context.Context, json.RawMessage, string) error
+			})
+			if !ok {
+				continue
+			}
+			if err = validator.AtlasValidateJSON(ctx, vv, vvPath); err != nil {
+				return err
 			}
 		case "stage_id":
 			if v[k] == nil {
@@ -5549,15 +5582,6 @@ func validate_Object_ApplicationInstance(ctx context.Context, r json.RawMessage,
 			}
 		case "name":
 		case "description":
-		case "value":
-			if v[k] == nil {
-				continue
-			}
-			vv := v[k]
-			vvPath := runtime1.JoinPath(path, k)
-			if err = validate_Object_Value(ctx, vv, vvPath); err != nil {
-				return err
-			}
 		case "deployment":
 			if v[k] == nil {
 				continue
@@ -5567,13 +5591,34 @@ func validate_Object_ApplicationInstance(ctx context.Context, r json.RawMessage,
 			if err = validate_Object_Deployment(ctx, vv, vvPath); err != nil {
 				return err
 			}
-		case "chart_version":
+		case "value_id":
 			if v[k] == nil {
 				continue
 			}
 			vv := v[k]
 			vvPath := runtime1.JoinPath(path, k)
-			if err = validate_Object_ChartVersion(ctx, vv, vvPath); err != nil {
+			validator, ok := interface{}(&resource.Identifier{}).(interface {
+				AtlasValidateJSON(context.Context, json.RawMessage, string) error
+			})
+			if !ok {
+				continue
+			}
+			if err = validator.AtlasValidateJSON(ctx, vv, vvPath); err != nil {
+				return err
+			}
+		case "application_id":
+			if v[k] == nil {
+				continue
+			}
+			vv := v[k]
+			vvPath := runtime1.JoinPath(path, k)
+			validator, ok := interface{}(&resource.Identifier{}).(interface {
+				AtlasValidateJSON(context.Context, json.RawMessage, string) error
+			})
+			if !ok {
+				continue
+			}
+			if err = validator.AtlasValidateJSON(ctx, vv, vvPath); err != nil {
 				return err
 			}
 		case "chart_version_id":
@@ -9551,7 +9596,7 @@ func validate_Object_Value(ctx context.Context, r json.RawMessage, path string) 
 			if err = validator.AtlasValidateJSON(ctx, vv, vvPath); err != nil {
 				return err
 			}
-		case "aws_service_id":
+		case "aws_rds_instance_id":
 			if v[k] == nil {
 				continue
 			}
@@ -11067,6 +11112,768 @@ func validate_required_Object_ListArtifactsResponse(ctx context.Context, v map[s
 	return nil
 }
 
+// validate_Object_KubeCluster function validates a JSON for a given object.
+func validate_Object_KubeCluster(ctx context.Context, r json.RawMessage, path string) (err error) {
+	if hook, ok := interface{}(&KubeCluster{}).(interface {
+		AtlasJSONValidate(context.Context, json.RawMessage, string) (json.RawMessage, error)
+	}); ok {
+		if r, err = hook.AtlasJSONValidate(ctx, r, path); err != nil {
+			return err
+		}
+	}
+
+	var v map[string]json.RawMessage
+	if err = json.Unmarshal(r, &v); err != nil {
+		return fmt.Errorf("invalid value for %q: expected object.", path)
+	}
+
+	if err = validate_required_Object_KubeCluster(ctx, v, path); err != nil {
+		return err
+	}
+
+	allowUnknown := runtime1.AllowUnknownFromContext(ctx)
+
+	for k, _ := range v {
+		switch k {
+		case "id":
+			if v[k] == nil {
+				continue
+			}
+			vv := v[k]
+			vvPath := runtime1.JoinPath(path, k)
+			validator, ok := interface{}(&resource.Identifier{}).(interface {
+				AtlasValidateJSON(context.Context, json.RawMessage, string) error
+			})
+			if !ok {
+				continue
+			}
+			if err = validator.AtlasValidateJSON(ctx, vv, vvPath); err != nil {
+				return err
+			}
+		case "name":
+		case "description":
+		default:
+			if !allowUnknown {
+				return fmt.Errorf("unknown field %q.", runtime1.JoinPath(path, k))
+			}
+		}
+	}
+	return nil
+}
+
+// AtlasValidateJSON function validates a JSON for object KubeCluster.
+func (_ *KubeCluster) AtlasValidateJSON(ctx context.Context, r json.RawMessage, path string) (err error) {
+	if hook, ok := interface{}(&KubeCluster{}).(interface {
+		AtlasJSONValidate(context.Context, json.RawMessage, string) (json.RawMessage, error)
+	}); ok {
+		if r, err = hook.AtlasJSONValidate(ctx, r, path); err != nil {
+			return err
+		}
+	}
+	return validate_Object_KubeCluster(ctx, r, path)
+}
+
+func validate_required_Object_KubeCluster(ctx context.Context, v map[string]json.RawMessage, path string) error {
+	method := runtime1.HTTPMethodFromContext(ctx)
+	_ = method
+	return nil
+}
+
+// validate_Object_CreateKubeClusterRequest function validates a JSON for a given object.
+func validate_Object_CreateKubeClusterRequest(ctx context.Context, r json.RawMessage, path string) (err error) {
+	if hook, ok := interface{}(&CreateKubeClusterRequest{}).(interface {
+		AtlasJSONValidate(context.Context, json.RawMessage, string) (json.RawMessage, error)
+	}); ok {
+		if r, err = hook.AtlasJSONValidate(ctx, r, path); err != nil {
+			return err
+		}
+	}
+
+	var v map[string]json.RawMessage
+	if err = json.Unmarshal(r, &v); err != nil {
+		return fmt.Errorf("invalid value for %q: expected object.", path)
+	}
+
+	if err = validate_required_Object_CreateKubeClusterRequest(ctx, v, path); err != nil {
+		return err
+	}
+
+	allowUnknown := runtime1.AllowUnknownFromContext(ctx)
+
+	for k, _ := range v {
+		switch k {
+		case "payload":
+			if v[k] == nil {
+				continue
+			}
+			vv := v[k]
+			vvPath := runtime1.JoinPath(path, k)
+			if err = validate_Object_KubeCluster(ctx, vv, vvPath); err != nil {
+				return err
+			}
+		default:
+			if !allowUnknown {
+				return fmt.Errorf("unknown field %q.", runtime1.JoinPath(path, k))
+			}
+		}
+	}
+	return nil
+}
+
+// AtlasValidateJSON function validates a JSON for object CreateKubeClusterRequest.
+func (_ *CreateKubeClusterRequest) AtlasValidateJSON(ctx context.Context, r json.RawMessage, path string) (err error) {
+	if hook, ok := interface{}(&CreateKubeClusterRequest{}).(interface {
+		AtlasJSONValidate(context.Context, json.RawMessage, string) (json.RawMessage, error)
+	}); ok {
+		if r, err = hook.AtlasJSONValidate(ctx, r, path); err != nil {
+			return err
+		}
+	}
+	return validate_Object_CreateKubeClusterRequest(ctx, r, path)
+}
+
+func validate_required_Object_CreateKubeClusterRequest(ctx context.Context, v map[string]json.RawMessage, path string) error {
+	method := runtime1.HTTPMethodFromContext(ctx)
+	_ = method
+	return nil
+}
+
+// validate_Object_CreateKubeClusterResponse function validates a JSON for a given object.
+func validate_Object_CreateKubeClusterResponse(ctx context.Context, r json.RawMessage, path string) (err error) {
+	if hook, ok := interface{}(&CreateKubeClusterResponse{}).(interface {
+		AtlasJSONValidate(context.Context, json.RawMessage, string) (json.RawMessage, error)
+	}); ok {
+		if r, err = hook.AtlasJSONValidate(ctx, r, path); err != nil {
+			return err
+		}
+	}
+
+	var v map[string]json.RawMessage
+	if err = json.Unmarshal(r, &v); err != nil {
+		return fmt.Errorf("invalid value for %q: expected object.", path)
+	}
+
+	if err = validate_required_Object_CreateKubeClusterResponse(ctx, v, path); err != nil {
+		return err
+	}
+
+	allowUnknown := runtime1.AllowUnknownFromContext(ctx)
+
+	for k, _ := range v {
+		switch k {
+		case "result":
+			if v[k] == nil {
+				continue
+			}
+			vv := v[k]
+			vvPath := runtime1.JoinPath(path, k)
+			if err = validate_Object_KubeCluster(ctx, vv, vvPath); err != nil {
+				return err
+			}
+		default:
+			if !allowUnknown {
+				return fmt.Errorf("unknown field %q.", runtime1.JoinPath(path, k))
+			}
+		}
+	}
+	return nil
+}
+
+// AtlasValidateJSON function validates a JSON for object CreateKubeClusterResponse.
+func (_ *CreateKubeClusterResponse) AtlasValidateJSON(ctx context.Context, r json.RawMessage, path string) (err error) {
+	if hook, ok := interface{}(&CreateKubeClusterResponse{}).(interface {
+		AtlasJSONValidate(context.Context, json.RawMessage, string) (json.RawMessage, error)
+	}); ok {
+		if r, err = hook.AtlasJSONValidate(ctx, r, path); err != nil {
+			return err
+		}
+	}
+	return validate_Object_CreateKubeClusterResponse(ctx, r, path)
+}
+
+func validate_required_Object_CreateKubeClusterResponse(ctx context.Context, v map[string]json.RawMessage, path string) error {
+	method := runtime1.HTTPMethodFromContext(ctx)
+	_ = method
+	return nil
+}
+
+// validate_Object_ReadKubeClusterRequest function validates a JSON for a given object.
+func validate_Object_ReadKubeClusterRequest(ctx context.Context, r json.RawMessage, path string) (err error) {
+	if hook, ok := interface{}(&ReadKubeClusterRequest{}).(interface {
+		AtlasJSONValidate(context.Context, json.RawMessage, string) (json.RawMessage, error)
+	}); ok {
+		if r, err = hook.AtlasJSONValidate(ctx, r, path); err != nil {
+			return err
+		}
+	}
+
+	var v map[string]json.RawMessage
+	if err = json.Unmarshal(r, &v); err != nil {
+		return fmt.Errorf("invalid value for %q: expected object.", path)
+	}
+
+	if err = validate_required_Object_ReadKubeClusterRequest(ctx, v, path); err != nil {
+		return err
+	}
+
+	allowUnknown := runtime1.AllowUnknownFromContext(ctx)
+
+	for k, _ := range v {
+		switch k {
+		case "id":
+			if v[k] == nil {
+				continue
+			}
+			vv := v[k]
+			vvPath := runtime1.JoinPath(path, k)
+			validator, ok := interface{}(&resource.Identifier{}).(interface {
+				AtlasValidateJSON(context.Context, json.RawMessage, string) error
+			})
+			if !ok {
+				continue
+			}
+			if err = validator.AtlasValidateJSON(ctx, vv, vvPath); err != nil {
+				return err
+			}
+		case "fields":
+			if v[k] == nil {
+				continue
+			}
+			vv := v[k]
+			vvPath := runtime1.JoinPath(path, k)
+			validator, ok := interface{}(&query.FieldSelection{}).(interface {
+				AtlasValidateJSON(context.Context, json.RawMessage, string) error
+			})
+			if !ok {
+				continue
+			}
+			if err = validator.AtlasValidateJSON(ctx, vv, vvPath); err != nil {
+				return err
+			}
+		default:
+			if !allowUnknown {
+				return fmt.Errorf("unknown field %q.", runtime1.JoinPath(path, k))
+			}
+		}
+	}
+	return nil
+}
+
+// AtlasValidateJSON function validates a JSON for object ReadKubeClusterRequest.
+func (_ *ReadKubeClusterRequest) AtlasValidateJSON(ctx context.Context, r json.RawMessage, path string) (err error) {
+	if hook, ok := interface{}(&ReadKubeClusterRequest{}).(interface {
+		AtlasJSONValidate(context.Context, json.RawMessage, string) (json.RawMessage, error)
+	}); ok {
+		if r, err = hook.AtlasJSONValidate(ctx, r, path); err != nil {
+			return err
+		}
+	}
+	return validate_Object_ReadKubeClusterRequest(ctx, r, path)
+}
+
+func validate_required_Object_ReadKubeClusterRequest(ctx context.Context, v map[string]json.RawMessage, path string) error {
+	method := runtime1.HTTPMethodFromContext(ctx)
+	_ = method
+	return nil
+}
+
+// validate_Object_ReadKubeClusterResponse function validates a JSON for a given object.
+func validate_Object_ReadKubeClusterResponse(ctx context.Context, r json.RawMessage, path string) (err error) {
+	if hook, ok := interface{}(&ReadKubeClusterResponse{}).(interface {
+		AtlasJSONValidate(context.Context, json.RawMessage, string) (json.RawMessage, error)
+	}); ok {
+		if r, err = hook.AtlasJSONValidate(ctx, r, path); err != nil {
+			return err
+		}
+	}
+
+	var v map[string]json.RawMessage
+	if err = json.Unmarshal(r, &v); err != nil {
+		return fmt.Errorf("invalid value for %q: expected object.", path)
+	}
+
+	if err = validate_required_Object_ReadKubeClusterResponse(ctx, v, path); err != nil {
+		return err
+	}
+
+	allowUnknown := runtime1.AllowUnknownFromContext(ctx)
+
+	for k, _ := range v {
+		switch k {
+		case "result":
+			if v[k] == nil {
+				continue
+			}
+			vv := v[k]
+			vvPath := runtime1.JoinPath(path, k)
+			if err = validate_Object_KubeCluster(ctx, vv, vvPath); err != nil {
+				return err
+			}
+		default:
+			if !allowUnknown {
+				return fmt.Errorf("unknown field %q.", runtime1.JoinPath(path, k))
+			}
+		}
+	}
+	return nil
+}
+
+// AtlasValidateJSON function validates a JSON for object ReadKubeClusterResponse.
+func (_ *ReadKubeClusterResponse) AtlasValidateJSON(ctx context.Context, r json.RawMessage, path string) (err error) {
+	if hook, ok := interface{}(&ReadKubeClusterResponse{}).(interface {
+		AtlasJSONValidate(context.Context, json.RawMessage, string) (json.RawMessage, error)
+	}); ok {
+		if r, err = hook.AtlasJSONValidate(ctx, r, path); err != nil {
+			return err
+		}
+	}
+	return validate_Object_ReadKubeClusterResponse(ctx, r, path)
+}
+
+func validate_required_Object_ReadKubeClusterResponse(ctx context.Context, v map[string]json.RawMessage, path string) error {
+	method := runtime1.HTTPMethodFromContext(ctx)
+	_ = method
+	return nil
+}
+
+// validate_Object_UpdateKubeClusterRequest function validates a JSON for a given object.
+func validate_Object_UpdateKubeClusterRequest(ctx context.Context, r json.RawMessage, path string) (err error) {
+	if hook, ok := interface{}(&UpdateKubeClusterRequest{}).(interface {
+		AtlasJSONValidate(context.Context, json.RawMessage, string) (json.RawMessage, error)
+	}); ok {
+		if r, err = hook.AtlasJSONValidate(ctx, r, path); err != nil {
+			return err
+		}
+	}
+
+	var v map[string]json.RawMessage
+	if err = json.Unmarshal(r, &v); err != nil {
+		return fmt.Errorf("invalid value for %q: expected object.", path)
+	}
+
+	if err = validate_required_Object_UpdateKubeClusterRequest(ctx, v, path); err != nil {
+		return err
+	}
+
+	allowUnknown := runtime1.AllowUnknownFromContext(ctx)
+
+	for k, _ := range v {
+		switch k {
+		case "payload":
+			if v[k] == nil {
+				continue
+			}
+			vv := v[k]
+			vvPath := runtime1.JoinPath(path, k)
+			if err = validate_Object_KubeCluster(ctx, vv, vvPath); err != nil {
+				return err
+			}
+		case "fields":
+			if v[k] == nil {
+				continue
+			}
+			vv := v[k]
+			vvPath := runtime1.JoinPath(path, k)
+			validator, ok := interface{}(&field_mask.FieldMask{}).(interface {
+				AtlasValidateJSON(context.Context, json.RawMessage, string) error
+			})
+			if !ok {
+				continue
+			}
+			if err = validator.AtlasValidateJSON(ctx, vv, vvPath); err != nil {
+				return err
+			}
+		default:
+			if !allowUnknown {
+				return fmt.Errorf("unknown field %q.", runtime1.JoinPath(path, k))
+			}
+		}
+	}
+	return nil
+}
+
+// AtlasValidateJSON function validates a JSON for object UpdateKubeClusterRequest.
+func (_ *UpdateKubeClusterRequest) AtlasValidateJSON(ctx context.Context, r json.RawMessage, path string) (err error) {
+	if hook, ok := interface{}(&UpdateKubeClusterRequest{}).(interface {
+		AtlasJSONValidate(context.Context, json.RawMessage, string) (json.RawMessage, error)
+	}); ok {
+		if r, err = hook.AtlasJSONValidate(ctx, r, path); err != nil {
+			return err
+		}
+	}
+	return validate_Object_UpdateKubeClusterRequest(ctx, r, path)
+}
+
+func validate_required_Object_UpdateKubeClusterRequest(ctx context.Context, v map[string]json.RawMessage, path string) error {
+	method := runtime1.HTTPMethodFromContext(ctx)
+	_ = method
+	return nil
+}
+
+// validate_Object_UpdateKubeClusterResponse function validates a JSON for a given object.
+func validate_Object_UpdateKubeClusterResponse(ctx context.Context, r json.RawMessage, path string) (err error) {
+	if hook, ok := interface{}(&UpdateKubeClusterResponse{}).(interface {
+		AtlasJSONValidate(context.Context, json.RawMessage, string) (json.RawMessage, error)
+	}); ok {
+		if r, err = hook.AtlasJSONValidate(ctx, r, path); err != nil {
+			return err
+		}
+	}
+
+	var v map[string]json.RawMessage
+	if err = json.Unmarshal(r, &v); err != nil {
+		return fmt.Errorf("invalid value for %q: expected object.", path)
+	}
+
+	if err = validate_required_Object_UpdateKubeClusterResponse(ctx, v, path); err != nil {
+		return err
+	}
+
+	allowUnknown := runtime1.AllowUnknownFromContext(ctx)
+
+	for k, _ := range v {
+		switch k {
+		case "result":
+			if v[k] == nil {
+				continue
+			}
+			vv := v[k]
+			vvPath := runtime1.JoinPath(path, k)
+			if err = validate_Object_KubeCluster(ctx, vv, vvPath); err != nil {
+				return err
+			}
+		default:
+			if !allowUnknown {
+				return fmt.Errorf("unknown field %q.", runtime1.JoinPath(path, k))
+			}
+		}
+	}
+	return nil
+}
+
+// AtlasValidateJSON function validates a JSON for object UpdateKubeClusterResponse.
+func (_ *UpdateKubeClusterResponse) AtlasValidateJSON(ctx context.Context, r json.RawMessage, path string) (err error) {
+	if hook, ok := interface{}(&UpdateKubeClusterResponse{}).(interface {
+		AtlasJSONValidate(context.Context, json.RawMessage, string) (json.RawMessage, error)
+	}); ok {
+		if r, err = hook.AtlasJSONValidate(ctx, r, path); err != nil {
+			return err
+		}
+	}
+	return validate_Object_UpdateKubeClusterResponse(ctx, r, path)
+}
+
+func validate_required_Object_UpdateKubeClusterResponse(ctx context.Context, v map[string]json.RawMessage, path string) error {
+	method := runtime1.HTTPMethodFromContext(ctx)
+	_ = method
+	return nil
+}
+
+// validate_Object_DeleteKubeClusterRequest function validates a JSON for a given object.
+func validate_Object_DeleteKubeClusterRequest(ctx context.Context, r json.RawMessage, path string) (err error) {
+	if hook, ok := interface{}(&DeleteKubeClusterRequest{}).(interface {
+		AtlasJSONValidate(context.Context, json.RawMessage, string) (json.RawMessage, error)
+	}); ok {
+		if r, err = hook.AtlasJSONValidate(ctx, r, path); err != nil {
+			return err
+		}
+	}
+
+	var v map[string]json.RawMessage
+	if err = json.Unmarshal(r, &v); err != nil {
+		return fmt.Errorf("invalid value for %q: expected object.", path)
+	}
+
+	if err = validate_required_Object_DeleteKubeClusterRequest(ctx, v, path); err != nil {
+		return err
+	}
+
+	allowUnknown := runtime1.AllowUnknownFromContext(ctx)
+
+	for k, _ := range v {
+		switch k {
+		case "id":
+			if v[k] == nil {
+				continue
+			}
+			vv := v[k]
+			vvPath := runtime1.JoinPath(path, k)
+			validator, ok := interface{}(&resource.Identifier{}).(interface {
+				AtlasValidateJSON(context.Context, json.RawMessage, string) error
+			})
+			if !ok {
+				continue
+			}
+			if err = validator.AtlasValidateJSON(ctx, vv, vvPath); err != nil {
+				return err
+			}
+		default:
+			if !allowUnknown {
+				return fmt.Errorf("unknown field %q.", runtime1.JoinPath(path, k))
+			}
+		}
+	}
+	return nil
+}
+
+// AtlasValidateJSON function validates a JSON for object DeleteKubeClusterRequest.
+func (_ *DeleteKubeClusterRequest) AtlasValidateJSON(ctx context.Context, r json.RawMessage, path string) (err error) {
+	if hook, ok := interface{}(&DeleteKubeClusterRequest{}).(interface {
+		AtlasJSONValidate(context.Context, json.RawMessage, string) (json.RawMessage, error)
+	}); ok {
+		if r, err = hook.AtlasJSONValidate(ctx, r, path); err != nil {
+			return err
+		}
+	}
+	return validate_Object_DeleteKubeClusterRequest(ctx, r, path)
+}
+
+func validate_required_Object_DeleteKubeClusterRequest(ctx context.Context, v map[string]json.RawMessage, path string) error {
+	method := runtime1.HTTPMethodFromContext(ctx)
+	_ = method
+	return nil
+}
+
+// validate_Object_DeleteKubeClusterResponse function validates a JSON for a given object.
+func validate_Object_DeleteKubeClusterResponse(ctx context.Context, r json.RawMessage, path string) (err error) {
+	if hook, ok := interface{}(&DeleteKubeClusterResponse{}).(interface {
+		AtlasJSONValidate(context.Context, json.RawMessage, string) (json.RawMessage, error)
+	}); ok {
+		if r, err = hook.AtlasJSONValidate(ctx, r, path); err != nil {
+			return err
+		}
+	}
+
+	var v map[string]json.RawMessage
+	if err = json.Unmarshal(r, &v); err != nil {
+		return fmt.Errorf("invalid value for %q: expected object.", path)
+	}
+
+	if err = validate_required_Object_DeleteKubeClusterResponse(ctx, v, path); err != nil {
+		return err
+	}
+
+	allowUnknown := runtime1.AllowUnknownFromContext(ctx)
+
+	for k, _ := range v {
+		switch k {
+		default:
+			if !allowUnknown {
+				return fmt.Errorf("unknown field %q.", runtime1.JoinPath(path, k))
+			}
+		}
+	}
+	return nil
+}
+
+// AtlasValidateJSON function validates a JSON for object DeleteKubeClusterResponse.
+func (_ *DeleteKubeClusterResponse) AtlasValidateJSON(ctx context.Context, r json.RawMessage, path string) (err error) {
+	if hook, ok := interface{}(&DeleteKubeClusterResponse{}).(interface {
+		AtlasJSONValidate(context.Context, json.RawMessage, string) (json.RawMessage, error)
+	}); ok {
+		if r, err = hook.AtlasJSONValidate(ctx, r, path); err != nil {
+			return err
+		}
+	}
+	return validate_Object_DeleteKubeClusterResponse(ctx, r, path)
+}
+
+func validate_required_Object_DeleteKubeClusterResponse(ctx context.Context, v map[string]json.RawMessage, path string) error {
+	method := runtime1.HTTPMethodFromContext(ctx)
+	_ = method
+	return nil
+}
+
+// validate_Object_ListKubeClusterRequest function validates a JSON for a given object.
+func validate_Object_ListKubeClusterRequest(ctx context.Context, r json.RawMessage, path string) (err error) {
+	if hook, ok := interface{}(&ListKubeClusterRequest{}).(interface {
+		AtlasJSONValidate(context.Context, json.RawMessage, string) (json.RawMessage, error)
+	}); ok {
+		if r, err = hook.AtlasJSONValidate(ctx, r, path); err != nil {
+			return err
+		}
+	}
+
+	var v map[string]json.RawMessage
+	if err = json.Unmarshal(r, &v); err != nil {
+		return fmt.Errorf("invalid value for %q: expected object.", path)
+	}
+
+	if err = validate_required_Object_ListKubeClusterRequest(ctx, v, path); err != nil {
+		return err
+	}
+
+	allowUnknown := runtime1.AllowUnknownFromContext(ctx)
+
+	for k, _ := range v {
+		switch k {
+		case "filter":
+			if v[k] == nil {
+				continue
+			}
+			vv := v[k]
+			vvPath := runtime1.JoinPath(path, k)
+			validator, ok := interface{}(&query.Filtering{}).(interface {
+				AtlasValidateJSON(context.Context, json.RawMessage, string) error
+			})
+			if !ok {
+				continue
+			}
+			if err = validator.AtlasValidateJSON(ctx, vv, vvPath); err != nil {
+				return err
+			}
+		case "order_by":
+			if v[k] == nil {
+				continue
+			}
+			vv := v[k]
+			vvPath := runtime1.JoinPath(path, k)
+			validator, ok := interface{}(&query.Sorting{}).(interface {
+				AtlasValidateJSON(context.Context, json.RawMessage, string) error
+			})
+			if !ok {
+				continue
+			}
+			if err = validator.AtlasValidateJSON(ctx, vv, vvPath); err != nil {
+				return err
+			}
+		case "fields":
+			if v[k] == nil {
+				continue
+			}
+			vv := v[k]
+			vvPath := runtime1.JoinPath(path, k)
+			validator, ok := interface{}(&query.FieldSelection{}).(interface {
+				AtlasValidateJSON(context.Context, json.RawMessage, string) error
+			})
+			if !ok {
+				continue
+			}
+			if err = validator.AtlasValidateJSON(ctx, vv, vvPath); err != nil {
+				return err
+			}
+		case "paging":
+			if v[k] == nil {
+				continue
+			}
+			vv := v[k]
+			vvPath := runtime1.JoinPath(path, k)
+			validator, ok := interface{}(&query.Pagination{}).(interface {
+				AtlasValidateJSON(context.Context, json.RawMessage, string) error
+			})
+			if !ok {
+				continue
+			}
+			if err = validator.AtlasValidateJSON(ctx, vv, vvPath); err != nil {
+				return err
+			}
+		default:
+			if !allowUnknown {
+				return fmt.Errorf("unknown field %q.", runtime1.JoinPath(path, k))
+			}
+		}
+	}
+	return nil
+}
+
+// AtlasValidateJSON function validates a JSON for object ListKubeClusterRequest.
+func (_ *ListKubeClusterRequest) AtlasValidateJSON(ctx context.Context, r json.RawMessage, path string) (err error) {
+	if hook, ok := interface{}(&ListKubeClusterRequest{}).(interface {
+		AtlasJSONValidate(context.Context, json.RawMessage, string) (json.RawMessage, error)
+	}); ok {
+		if r, err = hook.AtlasJSONValidate(ctx, r, path); err != nil {
+			return err
+		}
+	}
+	return validate_Object_ListKubeClusterRequest(ctx, r, path)
+}
+
+func validate_required_Object_ListKubeClusterRequest(ctx context.Context, v map[string]json.RawMessage, path string) error {
+	method := runtime1.HTTPMethodFromContext(ctx)
+	_ = method
+	return nil
+}
+
+// validate_Object_ListKubeClustersResponse function validates a JSON for a given object.
+func validate_Object_ListKubeClustersResponse(ctx context.Context, r json.RawMessage, path string) (err error) {
+	if hook, ok := interface{}(&ListKubeClustersResponse{}).(interface {
+		AtlasJSONValidate(context.Context, json.RawMessage, string) (json.RawMessage, error)
+	}); ok {
+		if r, err = hook.AtlasJSONValidate(ctx, r, path); err != nil {
+			return err
+		}
+	}
+
+	var v map[string]json.RawMessage
+	if err = json.Unmarshal(r, &v); err != nil {
+		return fmt.Errorf("invalid value for %q: expected object.", path)
+	}
+
+	if err = validate_required_Object_ListKubeClustersResponse(ctx, v, path); err != nil {
+		return err
+	}
+
+	allowUnknown := runtime1.AllowUnknownFromContext(ctx)
+
+	for k, _ := range v {
+		switch k {
+		case "results":
+			if v[k] == nil {
+				continue
+			}
+			var vArr []json.RawMessage
+			vArrPath := runtime1.JoinPath(path, k)
+			if err = json.Unmarshal(v[k], &vArr); err != nil {
+				return fmt.Errorf("invalid value for %q: expected array.", vArrPath)
+			}
+			for i, vv := range vArr {
+				vvPath := fmt.Sprintf("%s.[%d]", vArrPath, i)
+				if err = validate_Object_KubeCluster(ctx, vv, vvPath); err != nil {
+					return err
+				}
+			}
+		case "page":
+			if v[k] == nil {
+				continue
+			}
+			vv := v[k]
+			vvPath := runtime1.JoinPath(path, k)
+			validator, ok := interface{}(&query.PageInfo{}).(interface {
+				AtlasValidateJSON(context.Context, json.RawMessage, string) error
+			})
+			if !ok {
+				continue
+			}
+			if err = validator.AtlasValidateJSON(ctx, vv, vvPath); err != nil {
+				return err
+			}
+		default:
+			if !allowUnknown {
+				return fmt.Errorf("unknown field %q.", runtime1.JoinPath(path, k))
+			}
+		}
+	}
+	return nil
+}
+
+// AtlasValidateJSON function validates a JSON for object ListKubeClustersResponse.
+func (_ *ListKubeClustersResponse) AtlasValidateJSON(ctx context.Context, r json.RawMessage, path string) (err error) {
+	if hook, ok := interface{}(&ListKubeClustersResponse{}).(interface {
+		AtlasJSONValidate(context.Context, json.RawMessage, string) (json.RawMessage, error)
+	}); ok {
+		if r, err = hook.AtlasJSONValidate(ctx, r, path); err != nil {
+			return err
+		}
+	}
+	return validate_Object_ListKubeClustersResponse(ctx, r, path)
+}
+
+func validate_required_Object_ListKubeClustersResponse(ctx context.Context, v map[string]json.RawMessage, path string) error {
+	method := runtime1.HTTPMethodFromContext(ctx)
+	_ = method
+	return nil
+}
+
 // validate_Object_Deployment function validates a JSON for a given object.
 func validate_Object_Deployment(ctx context.Context, r json.RawMessage, path string) (err error) {
 	if hook, ok := interface{}(&Deployment{}).(interface {
@@ -11892,768 +12699,6 @@ func validate_required_Object_ListDeploymentsResponse(ctx context.Context, v map
 	return nil
 }
 
-// validate_Object_KubeCluster function validates a JSON for a given object.
-func validate_Object_KubeCluster(ctx context.Context, r json.RawMessage, path string) (err error) {
-	if hook, ok := interface{}(&KubeCluster{}).(interface {
-		AtlasJSONValidate(context.Context, json.RawMessage, string) (json.RawMessage, error)
-	}); ok {
-		if r, err = hook.AtlasJSONValidate(ctx, r, path); err != nil {
-			return err
-		}
-	}
-
-	var v map[string]json.RawMessage
-	if err = json.Unmarshal(r, &v); err != nil {
-		return fmt.Errorf("invalid value for %q: expected object.", path)
-	}
-
-	if err = validate_required_Object_KubeCluster(ctx, v, path); err != nil {
-		return err
-	}
-
-	allowUnknown := runtime1.AllowUnknownFromContext(ctx)
-
-	for k, _ := range v {
-		switch k {
-		case "id":
-			if v[k] == nil {
-				continue
-			}
-			vv := v[k]
-			vvPath := runtime1.JoinPath(path, k)
-			validator, ok := interface{}(&resource.Identifier{}).(interface {
-				AtlasValidateJSON(context.Context, json.RawMessage, string) error
-			})
-			if !ok {
-				continue
-			}
-			if err = validator.AtlasValidateJSON(ctx, vv, vvPath); err != nil {
-				return err
-			}
-		case "name":
-		case "description":
-		default:
-			if !allowUnknown {
-				return fmt.Errorf("unknown field %q.", runtime1.JoinPath(path, k))
-			}
-		}
-	}
-	return nil
-}
-
-// AtlasValidateJSON function validates a JSON for object KubeCluster.
-func (_ *KubeCluster) AtlasValidateJSON(ctx context.Context, r json.RawMessage, path string) (err error) {
-	if hook, ok := interface{}(&KubeCluster{}).(interface {
-		AtlasJSONValidate(context.Context, json.RawMessage, string) (json.RawMessage, error)
-	}); ok {
-		if r, err = hook.AtlasJSONValidate(ctx, r, path); err != nil {
-			return err
-		}
-	}
-	return validate_Object_KubeCluster(ctx, r, path)
-}
-
-func validate_required_Object_KubeCluster(ctx context.Context, v map[string]json.RawMessage, path string) error {
-	method := runtime1.HTTPMethodFromContext(ctx)
-	_ = method
-	return nil
-}
-
-// validate_Object_CreateKubeClusterRequest function validates a JSON for a given object.
-func validate_Object_CreateKubeClusterRequest(ctx context.Context, r json.RawMessage, path string) (err error) {
-	if hook, ok := interface{}(&CreateKubeClusterRequest{}).(interface {
-		AtlasJSONValidate(context.Context, json.RawMessage, string) (json.RawMessage, error)
-	}); ok {
-		if r, err = hook.AtlasJSONValidate(ctx, r, path); err != nil {
-			return err
-		}
-	}
-
-	var v map[string]json.RawMessage
-	if err = json.Unmarshal(r, &v); err != nil {
-		return fmt.Errorf("invalid value for %q: expected object.", path)
-	}
-
-	if err = validate_required_Object_CreateKubeClusterRequest(ctx, v, path); err != nil {
-		return err
-	}
-
-	allowUnknown := runtime1.AllowUnknownFromContext(ctx)
-
-	for k, _ := range v {
-		switch k {
-		case "payload":
-			if v[k] == nil {
-				continue
-			}
-			vv := v[k]
-			vvPath := runtime1.JoinPath(path, k)
-			if err = validate_Object_KubeCluster(ctx, vv, vvPath); err != nil {
-				return err
-			}
-		default:
-			if !allowUnknown {
-				return fmt.Errorf("unknown field %q.", runtime1.JoinPath(path, k))
-			}
-		}
-	}
-	return nil
-}
-
-// AtlasValidateJSON function validates a JSON for object CreateKubeClusterRequest.
-func (_ *CreateKubeClusterRequest) AtlasValidateJSON(ctx context.Context, r json.RawMessage, path string) (err error) {
-	if hook, ok := interface{}(&CreateKubeClusterRequest{}).(interface {
-		AtlasJSONValidate(context.Context, json.RawMessage, string) (json.RawMessage, error)
-	}); ok {
-		if r, err = hook.AtlasJSONValidate(ctx, r, path); err != nil {
-			return err
-		}
-	}
-	return validate_Object_CreateKubeClusterRequest(ctx, r, path)
-}
-
-func validate_required_Object_CreateKubeClusterRequest(ctx context.Context, v map[string]json.RawMessage, path string) error {
-	method := runtime1.HTTPMethodFromContext(ctx)
-	_ = method
-	return nil
-}
-
-// validate_Object_CreateKubeClusterResponse function validates a JSON for a given object.
-func validate_Object_CreateKubeClusterResponse(ctx context.Context, r json.RawMessage, path string) (err error) {
-	if hook, ok := interface{}(&CreateKubeClusterResponse{}).(interface {
-		AtlasJSONValidate(context.Context, json.RawMessage, string) (json.RawMessage, error)
-	}); ok {
-		if r, err = hook.AtlasJSONValidate(ctx, r, path); err != nil {
-			return err
-		}
-	}
-
-	var v map[string]json.RawMessage
-	if err = json.Unmarshal(r, &v); err != nil {
-		return fmt.Errorf("invalid value for %q: expected object.", path)
-	}
-
-	if err = validate_required_Object_CreateKubeClusterResponse(ctx, v, path); err != nil {
-		return err
-	}
-
-	allowUnknown := runtime1.AllowUnknownFromContext(ctx)
-
-	for k, _ := range v {
-		switch k {
-		case "result":
-			if v[k] == nil {
-				continue
-			}
-			vv := v[k]
-			vvPath := runtime1.JoinPath(path, k)
-			if err = validate_Object_KubeCluster(ctx, vv, vvPath); err != nil {
-				return err
-			}
-		default:
-			if !allowUnknown {
-				return fmt.Errorf("unknown field %q.", runtime1.JoinPath(path, k))
-			}
-		}
-	}
-	return nil
-}
-
-// AtlasValidateJSON function validates a JSON for object CreateKubeClusterResponse.
-func (_ *CreateKubeClusterResponse) AtlasValidateJSON(ctx context.Context, r json.RawMessage, path string) (err error) {
-	if hook, ok := interface{}(&CreateKubeClusterResponse{}).(interface {
-		AtlasJSONValidate(context.Context, json.RawMessage, string) (json.RawMessage, error)
-	}); ok {
-		if r, err = hook.AtlasJSONValidate(ctx, r, path); err != nil {
-			return err
-		}
-	}
-	return validate_Object_CreateKubeClusterResponse(ctx, r, path)
-}
-
-func validate_required_Object_CreateKubeClusterResponse(ctx context.Context, v map[string]json.RawMessage, path string) error {
-	method := runtime1.HTTPMethodFromContext(ctx)
-	_ = method
-	return nil
-}
-
-// validate_Object_ReadKubeClusterRequest function validates a JSON for a given object.
-func validate_Object_ReadKubeClusterRequest(ctx context.Context, r json.RawMessage, path string) (err error) {
-	if hook, ok := interface{}(&ReadKubeClusterRequest{}).(interface {
-		AtlasJSONValidate(context.Context, json.RawMessage, string) (json.RawMessage, error)
-	}); ok {
-		if r, err = hook.AtlasJSONValidate(ctx, r, path); err != nil {
-			return err
-		}
-	}
-
-	var v map[string]json.RawMessage
-	if err = json.Unmarshal(r, &v); err != nil {
-		return fmt.Errorf("invalid value for %q: expected object.", path)
-	}
-
-	if err = validate_required_Object_ReadKubeClusterRequest(ctx, v, path); err != nil {
-		return err
-	}
-
-	allowUnknown := runtime1.AllowUnknownFromContext(ctx)
-
-	for k, _ := range v {
-		switch k {
-		case "id":
-			if v[k] == nil {
-				continue
-			}
-			vv := v[k]
-			vvPath := runtime1.JoinPath(path, k)
-			validator, ok := interface{}(&resource.Identifier{}).(interface {
-				AtlasValidateJSON(context.Context, json.RawMessage, string) error
-			})
-			if !ok {
-				continue
-			}
-			if err = validator.AtlasValidateJSON(ctx, vv, vvPath); err != nil {
-				return err
-			}
-		case "fields":
-			if v[k] == nil {
-				continue
-			}
-			vv := v[k]
-			vvPath := runtime1.JoinPath(path, k)
-			validator, ok := interface{}(&query.FieldSelection{}).(interface {
-				AtlasValidateJSON(context.Context, json.RawMessage, string) error
-			})
-			if !ok {
-				continue
-			}
-			if err = validator.AtlasValidateJSON(ctx, vv, vvPath); err != nil {
-				return err
-			}
-		default:
-			if !allowUnknown {
-				return fmt.Errorf("unknown field %q.", runtime1.JoinPath(path, k))
-			}
-		}
-	}
-	return nil
-}
-
-// AtlasValidateJSON function validates a JSON for object ReadKubeClusterRequest.
-func (_ *ReadKubeClusterRequest) AtlasValidateJSON(ctx context.Context, r json.RawMessage, path string) (err error) {
-	if hook, ok := interface{}(&ReadKubeClusterRequest{}).(interface {
-		AtlasJSONValidate(context.Context, json.RawMessage, string) (json.RawMessage, error)
-	}); ok {
-		if r, err = hook.AtlasJSONValidate(ctx, r, path); err != nil {
-			return err
-		}
-	}
-	return validate_Object_ReadKubeClusterRequest(ctx, r, path)
-}
-
-func validate_required_Object_ReadKubeClusterRequest(ctx context.Context, v map[string]json.RawMessage, path string) error {
-	method := runtime1.HTTPMethodFromContext(ctx)
-	_ = method
-	return nil
-}
-
-// validate_Object_ReadKubeClusterResponse function validates a JSON for a given object.
-func validate_Object_ReadKubeClusterResponse(ctx context.Context, r json.RawMessage, path string) (err error) {
-	if hook, ok := interface{}(&ReadKubeClusterResponse{}).(interface {
-		AtlasJSONValidate(context.Context, json.RawMessage, string) (json.RawMessage, error)
-	}); ok {
-		if r, err = hook.AtlasJSONValidate(ctx, r, path); err != nil {
-			return err
-		}
-	}
-
-	var v map[string]json.RawMessage
-	if err = json.Unmarshal(r, &v); err != nil {
-		return fmt.Errorf("invalid value for %q: expected object.", path)
-	}
-
-	if err = validate_required_Object_ReadKubeClusterResponse(ctx, v, path); err != nil {
-		return err
-	}
-
-	allowUnknown := runtime1.AllowUnknownFromContext(ctx)
-
-	for k, _ := range v {
-		switch k {
-		case "result":
-			if v[k] == nil {
-				continue
-			}
-			vv := v[k]
-			vvPath := runtime1.JoinPath(path, k)
-			if err = validate_Object_KubeCluster(ctx, vv, vvPath); err != nil {
-				return err
-			}
-		default:
-			if !allowUnknown {
-				return fmt.Errorf("unknown field %q.", runtime1.JoinPath(path, k))
-			}
-		}
-	}
-	return nil
-}
-
-// AtlasValidateJSON function validates a JSON for object ReadKubeClusterResponse.
-func (_ *ReadKubeClusterResponse) AtlasValidateJSON(ctx context.Context, r json.RawMessage, path string) (err error) {
-	if hook, ok := interface{}(&ReadKubeClusterResponse{}).(interface {
-		AtlasJSONValidate(context.Context, json.RawMessage, string) (json.RawMessage, error)
-	}); ok {
-		if r, err = hook.AtlasJSONValidate(ctx, r, path); err != nil {
-			return err
-		}
-	}
-	return validate_Object_ReadKubeClusterResponse(ctx, r, path)
-}
-
-func validate_required_Object_ReadKubeClusterResponse(ctx context.Context, v map[string]json.RawMessage, path string) error {
-	method := runtime1.HTTPMethodFromContext(ctx)
-	_ = method
-	return nil
-}
-
-// validate_Object_UpdateKubeClusterRequest function validates a JSON for a given object.
-func validate_Object_UpdateKubeClusterRequest(ctx context.Context, r json.RawMessage, path string) (err error) {
-	if hook, ok := interface{}(&UpdateKubeClusterRequest{}).(interface {
-		AtlasJSONValidate(context.Context, json.RawMessage, string) (json.RawMessage, error)
-	}); ok {
-		if r, err = hook.AtlasJSONValidate(ctx, r, path); err != nil {
-			return err
-		}
-	}
-
-	var v map[string]json.RawMessage
-	if err = json.Unmarshal(r, &v); err != nil {
-		return fmt.Errorf("invalid value for %q: expected object.", path)
-	}
-
-	if err = validate_required_Object_UpdateKubeClusterRequest(ctx, v, path); err != nil {
-		return err
-	}
-
-	allowUnknown := runtime1.AllowUnknownFromContext(ctx)
-
-	for k, _ := range v {
-		switch k {
-		case "payload":
-			if v[k] == nil {
-				continue
-			}
-			vv := v[k]
-			vvPath := runtime1.JoinPath(path, k)
-			if err = validate_Object_KubeCluster(ctx, vv, vvPath); err != nil {
-				return err
-			}
-		case "fields":
-			if v[k] == nil {
-				continue
-			}
-			vv := v[k]
-			vvPath := runtime1.JoinPath(path, k)
-			validator, ok := interface{}(&field_mask.FieldMask{}).(interface {
-				AtlasValidateJSON(context.Context, json.RawMessage, string) error
-			})
-			if !ok {
-				continue
-			}
-			if err = validator.AtlasValidateJSON(ctx, vv, vvPath); err != nil {
-				return err
-			}
-		default:
-			if !allowUnknown {
-				return fmt.Errorf("unknown field %q.", runtime1.JoinPath(path, k))
-			}
-		}
-	}
-	return nil
-}
-
-// AtlasValidateJSON function validates a JSON for object UpdateKubeClusterRequest.
-func (_ *UpdateKubeClusterRequest) AtlasValidateJSON(ctx context.Context, r json.RawMessage, path string) (err error) {
-	if hook, ok := interface{}(&UpdateKubeClusterRequest{}).(interface {
-		AtlasJSONValidate(context.Context, json.RawMessage, string) (json.RawMessage, error)
-	}); ok {
-		if r, err = hook.AtlasJSONValidate(ctx, r, path); err != nil {
-			return err
-		}
-	}
-	return validate_Object_UpdateKubeClusterRequest(ctx, r, path)
-}
-
-func validate_required_Object_UpdateKubeClusterRequest(ctx context.Context, v map[string]json.RawMessage, path string) error {
-	method := runtime1.HTTPMethodFromContext(ctx)
-	_ = method
-	return nil
-}
-
-// validate_Object_UpdateKubeClusterResponse function validates a JSON for a given object.
-func validate_Object_UpdateKubeClusterResponse(ctx context.Context, r json.RawMessage, path string) (err error) {
-	if hook, ok := interface{}(&UpdateKubeClusterResponse{}).(interface {
-		AtlasJSONValidate(context.Context, json.RawMessage, string) (json.RawMessage, error)
-	}); ok {
-		if r, err = hook.AtlasJSONValidate(ctx, r, path); err != nil {
-			return err
-		}
-	}
-
-	var v map[string]json.RawMessage
-	if err = json.Unmarshal(r, &v); err != nil {
-		return fmt.Errorf("invalid value for %q: expected object.", path)
-	}
-
-	if err = validate_required_Object_UpdateKubeClusterResponse(ctx, v, path); err != nil {
-		return err
-	}
-
-	allowUnknown := runtime1.AllowUnknownFromContext(ctx)
-
-	for k, _ := range v {
-		switch k {
-		case "result":
-			if v[k] == nil {
-				continue
-			}
-			vv := v[k]
-			vvPath := runtime1.JoinPath(path, k)
-			if err = validate_Object_KubeCluster(ctx, vv, vvPath); err != nil {
-				return err
-			}
-		default:
-			if !allowUnknown {
-				return fmt.Errorf("unknown field %q.", runtime1.JoinPath(path, k))
-			}
-		}
-	}
-	return nil
-}
-
-// AtlasValidateJSON function validates a JSON for object UpdateKubeClusterResponse.
-func (_ *UpdateKubeClusterResponse) AtlasValidateJSON(ctx context.Context, r json.RawMessage, path string) (err error) {
-	if hook, ok := interface{}(&UpdateKubeClusterResponse{}).(interface {
-		AtlasJSONValidate(context.Context, json.RawMessage, string) (json.RawMessage, error)
-	}); ok {
-		if r, err = hook.AtlasJSONValidate(ctx, r, path); err != nil {
-			return err
-		}
-	}
-	return validate_Object_UpdateKubeClusterResponse(ctx, r, path)
-}
-
-func validate_required_Object_UpdateKubeClusterResponse(ctx context.Context, v map[string]json.RawMessage, path string) error {
-	method := runtime1.HTTPMethodFromContext(ctx)
-	_ = method
-	return nil
-}
-
-// validate_Object_DeleteKubeClusterRequest function validates a JSON for a given object.
-func validate_Object_DeleteKubeClusterRequest(ctx context.Context, r json.RawMessage, path string) (err error) {
-	if hook, ok := interface{}(&DeleteKubeClusterRequest{}).(interface {
-		AtlasJSONValidate(context.Context, json.RawMessage, string) (json.RawMessage, error)
-	}); ok {
-		if r, err = hook.AtlasJSONValidate(ctx, r, path); err != nil {
-			return err
-		}
-	}
-
-	var v map[string]json.RawMessage
-	if err = json.Unmarshal(r, &v); err != nil {
-		return fmt.Errorf("invalid value for %q: expected object.", path)
-	}
-
-	if err = validate_required_Object_DeleteKubeClusterRequest(ctx, v, path); err != nil {
-		return err
-	}
-
-	allowUnknown := runtime1.AllowUnknownFromContext(ctx)
-
-	for k, _ := range v {
-		switch k {
-		case "id":
-			if v[k] == nil {
-				continue
-			}
-			vv := v[k]
-			vvPath := runtime1.JoinPath(path, k)
-			validator, ok := interface{}(&resource.Identifier{}).(interface {
-				AtlasValidateJSON(context.Context, json.RawMessage, string) error
-			})
-			if !ok {
-				continue
-			}
-			if err = validator.AtlasValidateJSON(ctx, vv, vvPath); err != nil {
-				return err
-			}
-		default:
-			if !allowUnknown {
-				return fmt.Errorf("unknown field %q.", runtime1.JoinPath(path, k))
-			}
-		}
-	}
-	return nil
-}
-
-// AtlasValidateJSON function validates a JSON for object DeleteKubeClusterRequest.
-func (_ *DeleteKubeClusterRequest) AtlasValidateJSON(ctx context.Context, r json.RawMessage, path string) (err error) {
-	if hook, ok := interface{}(&DeleteKubeClusterRequest{}).(interface {
-		AtlasJSONValidate(context.Context, json.RawMessage, string) (json.RawMessage, error)
-	}); ok {
-		if r, err = hook.AtlasJSONValidate(ctx, r, path); err != nil {
-			return err
-		}
-	}
-	return validate_Object_DeleteKubeClusterRequest(ctx, r, path)
-}
-
-func validate_required_Object_DeleteKubeClusterRequest(ctx context.Context, v map[string]json.RawMessage, path string) error {
-	method := runtime1.HTTPMethodFromContext(ctx)
-	_ = method
-	return nil
-}
-
-// validate_Object_DeleteKubeClusterResponse function validates a JSON for a given object.
-func validate_Object_DeleteKubeClusterResponse(ctx context.Context, r json.RawMessage, path string) (err error) {
-	if hook, ok := interface{}(&DeleteKubeClusterResponse{}).(interface {
-		AtlasJSONValidate(context.Context, json.RawMessage, string) (json.RawMessage, error)
-	}); ok {
-		if r, err = hook.AtlasJSONValidate(ctx, r, path); err != nil {
-			return err
-		}
-	}
-
-	var v map[string]json.RawMessage
-	if err = json.Unmarshal(r, &v); err != nil {
-		return fmt.Errorf("invalid value for %q: expected object.", path)
-	}
-
-	if err = validate_required_Object_DeleteKubeClusterResponse(ctx, v, path); err != nil {
-		return err
-	}
-
-	allowUnknown := runtime1.AllowUnknownFromContext(ctx)
-
-	for k, _ := range v {
-		switch k {
-		default:
-			if !allowUnknown {
-				return fmt.Errorf("unknown field %q.", runtime1.JoinPath(path, k))
-			}
-		}
-	}
-	return nil
-}
-
-// AtlasValidateJSON function validates a JSON for object DeleteKubeClusterResponse.
-func (_ *DeleteKubeClusterResponse) AtlasValidateJSON(ctx context.Context, r json.RawMessage, path string) (err error) {
-	if hook, ok := interface{}(&DeleteKubeClusterResponse{}).(interface {
-		AtlasJSONValidate(context.Context, json.RawMessage, string) (json.RawMessage, error)
-	}); ok {
-		if r, err = hook.AtlasJSONValidate(ctx, r, path); err != nil {
-			return err
-		}
-	}
-	return validate_Object_DeleteKubeClusterResponse(ctx, r, path)
-}
-
-func validate_required_Object_DeleteKubeClusterResponse(ctx context.Context, v map[string]json.RawMessage, path string) error {
-	method := runtime1.HTTPMethodFromContext(ctx)
-	_ = method
-	return nil
-}
-
-// validate_Object_ListKubeClusterRequest function validates a JSON for a given object.
-func validate_Object_ListKubeClusterRequest(ctx context.Context, r json.RawMessage, path string) (err error) {
-	if hook, ok := interface{}(&ListKubeClusterRequest{}).(interface {
-		AtlasJSONValidate(context.Context, json.RawMessage, string) (json.RawMessage, error)
-	}); ok {
-		if r, err = hook.AtlasJSONValidate(ctx, r, path); err != nil {
-			return err
-		}
-	}
-
-	var v map[string]json.RawMessage
-	if err = json.Unmarshal(r, &v); err != nil {
-		return fmt.Errorf("invalid value for %q: expected object.", path)
-	}
-
-	if err = validate_required_Object_ListKubeClusterRequest(ctx, v, path); err != nil {
-		return err
-	}
-
-	allowUnknown := runtime1.AllowUnknownFromContext(ctx)
-
-	for k, _ := range v {
-		switch k {
-		case "filter":
-			if v[k] == nil {
-				continue
-			}
-			vv := v[k]
-			vvPath := runtime1.JoinPath(path, k)
-			validator, ok := interface{}(&query.Filtering{}).(interface {
-				AtlasValidateJSON(context.Context, json.RawMessage, string) error
-			})
-			if !ok {
-				continue
-			}
-			if err = validator.AtlasValidateJSON(ctx, vv, vvPath); err != nil {
-				return err
-			}
-		case "order_by":
-			if v[k] == nil {
-				continue
-			}
-			vv := v[k]
-			vvPath := runtime1.JoinPath(path, k)
-			validator, ok := interface{}(&query.Sorting{}).(interface {
-				AtlasValidateJSON(context.Context, json.RawMessage, string) error
-			})
-			if !ok {
-				continue
-			}
-			if err = validator.AtlasValidateJSON(ctx, vv, vvPath); err != nil {
-				return err
-			}
-		case "fields":
-			if v[k] == nil {
-				continue
-			}
-			vv := v[k]
-			vvPath := runtime1.JoinPath(path, k)
-			validator, ok := interface{}(&query.FieldSelection{}).(interface {
-				AtlasValidateJSON(context.Context, json.RawMessage, string) error
-			})
-			if !ok {
-				continue
-			}
-			if err = validator.AtlasValidateJSON(ctx, vv, vvPath); err != nil {
-				return err
-			}
-		case "paging":
-			if v[k] == nil {
-				continue
-			}
-			vv := v[k]
-			vvPath := runtime1.JoinPath(path, k)
-			validator, ok := interface{}(&query.Pagination{}).(interface {
-				AtlasValidateJSON(context.Context, json.RawMessage, string) error
-			})
-			if !ok {
-				continue
-			}
-			if err = validator.AtlasValidateJSON(ctx, vv, vvPath); err != nil {
-				return err
-			}
-		default:
-			if !allowUnknown {
-				return fmt.Errorf("unknown field %q.", runtime1.JoinPath(path, k))
-			}
-		}
-	}
-	return nil
-}
-
-// AtlasValidateJSON function validates a JSON for object ListKubeClusterRequest.
-func (_ *ListKubeClusterRequest) AtlasValidateJSON(ctx context.Context, r json.RawMessage, path string) (err error) {
-	if hook, ok := interface{}(&ListKubeClusterRequest{}).(interface {
-		AtlasJSONValidate(context.Context, json.RawMessage, string) (json.RawMessage, error)
-	}); ok {
-		if r, err = hook.AtlasJSONValidate(ctx, r, path); err != nil {
-			return err
-		}
-	}
-	return validate_Object_ListKubeClusterRequest(ctx, r, path)
-}
-
-func validate_required_Object_ListKubeClusterRequest(ctx context.Context, v map[string]json.RawMessage, path string) error {
-	method := runtime1.HTTPMethodFromContext(ctx)
-	_ = method
-	return nil
-}
-
-// validate_Object_ListKubeClustersResponse function validates a JSON for a given object.
-func validate_Object_ListKubeClustersResponse(ctx context.Context, r json.RawMessage, path string) (err error) {
-	if hook, ok := interface{}(&ListKubeClustersResponse{}).(interface {
-		AtlasJSONValidate(context.Context, json.RawMessage, string) (json.RawMessage, error)
-	}); ok {
-		if r, err = hook.AtlasJSONValidate(ctx, r, path); err != nil {
-			return err
-		}
-	}
-
-	var v map[string]json.RawMessage
-	if err = json.Unmarshal(r, &v); err != nil {
-		return fmt.Errorf("invalid value for %q: expected object.", path)
-	}
-
-	if err = validate_required_Object_ListKubeClustersResponse(ctx, v, path); err != nil {
-		return err
-	}
-
-	allowUnknown := runtime1.AllowUnknownFromContext(ctx)
-
-	for k, _ := range v {
-		switch k {
-		case "results":
-			if v[k] == nil {
-				continue
-			}
-			var vArr []json.RawMessage
-			vArrPath := runtime1.JoinPath(path, k)
-			if err = json.Unmarshal(v[k], &vArr); err != nil {
-				return fmt.Errorf("invalid value for %q: expected array.", vArrPath)
-			}
-			for i, vv := range vArr {
-				vvPath := fmt.Sprintf("%s.[%d]", vArrPath, i)
-				if err = validate_Object_KubeCluster(ctx, vv, vvPath); err != nil {
-					return err
-				}
-			}
-		case "page":
-			if v[k] == nil {
-				continue
-			}
-			vv := v[k]
-			vvPath := runtime1.JoinPath(path, k)
-			validator, ok := interface{}(&query.PageInfo{}).(interface {
-				AtlasValidateJSON(context.Context, json.RawMessage, string) error
-			})
-			if !ok {
-				continue
-			}
-			if err = validator.AtlasValidateJSON(ctx, vv, vvPath); err != nil {
-				return err
-			}
-		default:
-			if !allowUnknown {
-				return fmt.Errorf("unknown field %q.", runtime1.JoinPath(path, k))
-			}
-		}
-	}
-	return nil
-}
-
-// AtlasValidateJSON function validates a JSON for object ListKubeClustersResponse.
-func (_ *ListKubeClustersResponse) AtlasValidateJSON(ctx context.Context, r json.RawMessage, path string) (err error) {
-	if hook, ok := interface{}(&ListKubeClustersResponse{}).(interface {
-		AtlasJSONValidate(context.Context, json.RawMessage, string) (json.RawMessage, error)
-	}); ok {
-		if r, err = hook.AtlasJSONValidate(ctx, r, path); err != nil {
-			return err
-		}
-	}
-	return validate_Object_ListKubeClustersResponse(ctx, r, path)
-}
-
-func validate_required_Object_ListKubeClustersResponse(ctx context.Context, v map[string]json.RawMessage, path string) error {
-	method := runtime1.HTTPMethodFromContext(ctx)
-	_ = method
-	return nil
-}
-
 var validate_Patterns = []struct {
 	pattern    runtime.Pattern
 	httpMethod string
@@ -13137,42 +13182,6 @@ var validate_Patterns = []struct {
 		allowUnknown: false,
 	},
 	{
-		pattern:      pattern_Deployments_Create_0,
-		httpMethod:   "POST",
-		validator:    validate_Deployments_Create_0,
-		allowUnknown: false,
-	},
-	{
-		pattern:      pattern_Deployments_Read_0,
-		httpMethod:   "GET",
-		validator:    validate_Deployments_Read_0,
-		allowUnknown: false,
-	},
-	{
-		pattern:      pattern_Deployments_Update_0,
-		httpMethod:   "PUT",
-		validator:    validate_Deployments_Update_0,
-		allowUnknown: false,
-	},
-	{
-		pattern:      pattern_Deployments_Update_1,
-		httpMethod:   "PATCH",
-		validator:    validate_Deployments_Update_1,
-		allowUnknown: false,
-	},
-	{
-		pattern:      pattern_Deployments_Delete_0,
-		httpMethod:   "DELETE",
-		validator:    validate_Deployments_Delete_0,
-		allowUnknown: false,
-	},
-	{
-		pattern:      pattern_Deployments_List_0,
-		httpMethod:   "GET",
-		validator:    validate_Deployments_List_0,
-		allowUnknown: false,
-	},
-	{
 		pattern:      pattern_KubeClusters_Create_0,
 		httpMethod:   "POST",
 		validator:    validate_KubeClusters_Create_0,
@@ -13206,6 +13215,42 @@ var validate_Patterns = []struct {
 		pattern:      pattern_KubeClusters_List_0,
 		httpMethod:   "GET",
 		validator:    validate_KubeClusters_List_0,
+		allowUnknown: false,
+	},
+	{
+		pattern:      pattern_Deployments_Create_0,
+		httpMethod:   "POST",
+		validator:    validate_Deployments_Create_0,
+		allowUnknown: false,
+	},
+	{
+		pattern:      pattern_Deployments_Read_0,
+		httpMethod:   "GET",
+		validator:    validate_Deployments_Read_0,
+		allowUnknown: false,
+	},
+	{
+		pattern:      pattern_Deployments_Update_0,
+		httpMethod:   "PUT",
+		validator:    validate_Deployments_Update_0,
+		allowUnknown: false,
+	},
+	{
+		pattern:      pattern_Deployments_Update_1,
+		httpMethod:   "PATCH",
+		validator:    validate_Deployments_Update_1,
+		allowUnknown: false,
+	},
+	{
+		pattern:      pattern_Deployments_Delete_0,
+		httpMethod:   "DELETE",
+		validator:    validate_Deployments_Delete_0,
+		allowUnknown: false,
+	},
+	{
+		pattern:      pattern_Deployments_List_0,
+		httpMethod:   "GET",
+		validator:    validate_Deployments_List_0,
 		allowUnknown: false,
 	},
 }

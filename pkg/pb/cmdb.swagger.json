@@ -3042,9 +3042,9 @@
           "description": "The resource identifier.",
           "type": "string"
         },
-        "value": {
-          "title": "The Values Associated with Application",
-          "$ref": "#/definitions/cmdbValue"
+        "value_id": {
+          "description": "The resource identifier.",
+          "type": "string"
         }
       }
     },
@@ -3052,9 +3052,9 @@
       "type": "object",
       "title": "-----------------------------------------------------------------------\nApplicationInstance represents application instance deployed in an Environment\n-----------------------------------------------------------------------",
       "properties": {
-        "chart_version": {
-          "title": "ChartVersion used by the ApplicationInstance",
-          "$ref": "#/definitions/cmdbChartVersion"
+        "application_id": {
+          "description": "The resource identifier.",
+          "type": "string"
         },
         "chart_version_id": {
           "description": "The resource identifier.",
@@ -3081,9 +3081,9 @@
           "type": "string",
           "title": "The name of the ApplicationInstance"
         },
-        "value": {
-          "title": "Value associated with this ApplicationInstance",
-          "$ref": "#/definitions/cmdbValue"
+        "value_id": {
+          "description": "The resource identifier.",
+          "type": "string"
         }
       }
     },
@@ -3435,9 +3435,9 @@
           "description": "The resource identifier.",
           "type": "string"
         },
-        "value": {
-          "title": "Value associated with this Environment",
-          "$ref": "#/definitions/cmdbValue"
+        "value_id": {
+          "description": "The resource identifier.",
+          "type": "string"
         }
       }
     },
@@ -3836,9 +3836,9 @@
             "$ref": "#/definitions/cmdbStage"
           }
         },
-        "value": {
-          "title": "Value for this Region",
-          "$ref": "#/definitions/cmdbValue"
+        "value_id": {
+          "description": "The resource identifier.",
+          "type": "string"
         }
       }
     },
@@ -3909,6 +3909,10 @@
         "type": {
           "title": "Code defines the various stages e.g. dev, qa, preprod, prod",
           "$ref": "#/definitions/cmdbStageType"
+        },
+        "value_id": {
+          "description": "The resource identifier.",
+          "type": "string"
         }
       }
     },
@@ -4049,7 +4053,7 @@
       "type": "object",
       "title": "------------------------------------------------------\nValue represents a key/value for Charts\n------------------------------------------------------",
       "properties": {
-        "aws_service_id": {
+        "aws_rds_instance_id": {
           "description": "The resource identifier.",
           "type": "string"
         },
