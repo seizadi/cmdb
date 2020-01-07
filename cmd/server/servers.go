@@ -19,90 +19,96 @@ func CreateServer(logger *logrus.Logger, db *gorm.DB, interceptors []grpc.UnaryS
 		return nil, err
 	}
 	pb.RegisterCmdbServer(grpcServer, s)
-
-	application, err := svc.NewApplicationsServer()
-	if err != nil {
-		return nil, err
-	}
-	pb.RegisterApplicationsServer(grpcServer, application)
-
-	aws_service, err := svc.NewAwsServicesServer()
-	if err != nil {
-		return nil, err
-	}
-	pb.RegisterAwsServicesServer(grpcServer, aws_service)
-
-	region, err := svc.NewRegionsServer()
-	if err != nil {
-		return nil, err
-	}
-	pb.RegisterRegionsServer(grpcServer, region)
-
-	vault, err := svc.NewVaultsServer()
-	if err != nil {
-		return nil, err
-	}
-	pb.RegisterVaultsServer(grpcServer, vault)
-
-	artifact, err := svc.NewArtifactsServer()
-	if err != nil {
-		return nil, err
-	}
-	pb.RegisterArtifactsServer(grpcServer, artifact)
-
-	secret, err := svc.NewSecretsServer()
-	if err != nil {
-		return nil, err
-	}
-	pb.RegisterSecretsServer(grpcServer, secret)
-
-	aws_rds_instance, err := svc.NewAwsRdsInstancesServer()
-	if err != nil {
-		return nil, err
-	}
-	pb.RegisterAwsRdsInstancesServer(grpcServer, aws_rds_instance)
-
-	deployment, err := svc.NewDeploymentsServer()
-	if err != nil {
-		return nil, err
-	}
-	pb.RegisterDeploymentsServer(grpcServer, deployment)
-
-	kube_cluster, err := svc.NewKubeClustersServer()
-	if err != nil {
-		return nil, err
-	}
-	pb.RegisterKubeClustersServer(grpcServer, kube_cluster)
-
-	manifest, err := svc.NewManifestsServer()
-	if err != nil {
-		return nil, err
-	}
-	pb.RegisterManifestsServer(grpcServer, manifest)
-
-	version_tag, err := svc.NewVersionTagsServer()
-	if err != nil {
-		return nil, err
-	}
-	pb.RegisterVersionTagsServer(grpcServer, version_tag)
-
-	container, err := svc.NewContainersServer()
-	if err != nil {
-		return nil, err
-	}
-	pb.RegisterContainersServer(grpcServer, container)
-
-	environment, err := svc.NewEnvironmentsServer()
-	if err != nil {
-		return nil, err
-	}
-	pb.RegisterEnvironmentsServer(grpcServer, environment)
-
+	
 	cloud_provider, err := svc.NewCloudProvidersServer()
 	if err != nil {
 		return nil, err
 	}
 	pb.RegisterCloudProvidersServer(grpcServer, cloud_provider)
-
+	
+	deployment, err := svc.NewDeploymentsServer()
+	if err != nil {
+		return nil, err
+	}
+	pb.RegisterDeploymentsServer(grpcServer, deployment)
+	
+	region, err := svc.NewRegionsServer()
+	if err != nil {
+		return nil, err
+	}
+	pb.RegisterRegionsServer(grpcServer, region)
+	
+	stage, err := svc.NewStagesServer()
+	if err != nil {
+		return nil, err
+	}
+	pb.RegisterStagesServer(grpcServer, stage)
+	
+	environment, err := svc.NewEnvironmentsServer()
+	if err != nil {
+		return nil, err
+	}
+	pb.RegisterEnvironmentsServer(grpcServer, environment)
+	
+	application_instance, err := svc.NewApplicationInstancesServer()
+	if err != nil {
+		return nil, err
+	}
+	pb.RegisterApplicationInstancesServer(grpcServer, application_instance)
+	
+	artifact, err := svc.NewArtifactsServer()
+	if err != nil {
+		return nil, err
+	}
+	pb.RegisterArtifactsServer(grpcServer, artifact)
+	
+	application, err := svc.NewApplicationsServer()
+	if err != nil {
+		return nil, err
+	}
+	pb.RegisterApplicationsServer(grpcServer, application)
+	
+	kube_cluster, err := svc.NewKubeClustersServer()
+	if err != nil {
+		return nil, err
+	}
+	pb.RegisterKubeClustersServer(grpcServer, kube_cluster)
+	
+	aws_rds_instance, err := svc.NewAwsRdsInstancesServer()
+	if err != nil {
+		return nil, err
+	}
+	pb.RegisterAwsRdsInstancesServer(grpcServer, aws_rds_instance)
+	
+	secret, err := svc.NewSecretsServer()
+	if err != nil {
+		return nil, err
+	}
+	pb.RegisterSecretsServer(grpcServer, secret)
+	
+	vault, err := svc.NewVaultsServer()
+	if err != nil {
+		return nil, err
+	}
+	pb.RegisterVaultsServer(grpcServer, vault)
+	
+	value, err := svc.NewValuesServer()
+	if err != nil {
+		return nil, err
+	}
+	pb.RegisterValuesServer(grpcServer, value)
+	
+	aws_service, err := svc.NewAwsServicesServer()
+	if err != nil {
+		return nil, err
+	}
+	pb.RegisterAwsServicesServer(grpcServer, aws_service)
+	
+	chart_version, err := svc.NewChartVersionsServer()
+	if err != nil {
+		return nil, err
+	}
+	pb.RegisterChartVersionsServer(grpcServer, chart_version)
+	
 	return grpcServer, nil
 }
