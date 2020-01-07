@@ -232,10 +232,10 @@ message Region {
   repeated AwsService aws_services = 5;
 
   // Value for this Region
-  atlas.rpc.Identifier value_id = 6;
+  atlas.rpc.Identifier value_id = 6 [(gorm.field) = {reference_of: "Value", tag: {type: "integer"}}];
 
   // Reference to Cloud Provider
-  atlas.rpc.Identifier cloud_provider_id = 7;
+  atlas.rpc.Identifier cloud_provider_id = 7 [(gorm.field) = {reference_of: "CloudProvider", tag: {type: "integer"}}];
 }
 
 message CreateRegionRequest {
@@ -365,10 +365,10 @@ message Stage {
   StageType type = 4;
 
   // Value for this Stage
-  atlas.rpc.Identifier value_id = 5;
+  atlas.rpc.Identifier value_id = 5 [(gorm.field) = {reference_of: "Value", tag: {type: "integer"}}];
 
   // Region that has this Stage deployed
-  atlas.rpc.Identifier region_id = 6;
+  atlas.rpc.Identifier region_id = 6 [(gorm.field) = {reference_of: "Region", tag: {type: "integer"}}];
 
 }
 
@@ -489,10 +489,10 @@ message Environment {
   repeated ApplicationInstance application_instances = 4;
 
   // Value for this Environment
-  atlas.rpc.Identifier value_id = 5;
+  atlas.rpc.Identifier value_id = 5 [(gorm.field) = {reference_of: "Value", tag: {type: "integer"}}];
 
   // Stage used by this Environment
-  atlas.rpc.Identifier stage_id = 6;
+  atlas.rpc.Identifier stage_id = 6 [(gorm.field) = {reference_of: "Stage", tag: {type: "integer"}}];
 }
 
 message CreateEnvironmentRequest {
@@ -611,10 +611,10 @@ message Application {
   repeated ApplicationInstance application_instances = 4;
 
   // Value for this Environment
-  atlas.rpc.Identifier value_id = 5;
+  atlas.rpc.Identifier value_id = 5 [(gorm.field) = {reference_of: "Value", tag: {type: "integer"}}];
 
   // The Stage Associated with this Application
-  atlas.rpc.Identifier stage_id = 6;
+  atlas.rpc.Identifier stage_id = 6 [(gorm.field) = {reference_of: "Stage", tag: {type: "integer"}}];
 }
 
 message CreateApplicationRequest {
@@ -853,16 +853,16 @@ message ApplicationInstance {
   Deployment deployment = 4;
 
   // Value for this Environment
-  atlas.rpc.Identifier value_id = 5;
+  atlas.rpc.Identifier value_id = 5 [(gorm.field) = {reference_of: "Value", tag: {type: "integer"}}];
 
   // The Application Associated with this ApplicationInstance
-  atlas.rpc.Identifier application_id = 6;
+  atlas.rpc.Identifier application_id = 6 [(gorm.field) = {reference_of: "Application", tag: {type: "integer"}}];
 
   // Reference to the ChartVersion
-  atlas.rpc.Identifier chart_version_id = 7;
+  atlas.rpc.Identifier chart_version_id = 7 [(gorm.field) = {reference_of: "ChartVersion", tag: {type: "integer"}}];
 
   // Reference to the Environment
-  atlas.rpc.Identifier environment_id = 8;
+  atlas.rpc.Identifier environment_id = 8 [(gorm.field) = {reference_of: "Environment", tag: {type: "integer"}}];
 }
 
 message CreateApplicationInstanceRequest {
@@ -1108,10 +1108,10 @@ message Secret {
 
 
   // The Value using this Secret
-  atlas.rpc.Identifier value_id = 8;
+  atlas.rpc.Identifier value_id = 8 [(gorm.field) = {reference_of: "Value", tag: {type: "integer"}}];
 
   // The AWS RDS Instance Id if this is a database password
-  atlas.rpc.Identifier aws_rds_instance_id = 9;
+  atlas.rpc.Identifier aws_rds_instance_id = 9 [(gorm.field) = {reference_of: "AwsRdsInstance", tag: {type: "integer"}}];
 }
 
 
@@ -1232,7 +1232,7 @@ message AwsService {
   repeated AwsRdsInstance aws_rds_instances = 4;
 
   // Region service deploy
-  atlas.rpc.Identifier region_id = 5;
+  atlas.rpc.Identifier region_id = 5 [(gorm.field) = {reference_of: "Region", tag: {type: "integer"}}];
 }
 
 message CreateAwsServiceRequest {
@@ -1360,7 +1360,7 @@ message AwsRdsInstance {
   Secret database_password = 7;
 
   // Reference to the AWS Service this RDS Instance belongs to
-  atlas.rpc.Identifier aws_service_id = 8;
+  atlas.rpc.Identifier aws_service_id = 8 [(gorm.field) = {reference_of: "AwsService", tag: {type: "integer"}}];
 }
 
 message CreateAwsRdsInstanceRequest {
@@ -1479,7 +1479,7 @@ message Value {
   gorm.types.JSONValue keys = 4 [(gorm.field).tag = {type: "jsonb"}];
 
   // Reference to AWS RDS Service
-  atlas.rpc.Identifier aws_rds_instance_id = 5;
+  atlas.rpc.Identifier aws_rds_instance_id = 5 [(gorm.field) = {reference_of: "AwsRdsInstance", tag: {type: "integer"}}];
 }
 
 message CreateValueRequest {
@@ -1835,16 +1835,16 @@ message Deployment {
   Artifact artifact = 4 [(gorm.field).belongs_to = {}];
 
   // Reference to Artifact
-  atlas.rpc.Identifier artifact_id = 5;
+  atlas.rpc.Identifier artifact_id = 5 [(gorm.field) = {reference_of: "Artifact", tag: {type: "integer"}}];
 
   // Kubernetes Cluster on which the ApplicationInstance is deployed
   KubeCluster kube_cluster = 6 [(gorm.field).belongs_to = {}];
 
   // Reference to Kubernetes Cluster
-  atlas.rpc.Identifier kube_cluster_id = 7;
+  atlas.rpc.Identifier kube_cluster_id = 7 [(gorm.field) = {reference_of: "KubeCluster", tag: {type: "integer"}}];
 
   // Reference to ApplicationInstanceInstance
-  atlas.rpc.Identifier application_instance_id = 8;
+  atlas.rpc.Identifier application_instance_id = 8 [(gorm.field) = {reference_of: "ApplicationInstance", tag: {type: "integer"}}];
 }
 
 message CreateDeploymentRequest {
