@@ -1,11 +1,11 @@
 package client
 
 import (
+	"github.com/infobloxopen/atlas-app-toolkit/query"
 	"google.golang.org/grpc"
 	context "golang.org/x/net/context"
 	"github.com/seizadi/cmdb/pkg/pb"
 	"google.golang.org/grpc/metadata"
-	infoblox_api "github.com/infobloxopen/atlas-app-toolkit/query"
 	atlas_rpc "github.com/infobloxopen/atlas-app-toolkit/rpc/resource"
 
 )
@@ -75,17 +75,18 @@ func (m *CmdbClient) GetRegions() (*pb.ListRegionsResponse, error) {
 	return respList, nil
 }
 
+
 func (m *CmdbClient) GetRegion(id string) (*pb.ReadRegionResponse, error) {
 	
 	stub := pb.NewRegionsClient(m.Conn)
 	ctx := metadata.NewOutgoingContext(context.Background(),
 		metadata.Pairs("Authorization", "Bearer " + m.ApiKey))
-
+	
 	resourceId := atlas_rpc.Identifier{ResourceId: id}
-	fields := infoblox_api.FieldSelection{}
+	fields := query.FieldSelection{}
 	
 	// We'll make another request and also print the response metadata
-	req := &pb.ReadRegionRequest{&resourceId, &fields}
+	req := &pb.ReadRegionRequest{Id: &resourceId, Fields: &fields}
 	var respHdrs, respTrlrs metadata.MD
 	resp, err := stub.Read(ctx, req,
 		grpc.Header(&respHdrs), grpc.Trailer(&respTrlrs))
@@ -95,3 +96,135 @@ func (m *CmdbClient) GetRegion(id string) (*pb.ReadRegionResponse, error) {
 	
 	return resp, nil
 }
+
+
+func (m *CmdbClient) CreateCloudProvider(req *pb.CreateCloudProviderRequest) (*pb.CreateCloudProviderResponse, error) {
+	
+	// We can now create stubs that wrap conn:
+	stub := pb.NewCloudProvidersClient(m.Conn)
+	
+	// Now we can use the stub to make RPCs
+	ctx := metadata.NewOutgoingContext(context.Background(),
+		metadata.Pairs("Authorization", "Bearer " + m.ApiKey))
+	res, err := stub.Create(ctx, req)
+	if err != nil {
+		return nil, err
+	}
+	
+	return res, nil
+}
+
+
+func (m *CmdbClient) CreateRegion(req *pb.CreateRegionRequest) (*pb.CreateRegionResponse, error) {
+	
+	// We can now create stubs that wrap conn:
+	stub := pb.NewRegionsClient(m.Conn)
+	
+	// Now we can use the stub to make RPCs
+	ctx := metadata.NewOutgoingContext(context.Background(),
+		metadata.Pairs("Authorization", "Bearer " + m.ApiKey))
+	res, err := stub.Create(ctx, req)
+	if err != nil {
+		return nil, err
+	}
+	
+	return res, nil
+}
+
+func (m *CmdbClient) CreateStage(req *pb.CreateStageRequest) (*pb.CreateStageResponse, error) {
+	
+	// We can now create stubs that wrap conn:
+	stub := pb.NewStagesClient(m.Conn)
+	
+	// Now we can use the stub to make RPCs
+	ctx := metadata.NewOutgoingContext(context.Background(),
+		metadata.Pairs("Authorization", "Bearer " + m.ApiKey))
+	res, err := stub.Create(ctx, req)
+	if err != nil {
+		return nil, err
+	}
+	
+	return res, nil
+}
+
+func (m *CmdbClient) CreateEnvironment(req *pb.CreateEnvironmentRequest) (*pb.CreateEnvironmentResponse, error) {
+	
+	// We can now create stubs that wrap conn:
+	stub := pb.NewEnvironmentsClient(m.Conn)
+	
+	// Now we can use the stub to make RPCs
+	ctx := metadata.NewOutgoingContext(context.Background(),
+		metadata.Pairs("Authorization", "Bearer " + m.ApiKey))
+	res, err := stub.Create(ctx, req)
+	if err != nil {
+		return nil, err
+	}
+	
+	return res, nil
+}
+
+func (m *CmdbClient) CreateApplication(req *pb.CreateApplicationRequest) (*pb.CreateApplicationResponse, error) {
+	
+	// We can now create stubs that wrap conn:
+	stub := pb.NewApplicationsClient(m.Conn)
+	
+	// Now we can use the stub to make RPCs
+	ctx := metadata.NewOutgoingContext(context.Background(),
+		metadata.Pairs("Authorization", "Bearer " + m.ApiKey))
+	res, err := stub.Create(ctx, req)
+	if err != nil {
+		return nil, err
+	}
+	
+	return res, nil
+}
+
+func (m *CmdbClient) GetApplications() (*pb.ListApplicationsResponse, error) {
+	
+	// We can now create stubs that wrap conn:
+	stub := pb.NewApplicationsClient(m.Conn)
+	
+	// Now we can use the stub to make RPCs
+	ctx := metadata.NewOutgoingContext(context.Background(),
+		metadata.Pairs("Authorization", "Bearer " + m.ApiKey))
+	reqList := &pb.ListApplicationRequest{}
+	respList, err := stub.List(ctx, reqList)
+	if err != nil {
+		return nil, err
+	}
+	
+	return respList, nil
+}
+
+func (m *CmdbClient) CreateApplicationInstance(req *pb.CreateApplicationInstanceRequest) (*pb.CreateApplicationInstanceResponse, error) {
+	
+	// We can now create stubs that wrap conn:
+	stub := pb.NewApplicationInstancesClient(m.Conn)
+	
+	// Now we can use the stub to make RPCs
+	ctx := metadata.NewOutgoingContext(context.Background(),
+		metadata.Pairs("Authorization", "Bearer " + m.ApiKey))
+	res, err := stub.Create(ctx, req)
+	if err != nil {
+		return nil, err
+	}
+	
+	return res, nil
+}
+
+func (m *CmdbClient) CreateChartVersion(req *pb.CreateChartVersionRequest) (*pb.CreateChartVersionResponse, error) {
+	
+	// We can now create stubs that wrap conn:
+	stub := pb.NewChartVersionsClient(m.Conn)
+	
+	// Now we can use the stub to make RPCs
+	ctx := metadata.NewOutgoingContext(context.Background(),
+		metadata.Pairs("Authorization", "Bearer " + m.ApiKey))
+	res, err := stub.Create(ctx, req)
+	if err != nil {
+		return nil, err
+	}
+	
+	return res, nil
+}
+
