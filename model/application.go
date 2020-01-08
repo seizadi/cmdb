@@ -8,7 +8,8 @@ type Application struct {
 	UpdatedAt            time.Time `json:"updated_at"`
 	Name                 string
 	Description          string
+	ChartVersion         ChartVersion
 	Value                Value
-	StageID              uint
 	ApplicationInstances []ApplicationInstance
+	Stage                Stage
 }
