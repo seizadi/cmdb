@@ -60,12 +60,28 @@ func NewArtifactsServer() (pb.ArtifactsServer, error) {
 	return &artifactsServer{&pb.ArtifactsDefaultServer{}}, nil
 }
 
-type applicationsServer struct {
-	*pb.ApplicationsDefaultServer
+type appRegionConfigsServer struct {
+	*pb.AppRegionConfigsDefaultServer
 }
-// NewApplicationsServer returns an instance of the default Application server interface
-func NewApplicationsServer() (pb.ApplicationsServer, error) {
-	return &applicationsServer{&pb.ApplicationsDefaultServer{}}, nil
+// NewAppRegionConfigsServer returns an instance of the default AppRegionConfig server interface
+func NewAppRegionConfigsServer() (pb.AppRegionConfigsServer, error) {
+	return &appRegionConfigsServer{&pb.AppRegionConfigsDefaultServer{}}, nil
+}
+
+type appStageConfigsServer struct {
+	*pb.AppStageConfigsDefaultServer
+}
+// NewAppStageConfigsServer returns an instance of the default AppStageConfig server interface
+func NewAppStageConfigsServer() (pb.AppStageConfigsServer, error) {
+	return &appStageConfigsServer{&pb.AppStageConfigsDefaultServer{}}, nil
+}
+
+type appEnvironmentConfigsServer struct {
+	*pb.AppEnvironmentConfigsDefaultServer
+}
+// NewAppEnvironmentConfigsServer returns an instance of the default AppEnvironmentConfig server interface
+func NewAppEnvironmentConfigsServer() (pb.AppEnvironmentConfigsServer, error) {
+	return &appEnvironmentConfigsServer{&pb.AppEnvironmentConfigsDefaultServer{}}, nil
 }
 
 type kubeClustersServer struct {

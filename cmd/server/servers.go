@@ -62,11 +62,23 @@ func CreateServer(logger *logrus.Logger, db *gorm.DB, interceptors []grpc.UnaryS
 	}
 	pb.RegisterArtifactsServer(grpcServer, artifact)
 	
-	application, err := svc.NewApplicationsServer()
+	app_region_config, err := svc.NewAppRegionConfigsServer()
 	if err != nil {
 		return nil, err
 	}
-	pb.RegisterApplicationsServer(grpcServer, application)
+	pb.RegisterAppRegionConfigsServer(grpcServer, app_region_config)
+	
+	app_stage_config, err := svc.NewAppStageConfigsServer()
+	if err != nil {
+		return nil, err
+	}
+	pb.RegisterAppStageConfigsServer(grpcServer, app_stage_config)
+	
+	app_environment_config, err := svc.NewAppEnvironmentConfigsServer()
+	if err != nil {
+		return nil, err
+	}
+	pb.RegisterAppEnvironmentConfigsServer(grpcServer, app_environment_config)
 	
 	kube_cluster, err := svc.NewKubeClustersServer()
 	if err != nil {

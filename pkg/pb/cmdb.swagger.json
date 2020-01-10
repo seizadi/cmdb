@@ -21,6 +21,597 @@
   },
   "basePath": "/v1/",
   "paths": {
+    "/app_environment_configs": {
+      "get": {
+        "tags": [
+          "AppEnvironmentConfigs"
+        ],
+        "summary": "Use this method to retrieve all the AppEnvironmentConfigs.",
+        "operationId": "AppEnvironmentConfigsList",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "\n\nA collection of response resources can be filtered by a logical expression string that includes JSON tag references to values in each resource, literal values, and logical operators. If a resource does not have the specified tag, its value is assumed to be null.\n\nLiteral values include numbers (integer and floating-point), and quoted (both single- or double-quoted) literal strings, and 'null'. The following operators are commonly used in filter expressions:\n\n|  Op   |  Description               | \n|  --   |  -----------               | \n|  ==   |  Equal                     | \n|  !=   |  Not Equal                 | \n|  \u003e    |  Greater Than              | \n|   \u003e=  |  Greater Than or Equal To  | \n|  \u003c    |  Less Than                 | \n|  \u003c=   |  Less Than or Equal To     | \n|  and  |  Logical AND               | \n|  ~    |  Matches Regex             | \n|  !~   |  Does Not Match Regex      | \n|  or   |  Logical OR                | \n|  not  |  Logical NOT               | \n|  ()   |  Groupping Operators       |\n\n\t\t\t\t\t\t",
+            "name": "_filter",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "description": "\n\nA collection of response resources can be sorted by their JSON tags. For a 'flat' resource, the tag name is straightforward. If sorting is allowed on non-flat hierarchical resources, the service should implement a qualified naming scheme such as dot-qualification to reference data down the hierarchy. If a resource does not have the specified tag, its value is assumed to be null.)\n\nSpecify this parameter as a comma-separated list of JSON tag names. The sort direction can be specified by a suffix separated by whitespace before the tag name. The suffix 'asc' sorts the data in ascending order. The suffix 'desc' sorts the data in descending order. If no suffix is specified the data is sorted in ascending order.\n\n\t\t\t\t\t\t",
+            "name": "_order_by",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "description": "\n\nA collection of response resources can be transformed by specifying a set of JSON tags to be returned. For a “flat” resource, the tag name is straightforward. If field selection is allowed on non-flat hierarchical resources, the service should implement a qualified naming scheme such as dot-qualification to reference data down the hierarchy. If a resource does not have the specified tag, the tag does not appear in the output resource.\n\nSpecify this parameter as a comma-separated list of JSON tag names.\n\n\t\t\t\t\t\t",
+            "name": "_fields",
+            "in": "query"
+          },
+          {
+            "type": "integer",
+            "description": "\n\nThe integer index (zero-origin) of the offset into a collection of resources. If omitted or null the value is assumed to be '0'.\n\n\t\t\t\t\t\t\t",
+            "name": "_offset",
+            "in": "query"
+          },
+          {
+            "type": "integer",
+            "description": "\n\nThe integer number of resources to be returned in the response. The service may impose maximum value. If omitted the service may impose a default value.\n\n\t\t\t\t\t\t\t",
+            "name": "_limit",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "description": "\n\nThe service-defined string used to identify a page of resources. A null value indicates the first page.\n\n\t\t\t\t\t\t\t",
+            "name": "_page_token",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "GET operation response",
+            "schema": {
+              "$ref": "#/definitions/cmdbListAppEnvironmentConfigsResponse"
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "AppEnvironmentConfigs"
+        ],
+        "summary": "Use this method to create a AppEnvironmentConfig information.",
+        "operationId": "AppEnvironmentConfigsCreate",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/cmdbAppEnvironmentConfig"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "POST operation response",
+            "schema": {
+              "$ref": "#/definitions/cmdbCreateAppEnvironmentConfigResponse"
+            }
+          }
+        }
+      }
+    },
+    "/app_environment_configs/{id}": {
+      "get": {
+        "tags": [
+          "AppEnvironmentConfigs"
+        ],
+        "summary": "Use this method to read a AppEnvironmentConfig information by identifier.",
+        "operationId": "AppEnvironmentConfigsRead",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "An application specific resource identity of a resource",
+            "name": "id",
+            "in": "path",
+            "required": true
+          },
+          {
+            "type": "string",
+            "description": "\n\nA collection of response resources can be transformed by specifying a set of JSON tags to be returned. For a “flat” resource, the tag name is straightforward. If field selection is allowed on non-flat hierarchical resources, the service should implement a qualified naming scheme such as dot-qualification to reference data down the hierarchy. If a resource does not have the specified tag, the tag does not appear in the output resource.\n\nSpecify this parameter as a comma-separated list of JSON tag names.\n\n\t\t\t\t\t\t",
+            "name": "_fields",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "GET operation response",
+            "schema": {
+              "$ref": "#/definitions/cmdbReadAppEnvironmentConfigResponse"
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "AppEnvironmentConfigs"
+        ],
+        "summary": "Use this method to update a AppEnvironmentConfig information.",
+        "operationId": "AppEnvironmentConfigsUpdate",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "An application specific resource identity of a resource",
+            "name": "id",
+            "in": "path",
+            "required": true
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/cmdbAppEnvironmentConfig"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "PUT operation response",
+            "schema": {
+              "$ref": "#/definitions/cmdbUpdateAppEnvironmentConfigResponse"
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "AppEnvironmentConfigs"
+        ],
+        "summary": "Use this method to delete a particular AppEnvironmentConfig.",
+        "operationId": "AppEnvironmentConfigsDelete",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "An application specific resource identity of a resource",
+            "name": "id",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          }
+        }
+      },
+      "patch": {
+        "tags": [
+          "AppEnvironmentConfigs"
+        ],
+        "summary": "Use this method to update a AppEnvironmentConfig information.",
+        "operationId": "AppEnvironmentConfigsUpdate2",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "An application specific resource identity of a resource",
+            "name": "id",
+            "in": "path",
+            "required": true
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/cmdbAppEnvironmentConfig"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "PATCH operation response",
+            "schema": {
+              "$ref": "#/definitions/cmdbUpdateAppEnvironmentConfigResponse"
+            }
+          }
+        }
+      }
+    },
+    "/app_region_configs": {
+      "get": {
+        "tags": [
+          "AppRegionConfigs"
+        ],
+        "summary": "Use this method to retrieve all the AppRegionConfigs.",
+        "operationId": "AppRegionConfigsList",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "\n\nA collection of response resources can be filtered by a logical expression string that includes JSON tag references to values in each resource, literal values, and logical operators. If a resource does not have the specified tag, its value is assumed to be null.\n\nLiteral values include numbers (integer and floating-point), and quoted (both single- or double-quoted) literal strings, and 'null'. The following operators are commonly used in filter expressions:\n\n|  Op   |  Description               | \n|  --   |  -----------               | \n|  ==   |  Equal                     | \n|  !=   |  Not Equal                 | \n|  \u003e    |  Greater Than              | \n|   \u003e=  |  Greater Than or Equal To  | \n|  \u003c    |  Less Than                 | \n|  \u003c=   |  Less Than or Equal To     | \n|  and  |  Logical AND               | \n|  ~    |  Matches Regex             | \n|  !~   |  Does Not Match Regex      | \n|  or   |  Logical OR                | \n|  not  |  Logical NOT               | \n|  ()   |  Groupping Operators       |\n\n\t\t\t\t\t\t",
+            "name": "_filter",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "description": "\n\nA collection of response resources can be sorted by their JSON tags. For a 'flat' resource, the tag name is straightforward. If sorting is allowed on non-flat hierarchical resources, the service should implement a qualified naming scheme such as dot-qualification to reference data down the hierarchy. If a resource does not have the specified tag, its value is assumed to be null.)\n\nSpecify this parameter as a comma-separated list of JSON tag names. The sort direction can be specified by a suffix separated by whitespace before the tag name. The suffix 'asc' sorts the data in ascending order. The suffix 'desc' sorts the data in descending order. If no suffix is specified the data is sorted in ascending order.\n\n\t\t\t\t\t\t",
+            "name": "_order_by",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "description": "\n\nA collection of response resources can be transformed by specifying a set of JSON tags to be returned. For a “flat” resource, the tag name is straightforward. If field selection is allowed on non-flat hierarchical resources, the service should implement a qualified naming scheme such as dot-qualification to reference data down the hierarchy. If a resource does not have the specified tag, the tag does not appear in the output resource.\n\nSpecify this parameter as a comma-separated list of JSON tag names.\n\n\t\t\t\t\t\t",
+            "name": "_fields",
+            "in": "query"
+          },
+          {
+            "type": "integer",
+            "description": "\n\nThe integer index (zero-origin) of the offset into a collection of resources. If omitted or null the value is assumed to be '0'.\n\n\t\t\t\t\t\t\t",
+            "name": "_offset",
+            "in": "query"
+          },
+          {
+            "type": "integer",
+            "description": "\n\nThe integer number of resources to be returned in the response. The service may impose maximum value. If omitted the service may impose a default value.\n\n\t\t\t\t\t\t\t",
+            "name": "_limit",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "description": "\n\nThe service-defined string used to identify a page of resources. A null value indicates the first page.\n\n\t\t\t\t\t\t\t",
+            "name": "_page_token",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "GET operation response",
+            "schema": {
+              "$ref": "#/definitions/cmdbListAppRegionConfigsResponse"
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "AppRegionConfigs"
+        ],
+        "summary": "Use this method to create a AppRegionConfig information.",
+        "operationId": "AppRegionConfigsCreate",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/cmdbAppRegionConfig"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "POST operation response",
+            "schema": {
+              "$ref": "#/definitions/cmdbCreateAppRegionConfigResponse"
+            }
+          }
+        }
+      }
+    },
+    "/app_region_configs/{id}": {
+      "get": {
+        "tags": [
+          "AppRegionConfigs"
+        ],
+        "summary": "Use this method to read a AppRegionConfig information by identifier.",
+        "operationId": "AppRegionConfigsRead",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "An application specific resource identity of a resource",
+            "name": "id",
+            "in": "path",
+            "required": true
+          },
+          {
+            "type": "string",
+            "description": "\n\nA collection of response resources can be transformed by specifying a set of JSON tags to be returned. For a “flat” resource, the tag name is straightforward. If field selection is allowed on non-flat hierarchical resources, the service should implement a qualified naming scheme such as dot-qualification to reference data down the hierarchy. If a resource does not have the specified tag, the tag does not appear in the output resource.\n\nSpecify this parameter as a comma-separated list of JSON tag names.\n\n\t\t\t\t\t\t",
+            "name": "_fields",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "GET operation response",
+            "schema": {
+              "$ref": "#/definitions/cmdbReadAppRegionConfigResponse"
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "AppRegionConfigs"
+        ],
+        "summary": "Use this method to update a AppRegionConfig information.",
+        "operationId": "AppRegionConfigsUpdate",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "An application specific resource identity of a resource",
+            "name": "id",
+            "in": "path",
+            "required": true
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/cmdbAppRegionConfig"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "PUT operation response",
+            "schema": {
+              "$ref": "#/definitions/cmdbUpdateAppRegionConfigResponse"
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "AppRegionConfigs"
+        ],
+        "summary": "Use this method to delete a particular AppRegionConfig.",
+        "operationId": "AppRegionConfigsDelete",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "An application specific resource identity of a resource",
+            "name": "id",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          }
+        }
+      },
+      "patch": {
+        "tags": [
+          "AppRegionConfigs"
+        ],
+        "summary": "Use this method to update a AppRegionConfig information.",
+        "operationId": "AppRegionConfigsUpdate2",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "An application specific resource identity of a resource",
+            "name": "id",
+            "in": "path",
+            "required": true
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/cmdbAppRegionConfig"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "PATCH operation response",
+            "schema": {
+              "$ref": "#/definitions/cmdbUpdateAppRegionConfigResponse"
+            }
+          }
+        }
+      }
+    },
+    "/app_stage_configs": {
+      "get": {
+        "tags": [
+          "AppStageConfigs"
+        ],
+        "summary": "Use this method to retrieve all the AppStageConfigs.",
+        "operationId": "AppStageConfigsList",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "\n\nA collection of response resources can be filtered by a logical expression string that includes JSON tag references to values in each resource, literal values, and logical operators. If a resource does not have the specified tag, its value is assumed to be null.\n\nLiteral values include numbers (integer and floating-point), and quoted (both single- or double-quoted) literal strings, and 'null'. The following operators are commonly used in filter expressions:\n\n|  Op   |  Description               | \n|  --   |  -----------               | \n|  ==   |  Equal                     | \n|  !=   |  Not Equal                 | \n|  \u003e    |  Greater Than              | \n|   \u003e=  |  Greater Than or Equal To  | \n|  \u003c    |  Less Than                 | \n|  \u003c=   |  Less Than or Equal To     | \n|  and  |  Logical AND               | \n|  ~    |  Matches Regex             | \n|  !~   |  Does Not Match Regex      | \n|  or   |  Logical OR                | \n|  not  |  Logical NOT               | \n|  ()   |  Groupping Operators       |\n\n\t\t\t\t\t\t",
+            "name": "_filter",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "description": "\n\nA collection of response resources can be sorted by their JSON tags. For a 'flat' resource, the tag name is straightforward. If sorting is allowed on non-flat hierarchical resources, the service should implement a qualified naming scheme such as dot-qualification to reference data down the hierarchy. If a resource does not have the specified tag, its value is assumed to be null.)\n\nSpecify this parameter as a comma-separated list of JSON tag names. The sort direction can be specified by a suffix separated by whitespace before the tag name. The suffix 'asc' sorts the data in ascending order. The suffix 'desc' sorts the data in descending order. If no suffix is specified the data is sorted in ascending order.\n\n\t\t\t\t\t\t",
+            "name": "_order_by",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "description": "\n\nA collection of response resources can be transformed by specifying a set of JSON tags to be returned. For a “flat” resource, the tag name is straightforward. If field selection is allowed on non-flat hierarchical resources, the service should implement a qualified naming scheme such as dot-qualification to reference data down the hierarchy. If a resource does not have the specified tag, the tag does not appear in the output resource.\n\nSpecify this parameter as a comma-separated list of JSON tag names.\n\n\t\t\t\t\t\t",
+            "name": "_fields",
+            "in": "query"
+          },
+          {
+            "type": "integer",
+            "description": "\n\nThe integer index (zero-origin) of the offset into a collection of resources. If omitted or null the value is assumed to be '0'.\n\n\t\t\t\t\t\t\t",
+            "name": "_offset",
+            "in": "query"
+          },
+          {
+            "type": "integer",
+            "description": "\n\nThe integer number of resources to be returned in the response. The service may impose maximum value. If omitted the service may impose a default value.\n\n\t\t\t\t\t\t\t",
+            "name": "_limit",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "description": "\n\nThe service-defined string used to identify a page of resources. A null value indicates the first page.\n\n\t\t\t\t\t\t\t",
+            "name": "_page_token",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "GET operation response",
+            "schema": {
+              "$ref": "#/definitions/cmdbListAppStageConfigsResponse"
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "AppStageConfigs"
+        ],
+        "summary": "Use this method to create a AppStageConfig information.",
+        "operationId": "AppStageConfigsCreate",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/cmdbAppStageConfig"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "POST operation response",
+            "schema": {
+              "$ref": "#/definitions/cmdbCreateAppStageConfigResponse"
+            }
+          }
+        }
+      }
+    },
+    "/app_stage_configs/{id}": {
+      "get": {
+        "tags": [
+          "AppStageConfigs"
+        ],
+        "summary": "Use this method to read a AppStageConfig information by identifier.",
+        "operationId": "AppStageConfigsRead",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "An application specific resource identity of a resource",
+            "name": "id",
+            "in": "path",
+            "required": true
+          },
+          {
+            "type": "string",
+            "description": "\n\nA collection of response resources can be transformed by specifying a set of JSON tags to be returned. For a “flat” resource, the tag name is straightforward. If field selection is allowed on non-flat hierarchical resources, the service should implement a qualified naming scheme such as dot-qualification to reference data down the hierarchy. If a resource does not have the specified tag, the tag does not appear in the output resource.\n\nSpecify this parameter as a comma-separated list of JSON tag names.\n\n\t\t\t\t\t\t",
+            "name": "_fields",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "GET operation response",
+            "schema": {
+              "$ref": "#/definitions/cmdbReadAppStageConfigResponse"
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "AppStageConfigs"
+        ],
+        "summary": "Use this method to update a AppStageConfig information.",
+        "operationId": "AppStageConfigsUpdate",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "An application specific resource identity of a resource",
+            "name": "id",
+            "in": "path",
+            "required": true
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/cmdbAppStageConfig"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "PUT operation response",
+            "schema": {
+              "$ref": "#/definitions/cmdbUpdateAppStageConfigResponse"
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "AppStageConfigs"
+        ],
+        "summary": "Use this method to delete a particular AppStageConfig.",
+        "operationId": "AppStageConfigsDelete",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "An application specific resource identity of a resource",
+            "name": "id",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          }
+        }
+      },
+      "patch": {
+        "tags": [
+          "AppStageConfigs"
+        ],
+        "summary": "Use this method to update a AppStageConfig information.",
+        "operationId": "AppStageConfigsUpdate2",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "An application specific resource identity of a resource",
+            "name": "id",
+            "in": "path",
+            "required": true
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/cmdbAppStageConfig"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "PATCH operation response",
+            "schema": {
+              "$ref": "#/definitions/cmdbUpdateAppStageConfigResponse"
+            }
+          }
+        }
+      }
+    },
     "/application_instances": {
       "get": {
         "tags": [
@@ -213,203 +804,6 @@
             "description": "PATCH operation response",
             "schema": {
               "$ref": "#/definitions/cmdbUpdateApplicationInstanceResponse"
-            }
-          }
-        }
-      }
-    },
-    "/applications": {
-      "get": {
-        "tags": [
-          "Applications"
-        ],
-        "summary": "Use this method to retrieve all the Applications.",
-        "operationId": "ApplicationsList",
-        "parameters": [
-          {
-            "type": "string",
-            "description": "\n\nA collection of response resources can be filtered by a logical expression string that includes JSON tag references to values in each resource, literal values, and logical operators. If a resource does not have the specified tag, its value is assumed to be null.\n\nLiteral values include numbers (integer and floating-point), and quoted (both single- or double-quoted) literal strings, and 'null'. The following operators are commonly used in filter expressions:\n\n|  Op   |  Description               | \n|  --   |  -----------               | \n|  ==   |  Equal                     | \n|  !=   |  Not Equal                 | \n|  \u003e    |  Greater Than              | \n|   \u003e=  |  Greater Than or Equal To  | \n|  \u003c    |  Less Than                 | \n|  \u003c=   |  Less Than or Equal To     | \n|  and  |  Logical AND               | \n|  ~    |  Matches Regex             | \n|  !~   |  Does Not Match Regex      | \n|  or   |  Logical OR                | \n|  not  |  Logical NOT               | \n|  ()   |  Groupping Operators       |\n\n\t\t\t\t\t\t",
-            "name": "_filter",
-            "in": "query"
-          },
-          {
-            "type": "string",
-            "description": "\n\nA collection of response resources can be sorted by their JSON tags. For a 'flat' resource, the tag name is straightforward. If sorting is allowed on non-flat hierarchical resources, the service should implement a qualified naming scheme such as dot-qualification to reference data down the hierarchy. If a resource does not have the specified tag, its value is assumed to be null.)\n\nSpecify this parameter as a comma-separated list of JSON tag names. The sort direction can be specified by a suffix separated by whitespace before the tag name. The suffix 'asc' sorts the data in ascending order. The suffix 'desc' sorts the data in descending order. If no suffix is specified the data is sorted in ascending order.\n\n\t\t\t\t\t\t",
-            "name": "_order_by",
-            "in": "query"
-          },
-          {
-            "type": "string",
-            "description": "\n\nA collection of response resources can be transformed by specifying a set of JSON tags to be returned. For a “flat” resource, the tag name is straightforward. If field selection is allowed on non-flat hierarchical resources, the service should implement a qualified naming scheme such as dot-qualification to reference data down the hierarchy. If a resource does not have the specified tag, the tag does not appear in the output resource.\n\nSpecify this parameter as a comma-separated list of JSON tag names.\n\n\t\t\t\t\t\t",
-            "name": "_fields",
-            "in": "query"
-          },
-          {
-            "type": "integer",
-            "description": "\n\nThe integer index (zero-origin) of the offset into a collection of resources. If omitted or null the value is assumed to be '0'.\n\n\t\t\t\t\t\t\t",
-            "name": "_offset",
-            "in": "query"
-          },
-          {
-            "type": "integer",
-            "description": "\n\nThe integer number of resources to be returned in the response. The service may impose maximum value. If omitted the service may impose a default value.\n\n\t\t\t\t\t\t\t",
-            "name": "_limit",
-            "in": "query"
-          },
-          {
-            "type": "string",
-            "description": "\n\nThe service-defined string used to identify a page of resources. A null value indicates the first page.\n\n\t\t\t\t\t\t\t",
-            "name": "_page_token",
-            "in": "query"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "GET operation response",
-            "schema": {
-              "$ref": "#/definitions/cmdbListApplicationsResponse"
-            }
-          }
-        }
-      },
-      "post": {
-        "tags": [
-          "Applications"
-        ],
-        "summary": "Use this method to create a Application information.",
-        "operationId": "ApplicationsCreate",
-        "parameters": [
-          {
-            "name": "body",
-            "in": "body",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/cmdbApplication"
-            }
-          }
-        ],
-        "responses": {
-          "201": {
-            "description": "POST operation response",
-            "schema": {
-              "$ref": "#/definitions/cmdbCreateApplicationResponse"
-            }
-          }
-        }
-      }
-    },
-    "/applications/{id}": {
-      "get": {
-        "tags": [
-          "Applications"
-        ],
-        "summary": "Use this method to read a Application information by identifier.",
-        "operationId": "ApplicationsRead",
-        "parameters": [
-          {
-            "type": "string",
-            "description": "An application specific resource identity of a resource",
-            "name": "id",
-            "in": "path",
-            "required": true
-          },
-          {
-            "type": "string",
-            "description": "\n\nA collection of response resources can be transformed by specifying a set of JSON tags to be returned. For a “flat” resource, the tag name is straightforward. If field selection is allowed on non-flat hierarchical resources, the service should implement a qualified naming scheme such as dot-qualification to reference data down the hierarchy. If a resource does not have the specified tag, the tag does not appear in the output resource.\n\nSpecify this parameter as a comma-separated list of JSON tag names.\n\n\t\t\t\t\t\t",
-            "name": "_fields",
-            "in": "query"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "GET operation response",
-            "schema": {
-              "$ref": "#/definitions/cmdbReadApplicationResponse"
-            }
-          }
-        }
-      },
-      "put": {
-        "tags": [
-          "Applications"
-        ],
-        "summary": "Use this method to update a Application information.",
-        "operationId": "ApplicationsUpdate",
-        "parameters": [
-          {
-            "type": "string",
-            "description": "An application specific resource identity of a resource",
-            "name": "id",
-            "in": "path",
-            "required": true
-          },
-          {
-            "name": "body",
-            "in": "body",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/cmdbApplication"
-            }
-          }
-        ],
-        "responses": {
-          "201": {
-            "description": "PUT operation response",
-            "schema": {
-              "$ref": "#/definitions/cmdbUpdateApplicationResponse"
-            }
-          }
-        }
-      },
-      "delete": {
-        "tags": [
-          "Applications"
-        ],
-        "summary": "Use this method to delete a particular Application.",
-        "operationId": "ApplicationsDelete",
-        "parameters": [
-          {
-            "type": "string",
-            "description": "An application specific resource identity of a resource",
-            "name": "id",
-            "in": "path",
-            "required": true
-          }
-        ],
-        "responses": {
-          "204": {
-            "description": "No Content"
-          }
-        }
-      },
-      "patch": {
-        "tags": [
-          "Applications"
-        ],
-        "summary": "Use this method to update a Application information.",
-        "operationId": "ApplicationsUpdate2",
-        "parameters": [
-          {
-            "type": "string",
-            "description": "An application specific resource identity of a resource",
-            "name": "id",
-            "in": "path",
-            "required": true
-          },
-          {
-            "name": "body",
-            "in": "body",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/cmdbApplication"
-            }
-          }
-        ],
-        "responses": {
-          "201": {
-            "description": "PATCH operation response",
-            "schema": {
-              "$ref": "#/definitions/cmdbUpdateApplicationResponse"
             }
           }
         }
@@ -3014,20 +3408,17 @@
         }
       }
     },
-    "cmdbApplication": {
+    "cmdbAppEnvironmentConfig": {
       "type": "object",
-      "title": "------------------------------------------------------\nApplication represents what can be run in a Stage\n------------------------------------------------------",
+      "title": "------------------------------------------------------\nAppEnvironmentConfig represents a particular AWS Region\n------------------------------------------------------",
       "properties": {
-        "application_instances": {
-          "type": "array",
-          "title": "ApplicationInstances associated with this Application",
-          "items": {
-            "$ref": "#/definitions/cmdbApplicationInstance"
-          }
-        },
         "description": {
           "type": "string",
-          "title": "The description of the Application"
+          "title": "The description of the AppEnvironmentConfig"
+        },
+        "environment_id": {
+          "description": "The resource identifier.",
+          "type": "string"
         },
         "id": {
           "description": "The resource identifier.",
@@ -3036,7 +3427,71 @@
         },
         "name": {
           "type": "string",
-          "title": "The name of the Application"
+          "title": "The name of the AppEnvironmentConfig"
+        },
+        "value_id": {
+          "description": "The resource identifier.",
+          "type": "string"
+        }
+      }
+    },
+    "cmdbAppRegionConfig": {
+      "type": "object",
+      "title": "------------------------------------------------------\nAppRegionConfig represents a particular AWS Region\n------------------------------------------------------",
+      "properties": {
+        "app_stage_configs": {
+          "type": "array",
+          "title": "The AppStageConfig under this Region",
+          "items": {
+            "$ref": "#/definitions/cmdbAppStageConfig"
+          }
+        },
+        "description": {
+          "type": "string",
+          "title": "The description of the AppRegionConfig"
+        },
+        "id": {
+          "description": "The resource identifier.",
+          "type": "string",
+          "readOnly": true
+        },
+        "name": {
+          "type": "string",
+          "title": "The name of the AppRegionConfig"
+        },
+        "region_id": {
+          "description": "The resource identifier.",
+          "type": "string"
+        },
+        "value_id": {
+          "description": "The resource identifier.",
+          "type": "string"
+        }
+      }
+    },
+    "cmdbAppStageConfig": {
+      "type": "object",
+      "title": "----------------------------------------------------------------\nAppStageConfig represents Application Configuration for a Stage\n----------------------------------------------------------------",
+      "properties": {
+        "app_environment_configs": {
+          "type": "array",
+          "title": "The AppEnvironmentConfig under this Stage",
+          "items": {
+            "$ref": "#/definitions/cmdbAppEnvironmentConfig"
+          }
+        },
+        "description": {
+          "type": "string",
+          "title": "The description of the AppStageConfig"
+        },
+        "id": {
+          "description": "The resource identifier.",
+          "type": "string",
+          "readOnly": true
+        },
+        "name": {
+          "type": "string",
+          "title": "The name of the AppStageConfig"
         },
         "stage_id": {
           "description": "The resource identifier.",
@@ -3052,10 +3507,6 @@
       "type": "object",
       "title": "-----------------------------------------------------------------------\nApplicationInstance represents application instance deployed in an Environment\n-----------------------------------------------------------------------",
       "properties": {
-        "application_id": {
-          "description": "The resource identifier.",
-          "type": "string"
-        },
         "chart_version_id": {
           "description": "The resource identifier.",
           "type": "string"
@@ -3248,19 +3699,35 @@
         }
       }
     },
+    "cmdbCreateAppEnvironmentConfigResponse": {
+      "type": "object",
+      "properties": {
+        "result": {
+          "$ref": "#/definitions/cmdbAppEnvironmentConfig"
+        }
+      }
+    },
+    "cmdbCreateAppRegionConfigResponse": {
+      "type": "object",
+      "properties": {
+        "result": {
+          "$ref": "#/definitions/cmdbAppRegionConfig"
+        }
+      }
+    },
+    "cmdbCreateAppStageConfigResponse": {
+      "type": "object",
+      "properties": {
+        "result": {
+          "$ref": "#/definitions/cmdbAppStageConfig"
+        }
+      }
+    },
     "cmdbCreateApplicationInstanceResponse": {
       "type": "object",
       "properties": {
         "result": {
           "$ref": "#/definitions/cmdbApplicationInstance"
-        }
-      }
-    },
-    "cmdbCreateApplicationResponse": {
-      "type": "object",
-      "properties": {
-        "result": {
-          "$ref": "#/definitions/cmdbApplication"
         }
       }
     },
@@ -3460,6 +3927,48 @@
         }
       }
     },
+    "cmdbListAppEnvironmentConfigsResponse": {
+      "type": "object",
+      "properties": {
+        "page": {
+          "$ref": "#/definitions/apiPageInfo"
+        },
+        "results": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/cmdbAppEnvironmentConfig"
+          }
+        }
+      }
+    },
+    "cmdbListAppRegionConfigsResponse": {
+      "type": "object",
+      "properties": {
+        "page": {
+          "$ref": "#/definitions/apiPageInfo"
+        },
+        "results": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/cmdbAppRegionConfig"
+          }
+        }
+      }
+    },
+    "cmdbListAppStageConfigsResponse": {
+      "type": "object",
+      "properties": {
+        "page": {
+          "$ref": "#/definitions/apiPageInfo"
+        },
+        "results": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/cmdbAppStageConfig"
+          }
+        }
+      }
+    },
     "cmdbListApplicationInstancesResponse": {
       "type": "object",
       "properties": {
@@ -3470,20 +3979,6 @@
           "type": "array",
           "items": {
             "$ref": "#/definitions/cmdbApplicationInstance"
-          }
-        }
-      }
-    },
-    "cmdbListApplicationsResponse": {
-      "type": "object",
-      "properties": {
-        "page": {
-          "$ref": "#/definitions/apiPageInfo"
-        },
-        "results": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/cmdbApplication"
           }
         }
       }
@@ -3681,19 +4176,35 @@
         "EQUINIX"
       ]
     },
+    "cmdbReadAppEnvironmentConfigResponse": {
+      "type": "object",
+      "properties": {
+        "result": {
+          "$ref": "#/definitions/cmdbAppEnvironmentConfig"
+        }
+      }
+    },
+    "cmdbReadAppRegionConfigResponse": {
+      "type": "object",
+      "properties": {
+        "result": {
+          "$ref": "#/definitions/cmdbAppRegionConfig"
+        }
+      }
+    },
+    "cmdbReadAppStageConfigResponse": {
+      "type": "object",
+      "properties": {
+        "result": {
+          "$ref": "#/definitions/cmdbAppStageConfig"
+        }
+      }
+    },
     "cmdbReadApplicationInstanceResponse": {
       "type": "object",
       "properties": {
         "result": {
           "$ref": "#/definitions/cmdbApplicationInstance"
-        }
-      }
-    },
-    "cmdbReadApplicationResponse": {
-      "type": "object",
-      "properties": {
-        "result": {
-          "$ref": "#/definitions/cmdbApplication"
         }
       }
     },
@@ -3936,19 +4447,35 @@
         "PROD"
       ]
     },
+    "cmdbUpdateAppEnvironmentConfigResponse": {
+      "type": "object",
+      "properties": {
+        "result": {
+          "$ref": "#/definitions/cmdbAppEnvironmentConfig"
+        }
+      }
+    },
+    "cmdbUpdateAppRegionConfigResponse": {
+      "type": "object",
+      "properties": {
+        "result": {
+          "$ref": "#/definitions/cmdbAppRegionConfig"
+        }
+      }
+    },
+    "cmdbUpdateAppStageConfigResponse": {
+      "type": "object",
+      "properties": {
+        "result": {
+          "$ref": "#/definitions/cmdbAppStageConfig"
+        }
+      }
+    },
     "cmdbUpdateApplicationInstanceResponse": {
       "type": "object",
       "properties": {
         "result": {
           "$ref": "#/definitions/cmdbApplicationInstance"
-        }
-      }
-    },
-    "cmdbUpdateApplicationResponse": {
-      "type": "object",
-      "properties": {
-        "result": {
-          "$ref": "#/definitions/cmdbApplication"
         }
       }
     },
