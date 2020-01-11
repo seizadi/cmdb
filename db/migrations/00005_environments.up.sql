@@ -6,7 +6,8 @@ CREATE TABLE environments (
   updated_at timestamptz DEFAULT NULL,
   name text DEFAULT NULL,
   description text DEFAULT NULL,
-  stage_id int REFERENCES stages(id) ON DELETE CASCADE
+  config_yaml text DEFAULT NULL,
+  lifecycle_id int REFERENCES lifecycles(id) ON DELETE CASCADE
 );
 
 CREATE TRIGGER environments_updated_at

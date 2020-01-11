@@ -11,7 +11,7 @@ import (
 	"google.golang.org/grpc/grpclog"
 	"strconv"
 	"strings"
-	
+
 	"github.com/golang/protobuf/ptypes/empty"
 	"github.com/jinzhu/gorm"
 	"github.com/seizadi/cmdb/pkg/pb"
@@ -61,7 +61,6 @@ func NewBasicServer(database *gorm.DB) (pb.CmdbServer, error) {
 	return &server{db: database}, nil
 }
 
-
 // List wraps default RegionsDefaultServer.List implementation by adding
 // application specific page token implementation.
 // Actually the service supports "composite" pagination in a specific way:
@@ -78,13 +77,13 @@ func (s *regionsServer) List(ctx context.Context, in *pb.ListRegionRequest) (*pb
 	if err != nil {
 		return nil, err
 	}
-	
+
 	ptoken := page.GetPageToken()
 	// do not handle page token
 	if ptoken == "" {
 		return s.RegionsDefaultServer.List(ctx, in)
 	}
-	
+
 	// decode provided token (null means a client is requesting new token)
 	// update context with new pagination request
 	if ptoken != "null" {
@@ -97,13 +96,13 @@ func (s *regionsServer) List(ctx context.Context, in *pb.ListRegionRequest) (*pb
 			return nil, err
 		}
 	}
-	
+
 	// forward request to default implementation
 	resp, err := s.RegionsDefaultServer.List(ctx, in)
 	if err != nil {
 		return nil, err
 	}
-	
+
 	// prepare and set response page info
 	var pinfo query.PageInfo
 	if length := len(resp.Results); length == 0 {
@@ -114,7 +113,7 @@ func (s *regionsServer) List(ctx context.Context, in *pb.ListRegionRequest) (*pb
 	if err := gateway.SetPageInfo(ctx, &pinfo); err != nil {
 		return nil, err
 	}
-	
+
 	return resp, nil
 }
 
@@ -131,26 +130,26 @@ func DecodePageToken(ptoken string) (offset, limit int32, err error) {
 	if len(vals) != 2 {
 		return 0, 0, errC.New(codes.InvalidArgument, "Malformed page token.")
 	}
-	
+
 	o, err := strconv.Atoi(vals[0])
 	if err != nil {
 		errC.Set("page_token", codes.InvalidArgument, "invalid offset value %q.", vals[0])
 		errC.WithField("offset", "Invalid offset value. The valid value is an unsigned integer.")
 	}
-	
+
 	l, err := strconv.Atoi(vals[1])
 	if err != nil {
 		errC.Set("page_token", codes.InvalidArgument, "invalid limit value %q.", vals[1])
 		errC.WithField("limit", "Invalid limit value. The valid value is an unsigned integer.")
 	}
-	
+
 	limit = int32(l)
 	offset = int32(o)
-	
+
 	if err := errC.IfSet(codes.InvalidArgument, "Page token validation failed."); err != nil {
 		return 0, 0, errC
 	}
-	
+
 	return limit, offset, nil
 }
 

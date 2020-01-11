@@ -9,6 +9,4 @@ type Environment struct {
 	Name                 string    `json:"name"`
 	Description          string
 	ApplicationInstances []ApplicationInstance
-	Value                Value
-	StageID              uint
 }

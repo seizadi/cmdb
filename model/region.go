@@ -8,6 +8,4 @@ type Region struct {
 	UpdatedAt   time.Time `json:"updated_at"`
 	Name        string
 	Description string
-	Stages      []Stage
-	Value      Value
 }

@@ -3,9 +3,9 @@ package db
 import (
 	"database/sql"
 
-	"github.com/seizadi/cmdb/pkg/pb"
 	"github.com/jinzhu/gorm"
 	_ "github.com/jinzhu/gorm/dialects/postgres"
+	"github.com/seizadi/cmdb/pkg/pb"
 )
 
 // MigrateDB builds the contacts application database tables

@@ -3,7 +3,7 @@ package svc
 import (
 	"context"
 	"testing"
-	
+
 	"github.com/golang/protobuf/ptypes/empty"
 	"github.com/seizadi/cmdb/pkg/pb"
 )

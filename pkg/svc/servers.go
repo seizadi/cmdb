@@ -7,6 +7,7 @@ import (
 type cloudProvidersServer struct {
 	*pb.CloudProvidersDefaultServer
 }
+
 // NewCloudProvidersServer returns an instance of the default CloudProvider server interface
 func NewCloudProvidersServer() (pb.CloudProvidersServer, error) {
 	return &cloudProvidersServer{&pb.CloudProvidersDefaultServer{}}, nil
@@ -15,6 +16,7 @@ func NewCloudProvidersServer() (pb.CloudProvidersServer, error) {
 type deploymentsServer struct {
 	*pb.DeploymentsDefaultServer
 }
+
 // NewDeploymentsServer returns an instance of the default Deployment server interface
 func NewDeploymentsServer() (pb.DeploymentsServer, error) {
 	return &deploymentsServer{&pb.DeploymentsDefaultServer{}}, nil
@@ -23,22 +25,16 @@ func NewDeploymentsServer() (pb.DeploymentsServer, error) {
 type regionsServer struct {
 	*pb.RegionsDefaultServer
 }
+
 // NewRegionsServer returns an instance of the default Region server interface
 func NewRegionsServer() (pb.RegionsServer, error) {
 	return &regionsServer{&pb.RegionsDefaultServer{}}, nil
 }
 
-type stagesServer struct {
-	*pb.StagesDefaultServer
-}
-// NewStagesServer returns an instance of the default Stage server interface
-func NewStagesServer() (pb.StagesServer, error) {
-	return &stagesServer{&pb.StagesDefaultServer{}}, nil
-}
-
 type environmentsServer struct {
 	*pb.EnvironmentsDefaultServer
 }
+
 // NewEnvironmentsServer returns an instance of the default Environment server interface
 func NewEnvironmentsServer() (pb.EnvironmentsServer, error) {
 	return &environmentsServer{&pb.EnvironmentsDefaultServer{}}, nil
@@ -47,6 +43,7 @@ func NewEnvironmentsServer() (pb.EnvironmentsServer, error) {
 type applicationInstancesServer struct {
 	*pb.ApplicationInstancesDefaultServer
 }
+
 // NewApplicationInstancesServer returns an instance of the default ApplicationInstance server interface
 func NewApplicationInstancesServer() (pb.ApplicationInstancesServer, error) {
 	return &applicationInstancesServer{&pb.ApplicationInstancesDefaultServer{}}, nil
@@ -55,54 +52,25 @@ func NewApplicationInstancesServer() (pb.ApplicationInstancesServer, error) {
 type artifactsServer struct {
 	*pb.ArtifactsDefaultServer
 }
+
 // NewArtifactsServer returns an instance of the default Artifact server interface
 func NewArtifactsServer() (pb.ArtifactsServer, error) {
 	return &artifactsServer{&pb.ArtifactsDefaultServer{}}, nil
 }
 
-type appRegionConfigsServer struct {
-	*pb.AppRegionConfigsDefaultServer
-}
-// NewAppRegionConfigsServer returns an instance of the default AppRegionConfig server interface
-func NewAppRegionConfigsServer() (pb.AppRegionConfigsServer, error) {
-	return &appRegionConfigsServer{&pb.AppRegionConfigsDefaultServer{}}, nil
-}
-
-type appStageConfigsServer struct {
-	*pb.AppStageConfigsDefaultServer
-}
-// NewAppStageConfigsServer returns an instance of the default AppStageConfig server interface
-func NewAppStageConfigsServer() (pb.AppStageConfigsServer, error) {
-	return &appStageConfigsServer{&pb.AppStageConfigsDefaultServer{}}, nil
-}
-
-type appEnvironmentConfigsServer struct {
-	*pb.AppEnvironmentConfigsDefaultServer
-}
-// NewAppEnvironmentConfigsServer returns an instance of the default AppEnvironmentConfig server interface
-func NewAppEnvironmentConfigsServer() (pb.AppEnvironmentConfigsServer, error) {
-	return &appEnvironmentConfigsServer{&pb.AppEnvironmentConfigsDefaultServer{}}, nil
-}
-
 type kubeClustersServer struct {
 	*pb.KubeClustersDefaultServer
 }
+
 // NewKubeClustersServer returns an instance of the default KubeCluster server interface
 func NewKubeClustersServer() (pb.KubeClustersServer, error) {
 	return &kubeClustersServer{&pb.KubeClustersDefaultServer{}}, nil
 }
 
-type awsRdsInstancesServer struct {
-	*pb.AwsRdsInstancesDefaultServer
-}
-// NewAwsRdsInstancesServer returns an instance of the default AwsRdsInstance server interface
-func NewAwsRdsInstancesServer() (pb.AwsRdsInstancesServer, error) {
-	return &awsRdsInstancesServer{&pb.AwsRdsInstancesDefaultServer{}}, nil
-}
-
 type secretsServer struct {
 	*pb.SecretsDefaultServer
 }
+
 // NewSecretsServer returns an instance of the default Secret server interface
 func NewSecretsServer() (pb.SecretsServer, error) {
 	return &secretsServer{&pb.SecretsDefaultServer{}}, nil
@@ -111,31 +79,40 @@ func NewSecretsServer() (pb.SecretsServer, error) {
 type vaultsServer struct {
 	*pb.VaultsDefaultServer
 }
+
 // NewVaultsServer returns an instance of the default Vault server interface
 func NewVaultsServer() (pb.VaultsServer, error) {
 	return &vaultsServer{&pb.VaultsDefaultServer{}}, nil
 }
 
-type valuesServer struct {
-	*pb.ValuesDefaultServer
+type applicationsServer struct {
+	*pb.ApplicationsDefaultServer
 }
-// NewValuesServer returns an instance of the default Value server interface
-func NewValuesServer() (pb.ValuesServer, error) {
-	return &valuesServer{&pb.ValuesDefaultServer{}}, nil
-}
-
-type awsServicesServer struct {
-	*pb.AwsServicesDefaultServer
-}
-// NewAwsServicesServer returns an instance of the default AwsService server interface
-func NewAwsServicesServer() (pb.AwsServicesServer, error) {
-	return &awsServicesServer{&pb.AwsServicesDefaultServer{}}, nil
+// NewApplicationsServer returns an instance of the default Application server interface
+func NewApplicationsServer() (pb.ApplicationsServer, error) {
+	return &applicationsServer{&pb.ApplicationsDefaultServer{}}, nil
 }
 
-type chartVersionsServer struct {
-	*pb.ChartVersionsDefaultServer
+type appVersionsServer struct {
+	*pb.AppVersionsDefaultServer
 }
-// NewChartVersionsServer returns an instance of the default ChartVersion server interface
-func NewChartVersionsServer() (pb.ChartVersionsServer, error) {
-	return &chartVersionsServer{&pb.ChartVersionsDefaultServer{}}, nil
+// NewAppVersionsServer returns an instance of the default AppVersion server interface
+func NewAppVersionsServer() (pb.AppVersionsServer, error) {
+	return &appVersionsServer{&pb.AppVersionsDefaultServer{}}, nil
+}
+
+type lifecyclesServer struct {
+	*pb.LifecyclesDefaultServer
+}
+// NewLifecyclesServer returns an instance of the default Lifecycle server interface
+func NewLifecyclesServer() (pb.LifecyclesServer, error) {
+	return &lifecyclesServer{&pb.LifecyclesDefaultServer{}}, nil
+}
+
+type appConfigsServer struct {
+	*pb.AppConfigsDefaultServer
+}
+// NewAppConfigsServer returns an instance of the default AppConfig server interface
+func NewAppConfigsServer() (pb.AppConfigsServer, error) {
+	return &appConfigsServer{&pb.AppConfigsDefaultServer{}}, nil
 }

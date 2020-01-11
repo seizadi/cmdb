@@ -5,8 +5,8 @@ package integration
 import (
 	"testing"
 
-	"github.com/seizadi/cmdb/pkg/pb"
 	_ "github.com/jinzhu/gorm/dialects/postgres"
+	"github.com/seizadi/cmdb/pkg/pb"
 	"google.golang.org/grpc"
 )
 

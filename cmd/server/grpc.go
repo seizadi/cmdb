@@ -3,7 +3,7 @@ package main
 import (
 	"context"
 	"io/ioutil"
-	
+
 	"github.com/grpc-ecosystem/go-grpc-middleware/logging/logrus"
 	"github.com/grpc-ecosystem/go-grpc-middleware/logging/logrus/ctxlogrus"
 	"github.com/jinzhu/gorm"
@@ -11,7 +11,7 @@ import (
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/viper"
 	"google.golang.org/grpc"
-	
+
 	"github.com/infobloxopen/atlas-app-toolkit/auth"
 	"github.com/infobloxopen/atlas-app-toolkit/errors"
 	"github.com/infobloxopen/atlas-app-toolkit/errors/mappers/validationerrors"
@@ -40,7 +40,7 @@ func NewGRPCServer(logger *logrus.Logger, db *gorm.DB) (*grpc.Server, error) {
 		copy(interceptors[2:], interceptors[1:])
 		interceptors[1] = logging.LogLevelInterceptor(logger.Level)
 	}
-	
+
 	return CreateServer(logger, db, interceptors)
 
 }

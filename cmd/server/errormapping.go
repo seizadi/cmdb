@@ -3,7 +3,7 @@ package main
 import (
 	"context"
 	"google.golang.org/grpc/codes"
-	
+
 	"github.com/grpc-ecosystem/go-grpc-middleware/logging/logrus/ctxlogrus"
 	"github.com/infobloxopen/atlas-app-toolkit/errors"
 	"github.com/infobloxopen/atlas-app-toolkit/errors/mappers/validationerrors"

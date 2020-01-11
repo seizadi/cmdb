@@ -15,7 +15,6 @@ import runtime1 "github.com/infobloxopen/protoc-gen-atlas-validate/runtime"
 import resource "github.com/infobloxopen/atlas-app-toolkit/rpc/resource"
 import query "github.com/infobloxopen/atlas-app-toolkit/query"
 import field_mask "google.golang.org/genproto/protobuf/field_mask"
-import types "github.com/infobloxopen/protoc-gen-gorm/types"
 import proto "github.com/gogo/protobuf/proto"
 import math "math"
 import _ "github.com/golang/protobuf/ptypes/empty"
@@ -25,7 +24,6 @@ import _ "github.com/infobloxopen/atlas-app-toolkit/rpc/resource"
 import _ "github.com/infobloxopen/protoc-gen-atlas-query-validate/options"
 import _ "github.com/infobloxopen/protoc-gen-atlas-validate/options"
 import _ "github.com/infobloxopen/protoc-gen-gorm/options"
-import _ "github.com/infobloxopen/protoc-gen-gorm/types"
 import _ "github.com/lyft/protoc-gen-validate/validate"
 import _ "google.golang.org/genproto/googleapis/api/annotations"
 import _ "google.golang.org/genproto/protobuf/field_mask"
@@ -134,45 +132,90 @@ func validate_Regions_List_0(ctx context.Context, r json.RawMessage) (err error)
 	return nil
 }
 
-// validate_Stages_Create_0 is an entrypoint for validating "POST" HTTP request
-// that match *.pb.gw.go/pattern_Stages_Create_0.
-func validate_Stages_Create_0(ctx context.Context, r json.RawMessage) (err error) {
-	return validate_Object_Stage(ctx, r, "")
+// validate_Lifecycles_Create_0 is an entrypoint for validating "POST" HTTP request
+// that match *.pb.gw.go/pattern_Lifecycles_Create_0.
+func validate_Lifecycles_Create_0(ctx context.Context, r json.RawMessage) (err error) {
+	return validate_Object_Lifecycle(ctx, r, "")
 }
 
-// validate_Stages_Read_0 is an entrypoint for validating "GET" HTTP request
-// that match *.pb.gw.go/pattern_Stages_Read_0.
-func validate_Stages_Read_0(ctx context.Context, r json.RawMessage) (err error) {
+// validate_Lifecycles_Read_0 is an entrypoint for validating "GET" HTTP request
+// that match *.pb.gw.go/pattern_Lifecycles_Read_0.
+func validate_Lifecycles_Read_0(ctx context.Context, r json.RawMessage) (err error) {
 	if len(r) != 0 {
 		return fmt.Errorf("body is not allowed")
 	}
 	return nil
 }
 
-// validate_Stages_Update_0 is an entrypoint for validating "PUT" HTTP request
-// that match *.pb.gw.go/pattern_Stages_Update_0.
-func validate_Stages_Update_0(ctx context.Context, r json.RawMessage) (err error) {
-	return validate_Object_Stage(ctx, r, "")
+// validate_Lifecycles_Update_0 is an entrypoint for validating "PUT" HTTP request
+// that match *.pb.gw.go/pattern_Lifecycles_Update_0.
+func validate_Lifecycles_Update_0(ctx context.Context, r json.RawMessage) (err error) {
+	return validate_Object_Lifecycle(ctx, r, "")
 }
 
-// validate_Stages_Update_1 is an entrypoint for validating "PATCH" HTTP request
-// that match *.pb.gw.go/pattern_Stages_Update_1.
-func validate_Stages_Update_1(ctx context.Context, r json.RawMessage) (err error) {
-	return validate_Object_Stage(ctx, r, "")
+// validate_Lifecycles_Update_1 is an entrypoint for validating "PATCH" HTTP request
+// that match *.pb.gw.go/pattern_Lifecycles_Update_1.
+func validate_Lifecycles_Update_1(ctx context.Context, r json.RawMessage) (err error) {
+	return validate_Object_Lifecycle(ctx, r, "")
 }
 
-// validate_Stages_Delete_0 is an entrypoint for validating "DELETE" HTTP request
-// that match *.pb.gw.go/pattern_Stages_Delete_0.
-func validate_Stages_Delete_0(ctx context.Context, r json.RawMessage) (err error) {
+// validate_Lifecycles_Delete_0 is an entrypoint for validating "DELETE" HTTP request
+// that match *.pb.gw.go/pattern_Lifecycles_Delete_0.
+func validate_Lifecycles_Delete_0(ctx context.Context, r json.RawMessage) (err error) {
 	if len(r) != 0 {
 		return fmt.Errorf("body is not allowed")
 	}
 	return nil
 }
 
-// validate_Stages_List_0 is an entrypoint for validating "GET" HTTP request
-// that match *.pb.gw.go/pattern_Stages_List_0.
-func validate_Stages_List_0(ctx context.Context, r json.RawMessage) (err error) {
+// validate_Lifecycles_List_0 is an entrypoint for validating "GET" HTTP request
+// that match *.pb.gw.go/pattern_Lifecycles_List_0.
+func validate_Lifecycles_List_0(ctx context.Context, r json.RawMessage) (err error) {
+	if len(r) != 0 {
+		return fmt.Errorf("body is not allowed")
+	}
+	return nil
+}
+
+// validate_AppConfigs_Create_0 is an entrypoint for validating "POST" HTTP request
+// that match *.pb.gw.go/pattern_AppConfigs_Create_0.
+func validate_AppConfigs_Create_0(ctx context.Context, r json.RawMessage) (err error) {
+	return validate_Object_AppConfig(ctx, r, "")
+}
+
+// validate_AppConfigs_Read_0 is an entrypoint for validating "GET" HTTP request
+// that match *.pb.gw.go/pattern_AppConfigs_Read_0.
+func validate_AppConfigs_Read_0(ctx context.Context, r json.RawMessage) (err error) {
+	if len(r) != 0 {
+		return fmt.Errorf("body is not allowed")
+	}
+	return nil
+}
+
+// validate_AppConfigs_Update_0 is an entrypoint for validating "PUT" HTTP request
+// that match *.pb.gw.go/pattern_AppConfigs_Update_0.
+func validate_AppConfigs_Update_0(ctx context.Context, r json.RawMessage) (err error) {
+	return validate_Object_AppConfig(ctx, r, "")
+}
+
+// validate_AppConfigs_Update_1 is an entrypoint for validating "PATCH" HTTP request
+// that match *.pb.gw.go/pattern_AppConfigs_Update_1.
+func validate_AppConfigs_Update_1(ctx context.Context, r json.RawMessage) (err error) {
+	return validate_Object_AppConfig(ctx, r, "")
+}
+
+// validate_AppConfigs_Delete_0 is an entrypoint for validating "DELETE" HTTP request
+// that match *.pb.gw.go/pattern_AppConfigs_Delete_0.
+func validate_AppConfigs_Delete_0(ctx context.Context, r json.RawMessage) (err error) {
+	if len(r) != 0 {
+		return fmt.Errorf("body is not allowed")
+	}
+	return nil
+}
+
+// validate_AppConfigs_List_0 is an entrypoint for validating "GET" HTTP request
+// that match *.pb.gw.go/pattern_AppConfigs_List_0.
+func validate_AppConfigs_List_0(ctx context.Context, r json.RawMessage) (err error) {
 	if len(r) != 0 {
 		return fmt.Errorf("body is not allowed")
 	}
@@ -224,180 +267,90 @@ func validate_Environments_List_0(ctx context.Context, r json.RawMessage) (err e
 	return nil
 }
 
-// validate_AppRegionConfigs_Create_0 is an entrypoint for validating "POST" HTTP request
-// that match *.pb.gw.go/pattern_AppRegionConfigs_Create_0.
-func validate_AppRegionConfigs_Create_0(ctx context.Context, r json.RawMessage) (err error) {
-	return validate_Object_AppRegionConfig(ctx, r, "")
+// validate_Applications_Create_0 is an entrypoint for validating "POST" HTTP request
+// that match *.pb.gw.go/pattern_Applications_Create_0.
+func validate_Applications_Create_0(ctx context.Context, r json.RawMessage) (err error) {
+	return validate_Object_Application(ctx, r, "")
 }
 
-// validate_AppRegionConfigs_Read_0 is an entrypoint for validating "GET" HTTP request
-// that match *.pb.gw.go/pattern_AppRegionConfigs_Read_0.
-func validate_AppRegionConfigs_Read_0(ctx context.Context, r json.RawMessage) (err error) {
+// validate_Applications_Read_0 is an entrypoint for validating "GET" HTTP request
+// that match *.pb.gw.go/pattern_Applications_Read_0.
+func validate_Applications_Read_0(ctx context.Context, r json.RawMessage) (err error) {
 	if len(r) != 0 {
 		return fmt.Errorf("body is not allowed")
 	}
 	return nil
 }
 
-// validate_AppRegionConfigs_Update_0 is an entrypoint for validating "PUT" HTTP request
-// that match *.pb.gw.go/pattern_AppRegionConfigs_Update_0.
-func validate_AppRegionConfigs_Update_0(ctx context.Context, r json.RawMessage) (err error) {
-	return validate_Object_AppRegionConfig(ctx, r, "")
+// validate_Applications_Update_0 is an entrypoint for validating "PUT" HTTP request
+// that match *.pb.gw.go/pattern_Applications_Update_0.
+func validate_Applications_Update_0(ctx context.Context, r json.RawMessage) (err error) {
+	return validate_Object_Application(ctx, r, "")
 }
 
-// validate_AppRegionConfigs_Update_1 is an entrypoint for validating "PATCH" HTTP request
-// that match *.pb.gw.go/pattern_AppRegionConfigs_Update_1.
-func validate_AppRegionConfigs_Update_1(ctx context.Context, r json.RawMessage) (err error) {
-	return validate_Object_AppRegionConfig(ctx, r, "")
+// validate_Applications_Update_1 is an entrypoint for validating "PATCH" HTTP request
+// that match *.pb.gw.go/pattern_Applications_Update_1.
+func validate_Applications_Update_1(ctx context.Context, r json.RawMessage) (err error) {
+	return validate_Object_Application(ctx, r, "")
 }
 
-// validate_AppRegionConfigs_Delete_0 is an entrypoint for validating "DELETE" HTTP request
-// that match *.pb.gw.go/pattern_AppRegionConfigs_Delete_0.
-func validate_AppRegionConfigs_Delete_0(ctx context.Context, r json.RawMessage) (err error) {
+// validate_Applications_Delete_0 is an entrypoint for validating "DELETE" HTTP request
+// that match *.pb.gw.go/pattern_Applications_Delete_0.
+func validate_Applications_Delete_0(ctx context.Context, r json.RawMessage) (err error) {
 	if len(r) != 0 {
 		return fmt.Errorf("body is not allowed")
 	}
 	return nil
 }
 
-// validate_AppRegionConfigs_List_0 is an entrypoint for validating "GET" HTTP request
-// that match *.pb.gw.go/pattern_AppRegionConfigs_List_0.
-func validate_AppRegionConfigs_List_0(ctx context.Context, r json.RawMessage) (err error) {
+// validate_Applications_List_0 is an entrypoint for validating "GET" HTTP request
+// that match *.pb.gw.go/pattern_Applications_List_0.
+func validate_Applications_List_0(ctx context.Context, r json.RawMessage) (err error) {
 	if len(r) != 0 {
 		return fmt.Errorf("body is not allowed")
 	}
 	return nil
 }
 
-// validate_AppStageConfigs_Create_0 is an entrypoint for validating "POST" HTTP request
-// that match *.pb.gw.go/pattern_AppStageConfigs_Create_0.
-func validate_AppStageConfigs_Create_0(ctx context.Context, r json.RawMessage) (err error) {
-	return validate_Object_AppStageConfig(ctx, r, "")
+// validate_AppVersions_Create_0 is an entrypoint for validating "POST" HTTP request
+// that match *.pb.gw.go/pattern_AppVersions_Create_0.
+func validate_AppVersions_Create_0(ctx context.Context, r json.RawMessage) (err error) {
+	return validate_Object_AppVersion(ctx, r, "")
 }
 
-// validate_AppStageConfigs_Read_0 is an entrypoint for validating "GET" HTTP request
-// that match *.pb.gw.go/pattern_AppStageConfigs_Read_0.
-func validate_AppStageConfigs_Read_0(ctx context.Context, r json.RawMessage) (err error) {
+// validate_AppVersions_Read_0 is an entrypoint for validating "GET" HTTP request
+// that match *.pb.gw.go/pattern_AppVersions_Read_0.
+func validate_AppVersions_Read_0(ctx context.Context, r json.RawMessage) (err error) {
 	if len(r) != 0 {
 		return fmt.Errorf("body is not allowed")
 	}
 	return nil
 }
 
-// validate_AppStageConfigs_Update_0 is an entrypoint for validating "PUT" HTTP request
-// that match *.pb.gw.go/pattern_AppStageConfigs_Update_0.
-func validate_AppStageConfigs_Update_0(ctx context.Context, r json.RawMessage) (err error) {
-	return validate_Object_AppStageConfig(ctx, r, "")
+// validate_AppVersions_Update_0 is an entrypoint for validating "PUT" HTTP request
+// that match *.pb.gw.go/pattern_AppVersions_Update_0.
+func validate_AppVersions_Update_0(ctx context.Context, r json.RawMessage) (err error) {
+	return validate_Object_AppVersion(ctx, r, "")
 }
 
-// validate_AppStageConfigs_Update_1 is an entrypoint for validating "PATCH" HTTP request
-// that match *.pb.gw.go/pattern_AppStageConfigs_Update_1.
-func validate_AppStageConfigs_Update_1(ctx context.Context, r json.RawMessage) (err error) {
-	return validate_Object_AppStageConfig(ctx, r, "")
+// validate_AppVersions_Update_1 is an entrypoint for validating "PATCH" HTTP request
+// that match *.pb.gw.go/pattern_AppVersions_Update_1.
+func validate_AppVersions_Update_1(ctx context.Context, r json.RawMessage) (err error) {
+	return validate_Object_AppVersion(ctx, r, "")
 }
 
-// validate_AppStageConfigs_Delete_0 is an entrypoint for validating "DELETE" HTTP request
-// that match *.pb.gw.go/pattern_AppStageConfigs_Delete_0.
-func validate_AppStageConfigs_Delete_0(ctx context.Context, r json.RawMessage) (err error) {
+// validate_AppVersions_Delete_0 is an entrypoint for validating "DELETE" HTTP request
+// that match *.pb.gw.go/pattern_AppVersions_Delete_0.
+func validate_AppVersions_Delete_0(ctx context.Context, r json.RawMessage) (err error) {
 	if len(r) != 0 {
 		return fmt.Errorf("body is not allowed")
 	}
 	return nil
 }
 
-// validate_AppStageConfigs_List_0 is an entrypoint for validating "GET" HTTP request
-// that match *.pb.gw.go/pattern_AppStageConfigs_List_0.
-func validate_AppStageConfigs_List_0(ctx context.Context, r json.RawMessage) (err error) {
-	if len(r) != 0 {
-		return fmt.Errorf("body is not allowed")
-	}
-	return nil
-}
-
-// validate_AppEnvironmentConfigs_Create_0 is an entrypoint for validating "POST" HTTP request
-// that match *.pb.gw.go/pattern_AppEnvironmentConfigs_Create_0.
-func validate_AppEnvironmentConfigs_Create_0(ctx context.Context, r json.RawMessage) (err error) {
-	return validate_Object_AppEnvironmentConfig(ctx, r, "")
-}
-
-// validate_AppEnvironmentConfigs_Read_0 is an entrypoint for validating "GET" HTTP request
-// that match *.pb.gw.go/pattern_AppEnvironmentConfigs_Read_0.
-func validate_AppEnvironmentConfigs_Read_0(ctx context.Context, r json.RawMessage) (err error) {
-	if len(r) != 0 {
-		return fmt.Errorf("body is not allowed")
-	}
-	return nil
-}
-
-// validate_AppEnvironmentConfigs_Update_0 is an entrypoint for validating "PUT" HTTP request
-// that match *.pb.gw.go/pattern_AppEnvironmentConfigs_Update_0.
-func validate_AppEnvironmentConfigs_Update_0(ctx context.Context, r json.RawMessage) (err error) {
-	return validate_Object_AppEnvironmentConfig(ctx, r, "")
-}
-
-// validate_AppEnvironmentConfigs_Update_1 is an entrypoint for validating "PATCH" HTTP request
-// that match *.pb.gw.go/pattern_AppEnvironmentConfigs_Update_1.
-func validate_AppEnvironmentConfigs_Update_1(ctx context.Context, r json.RawMessage) (err error) {
-	return validate_Object_AppEnvironmentConfig(ctx, r, "")
-}
-
-// validate_AppEnvironmentConfigs_Delete_0 is an entrypoint for validating "DELETE" HTTP request
-// that match *.pb.gw.go/pattern_AppEnvironmentConfigs_Delete_0.
-func validate_AppEnvironmentConfigs_Delete_0(ctx context.Context, r json.RawMessage) (err error) {
-	if len(r) != 0 {
-		return fmt.Errorf("body is not allowed")
-	}
-	return nil
-}
-
-// validate_AppEnvironmentConfigs_List_0 is an entrypoint for validating "GET" HTTP request
-// that match *.pb.gw.go/pattern_AppEnvironmentConfigs_List_0.
-func validate_AppEnvironmentConfigs_List_0(ctx context.Context, r json.RawMessage) (err error) {
-	if len(r) != 0 {
-		return fmt.Errorf("body is not allowed")
-	}
-	return nil
-}
-
-// validate_ChartVersions_Create_0 is an entrypoint for validating "POST" HTTP request
-// that match *.pb.gw.go/pattern_ChartVersions_Create_0.
-func validate_ChartVersions_Create_0(ctx context.Context, r json.RawMessage) (err error) {
-	return validate_Object_ChartVersion(ctx, r, "")
-}
-
-// validate_ChartVersions_Read_0 is an entrypoint for validating "GET" HTTP request
-// that match *.pb.gw.go/pattern_ChartVersions_Read_0.
-func validate_ChartVersions_Read_0(ctx context.Context, r json.RawMessage) (err error) {
-	if len(r) != 0 {
-		return fmt.Errorf("body is not allowed")
-	}
-	return nil
-}
-
-// validate_ChartVersions_Update_0 is an entrypoint for validating "PUT" HTTP request
-// that match *.pb.gw.go/pattern_ChartVersions_Update_0.
-func validate_ChartVersions_Update_0(ctx context.Context, r json.RawMessage) (err error) {
-	return validate_Object_ChartVersion(ctx, r, "")
-}
-
-// validate_ChartVersions_Update_1 is an entrypoint for validating "PATCH" HTTP request
-// that match *.pb.gw.go/pattern_ChartVersions_Update_1.
-func validate_ChartVersions_Update_1(ctx context.Context, r json.RawMessage) (err error) {
-	return validate_Object_ChartVersion(ctx, r, "")
-}
-
-// validate_ChartVersions_Delete_0 is an entrypoint for validating "DELETE" HTTP request
-// that match *.pb.gw.go/pattern_ChartVersions_Delete_0.
-func validate_ChartVersions_Delete_0(ctx context.Context, r json.RawMessage) (err error) {
-	if len(r) != 0 {
-		return fmt.Errorf("body is not allowed")
-	}
-	return nil
-}
-
-// validate_ChartVersions_List_0 is an entrypoint for validating "GET" HTTP request
-// that match *.pb.gw.go/pattern_ChartVersions_List_0.
-func validate_ChartVersions_List_0(ctx context.Context, r json.RawMessage) (err error) {
+// validate_AppVersions_List_0 is an entrypoint for validating "GET" HTTP request
+// that match *.pb.gw.go/pattern_AppVersions_List_0.
+func validate_AppVersions_List_0(ctx context.Context, r json.RawMessage) (err error) {
 	if len(r) != 0 {
 		return fmt.Errorf("body is not allowed")
 	}
@@ -533,141 +486,6 @@ func validate_Secrets_Delete_0(ctx context.Context, r json.RawMessage) (err erro
 // validate_Secrets_List_0 is an entrypoint for validating "GET" HTTP request
 // that match *.pb.gw.go/pattern_Secrets_List_0.
 func validate_Secrets_List_0(ctx context.Context, r json.RawMessage) (err error) {
-	if len(r) != 0 {
-		return fmt.Errorf("body is not allowed")
-	}
-	return nil
-}
-
-// validate_AwsServices_Create_0 is an entrypoint for validating "POST" HTTP request
-// that match *.pb.gw.go/pattern_AwsServices_Create_0.
-func validate_AwsServices_Create_0(ctx context.Context, r json.RawMessage) (err error) {
-	return validate_Object_AwsService(ctx, r, "")
-}
-
-// validate_AwsServices_Read_0 is an entrypoint for validating "GET" HTTP request
-// that match *.pb.gw.go/pattern_AwsServices_Read_0.
-func validate_AwsServices_Read_0(ctx context.Context, r json.RawMessage) (err error) {
-	if len(r) != 0 {
-		return fmt.Errorf("body is not allowed")
-	}
-	return nil
-}
-
-// validate_AwsServices_Update_0 is an entrypoint for validating "PUT" HTTP request
-// that match *.pb.gw.go/pattern_AwsServices_Update_0.
-func validate_AwsServices_Update_0(ctx context.Context, r json.RawMessage) (err error) {
-	return validate_Object_AwsService(ctx, r, "")
-}
-
-// validate_AwsServices_Update_1 is an entrypoint for validating "PATCH" HTTP request
-// that match *.pb.gw.go/pattern_AwsServices_Update_1.
-func validate_AwsServices_Update_1(ctx context.Context, r json.RawMessage) (err error) {
-	return validate_Object_AwsService(ctx, r, "")
-}
-
-// validate_AwsServices_Delete_0 is an entrypoint for validating "DELETE" HTTP request
-// that match *.pb.gw.go/pattern_AwsServices_Delete_0.
-func validate_AwsServices_Delete_0(ctx context.Context, r json.RawMessage) (err error) {
-	if len(r) != 0 {
-		return fmt.Errorf("body is not allowed")
-	}
-	return nil
-}
-
-// validate_AwsServices_List_0 is an entrypoint for validating "GET" HTTP request
-// that match *.pb.gw.go/pattern_AwsServices_List_0.
-func validate_AwsServices_List_0(ctx context.Context, r json.RawMessage) (err error) {
-	if len(r) != 0 {
-		return fmt.Errorf("body is not allowed")
-	}
-	return nil
-}
-
-// validate_AwsRdsInstances_Create_0 is an entrypoint for validating "POST" HTTP request
-// that match *.pb.gw.go/pattern_AwsRdsInstances_Create_0.
-func validate_AwsRdsInstances_Create_0(ctx context.Context, r json.RawMessage) (err error) {
-	return validate_Object_AwsRdsInstance(ctx, r, "")
-}
-
-// validate_AwsRdsInstances_Read_0 is an entrypoint for validating "GET" HTTP request
-// that match *.pb.gw.go/pattern_AwsRdsInstances_Read_0.
-func validate_AwsRdsInstances_Read_0(ctx context.Context, r json.RawMessage) (err error) {
-	if len(r) != 0 {
-		return fmt.Errorf("body is not allowed")
-	}
-	return nil
-}
-
-// validate_AwsRdsInstances_Update_0 is an entrypoint for validating "PUT" HTTP request
-// that match *.pb.gw.go/pattern_AwsRdsInstances_Update_0.
-func validate_AwsRdsInstances_Update_0(ctx context.Context, r json.RawMessage) (err error) {
-	return validate_Object_AwsRdsInstance(ctx, r, "")
-}
-
-// validate_AwsRdsInstances_Update_1 is an entrypoint for validating "PATCH" HTTP request
-// that match *.pb.gw.go/pattern_AwsRdsInstances_Update_1.
-func validate_AwsRdsInstances_Update_1(ctx context.Context, r json.RawMessage) (err error) {
-	return validate_Object_AwsRdsInstance(ctx, r, "")
-}
-
-// validate_AwsRdsInstances_Delete_0 is an entrypoint for validating "DELETE" HTTP request
-// that match *.pb.gw.go/pattern_AwsRdsInstances_Delete_0.
-func validate_AwsRdsInstances_Delete_0(ctx context.Context, r json.RawMessage) (err error) {
-	if len(r) != 0 {
-		return fmt.Errorf("body is not allowed")
-	}
-	return nil
-}
-
-// validate_AwsRdsInstances_List_0 is an entrypoint for validating "GET" HTTP request
-// that match *.pb.gw.go/pattern_AwsRdsInstances_List_0.
-func validate_AwsRdsInstances_List_0(ctx context.Context, r json.RawMessage) (err error) {
-	if len(r) != 0 {
-		return fmt.Errorf("body is not allowed")
-	}
-	return nil
-}
-
-// validate_Values_Create_0 is an entrypoint for validating "POST" HTTP request
-// that match *.pb.gw.go/pattern_Values_Create_0.
-func validate_Values_Create_0(ctx context.Context, r json.RawMessage) (err error) {
-	return validate_Object_Value(ctx, r, "")
-}
-
-// validate_Values_Read_0 is an entrypoint for validating "GET" HTTP request
-// that match *.pb.gw.go/pattern_Values_Read_0.
-func validate_Values_Read_0(ctx context.Context, r json.RawMessage) (err error) {
-	if len(r) != 0 {
-		return fmt.Errorf("body is not allowed")
-	}
-	return nil
-}
-
-// validate_Values_Update_0 is an entrypoint for validating "PUT" HTTP request
-// that match *.pb.gw.go/pattern_Values_Update_0.
-func validate_Values_Update_0(ctx context.Context, r json.RawMessage) (err error) {
-	return validate_Object_Value(ctx, r, "")
-}
-
-// validate_Values_Update_1 is an entrypoint for validating "PATCH" HTTP request
-// that match *.pb.gw.go/pattern_Values_Update_1.
-func validate_Values_Update_1(ctx context.Context, r json.RawMessage) (err error) {
-	return validate_Object_Value(ctx, r, "")
-}
-
-// validate_Values_Delete_0 is an entrypoint for validating "DELETE" HTTP request
-// that match *.pb.gw.go/pattern_Values_Delete_0.
-func validate_Values_Delete_0(ctx context.Context, r json.RawMessage) (err error) {
-	if len(r) != 0 {
-		return fmt.Errorf("body is not allowed")
-	}
-	return nil
-}
-
-// validate_Values_List_0 is an entrypoint for validating "GET" HTTP request
-// that match *.pb.gw.go/pattern_Values_List_0.
-func validate_Values_List_0(ctx context.Context, r json.RawMessage) (err error) {
 	if len(r) != 0 {
 		return fmt.Errorf("body is not allowed")
 	}
@@ -1679,51 +1497,6 @@ func validate_Object_Region(ctx context.Context, r json.RawMessage, path string)
 			}
 		case "name":
 		case "description":
-		case "stages":
-			if v[k] == nil {
-				continue
-			}
-			var vArr []json.RawMessage
-			vArrPath := runtime1.JoinPath(path, k)
-			if err = json.Unmarshal(v[k], &vArr); err != nil {
-				return fmt.Errorf("invalid value for %q: expected array.", vArrPath)
-			}
-			for i, vv := range vArr {
-				vvPath := fmt.Sprintf("%s.[%d]", vArrPath, i)
-				if err = validate_Object_Stage(ctx, vv, vvPath); err != nil {
-					return err
-				}
-			}
-		case "aws_services":
-			if v[k] == nil {
-				continue
-			}
-			var vArr []json.RawMessage
-			vArrPath := runtime1.JoinPath(path, k)
-			if err = json.Unmarshal(v[k], &vArr); err != nil {
-				return fmt.Errorf("invalid value for %q: expected array.", vArrPath)
-			}
-			for i, vv := range vArr {
-				vvPath := fmt.Sprintf("%s.[%d]", vArrPath, i)
-				if err = validate_Object_AwsService(ctx, vv, vvPath); err != nil {
-					return err
-				}
-			}
-		case "value_id":
-			if v[k] == nil {
-				continue
-			}
-			vv := v[k]
-			vvPath := runtime1.JoinPath(path, k)
-			validator, ok := interface{}(&resource.Identifier{}).(interface {
-				AtlasValidateJSON(context.Context, json.RawMessage, string) error
-			})
-			if !ok {
-				continue
-			}
-			if err = validator.AtlasValidateJSON(ctx, vv, vvPath); err != nil {
-				return err
-			}
 		case "cloud_provider_id":
 			if v[k] == nil {
 				continue
@@ -2461,9 +2234,9 @@ func validate_required_Object_ListRegionsResponse(ctx context.Context, v map[str
 	return nil
 }
 
-// validate_Object_Stage function validates a JSON for a given object.
-func validate_Object_Stage(ctx context.Context, r json.RawMessage, path string) (err error) {
-	if hook, ok := interface{}(&Stage{}).(interface {
+// validate_Object_Lifecycle function validates a JSON for a given object.
+func validate_Object_Lifecycle(ctx context.Context, r json.RawMessage, path string) (err error) {
+	if hook, ok := interface{}(&Lifecycle{}).(interface {
 		AtlasJSONValidate(context.Context, json.RawMessage, string) (json.RawMessage, error)
 	}); ok {
 		if r, err = hook.AtlasJSONValidate(ctx, r, path); err != nil {
@@ -2476,7 +2249,7 @@ func validate_Object_Stage(ctx context.Context, r json.RawMessage, path string) 
 		return fmt.Errorf("invalid value for %q: expected object.", path)
 	}
 
-	if err = validate_required_Object_Stage(ctx, v, path); err != nil {
+	if err = validate_required_Object_Lifecycle(ctx, v, path); err != nil {
 		return err
 	}
 
@@ -2501,7 +2274,7 @@ func validate_Object_Stage(ctx context.Context, r json.RawMessage, path string) 
 			}
 		case "name":
 		case "description":
-		case "type":
+		case "config_yaml":
 		case "environments":
 			if v[k] == nil {
 				continue
@@ -2517,35 +2290,20 @@ func validate_Object_Stage(ctx context.Context, r json.RawMessage, path string) 
 					return err
 				}
 			}
-		case "value_id":
+		case "life_cycles":
 			if v[k] == nil {
 				continue
 			}
-			vv := v[k]
-			vvPath := runtime1.JoinPath(path, k)
-			validator, ok := interface{}(&resource.Identifier{}).(interface {
-				AtlasValidateJSON(context.Context, json.RawMessage, string) error
-			})
-			if !ok {
-				continue
+			var vArr []json.RawMessage
+			vArrPath := runtime1.JoinPath(path, k)
+			if err = json.Unmarshal(v[k], &vArr); err != nil {
+				return fmt.Errorf("invalid value for %q: expected array.", vArrPath)
 			}
-			if err = validator.AtlasValidateJSON(ctx, vv, vvPath); err != nil {
-				return err
-			}
-		case "region_id":
-			if v[k] == nil {
-				continue
-			}
-			vv := v[k]
-			vvPath := runtime1.JoinPath(path, k)
-			validator, ok := interface{}(&resource.Identifier{}).(interface {
-				AtlasValidateJSON(context.Context, json.RawMessage, string) error
-			})
-			if !ok {
-				continue
-			}
-			if err = validator.AtlasValidateJSON(ctx, vv, vvPath); err != nil {
-				return err
+			for i, vv := range vArr {
+				vvPath := fmt.Sprintf("%s.[%d]", vArrPath, i)
+				if err = validate_Object_Lifecycle(ctx, vv, vvPath); err != nil {
+					return err
+				}
 			}
 		default:
 			if !allowUnknown {
@@ -2556,27 +2314,27 @@ func validate_Object_Stage(ctx context.Context, r json.RawMessage, path string) 
 	return nil
 }
 
-// AtlasValidateJSON function validates a JSON for object Stage.
-func (_ *Stage) AtlasValidateJSON(ctx context.Context, r json.RawMessage, path string) (err error) {
-	if hook, ok := interface{}(&Stage{}).(interface {
+// AtlasValidateJSON function validates a JSON for object Lifecycle.
+func (_ *Lifecycle) AtlasValidateJSON(ctx context.Context, r json.RawMessage, path string) (err error) {
+	if hook, ok := interface{}(&Lifecycle{}).(interface {
 		AtlasJSONValidate(context.Context, json.RawMessage, string) (json.RawMessage, error)
 	}); ok {
 		if r, err = hook.AtlasJSONValidate(ctx, r, path); err != nil {
 			return err
 		}
 	}
-	return validate_Object_Stage(ctx, r, path)
+	return validate_Object_Lifecycle(ctx, r, path)
 }
 
-func validate_required_Object_Stage(ctx context.Context, v map[string]json.RawMessage, path string) error {
+func validate_required_Object_Lifecycle(ctx context.Context, v map[string]json.RawMessage, path string) error {
 	method := runtime1.HTTPMethodFromContext(ctx)
 	_ = method
 	return nil
 }
 
-// validate_Object_CreateStageRequest function validates a JSON for a given object.
-func validate_Object_CreateStageRequest(ctx context.Context, r json.RawMessage, path string) (err error) {
-	if hook, ok := interface{}(&CreateStageRequest{}).(interface {
+// validate_Object_CreateLifecycleRequest function validates a JSON for a given object.
+func validate_Object_CreateLifecycleRequest(ctx context.Context, r json.RawMessage, path string) (err error) {
+	if hook, ok := interface{}(&CreateLifecycleRequest{}).(interface {
 		AtlasJSONValidate(context.Context, json.RawMessage, string) (json.RawMessage, error)
 	}); ok {
 		if r, err = hook.AtlasJSONValidate(ctx, r, path); err != nil {
@@ -2589,7 +2347,7 @@ func validate_Object_CreateStageRequest(ctx context.Context, r json.RawMessage, 
 		return fmt.Errorf("invalid value for %q: expected object.", path)
 	}
 
-	if err = validate_required_Object_CreateStageRequest(ctx, v, path); err != nil {
+	if err = validate_required_Object_CreateLifecycleRequest(ctx, v, path); err != nil {
 		return err
 	}
 
@@ -2603,7 +2361,7 @@ func validate_Object_CreateStageRequest(ctx context.Context, r json.RawMessage, 
 			}
 			vv := v[k]
 			vvPath := runtime1.JoinPath(path, k)
-			if err = validate_Object_Stage(ctx, vv, vvPath); err != nil {
+			if err = validate_Object_Lifecycle(ctx, vv, vvPath); err != nil {
 				return err
 			}
 		default:
@@ -2615,27 +2373,27 @@ func validate_Object_CreateStageRequest(ctx context.Context, r json.RawMessage, 
 	return nil
 }
 
-// AtlasValidateJSON function validates a JSON for object CreateStageRequest.
-func (_ *CreateStageRequest) AtlasValidateJSON(ctx context.Context, r json.RawMessage, path string) (err error) {
-	if hook, ok := interface{}(&CreateStageRequest{}).(interface {
+// AtlasValidateJSON function validates a JSON for object CreateLifecycleRequest.
+func (_ *CreateLifecycleRequest) AtlasValidateJSON(ctx context.Context, r json.RawMessage, path string) (err error) {
+	if hook, ok := interface{}(&CreateLifecycleRequest{}).(interface {
 		AtlasJSONValidate(context.Context, json.RawMessage, string) (json.RawMessage, error)
 	}); ok {
 		if r, err = hook.AtlasJSONValidate(ctx, r, path); err != nil {
 			return err
 		}
 	}
-	return validate_Object_CreateStageRequest(ctx, r, path)
+	return validate_Object_CreateLifecycleRequest(ctx, r, path)
 }
 
-func validate_required_Object_CreateStageRequest(ctx context.Context, v map[string]json.RawMessage, path string) error {
+func validate_required_Object_CreateLifecycleRequest(ctx context.Context, v map[string]json.RawMessage, path string) error {
 	method := runtime1.HTTPMethodFromContext(ctx)
 	_ = method
 	return nil
 }
 
-// validate_Object_CreateStageResponse function validates a JSON for a given object.
-func validate_Object_CreateStageResponse(ctx context.Context, r json.RawMessage, path string) (err error) {
-	if hook, ok := interface{}(&CreateStageResponse{}).(interface {
+// validate_Object_CreateLifecycleResponse function validates a JSON for a given object.
+func validate_Object_CreateLifecycleResponse(ctx context.Context, r json.RawMessage, path string) (err error) {
+	if hook, ok := interface{}(&CreateLifecycleResponse{}).(interface {
 		AtlasJSONValidate(context.Context, json.RawMessage, string) (json.RawMessage, error)
 	}); ok {
 		if r, err = hook.AtlasJSONValidate(ctx, r, path); err != nil {
@@ -2648,7 +2406,7 @@ func validate_Object_CreateStageResponse(ctx context.Context, r json.RawMessage,
 		return fmt.Errorf("invalid value for %q: expected object.", path)
 	}
 
-	if err = validate_required_Object_CreateStageResponse(ctx, v, path); err != nil {
+	if err = validate_required_Object_CreateLifecycleResponse(ctx, v, path); err != nil {
 		return err
 	}
 
@@ -2662,7 +2420,7 @@ func validate_Object_CreateStageResponse(ctx context.Context, r json.RawMessage,
 			}
 			vv := v[k]
 			vvPath := runtime1.JoinPath(path, k)
-			if err = validate_Object_Stage(ctx, vv, vvPath); err != nil {
+			if err = validate_Object_Lifecycle(ctx, vv, vvPath); err != nil {
 				return err
 			}
 		default:
@@ -2674,27 +2432,27 @@ func validate_Object_CreateStageResponse(ctx context.Context, r json.RawMessage,
 	return nil
 }
 
-// AtlasValidateJSON function validates a JSON for object CreateStageResponse.
-func (_ *CreateStageResponse) AtlasValidateJSON(ctx context.Context, r json.RawMessage, path string) (err error) {
-	if hook, ok := interface{}(&CreateStageResponse{}).(interface {
+// AtlasValidateJSON function validates a JSON for object CreateLifecycleResponse.
+func (_ *CreateLifecycleResponse) AtlasValidateJSON(ctx context.Context, r json.RawMessage, path string) (err error) {
+	if hook, ok := interface{}(&CreateLifecycleResponse{}).(interface {
 		AtlasJSONValidate(context.Context, json.RawMessage, string) (json.RawMessage, error)
 	}); ok {
 		if r, err = hook.AtlasJSONValidate(ctx, r, path); err != nil {
 			return err
 		}
 	}
-	return validate_Object_CreateStageResponse(ctx, r, path)
+	return validate_Object_CreateLifecycleResponse(ctx, r, path)
 }
 
-func validate_required_Object_CreateStageResponse(ctx context.Context, v map[string]json.RawMessage, path string) error {
+func validate_required_Object_CreateLifecycleResponse(ctx context.Context, v map[string]json.RawMessage, path string) error {
 	method := runtime1.HTTPMethodFromContext(ctx)
 	_ = method
 	return nil
 }
 
-// validate_Object_ReadStageRequest function validates a JSON for a given object.
-func validate_Object_ReadStageRequest(ctx context.Context, r json.RawMessage, path string) (err error) {
-	if hook, ok := interface{}(&ReadStageRequest{}).(interface {
+// validate_Object_ReadLifecycleRequest function validates a JSON for a given object.
+func validate_Object_ReadLifecycleRequest(ctx context.Context, r json.RawMessage, path string) (err error) {
+	if hook, ok := interface{}(&ReadLifecycleRequest{}).(interface {
 		AtlasJSONValidate(context.Context, json.RawMessage, string) (json.RawMessage, error)
 	}); ok {
 		if r, err = hook.AtlasJSONValidate(ctx, r, path); err != nil {
@@ -2707,7 +2465,7 @@ func validate_Object_ReadStageRequest(ctx context.Context, r json.RawMessage, pa
 		return fmt.Errorf("invalid value for %q: expected object.", path)
 	}
 
-	if err = validate_required_Object_ReadStageRequest(ctx, v, path); err != nil {
+	if err = validate_required_Object_ReadLifecycleRequest(ctx, v, path); err != nil {
 		return err
 	}
 
@@ -2754,27 +2512,27 @@ func validate_Object_ReadStageRequest(ctx context.Context, r json.RawMessage, pa
 	return nil
 }
 
-// AtlasValidateJSON function validates a JSON for object ReadStageRequest.
-func (_ *ReadStageRequest) AtlasValidateJSON(ctx context.Context, r json.RawMessage, path string) (err error) {
-	if hook, ok := interface{}(&ReadStageRequest{}).(interface {
+// AtlasValidateJSON function validates a JSON for object ReadLifecycleRequest.
+func (_ *ReadLifecycleRequest) AtlasValidateJSON(ctx context.Context, r json.RawMessage, path string) (err error) {
+	if hook, ok := interface{}(&ReadLifecycleRequest{}).(interface {
 		AtlasJSONValidate(context.Context, json.RawMessage, string) (json.RawMessage, error)
 	}); ok {
 		if r, err = hook.AtlasJSONValidate(ctx, r, path); err != nil {
 			return err
 		}
 	}
-	return validate_Object_ReadStageRequest(ctx, r, path)
+	return validate_Object_ReadLifecycleRequest(ctx, r, path)
 }
 
-func validate_required_Object_ReadStageRequest(ctx context.Context, v map[string]json.RawMessage, path string) error {
+func validate_required_Object_ReadLifecycleRequest(ctx context.Context, v map[string]json.RawMessage, path string) error {
 	method := runtime1.HTTPMethodFromContext(ctx)
 	_ = method
 	return nil
 }
 
-// validate_Object_ReadStageResponse function validates a JSON for a given object.
-func validate_Object_ReadStageResponse(ctx context.Context, r json.RawMessage, path string) (err error) {
-	if hook, ok := interface{}(&ReadStageResponse{}).(interface {
+// validate_Object_ReadLifecycleResponse function validates a JSON for a given object.
+func validate_Object_ReadLifecycleResponse(ctx context.Context, r json.RawMessage, path string) (err error) {
+	if hook, ok := interface{}(&ReadLifecycleResponse{}).(interface {
 		AtlasJSONValidate(context.Context, json.RawMessage, string) (json.RawMessage, error)
 	}); ok {
 		if r, err = hook.AtlasJSONValidate(ctx, r, path); err != nil {
@@ -2787,7 +2545,7 @@ func validate_Object_ReadStageResponse(ctx context.Context, r json.RawMessage, p
 		return fmt.Errorf("invalid value for %q: expected object.", path)
 	}
 
-	if err = validate_required_Object_ReadStageResponse(ctx, v, path); err != nil {
+	if err = validate_required_Object_ReadLifecycleResponse(ctx, v, path); err != nil {
 		return err
 	}
 
@@ -2801,7 +2559,7 @@ func validate_Object_ReadStageResponse(ctx context.Context, r json.RawMessage, p
 			}
 			vv := v[k]
 			vvPath := runtime1.JoinPath(path, k)
-			if err = validate_Object_Stage(ctx, vv, vvPath); err != nil {
+			if err = validate_Object_Lifecycle(ctx, vv, vvPath); err != nil {
 				return err
 			}
 		default:
@@ -2813,27 +2571,27 @@ func validate_Object_ReadStageResponse(ctx context.Context, r json.RawMessage, p
 	return nil
 }
 
-// AtlasValidateJSON function validates a JSON for object ReadStageResponse.
-func (_ *ReadStageResponse) AtlasValidateJSON(ctx context.Context, r json.RawMessage, path string) (err error) {
-	if hook, ok := interface{}(&ReadStageResponse{}).(interface {
+// AtlasValidateJSON function validates a JSON for object ReadLifecycleResponse.
+func (_ *ReadLifecycleResponse) AtlasValidateJSON(ctx context.Context, r json.RawMessage, path string) (err error) {
+	if hook, ok := interface{}(&ReadLifecycleResponse{}).(interface {
 		AtlasJSONValidate(context.Context, json.RawMessage, string) (json.RawMessage, error)
 	}); ok {
 		if r, err = hook.AtlasJSONValidate(ctx, r, path); err != nil {
 			return err
 		}
 	}
-	return validate_Object_ReadStageResponse(ctx, r, path)
+	return validate_Object_ReadLifecycleResponse(ctx, r, path)
 }
 
-func validate_required_Object_ReadStageResponse(ctx context.Context, v map[string]json.RawMessage, path string) error {
+func validate_required_Object_ReadLifecycleResponse(ctx context.Context, v map[string]json.RawMessage, path string) error {
 	method := runtime1.HTTPMethodFromContext(ctx)
 	_ = method
 	return nil
 }
 
-// validate_Object_UpdateStageRequest function validates a JSON for a given object.
-func validate_Object_UpdateStageRequest(ctx context.Context, r json.RawMessage, path string) (err error) {
-	if hook, ok := interface{}(&UpdateStageRequest{}).(interface {
+// validate_Object_UpdateLifecycleRequest function validates a JSON for a given object.
+func validate_Object_UpdateLifecycleRequest(ctx context.Context, r json.RawMessage, path string) (err error) {
+	if hook, ok := interface{}(&UpdateLifecycleRequest{}).(interface {
 		AtlasJSONValidate(context.Context, json.RawMessage, string) (json.RawMessage, error)
 	}); ok {
 		if r, err = hook.AtlasJSONValidate(ctx, r, path); err != nil {
@@ -2846,7 +2604,7 @@ func validate_Object_UpdateStageRequest(ctx context.Context, r json.RawMessage, 
 		return fmt.Errorf("invalid value for %q: expected object.", path)
 	}
 
-	if err = validate_required_Object_UpdateStageRequest(ctx, v, path); err != nil {
+	if err = validate_required_Object_UpdateLifecycleRequest(ctx, v, path); err != nil {
 		return err
 	}
 
@@ -2860,7 +2618,7 @@ func validate_Object_UpdateStageRequest(ctx context.Context, r json.RawMessage, 
 			}
 			vv := v[k]
 			vvPath := runtime1.JoinPath(path, k)
-			if err = validate_Object_Stage(ctx, vv, vvPath); err != nil {
+			if err = validate_Object_Lifecycle(ctx, vv, vvPath); err != nil {
 				return err
 			}
 		case "fields":
@@ -2887,27 +2645,27 @@ func validate_Object_UpdateStageRequest(ctx context.Context, r json.RawMessage, 
 	return nil
 }
 
-// AtlasValidateJSON function validates a JSON for object UpdateStageRequest.
-func (_ *UpdateStageRequest) AtlasValidateJSON(ctx context.Context, r json.RawMessage, path string) (err error) {
-	if hook, ok := interface{}(&UpdateStageRequest{}).(interface {
+// AtlasValidateJSON function validates a JSON for object UpdateLifecycleRequest.
+func (_ *UpdateLifecycleRequest) AtlasValidateJSON(ctx context.Context, r json.RawMessage, path string) (err error) {
+	if hook, ok := interface{}(&UpdateLifecycleRequest{}).(interface {
 		AtlasJSONValidate(context.Context, json.RawMessage, string) (json.RawMessage, error)
 	}); ok {
 		if r, err = hook.AtlasJSONValidate(ctx, r, path); err != nil {
 			return err
 		}
 	}
-	return validate_Object_UpdateStageRequest(ctx, r, path)
+	return validate_Object_UpdateLifecycleRequest(ctx, r, path)
 }
 
-func validate_required_Object_UpdateStageRequest(ctx context.Context, v map[string]json.RawMessage, path string) error {
+func validate_required_Object_UpdateLifecycleRequest(ctx context.Context, v map[string]json.RawMessage, path string) error {
 	method := runtime1.HTTPMethodFromContext(ctx)
 	_ = method
 	return nil
 }
 
-// validate_Object_UpdateStageResponse function validates a JSON for a given object.
-func validate_Object_UpdateStageResponse(ctx context.Context, r json.RawMessage, path string) (err error) {
-	if hook, ok := interface{}(&UpdateStageResponse{}).(interface {
+// validate_Object_UpdateLifecycleResponse function validates a JSON for a given object.
+func validate_Object_UpdateLifecycleResponse(ctx context.Context, r json.RawMessage, path string) (err error) {
+	if hook, ok := interface{}(&UpdateLifecycleResponse{}).(interface {
 		AtlasJSONValidate(context.Context, json.RawMessage, string) (json.RawMessage, error)
 	}); ok {
 		if r, err = hook.AtlasJSONValidate(ctx, r, path); err != nil {
@@ -2920,7 +2678,7 @@ func validate_Object_UpdateStageResponse(ctx context.Context, r json.RawMessage,
 		return fmt.Errorf("invalid value for %q: expected object.", path)
 	}
 
-	if err = validate_required_Object_UpdateStageResponse(ctx, v, path); err != nil {
+	if err = validate_required_Object_UpdateLifecycleResponse(ctx, v, path); err != nil {
 		return err
 	}
 
@@ -2934,7 +2692,7 @@ func validate_Object_UpdateStageResponse(ctx context.Context, r json.RawMessage,
 			}
 			vv := v[k]
 			vvPath := runtime1.JoinPath(path, k)
-			if err = validate_Object_Stage(ctx, vv, vvPath); err != nil {
+			if err = validate_Object_Lifecycle(ctx, vv, vvPath); err != nil {
 				return err
 			}
 		default:
@@ -2946,27 +2704,27 @@ func validate_Object_UpdateStageResponse(ctx context.Context, r json.RawMessage,
 	return nil
 }
 
-// AtlasValidateJSON function validates a JSON for object UpdateStageResponse.
-func (_ *UpdateStageResponse) AtlasValidateJSON(ctx context.Context, r json.RawMessage, path string) (err error) {
-	if hook, ok := interface{}(&UpdateStageResponse{}).(interface {
+// AtlasValidateJSON function validates a JSON for object UpdateLifecycleResponse.
+func (_ *UpdateLifecycleResponse) AtlasValidateJSON(ctx context.Context, r json.RawMessage, path string) (err error) {
+	if hook, ok := interface{}(&UpdateLifecycleResponse{}).(interface {
 		AtlasJSONValidate(context.Context, json.RawMessage, string) (json.RawMessage, error)
 	}); ok {
 		if r, err = hook.AtlasJSONValidate(ctx, r, path); err != nil {
 			return err
 		}
 	}
-	return validate_Object_UpdateStageResponse(ctx, r, path)
+	return validate_Object_UpdateLifecycleResponse(ctx, r, path)
 }
 
-func validate_required_Object_UpdateStageResponse(ctx context.Context, v map[string]json.RawMessage, path string) error {
+func validate_required_Object_UpdateLifecycleResponse(ctx context.Context, v map[string]json.RawMessage, path string) error {
 	method := runtime1.HTTPMethodFromContext(ctx)
 	_ = method
 	return nil
 }
 
-// validate_Object_DeleteStageRequest function validates a JSON for a given object.
-func validate_Object_DeleteStageRequest(ctx context.Context, r json.RawMessage, path string) (err error) {
-	if hook, ok := interface{}(&DeleteStageRequest{}).(interface {
+// validate_Object_DeleteLifecycleRequest function validates a JSON for a given object.
+func validate_Object_DeleteLifecycleRequest(ctx context.Context, r json.RawMessage, path string) (err error) {
+	if hook, ok := interface{}(&DeleteLifecycleRequest{}).(interface {
 		AtlasJSONValidate(context.Context, json.RawMessage, string) (json.RawMessage, error)
 	}); ok {
 		if r, err = hook.AtlasJSONValidate(ctx, r, path); err != nil {
@@ -2979,7 +2737,7 @@ func validate_Object_DeleteStageRequest(ctx context.Context, r json.RawMessage, 
 		return fmt.Errorf("invalid value for %q: expected object.", path)
 	}
 
-	if err = validate_required_Object_DeleteStageRequest(ctx, v, path); err != nil {
+	if err = validate_required_Object_DeleteLifecycleRequest(ctx, v, path); err != nil {
 		return err
 	}
 
@@ -3011,27 +2769,27 @@ func validate_Object_DeleteStageRequest(ctx context.Context, r json.RawMessage, 
 	return nil
 }
 
-// AtlasValidateJSON function validates a JSON for object DeleteStageRequest.
-func (_ *DeleteStageRequest) AtlasValidateJSON(ctx context.Context, r json.RawMessage, path string) (err error) {
-	if hook, ok := interface{}(&DeleteStageRequest{}).(interface {
+// AtlasValidateJSON function validates a JSON for object DeleteLifecycleRequest.
+func (_ *DeleteLifecycleRequest) AtlasValidateJSON(ctx context.Context, r json.RawMessage, path string) (err error) {
+	if hook, ok := interface{}(&DeleteLifecycleRequest{}).(interface {
 		AtlasJSONValidate(context.Context, json.RawMessage, string) (json.RawMessage, error)
 	}); ok {
 		if r, err = hook.AtlasJSONValidate(ctx, r, path); err != nil {
 			return err
 		}
 	}
-	return validate_Object_DeleteStageRequest(ctx, r, path)
+	return validate_Object_DeleteLifecycleRequest(ctx, r, path)
 }
 
-func validate_required_Object_DeleteStageRequest(ctx context.Context, v map[string]json.RawMessage, path string) error {
+func validate_required_Object_DeleteLifecycleRequest(ctx context.Context, v map[string]json.RawMessage, path string) error {
 	method := runtime1.HTTPMethodFromContext(ctx)
 	_ = method
 	return nil
 }
 
-// validate_Object_DeleteStageResponse function validates a JSON for a given object.
-func validate_Object_DeleteStageResponse(ctx context.Context, r json.RawMessage, path string) (err error) {
-	if hook, ok := interface{}(&DeleteStageResponse{}).(interface {
+// validate_Object_DeleteLifecycleResponse function validates a JSON for a given object.
+func validate_Object_DeleteLifecycleResponse(ctx context.Context, r json.RawMessage, path string) (err error) {
+	if hook, ok := interface{}(&DeleteLifecycleResponse{}).(interface {
 		AtlasJSONValidate(context.Context, json.RawMessage, string) (json.RawMessage, error)
 	}); ok {
 		if r, err = hook.AtlasJSONValidate(ctx, r, path); err != nil {
@@ -3044,7 +2802,7 @@ func validate_Object_DeleteStageResponse(ctx context.Context, r json.RawMessage,
 		return fmt.Errorf("invalid value for %q: expected object.", path)
 	}
 
-	if err = validate_required_Object_DeleteStageResponse(ctx, v, path); err != nil {
+	if err = validate_required_Object_DeleteLifecycleResponse(ctx, v, path); err != nil {
 		return err
 	}
 
@@ -3061,27 +2819,27 @@ func validate_Object_DeleteStageResponse(ctx context.Context, r json.RawMessage,
 	return nil
 }
 
-// AtlasValidateJSON function validates a JSON for object DeleteStageResponse.
-func (_ *DeleteStageResponse) AtlasValidateJSON(ctx context.Context, r json.RawMessage, path string) (err error) {
-	if hook, ok := interface{}(&DeleteStageResponse{}).(interface {
+// AtlasValidateJSON function validates a JSON for object DeleteLifecycleResponse.
+func (_ *DeleteLifecycleResponse) AtlasValidateJSON(ctx context.Context, r json.RawMessage, path string) (err error) {
+	if hook, ok := interface{}(&DeleteLifecycleResponse{}).(interface {
 		AtlasJSONValidate(context.Context, json.RawMessage, string) (json.RawMessage, error)
 	}); ok {
 		if r, err = hook.AtlasJSONValidate(ctx, r, path); err != nil {
 			return err
 		}
 	}
-	return validate_Object_DeleteStageResponse(ctx, r, path)
+	return validate_Object_DeleteLifecycleResponse(ctx, r, path)
 }
 
-func validate_required_Object_DeleteStageResponse(ctx context.Context, v map[string]json.RawMessage, path string) error {
+func validate_required_Object_DeleteLifecycleResponse(ctx context.Context, v map[string]json.RawMessage, path string) error {
 	method := runtime1.HTTPMethodFromContext(ctx)
 	_ = method
 	return nil
 }
 
-// validate_Object_ListStageRequest function validates a JSON for a given object.
-func validate_Object_ListStageRequest(ctx context.Context, r json.RawMessage, path string) (err error) {
-	if hook, ok := interface{}(&ListStageRequest{}).(interface {
+// validate_Object_ListLifecycleRequest function validates a JSON for a given object.
+func validate_Object_ListLifecycleRequest(ctx context.Context, r json.RawMessage, path string) (err error) {
+	if hook, ok := interface{}(&ListLifecycleRequest{}).(interface {
 		AtlasJSONValidate(context.Context, json.RawMessage, string) (json.RawMessage, error)
 	}); ok {
 		if r, err = hook.AtlasJSONValidate(ctx, r, path); err != nil {
@@ -3094,7 +2852,7 @@ func validate_Object_ListStageRequest(ctx context.Context, r json.RawMessage, pa
 		return fmt.Errorf("invalid value for %q: expected object.", path)
 	}
 
-	if err = validate_required_Object_ListStageRequest(ctx, v, path); err != nil {
+	if err = validate_required_Object_ListLifecycleRequest(ctx, v, path); err != nil {
 		return err
 	}
 
@@ -3171,27 +2929,27 @@ func validate_Object_ListStageRequest(ctx context.Context, r json.RawMessage, pa
 	return nil
 }
 
-// AtlasValidateJSON function validates a JSON for object ListStageRequest.
-func (_ *ListStageRequest) AtlasValidateJSON(ctx context.Context, r json.RawMessage, path string) (err error) {
-	if hook, ok := interface{}(&ListStageRequest{}).(interface {
+// AtlasValidateJSON function validates a JSON for object ListLifecycleRequest.
+func (_ *ListLifecycleRequest) AtlasValidateJSON(ctx context.Context, r json.RawMessage, path string) (err error) {
+	if hook, ok := interface{}(&ListLifecycleRequest{}).(interface {
 		AtlasJSONValidate(context.Context, json.RawMessage, string) (json.RawMessage, error)
 	}); ok {
 		if r, err = hook.AtlasJSONValidate(ctx, r, path); err != nil {
 			return err
 		}
 	}
-	return validate_Object_ListStageRequest(ctx, r, path)
+	return validate_Object_ListLifecycleRequest(ctx, r, path)
 }
 
-func validate_required_Object_ListStageRequest(ctx context.Context, v map[string]json.RawMessage, path string) error {
+func validate_required_Object_ListLifecycleRequest(ctx context.Context, v map[string]json.RawMessage, path string) error {
 	method := runtime1.HTTPMethodFromContext(ctx)
 	_ = method
 	return nil
 }
 
-// validate_Object_ListStagesResponse function validates a JSON for a given object.
-func validate_Object_ListStagesResponse(ctx context.Context, r json.RawMessage, path string) (err error) {
-	if hook, ok := interface{}(&ListStagesResponse{}).(interface {
+// validate_Object_ListLifecyclesResponse function validates a JSON for a given object.
+func validate_Object_ListLifecyclesResponse(ctx context.Context, r json.RawMessage, path string) (err error) {
+	if hook, ok := interface{}(&ListLifecyclesResponse{}).(interface {
 		AtlasJSONValidate(context.Context, json.RawMessage, string) (json.RawMessage, error)
 	}); ok {
 		if r, err = hook.AtlasJSONValidate(ctx, r, path); err != nil {
@@ -3204,7 +2962,7 @@ func validate_Object_ListStagesResponse(ctx context.Context, r json.RawMessage, 
 		return fmt.Errorf("invalid value for %q: expected object.", path)
 	}
 
-	if err = validate_required_Object_ListStagesResponse(ctx, v, path); err != nil {
+	if err = validate_required_Object_ListLifecyclesResponse(ctx, v, path); err != nil {
 		return err
 	}
 
@@ -3223,7 +2981,7 @@ func validate_Object_ListStagesResponse(ctx context.Context, r json.RawMessage, 
 			}
 			for i, vv := range vArr {
 				vvPath := fmt.Sprintf("%s.[%d]", vArrPath, i)
-				if err = validate_Object_Stage(ctx, vv, vvPath); err != nil {
+				if err = validate_Object_Lifecycle(ctx, vv, vvPath); err != nil {
 					return err
 				}
 			}
@@ -3251,19 +3009,812 @@ func validate_Object_ListStagesResponse(ctx context.Context, r json.RawMessage, 
 	return nil
 }
 
-// AtlasValidateJSON function validates a JSON for object ListStagesResponse.
-func (_ *ListStagesResponse) AtlasValidateJSON(ctx context.Context, r json.RawMessage, path string) (err error) {
-	if hook, ok := interface{}(&ListStagesResponse{}).(interface {
+// AtlasValidateJSON function validates a JSON for object ListLifecyclesResponse.
+func (_ *ListLifecyclesResponse) AtlasValidateJSON(ctx context.Context, r json.RawMessage, path string) (err error) {
+	if hook, ok := interface{}(&ListLifecyclesResponse{}).(interface {
 		AtlasJSONValidate(context.Context, json.RawMessage, string) (json.RawMessage, error)
 	}); ok {
 		if r, err = hook.AtlasJSONValidate(ctx, r, path); err != nil {
 			return err
 		}
 	}
-	return validate_Object_ListStagesResponse(ctx, r, path)
+	return validate_Object_ListLifecyclesResponse(ctx, r, path)
 }
 
-func validate_required_Object_ListStagesResponse(ctx context.Context, v map[string]json.RawMessage, path string) error {
+func validate_required_Object_ListLifecyclesResponse(ctx context.Context, v map[string]json.RawMessage, path string) error {
+	method := runtime1.HTTPMethodFromContext(ctx)
+	_ = method
+	return nil
+}
+
+// validate_Object_AppConfig function validates a JSON for a given object.
+func validate_Object_AppConfig(ctx context.Context, r json.RawMessage, path string) (err error) {
+	if hook, ok := interface{}(&AppConfig{}).(interface {
+		AtlasJSONValidate(context.Context, json.RawMessage, string) (json.RawMessage, error)
+	}); ok {
+		if r, err = hook.AtlasJSONValidate(ctx, r, path); err != nil {
+			return err
+		}
+	}
+
+	var v map[string]json.RawMessage
+	if err = json.Unmarshal(r, &v); err != nil {
+		return fmt.Errorf("invalid value for %q: expected object.", path)
+	}
+
+	if err = validate_required_Object_AppConfig(ctx, v, path); err != nil {
+		return err
+	}
+
+	allowUnknown := runtime1.AllowUnknownFromContext(ctx)
+
+	for k, _ := range v {
+		switch k {
+		case "id":
+			if v[k] == nil {
+				continue
+			}
+			vv := v[k]
+			vvPath := runtime1.JoinPath(path, k)
+			validator, ok := interface{}(&resource.Identifier{}).(interface {
+				AtlasValidateJSON(context.Context, json.RawMessage, string) error
+			})
+			if !ok {
+				continue
+			}
+			if err = validator.AtlasValidateJSON(ctx, vv, vvPath); err != nil {
+				return err
+			}
+		case "name":
+		case "description":
+		case "config_yaml":
+		case "application_id":
+			if v[k] == nil {
+				continue
+			}
+			vv := v[k]
+			vvPath := runtime1.JoinPath(path, k)
+			validator, ok := interface{}(&resource.Identifier{}).(interface {
+				AtlasValidateJSON(context.Context, json.RawMessage, string) error
+			})
+			if !ok {
+				continue
+			}
+			if err = validator.AtlasValidateJSON(ctx, vv, vvPath); err != nil {
+				return err
+			}
+		case "lifecycle_id":
+			if v[k] == nil {
+				continue
+			}
+			vv := v[k]
+			vvPath := runtime1.JoinPath(path, k)
+			validator, ok := interface{}(&resource.Identifier{}).(interface {
+				AtlasValidateJSON(context.Context, json.RawMessage, string) error
+			})
+			if !ok {
+				continue
+			}
+			if err = validator.AtlasValidateJSON(ctx, vv, vvPath); err != nil {
+				return err
+			}
+		default:
+			if !allowUnknown {
+				return fmt.Errorf("unknown field %q.", runtime1.JoinPath(path, k))
+			}
+		}
+	}
+	return nil
+}
+
+// AtlasValidateJSON function validates a JSON for object AppConfig.
+func (_ *AppConfig) AtlasValidateJSON(ctx context.Context, r json.RawMessage, path string) (err error) {
+	if hook, ok := interface{}(&AppConfig{}).(interface {
+		AtlasJSONValidate(context.Context, json.RawMessage, string) (json.RawMessage, error)
+	}); ok {
+		if r, err = hook.AtlasJSONValidate(ctx, r, path); err != nil {
+			return err
+		}
+	}
+	return validate_Object_AppConfig(ctx, r, path)
+}
+
+func validate_required_Object_AppConfig(ctx context.Context, v map[string]json.RawMessage, path string) error {
+	method := runtime1.HTTPMethodFromContext(ctx)
+	_ = method
+	return nil
+}
+
+// validate_Object_CreateAppConfigRequest function validates a JSON for a given object.
+func validate_Object_CreateAppConfigRequest(ctx context.Context, r json.RawMessage, path string) (err error) {
+	if hook, ok := interface{}(&CreateAppConfigRequest{}).(interface {
+		AtlasJSONValidate(context.Context, json.RawMessage, string) (json.RawMessage, error)
+	}); ok {
+		if r, err = hook.AtlasJSONValidate(ctx, r, path); err != nil {
+			return err
+		}
+	}
+
+	var v map[string]json.RawMessage
+	if err = json.Unmarshal(r, &v); err != nil {
+		return fmt.Errorf("invalid value for %q: expected object.", path)
+	}
+
+	if err = validate_required_Object_CreateAppConfigRequest(ctx, v, path); err != nil {
+		return err
+	}
+
+	allowUnknown := runtime1.AllowUnknownFromContext(ctx)
+
+	for k, _ := range v {
+		switch k {
+		case "payload":
+			if v[k] == nil {
+				continue
+			}
+			vv := v[k]
+			vvPath := runtime1.JoinPath(path, k)
+			if err = validate_Object_AppConfig(ctx, vv, vvPath); err != nil {
+				return err
+			}
+		default:
+			if !allowUnknown {
+				return fmt.Errorf("unknown field %q.", runtime1.JoinPath(path, k))
+			}
+		}
+	}
+	return nil
+}
+
+// AtlasValidateJSON function validates a JSON for object CreateAppConfigRequest.
+func (_ *CreateAppConfigRequest) AtlasValidateJSON(ctx context.Context, r json.RawMessage, path string) (err error) {
+	if hook, ok := interface{}(&CreateAppConfigRequest{}).(interface {
+		AtlasJSONValidate(context.Context, json.RawMessage, string) (json.RawMessage, error)
+	}); ok {
+		if r, err = hook.AtlasJSONValidate(ctx, r, path); err != nil {
+			return err
+		}
+	}
+	return validate_Object_CreateAppConfigRequest(ctx, r, path)
+}
+
+func validate_required_Object_CreateAppConfigRequest(ctx context.Context, v map[string]json.RawMessage, path string) error {
+	method := runtime1.HTTPMethodFromContext(ctx)
+	_ = method
+	return nil
+}
+
+// validate_Object_CreateAppConfigResponse function validates a JSON for a given object.
+func validate_Object_CreateAppConfigResponse(ctx context.Context, r json.RawMessage, path string) (err error) {
+	if hook, ok := interface{}(&CreateAppConfigResponse{}).(interface {
+		AtlasJSONValidate(context.Context, json.RawMessage, string) (json.RawMessage, error)
+	}); ok {
+		if r, err = hook.AtlasJSONValidate(ctx, r, path); err != nil {
+			return err
+		}
+	}
+
+	var v map[string]json.RawMessage
+	if err = json.Unmarshal(r, &v); err != nil {
+		return fmt.Errorf("invalid value for %q: expected object.", path)
+	}
+
+	if err = validate_required_Object_CreateAppConfigResponse(ctx, v, path); err != nil {
+		return err
+	}
+
+	allowUnknown := runtime1.AllowUnknownFromContext(ctx)
+
+	for k, _ := range v {
+		switch k {
+		case "result":
+			if v[k] == nil {
+				continue
+			}
+			vv := v[k]
+			vvPath := runtime1.JoinPath(path, k)
+			if err = validate_Object_AppConfig(ctx, vv, vvPath); err != nil {
+				return err
+			}
+		default:
+			if !allowUnknown {
+				return fmt.Errorf("unknown field %q.", runtime1.JoinPath(path, k))
+			}
+		}
+	}
+	return nil
+}
+
+// AtlasValidateJSON function validates a JSON for object CreateAppConfigResponse.
+func (_ *CreateAppConfigResponse) AtlasValidateJSON(ctx context.Context, r json.RawMessage, path string) (err error) {
+	if hook, ok := interface{}(&CreateAppConfigResponse{}).(interface {
+		AtlasJSONValidate(context.Context, json.RawMessage, string) (json.RawMessage, error)
+	}); ok {
+		if r, err = hook.AtlasJSONValidate(ctx, r, path); err != nil {
+			return err
+		}
+	}
+	return validate_Object_CreateAppConfigResponse(ctx, r, path)
+}
+
+func validate_required_Object_CreateAppConfigResponse(ctx context.Context, v map[string]json.RawMessage, path string) error {
+	method := runtime1.HTTPMethodFromContext(ctx)
+	_ = method
+	return nil
+}
+
+// validate_Object_ReadAppConfigRequest function validates a JSON for a given object.
+func validate_Object_ReadAppConfigRequest(ctx context.Context, r json.RawMessage, path string) (err error) {
+	if hook, ok := interface{}(&ReadAppConfigRequest{}).(interface {
+		AtlasJSONValidate(context.Context, json.RawMessage, string) (json.RawMessage, error)
+	}); ok {
+		if r, err = hook.AtlasJSONValidate(ctx, r, path); err != nil {
+			return err
+		}
+	}
+
+	var v map[string]json.RawMessage
+	if err = json.Unmarshal(r, &v); err != nil {
+		return fmt.Errorf("invalid value for %q: expected object.", path)
+	}
+
+	if err = validate_required_Object_ReadAppConfigRequest(ctx, v, path); err != nil {
+		return err
+	}
+
+	allowUnknown := runtime1.AllowUnknownFromContext(ctx)
+
+	for k, _ := range v {
+		switch k {
+		case "id":
+			if v[k] == nil {
+				continue
+			}
+			vv := v[k]
+			vvPath := runtime1.JoinPath(path, k)
+			validator, ok := interface{}(&resource.Identifier{}).(interface {
+				AtlasValidateJSON(context.Context, json.RawMessage, string) error
+			})
+			if !ok {
+				continue
+			}
+			if err = validator.AtlasValidateJSON(ctx, vv, vvPath); err != nil {
+				return err
+			}
+		case "fields":
+			if v[k] == nil {
+				continue
+			}
+			vv := v[k]
+			vvPath := runtime1.JoinPath(path, k)
+			validator, ok := interface{}(&query.FieldSelection{}).(interface {
+				AtlasValidateJSON(context.Context, json.RawMessage, string) error
+			})
+			if !ok {
+				continue
+			}
+			if err = validator.AtlasValidateJSON(ctx, vv, vvPath); err != nil {
+				return err
+			}
+		default:
+			if !allowUnknown {
+				return fmt.Errorf("unknown field %q.", runtime1.JoinPath(path, k))
+			}
+		}
+	}
+	return nil
+}
+
+// AtlasValidateJSON function validates a JSON for object ReadAppConfigRequest.
+func (_ *ReadAppConfigRequest) AtlasValidateJSON(ctx context.Context, r json.RawMessage, path string) (err error) {
+	if hook, ok := interface{}(&ReadAppConfigRequest{}).(interface {
+		AtlasJSONValidate(context.Context, json.RawMessage, string) (json.RawMessage, error)
+	}); ok {
+		if r, err = hook.AtlasJSONValidate(ctx, r, path); err != nil {
+			return err
+		}
+	}
+	return validate_Object_ReadAppConfigRequest(ctx, r, path)
+}
+
+func validate_required_Object_ReadAppConfigRequest(ctx context.Context, v map[string]json.RawMessage, path string) error {
+	method := runtime1.HTTPMethodFromContext(ctx)
+	_ = method
+	return nil
+}
+
+// validate_Object_ReadAppConfigResponse function validates a JSON for a given object.
+func validate_Object_ReadAppConfigResponse(ctx context.Context, r json.RawMessage, path string) (err error) {
+	if hook, ok := interface{}(&ReadAppConfigResponse{}).(interface {
+		AtlasJSONValidate(context.Context, json.RawMessage, string) (json.RawMessage, error)
+	}); ok {
+		if r, err = hook.AtlasJSONValidate(ctx, r, path); err != nil {
+			return err
+		}
+	}
+
+	var v map[string]json.RawMessage
+	if err = json.Unmarshal(r, &v); err != nil {
+		return fmt.Errorf("invalid value for %q: expected object.", path)
+	}
+
+	if err = validate_required_Object_ReadAppConfigResponse(ctx, v, path); err != nil {
+		return err
+	}
+
+	allowUnknown := runtime1.AllowUnknownFromContext(ctx)
+
+	for k, _ := range v {
+		switch k {
+		case "result":
+			if v[k] == nil {
+				continue
+			}
+			vv := v[k]
+			vvPath := runtime1.JoinPath(path, k)
+			if err = validate_Object_AppConfig(ctx, vv, vvPath); err != nil {
+				return err
+			}
+		default:
+			if !allowUnknown {
+				return fmt.Errorf("unknown field %q.", runtime1.JoinPath(path, k))
+			}
+		}
+	}
+	return nil
+}
+
+// AtlasValidateJSON function validates a JSON for object ReadAppConfigResponse.
+func (_ *ReadAppConfigResponse) AtlasValidateJSON(ctx context.Context, r json.RawMessage, path string) (err error) {
+	if hook, ok := interface{}(&ReadAppConfigResponse{}).(interface {
+		AtlasJSONValidate(context.Context, json.RawMessage, string) (json.RawMessage, error)
+	}); ok {
+		if r, err = hook.AtlasJSONValidate(ctx, r, path); err != nil {
+			return err
+		}
+	}
+	return validate_Object_ReadAppConfigResponse(ctx, r, path)
+}
+
+func validate_required_Object_ReadAppConfigResponse(ctx context.Context, v map[string]json.RawMessage, path string) error {
+	method := runtime1.HTTPMethodFromContext(ctx)
+	_ = method
+	return nil
+}
+
+// validate_Object_UpdateAppConfigRequest function validates a JSON for a given object.
+func validate_Object_UpdateAppConfigRequest(ctx context.Context, r json.RawMessage, path string) (err error) {
+	if hook, ok := interface{}(&UpdateAppConfigRequest{}).(interface {
+		AtlasJSONValidate(context.Context, json.RawMessage, string) (json.RawMessage, error)
+	}); ok {
+		if r, err = hook.AtlasJSONValidate(ctx, r, path); err != nil {
+			return err
+		}
+	}
+
+	var v map[string]json.RawMessage
+	if err = json.Unmarshal(r, &v); err != nil {
+		return fmt.Errorf("invalid value for %q: expected object.", path)
+	}
+
+	if err = validate_required_Object_UpdateAppConfigRequest(ctx, v, path); err != nil {
+		return err
+	}
+
+	allowUnknown := runtime1.AllowUnknownFromContext(ctx)
+
+	for k, _ := range v {
+		switch k {
+		case "payload":
+			if v[k] == nil {
+				continue
+			}
+			vv := v[k]
+			vvPath := runtime1.JoinPath(path, k)
+			if err = validate_Object_AppConfig(ctx, vv, vvPath); err != nil {
+				return err
+			}
+		case "fields":
+			if v[k] == nil {
+				continue
+			}
+			vv := v[k]
+			vvPath := runtime1.JoinPath(path, k)
+			validator, ok := interface{}(&field_mask.FieldMask{}).(interface {
+				AtlasValidateJSON(context.Context, json.RawMessage, string) error
+			})
+			if !ok {
+				continue
+			}
+			if err = validator.AtlasValidateJSON(ctx, vv, vvPath); err != nil {
+				return err
+			}
+		default:
+			if !allowUnknown {
+				return fmt.Errorf("unknown field %q.", runtime1.JoinPath(path, k))
+			}
+		}
+	}
+	return nil
+}
+
+// AtlasValidateJSON function validates a JSON for object UpdateAppConfigRequest.
+func (_ *UpdateAppConfigRequest) AtlasValidateJSON(ctx context.Context, r json.RawMessage, path string) (err error) {
+	if hook, ok := interface{}(&UpdateAppConfigRequest{}).(interface {
+		AtlasJSONValidate(context.Context, json.RawMessage, string) (json.RawMessage, error)
+	}); ok {
+		if r, err = hook.AtlasJSONValidate(ctx, r, path); err != nil {
+			return err
+		}
+	}
+	return validate_Object_UpdateAppConfigRequest(ctx, r, path)
+}
+
+func validate_required_Object_UpdateAppConfigRequest(ctx context.Context, v map[string]json.RawMessage, path string) error {
+	method := runtime1.HTTPMethodFromContext(ctx)
+	_ = method
+	return nil
+}
+
+// validate_Object_UpdateAppConfigResponse function validates a JSON for a given object.
+func validate_Object_UpdateAppConfigResponse(ctx context.Context, r json.RawMessage, path string) (err error) {
+	if hook, ok := interface{}(&UpdateAppConfigResponse{}).(interface {
+		AtlasJSONValidate(context.Context, json.RawMessage, string) (json.RawMessage, error)
+	}); ok {
+		if r, err = hook.AtlasJSONValidate(ctx, r, path); err != nil {
+			return err
+		}
+	}
+
+	var v map[string]json.RawMessage
+	if err = json.Unmarshal(r, &v); err != nil {
+		return fmt.Errorf("invalid value for %q: expected object.", path)
+	}
+
+	if err = validate_required_Object_UpdateAppConfigResponse(ctx, v, path); err != nil {
+		return err
+	}
+
+	allowUnknown := runtime1.AllowUnknownFromContext(ctx)
+
+	for k, _ := range v {
+		switch k {
+		case "result":
+			if v[k] == nil {
+				continue
+			}
+			vv := v[k]
+			vvPath := runtime1.JoinPath(path, k)
+			if err = validate_Object_AppConfig(ctx, vv, vvPath); err != nil {
+				return err
+			}
+		default:
+			if !allowUnknown {
+				return fmt.Errorf("unknown field %q.", runtime1.JoinPath(path, k))
+			}
+		}
+	}
+	return nil
+}
+
+// AtlasValidateJSON function validates a JSON for object UpdateAppConfigResponse.
+func (_ *UpdateAppConfigResponse) AtlasValidateJSON(ctx context.Context, r json.RawMessage, path string) (err error) {
+	if hook, ok := interface{}(&UpdateAppConfigResponse{}).(interface {
+		AtlasJSONValidate(context.Context, json.RawMessage, string) (json.RawMessage, error)
+	}); ok {
+		if r, err = hook.AtlasJSONValidate(ctx, r, path); err != nil {
+			return err
+		}
+	}
+	return validate_Object_UpdateAppConfigResponse(ctx, r, path)
+}
+
+func validate_required_Object_UpdateAppConfigResponse(ctx context.Context, v map[string]json.RawMessage, path string) error {
+	method := runtime1.HTTPMethodFromContext(ctx)
+	_ = method
+	return nil
+}
+
+// validate_Object_DeleteAppConfigRequest function validates a JSON for a given object.
+func validate_Object_DeleteAppConfigRequest(ctx context.Context, r json.RawMessage, path string) (err error) {
+	if hook, ok := interface{}(&DeleteAppConfigRequest{}).(interface {
+		AtlasJSONValidate(context.Context, json.RawMessage, string) (json.RawMessage, error)
+	}); ok {
+		if r, err = hook.AtlasJSONValidate(ctx, r, path); err != nil {
+			return err
+		}
+	}
+
+	var v map[string]json.RawMessage
+	if err = json.Unmarshal(r, &v); err != nil {
+		return fmt.Errorf("invalid value for %q: expected object.", path)
+	}
+
+	if err = validate_required_Object_DeleteAppConfigRequest(ctx, v, path); err != nil {
+		return err
+	}
+
+	allowUnknown := runtime1.AllowUnknownFromContext(ctx)
+
+	for k, _ := range v {
+		switch k {
+		case "id":
+			if v[k] == nil {
+				continue
+			}
+			vv := v[k]
+			vvPath := runtime1.JoinPath(path, k)
+			validator, ok := interface{}(&resource.Identifier{}).(interface {
+				AtlasValidateJSON(context.Context, json.RawMessage, string) error
+			})
+			if !ok {
+				continue
+			}
+			if err = validator.AtlasValidateJSON(ctx, vv, vvPath); err != nil {
+				return err
+			}
+		default:
+			if !allowUnknown {
+				return fmt.Errorf("unknown field %q.", runtime1.JoinPath(path, k))
+			}
+		}
+	}
+	return nil
+}
+
+// AtlasValidateJSON function validates a JSON for object DeleteAppConfigRequest.
+func (_ *DeleteAppConfigRequest) AtlasValidateJSON(ctx context.Context, r json.RawMessage, path string) (err error) {
+	if hook, ok := interface{}(&DeleteAppConfigRequest{}).(interface {
+		AtlasJSONValidate(context.Context, json.RawMessage, string) (json.RawMessage, error)
+	}); ok {
+		if r, err = hook.AtlasJSONValidate(ctx, r, path); err != nil {
+			return err
+		}
+	}
+	return validate_Object_DeleteAppConfigRequest(ctx, r, path)
+}
+
+func validate_required_Object_DeleteAppConfigRequest(ctx context.Context, v map[string]json.RawMessage, path string) error {
+	method := runtime1.HTTPMethodFromContext(ctx)
+	_ = method
+	return nil
+}
+
+// validate_Object_DeleteAppConfigResponse function validates a JSON for a given object.
+func validate_Object_DeleteAppConfigResponse(ctx context.Context, r json.RawMessage, path string) (err error) {
+	if hook, ok := interface{}(&DeleteAppConfigResponse{}).(interface {
+		AtlasJSONValidate(context.Context, json.RawMessage, string) (json.RawMessage, error)
+	}); ok {
+		if r, err = hook.AtlasJSONValidate(ctx, r, path); err != nil {
+			return err
+		}
+	}
+
+	var v map[string]json.RawMessage
+	if err = json.Unmarshal(r, &v); err != nil {
+		return fmt.Errorf("invalid value for %q: expected object.", path)
+	}
+
+	if err = validate_required_Object_DeleteAppConfigResponse(ctx, v, path); err != nil {
+		return err
+	}
+
+	allowUnknown := runtime1.AllowUnknownFromContext(ctx)
+
+	for k, _ := range v {
+		switch k {
+		default:
+			if !allowUnknown {
+				return fmt.Errorf("unknown field %q.", runtime1.JoinPath(path, k))
+			}
+		}
+	}
+	return nil
+}
+
+// AtlasValidateJSON function validates a JSON for object DeleteAppConfigResponse.
+func (_ *DeleteAppConfigResponse) AtlasValidateJSON(ctx context.Context, r json.RawMessage, path string) (err error) {
+	if hook, ok := interface{}(&DeleteAppConfigResponse{}).(interface {
+		AtlasJSONValidate(context.Context, json.RawMessage, string) (json.RawMessage, error)
+	}); ok {
+		if r, err = hook.AtlasJSONValidate(ctx, r, path); err != nil {
+			return err
+		}
+	}
+	return validate_Object_DeleteAppConfigResponse(ctx, r, path)
+}
+
+func validate_required_Object_DeleteAppConfigResponse(ctx context.Context, v map[string]json.RawMessage, path string) error {
+	method := runtime1.HTTPMethodFromContext(ctx)
+	_ = method
+	return nil
+}
+
+// validate_Object_ListAppConfigRequest function validates a JSON for a given object.
+func validate_Object_ListAppConfigRequest(ctx context.Context, r json.RawMessage, path string) (err error) {
+	if hook, ok := interface{}(&ListAppConfigRequest{}).(interface {
+		AtlasJSONValidate(context.Context, json.RawMessage, string) (json.RawMessage, error)
+	}); ok {
+		if r, err = hook.AtlasJSONValidate(ctx, r, path); err != nil {
+			return err
+		}
+	}
+
+	var v map[string]json.RawMessage
+	if err = json.Unmarshal(r, &v); err != nil {
+		return fmt.Errorf("invalid value for %q: expected object.", path)
+	}
+
+	if err = validate_required_Object_ListAppConfigRequest(ctx, v, path); err != nil {
+		return err
+	}
+
+	allowUnknown := runtime1.AllowUnknownFromContext(ctx)
+
+	for k, _ := range v {
+		switch k {
+		case "filter":
+			if v[k] == nil {
+				continue
+			}
+			vv := v[k]
+			vvPath := runtime1.JoinPath(path, k)
+			validator, ok := interface{}(&query.Filtering{}).(interface {
+				AtlasValidateJSON(context.Context, json.RawMessage, string) error
+			})
+			if !ok {
+				continue
+			}
+			if err = validator.AtlasValidateJSON(ctx, vv, vvPath); err != nil {
+				return err
+			}
+		case "order_by":
+			if v[k] == nil {
+				continue
+			}
+			vv := v[k]
+			vvPath := runtime1.JoinPath(path, k)
+			validator, ok := interface{}(&query.Sorting{}).(interface {
+				AtlasValidateJSON(context.Context, json.RawMessage, string) error
+			})
+			if !ok {
+				continue
+			}
+			if err = validator.AtlasValidateJSON(ctx, vv, vvPath); err != nil {
+				return err
+			}
+		case "fields":
+			if v[k] == nil {
+				continue
+			}
+			vv := v[k]
+			vvPath := runtime1.JoinPath(path, k)
+			validator, ok := interface{}(&query.FieldSelection{}).(interface {
+				AtlasValidateJSON(context.Context, json.RawMessage, string) error
+			})
+			if !ok {
+				continue
+			}
+			if err = validator.AtlasValidateJSON(ctx, vv, vvPath); err != nil {
+				return err
+			}
+		case "paging":
+			if v[k] == nil {
+				continue
+			}
+			vv := v[k]
+			vvPath := runtime1.JoinPath(path, k)
+			validator, ok := interface{}(&query.Pagination{}).(interface {
+				AtlasValidateJSON(context.Context, json.RawMessage, string) error
+			})
+			if !ok {
+				continue
+			}
+			if err = validator.AtlasValidateJSON(ctx, vv, vvPath); err != nil {
+				return err
+			}
+		default:
+			if !allowUnknown {
+				return fmt.Errorf("unknown field %q.", runtime1.JoinPath(path, k))
+			}
+		}
+	}
+	return nil
+}
+
+// AtlasValidateJSON function validates a JSON for object ListAppConfigRequest.
+func (_ *ListAppConfigRequest) AtlasValidateJSON(ctx context.Context, r json.RawMessage, path string) (err error) {
+	if hook, ok := interface{}(&ListAppConfigRequest{}).(interface {
+		AtlasJSONValidate(context.Context, json.RawMessage, string) (json.RawMessage, error)
+	}); ok {
+		if r, err = hook.AtlasJSONValidate(ctx, r, path); err != nil {
+			return err
+		}
+	}
+	return validate_Object_ListAppConfigRequest(ctx, r, path)
+}
+
+func validate_required_Object_ListAppConfigRequest(ctx context.Context, v map[string]json.RawMessage, path string) error {
+	method := runtime1.HTTPMethodFromContext(ctx)
+	_ = method
+	return nil
+}
+
+// validate_Object_ListAppConfigsResponse function validates a JSON for a given object.
+func validate_Object_ListAppConfigsResponse(ctx context.Context, r json.RawMessage, path string) (err error) {
+	if hook, ok := interface{}(&ListAppConfigsResponse{}).(interface {
+		AtlasJSONValidate(context.Context, json.RawMessage, string) (json.RawMessage, error)
+	}); ok {
+		if r, err = hook.AtlasJSONValidate(ctx, r, path); err != nil {
+			return err
+		}
+	}
+
+	var v map[string]json.RawMessage
+	if err = json.Unmarshal(r, &v); err != nil {
+		return fmt.Errorf("invalid value for %q: expected object.", path)
+	}
+
+	if err = validate_required_Object_ListAppConfigsResponse(ctx, v, path); err != nil {
+		return err
+	}
+
+	allowUnknown := runtime1.AllowUnknownFromContext(ctx)
+
+	for k, _ := range v {
+		switch k {
+		case "results":
+			if v[k] == nil {
+				continue
+			}
+			var vArr []json.RawMessage
+			vArrPath := runtime1.JoinPath(path, k)
+			if err = json.Unmarshal(v[k], &vArr); err != nil {
+				return fmt.Errorf("invalid value for %q: expected array.", vArrPath)
+			}
+			for i, vv := range vArr {
+				vvPath := fmt.Sprintf("%s.[%d]", vArrPath, i)
+				if err = validate_Object_AppConfig(ctx, vv, vvPath); err != nil {
+					return err
+				}
+			}
+		case "page":
+			if v[k] == nil {
+				continue
+			}
+			vv := v[k]
+			vvPath := runtime1.JoinPath(path, k)
+			validator, ok := interface{}(&query.PageInfo{}).(interface {
+				AtlasValidateJSON(context.Context, json.RawMessage, string) error
+			})
+			if !ok {
+				continue
+			}
+			if err = validator.AtlasValidateJSON(ctx, vv, vvPath); err != nil {
+				return err
+			}
+		default:
+			if !allowUnknown {
+				return fmt.Errorf("unknown field %q.", runtime1.JoinPath(path, k))
+			}
+		}
+	}
+	return nil
+}
+
+// AtlasValidateJSON function validates a JSON for object ListAppConfigsResponse.
+func (_ *ListAppConfigsResponse) AtlasValidateJSON(ctx context.Context, r json.RawMessage, path string) (err error) {
+	if hook, ok := interface{}(&ListAppConfigsResponse{}).(interface {
+		AtlasJSONValidate(context.Context, json.RawMessage, string) (json.RawMessage, error)
+	}); ok {
+		if r, err = hook.AtlasJSONValidate(ctx, r, path); err != nil {
+			return err
+		}
+	}
+	return validate_Object_ListAppConfigsResponse(ctx, r, path)
+}
+
+func validate_required_Object_ListAppConfigsResponse(ctx context.Context, v map[string]json.RawMessage, path string) error {
 	method := runtime1.HTTPMethodFromContext(ctx)
 	_ = method
 	return nil
@@ -3324,22 +3875,8 @@ func validate_Object_Environment(ctx context.Context, r json.RawMessage, path st
 					return err
 				}
 			}
-		case "value_id":
-			if v[k] == nil {
-				continue
-			}
-			vv := v[k]
-			vvPath := runtime1.JoinPath(path, k)
-			validator, ok := interface{}(&resource.Identifier{}).(interface {
-				AtlasValidateJSON(context.Context, json.RawMessage, string) error
-			})
-			if !ok {
-				continue
-			}
-			if err = validator.AtlasValidateJSON(ctx, vv, vvPath); err != nil {
-				return err
-			}
-		case "stage_id":
+		case "config_yaml":
+		case "lifecycle_id":
 			if v[k] == nil {
 				continue
 			}
@@ -4076,9 +4613,9 @@ func validate_required_Object_ListEnvironmentsResponse(ctx context.Context, v ma
 	return nil
 }
 
-// validate_Object_AppRegionConfig function validates a JSON for a given object.
-func validate_Object_AppRegionConfig(ctx context.Context, r json.RawMessage, path string) (err error) {
-	if hook, ok := interface{}(&AppRegionConfig{}).(interface {
+// validate_Object_Application function validates a JSON for a given object.
+func validate_Object_Application(ctx context.Context, r json.RawMessage, path string) (err error) {
+	if hook, ok := interface{}(&Application{}).(interface {
 		AtlasJSONValidate(context.Context, json.RawMessage, string) (json.RawMessage, error)
 	}); ok {
 		if r, err = hook.AtlasJSONValidate(ctx, r, path); err != nil {
@@ -4091,7 +4628,7 @@ func validate_Object_AppRegionConfig(ctx context.Context, r json.RawMessage, pat
 		return fmt.Errorf("invalid value for %q: expected object.", path)
 	}
 
-	if err = validate_required_Object_AppRegionConfig(ctx, v, path); err != nil {
+	if err = validate_required_Object_Application(ctx, v, path); err != nil {
 		return err
 	}
 
@@ -4116,7 +4653,11 @@ func validate_Object_AppRegionConfig(ctx context.Context, r json.RawMessage, pat
 			}
 		case "name":
 		case "description":
-		case "app_stage_configs":
+		case "chart":
+		case "repo":
+		case "ticket_link":
+		case "config_yaml":
+		case "app_versions":
 			if v[k] == nil {
 				continue
 			}
@@ -4127,39 +4668,9 @@ func validate_Object_AppRegionConfig(ctx context.Context, r json.RawMessage, pat
 			}
 			for i, vv := range vArr {
 				vvPath := fmt.Sprintf("%s.[%d]", vArrPath, i)
-				if err = validate_Object_AppStageConfig(ctx, vv, vvPath); err != nil {
+				if err = validate_Object_AppVersion(ctx, vv, vvPath); err != nil {
 					return err
 				}
-			}
-		case "value_id":
-			if v[k] == nil {
-				continue
-			}
-			vv := v[k]
-			vvPath := runtime1.JoinPath(path, k)
-			validator, ok := interface{}(&resource.Identifier{}).(interface {
-				AtlasValidateJSON(context.Context, json.RawMessage, string) error
-			})
-			if !ok {
-				continue
-			}
-			if err = validator.AtlasValidateJSON(ctx, vv, vvPath); err != nil {
-				return err
-			}
-		case "region_id":
-			if v[k] == nil {
-				continue
-			}
-			vv := v[k]
-			vvPath := runtime1.JoinPath(path, k)
-			validator, ok := interface{}(&resource.Identifier{}).(interface {
-				AtlasValidateJSON(context.Context, json.RawMessage, string) error
-			})
-			if !ok {
-				continue
-			}
-			if err = validator.AtlasValidateJSON(ctx, vv, vvPath); err != nil {
-				return err
 			}
 		default:
 			if !allowUnknown {
@@ -4170,27 +4681,27 @@ func validate_Object_AppRegionConfig(ctx context.Context, r json.RawMessage, pat
 	return nil
 }
 
-// AtlasValidateJSON function validates a JSON for object AppRegionConfig.
-func (_ *AppRegionConfig) AtlasValidateJSON(ctx context.Context, r json.RawMessage, path string) (err error) {
-	if hook, ok := interface{}(&AppRegionConfig{}).(interface {
+// AtlasValidateJSON function validates a JSON for object Application.
+func (_ *Application) AtlasValidateJSON(ctx context.Context, r json.RawMessage, path string) (err error) {
+	if hook, ok := interface{}(&Application{}).(interface {
 		AtlasJSONValidate(context.Context, json.RawMessage, string) (json.RawMessage, error)
 	}); ok {
 		if r, err = hook.AtlasJSONValidate(ctx, r, path); err != nil {
 			return err
 		}
 	}
-	return validate_Object_AppRegionConfig(ctx, r, path)
+	return validate_Object_Application(ctx, r, path)
 }
 
-func validate_required_Object_AppRegionConfig(ctx context.Context, v map[string]json.RawMessage, path string) error {
+func validate_required_Object_Application(ctx context.Context, v map[string]json.RawMessage, path string) error {
 	method := runtime1.HTTPMethodFromContext(ctx)
 	_ = method
 	return nil
 }
 
-// validate_Object_CreateAppRegionConfigRequest function validates a JSON for a given object.
-func validate_Object_CreateAppRegionConfigRequest(ctx context.Context, r json.RawMessage, path string) (err error) {
-	if hook, ok := interface{}(&CreateAppRegionConfigRequest{}).(interface {
+// validate_Object_CreateApplicationRequest function validates a JSON for a given object.
+func validate_Object_CreateApplicationRequest(ctx context.Context, r json.RawMessage, path string) (err error) {
+	if hook, ok := interface{}(&CreateApplicationRequest{}).(interface {
 		AtlasJSONValidate(context.Context, json.RawMessage, string) (json.RawMessage, error)
 	}); ok {
 		if r, err = hook.AtlasJSONValidate(ctx, r, path); err != nil {
@@ -4203,7 +4714,7 @@ func validate_Object_CreateAppRegionConfigRequest(ctx context.Context, r json.Ra
 		return fmt.Errorf("invalid value for %q: expected object.", path)
 	}
 
-	if err = validate_required_Object_CreateAppRegionConfigRequest(ctx, v, path); err != nil {
+	if err = validate_required_Object_CreateApplicationRequest(ctx, v, path); err != nil {
 		return err
 	}
 
@@ -4217,7 +4728,7 @@ func validate_Object_CreateAppRegionConfigRequest(ctx context.Context, r json.Ra
 			}
 			vv := v[k]
 			vvPath := runtime1.JoinPath(path, k)
-			if err = validate_Object_AppRegionConfig(ctx, vv, vvPath); err != nil {
+			if err = validate_Object_Application(ctx, vv, vvPath); err != nil {
 				return err
 			}
 		default:
@@ -4229,27 +4740,27 @@ func validate_Object_CreateAppRegionConfigRequest(ctx context.Context, r json.Ra
 	return nil
 }
 
-// AtlasValidateJSON function validates a JSON for object CreateAppRegionConfigRequest.
-func (_ *CreateAppRegionConfigRequest) AtlasValidateJSON(ctx context.Context, r json.RawMessage, path string) (err error) {
-	if hook, ok := interface{}(&CreateAppRegionConfigRequest{}).(interface {
+// AtlasValidateJSON function validates a JSON for object CreateApplicationRequest.
+func (_ *CreateApplicationRequest) AtlasValidateJSON(ctx context.Context, r json.RawMessage, path string) (err error) {
+	if hook, ok := interface{}(&CreateApplicationRequest{}).(interface {
 		AtlasJSONValidate(context.Context, json.RawMessage, string) (json.RawMessage, error)
 	}); ok {
 		if r, err = hook.AtlasJSONValidate(ctx, r, path); err != nil {
 			return err
 		}
 	}
-	return validate_Object_CreateAppRegionConfigRequest(ctx, r, path)
+	return validate_Object_CreateApplicationRequest(ctx, r, path)
 }
 
-func validate_required_Object_CreateAppRegionConfigRequest(ctx context.Context, v map[string]json.RawMessage, path string) error {
+func validate_required_Object_CreateApplicationRequest(ctx context.Context, v map[string]json.RawMessage, path string) error {
 	method := runtime1.HTTPMethodFromContext(ctx)
 	_ = method
 	return nil
 }
 
-// validate_Object_CreateAppRegionConfigResponse function validates a JSON for a given object.
-func validate_Object_CreateAppRegionConfigResponse(ctx context.Context, r json.RawMessage, path string) (err error) {
-	if hook, ok := interface{}(&CreateAppRegionConfigResponse{}).(interface {
+// validate_Object_CreateApplicationResponse function validates a JSON for a given object.
+func validate_Object_CreateApplicationResponse(ctx context.Context, r json.RawMessage, path string) (err error) {
+	if hook, ok := interface{}(&CreateApplicationResponse{}).(interface {
 		AtlasJSONValidate(context.Context, json.RawMessage, string) (json.RawMessage, error)
 	}); ok {
 		if r, err = hook.AtlasJSONValidate(ctx, r, path); err != nil {
@@ -4262,7 +4773,7 @@ func validate_Object_CreateAppRegionConfigResponse(ctx context.Context, r json.R
 		return fmt.Errorf("invalid value for %q: expected object.", path)
 	}
 
-	if err = validate_required_Object_CreateAppRegionConfigResponse(ctx, v, path); err != nil {
+	if err = validate_required_Object_CreateApplicationResponse(ctx, v, path); err != nil {
 		return err
 	}
 
@@ -4276,7 +4787,7 @@ func validate_Object_CreateAppRegionConfigResponse(ctx context.Context, r json.R
 			}
 			vv := v[k]
 			vvPath := runtime1.JoinPath(path, k)
-			if err = validate_Object_AppRegionConfig(ctx, vv, vvPath); err != nil {
+			if err = validate_Object_Application(ctx, vv, vvPath); err != nil {
 				return err
 			}
 		default:
@@ -4288,27 +4799,27 @@ func validate_Object_CreateAppRegionConfigResponse(ctx context.Context, r json.R
 	return nil
 }
 
-// AtlasValidateJSON function validates a JSON for object CreateAppRegionConfigResponse.
-func (_ *CreateAppRegionConfigResponse) AtlasValidateJSON(ctx context.Context, r json.RawMessage, path string) (err error) {
-	if hook, ok := interface{}(&CreateAppRegionConfigResponse{}).(interface {
+// AtlasValidateJSON function validates a JSON for object CreateApplicationResponse.
+func (_ *CreateApplicationResponse) AtlasValidateJSON(ctx context.Context, r json.RawMessage, path string) (err error) {
+	if hook, ok := interface{}(&CreateApplicationResponse{}).(interface {
 		AtlasJSONValidate(context.Context, json.RawMessage, string) (json.RawMessage, error)
 	}); ok {
 		if r, err = hook.AtlasJSONValidate(ctx, r, path); err != nil {
 			return err
 		}
 	}
-	return validate_Object_CreateAppRegionConfigResponse(ctx, r, path)
+	return validate_Object_CreateApplicationResponse(ctx, r, path)
 }
 
-func validate_required_Object_CreateAppRegionConfigResponse(ctx context.Context, v map[string]json.RawMessage, path string) error {
+func validate_required_Object_CreateApplicationResponse(ctx context.Context, v map[string]json.RawMessage, path string) error {
 	method := runtime1.HTTPMethodFromContext(ctx)
 	_ = method
 	return nil
 }
 
-// validate_Object_ReadAppRegionConfigRequest function validates a JSON for a given object.
-func validate_Object_ReadAppRegionConfigRequest(ctx context.Context, r json.RawMessage, path string) (err error) {
-	if hook, ok := interface{}(&ReadAppRegionConfigRequest{}).(interface {
+// validate_Object_ReadApplicationRequest function validates a JSON for a given object.
+func validate_Object_ReadApplicationRequest(ctx context.Context, r json.RawMessage, path string) (err error) {
+	if hook, ok := interface{}(&ReadApplicationRequest{}).(interface {
 		AtlasJSONValidate(context.Context, json.RawMessage, string) (json.RawMessage, error)
 	}); ok {
 		if r, err = hook.AtlasJSONValidate(ctx, r, path); err != nil {
@@ -4321,7 +4832,7 @@ func validate_Object_ReadAppRegionConfigRequest(ctx context.Context, r json.RawM
 		return fmt.Errorf("invalid value for %q: expected object.", path)
 	}
 
-	if err = validate_required_Object_ReadAppRegionConfigRequest(ctx, v, path); err != nil {
+	if err = validate_required_Object_ReadApplicationRequest(ctx, v, path); err != nil {
 		return err
 	}
 
@@ -4368,27 +4879,27 @@ func validate_Object_ReadAppRegionConfigRequest(ctx context.Context, r json.RawM
 	return nil
 }
 
-// AtlasValidateJSON function validates a JSON for object ReadAppRegionConfigRequest.
-func (_ *ReadAppRegionConfigRequest) AtlasValidateJSON(ctx context.Context, r json.RawMessage, path string) (err error) {
-	if hook, ok := interface{}(&ReadAppRegionConfigRequest{}).(interface {
+// AtlasValidateJSON function validates a JSON for object ReadApplicationRequest.
+func (_ *ReadApplicationRequest) AtlasValidateJSON(ctx context.Context, r json.RawMessage, path string) (err error) {
+	if hook, ok := interface{}(&ReadApplicationRequest{}).(interface {
 		AtlasJSONValidate(context.Context, json.RawMessage, string) (json.RawMessage, error)
 	}); ok {
 		if r, err = hook.AtlasJSONValidate(ctx, r, path); err != nil {
 			return err
 		}
 	}
-	return validate_Object_ReadAppRegionConfigRequest(ctx, r, path)
+	return validate_Object_ReadApplicationRequest(ctx, r, path)
 }
 
-func validate_required_Object_ReadAppRegionConfigRequest(ctx context.Context, v map[string]json.RawMessage, path string) error {
+func validate_required_Object_ReadApplicationRequest(ctx context.Context, v map[string]json.RawMessage, path string) error {
 	method := runtime1.HTTPMethodFromContext(ctx)
 	_ = method
 	return nil
 }
 
-// validate_Object_ReadAppRegionConfigResponse function validates a JSON for a given object.
-func validate_Object_ReadAppRegionConfigResponse(ctx context.Context, r json.RawMessage, path string) (err error) {
-	if hook, ok := interface{}(&ReadAppRegionConfigResponse{}).(interface {
+// validate_Object_ReadApplicationResponse function validates a JSON for a given object.
+func validate_Object_ReadApplicationResponse(ctx context.Context, r json.RawMessage, path string) (err error) {
+	if hook, ok := interface{}(&ReadApplicationResponse{}).(interface {
 		AtlasJSONValidate(context.Context, json.RawMessage, string) (json.RawMessage, error)
 	}); ok {
 		if r, err = hook.AtlasJSONValidate(ctx, r, path); err != nil {
@@ -4401,7 +4912,7 @@ func validate_Object_ReadAppRegionConfigResponse(ctx context.Context, r json.Raw
 		return fmt.Errorf("invalid value for %q: expected object.", path)
 	}
 
-	if err = validate_required_Object_ReadAppRegionConfigResponse(ctx, v, path); err != nil {
+	if err = validate_required_Object_ReadApplicationResponse(ctx, v, path); err != nil {
 		return err
 	}
 
@@ -4415,7 +4926,7 @@ func validate_Object_ReadAppRegionConfigResponse(ctx context.Context, r json.Raw
 			}
 			vv := v[k]
 			vvPath := runtime1.JoinPath(path, k)
-			if err = validate_Object_AppRegionConfig(ctx, vv, vvPath); err != nil {
+			if err = validate_Object_Application(ctx, vv, vvPath); err != nil {
 				return err
 			}
 		default:
@@ -4427,27 +4938,27 @@ func validate_Object_ReadAppRegionConfigResponse(ctx context.Context, r json.Raw
 	return nil
 }
 
-// AtlasValidateJSON function validates a JSON for object ReadAppRegionConfigResponse.
-func (_ *ReadAppRegionConfigResponse) AtlasValidateJSON(ctx context.Context, r json.RawMessage, path string) (err error) {
-	if hook, ok := interface{}(&ReadAppRegionConfigResponse{}).(interface {
+// AtlasValidateJSON function validates a JSON for object ReadApplicationResponse.
+func (_ *ReadApplicationResponse) AtlasValidateJSON(ctx context.Context, r json.RawMessage, path string) (err error) {
+	if hook, ok := interface{}(&ReadApplicationResponse{}).(interface {
 		AtlasJSONValidate(context.Context, json.RawMessage, string) (json.RawMessage, error)
 	}); ok {
 		if r, err = hook.AtlasJSONValidate(ctx, r, path); err != nil {
 			return err
 		}
 	}
-	return validate_Object_ReadAppRegionConfigResponse(ctx, r, path)
+	return validate_Object_ReadApplicationResponse(ctx, r, path)
 }
 
-func validate_required_Object_ReadAppRegionConfigResponse(ctx context.Context, v map[string]json.RawMessage, path string) error {
+func validate_required_Object_ReadApplicationResponse(ctx context.Context, v map[string]json.RawMessage, path string) error {
 	method := runtime1.HTTPMethodFromContext(ctx)
 	_ = method
 	return nil
 }
 
-// validate_Object_UpdateAppRegionConfigRequest function validates a JSON for a given object.
-func validate_Object_UpdateAppRegionConfigRequest(ctx context.Context, r json.RawMessage, path string) (err error) {
-	if hook, ok := interface{}(&UpdateAppRegionConfigRequest{}).(interface {
+// validate_Object_UpdateApplicationRequest function validates a JSON for a given object.
+func validate_Object_UpdateApplicationRequest(ctx context.Context, r json.RawMessage, path string) (err error) {
+	if hook, ok := interface{}(&UpdateApplicationRequest{}).(interface {
 		AtlasJSONValidate(context.Context, json.RawMessage, string) (json.RawMessage, error)
 	}); ok {
 		if r, err = hook.AtlasJSONValidate(ctx, r, path); err != nil {
@@ -4460,7 +4971,7 @@ func validate_Object_UpdateAppRegionConfigRequest(ctx context.Context, r json.Ra
 		return fmt.Errorf("invalid value for %q: expected object.", path)
 	}
 
-	if err = validate_required_Object_UpdateAppRegionConfigRequest(ctx, v, path); err != nil {
+	if err = validate_required_Object_UpdateApplicationRequest(ctx, v, path); err != nil {
 		return err
 	}
 
@@ -4474,7 +4985,7 @@ func validate_Object_UpdateAppRegionConfigRequest(ctx context.Context, r json.Ra
 			}
 			vv := v[k]
 			vvPath := runtime1.JoinPath(path, k)
-			if err = validate_Object_AppRegionConfig(ctx, vv, vvPath); err != nil {
+			if err = validate_Object_Application(ctx, vv, vvPath); err != nil {
 				return err
 			}
 		case "fields":
@@ -4501,27 +5012,27 @@ func validate_Object_UpdateAppRegionConfigRequest(ctx context.Context, r json.Ra
 	return nil
 }
 
-// AtlasValidateJSON function validates a JSON for object UpdateAppRegionConfigRequest.
-func (_ *UpdateAppRegionConfigRequest) AtlasValidateJSON(ctx context.Context, r json.RawMessage, path string) (err error) {
-	if hook, ok := interface{}(&UpdateAppRegionConfigRequest{}).(interface {
+// AtlasValidateJSON function validates a JSON for object UpdateApplicationRequest.
+func (_ *UpdateApplicationRequest) AtlasValidateJSON(ctx context.Context, r json.RawMessage, path string) (err error) {
+	if hook, ok := interface{}(&UpdateApplicationRequest{}).(interface {
 		AtlasJSONValidate(context.Context, json.RawMessage, string) (json.RawMessage, error)
 	}); ok {
 		if r, err = hook.AtlasJSONValidate(ctx, r, path); err != nil {
 			return err
 		}
 	}
-	return validate_Object_UpdateAppRegionConfigRequest(ctx, r, path)
+	return validate_Object_UpdateApplicationRequest(ctx, r, path)
 }
 
-func validate_required_Object_UpdateAppRegionConfigRequest(ctx context.Context, v map[string]json.RawMessage, path string) error {
+func validate_required_Object_UpdateApplicationRequest(ctx context.Context, v map[string]json.RawMessage, path string) error {
 	method := runtime1.HTTPMethodFromContext(ctx)
 	_ = method
 	return nil
 }
 
-// validate_Object_UpdateAppRegionConfigResponse function validates a JSON for a given object.
-func validate_Object_UpdateAppRegionConfigResponse(ctx context.Context, r json.RawMessage, path string) (err error) {
-	if hook, ok := interface{}(&UpdateAppRegionConfigResponse{}).(interface {
+// validate_Object_UpdateApplicationResponse function validates a JSON for a given object.
+func validate_Object_UpdateApplicationResponse(ctx context.Context, r json.RawMessage, path string) (err error) {
+	if hook, ok := interface{}(&UpdateApplicationResponse{}).(interface {
 		AtlasJSONValidate(context.Context, json.RawMessage, string) (json.RawMessage, error)
 	}); ok {
 		if r, err = hook.AtlasJSONValidate(ctx, r, path); err != nil {
@@ -4534,7 +5045,7 @@ func validate_Object_UpdateAppRegionConfigResponse(ctx context.Context, r json.R
 		return fmt.Errorf("invalid value for %q: expected object.", path)
 	}
 
-	if err = validate_required_Object_UpdateAppRegionConfigResponse(ctx, v, path); err != nil {
+	if err = validate_required_Object_UpdateApplicationResponse(ctx, v, path); err != nil {
 		return err
 	}
 
@@ -4548,7 +5059,7 @@ func validate_Object_UpdateAppRegionConfigResponse(ctx context.Context, r json.R
 			}
 			vv := v[k]
 			vvPath := runtime1.JoinPath(path, k)
-			if err = validate_Object_AppRegionConfig(ctx, vv, vvPath); err != nil {
+			if err = validate_Object_Application(ctx, vv, vvPath); err != nil {
 				return err
 			}
 		default:
@@ -4560,27 +5071,27 @@ func validate_Object_UpdateAppRegionConfigResponse(ctx context.Context, r json.R
 	return nil
 }
 
-// AtlasValidateJSON function validates a JSON for object UpdateAppRegionConfigResponse.
-func (_ *UpdateAppRegionConfigResponse) AtlasValidateJSON(ctx context.Context, r json.RawMessage, path string) (err error) {
-	if hook, ok := interface{}(&UpdateAppRegionConfigResponse{}).(interface {
+// AtlasValidateJSON function validates a JSON for object UpdateApplicationResponse.
+func (_ *UpdateApplicationResponse) AtlasValidateJSON(ctx context.Context, r json.RawMessage, path string) (err error) {
+	if hook, ok := interface{}(&UpdateApplicationResponse{}).(interface {
 		AtlasJSONValidate(context.Context, json.RawMessage, string) (json.RawMessage, error)
 	}); ok {
 		if r, err = hook.AtlasJSONValidate(ctx, r, path); err != nil {
 			return err
 		}
 	}
-	return validate_Object_UpdateAppRegionConfigResponse(ctx, r, path)
+	return validate_Object_UpdateApplicationResponse(ctx, r, path)
 }
 
-func validate_required_Object_UpdateAppRegionConfigResponse(ctx context.Context, v map[string]json.RawMessage, path string) error {
+func validate_required_Object_UpdateApplicationResponse(ctx context.Context, v map[string]json.RawMessage, path string) error {
 	method := runtime1.HTTPMethodFromContext(ctx)
 	_ = method
 	return nil
 }
 
-// validate_Object_DeleteAppRegionConfigRequest function validates a JSON for a given object.
-func validate_Object_DeleteAppRegionConfigRequest(ctx context.Context, r json.RawMessage, path string) (err error) {
-	if hook, ok := interface{}(&DeleteAppRegionConfigRequest{}).(interface {
+// validate_Object_DeleteApplicationRequest function validates a JSON for a given object.
+func validate_Object_DeleteApplicationRequest(ctx context.Context, r json.RawMessage, path string) (err error) {
+	if hook, ok := interface{}(&DeleteApplicationRequest{}).(interface {
 		AtlasJSONValidate(context.Context, json.RawMessage, string) (json.RawMessage, error)
 	}); ok {
 		if r, err = hook.AtlasJSONValidate(ctx, r, path); err != nil {
@@ -4593,7 +5104,7 @@ func validate_Object_DeleteAppRegionConfigRequest(ctx context.Context, r json.Ra
 		return fmt.Errorf("invalid value for %q: expected object.", path)
 	}
 
-	if err = validate_required_Object_DeleteAppRegionConfigRequest(ctx, v, path); err != nil {
+	if err = validate_required_Object_DeleteApplicationRequest(ctx, v, path); err != nil {
 		return err
 	}
 
@@ -4625,27 +5136,27 @@ func validate_Object_DeleteAppRegionConfigRequest(ctx context.Context, r json.Ra
 	return nil
 }
 
-// AtlasValidateJSON function validates a JSON for object DeleteAppRegionConfigRequest.
-func (_ *DeleteAppRegionConfigRequest) AtlasValidateJSON(ctx context.Context, r json.RawMessage, path string) (err error) {
-	if hook, ok := interface{}(&DeleteAppRegionConfigRequest{}).(interface {
+// AtlasValidateJSON function validates a JSON for object DeleteApplicationRequest.
+func (_ *DeleteApplicationRequest) AtlasValidateJSON(ctx context.Context, r json.RawMessage, path string) (err error) {
+	if hook, ok := interface{}(&DeleteApplicationRequest{}).(interface {
 		AtlasJSONValidate(context.Context, json.RawMessage, string) (json.RawMessage, error)
 	}); ok {
 		if r, err = hook.AtlasJSONValidate(ctx, r, path); err != nil {
 			return err
 		}
 	}
-	return validate_Object_DeleteAppRegionConfigRequest(ctx, r, path)
+	return validate_Object_DeleteApplicationRequest(ctx, r, path)
 }
 
-func validate_required_Object_DeleteAppRegionConfigRequest(ctx context.Context, v map[string]json.RawMessage, path string) error {
+func validate_required_Object_DeleteApplicationRequest(ctx context.Context, v map[string]json.RawMessage, path string) error {
 	method := runtime1.HTTPMethodFromContext(ctx)
 	_ = method
 	return nil
 }
 
-// validate_Object_DeleteAppRegionConfigResponse function validates a JSON for a given object.
-func validate_Object_DeleteAppRegionConfigResponse(ctx context.Context, r json.RawMessage, path string) (err error) {
-	if hook, ok := interface{}(&DeleteAppRegionConfigResponse{}).(interface {
+// validate_Object_DeleteApplicationResponse function validates a JSON for a given object.
+func validate_Object_DeleteApplicationResponse(ctx context.Context, r json.RawMessage, path string) (err error) {
+	if hook, ok := interface{}(&DeleteApplicationResponse{}).(interface {
 		AtlasJSONValidate(context.Context, json.RawMessage, string) (json.RawMessage, error)
 	}); ok {
 		if r, err = hook.AtlasJSONValidate(ctx, r, path); err != nil {
@@ -4658,7 +5169,7 @@ func validate_Object_DeleteAppRegionConfigResponse(ctx context.Context, r json.R
 		return fmt.Errorf("invalid value for %q: expected object.", path)
 	}
 
-	if err = validate_required_Object_DeleteAppRegionConfigResponse(ctx, v, path); err != nil {
+	if err = validate_required_Object_DeleteApplicationResponse(ctx, v, path); err != nil {
 		return err
 	}
 
@@ -4675,27 +5186,27 @@ func validate_Object_DeleteAppRegionConfigResponse(ctx context.Context, r json.R
 	return nil
 }
 
-// AtlasValidateJSON function validates a JSON for object DeleteAppRegionConfigResponse.
-func (_ *DeleteAppRegionConfigResponse) AtlasValidateJSON(ctx context.Context, r json.RawMessage, path string) (err error) {
-	if hook, ok := interface{}(&DeleteAppRegionConfigResponse{}).(interface {
+// AtlasValidateJSON function validates a JSON for object DeleteApplicationResponse.
+func (_ *DeleteApplicationResponse) AtlasValidateJSON(ctx context.Context, r json.RawMessage, path string) (err error) {
+	if hook, ok := interface{}(&DeleteApplicationResponse{}).(interface {
 		AtlasJSONValidate(context.Context, json.RawMessage, string) (json.RawMessage, error)
 	}); ok {
 		if r, err = hook.AtlasJSONValidate(ctx, r, path); err != nil {
 			return err
 		}
 	}
-	return validate_Object_DeleteAppRegionConfigResponse(ctx, r, path)
+	return validate_Object_DeleteApplicationResponse(ctx, r, path)
 }
 
-func validate_required_Object_DeleteAppRegionConfigResponse(ctx context.Context, v map[string]json.RawMessage, path string) error {
+func validate_required_Object_DeleteApplicationResponse(ctx context.Context, v map[string]json.RawMessage, path string) error {
 	method := runtime1.HTTPMethodFromContext(ctx)
 	_ = method
 	return nil
 }
 
-// validate_Object_ListAppRegionConfigRequest function validates a JSON for a given object.
-func validate_Object_ListAppRegionConfigRequest(ctx context.Context, r json.RawMessage, path string) (err error) {
-	if hook, ok := interface{}(&ListAppRegionConfigRequest{}).(interface {
+// validate_Object_ListApplicationRequest function validates a JSON for a given object.
+func validate_Object_ListApplicationRequest(ctx context.Context, r json.RawMessage, path string) (err error) {
+	if hook, ok := interface{}(&ListApplicationRequest{}).(interface {
 		AtlasJSONValidate(context.Context, json.RawMessage, string) (json.RawMessage, error)
 	}); ok {
 		if r, err = hook.AtlasJSONValidate(ctx, r, path); err != nil {
@@ -4708,7 +5219,7 @@ func validate_Object_ListAppRegionConfigRequest(ctx context.Context, r json.RawM
 		return fmt.Errorf("invalid value for %q: expected object.", path)
 	}
 
-	if err = validate_required_Object_ListAppRegionConfigRequest(ctx, v, path); err != nil {
+	if err = validate_required_Object_ListApplicationRequest(ctx, v, path); err != nil {
 		return err
 	}
 
@@ -4785,27 +5296,27 @@ func validate_Object_ListAppRegionConfigRequest(ctx context.Context, r json.RawM
 	return nil
 }
 
-// AtlasValidateJSON function validates a JSON for object ListAppRegionConfigRequest.
-func (_ *ListAppRegionConfigRequest) AtlasValidateJSON(ctx context.Context, r json.RawMessage, path string) (err error) {
-	if hook, ok := interface{}(&ListAppRegionConfigRequest{}).(interface {
+// AtlasValidateJSON function validates a JSON for object ListApplicationRequest.
+func (_ *ListApplicationRequest) AtlasValidateJSON(ctx context.Context, r json.RawMessage, path string) (err error) {
+	if hook, ok := interface{}(&ListApplicationRequest{}).(interface {
 		AtlasJSONValidate(context.Context, json.RawMessage, string) (json.RawMessage, error)
 	}); ok {
 		if r, err = hook.AtlasJSONValidate(ctx, r, path); err != nil {
 			return err
 		}
 	}
-	return validate_Object_ListAppRegionConfigRequest(ctx, r, path)
+	return validate_Object_ListApplicationRequest(ctx, r, path)
 }
 
-func validate_required_Object_ListAppRegionConfigRequest(ctx context.Context, v map[string]json.RawMessage, path string) error {
+func validate_required_Object_ListApplicationRequest(ctx context.Context, v map[string]json.RawMessage, path string) error {
 	method := runtime1.HTTPMethodFromContext(ctx)
 	_ = method
 	return nil
 }
 
-// validate_Object_ListAppRegionConfigsResponse function validates a JSON for a given object.
-func validate_Object_ListAppRegionConfigsResponse(ctx context.Context, r json.RawMessage, path string) (err error) {
-	if hook, ok := interface{}(&ListAppRegionConfigsResponse{}).(interface {
+// validate_Object_ListApplicationsResponse function validates a JSON for a given object.
+func validate_Object_ListApplicationsResponse(ctx context.Context, r json.RawMessage, path string) (err error) {
+	if hook, ok := interface{}(&ListApplicationsResponse{}).(interface {
 		AtlasJSONValidate(context.Context, json.RawMessage, string) (json.RawMessage, error)
 	}); ok {
 		if r, err = hook.AtlasJSONValidate(ctx, r, path); err != nil {
@@ -4818,7 +5329,7 @@ func validate_Object_ListAppRegionConfigsResponse(ctx context.Context, r json.Ra
 		return fmt.Errorf("invalid value for %q: expected object.", path)
 	}
 
-	if err = validate_required_Object_ListAppRegionConfigsResponse(ctx, v, path); err != nil {
+	if err = validate_required_Object_ListApplicationsResponse(ctx, v, path); err != nil {
 		return err
 	}
 
@@ -4837,7 +5348,7 @@ func validate_Object_ListAppRegionConfigsResponse(ctx context.Context, r json.Ra
 			}
 			for i, vv := range vArr {
 				vvPath := fmt.Sprintf("%s.[%d]", vArrPath, i)
-				if err = validate_Object_AppRegionConfig(ctx, vv, vvPath); err != nil {
+				if err = validate_Object_Application(ctx, vv, vvPath); err != nil {
 					return err
 				}
 			}
@@ -4865,27 +5376,27 @@ func validate_Object_ListAppRegionConfigsResponse(ctx context.Context, r json.Ra
 	return nil
 }
 
-// AtlasValidateJSON function validates a JSON for object ListAppRegionConfigsResponse.
-func (_ *ListAppRegionConfigsResponse) AtlasValidateJSON(ctx context.Context, r json.RawMessage, path string) (err error) {
-	if hook, ok := interface{}(&ListAppRegionConfigsResponse{}).(interface {
+// AtlasValidateJSON function validates a JSON for object ListApplicationsResponse.
+func (_ *ListApplicationsResponse) AtlasValidateJSON(ctx context.Context, r json.RawMessage, path string) (err error) {
+	if hook, ok := interface{}(&ListApplicationsResponse{}).(interface {
 		AtlasJSONValidate(context.Context, json.RawMessage, string) (json.RawMessage, error)
 	}); ok {
 		if r, err = hook.AtlasJSONValidate(ctx, r, path); err != nil {
 			return err
 		}
 	}
-	return validate_Object_ListAppRegionConfigsResponse(ctx, r, path)
+	return validate_Object_ListApplicationsResponse(ctx, r, path)
 }
 
-func validate_required_Object_ListAppRegionConfigsResponse(ctx context.Context, v map[string]json.RawMessage, path string) error {
+func validate_required_Object_ListApplicationsResponse(ctx context.Context, v map[string]json.RawMessage, path string) error {
 	method := runtime1.HTTPMethodFromContext(ctx)
 	_ = method
 	return nil
 }
 
-// validate_Object_AppStageConfig function validates a JSON for a given object.
-func validate_Object_AppStageConfig(ctx context.Context, r json.RawMessage, path string) (err error) {
-	if hook, ok := interface{}(&AppStageConfig{}).(interface {
+// validate_Object_AppVersion function validates a JSON for a given object.
+func validate_Object_AppVersion(ctx context.Context, r json.RawMessage, path string) (err error) {
+	if hook, ok := interface{}(&AppVersion{}).(interface {
 		AtlasJSONValidate(context.Context, json.RawMessage, string) (json.RawMessage, error)
 	}); ok {
 		if r, err = hook.AtlasJSONValidate(ctx, r, path); err != nil {
@@ -4898,1606 +5409,7 @@ func validate_Object_AppStageConfig(ctx context.Context, r json.RawMessage, path
 		return fmt.Errorf("invalid value for %q: expected object.", path)
 	}
 
-	if err = validate_required_Object_AppStageConfig(ctx, v, path); err != nil {
-		return err
-	}
-
-	allowUnknown := runtime1.AllowUnknownFromContext(ctx)
-
-	for k, _ := range v {
-		switch k {
-		case "id":
-			if v[k] == nil {
-				continue
-			}
-			vv := v[k]
-			vvPath := runtime1.JoinPath(path, k)
-			validator, ok := interface{}(&resource.Identifier{}).(interface {
-				AtlasValidateJSON(context.Context, json.RawMessage, string) error
-			})
-			if !ok {
-				continue
-			}
-			if err = validator.AtlasValidateJSON(ctx, vv, vvPath); err != nil {
-				return err
-			}
-		case "name":
-		case "description":
-		case "app_environment_configs":
-			if v[k] == nil {
-				continue
-			}
-			var vArr []json.RawMessage
-			vArrPath := runtime1.JoinPath(path, k)
-			if err = json.Unmarshal(v[k], &vArr); err != nil {
-				return fmt.Errorf("invalid value for %q: expected array.", vArrPath)
-			}
-			for i, vv := range vArr {
-				vvPath := fmt.Sprintf("%s.[%d]", vArrPath, i)
-				if err = validate_Object_AppEnvironmentConfig(ctx, vv, vvPath); err != nil {
-					return err
-				}
-			}
-		case "value_id":
-			if v[k] == nil {
-				continue
-			}
-			vv := v[k]
-			vvPath := runtime1.JoinPath(path, k)
-			validator, ok := interface{}(&resource.Identifier{}).(interface {
-				AtlasValidateJSON(context.Context, json.RawMessage, string) error
-			})
-			if !ok {
-				continue
-			}
-			if err = validator.AtlasValidateJSON(ctx, vv, vvPath); err != nil {
-				return err
-			}
-		case "stage_id":
-			if v[k] == nil {
-				continue
-			}
-			vv := v[k]
-			vvPath := runtime1.JoinPath(path, k)
-			validator, ok := interface{}(&resource.Identifier{}).(interface {
-				AtlasValidateJSON(context.Context, json.RawMessage, string) error
-			})
-			if !ok {
-				continue
-			}
-			if err = validator.AtlasValidateJSON(ctx, vv, vvPath); err != nil {
-				return err
-			}
-		default:
-			if !allowUnknown {
-				return fmt.Errorf("unknown field %q.", runtime1.JoinPath(path, k))
-			}
-		}
-	}
-	return nil
-}
-
-// AtlasValidateJSON function validates a JSON for object AppStageConfig.
-func (_ *AppStageConfig) AtlasValidateJSON(ctx context.Context, r json.RawMessage, path string) (err error) {
-	if hook, ok := interface{}(&AppStageConfig{}).(interface {
-		AtlasJSONValidate(context.Context, json.RawMessage, string) (json.RawMessage, error)
-	}); ok {
-		if r, err = hook.AtlasJSONValidate(ctx, r, path); err != nil {
-			return err
-		}
-	}
-	return validate_Object_AppStageConfig(ctx, r, path)
-}
-
-func validate_required_Object_AppStageConfig(ctx context.Context, v map[string]json.RawMessage, path string) error {
-	method := runtime1.HTTPMethodFromContext(ctx)
-	_ = method
-	return nil
-}
-
-// validate_Object_CreateAppStageConfigRequest function validates a JSON for a given object.
-func validate_Object_CreateAppStageConfigRequest(ctx context.Context, r json.RawMessage, path string) (err error) {
-	if hook, ok := interface{}(&CreateAppStageConfigRequest{}).(interface {
-		AtlasJSONValidate(context.Context, json.RawMessage, string) (json.RawMessage, error)
-	}); ok {
-		if r, err = hook.AtlasJSONValidate(ctx, r, path); err != nil {
-			return err
-		}
-	}
-
-	var v map[string]json.RawMessage
-	if err = json.Unmarshal(r, &v); err != nil {
-		return fmt.Errorf("invalid value for %q: expected object.", path)
-	}
-
-	if err = validate_required_Object_CreateAppStageConfigRequest(ctx, v, path); err != nil {
-		return err
-	}
-
-	allowUnknown := runtime1.AllowUnknownFromContext(ctx)
-
-	for k, _ := range v {
-		switch k {
-		case "payload":
-			if v[k] == nil {
-				continue
-			}
-			vv := v[k]
-			vvPath := runtime1.JoinPath(path, k)
-			if err = validate_Object_AppStageConfig(ctx, vv, vvPath); err != nil {
-				return err
-			}
-		default:
-			if !allowUnknown {
-				return fmt.Errorf("unknown field %q.", runtime1.JoinPath(path, k))
-			}
-		}
-	}
-	return nil
-}
-
-// AtlasValidateJSON function validates a JSON for object CreateAppStageConfigRequest.
-func (_ *CreateAppStageConfigRequest) AtlasValidateJSON(ctx context.Context, r json.RawMessage, path string) (err error) {
-	if hook, ok := interface{}(&CreateAppStageConfigRequest{}).(interface {
-		AtlasJSONValidate(context.Context, json.RawMessage, string) (json.RawMessage, error)
-	}); ok {
-		if r, err = hook.AtlasJSONValidate(ctx, r, path); err != nil {
-			return err
-		}
-	}
-	return validate_Object_CreateAppStageConfigRequest(ctx, r, path)
-}
-
-func validate_required_Object_CreateAppStageConfigRequest(ctx context.Context, v map[string]json.RawMessage, path string) error {
-	method := runtime1.HTTPMethodFromContext(ctx)
-	_ = method
-	return nil
-}
-
-// validate_Object_CreateAppStageConfigResponse function validates a JSON for a given object.
-func validate_Object_CreateAppStageConfigResponse(ctx context.Context, r json.RawMessage, path string) (err error) {
-	if hook, ok := interface{}(&CreateAppStageConfigResponse{}).(interface {
-		AtlasJSONValidate(context.Context, json.RawMessage, string) (json.RawMessage, error)
-	}); ok {
-		if r, err = hook.AtlasJSONValidate(ctx, r, path); err != nil {
-			return err
-		}
-	}
-
-	var v map[string]json.RawMessage
-	if err = json.Unmarshal(r, &v); err != nil {
-		return fmt.Errorf("invalid value for %q: expected object.", path)
-	}
-
-	if err = validate_required_Object_CreateAppStageConfigResponse(ctx, v, path); err != nil {
-		return err
-	}
-
-	allowUnknown := runtime1.AllowUnknownFromContext(ctx)
-
-	for k, _ := range v {
-		switch k {
-		case "result":
-			if v[k] == nil {
-				continue
-			}
-			vv := v[k]
-			vvPath := runtime1.JoinPath(path, k)
-			if err = validate_Object_AppStageConfig(ctx, vv, vvPath); err != nil {
-				return err
-			}
-		default:
-			if !allowUnknown {
-				return fmt.Errorf("unknown field %q.", runtime1.JoinPath(path, k))
-			}
-		}
-	}
-	return nil
-}
-
-// AtlasValidateJSON function validates a JSON for object CreateAppStageConfigResponse.
-func (_ *CreateAppStageConfigResponse) AtlasValidateJSON(ctx context.Context, r json.RawMessage, path string) (err error) {
-	if hook, ok := interface{}(&CreateAppStageConfigResponse{}).(interface {
-		AtlasJSONValidate(context.Context, json.RawMessage, string) (json.RawMessage, error)
-	}); ok {
-		if r, err = hook.AtlasJSONValidate(ctx, r, path); err != nil {
-			return err
-		}
-	}
-	return validate_Object_CreateAppStageConfigResponse(ctx, r, path)
-}
-
-func validate_required_Object_CreateAppStageConfigResponse(ctx context.Context, v map[string]json.RawMessage, path string) error {
-	method := runtime1.HTTPMethodFromContext(ctx)
-	_ = method
-	return nil
-}
-
-// validate_Object_ReadAppStageConfigRequest function validates a JSON for a given object.
-func validate_Object_ReadAppStageConfigRequest(ctx context.Context, r json.RawMessage, path string) (err error) {
-	if hook, ok := interface{}(&ReadAppStageConfigRequest{}).(interface {
-		AtlasJSONValidate(context.Context, json.RawMessage, string) (json.RawMessage, error)
-	}); ok {
-		if r, err = hook.AtlasJSONValidate(ctx, r, path); err != nil {
-			return err
-		}
-	}
-
-	var v map[string]json.RawMessage
-	if err = json.Unmarshal(r, &v); err != nil {
-		return fmt.Errorf("invalid value for %q: expected object.", path)
-	}
-
-	if err = validate_required_Object_ReadAppStageConfigRequest(ctx, v, path); err != nil {
-		return err
-	}
-
-	allowUnknown := runtime1.AllowUnknownFromContext(ctx)
-
-	for k, _ := range v {
-		switch k {
-		case "id":
-			if v[k] == nil {
-				continue
-			}
-			vv := v[k]
-			vvPath := runtime1.JoinPath(path, k)
-			validator, ok := interface{}(&resource.Identifier{}).(interface {
-				AtlasValidateJSON(context.Context, json.RawMessage, string) error
-			})
-			if !ok {
-				continue
-			}
-			if err = validator.AtlasValidateJSON(ctx, vv, vvPath); err != nil {
-				return err
-			}
-		case "fields":
-			if v[k] == nil {
-				continue
-			}
-			vv := v[k]
-			vvPath := runtime1.JoinPath(path, k)
-			validator, ok := interface{}(&query.FieldSelection{}).(interface {
-				AtlasValidateJSON(context.Context, json.RawMessage, string) error
-			})
-			if !ok {
-				continue
-			}
-			if err = validator.AtlasValidateJSON(ctx, vv, vvPath); err != nil {
-				return err
-			}
-		default:
-			if !allowUnknown {
-				return fmt.Errorf("unknown field %q.", runtime1.JoinPath(path, k))
-			}
-		}
-	}
-	return nil
-}
-
-// AtlasValidateJSON function validates a JSON for object ReadAppStageConfigRequest.
-func (_ *ReadAppStageConfigRequest) AtlasValidateJSON(ctx context.Context, r json.RawMessage, path string) (err error) {
-	if hook, ok := interface{}(&ReadAppStageConfigRequest{}).(interface {
-		AtlasJSONValidate(context.Context, json.RawMessage, string) (json.RawMessage, error)
-	}); ok {
-		if r, err = hook.AtlasJSONValidate(ctx, r, path); err != nil {
-			return err
-		}
-	}
-	return validate_Object_ReadAppStageConfigRequest(ctx, r, path)
-}
-
-func validate_required_Object_ReadAppStageConfigRequest(ctx context.Context, v map[string]json.RawMessage, path string) error {
-	method := runtime1.HTTPMethodFromContext(ctx)
-	_ = method
-	return nil
-}
-
-// validate_Object_ReadAppStageConfigResponse function validates a JSON for a given object.
-func validate_Object_ReadAppStageConfigResponse(ctx context.Context, r json.RawMessage, path string) (err error) {
-	if hook, ok := interface{}(&ReadAppStageConfigResponse{}).(interface {
-		AtlasJSONValidate(context.Context, json.RawMessage, string) (json.RawMessage, error)
-	}); ok {
-		if r, err = hook.AtlasJSONValidate(ctx, r, path); err != nil {
-			return err
-		}
-	}
-
-	var v map[string]json.RawMessage
-	if err = json.Unmarshal(r, &v); err != nil {
-		return fmt.Errorf("invalid value for %q: expected object.", path)
-	}
-
-	if err = validate_required_Object_ReadAppStageConfigResponse(ctx, v, path); err != nil {
-		return err
-	}
-
-	allowUnknown := runtime1.AllowUnknownFromContext(ctx)
-
-	for k, _ := range v {
-		switch k {
-		case "result":
-			if v[k] == nil {
-				continue
-			}
-			vv := v[k]
-			vvPath := runtime1.JoinPath(path, k)
-			if err = validate_Object_AppStageConfig(ctx, vv, vvPath); err != nil {
-				return err
-			}
-		default:
-			if !allowUnknown {
-				return fmt.Errorf("unknown field %q.", runtime1.JoinPath(path, k))
-			}
-		}
-	}
-	return nil
-}
-
-// AtlasValidateJSON function validates a JSON for object ReadAppStageConfigResponse.
-func (_ *ReadAppStageConfigResponse) AtlasValidateJSON(ctx context.Context, r json.RawMessage, path string) (err error) {
-	if hook, ok := interface{}(&ReadAppStageConfigResponse{}).(interface {
-		AtlasJSONValidate(context.Context, json.RawMessage, string) (json.RawMessage, error)
-	}); ok {
-		if r, err = hook.AtlasJSONValidate(ctx, r, path); err != nil {
-			return err
-		}
-	}
-	return validate_Object_ReadAppStageConfigResponse(ctx, r, path)
-}
-
-func validate_required_Object_ReadAppStageConfigResponse(ctx context.Context, v map[string]json.RawMessage, path string) error {
-	method := runtime1.HTTPMethodFromContext(ctx)
-	_ = method
-	return nil
-}
-
-// validate_Object_UpdateAppStageConfigRequest function validates a JSON for a given object.
-func validate_Object_UpdateAppStageConfigRequest(ctx context.Context, r json.RawMessage, path string) (err error) {
-	if hook, ok := interface{}(&UpdateAppStageConfigRequest{}).(interface {
-		AtlasJSONValidate(context.Context, json.RawMessage, string) (json.RawMessage, error)
-	}); ok {
-		if r, err = hook.AtlasJSONValidate(ctx, r, path); err != nil {
-			return err
-		}
-	}
-
-	var v map[string]json.RawMessage
-	if err = json.Unmarshal(r, &v); err != nil {
-		return fmt.Errorf("invalid value for %q: expected object.", path)
-	}
-
-	if err = validate_required_Object_UpdateAppStageConfigRequest(ctx, v, path); err != nil {
-		return err
-	}
-
-	allowUnknown := runtime1.AllowUnknownFromContext(ctx)
-
-	for k, _ := range v {
-		switch k {
-		case "payload":
-			if v[k] == nil {
-				continue
-			}
-			vv := v[k]
-			vvPath := runtime1.JoinPath(path, k)
-			if err = validate_Object_AppStageConfig(ctx, vv, vvPath); err != nil {
-				return err
-			}
-		case "fields":
-			if v[k] == nil {
-				continue
-			}
-			vv := v[k]
-			vvPath := runtime1.JoinPath(path, k)
-			validator, ok := interface{}(&field_mask.FieldMask{}).(interface {
-				AtlasValidateJSON(context.Context, json.RawMessage, string) error
-			})
-			if !ok {
-				continue
-			}
-			if err = validator.AtlasValidateJSON(ctx, vv, vvPath); err != nil {
-				return err
-			}
-		default:
-			if !allowUnknown {
-				return fmt.Errorf("unknown field %q.", runtime1.JoinPath(path, k))
-			}
-		}
-	}
-	return nil
-}
-
-// AtlasValidateJSON function validates a JSON for object UpdateAppStageConfigRequest.
-func (_ *UpdateAppStageConfigRequest) AtlasValidateJSON(ctx context.Context, r json.RawMessage, path string) (err error) {
-	if hook, ok := interface{}(&UpdateAppStageConfigRequest{}).(interface {
-		AtlasJSONValidate(context.Context, json.RawMessage, string) (json.RawMessage, error)
-	}); ok {
-		if r, err = hook.AtlasJSONValidate(ctx, r, path); err != nil {
-			return err
-		}
-	}
-	return validate_Object_UpdateAppStageConfigRequest(ctx, r, path)
-}
-
-func validate_required_Object_UpdateAppStageConfigRequest(ctx context.Context, v map[string]json.RawMessage, path string) error {
-	method := runtime1.HTTPMethodFromContext(ctx)
-	_ = method
-	return nil
-}
-
-// validate_Object_UpdateAppStageConfigResponse function validates a JSON for a given object.
-func validate_Object_UpdateAppStageConfigResponse(ctx context.Context, r json.RawMessage, path string) (err error) {
-	if hook, ok := interface{}(&UpdateAppStageConfigResponse{}).(interface {
-		AtlasJSONValidate(context.Context, json.RawMessage, string) (json.RawMessage, error)
-	}); ok {
-		if r, err = hook.AtlasJSONValidate(ctx, r, path); err != nil {
-			return err
-		}
-	}
-
-	var v map[string]json.RawMessage
-	if err = json.Unmarshal(r, &v); err != nil {
-		return fmt.Errorf("invalid value for %q: expected object.", path)
-	}
-
-	if err = validate_required_Object_UpdateAppStageConfigResponse(ctx, v, path); err != nil {
-		return err
-	}
-
-	allowUnknown := runtime1.AllowUnknownFromContext(ctx)
-
-	for k, _ := range v {
-		switch k {
-		case "result":
-			if v[k] == nil {
-				continue
-			}
-			vv := v[k]
-			vvPath := runtime1.JoinPath(path, k)
-			if err = validate_Object_AppStageConfig(ctx, vv, vvPath); err != nil {
-				return err
-			}
-		default:
-			if !allowUnknown {
-				return fmt.Errorf("unknown field %q.", runtime1.JoinPath(path, k))
-			}
-		}
-	}
-	return nil
-}
-
-// AtlasValidateJSON function validates a JSON for object UpdateAppStageConfigResponse.
-func (_ *UpdateAppStageConfigResponse) AtlasValidateJSON(ctx context.Context, r json.RawMessage, path string) (err error) {
-	if hook, ok := interface{}(&UpdateAppStageConfigResponse{}).(interface {
-		AtlasJSONValidate(context.Context, json.RawMessage, string) (json.RawMessage, error)
-	}); ok {
-		if r, err = hook.AtlasJSONValidate(ctx, r, path); err != nil {
-			return err
-		}
-	}
-	return validate_Object_UpdateAppStageConfigResponse(ctx, r, path)
-}
-
-func validate_required_Object_UpdateAppStageConfigResponse(ctx context.Context, v map[string]json.RawMessage, path string) error {
-	method := runtime1.HTTPMethodFromContext(ctx)
-	_ = method
-	return nil
-}
-
-// validate_Object_DeleteAppStageConfigRequest function validates a JSON for a given object.
-func validate_Object_DeleteAppStageConfigRequest(ctx context.Context, r json.RawMessage, path string) (err error) {
-	if hook, ok := interface{}(&DeleteAppStageConfigRequest{}).(interface {
-		AtlasJSONValidate(context.Context, json.RawMessage, string) (json.RawMessage, error)
-	}); ok {
-		if r, err = hook.AtlasJSONValidate(ctx, r, path); err != nil {
-			return err
-		}
-	}
-
-	var v map[string]json.RawMessage
-	if err = json.Unmarshal(r, &v); err != nil {
-		return fmt.Errorf("invalid value for %q: expected object.", path)
-	}
-
-	if err = validate_required_Object_DeleteAppStageConfigRequest(ctx, v, path); err != nil {
-		return err
-	}
-
-	allowUnknown := runtime1.AllowUnknownFromContext(ctx)
-
-	for k, _ := range v {
-		switch k {
-		case "id":
-			if v[k] == nil {
-				continue
-			}
-			vv := v[k]
-			vvPath := runtime1.JoinPath(path, k)
-			validator, ok := interface{}(&resource.Identifier{}).(interface {
-				AtlasValidateJSON(context.Context, json.RawMessage, string) error
-			})
-			if !ok {
-				continue
-			}
-			if err = validator.AtlasValidateJSON(ctx, vv, vvPath); err != nil {
-				return err
-			}
-		default:
-			if !allowUnknown {
-				return fmt.Errorf("unknown field %q.", runtime1.JoinPath(path, k))
-			}
-		}
-	}
-	return nil
-}
-
-// AtlasValidateJSON function validates a JSON for object DeleteAppStageConfigRequest.
-func (_ *DeleteAppStageConfigRequest) AtlasValidateJSON(ctx context.Context, r json.RawMessage, path string) (err error) {
-	if hook, ok := interface{}(&DeleteAppStageConfigRequest{}).(interface {
-		AtlasJSONValidate(context.Context, json.RawMessage, string) (json.RawMessage, error)
-	}); ok {
-		if r, err = hook.AtlasJSONValidate(ctx, r, path); err != nil {
-			return err
-		}
-	}
-	return validate_Object_DeleteAppStageConfigRequest(ctx, r, path)
-}
-
-func validate_required_Object_DeleteAppStageConfigRequest(ctx context.Context, v map[string]json.RawMessage, path string) error {
-	method := runtime1.HTTPMethodFromContext(ctx)
-	_ = method
-	return nil
-}
-
-// validate_Object_DeleteAppStageConfigResponse function validates a JSON for a given object.
-func validate_Object_DeleteAppStageConfigResponse(ctx context.Context, r json.RawMessage, path string) (err error) {
-	if hook, ok := interface{}(&DeleteAppStageConfigResponse{}).(interface {
-		AtlasJSONValidate(context.Context, json.RawMessage, string) (json.RawMessage, error)
-	}); ok {
-		if r, err = hook.AtlasJSONValidate(ctx, r, path); err != nil {
-			return err
-		}
-	}
-
-	var v map[string]json.RawMessage
-	if err = json.Unmarshal(r, &v); err != nil {
-		return fmt.Errorf("invalid value for %q: expected object.", path)
-	}
-
-	if err = validate_required_Object_DeleteAppStageConfigResponse(ctx, v, path); err != nil {
-		return err
-	}
-
-	allowUnknown := runtime1.AllowUnknownFromContext(ctx)
-
-	for k, _ := range v {
-		switch k {
-		default:
-			if !allowUnknown {
-				return fmt.Errorf("unknown field %q.", runtime1.JoinPath(path, k))
-			}
-		}
-	}
-	return nil
-}
-
-// AtlasValidateJSON function validates a JSON for object DeleteAppStageConfigResponse.
-func (_ *DeleteAppStageConfigResponse) AtlasValidateJSON(ctx context.Context, r json.RawMessage, path string) (err error) {
-	if hook, ok := interface{}(&DeleteAppStageConfigResponse{}).(interface {
-		AtlasJSONValidate(context.Context, json.RawMessage, string) (json.RawMessage, error)
-	}); ok {
-		if r, err = hook.AtlasJSONValidate(ctx, r, path); err != nil {
-			return err
-		}
-	}
-	return validate_Object_DeleteAppStageConfigResponse(ctx, r, path)
-}
-
-func validate_required_Object_DeleteAppStageConfigResponse(ctx context.Context, v map[string]json.RawMessage, path string) error {
-	method := runtime1.HTTPMethodFromContext(ctx)
-	_ = method
-	return nil
-}
-
-// validate_Object_ListAppStageConfigRequest function validates a JSON for a given object.
-func validate_Object_ListAppStageConfigRequest(ctx context.Context, r json.RawMessage, path string) (err error) {
-	if hook, ok := interface{}(&ListAppStageConfigRequest{}).(interface {
-		AtlasJSONValidate(context.Context, json.RawMessage, string) (json.RawMessage, error)
-	}); ok {
-		if r, err = hook.AtlasJSONValidate(ctx, r, path); err != nil {
-			return err
-		}
-	}
-
-	var v map[string]json.RawMessage
-	if err = json.Unmarshal(r, &v); err != nil {
-		return fmt.Errorf("invalid value for %q: expected object.", path)
-	}
-
-	if err = validate_required_Object_ListAppStageConfigRequest(ctx, v, path); err != nil {
-		return err
-	}
-
-	allowUnknown := runtime1.AllowUnknownFromContext(ctx)
-
-	for k, _ := range v {
-		switch k {
-		case "filter":
-			if v[k] == nil {
-				continue
-			}
-			vv := v[k]
-			vvPath := runtime1.JoinPath(path, k)
-			validator, ok := interface{}(&query.Filtering{}).(interface {
-				AtlasValidateJSON(context.Context, json.RawMessage, string) error
-			})
-			if !ok {
-				continue
-			}
-			if err = validator.AtlasValidateJSON(ctx, vv, vvPath); err != nil {
-				return err
-			}
-		case "order_by":
-			if v[k] == nil {
-				continue
-			}
-			vv := v[k]
-			vvPath := runtime1.JoinPath(path, k)
-			validator, ok := interface{}(&query.Sorting{}).(interface {
-				AtlasValidateJSON(context.Context, json.RawMessage, string) error
-			})
-			if !ok {
-				continue
-			}
-			if err = validator.AtlasValidateJSON(ctx, vv, vvPath); err != nil {
-				return err
-			}
-		case "fields":
-			if v[k] == nil {
-				continue
-			}
-			vv := v[k]
-			vvPath := runtime1.JoinPath(path, k)
-			validator, ok := interface{}(&query.FieldSelection{}).(interface {
-				AtlasValidateJSON(context.Context, json.RawMessage, string) error
-			})
-			if !ok {
-				continue
-			}
-			if err = validator.AtlasValidateJSON(ctx, vv, vvPath); err != nil {
-				return err
-			}
-		case "paging":
-			if v[k] == nil {
-				continue
-			}
-			vv := v[k]
-			vvPath := runtime1.JoinPath(path, k)
-			validator, ok := interface{}(&query.Pagination{}).(interface {
-				AtlasValidateJSON(context.Context, json.RawMessage, string) error
-			})
-			if !ok {
-				continue
-			}
-			if err = validator.AtlasValidateJSON(ctx, vv, vvPath); err != nil {
-				return err
-			}
-		default:
-			if !allowUnknown {
-				return fmt.Errorf("unknown field %q.", runtime1.JoinPath(path, k))
-			}
-		}
-	}
-	return nil
-}
-
-// AtlasValidateJSON function validates a JSON for object ListAppStageConfigRequest.
-func (_ *ListAppStageConfigRequest) AtlasValidateJSON(ctx context.Context, r json.RawMessage, path string) (err error) {
-	if hook, ok := interface{}(&ListAppStageConfigRequest{}).(interface {
-		AtlasJSONValidate(context.Context, json.RawMessage, string) (json.RawMessage, error)
-	}); ok {
-		if r, err = hook.AtlasJSONValidate(ctx, r, path); err != nil {
-			return err
-		}
-	}
-	return validate_Object_ListAppStageConfigRequest(ctx, r, path)
-}
-
-func validate_required_Object_ListAppStageConfigRequest(ctx context.Context, v map[string]json.RawMessage, path string) error {
-	method := runtime1.HTTPMethodFromContext(ctx)
-	_ = method
-	return nil
-}
-
-// validate_Object_ListAppStageConfigsResponse function validates a JSON for a given object.
-func validate_Object_ListAppStageConfigsResponse(ctx context.Context, r json.RawMessage, path string) (err error) {
-	if hook, ok := interface{}(&ListAppStageConfigsResponse{}).(interface {
-		AtlasJSONValidate(context.Context, json.RawMessage, string) (json.RawMessage, error)
-	}); ok {
-		if r, err = hook.AtlasJSONValidate(ctx, r, path); err != nil {
-			return err
-		}
-	}
-
-	var v map[string]json.RawMessage
-	if err = json.Unmarshal(r, &v); err != nil {
-		return fmt.Errorf("invalid value for %q: expected object.", path)
-	}
-
-	if err = validate_required_Object_ListAppStageConfigsResponse(ctx, v, path); err != nil {
-		return err
-	}
-
-	allowUnknown := runtime1.AllowUnknownFromContext(ctx)
-
-	for k, _ := range v {
-		switch k {
-		case "results":
-			if v[k] == nil {
-				continue
-			}
-			var vArr []json.RawMessage
-			vArrPath := runtime1.JoinPath(path, k)
-			if err = json.Unmarshal(v[k], &vArr); err != nil {
-				return fmt.Errorf("invalid value for %q: expected array.", vArrPath)
-			}
-			for i, vv := range vArr {
-				vvPath := fmt.Sprintf("%s.[%d]", vArrPath, i)
-				if err = validate_Object_AppStageConfig(ctx, vv, vvPath); err != nil {
-					return err
-				}
-			}
-		case "page":
-			if v[k] == nil {
-				continue
-			}
-			vv := v[k]
-			vvPath := runtime1.JoinPath(path, k)
-			validator, ok := interface{}(&query.PageInfo{}).(interface {
-				AtlasValidateJSON(context.Context, json.RawMessage, string) error
-			})
-			if !ok {
-				continue
-			}
-			if err = validator.AtlasValidateJSON(ctx, vv, vvPath); err != nil {
-				return err
-			}
-		default:
-			if !allowUnknown {
-				return fmt.Errorf("unknown field %q.", runtime1.JoinPath(path, k))
-			}
-		}
-	}
-	return nil
-}
-
-// AtlasValidateJSON function validates a JSON for object ListAppStageConfigsResponse.
-func (_ *ListAppStageConfigsResponse) AtlasValidateJSON(ctx context.Context, r json.RawMessage, path string) (err error) {
-	if hook, ok := interface{}(&ListAppStageConfigsResponse{}).(interface {
-		AtlasJSONValidate(context.Context, json.RawMessage, string) (json.RawMessage, error)
-	}); ok {
-		if r, err = hook.AtlasJSONValidate(ctx, r, path); err != nil {
-			return err
-		}
-	}
-	return validate_Object_ListAppStageConfigsResponse(ctx, r, path)
-}
-
-func validate_required_Object_ListAppStageConfigsResponse(ctx context.Context, v map[string]json.RawMessage, path string) error {
-	method := runtime1.HTTPMethodFromContext(ctx)
-	_ = method
-	return nil
-}
-
-// validate_Object_AppEnvironmentConfig function validates a JSON for a given object.
-func validate_Object_AppEnvironmentConfig(ctx context.Context, r json.RawMessage, path string) (err error) {
-	if hook, ok := interface{}(&AppEnvironmentConfig{}).(interface {
-		AtlasJSONValidate(context.Context, json.RawMessage, string) (json.RawMessage, error)
-	}); ok {
-		if r, err = hook.AtlasJSONValidate(ctx, r, path); err != nil {
-			return err
-		}
-	}
-
-	var v map[string]json.RawMessage
-	if err = json.Unmarshal(r, &v); err != nil {
-		return fmt.Errorf("invalid value for %q: expected object.", path)
-	}
-
-	if err = validate_required_Object_AppEnvironmentConfig(ctx, v, path); err != nil {
-		return err
-	}
-
-	allowUnknown := runtime1.AllowUnknownFromContext(ctx)
-
-	for k, _ := range v {
-		switch k {
-		case "id":
-			if v[k] == nil {
-				continue
-			}
-			vv := v[k]
-			vvPath := runtime1.JoinPath(path, k)
-			validator, ok := interface{}(&resource.Identifier{}).(interface {
-				AtlasValidateJSON(context.Context, json.RawMessage, string) error
-			})
-			if !ok {
-				continue
-			}
-			if err = validator.AtlasValidateJSON(ctx, vv, vvPath); err != nil {
-				return err
-			}
-		case "name":
-		case "description":
-		case "value_id":
-			if v[k] == nil {
-				continue
-			}
-			vv := v[k]
-			vvPath := runtime1.JoinPath(path, k)
-			validator, ok := interface{}(&resource.Identifier{}).(interface {
-				AtlasValidateJSON(context.Context, json.RawMessage, string) error
-			})
-			if !ok {
-				continue
-			}
-			if err = validator.AtlasValidateJSON(ctx, vv, vvPath); err != nil {
-				return err
-			}
-		case "environment_id":
-			if v[k] == nil {
-				continue
-			}
-			vv := v[k]
-			vvPath := runtime1.JoinPath(path, k)
-			validator, ok := interface{}(&resource.Identifier{}).(interface {
-				AtlasValidateJSON(context.Context, json.RawMessage, string) error
-			})
-			if !ok {
-				continue
-			}
-			if err = validator.AtlasValidateJSON(ctx, vv, vvPath); err != nil {
-				return err
-			}
-		default:
-			if !allowUnknown {
-				return fmt.Errorf("unknown field %q.", runtime1.JoinPath(path, k))
-			}
-		}
-	}
-	return nil
-}
-
-// AtlasValidateJSON function validates a JSON for object AppEnvironmentConfig.
-func (_ *AppEnvironmentConfig) AtlasValidateJSON(ctx context.Context, r json.RawMessage, path string) (err error) {
-	if hook, ok := interface{}(&AppEnvironmentConfig{}).(interface {
-		AtlasJSONValidate(context.Context, json.RawMessage, string) (json.RawMessage, error)
-	}); ok {
-		if r, err = hook.AtlasJSONValidate(ctx, r, path); err != nil {
-			return err
-		}
-	}
-	return validate_Object_AppEnvironmentConfig(ctx, r, path)
-}
-
-func validate_required_Object_AppEnvironmentConfig(ctx context.Context, v map[string]json.RawMessage, path string) error {
-	method := runtime1.HTTPMethodFromContext(ctx)
-	_ = method
-	return nil
-}
-
-// validate_Object_CreateAppEnvironmentConfigRequest function validates a JSON for a given object.
-func validate_Object_CreateAppEnvironmentConfigRequest(ctx context.Context, r json.RawMessage, path string) (err error) {
-	if hook, ok := interface{}(&CreateAppEnvironmentConfigRequest{}).(interface {
-		AtlasJSONValidate(context.Context, json.RawMessage, string) (json.RawMessage, error)
-	}); ok {
-		if r, err = hook.AtlasJSONValidate(ctx, r, path); err != nil {
-			return err
-		}
-	}
-
-	var v map[string]json.RawMessage
-	if err = json.Unmarshal(r, &v); err != nil {
-		return fmt.Errorf("invalid value for %q: expected object.", path)
-	}
-
-	if err = validate_required_Object_CreateAppEnvironmentConfigRequest(ctx, v, path); err != nil {
-		return err
-	}
-
-	allowUnknown := runtime1.AllowUnknownFromContext(ctx)
-
-	for k, _ := range v {
-		switch k {
-		case "payload":
-			if v[k] == nil {
-				continue
-			}
-			vv := v[k]
-			vvPath := runtime1.JoinPath(path, k)
-			if err = validate_Object_AppEnvironmentConfig(ctx, vv, vvPath); err != nil {
-				return err
-			}
-		default:
-			if !allowUnknown {
-				return fmt.Errorf("unknown field %q.", runtime1.JoinPath(path, k))
-			}
-		}
-	}
-	return nil
-}
-
-// AtlasValidateJSON function validates a JSON for object CreateAppEnvironmentConfigRequest.
-func (_ *CreateAppEnvironmentConfigRequest) AtlasValidateJSON(ctx context.Context, r json.RawMessage, path string) (err error) {
-	if hook, ok := interface{}(&CreateAppEnvironmentConfigRequest{}).(interface {
-		AtlasJSONValidate(context.Context, json.RawMessage, string) (json.RawMessage, error)
-	}); ok {
-		if r, err = hook.AtlasJSONValidate(ctx, r, path); err != nil {
-			return err
-		}
-	}
-	return validate_Object_CreateAppEnvironmentConfigRequest(ctx, r, path)
-}
-
-func validate_required_Object_CreateAppEnvironmentConfigRequest(ctx context.Context, v map[string]json.RawMessage, path string) error {
-	method := runtime1.HTTPMethodFromContext(ctx)
-	_ = method
-	return nil
-}
-
-// validate_Object_CreateAppEnvironmentConfigResponse function validates a JSON for a given object.
-func validate_Object_CreateAppEnvironmentConfigResponse(ctx context.Context, r json.RawMessage, path string) (err error) {
-	if hook, ok := interface{}(&CreateAppEnvironmentConfigResponse{}).(interface {
-		AtlasJSONValidate(context.Context, json.RawMessage, string) (json.RawMessage, error)
-	}); ok {
-		if r, err = hook.AtlasJSONValidate(ctx, r, path); err != nil {
-			return err
-		}
-	}
-
-	var v map[string]json.RawMessage
-	if err = json.Unmarshal(r, &v); err != nil {
-		return fmt.Errorf("invalid value for %q: expected object.", path)
-	}
-
-	if err = validate_required_Object_CreateAppEnvironmentConfigResponse(ctx, v, path); err != nil {
-		return err
-	}
-
-	allowUnknown := runtime1.AllowUnknownFromContext(ctx)
-
-	for k, _ := range v {
-		switch k {
-		case "result":
-			if v[k] == nil {
-				continue
-			}
-			vv := v[k]
-			vvPath := runtime1.JoinPath(path, k)
-			if err = validate_Object_AppEnvironmentConfig(ctx, vv, vvPath); err != nil {
-				return err
-			}
-		default:
-			if !allowUnknown {
-				return fmt.Errorf("unknown field %q.", runtime1.JoinPath(path, k))
-			}
-		}
-	}
-	return nil
-}
-
-// AtlasValidateJSON function validates a JSON for object CreateAppEnvironmentConfigResponse.
-func (_ *CreateAppEnvironmentConfigResponse) AtlasValidateJSON(ctx context.Context, r json.RawMessage, path string) (err error) {
-	if hook, ok := interface{}(&CreateAppEnvironmentConfigResponse{}).(interface {
-		AtlasJSONValidate(context.Context, json.RawMessage, string) (json.RawMessage, error)
-	}); ok {
-		if r, err = hook.AtlasJSONValidate(ctx, r, path); err != nil {
-			return err
-		}
-	}
-	return validate_Object_CreateAppEnvironmentConfigResponse(ctx, r, path)
-}
-
-func validate_required_Object_CreateAppEnvironmentConfigResponse(ctx context.Context, v map[string]json.RawMessage, path string) error {
-	method := runtime1.HTTPMethodFromContext(ctx)
-	_ = method
-	return nil
-}
-
-// validate_Object_ReadAppEnvironmentConfigRequest function validates a JSON for a given object.
-func validate_Object_ReadAppEnvironmentConfigRequest(ctx context.Context, r json.RawMessage, path string) (err error) {
-	if hook, ok := interface{}(&ReadAppEnvironmentConfigRequest{}).(interface {
-		AtlasJSONValidate(context.Context, json.RawMessage, string) (json.RawMessage, error)
-	}); ok {
-		if r, err = hook.AtlasJSONValidate(ctx, r, path); err != nil {
-			return err
-		}
-	}
-
-	var v map[string]json.RawMessage
-	if err = json.Unmarshal(r, &v); err != nil {
-		return fmt.Errorf("invalid value for %q: expected object.", path)
-	}
-
-	if err = validate_required_Object_ReadAppEnvironmentConfigRequest(ctx, v, path); err != nil {
-		return err
-	}
-
-	allowUnknown := runtime1.AllowUnknownFromContext(ctx)
-
-	for k, _ := range v {
-		switch k {
-		case "id":
-			if v[k] == nil {
-				continue
-			}
-			vv := v[k]
-			vvPath := runtime1.JoinPath(path, k)
-			validator, ok := interface{}(&resource.Identifier{}).(interface {
-				AtlasValidateJSON(context.Context, json.RawMessage, string) error
-			})
-			if !ok {
-				continue
-			}
-			if err = validator.AtlasValidateJSON(ctx, vv, vvPath); err != nil {
-				return err
-			}
-		case "fields":
-			if v[k] == nil {
-				continue
-			}
-			vv := v[k]
-			vvPath := runtime1.JoinPath(path, k)
-			validator, ok := interface{}(&query.FieldSelection{}).(interface {
-				AtlasValidateJSON(context.Context, json.RawMessage, string) error
-			})
-			if !ok {
-				continue
-			}
-			if err = validator.AtlasValidateJSON(ctx, vv, vvPath); err != nil {
-				return err
-			}
-		default:
-			if !allowUnknown {
-				return fmt.Errorf("unknown field %q.", runtime1.JoinPath(path, k))
-			}
-		}
-	}
-	return nil
-}
-
-// AtlasValidateJSON function validates a JSON for object ReadAppEnvironmentConfigRequest.
-func (_ *ReadAppEnvironmentConfigRequest) AtlasValidateJSON(ctx context.Context, r json.RawMessage, path string) (err error) {
-	if hook, ok := interface{}(&ReadAppEnvironmentConfigRequest{}).(interface {
-		AtlasJSONValidate(context.Context, json.RawMessage, string) (json.RawMessage, error)
-	}); ok {
-		if r, err = hook.AtlasJSONValidate(ctx, r, path); err != nil {
-			return err
-		}
-	}
-	return validate_Object_ReadAppEnvironmentConfigRequest(ctx, r, path)
-}
-
-func validate_required_Object_ReadAppEnvironmentConfigRequest(ctx context.Context, v map[string]json.RawMessage, path string) error {
-	method := runtime1.HTTPMethodFromContext(ctx)
-	_ = method
-	return nil
-}
-
-// validate_Object_ReadAppEnvironmentConfigResponse function validates a JSON for a given object.
-func validate_Object_ReadAppEnvironmentConfigResponse(ctx context.Context, r json.RawMessage, path string) (err error) {
-	if hook, ok := interface{}(&ReadAppEnvironmentConfigResponse{}).(interface {
-		AtlasJSONValidate(context.Context, json.RawMessage, string) (json.RawMessage, error)
-	}); ok {
-		if r, err = hook.AtlasJSONValidate(ctx, r, path); err != nil {
-			return err
-		}
-	}
-
-	var v map[string]json.RawMessage
-	if err = json.Unmarshal(r, &v); err != nil {
-		return fmt.Errorf("invalid value for %q: expected object.", path)
-	}
-
-	if err = validate_required_Object_ReadAppEnvironmentConfigResponse(ctx, v, path); err != nil {
-		return err
-	}
-
-	allowUnknown := runtime1.AllowUnknownFromContext(ctx)
-
-	for k, _ := range v {
-		switch k {
-		case "result":
-			if v[k] == nil {
-				continue
-			}
-			vv := v[k]
-			vvPath := runtime1.JoinPath(path, k)
-			if err = validate_Object_AppEnvironmentConfig(ctx, vv, vvPath); err != nil {
-				return err
-			}
-		default:
-			if !allowUnknown {
-				return fmt.Errorf("unknown field %q.", runtime1.JoinPath(path, k))
-			}
-		}
-	}
-	return nil
-}
-
-// AtlasValidateJSON function validates a JSON for object ReadAppEnvironmentConfigResponse.
-func (_ *ReadAppEnvironmentConfigResponse) AtlasValidateJSON(ctx context.Context, r json.RawMessage, path string) (err error) {
-	if hook, ok := interface{}(&ReadAppEnvironmentConfigResponse{}).(interface {
-		AtlasJSONValidate(context.Context, json.RawMessage, string) (json.RawMessage, error)
-	}); ok {
-		if r, err = hook.AtlasJSONValidate(ctx, r, path); err != nil {
-			return err
-		}
-	}
-	return validate_Object_ReadAppEnvironmentConfigResponse(ctx, r, path)
-}
-
-func validate_required_Object_ReadAppEnvironmentConfigResponse(ctx context.Context, v map[string]json.RawMessage, path string) error {
-	method := runtime1.HTTPMethodFromContext(ctx)
-	_ = method
-	return nil
-}
-
-// validate_Object_UpdateAppEnvironmentConfigRequest function validates a JSON for a given object.
-func validate_Object_UpdateAppEnvironmentConfigRequest(ctx context.Context, r json.RawMessage, path string) (err error) {
-	if hook, ok := interface{}(&UpdateAppEnvironmentConfigRequest{}).(interface {
-		AtlasJSONValidate(context.Context, json.RawMessage, string) (json.RawMessage, error)
-	}); ok {
-		if r, err = hook.AtlasJSONValidate(ctx, r, path); err != nil {
-			return err
-		}
-	}
-
-	var v map[string]json.RawMessage
-	if err = json.Unmarshal(r, &v); err != nil {
-		return fmt.Errorf("invalid value for %q: expected object.", path)
-	}
-
-	if err = validate_required_Object_UpdateAppEnvironmentConfigRequest(ctx, v, path); err != nil {
-		return err
-	}
-
-	allowUnknown := runtime1.AllowUnknownFromContext(ctx)
-
-	for k, _ := range v {
-		switch k {
-		case "payload":
-			if v[k] == nil {
-				continue
-			}
-			vv := v[k]
-			vvPath := runtime1.JoinPath(path, k)
-			if err = validate_Object_AppEnvironmentConfig(ctx, vv, vvPath); err != nil {
-				return err
-			}
-		case "fields":
-			if v[k] == nil {
-				continue
-			}
-			vv := v[k]
-			vvPath := runtime1.JoinPath(path, k)
-			validator, ok := interface{}(&field_mask.FieldMask{}).(interface {
-				AtlasValidateJSON(context.Context, json.RawMessage, string) error
-			})
-			if !ok {
-				continue
-			}
-			if err = validator.AtlasValidateJSON(ctx, vv, vvPath); err != nil {
-				return err
-			}
-		default:
-			if !allowUnknown {
-				return fmt.Errorf("unknown field %q.", runtime1.JoinPath(path, k))
-			}
-		}
-	}
-	return nil
-}
-
-// AtlasValidateJSON function validates a JSON for object UpdateAppEnvironmentConfigRequest.
-func (_ *UpdateAppEnvironmentConfigRequest) AtlasValidateJSON(ctx context.Context, r json.RawMessage, path string) (err error) {
-	if hook, ok := interface{}(&UpdateAppEnvironmentConfigRequest{}).(interface {
-		AtlasJSONValidate(context.Context, json.RawMessage, string) (json.RawMessage, error)
-	}); ok {
-		if r, err = hook.AtlasJSONValidate(ctx, r, path); err != nil {
-			return err
-		}
-	}
-	return validate_Object_UpdateAppEnvironmentConfigRequest(ctx, r, path)
-}
-
-func validate_required_Object_UpdateAppEnvironmentConfigRequest(ctx context.Context, v map[string]json.RawMessage, path string) error {
-	method := runtime1.HTTPMethodFromContext(ctx)
-	_ = method
-	return nil
-}
-
-// validate_Object_UpdateAppEnvironmentConfigResponse function validates a JSON for a given object.
-func validate_Object_UpdateAppEnvironmentConfigResponse(ctx context.Context, r json.RawMessage, path string) (err error) {
-	if hook, ok := interface{}(&UpdateAppEnvironmentConfigResponse{}).(interface {
-		AtlasJSONValidate(context.Context, json.RawMessage, string) (json.RawMessage, error)
-	}); ok {
-		if r, err = hook.AtlasJSONValidate(ctx, r, path); err != nil {
-			return err
-		}
-	}
-
-	var v map[string]json.RawMessage
-	if err = json.Unmarshal(r, &v); err != nil {
-		return fmt.Errorf("invalid value for %q: expected object.", path)
-	}
-
-	if err = validate_required_Object_UpdateAppEnvironmentConfigResponse(ctx, v, path); err != nil {
-		return err
-	}
-
-	allowUnknown := runtime1.AllowUnknownFromContext(ctx)
-
-	for k, _ := range v {
-		switch k {
-		case "result":
-			if v[k] == nil {
-				continue
-			}
-			vv := v[k]
-			vvPath := runtime1.JoinPath(path, k)
-			if err = validate_Object_AppEnvironmentConfig(ctx, vv, vvPath); err != nil {
-				return err
-			}
-		default:
-			if !allowUnknown {
-				return fmt.Errorf("unknown field %q.", runtime1.JoinPath(path, k))
-			}
-		}
-	}
-	return nil
-}
-
-// AtlasValidateJSON function validates a JSON for object UpdateAppEnvironmentConfigResponse.
-func (_ *UpdateAppEnvironmentConfigResponse) AtlasValidateJSON(ctx context.Context, r json.RawMessage, path string) (err error) {
-	if hook, ok := interface{}(&UpdateAppEnvironmentConfigResponse{}).(interface {
-		AtlasJSONValidate(context.Context, json.RawMessage, string) (json.RawMessage, error)
-	}); ok {
-		if r, err = hook.AtlasJSONValidate(ctx, r, path); err != nil {
-			return err
-		}
-	}
-	return validate_Object_UpdateAppEnvironmentConfigResponse(ctx, r, path)
-}
-
-func validate_required_Object_UpdateAppEnvironmentConfigResponse(ctx context.Context, v map[string]json.RawMessage, path string) error {
-	method := runtime1.HTTPMethodFromContext(ctx)
-	_ = method
-	return nil
-}
-
-// validate_Object_DeleteAppEnvironmentConfigRequest function validates a JSON for a given object.
-func validate_Object_DeleteAppEnvironmentConfigRequest(ctx context.Context, r json.RawMessage, path string) (err error) {
-	if hook, ok := interface{}(&DeleteAppEnvironmentConfigRequest{}).(interface {
-		AtlasJSONValidate(context.Context, json.RawMessage, string) (json.RawMessage, error)
-	}); ok {
-		if r, err = hook.AtlasJSONValidate(ctx, r, path); err != nil {
-			return err
-		}
-	}
-
-	var v map[string]json.RawMessage
-	if err = json.Unmarshal(r, &v); err != nil {
-		return fmt.Errorf("invalid value for %q: expected object.", path)
-	}
-
-	if err = validate_required_Object_DeleteAppEnvironmentConfigRequest(ctx, v, path); err != nil {
-		return err
-	}
-
-	allowUnknown := runtime1.AllowUnknownFromContext(ctx)
-
-	for k, _ := range v {
-		switch k {
-		case "id":
-			if v[k] == nil {
-				continue
-			}
-			vv := v[k]
-			vvPath := runtime1.JoinPath(path, k)
-			validator, ok := interface{}(&resource.Identifier{}).(interface {
-				AtlasValidateJSON(context.Context, json.RawMessage, string) error
-			})
-			if !ok {
-				continue
-			}
-			if err = validator.AtlasValidateJSON(ctx, vv, vvPath); err != nil {
-				return err
-			}
-		default:
-			if !allowUnknown {
-				return fmt.Errorf("unknown field %q.", runtime1.JoinPath(path, k))
-			}
-		}
-	}
-	return nil
-}
-
-// AtlasValidateJSON function validates a JSON for object DeleteAppEnvironmentConfigRequest.
-func (_ *DeleteAppEnvironmentConfigRequest) AtlasValidateJSON(ctx context.Context, r json.RawMessage, path string) (err error) {
-	if hook, ok := interface{}(&DeleteAppEnvironmentConfigRequest{}).(interface {
-		AtlasJSONValidate(context.Context, json.RawMessage, string) (json.RawMessage, error)
-	}); ok {
-		if r, err = hook.AtlasJSONValidate(ctx, r, path); err != nil {
-			return err
-		}
-	}
-	return validate_Object_DeleteAppEnvironmentConfigRequest(ctx, r, path)
-}
-
-func validate_required_Object_DeleteAppEnvironmentConfigRequest(ctx context.Context, v map[string]json.RawMessage, path string) error {
-	method := runtime1.HTTPMethodFromContext(ctx)
-	_ = method
-	return nil
-}
-
-// validate_Object_DeleteAppEnvironmentConfigResponse function validates a JSON for a given object.
-func validate_Object_DeleteAppEnvironmentConfigResponse(ctx context.Context, r json.RawMessage, path string) (err error) {
-	if hook, ok := interface{}(&DeleteAppEnvironmentConfigResponse{}).(interface {
-		AtlasJSONValidate(context.Context, json.RawMessage, string) (json.RawMessage, error)
-	}); ok {
-		if r, err = hook.AtlasJSONValidate(ctx, r, path); err != nil {
-			return err
-		}
-	}
-
-	var v map[string]json.RawMessage
-	if err = json.Unmarshal(r, &v); err != nil {
-		return fmt.Errorf("invalid value for %q: expected object.", path)
-	}
-
-	if err = validate_required_Object_DeleteAppEnvironmentConfigResponse(ctx, v, path); err != nil {
-		return err
-	}
-
-	allowUnknown := runtime1.AllowUnknownFromContext(ctx)
-
-	for k, _ := range v {
-		switch k {
-		default:
-			if !allowUnknown {
-				return fmt.Errorf("unknown field %q.", runtime1.JoinPath(path, k))
-			}
-		}
-	}
-	return nil
-}
-
-// AtlasValidateJSON function validates a JSON for object DeleteAppEnvironmentConfigResponse.
-func (_ *DeleteAppEnvironmentConfigResponse) AtlasValidateJSON(ctx context.Context, r json.RawMessage, path string) (err error) {
-	if hook, ok := interface{}(&DeleteAppEnvironmentConfigResponse{}).(interface {
-		AtlasJSONValidate(context.Context, json.RawMessage, string) (json.RawMessage, error)
-	}); ok {
-		if r, err = hook.AtlasJSONValidate(ctx, r, path); err != nil {
-			return err
-		}
-	}
-	return validate_Object_DeleteAppEnvironmentConfigResponse(ctx, r, path)
-}
-
-func validate_required_Object_DeleteAppEnvironmentConfigResponse(ctx context.Context, v map[string]json.RawMessage, path string) error {
-	method := runtime1.HTTPMethodFromContext(ctx)
-	_ = method
-	return nil
-}
-
-// validate_Object_ListAppEnvironmentConfigRequest function validates a JSON for a given object.
-func validate_Object_ListAppEnvironmentConfigRequest(ctx context.Context, r json.RawMessage, path string) (err error) {
-	if hook, ok := interface{}(&ListAppEnvironmentConfigRequest{}).(interface {
-		AtlasJSONValidate(context.Context, json.RawMessage, string) (json.RawMessage, error)
-	}); ok {
-		if r, err = hook.AtlasJSONValidate(ctx, r, path); err != nil {
-			return err
-		}
-	}
-
-	var v map[string]json.RawMessage
-	if err = json.Unmarshal(r, &v); err != nil {
-		return fmt.Errorf("invalid value for %q: expected object.", path)
-	}
-
-	if err = validate_required_Object_ListAppEnvironmentConfigRequest(ctx, v, path); err != nil {
-		return err
-	}
-
-	allowUnknown := runtime1.AllowUnknownFromContext(ctx)
-
-	for k, _ := range v {
-		switch k {
-		case "filter":
-			if v[k] == nil {
-				continue
-			}
-			vv := v[k]
-			vvPath := runtime1.JoinPath(path, k)
-			validator, ok := interface{}(&query.Filtering{}).(interface {
-				AtlasValidateJSON(context.Context, json.RawMessage, string) error
-			})
-			if !ok {
-				continue
-			}
-			if err = validator.AtlasValidateJSON(ctx, vv, vvPath); err != nil {
-				return err
-			}
-		case "order_by":
-			if v[k] == nil {
-				continue
-			}
-			vv := v[k]
-			vvPath := runtime1.JoinPath(path, k)
-			validator, ok := interface{}(&query.Sorting{}).(interface {
-				AtlasValidateJSON(context.Context, json.RawMessage, string) error
-			})
-			if !ok {
-				continue
-			}
-			if err = validator.AtlasValidateJSON(ctx, vv, vvPath); err != nil {
-				return err
-			}
-		case "fields":
-			if v[k] == nil {
-				continue
-			}
-			vv := v[k]
-			vvPath := runtime1.JoinPath(path, k)
-			validator, ok := interface{}(&query.FieldSelection{}).(interface {
-				AtlasValidateJSON(context.Context, json.RawMessage, string) error
-			})
-			if !ok {
-				continue
-			}
-			if err = validator.AtlasValidateJSON(ctx, vv, vvPath); err != nil {
-				return err
-			}
-		case "paging":
-			if v[k] == nil {
-				continue
-			}
-			vv := v[k]
-			vvPath := runtime1.JoinPath(path, k)
-			validator, ok := interface{}(&query.Pagination{}).(interface {
-				AtlasValidateJSON(context.Context, json.RawMessage, string) error
-			})
-			if !ok {
-				continue
-			}
-			if err = validator.AtlasValidateJSON(ctx, vv, vvPath); err != nil {
-				return err
-			}
-		default:
-			if !allowUnknown {
-				return fmt.Errorf("unknown field %q.", runtime1.JoinPath(path, k))
-			}
-		}
-	}
-	return nil
-}
-
-// AtlasValidateJSON function validates a JSON for object ListAppEnvironmentConfigRequest.
-func (_ *ListAppEnvironmentConfigRequest) AtlasValidateJSON(ctx context.Context, r json.RawMessage, path string) (err error) {
-	if hook, ok := interface{}(&ListAppEnvironmentConfigRequest{}).(interface {
-		AtlasJSONValidate(context.Context, json.RawMessage, string) (json.RawMessage, error)
-	}); ok {
-		if r, err = hook.AtlasJSONValidate(ctx, r, path); err != nil {
-			return err
-		}
-	}
-	return validate_Object_ListAppEnvironmentConfigRequest(ctx, r, path)
-}
-
-func validate_required_Object_ListAppEnvironmentConfigRequest(ctx context.Context, v map[string]json.RawMessage, path string) error {
-	method := runtime1.HTTPMethodFromContext(ctx)
-	_ = method
-	return nil
-}
-
-// validate_Object_ListAppEnvironmentConfigsResponse function validates a JSON for a given object.
-func validate_Object_ListAppEnvironmentConfigsResponse(ctx context.Context, r json.RawMessage, path string) (err error) {
-	if hook, ok := interface{}(&ListAppEnvironmentConfigsResponse{}).(interface {
-		AtlasJSONValidate(context.Context, json.RawMessage, string) (json.RawMessage, error)
-	}); ok {
-		if r, err = hook.AtlasJSONValidate(ctx, r, path); err != nil {
-			return err
-		}
-	}
-
-	var v map[string]json.RawMessage
-	if err = json.Unmarshal(r, &v); err != nil {
-		return fmt.Errorf("invalid value for %q: expected object.", path)
-	}
-
-	if err = validate_required_Object_ListAppEnvironmentConfigsResponse(ctx, v, path); err != nil {
-		return err
-	}
-
-	allowUnknown := runtime1.AllowUnknownFromContext(ctx)
-
-	for k, _ := range v {
-		switch k {
-		case "results":
-			if v[k] == nil {
-				continue
-			}
-			var vArr []json.RawMessage
-			vArrPath := runtime1.JoinPath(path, k)
-			if err = json.Unmarshal(v[k], &vArr); err != nil {
-				return fmt.Errorf("invalid value for %q: expected array.", vArrPath)
-			}
-			for i, vv := range vArr {
-				vvPath := fmt.Sprintf("%s.[%d]", vArrPath, i)
-				if err = validate_Object_AppEnvironmentConfig(ctx, vv, vvPath); err != nil {
-					return err
-				}
-			}
-		case "page":
-			if v[k] == nil {
-				continue
-			}
-			vv := v[k]
-			vvPath := runtime1.JoinPath(path, k)
-			validator, ok := interface{}(&query.PageInfo{}).(interface {
-				AtlasValidateJSON(context.Context, json.RawMessage, string) error
-			})
-			if !ok {
-				continue
-			}
-			if err = validator.AtlasValidateJSON(ctx, vv, vvPath); err != nil {
-				return err
-			}
-		default:
-			if !allowUnknown {
-				return fmt.Errorf("unknown field %q.", runtime1.JoinPath(path, k))
-			}
-		}
-	}
-	return nil
-}
-
-// AtlasValidateJSON function validates a JSON for object ListAppEnvironmentConfigsResponse.
-func (_ *ListAppEnvironmentConfigsResponse) AtlasValidateJSON(ctx context.Context, r json.RawMessage, path string) (err error) {
-	if hook, ok := interface{}(&ListAppEnvironmentConfigsResponse{}).(interface {
-		AtlasJSONValidate(context.Context, json.RawMessage, string) (json.RawMessage, error)
-	}); ok {
-		if r, err = hook.AtlasJSONValidate(ctx, r, path); err != nil {
-			return err
-		}
-	}
-	return validate_Object_ListAppEnvironmentConfigsResponse(ctx, r, path)
-}
-
-func validate_required_Object_ListAppEnvironmentConfigsResponse(ctx context.Context, v map[string]json.RawMessage, path string) error {
-	method := runtime1.HTTPMethodFromContext(ctx)
-	_ = method
-	return nil
-}
-
-// validate_Object_ChartVersion function validates a JSON for a given object.
-func validate_Object_ChartVersion(ctx context.Context, r json.RawMessage, path string) (err error) {
-	if hook, ok := interface{}(&ChartVersion{}).(interface {
-		AtlasJSONValidate(context.Context, json.RawMessage, string) (json.RawMessage, error)
-	}); ok {
-		if r, err = hook.AtlasJSONValidate(ctx, r, path); err != nil {
-			return err
-		}
-	}
-
-	var v map[string]json.RawMessage
-	if err = json.Unmarshal(r, &v); err != nil {
-		return fmt.Errorf("invalid value for %q: expected object.", path)
-	}
-
-	if err = validate_required_Object_ChartVersion(ctx, v, path); err != nil {
+	if err = validate_required_Object_AppVersion(ctx, v, path); err != nil {
 		return err
 	}
 
@@ -6524,6 +5436,21 @@ func validate_Object_ChartVersion(ctx context.Context, r json.RawMessage, path s
 		case "description":
 		case "repo":
 		case "version":
+		case "application_id":
+			if v[k] == nil {
+				continue
+			}
+			vv := v[k]
+			vvPath := runtime1.JoinPath(path, k)
+			validator, ok := interface{}(&resource.Identifier{}).(interface {
+				AtlasValidateJSON(context.Context, json.RawMessage, string) error
+			})
+			if !ok {
+				continue
+			}
+			if err = validator.AtlasValidateJSON(ctx, vv, vvPath); err != nil {
+				return err
+			}
 		default:
 			if !allowUnknown {
 				return fmt.Errorf("unknown field %q.", runtime1.JoinPath(path, k))
@@ -6533,27 +5460,27 @@ func validate_Object_ChartVersion(ctx context.Context, r json.RawMessage, path s
 	return nil
 }
 
-// AtlasValidateJSON function validates a JSON for object ChartVersion.
-func (_ *ChartVersion) AtlasValidateJSON(ctx context.Context, r json.RawMessage, path string) (err error) {
-	if hook, ok := interface{}(&ChartVersion{}).(interface {
+// AtlasValidateJSON function validates a JSON for object AppVersion.
+func (_ *AppVersion) AtlasValidateJSON(ctx context.Context, r json.RawMessage, path string) (err error) {
+	if hook, ok := interface{}(&AppVersion{}).(interface {
 		AtlasJSONValidate(context.Context, json.RawMessage, string) (json.RawMessage, error)
 	}); ok {
 		if r, err = hook.AtlasJSONValidate(ctx, r, path); err != nil {
 			return err
 		}
 	}
-	return validate_Object_ChartVersion(ctx, r, path)
+	return validate_Object_AppVersion(ctx, r, path)
 }
 
-func validate_required_Object_ChartVersion(ctx context.Context, v map[string]json.RawMessage, path string) error {
+func validate_required_Object_AppVersion(ctx context.Context, v map[string]json.RawMessage, path string) error {
 	method := runtime1.HTTPMethodFromContext(ctx)
 	_ = method
 	return nil
 }
 
-// validate_Object_CreateChartVersionRequest function validates a JSON for a given object.
-func validate_Object_CreateChartVersionRequest(ctx context.Context, r json.RawMessage, path string) (err error) {
-	if hook, ok := interface{}(&CreateChartVersionRequest{}).(interface {
+// validate_Object_CreateAppVersionRequest function validates a JSON for a given object.
+func validate_Object_CreateAppVersionRequest(ctx context.Context, r json.RawMessage, path string) (err error) {
+	if hook, ok := interface{}(&CreateAppVersionRequest{}).(interface {
 		AtlasJSONValidate(context.Context, json.RawMessage, string) (json.RawMessage, error)
 	}); ok {
 		if r, err = hook.AtlasJSONValidate(ctx, r, path); err != nil {
@@ -6566,7 +5493,7 @@ func validate_Object_CreateChartVersionRequest(ctx context.Context, r json.RawMe
 		return fmt.Errorf("invalid value for %q: expected object.", path)
 	}
 
-	if err = validate_required_Object_CreateChartVersionRequest(ctx, v, path); err != nil {
+	if err = validate_required_Object_CreateAppVersionRequest(ctx, v, path); err != nil {
 		return err
 	}
 
@@ -6580,7 +5507,7 @@ func validate_Object_CreateChartVersionRequest(ctx context.Context, r json.RawMe
 			}
 			vv := v[k]
 			vvPath := runtime1.JoinPath(path, k)
-			if err = validate_Object_ChartVersion(ctx, vv, vvPath); err != nil {
+			if err = validate_Object_AppVersion(ctx, vv, vvPath); err != nil {
 				return err
 			}
 		default:
@@ -6592,27 +5519,27 @@ func validate_Object_CreateChartVersionRequest(ctx context.Context, r json.RawMe
 	return nil
 }
 
-// AtlasValidateJSON function validates a JSON for object CreateChartVersionRequest.
-func (_ *CreateChartVersionRequest) AtlasValidateJSON(ctx context.Context, r json.RawMessage, path string) (err error) {
-	if hook, ok := interface{}(&CreateChartVersionRequest{}).(interface {
+// AtlasValidateJSON function validates a JSON for object CreateAppVersionRequest.
+func (_ *CreateAppVersionRequest) AtlasValidateJSON(ctx context.Context, r json.RawMessage, path string) (err error) {
+	if hook, ok := interface{}(&CreateAppVersionRequest{}).(interface {
 		AtlasJSONValidate(context.Context, json.RawMessage, string) (json.RawMessage, error)
 	}); ok {
 		if r, err = hook.AtlasJSONValidate(ctx, r, path); err != nil {
 			return err
 		}
 	}
-	return validate_Object_CreateChartVersionRequest(ctx, r, path)
+	return validate_Object_CreateAppVersionRequest(ctx, r, path)
 }
 
-func validate_required_Object_CreateChartVersionRequest(ctx context.Context, v map[string]json.RawMessage, path string) error {
+func validate_required_Object_CreateAppVersionRequest(ctx context.Context, v map[string]json.RawMessage, path string) error {
 	method := runtime1.HTTPMethodFromContext(ctx)
 	_ = method
 	return nil
 }
 
-// validate_Object_CreateChartVersionResponse function validates a JSON for a given object.
-func validate_Object_CreateChartVersionResponse(ctx context.Context, r json.RawMessage, path string) (err error) {
-	if hook, ok := interface{}(&CreateChartVersionResponse{}).(interface {
+// validate_Object_CreateAppVersionResponse function validates a JSON for a given object.
+func validate_Object_CreateAppVersionResponse(ctx context.Context, r json.RawMessage, path string) (err error) {
+	if hook, ok := interface{}(&CreateAppVersionResponse{}).(interface {
 		AtlasJSONValidate(context.Context, json.RawMessage, string) (json.RawMessage, error)
 	}); ok {
 		if r, err = hook.AtlasJSONValidate(ctx, r, path); err != nil {
@@ -6625,7 +5552,7 @@ func validate_Object_CreateChartVersionResponse(ctx context.Context, r json.RawM
 		return fmt.Errorf("invalid value for %q: expected object.", path)
 	}
 
-	if err = validate_required_Object_CreateChartVersionResponse(ctx, v, path); err != nil {
+	if err = validate_required_Object_CreateAppVersionResponse(ctx, v, path); err != nil {
 		return err
 	}
 
@@ -6639,7 +5566,7 @@ func validate_Object_CreateChartVersionResponse(ctx context.Context, r json.RawM
 			}
 			vv := v[k]
 			vvPath := runtime1.JoinPath(path, k)
-			if err = validate_Object_ChartVersion(ctx, vv, vvPath); err != nil {
+			if err = validate_Object_AppVersion(ctx, vv, vvPath); err != nil {
 				return err
 			}
 		default:
@@ -6651,27 +5578,27 @@ func validate_Object_CreateChartVersionResponse(ctx context.Context, r json.RawM
 	return nil
 }
 
-// AtlasValidateJSON function validates a JSON for object CreateChartVersionResponse.
-func (_ *CreateChartVersionResponse) AtlasValidateJSON(ctx context.Context, r json.RawMessage, path string) (err error) {
-	if hook, ok := interface{}(&CreateChartVersionResponse{}).(interface {
+// AtlasValidateJSON function validates a JSON for object CreateAppVersionResponse.
+func (_ *CreateAppVersionResponse) AtlasValidateJSON(ctx context.Context, r json.RawMessage, path string) (err error) {
+	if hook, ok := interface{}(&CreateAppVersionResponse{}).(interface {
 		AtlasJSONValidate(context.Context, json.RawMessage, string) (json.RawMessage, error)
 	}); ok {
 		if r, err = hook.AtlasJSONValidate(ctx, r, path); err != nil {
 			return err
 		}
 	}
-	return validate_Object_CreateChartVersionResponse(ctx, r, path)
+	return validate_Object_CreateAppVersionResponse(ctx, r, path)
 }
 
-func validate_required_Object_CreateChartVersionResponse(ctx context.Context, v map[string]json.RawMessage, path string) error {
+func validate_required_Object_CreateAppVersionResponse(ctx context.Context, v map[string]json.RawMessage, path string) error {
 	method := runtime1.HTTPMethodFromContext(ctx)
 	_ = method
 	return nil
 }
 
-// validate_Object_ReadChartVersionRequest function validates a JSON for a given object.
-func validate_Object_ReadChartVersionRequest(ctx context.Context, r json.RawMessage, path string) (err error) {
-	if hook, ok := interface{}(&ReadChartVersionRequest{}).(interface {
+// validate_Object_ReadAppVersionRequest function validates a JSON for a given object.
+func validate_Object_ReadAppVersionRequest(ctx context.Context, r json.RawMessage, path string) (err error) {
+	if hook, ok := interface{}(&ReadAppVersionRequest{}).(interface {
 		AtlasJSONValidate(context.Context, json.RawMessage, string) (json.RawMessage, error)
 	}); ok {
 		if r, err = hook.AtlasJSONValidate(ctx, r, path); err != nil {
@@ -6684,7 +5611,7 @@ func validate_Object_ReadChartVersionRequest(ctx context.Context, r json.RawMess
 		return fmt.Errorf("invalid value for %q: expected object.", path)
 	}
 
-	if err = validate_required_Object_ReadChartVersionRequest(ctx, v, path); err != nil {
+	if err = validate_required_Object_ReadAppVersionRequest(ctx, v, path); err != nil {
 		return err
 	}
 
@@ -6731,27 +5658,27 @@ func validate_Object_ReadChartVersionRequest(ctx context.Context, r json.RawMess
 	return nil
 }
 
-// AtlasValidateJSON function validates a JSON for object ReadChartVersionRequest.
-func (_ *ReadChartVersionRequest) AtlasValidateJSON(ctx context.Context, r json.RawMessage, path string) (err error) {
-	if hook, ok := interface{}(&ReadChartVersionRequest{}).(interface {
+// AtlasValidateJSON function validates a JSON for object ReadAppVersionRequest.
+func (_ *ReadAppVersionRequest) AtlasValidateJSON(ctx context.Context, r json.RawMessage, path string) (err error) {
+	if hook, ok := interface{}(&ReadAppVersionRequest{}).(interface {
 		AtlasJSONValidate(context.Context, json.RawMessage, string) (json.RawMessage, error)
 	}); ok {
 		if r, err = hook.AtlasJSONValidate(ctx, r, path); err != nil {
 			return err
 		}
 	}
-	return validate_Object_ReadChartVersionRequest(ctx, r, path)
+	return validate_Object_ReadAppVersionRequest(ctx, r, path)
 }
 
-func validate_required_Object_ReadChartVersionRequest(ctx context.Context, v map[string]json.RawMessage, path string) error {
+func validate_required_Object_ReadAppVersionRequest(ctx context.Context, v map[string]json.RawMessage, path string) error {
 	method := runtime1.HTTPMethodFromContext(ctx)
 	_ = method
 	return nil
 }
 
-// validate_Object_ReadChartVersionResponse function validates a JSON for a given object.
-func validate_Object_ReadChartVersionResponse(ctx context.Context, r json.RawMessage, path string) (err error) {
-	if hook, ok := interface{}(&ReadChartVersionResponse{}).(interface {
+// validate_Object_ReadAppVersionResponse function validates a JSON for a given object.
+func validate_Object_ReadAppVersionResponse(ctx context.Context, r json.RawMessage, path string) (err error) {
+	if hook, ok := interface{}(&ReadAppVersionResponse{}).(interface {
 		AtlasJSONValidate(context.Context, json.RawMessage, string) (json.RawMessage, error)
 	}); ok {
 		if r, err = hook.AtlasJSONValidate(ctx, r, path); err != nil {
@@ -6764,7 +5691,7 @@ func validate_Object_ReadChartVersionResponse(ctx context.Context, r json.RawMes
 		return fmt.Errorf("invalid value for %q: expected object.", path)
 	}
 
-	if err = validate_required_Object_ReadChartVersionResponse(ctx, v, path); err != nil {
+	if err = validate_required_Object_ReadAppVersionResponse(ctx, v, path); err != nil {
 		return err
 	}
 
@@ -6778,7 +5705,7 @@ func validate_Object_ReadChartVersionResponse(ctx context.Context, r json.RawMes
 			}
 			vv := v[k]
 			vvPath := runtime1.JoinPath(path, k)
-			if err = validate_Object_ChartVersion(ctx, vv, vvPath); err != nil {
+			if err = validate_Object_AppVersion(ctx, vv, vvPath); err != nil {
 				return err
 			}
 		default:
@@ -6790,27 +5717,27 @@ func validate_Object_ReadChartVersionResponse(ctx context.Context, r json.RawMes
 	return nil
 }
 
-// AtlasValidateJSON function validates a JSON for object ReadChartVersionResponse.
-func (_ *ReadChartVersionResponse) AtlasValidateJSON(ctx context.Context, r json.RawMessage, path string) (err error) {
-	if hook, ok := interface{}(&ReadChartVersionResponse{}).(interface {
+// AtlasValidateJSON function validates a JSON for object ReadAppVersionResponse.
+func (_ *ReadAppVersionResponse) AtlasValidateJSON(ctx context.Context, r json.RawMessage, path string) (err error) {
+	if hook, ok := interface{}(&ReadAppVersionResponse{}).(interface {
 		AtlasJSONValidate(context.Context, json.RawMessage, string) (json.RawMessage, error)
 	}); ok {
 		if r, err = hook.AtlasJSONValidate(ctx, r, path); err != nil {
 			return err
 		}
 	}
-	return validate_Object_ReadChartVersionResponse(ctx, r, path)
+	return validate_Object_ReadAppVersionResponse(ctx, r, path)
 }
 
-func validate_required_Object_ReadChartVersionResponse(ctx context.Context, v map[string]json.RawMessage, path string) error {
+func validate_required_Object_ReadAppVersionResponse(ctx context.Context, v map[string]json.RawMessage, path string) error {
 	method := runtime1.HTTPMethodFromContext(ctx)
 	_ = method
 	return nil
 }
 
-// validate_Object_UpdateChartVersionRequest function validates a JSON for a given object.
-func validate_Object_UpdateChartVersionRequest(ctx context.Context, r json.RawMessage, path string) (err error) {
-	if hook, ok := interface{}(&UpdateChartVersionRequest{}).(interface {
+// validate_Object_UpdateAppVersionRequest function validates a JSON for a given object.
+func validate_Object_UpdateAppVersionRequest(ctx context.Context, r json.RawMessage, path string) (err error) {
+	if hook, ok := interface{}(&UpdateAppVersionRequest{}).(interface {
 		AtlasJSONValidate(context.Context, json.RawMessage, string) (json.RawMessage, error)
 	}); ok {
 		if r, err = hook.AtlasJSONValidate(ctx, r, path); err != nil {
@@ -6823,7 +5750,7 @@ func validate_Object_UpdateChartVersionRequest(ctx context.Context, r json.RawMe
 		return fmt.Errorf("invalid value for %q: expected object.", path)
 	}
 
-	if err = validate_required_Object_UpdateChartVersionRequest(ctx, v, path); err != nil {
+	if err = validate_required_Object_UpdateAppVersionRequest(ctx, v, path); err != nil {
 		return err
 	}
 
@@ -6837,7 +5764,7 @@ func validate_Object_UpdateChartVersionRequest(ctx context.Context, r json.RawMe
 			}
 			vv := v[k]
 			vvPath := runtime1.JoinPath(path, k)
-			if err = validate_Object_ChartVersion(ctx, vv, vvPath); err != nil {
+			if err = validate_Object_AppVersion(ctx, vv, vvPath); err != nil {
 				return err
 			}
 		case "fields":
@@ -6864,27 +5791,27 @@ func validate_Object_UpdateChartVersionRequest(ctx context.Context, r json.RawMe
 	return nil
 }
 
-// AtlasValidateJSON function validates a JSON for object UpdateChartVersionRequest.
-func (_ *UpdateChartVersionRequest) AtlasValidateJSON(ctx context.Context, r json.RawMessage, path string) (err error) {
-	if hook, ok := interface{}(&UpdateChartVersionRequest{}).(interface {
+// AtlasValidateJSON function validates a JSON for object UpdateAppVersionRequest.
+func (_ *UpdateAppVersionRequest) AtlasValidateJSON(ctx context.Context, r json.RawMessage, path string) (err error) {
+	if hook, ok := interface{}(&UpdateAppVersionRequest{}).(interface {
 		AtlasJSONValidate(context.Context, json.RawMessage, string) (json.RawMessage, error)
 	}); ok {
 		if r, err = hook.AtlasJSONValidate(ctx, r, path); err != nil {
 			return err
 		}
 	}
-	return validate_Object_UpdateChartVersionRequest(ctx, r, path)
+	return validate_Object_UpdateAppVersionRequest(ctx, r, path)
 }
 
-func validate_required_Object_UpdateChartVersionRequest(ctx context.Context, v map[string]json.RawMessage, path string) error {
+func validate_required_Object_UpdateAppVersionRequest(ctx context.Context, v map[string]json.RawMessage, path string) error {
 	method := runtime1.HTTPMethodFromContext(ctx)
 	_ = method
 	return nil
 }
 
-// validate_Object_UpdateChartVersionResponse function validates a JSON for a given object.
-func validate_Object_UpdateChartVersionResponse(ctx context.Context, r json.RawMessage, path string) (err error) {
-	if hook, ok := interface{}(&UpdateChartVersionResponse{}).(interface {
+// validate_Object_UpdateAppVersionResponse function validates a JSON for a given object.
+func validate_Object_UpdateAppVersionResponse(ctx context.Context, r json.RawMessage, path string) (err error) {
+	if hook, ok := interface{}(&UpdateAppVersionResponse{}).(interface {
 		AtlasJSONValidate(context.Context, json.RawMessage, string) (json.RawMessage, error)
 	}); ok {
 		if r, err = hook.AtlasJSONValidate(ctx, r, path); err != nil {
@@ -6897,7 +5824,7 @@ func validate_Object_UpdateChartVersionResponse(ctx context.Context, r json.RawM
 		return fmt.Errorf("invalid value for %q: expected object.", path)
 	}
 
-	if err = validate_required_Object_UpdateChartVersionResponse(ctx, v, path); err != nil {
+	if err = validate_required_Object_UpdateAppVersionResponse(ctx, v, path); err != nil {
 		return err
 	}
 
@@ -6911,7 +5838,7 @@ func validate_Object_UpdateChartVersionResponse(ctx context.Context, r json.RawM
 			}
 			vv := v[k]
 			vvPath := runtime1.JoinPath(path, k)
-			if err = validate_Object_ChartVersion(ctx, vv, vvPath); err != nil {
+			if err = validate_Object_AppVersion(ctx, vv, vvPath); err != nil {
 				return err
 			}
 		default:
@@ -6923,27 +5850,27 @@ func validate_Object_UpdateChartVersionResponse(ctx context.Context, r json.RawM
 	return nil
 }
 
-// AtlasValidateJSON function validates a JSON for object UpdateChartVersionResponse.
-func (_ *UpdateChartVersionResponse) AtlasValidateJSON(ctx context.Context, r json.RawMessage, path string) (err error) {
-	if hook, ok := interface{}(&UpdateChartVersionResponse{}).(interface {
+// AtlasValidateJSON function validates a JSON for object UpdateAppVersionResponse.
+func (_ *UpdateAppVersionResponse) AtlasValidateJSON(ctx context.Context, r json.RawMessage, path string) (err error) {
+	if hook, ok := interface{}(&UpdateAppVersionResponse{}).(interface {
 		AtlasJSONValidate(context.Context, json.RawMessage, string) (json.RawMessage, error)
 	}); ok {
 		if r, err = hook.AtlasJSONValidate(ctx, r, path); err != nil {
 			return err
 		}
 	}
-	return validate_Object_UpdateChartVersionResponse(ctx, r, path)
+	return validate_Object_UpdateAppVersionResponse(ctx, r, path)
 }
 
-func validate_required_Object_UpdateChartVersionResponse(ctx context.Context, v map[string]json.RawMessage, path string) error {
+func validate_required_Object_UpdateAppVersionResponse(ctx context.Context, v map[string]json.RawMessage, path string) error {
 	method := runtime1.HTTPMethodFromContext(ctx)
 	_ = method
 	return nil
 }
 
-// validate_Object_DeleteChartVersionRequest function validates a JSON for a given object.
-func validate_Object_DeleteChartVersionRequest(ctx context.Context, r json.RawMessage, path string) (err error) {
-	if hook, ok := interface{}(&DeleteChartVersionRequest{}).(interface {
+// validate_Object_DeleteAppVersionRequest function validates a JSON for a given object.
+func validate_Object_DeleteAppVersionRequest(ctx context.Context, r json.RawMessage, path string) (err error) {
+	if hook, ok := interface{}(&DeleteAppVersionRequest{}).(interface {
 		AtlasJSONValidate(context.Context, json.RawMessage, string) (json.RawMessage, error)
 	}); ok {
 		if r, err = hook.AtlasJSONValidate(ctx, r, path); err != nil {
@@ -6956,7 +5883,7 @@ func validate_Object_DeleteChartVersionRequest(ctx context.Context, r json.RawMe
 		return fmt.Errorf("invalid value for %q: expected object.", path)
 	}
 
-	if err = validate_required_Object_DeleteChartVersionRequest(ctx, v, path); err != nil {
+	if err = validate_required_Object_DeleteAppVersionRequest(ctx, v, path); err != nil {
 		return err
 	}
 
@@ -6988,27 +5915,27 @@ func validate_Object_DeleteChartVersionRequest(ctx context.Context, r json.RawMe
 	return nil
 }
 
-// AtlasValidateJSON function validates a JSON for object DeleteChartVersionRequest.
-func (_ *DeleteChartVersionRequest) AtlasValidateJSON(ctx context.Context, r json.RawMessage, path string) (err error) {
-	if hook, ok := interface{}(&DeleteChartVersionRequest{}).(interface {
+// AtlasValidateJSON function validates a JSON for object DeleteAppVersionRequest.
+func (_ *DeleteAppVersionRequest) AtlasValidateJSON(ctx context.Context, r json.RawMessage, path string) (err error) {
+	if hook, ok := interface{}(&DeleteAppVersionRequest{}).(interface {
 		AtlasJSONValidate(context.Context, json.RawMessage, string) (json.RawMessage, error)
 	}); ok {
 		if r, err = hook.AtlasJSONValidate(ctx, r, path); err != nil {
 			return err
 		}
 	}
-	return validate_Object_DeleteChartVersionRequest(ctx, r, path)
+	return validate_Object_DeleteAppVersionRequest(ctx, r, path)
 }
 
-func validate_required_Object_DeleteChartVersionRequest(ctx context.Context, v map[string]json.RawMessage, path string) error {
+func validate_required_Object_DeleteAppVersionRequest(ctx context.Context, v map[string]json.RawMessage, path string) error {
 	method := runtime1.HTTPMethodFromContext(ctx)
 	_ = method
 	return nil
 }
 
-// validate_Object_DeleteChartVersionResponse function validates a JSON for a given object.
-func validate_Object_DeleteChartVersionResponse(ctx context.Context, r json.RawMessage, path string) (err error) {
-	if hook, ok := interface{}(&DeleteChartVersionResponse{}).(interface {
+// validate_Object_DeleteAppVersionResponse function validates a JSON for a given object.
+func validate_Object_DeleteAppVersionResponse(ctx context.Context, r json.RawMessage, path string) (err error) {
+	if hook, ok := interface{}(&DeleteAppVersionResponse{}).(interface {
 		AtlasJSONValidate(context.Context, json.RawMessage, string) (json.RawMessage, error)
 	}); ok {
 		if r, err = hook.AtlasJSONValidate(ctx, r, path); err != nil {
@@ -7021,7 +5948,7 @@ func validate_Object_DeleteChartVersionResponse(ctx context.Context, r json.RawM
 		return fmt.Errorf("invalid value for %q: expected object.", path)
 	}
 
-	if err = validate_required_Object_DeleteChartVersionResponse(ctx, v, path); err != nil {
+	if err = validate_required_Object_DeleteAppVersionResponse(ctx, v, path); err != nil {
 		return err
 	}
 
@@ -7038,27 +5965,27 @@ func validate_Object_DeleteChartVersionResponse(ctx context.Context, r json.RawM
 	return nil
 }
 
-// AtlasValidateJSON function validates a JSON for object DeleteChartVersionResponse.
-func (_ *DeleteChartVersionResponse) AtlasValidateJSON(ctx context.Context, r json.RawMessage, path string) (err error) {
-	if hook, ok := interface{}(&DeleteChartVersionResponse{}).(interface {
+// AtlasValidateJSON function validates a JSON for object DeleteAppVersionResponse.
+func (_ *DeleteAppVersionResponse) AtlasValidateJSON(ctx context.Context, r json.RawMessage, path string) (err error) {
+	if hook, ok := interface{}(&DeleteAppVersionResponse{}).(interface {
 		AtlasJSONValidate(context.Context, json.RawMessage, string) (json.RawMessage, error)
 	}); ok {
 		if r, err = hook.AtlasJSONValidate(ctx, r, path); err != nil {
 			return err
 		}
 	}
-	return validate_Object_DeleteChartVersionResponse(ctx, r, path)
+	return validate_Object_DeleteAppVersionResponse(ctx, r, path)
 }
 
-func validate_required_Object_DeleteChartVersionResponse(ctx context.Context, v map[string]json.RawMessage, path string) error {
+func validate_required_Object_DeleteAppVersionResponse(ctx context.Context, v map[string]json.RawMessage, path string) error {
 	method := runtime1.HTTPMethodFromContext(ctx)
 	_ = method
 	return nil
 }
 
-// validate_Object_ListChartVersionRequest function validates a JSON for a given object.
-func validate_Object_ListChartVersionRequest(ctx context.Context, r json.RawMessage, path string) (err error) {
-	if hook, ok := interface{}(&ListChartVersionRequest{}).(interface {
+// validate_Object_ListAppVersionRequest function validates a JSON for a given object.
+func validate_Object_ListAppVersionRequest(ctx context.Context, r json.RawMessage, path string) (err error) {
+	if hook, ok := interface{}(&ListAppVersionRequest{}).(interface {
 		AtlasJSONValidate(context.Context, json.RawMessage, string) (json.RawMessage, error)
 	}); ok {
 		if r, err = hook.AtlasJSONValidate(ctx, r, path); err != nil {
@@ -7071,7 +5998,7 @@ func validate_Object_ListChartVersionRequest(ctx context.Context, r json.RawMess
 		return fmt.Errorf("invalid value for %q: expected object.", path)
 	}
 
-	if err = validate_required_Object_ListChartVersionRequest(ctx, v, path); err != nil {
+	if err = validate_required_Object_ListAppVersionRequest(ctx, v, path); err != nil {
 		return err
 	}
 
@@ -7148,27 +6075,27 @@ func validate_Object_ListChartVersionRequest(ctx context.Context, r json.RawMess
 	return nil
 }
 
-// AtlasValidateJSON function validates a JSON for object ListChartVersionRequest.
-func (_ *ListChartVersionRequest) AtlasValidateJSON(ctx context.Context, r json.RawMessage, path string) (err error) {
-	if hook, ok := interface{}(&ListChartVersionRequest{}).(interface {
+// AtlasValidateJSON function validates a JSON for object ListAppVersionRequest.
+func (_ *ListAppVersionRequest) AtlasValidateJSON(ctx context.Context, r json.RawMessage, path string) (err error) {
+	if hook, ok := interface{}(&ListAppVersionRequest{}).(interface {
 		AtlasJSONValidate(context.Context, json.RawMessage, string) (json.RawMessage, error)
 	}); ok {
 		if r, err = hook.AtlasJSONValidate(ctx, r, path); err != nil {
 			return err
 		}
 	}
-	return validate_Object_ListChartVersionRequest(ctx, r, path)
+	return validate_Object_ListAppVersionRequest(ctx, r, path)
 }
 
-func validate_required_Object_ListChartVersionRequest(ctx context.Context, v map[string]json.RawMessage, path string) error {
+func validate_required_Object_ListAppVersionRequest(ctx context.Context, v map[string]json.RawMessage, path string) error {
 	method := runtime1.HTTPMethodFromContext(ctx)
 	_ = method
 	return nil
 }
 
-// validate_Object_ListChartVersionsResponse function validates a JSON for a given object.
-func validate_Object_ListChartVersionsResponse(ctx context.Context, r json.RawMessage, path string) (err error) {
-	if hook, ok := interface{}(&ListChartVersionsResponse{}).(interface {
+// validate_Object_ListAppVersionsResponse function validates a JSON for a given object.
+func validate_Object_ListAppVersionsResponse(ctx context.Context, r json.RawMessage, path string) (err error) {
+	if hook, ok := interface{}(&ListAppVersionsResponse{}).(interface {
 		AtlasJSONValidate(context.Context, json.RawMessage, string) (json.RawMessage, error)
 	}); ok {
 		if r, err = hook.AtlasJSONValidate(ctx, r, path); err != nil {
@@ -7181,7 +6108,7 @@ func validate_Object_ListChartVersionsResponse(ctx context.Context, r json.RawMe
 		return fmt.Errorf("invalid value for %q: expected object.", path)
 	}
 
-	if err = validate_required_Object_ListChartVersionsResponse(ctx, v, path); err != nil {
+	if err = validate_required_Object_ListAppVersionsResponse(ctx, v, path); err != nil {
 		return err
 	}
 
@@ -7200,7 +6127,7 @@ func validate_Object_ListChartVersionsResponse(ctx context.Context, r json.RawMe
 			}
 			for i, vv := range vArr {
 				vvPath := fmt.Sprintf("%s.[%d]", vArrPath, i)
-				if err = validate_Object_ChartVersion(ctx, vv, vvPath); err != nil {
+				if err = validate_Object_AppVersion(ctx, vv, vvPath); err != nil {
 					return err
 				}
 			}
@@ -7228,19 +6155,19 @@ func validate_Object_ListChartVersionsResponse(ctx context.Context, r json.RawMe
 	return nil
 }
 
-// AtlasValidateJSON function validates a JSON for object ListChartVersionsResponse.
-func (_ *ListChartVersionsResponse) AtlasValidateJSON(ctx context.Context, r json.RawMessage, path string) (err error) {
-	if hook, ok := interface{}(&ListChartVersionsResponse{}).(interface {
+// AtlasValidateJSON function validates a JSON for object ListAppVersionsResponse.
+func (_ *ListAppVersionsResponse) AtlasValidateJSON(ctx context.Context, r json.RawMessage, path string) (err error) {
+	if hook, ok := interface{}(&ListAppVersionsResponse{}).(interface {
 		AtlasJSONValidate(context.Context, json.RawMessage, string) (json.RawMessage, error)
 	}); ok {
 		if r, err = hook.AtlasJSONValidate(ctx, r, path); err != nil {
 			return err
 		}
 	}
-	return validate_Object_ListChartVersionsResponse(ctx, r, path)
+	return validate_Object_ListAppVersionsResponse(ctx, r, path)
 }
 
-func validate_required_Object_ListChartVersionsResponse(ctx context.Context, v map[string]json.RawMessage, path string) error {
+func validate_required_Object_ListAppVersionsResponse(ctx context.Context, v map[string]json.RawMessage, path string) error {
 	method := runtime1.HTTPMethodFromContext(ctx)
 	_ = method
 	return nil
@@ -7295,22 +6222,7 @@ func validate_Object_ApplicationInstance(ctx context.Context, r json.RawMessage,
 			if err = validate_Object_Deployment(ctx, vv, vvPath); err != nil {
 				return err
 			}
-		case "value_id":
-			if v[k] == nil {
-				continue
-			}
-			vv := v[k]
-			vvPath := runtime1.JoinPath(path, k)
-			validator, ok := interface{}(&resource.Identifier{}).(interface {
-				AtlasValidateJSON(context.Context, json.RawMessage, string) error
-			})
-			if !ok {
-				continue
-			}
-			if err = validator.AtlasValidateJSON(ctx, vv, vvPath); err != nil {
-				return err
-			}
-		case "chart_version_id":
+		case "app_version_id":
 			if v[k] == nil {
 				continue
 			}
@@ -8897,36 +7809,6 @@ func validate_Object_Secret(ctx context.Context, r json.RawMessage, path string)
 			if err = validator.AtlasValidateJSON(ctx, vv, vvPath); err != nil {
 				return err
 			}
-		case "value_id":
-			if v[k] == nil {
-				continue
-			}
-			vv := v[k]
-			vvPath := runtime1.JoinPath(path, k)
-			validator, ok := interface{}(&resource.Identifier{}).(interface {
-				AtlasValidateJSON(context.Context, json.RawMessage, string) error
-			})
-			if !ok {
-				continue
-			}
-			if err = validator.AtlasValidateJSON(ctx, vv, vvPath); err != nil {
-				return err
-			}
-		case "aws_rds_instance_id":
-			if v[k] == nil {
-				continue
-			}
-			vv := v[k]
-			vvPath := runtime1.JoinPath(path, k)
-			validator, ok := interface{}(&resource.Identifier{}).(interface {
-				AtlasValidateJSON(context.Context, json.RawMessage, string) error
-			})
-			if !ok {
-				continue
-			}
-			if err = validator.AtlasValidateJSON(ctx, vv, vvPath); err != nil {
-				return err
-			}
 		default:
 			if !allowUnknown {
 				return fmt.Errorf("unknown field %q.", runtime1.JoinPath(path, k))
@@ -9649,2379 +8531,6 @@ func validate_required_Object_ListSecretsResponse(ctx context.Context, v map[str
 	return nil
 }
 
-// validate_Object_AwsService function validates a JSON for a given object.
-func validate_Object_AwsService(ctx context.Context, r json.RawMessage, path string) (err error) {
-	if hook, ok := interface{}(&AwsService{}).(interface {
-		AtlasJSONValidate(context.Context, json.RawMessage, string) (json.RawMessage, error)
-	}); ok {
-		if r, err = hook.AtlasJSONValidate(ctx, r, path); err != nil {
-			return err
-		}
-	}
-
-	var v map[string]json.RawMessage
-	if err = json.Unmarshal(r, &v); err != nil {
-		return fmt.Errorf("invalid value for %q: expected object.", path)
-	}
-
-	if err = validate_required_Object_AwsService(ctx, v, path); err != nil {
-		return err
-	}
-
-	allowUnknown := runtime1.AllowUnknownFromContext(ctx)
-
-	for k, _ := range v {
-		switch k {
-		case "id":
-			if v[k] == nil {
-				continue
-			}
-			vv := v[k]
-			vvPath := runtime1.JoinPath(path, k)
-			validator, ok := interface{}(&resource.Identifier{}).(interface {
-				AtlasValidateJSON(context.Context, json.RawMessage, string) error
-			})
-			if !ok {
-				continue
-			}
-			if err = validator.AtlasValidateJSON(ctx, vv, vvPath); err != nil {
-				return err
-			}
-		case "name":
-		case "description":
-		case "aws_rds_instances":
-			if v[k] == nil {
-				continue
-			}
-			var vArr []json.RawMessage
-			vArrPath := runtime1.JoinPath(path, k)
-			if err = json.Unmarshal(v[k], &vArr); err != nil {
-				return fmt.Errorf("invalid value for %q: expected array.", vArrPath)
-			}
-			for i, vv := range vArr {
-				vvPath := fmt.Sprintf("%s.[%d]", vArrPath, i)
-				if err = validate_Object_AwsRdsInstance(ctx, vv, vvPath); err != nil {
-					return err
-				}
-			}
-		case "region_id":
-			if v[k] == nil {
-				continue
-			}
-			vv := v[k]
-			vvPath := runtime1.JoinPath(path, k)
-			validator, ok := interface{}(&resource.Identifier{}).(interface {
-				AtlasValidateJSON(context.Context, json.RawMessage, string) error
-			})
-			if !ok {
-				continue
-			}
-			if err = validator.AtlasValidateJSON(ctx, vv, vvPath); err != nil {
-				return err
-			}
-		default:
-			if !allowUnknown {
-				return fmt.Errorf("unknown field %q.", runtime1.JoinPath(path, k))
-			}
-		}
-	}
-	return nil
-}
-
-// AtlasValidateJSON function validates a JSON for object AwsService.
-func (_ *AwsService) AtlasValidateJSON(ctx context.Context, r json.RawMessage, path string) (err error) {
-	if hook, ok := interface{}(&AwsService{}).(interface {
-		AtlasJSONValidate(context.Context, json.RawMessage, string) (json.RawMessage, error)
-	}); ok {
-		if r, err = hook.AtlasJSONValidate(ctx, r, path); err != nil {
-			return err
-		}
-	}
-	return validate_Object_AwsService(ctx, r, path)
-}
-
-func validate_required_Object_AwsService(ctx context.Context, v map[string]json.RawMessage, path string) error {
-	method := runtime1.HTTPMethodFromContext(ctx)
-	_ = method
-	return nil
-}
-
-// validate_Object_CreateAwsServiceRequest function validates a JSON for a given object.
-func validate_Object_CreateAwsServiceRequest(ctx context.Context, r json.RawMessage, path string) (err error) {
-	if hook, ok := interface{}(&CreateAwsServiceRequest{}).(interface {
-		AtlasJSONValidate(context.Context, json.RawMessage, string) (json.RawMessage, error)
-	}); ok {
-		if r, err = hook.AtlasJSONValidate(ctx, r, path); err != nil {
-			return err
-		}
-	}
-
-	var v map[string]json.RawMessage
-	if err = json.Unmarshal(r, &v); err != nil {
-		return fmt.Errorf("invalid value for %q: expected object.", path)
-	}
-
-	if err = validate_required_Object_CreateAwsServiceRequest(ctx, v, path); err != nil {
-		return err
-	}
-
-	allowUnknown := runtime1.AllowUnknownFromContext(ctx)
-
-	for k, _ := range v {
-		switch k {
-		case "payload":
-			if v[k] == nil {
-				continue
-			}
-			vv := v[k]
-			vvPath := runtime1.JoinPath(path, k)
-			if err = validate_Object_AwsService(ctx, vv, vvPath); err != nil {
-				return err
-			}
-		default:
-			if !allowUnknown {
-				return fmt.Errorf("unknown field %q.", runtime1.JoinPath(path, k))
-			}
-		}
-	}
-	return nil
-}
-
-// AtlasValidateJSON function validates a JSON for object CreateAwsServiceRequest.
-func (_ *CreateAwsServiceRequest) AtlasValidateJSON(ctx context.Context, r json.RawMessage, path string) (err error) {
-	if hook, ok := interface{}(&CreateAwsServiceRequest{}).(interface {
-		AtlasJSONValidate(context.Context, json.RawMessage, string) (json.RawMessage, error)
-	}); ok {
-		if r, err = hook.AtlasJSONValidate(ctx, r, path); err != nil {
-			return err
-		}
-	}
-	return validate_Object_CreateAwsServiceRequest(ctx, r, path)
-}
-
-func validate_required_Object_CreateAwsServiceRequest(ctx context.Context, v map[string]json.RawMessage, path string) error {
-	method := runtime1.HTTPMethodFromContext(ctx)
-	_ = method
-	return nil
-}
-
-// validate_Object_CreateAwsServiceResponse function validates a JSON for a given object.
-func validate_Object_CreateAwsServiceResponse(ctx context.Context, r json.RawMessage, path string) (err error) {
-	if hook, ok := interface{}(&CreateAwsServiceResponse{}).(interface {
-		AtlasJSONValidate(context.Context, json.RawMessage, string) (json.RawMessage, error)
-	}); ok {
-		if r, err = hook.AtlasJSONValidate(ctx, r, path); err != nil {
-			return err
-		}
-	}
-
-	var v map[string]json.RawMessage
-	if err = json.Unmarshal(r, &v); err != nil {
-		return fmt.Errorf("invalid value for %q: expected object.", path)
-	}
-
-	if err = validate_required_Object_CreateAwsServiceResponse(ctx, v, path); err != nil {
-		return err
-	}
-
-	allowUnknown := runtime1.AllowUnknownFromContext(ctx)
-
-	for k, _ := range v {
-		switch k {
-		case "result":
-			if v[k] == nil {
-				continue
-			}
-			vv := v[k]
-			vvPath := runtime1.JoinPath(path, k)
-			if err = validate_Object_AwsService(ctx, vv, vvPath); err != nil {
-				return err
-			}
-		default:
-			if !allowUnknown {
-				return fmt.Errorf("unknown field %q.", runtime1.JoinPath(path, k))
-			}
-		}
-	}
-	return nil
-}
-
-// AtlasValidateJSON function validates a JSON for object CreateAwsServiceResponse.
-func (_ *CreateAwsServiceResponse) AtlasValidateJSON(ctx context.Context, r json.RawMessage, path string) (err error) {
-	if hook, ok := interface{}(&CreateAwsServiceResponse{}).(interface {
-		AtlasJSONValidate(context.Context, json.RawMessage, string) (json.RawMessage, error)
-	}); ok {
-		if r, err = hook.AtlasJSONValidate(ctx, r, path); err != nil {
-			return err
-		}
-	}
-	return validate_Object_CreateAwsServiceResponse(ctx, r, path)
-}
-
-func validate_required_Object_CreateAwsServiceResponse(ctx context.Context, v map[string]json.RawMessage, path string) error {
-	method := runtime1.HTTPMethodFromContext(ctx)
-	_ = method
-	return nil
-}
-
-// validate_Object_ReadAwsServiceRequest function validates a JSON for a given object.
-func validate_Object_ReadAwsServiceRequest(ctx context.Context, r json.RawMessage, path string) (err error) {
-	if hook, ok := interface{}(&ReadAwsServiceRequest{}).(interface {
-		AtlasJSONValidate(context.Context, json.RawMessage, string) (json.RawMessage, error)
-	}); ok {
-		if r, err = hook.AtlasJSONValidate(ctx, r, path); err != nil {
-			return err
-		}
-	}
-
-	var v map[string]json.RawMessage
-	if err = json.Unmarshal(r, &v); err != nil {
-		return fmt.Errorf("invalid value for %q: expected object.", path)
-	}
-
-	if err = validate_required_Object_ReadAwsServiceRequest(ctx, v, path); err != nil {
-		return err
-	}
-
-	allowUnknown := runtime1.AllowUnknownFromContext(ctx)
-
-	for k, _ := range v {
-		switch k {
-		case "id":
-			if v[k] == nil {
-				continue
-			}
-			vv := v[k]
-			vvPath := runtime1.JoinPath(path, k)
-			validator, ok := interface{}(&resource.Identifier{}).(interface {
-				AtlasValidateJSON(context.Context, json.RawMessage, string) error
-			})
-			if !ok {
-				continue
-			}
-			if err = validator.AtlasValidateJSON(ctx, vv, vvPath); err != nil {
-				return err
-			}
-		case "fields":
-			if v[k] == nil {
-				continue
-			}
-			vv := v[k]
-			vvPath := runtime1.JoinPath(path, k)
-			validator, ok := interface{}(&query.FieldSelection{}).(interface {
-				AtlasValidateJSON(context.Context, json.RawMessage, string) error
-			})
-			if !ok {
-				continue
-			}
-			if err = validator.AtlasValidateJSON(ctx, vv, vvPath); err != nil {
-				return err
-			}
-		default:
-			if !allowUnknown {
-				return fmt.Errorf("unknown field %q.", runtime1.JoinPath(path, k))
-			}
-		}
-	}
-	return nil
-}
-
-// AtlasValidateJSON function validates a JSON for object ReadAwsServiceRequest.
-func (_ *ReadAwsServiceRequest) AtlasValidateJSON(ctx context.Context, r json.RawMessage, path string) (err error) {
-	if hook, ok := interface{}(&ReadAwsServiceRequest{}).(interface {
-		AtlasJSONValidate(context.Context, json.RawMessage, string) (json.RawMessage, error)
-	}); ok {
-		if r, err = hook.AtlasJSONValidate(ctx, r, path); err != nil {
-			return err
-		}
-	}
-	return validate_Object_ReadAwsServiceRequest(ctx, r, path)
-}
-
-func validate_required_Object_ReadAwsServiceRequest(ctx context.Context, v map[string]json.RawMessage, path string) error {
-	method := runtime1.HTTPMethodFromContext(ctx)
-	_ = method
-	return nil
-}
-
-// validate_Object_ReadAwsServiceResponse function validates a JSON for a given object.
-func validate_Object_ReadAwsServiceResponse(ctx context.Context, r json.RawMessage, path string) (err error) {
-	if hook, ok := interface{}(&ReadAwsServiceResponse{}).(interface {
-		AtlasJSONValidate(context.Context, json.RawMessage, string) (json.RawMessage, error)
-	}); ok {
-		if r, err = hook.AtlasJSONValidate(ctx, r, path); err != nil {
-			return err
-		}
-	}
-
-	var v map[string]json.RawMessage
-	if err = json.Unmarshal(r, &v); err != nil {
-		return fmt.Errorf("invalid value for %q: expected object.", path)
-	}
-
-	if err = validate_required_Object_ReadAwsServiceResponse(ctx, v, path); err != nil {
-		return err
-	}
-
-	allowUnknown := runtime1.AllowUnknownFromContext(ctx)
-
-	for k, _ := range v {
-		switch k {
-		case "result":
-			if v[k] == nil {
-				continue
-			}
-			vv := v[k]
-			vvPath := runtime1.JoinPath(path, k)
-			if err = validate_Object_AwsService(ctx, vv, vvPath); err != nil {
-				return err
-			}
-		default:
-			if !allowUnknown {
-				return fmt.Errorf("unknown field %q.", runtime1.JoinPath(path, k))
-			}
-		}
-	}
-	return nil
-}
-
-// AtlasValidateJSON function validates a JSON for object ReadAwsServiceResponse.
-func (_ *ReadAwsServiceResponse) AtlasValidateJSON(ctx context.Context, r json.RawMessage, path string) (err error) {
-	if hook, ok := interface{}(&ReadAwsServiceResponse{}).(interface {
-		AtlasJSONValidate(context.Context, json.RawMessage, string) (json.RawMessage, error)
-	}); ok {
-		if r, err = hook.AtlasJSONValidate(ctx, r, path); err != nil {
-			return err
-		}
-	}
-	return validate_Object_ReadAwsServiceResponse(ctx, r, path)
-}
-
-func validate_required_Object_ReadAwsServiceResponse(ctx context.Context, v map[string]json.RawMessage, path string) error {
-	method := runtime1.HTTPMethodFromContext(ctx)
-	_ = method
-	return nil
-}
-
-// validate_Object_UpdateAwsServiceRequest function validates a JSON for a given object.
-func validate_Object_UpdateAwsServiceRequest(ctx context.Context, r json.RawMessage, path string) (err error) {
-	if hook, ok := interface{}(&UpdateAwsServiceRequest{}).(interface {
-		AtlasJSONValidate(context.Context, json.RawMessage, string) (json.RawMessage, error)
-	}); ok {
-		if r, err = hook.AtlasJSONValidate(ctx, r, path); err != nil {
-			return err
-		}
-	}
-
-	var v map[string]json.RawMessage
-	if err = json.Unmarshal(r, &v); err != nil {
-		return fmt.Errorf("invalid value for %q: expected object.", path)
-	}
-
-	if err = validate_required_Object_UpdateAwsServiceRequest(ctx, v, path); err != nil {
-		return err
-	}
-
-	allowUnknown := runtime1.AllowUnknownFromContext(ctx)
-
-	for k, _ := range v {
-		switch k {
-		case "payload":
-			if v[k] == nil {
-				continue
-			}
-			vv := v[k]
-			vvPath := runtime1.JoinPath(path, k)
-			if err = validate_Object_AwsService(ctx, vv, vvPath); err != nil {
-				return err
-			}
-		case "fields":
-			if v[k] == nil {
-				continue
-			}
-			vv := v[k]
-			vvPath := runtime1.JoinPath(path, k)
-			validator, ok := interface{}(&field_mask.FieldMask{}).(interface {
-				AtlasValidateJSON(context.Context, json.RawMessage, string) error
-			})
-			if !ok {
-				continue
-			}
-			if err = validator.AtlasValidateJSON(ctx, vv, vvPath); err != nil {
-				return err
-			}
-		default:
-			if !allowUnknown {
-				return fmt.Errorf("unknown field %q.", runtime1.JoinPath(path, k))
-			}
-		}
-	}
-	return nil
-}
-
-// AtlasValidateJSON function validates a JSON for object UpdateAwsServiceRequest.
-func (_ *UpdateAwsServiceRequest) AtlasValidateJSON(ctx context.Context, r json.RawMessage, path string) (err error) {
-	if hook, ok := interface{}(&UpdateAwsServiceRequest{}).(interface {
-		AtlasJSONValidate(context.Context, json.RawMessage, string) (json.RawMessage, error)
-	}); ok {
-		if r, err = hook.AtlasJSONValidate(ctx, r, path); err != nil {
-			return err
-		}
-	}
-	return validate_Object_UpdateAwsServiceRequest(ctx, r, path)
-}
-
-func validate_required_Object_UpdateAwsServiceRequest(ctx context.Context, v map[string]json.RawMessage, path string) error {
-	method := runtime1.HTTPMethodFromContext(ctx)
-	_ = method
-	return nil
-}
-
-// validate_Object_UpdateAwsServiceResponse function validates a JSON for a given object.
-func validate_Object_UpdateAwsServiceResponse(ctx context.Context, r json.RawMessage, path string) (err error) {
-	if hook, ok := interface{}(&UpdateAwsServiceResponse{}).(interface {
-		AtlasJSONValidate(context.Context, json.RawMessage, string) (json.RawMessage, error)
-	}); ok {
-		if r, err = hook.AtlasJSONValidate(ctx, r, path); err != nil {
-			return err
-		}
-	}
-
-	var v map[string]json.RawMessage
-	if err = json.Unmarshal(r, &v); err != nil {
-		return fmt.Errorf("invalid value for %q: expected object.", path)
-	}
-
-	if err = validate_required_Object_UpdateAwsServiceResponse(ctx, v, path); err != nil {
-		return err
-	}
-
-	allowUnknown := runtime1.AllowUnknownFromContext(ctx)
-
-	for k, _ := range v {
-		switch k {
-		case "result":
-			if v[k] == nil {
-				continue
-			}
-			vv := v[k]
-			vvPath := runtime1.JoinPath(path, k)
-			if err = validate_Object_AwsService(ctx, vv, vvPath); err != nil {
-				return err
-			}
-		default:
-			if !allowUnknown {
-				return fmt.Errorf("unknown field %q.", runtime1.JoinPath(path, k))
-			}
-		}
-	}
-	return nil
-}
-
-// AtlasValidateJSON function validates a JSON for object UpdateAwsServiceResponse.
-func (_ *UpdateAwsServiceResponse) AtlasValidateJSON(ctx context.Context, r json.RawMessage, path string) (err error) {
-	if hook, ok := interface{}(&UpdateAwsServiceResponse{}).(interface {
-		AtlasJSONValidate(context.Context, json.RawMessage, string) (json.RawMessage, error)
-	}); ok {
-		if r, err = hook.AtlasJSONValidate(ctx, r, path); err != nil {
-			return err
-		}
-	}
-	return validate_Object_UpdateAwsServiceResponse(ctx, r, path)
-}
-
-func validate_required_Object_UpdateAwsServiceResponse(ctx context.Context, v map[string]json.RawMessage, path string) error {
-	method := runtime1.HTTPMethodFromContext(ctx)
-	_ = method
-	return nil
-}
-
-// validate_Object_DeleteAwsServiceRequest function validates a JSON for a given object.
-func validate_Object_DeleteAwsServiceRequest(ctx context.Context, r json.RawMessage, path string) (err error) {
-	if hook, ok := interface{}(&DeleteAwsServiceRequest{}).(interface {
-		AtlasJSONValidate(context.Context, json.RawMessage, string) (json.RawMessage, error)
-	}); ok {
-		if r, err = hook.AtlasJSONValidate(ctx, r, path); err != nil {
-			return err
-		}
-	}
-
-	var v map[string]json.RawMessage
-	if err = json.Unmarshal(r, &v); err != nil {
-		return fmt.Errorf("invalid value for %q: expected object.", path)
-	}
-
-	if err = validate_required_Object_DeleteAwsServiceRequest(ctx, v, path); err != nil {
-		return err
-	}
-
-	allowUnknown := runtime1.AllowUnknownFromContext(ctx)
-
-	for k, _ := range v {
-		switch k {
-		case "id":
-			if v[k] == nil {
-				continue
-			}
-			vv := v[k]
-			vvPath := runtime1.JoinPath(path, k)
-			validator, ok := interface{}(&resource.Identifier{}).(interface {
-				AtlasValidateJSON(context.Context, json.RawMessage, string) error
-			})
-			if !ok {
-				continue
-			}
-			if err = validator.AtlasValidateJSON(ctx, vv, vvPath); err != nil {
-				return err
-			}
-		default:
-			if !allowUnknown {
-				return fmt.Errorf("unknown field %q.", runtime1.JoinPath(path, k))
-			}
-		}
-	}
-	return nil
-}
-
-// AtlasValidateJSON function validates a JSON for object DeleteAwsServiceRequest.
-func (_ *DeleteAwsServiceRequest) AtlasValidateJSON(ctx context.Context, r json.RawMessage, path string) (err error) {
-	if hook, ok := interface{}(&DeleteAwsServiceRequest{}).(interface {
-		AtlasJSONValidate(context.Context, json.RawMessage, string) (json.RawMessage, error)
-	}); ok {
-		if r, err = hook.AtlasJSONValidate(ctx, r, path); err != nil {
-			return err
-		}
-	}
-	return validate_Object_DeleteAwsServiceRequest(ctx, r, path)
-}
-
-func validate_required_Object_DeleteAwsServiceRequest(ctx context.Context, v map[string]json.RawMessage, path string) error {
-	method := runtime1.HTTPMethodFromContext(ctx)
-	_ = method
-	return nil
-}
-
-// validate_Object_DeleteAwsServiceResponse function validates a JSON for a given object.
-func validate_Object_DeleteAwsServiceResponse(ctx context.Context, r json.RawMessage, path string) (err error) {
-	if hook, ok := interface{}(&DeleteAwsServiceResponse{}).(interface {
-		AtlasJSONValidate(context.Context, json.RawMessage, string) (json.RawMessage, error)
-	}); ok {
-		if r, err = hook.AtlasJSONValidate(ctx, r, path); err != nil {
-			return err
-		}
-	}
-
-	var v map[string]json.RawMessage
-	if err = json.Unmarshal(r, &v); err != nil {
-		return fmt.Errorf("invalid value for %q: expected object.", path)
-	}
-
-	if err = validate_required_Object_DeleteAwsServiceResponse(ctx, v, path); err != nil {
-		return err
-	}
-
-	allowUnknown := runtime1.AllowUnknownFromContext(ctx)
-
-	for k, _ := range v {
-		switch k {
-		default:
-			if !allowUnknown {
-				return fmt.Errorf("unknown field %q.", runtime1.JoinPath(path, k))
-			}
-		}
-	}
-	return nil
-}
-
-// AtlasValidateJSON function validates a JSON for object DeleteAwsServiceResponse.
-func (_ *DeleteAwsServiceResponse) AtlasValidateJSON(ctx context.Context, r json.RawMessage, path string) (err error) {
-	if hook, ok := interface{}(&DeleteAwsServiceResponse{}).(interface {
-		AtlasJSONValidate(context.Context, json.RawMessage, string) (json.RawMessage, error)
-	}); ok {
-		if r, err = hook.AtlasJSONValidate(ctx, r, path); err != nil {
-			return err
-		}
-	}
-	return validate_Object_DeleteAwsServiceResponse(ctx, r, path)
-}
-
-func validate_required_Object_DeleteAwsServiceResponse(ctx context.Context, v map[string]json.RawMessage, path string) error {
-	method := runtime1.HTTPMethodFromContext(ctx)
-	_ = method
-	return nil
-}
-
-// validate_Object_ListAwsServiceRequest function validates a JSON for a given object.
-func validate_Object_ListAwsServiceRequest(ctx context.Context, r json.RawMessage, path string) (err error) {
-	if hook, ok := interface{}(&ListAwsServiceRequest{}).(interface {
-		AtlasJSONValidate(context.Context, json.RawMessage, string) (json.RawMessage, error)
-	}); ok {
-		if r, err = hook.AtlasJSONValidate(ctx, r, path); err != nil {
-			return err
-		}
-	}
-
-	var v map[string]json.RawMessage
-	if err = json.Unmarshal(r, &v); err != nil {
-		return fmt.Errorf("invalid value for %q: expected object.", path)
-	}
-
-	if err = validate_required_Object_ListAwsServiceRequest(ctx, v, path); err != nil {
-		return err
-	}
-
-	allowUnknown := runtime1.AllowUnknownFromContext(ctx)
-
-	for k, _ := range v {
-		switch k {
-		case "filter":
-			if v[k] == nil {
-				continue
-			}
-			vv := v[k]
-			vvPath := runtime1.JoinPath(path, k)
-			validator, ok := interface{}(&query.Filtering{}).(interface {
-				AtlasValidateJSON(context.Context, json.RawMessage, string) error
-			})
-			if !ok {
-				continue
-			}
-			if err = validator.AtlasValidateJSON(ctx, vv, vvPath); err != nil {
-				return err
-			}
-		case "order_by":
-			if v[k] == nil {
-				continue
-			}
-			vv := v[k]
-			vvPath := runtime1.JoinPath(path, k)
-			validator, ok := interface{}(&query.Sorting{}).(interface {
-				AtlasValidateJSON(context.Context, json.RawMessage, string) error
-			})
-			if !ok {
-				continue
-			}
-			if err = validator.AtlasValidateJSON(ctx, vv, vvPath); err != nil {
-				return err
-			}
-		case "fields":
-			if v[k] == nil {
-				continue
-			}
-			vv := v[k]
-			vvPath := runtime1.JoinPath(path, k)
-			validator, ok := interface{}(&query.FieldSelection{}).(interface {
-				AtlasValidateJSON(context.Context, json.RawMessage, string) error
-			})
-			if !ok {
-				continue
-			}
-			if err = validator.AtlasValidateJSON(ctx, vv, vvPath); err != nil {
-				return err
-			}
-		case "paging":
-			if v[k] == nil {
-				continue
-			}
-			vv := v[k]
-			vvPath := runtime1.JoinPath(path, k)
-			validator, ok := interface{}(&query.Pagination{}).(interface {
-				AtlasValidateJSON(context.Context, json.RawMessage, string) error
-			})
-			if !ok {
-				continue
-			}
-			if err = validator.AtlasValidateJSON(ctx, vv, vvPath); err != nil {
-				return err
-			}
-		default:
-			if !allowUnknown {
-				return fmt.Errorf("unknown field %q.", runtime1.JoinPath(path, k))
-			}
-		}
-	}
-	return nil
-}
-
-// AtlasValidateJSON function validates a JSON for object ListAwsServiceRequest.
-func (_ *ListAwsServiceRequest) AtlasValidateJSON(ctx context.Context, r json.RawMessage, path string) (err error) {
-	if hook, ok := interface{}(&ListAwsServiceRequest{}).(interface {
-		AtlasJSONValidate(context.Context, json.RawMessage, string) (json.RawMessage, error)
-	}); ok {
-		if r, err = hook.AtlasJSONValidate(ctx, r, path); err != nil {
-			return err
-		}
-	}
-	return validate_Object_ListAwsServiceRequest(ctx, r, path)
-}
-
-func validate_required_Object_ListAwsServiceRequest(ctx context.Context, v map[string]json.RawMessage, path string) error {
-	method := runtime1.HTTPMethodFromContext(ctx)
-	_ = method
-	return nil
-}
-
-// validate_Object_ListAwsServicesResponse function validates a JSON for a given object.
-func validate_Object_ListAwsServicesResponse(ctx context.Context, r json.RawMessage, path string) (err error) {
-	if hook, ok := interface{}(&ListAwsServicesResponse{}).(interface {
-		AtlasJSONValidate(context.Context, json.RawMessage, string) (json.RawMessage, error)
-	}); ok {
-		if r, err = hook.AtlasJSONValidate(ctx, r, path); err != nil {
-			return err
-		}
-	}
-
-	var v map[string]json.RawMessage
-	if err = json.Unmarshal(r, &v); err != nil {
-		return fmt.Errorf("invalid value for %q: expected object.", path)
-	}
-
-	if err = validate_required_Object_ListAwsServicesResponse(ctx, v, path); err != nil {
-		return err
-	}
-
-	allowUnknown := runtime1.AllowUnknownFromContext(ctx)
-
-	for k, _ := range v {
-		switch k {
-		case "results":
-			if v[k] == nil {
-				continue
-			}
-			var vArr []json.RawMessage
-			vArrPath := runtime1.JoinPath(path, k)
-			if err = json.Unmarshal(v[k], &vArr); err != nil {
-				return fmt.Errorf("invalid value for %q: expected array.", vArrPath)
-			}
-			for i, vv := range vArr {
-				vvPath := fmt.Sprintf("%s.[%d]", vArrPath, i)
-				if err = validate_Object_AwsService(ctx, vv, vvPath); err != nil {
-					return err
-				}
-			}
-		case "page":
-			if v[k] == nil {
-				continue
-			}
-			vv := v[k]
-			vvPath := runtime1.JoinPath(path, k)
-			validator, ok := interface{}(&query.PageInfo{}).(interface {
-				AtlasValidateJSON(context.Context, json.RawMessage, string) error
-			})
-			if !ok {
-				continue
-			}
-			if err = validator.AtlasValidateJSON(ctx, vv, vvPath); err != nil {
-				return err
-			}
-		default:
-			if !allowUnknown {
-				return fmt.Errorf("unknown field %q.", runtime1.JoinPath(path, k))
-			}
-		}
-	}
-	return nil
-}
-
-// AtlasValidateJSON function validates a JSON for object ListAwsServicesResponse.
-func (_ *ListAwsServicesResponse) AtlasValidateJSON(ctx context.Context, r json.RawMessage, path string) (err error) {
-	if hook, ok := interface{}(&ListAwsServicesResponse{}).(interface {
-		AtlasJSONValidate(context.Context, json.RawMessage, string) (json.RawMessage, error)
-	}); ok {
-		if r, err = hook.AtlasJSONValidate(ctx, r, path); err != nil {
-			return err
-		}
-	}
-	return validate_Object_ListAwsServicesResponse(ctx, r, path)
-}
-
-func validate_required_Object_ListAwsServicesResponse(ctx context.Context, v map[string]json.RawMessage, path string) error {
-	method := runtime1.HTTPMethodFromContext(ctx)
-	_ = method
-	return nil
-}
-
-// validate_Object_AwsRdsInstance function validates a JSON for a given object.
-func validate_Object_AwsRdsInstance(ctx context.Context, r json.RawMessage, path string) (err error) {
-	if hook, ok := interface{}(&AwsRdsInstance{}).(interface {
-		AtlasJSONValidate(context.Context, json.RawMessage, string) (json.RawMessage, error)
-	}); ok {
-		if r, err = hook.AtlasJSONValidate(ctx, r, path); err != nil {
-			return err
-		}
-	}
-
-	var v map[string]json.RawMessage
-	if err = json.Unmarshal(r, &v); err != nil {
-		return fmt.Errorf("invalid value for %q: expected object.", path)
-	}
-
-	if err = validate_required_Object_AwsRdsInstance(ctx, v, path); err != nil {
-		return err
-	}
-
-	allowUnknown := runtime1.AllowUnknownFromContext(ctx)
-
-	for k, _ := range v {
-		switch k {
-		case "id":
-			if v[k] == nil {
-				continue
-			}
-			vv := v[k]
-			vvPath := runtime1.JoinPath(path, k)
-			validator, ok := interface{}(&resource.Identifier{}).(interface {
-				AtlasValidateJSON(context.Context, json.RawMessage, string) error
-			})
-			if !ok {
-				continue
-			}
-			if err = validator.AtlasValidateJSON(ctx, vv, vvPath); err != nil {
-				return err
-			}
-		case "name":
-		case "description":
-		case "database_host":
-		case "database_name":
-		case "database_user":
-		case "database_password":
-			if v[k] == nil {
-				continue
-			}
-			vv := v[k]
-			vvPath := runtime1.JoinPath(path, k)
-			if err = validate_Object_Secret(ctx, vv, vvPath); err != nil {
-				return err
-			}
-		case "aws_service_id":
-			if v[k] == nil {
-				continue
-			}
-			vv := v[k]
-			vvPath := runtime1.JoinPath(path, k)
-			validator, ok := interface{}(&resource.Identifier{}).(interface {
-				AtlasValidateJSON(context.Context, json.RawMessage, string) error
-			})
-			if !ok {
-				continue
-			}
-			if err = validator.AtlasValidateJSON(ctx, vv, vvPath); err != nil {
-				return err
-			}
-		default:
-			if !allowUnknown {
-				return fmt.Errorf("unknown field %q.", runtime1.JoinPath(path, k))
-			}
-		}
-	}
-	return nil
-}
-
-// AtlasValidateJSON function validates a JSON for object AwsRdsInstance.
-func (_ *AwsRdsInstance) AtlasValidateJSON(ctx context.Context, r json.RawMessage, path string) (err error) {
-	if hook, ok := interface{}(&AwsRdsInstance{}).(interface {
-		AtlasJSONValidate(context.Context, json.RawMessage, string) (json.RawMessage, error)
-	}); ok {
-		if r, err = hook.AtlasJSONValidate(ctx, r, path); err != nil {
-			return err
-		}
-	}
-	return validate_Object_AwsRdsInstance(ctx, r, path)
-}
-
-func validate_required_Object_AwsRdsInstance(ctx context.Context, v map[string]json.RawMessage, path string) error {
-	method := runtime1.HTTPMethodFromContext(ctx)
-	_ = method
-	return nil
-}
-
-// validate_Object_CreateAwsRdsInstanceRequest function validates a JSON for a given object.
-func validate_Object_CreateAwsRdsInstanceRequest(ctx context.Context, r json.RawMessage, path string) (err error) {
-	if hook, ok := interface{}(&CreateAwsRdsInstanceRequest{}).(interface {
-		AtlasJSONValidate(context.Context, json.RawMessage, string) (json.RawMessage, error)
-	}); ok {
-		if r, err = hook.AtlasJSONValidate(ctx, r, path); err != nil {
-			return err
-		}
-	}
-
-	var v map[string]json.RawMessage
-	if err = json.Unmarshal(r, &v); err != nil {
-		return fmt.Errorf("invalid value for %q: expected object.", path)
-	}
-
-	if err = validate_required_Object_CreateAwsRdsInstanceRequest(ctx, v, path); err != nil {
-		return err
-	}
-
-	allowUnknown := runtime1.AllowUnknownFromContext(ctx)
-
-	for k, _ := range v {
-		switch k {
-		case "payload":
-			if v[k] == nil {
-				continue
-			}
-			vv := v[k]
-			vvPath := runtime1.JoinPath(path, k)
-			if err = validate_Object_AwsRdsInstance(ctx, vv, vvPath); err != nil {
-				return err
-			}
-		default:
-			if !allowUnknown {
-				return fmt.Errorf("unknown field %q.", runtime1.JoinPath(path, k))
-			}
-		}
-	}
-	return nil
-}
-
-// AtlasValidateJSON function validates a JSON for object CreateAwsRdsInstanceRequest.
-func (_ *CreateAwsRdsInstanceRequest) AtlasValidateJSON(ctx context.Context, r json.RawMessage, path string) (err error) {
-	if hook, ok := interface{}(&CreateAwsRdsInstanceRequest{}).(interface {
-		AtlasJSONValidate(context.Context, json.RawMessage, string) (json.RawMessage, error)
-	}); ok {
-		if r, err = hook.AtlasJSONValidate(ctx, r, path); err != nil {
-			return err
-		}
-	}
-	return validate_Object_CreateAwsRdsInstanceRequest(ctx, r, path)
-}
-
-func validate_required_Object_CreateAwsRdsInstanceRequest(ctx context.Context, v map[string]json.RawMessage, path string) error {
-	method := runtime1.HTTPMethodFromContext(ctx)
-	_ = method
-	return nil
-}
-
-// validate_Object_CreateAwsRdsInstanceResponse function validates a JSON for a given object.
-func validate_Object_CreateAwsRdsInstanceResponse(ctx context.Context, r json.RawMessage, path string) (err error) {
-	if hook, ok := interface{}(&CreateAwsRdsInstanceResponse{}).(interface {
-		AtlasJSONValidate(context.Context, json.RawMessage, string) (json.RawMessage, error)
-	}); ok {
-		if r, err = hook.AtlasJSONValidate(ctx, r, path); err != nil {
-			return err
-		}
-	}
-
-	var v map[string]json.RawMessage
-	if err = json.Unmarshal(r, &v); err != nil {
-		return fmt.Errorf("invalid value for %q: expected object.", path)
-	}
-
-	if err = validate_required_Object_CreateAwsRdsInstanceResponse(ctx, v, path); err != nil {
-		return err
-	}
-
-	allowUnknown := runtime1.AllowUnknownFromContext(ctx)
-
-	for k, _ := range v {
-		switch k {
-		case "result":
-			if v[k] == nil {
-				continue
-			}
-			vv := v[k]
-			vvPath := runtime1.JoinPath(path, k)
-			if err = validate_Object_AwsRdsInstance(ctx, vv, vvPath); err != nil {
-				return err
-			}
-		default:
-			if !allowUnknown {
-				return fmt.Errorf("unknown field %q.", runtime1.JoinPath(path, k))
-			}
-		}
-	}
-	return nil
-}
-
-// AtlasValidateJSON function validates a JSON for object CreateAwsRdsInstanceResponse.
-func (_ *CreateAwsRdsInstanceResponse) AtlasValidateJSON(ctx context.Context, r json.RawMessage, path string) (err error) {
-	if hook, ok := interface{}(&CreateAwsRdsInstanceResponse{}).(interface {
-		AtlasJSONValidate(context.Context, json.RawMessage, string) (json.RawMessage, error)
-	}); ok {
-		if r, err = hook.AtlasJSONValidate(ctx, r, path); err != nil {
-			return err
-		}
-	}
-	return validate_Object_CreateAwsRdsInstanceResponse(ctx, r, path)
-}
-
-func validate_required_Object_CreateAwsRdsInstanceResponse(ctx context.Context, v map[string]json.RawMessage, path string) error {
-	method := runtime1.HTTPMethodFromContext(ctx)
-	_ = method
-	return nil
-}
-
-// validate_Object_ReadAwsRdsInstanceRequest function validates a JSON for a given object.
-func validate_Object_ReadAwsRdsInstanceRequest(ctx context.Context, r json.RawMessage, path string) (err error) {
-	if hook, ok := interface{}(&ReadAwsRdsInstanceRequest{}).(interface {
-		AtlasJSONValidate(context.Context, json.RawMessage, string) (json.RawMessage, error)
-	}); ok {
-		if r, err = hook.AtlasJSONValidate(ctx, r, path); err != nil {
-			return err
-		}
-	}
-
-	var v map[string]json.RawMessage
-	if err = json.Unmarshal(r, &v); err != nil {
-		return fmt.Errorf("invalid value for %q: expected object.", path)
-	}
-
-	if err = validate_required_Object_ReadAwsRdsInstanceRequest(ctx, v, path); err != nil {
-		return err
-	}
-
-	allowUnknown := runtime1.AllowUnknownFromContext(ctx)
-
-	for k, _ := range v {
-		switch k {
-		case "id":
-			if v[k] == nil {
-				continue
-			}
-			vv := v[k]
-			vvPath := runtime1.JoinPath(path, k)
-			validator, ok := interface{}(&resource.Identifier{}).(interface {
-				AtlasValidateJSON(context.Context, json.RawMessage, string) error
-			})
-			if !ok {
-				continue
-			}
-			if err = validator.AtlasValidateJSON(ctx, vv, vvPath); err != nil {
-				return err
-			}
-		case "fields":
-			if v[k] == nil {
-				continue
-			}
-			vv := v[k]
-			vvPath := runtime1.JoinPath(path, k)
-			validator, ok := interface{}(&query.FieldSelection{}).(interface {
-				AtlasValidateJSON(context.Context, json.RawMessage, string) error
-			})
-			if !ok {
-				continue
-			}
-			if err = validator.AtlasValidateJSON(ctx, vv, vvPath); err != nil {
-				return err
-			}
-		default:
-			if !allowUnknown {
-				return fmt.Errorf("unknown field %q.", runtime1.JoinPath(path, k))
-			}
-		}
-	}
-	return nil
-}
-
-// AtlasValidateJSON function validates a JSON for object ReadAwsRdsInstanceRequest.
-func (_ *ReadAwsRdsInstanceRequest) AtlasValidateJSON(ctx context.Context, r json.RawMessage, path string) (err error) {
-	if hook, ok := interface{}(&ReadAwsRdsInstanceRequest{}).(interface {
-		AtlasJSONValidate(context.Context, json.RawMessage, string) (json.RawMessage, error)
-	}); ok {
-		if r, err = hook.AtlasJSONValidate(ctx, r, path); err != nil {
-			return err
-		}
-	}
-	return validate_Object_ReadAwsRdsInstanceRequest(ctx, r, path)
-}
-
-func validate_required_Object_ReadAwsRdsInstanceRequest(ctx context.Context, v map[string]json.RawMessage, path string) error {
-	method := runtime1.HTTPMethodFromContext(ctx)
-	_ = method
-	return nil
-}
-
-// validate_Object_ReadAwsRdsInstanceResponse function validates a JSON for a given object.
-func validate_Object_ReadAwsRdsInstanceResponse(ctx context.Context, r json.RawMessage, path string) (err error) {
-	if hook, ok := interface{}(&ReadAwsRdsInstanceResponse{}).(interface {
-		AtlasJSONValidate(context.Context, json.RawMessage, string) (json.RawMessage, error)
-	}); ok {
-		if r, err = hook.AtlasJSONValidate(ctx, r, path); err != nil {
-			return err
-		}
-	}
-
-	var v map[string]json.RawMessage
-	if err = json.Unmarshal(r, &v); err != nil {
-		return fmt.Errorf("invalid value for %q: expected object.", path)
-	}
-
-	if err = validate_required_Object_ReadAwsRdsInstanceResponse(ctx, v, path); err != nil {
-		return err
-	}
-
-	allowUnknown := runtime1.AllowUnknownFromContext(ctx)
-
-	for k, _ := range v {
-		switch k {
-		case "result":
-			if v[k] == nil {
-				continue
-			}
-			vv := v[k]
-			vvPath := runtime1.JoinPath(path, k)
-			if err = validate_Object_AwsRdsInstance(ctx, vv, vvPath); err != nil {
-				return err
-			}
-		default:
-			if !allowUnknown {
-				return fmt.Errorf("unknown field %q.", runtime1.JoinPath(path, k))
-			}
-		}
-	}
-	return nil
-}
-
-// AtlasValidateJSON function validates a JSON for object ReadAwsRdsInstanceResponse.
-func (_ *ReadAwsRdsInstanceResponse) AtlasValidateJSON(ctx context.Context, r json.RawMessage, path string) (err error) {
-	if hook, ok := interface{}(&ReadAwsRdsInstanceResponse{}).(interface {
-		AtlasJSONValidate(context.Context, json.RawMessage, string) (json.RawMessage, error)
-	}); ok {
-		if r, err = hook.AtlasJSONValidate(ctx, r, path); err != nil {
-			return err
-		}
-	}
-	return validate_Object_ReadAwsRdsInstanceResponse(ctx, r, path)
-}
-
-func validate_required_Object_ReadAwsRdsInstanceResponse(ctx context.Context, v map[string]json.RawMessage, path string) error {
-	method := runtime1.HTTPMethodFromContext(ctx)
-	_ = method
-	return nil
-}
-
-// validate_Object_UpdateAwsRdsInstanceRequest function validates a JSON for a given object.
-func validate_Object_UpdateAwsRdsInstanceRequest(ctx context.Context, r json.RawMessage, path string) (err error) {
-	if hook, ok := interface{}(&UpdateAwsRdsInstanceRequest{}).(interface {
-		AtlasJSONValidate(context.Context, json.RawMessage, string) (json.RawMessage, error)
-	}); ok {
-		if r, err = hook.AtlasJSONValidate(ctx, r, path); err != nil {
-			return err
-		}
-	}
-
-	var v map[string]json.RawMessage
-	if err = json.Unmarshal(r, &v); err != nil {
-		return fmt.Errorf("invalid value for %q: expected object.", path)
-	}
-
-	if err = validate_required_Object_UpdateAwsRdsInstanceRequest(ctx, v, path); err != nil {
-		return err
-	}
-
-	allowUnknown := runtime1.AllowUnknownFromContext(ctx)
-
-	for k, _ := range v {
-		switch k {
-		case "payload":
-			if v[k] == nil {
-				continue
-			}
-			vv := v[k]
-			vvPath := runtime1.JoinPath(path, k)
-			if err = validate_Object_AwsRdsInstance(ctx, vv, vvPath); err != nil {
-				return err
-			}
-		case "fields":
-			if v[k] == nil {
-				continue
-			}
-			vv := v[k]
-			vvPath := runtime1.JoinPath(path, k)
-			validator, ok := interface{}(&field_mask.FieldMask{}).(interface {
-				AtlasValidateJSON(context.Context, json.RawMessage, string) error
-			})
-			if !ok {
-				continue
-			}
-			if err = validator.AtlasValidateJSON(ctx, vv, vvPath); err != nil {
-				return err
-			}
-		default:
-			if !allowUnknown {
-				return fmt.Errorf("unknown field %q.", runtime1.JoinPath(path, k))
-			}
-		}
-	}
-	return nil
-}
-
-// AtlasValidateJSON function validates a JSON for object UpdateAwsRdsInstanceRequest.
-func (_ *UpdateAwsRdsInstanceRequest) AtlasValidateJSON(ctx context.Context, r json.RawMessage, path string) (err error) {
-	if hook, ok := interface{}(&UpdateAwsRdsInstanceRequest{}).(interface {
-		AtlasJSONValidate(context.Context, json.RawMessage, string) (json.RawMessage, error)
-	}); ok {
-		if r, err = hook.AtlasJSONValidate(ctx, r, path); err != nil {
-			return err
-		}
-	}
-	return validate_Object_UpdateAwsRdsInstanceRequest(ctx, r, path)
-}
-
-func validate_required_Object_UpdateAwsRdsInstanceRequest(ctx context.Context, v map[string]json.RawMessage, path string) error {
-	method := runtime1.HTTPMethodFromContext(ctx)
-	_ = method
-	return nil
-}
-
-// validate_Object_UpdateAwsRdsInstanceResponse function validates a JSON for a given object.
-func validate_Object_UpdateAwsRdsInstanceResponse(ctx context.Context, r json.RawMessage, path string) (err error) {
-	if hook, ok := interface{}(&UpdateAwsRdsInstanceResponse{}).(interface {
-		AtlasJSONValidate(context.Context, json.RawMessage, string) (json.RawMessage, error)
-	}); ok {
-		if r, err = hook.AtlasJSONValidate(ctx, r, path); err != nil {
-			return err
-		}
-	}
-
-	var v map[string]json.RawMessage
-	if err = json.Unmarshal(r, &v); err != nil {
-		return fmt.Errorf("invalid value for %q: expected object.", path)
-	}
-
-	if err = validate_required_Object_UpdateAwsRdsInstanceResponse(ctx, v, path); err != nil {
-		return err
-	}
-
-	allowUnknown := runtime1.AllowUnknownFromContext(ctx)
-
-	for k, _ := range v {
-		switch k {
-		case "result":
-			if v[k] == nil {
-				continue
-			}
-			vv := v[k]
-			vvPath := runtime1.JoinPath(path, k)
-			if err = validate_Object_AwsRdsInstance(ctx, vv, vvPath); err != nil {
-				return err
-			}
-		default:
-			if !allowUnknown {
-				return fmt.Errorf("unknown field %q.", runtime1.JoinPath(path, k))
-			}
-		}
-	}
-	return nil
-}
-
-// AtlasValidateJSON function validates a JSON for object UpdateAwsRdsInstanceResponse.
-func (_ *UpdateAwsRdsInstanceResponse) AtlasValidateJSON(ctx context.Context, r json.RawMessage, path string) (err error) {
-	if hook, ok := interface{}(&UpdateAwsRdsInstanceResponse{}).(interface {
-		AtlasJSONValidate(context.Context, json.RawMessage, string) (json.RawMessage, error)
-	}); ok {
-		if r, err = hook.AtlasJSONValidate(ctx, r, path); err != nil {
-			return err
-		}
-	}
-	return validate_Object_UpdateAwsRdsInstanceResponse(ctx, r, path)
-}
-
-func validate_required_Object_UpdateAwsRdsInstanceResponse(ctx context.Context, v map[string]json.RawMessage, path string) error {
-	method := runtime1.HTTPMethodFromContext(ctx)
-	_ = method
-	return nil
-}
-
-// validate_Object_DeleteAwsRdsInstanceRequest function validates a JSON for a given object.
-func validate_Object_DeleteAwsRdsInstanceRequest(ctx context.Context, r json.RawMessage, path string) (err error) {
-	if hook, ok := interface{}(&DeleteAwsRdsInstanceRequest{}).(interface {
-		AtlasJSONValidate(context.Context, json.RawMessage, string) (json.RawMessage, error)
-	}); ok {
-		if r, err = hook.AtlasJSONValidate(ctx, r, path); err != nil {
-			return err
-		}
-	}
-
-	var v map[string]json.RawMessage
-	if err = json.Unmarshal(r, &v); err != nil {
-		return fmt.Errorf("invalid value for %q: expected object.", path)
-	}
-
-	if err = validate_required_Object_DeleteAwsRdsInstanceRequest(ctx, v, path); err != nil {
-		return err
-	}
-
-	allowUnknown := runtime1.AllowUnknownFromContext(ctx)
-
-	for k, _ := range v {
-		switch k {
-		case "id":
-			if v[k] == nil {
-				continue
-			}
-			vv := v[k]
-			vvPath := runtime1.JoinPath(path, k)
-			validator, ok := interface{}(&resource.Identifier{}).(interface {
-				AtlasValidateJSON(context.Context, json.RawMessage, string) error
-			})
-			if !ok {
-				continue
-			}
-			if err = validator.AtlasValidateJSON(ctx, vv, vvPath); err != nil {
-				return err
-			}
-		default:
-			if !allowUnknown {
-				return fmt.Errorf("unknown field %q.", runtime1.JoinPath(path, k))
-			}
-		}
-	}
-	return nil
-}
-
-// AtlasValidateJSON function validates a JSON for object DeleteAwsRdsInstanceRequest.
-func (_ *DeleteAwsRdsInstanceRequest) AtlasValidateJSON(ctx context.Context, r json.RawMessage, path string) (err error) {
-	if hook, ok := interface{}(&DeleteAwsRdsInstanceRequest{}).(interface {
-		AtlasJSONValidate(context.Context, json.RawMessage, string) (json.RawMessage, error)
-	}); ok {
-		if r, err = hook.AtlasJSONValidate(ctx, r, path); err != nil {
-			return err
-		}
-	}
-	return validate_Object_DeleteAwsRdsInstanceRequest(ctx, r, path)
-}
-
-func validate_required_Object_DeleteAwsRdsInstanceRequest(ctx context.Context, v map[string]json.RawMessage, path string) error {
-	method := runtime1.HTTPMethodFromContext(ctx)
-	_ = method
-	return nil
-}
-
-// validate_Object_DeleteAwsRdsInstanceResponse function validates a JSON for a given object.
-func validate_Object_DeleteAwsRdsInstanceResponse(ctx context.Context, r json.RawMessage, path string) (err error) {
-	if hook, ok := interface{}(&DeleteAwsRdsInstanceResponse{}).(interface {
-		AtlasJSONValidate(context.Context, json.RawMessage, string) (json.RawMessage, error)
-	}); ok {
-		if r, err = hook.AtlasJSONValidate(ctx, r, path); err != nil {
-			return err
-		}
-	}
-
-	var v map[string]json.RawMessage
-	if err = json.Unmarshal(r, &v); err != nil {
-		return fmt.Errorf("invalid value for %q: expected object.", path)
-	}
-
-	if err = validate_required_Object_DeleteAwsRdsInstanceResponse(ctx, v, path); err != nil {
-		return err
-	}
-
-	allowUnknown := runtime1.AllowUnknownFromContext(ctx)
-
-	for k, _ := range v {
-		switch k {
-		default:
-			if !allowUnknown {
-				return fmt.Errorf("unknown field %q.", runtime1.JoinPath(path, k))
-			}
-		}
-	}
-	return nil
-}
-
-// AtlasValidateJSON function validates a JSON for object DeleteAwsRdsInstanceResponse.
-func (_ *DeleteAwsRdsInstanceResponse) AtlasValidateJSON(ctx context.Context, r json.RawMessage, path string) (err error) {
-	if hook, ok := interface{}(&DeleteAwsRdsInstanceResponse{}).(interface {
-		AtlasJSONValidate(context.Context, json.RawMessage, string) (json.RawMessage, error)
-	}); ok {
-		if r, err = hook.AtlasJSONValidate(ctx, r, path); err != nil {
-			return err
-		}
-	}
-	return validate_Object_DeleteAwsRdsInstanceResponse(ctx, r, path)
-}
-
-func validate_required_Object_DeleteAwsRdsInstanceResponse(ctx context.Context, v map[string]json.RawMessage, path string) error {
-	method := runtime1.HTTPMethodFromContext(ctx)
-	_ = method
-	return nil
-}
-
-// validate_Object_ListAwsRdsInstanceRequest function validates a JSON for a given object.
-func validate_Object_ListAwsRdsInstanceRequest(ctx context.Context, r json.RawMessage, path string) (err error) {
-	if hook, ok := interface{}(&ListAwsRdsInstanceRequest{}).(interface {
-		AtlasJSONValidate(context.Context, json.RawMessage, string) (json.RawMessage, error)
-	}); ok {
-		if r, err = hook.AtlasJSONValidate(ctx, r, path); err != nil {
-			return err
-		}
-	}
-
-	var v map[string]json.RawMessage
-	if err = json.Unmarshal(r, &v); err != nil {
-		return fmt.Errorf("invalid value for %q: expected object.", path)
-	}
-
-	if err = validate_required_Object_ListAwsRdsInstanceRequest(ctx, v, path); err != nil {
-		return err
-	}
-
-	allowUnknown := runtime1.AllowUnknownFromContext(ctx)
-
-	for k, _ := range v {
-		switch k {
-		case "filter":
-			if v[k] == nil {
-				continue
-			}
-			vv := v[k]
-			vvPath := runtime1.JoinPath(path, k)
-			validator, ok := interface{}(&query.Filtering{}).(interface {
-				AtlasValidateJSON(context.Context, json.RawMessage, string) error
-			})
-			if !ok {
-				continue
-			}
-			if err = validator.AtlasValidateJSON(ctx, vv, vvPath); err != nil {
-				return err
-			}
-		case "order_by":
-			if v[k] == nil {
-				continue
-			}
-			vv := v[k]
-			vvPath := runtime1.JoinPath(path, k)
-			validator, ok := interface{}(&query.Sorting{}).(interface {
-				AtlasValidateJSON(context.Context, json.RawMessage, string) error
-			})
-			if !ok {
-				continue
-			}
-			if err = validator.AtlasValidateJSON(ctx, vv, vvPath); err != nil {
-				return err
-			}
-		case "fields":
-			if v[k] == nil {
-				continue
-			}
-			vv := v[k]
-			vvPath := runtime1.JoinPath(path, k)
-			validator, ok := interface{}(&query.FieldSelection{}).(interface {
-				AtlasValidateJSON(context.Context, json.RawMessage, string) error
-			})
-			if !ok {
-				continue
-			}
-			if err = validator.AtlasValidateJSON(ctx, vv, vvPath); err != nil {
-				return err
-			}
-		case "paging":
-			if v[k] == nil {
-				continue
-			}
-			vv := v[k]
-			vvPath := runtime1.JoinPath(path, k)
-			validator, ok := interface{}(&query.Pagination{}).(interface {
-				AtlasValidateJSON(context.Context, json.RawMessage, string) error
-			})
-			if !ok {
-				continue
-			}
-			if err = validator.AtlasValidateJSON(ctx, vv, vvPath); err != nil {
-				return err
-			}
-		default:
-			if !allowUnknown {
-				return fmt.Errorf("unknown field %q.", runtime1.JoinPath(path, k))
-			}
-		}
-	}
-	return nil
-}
-
-// AtlasValidateJSON function validates a JSON for object ListAwsRdsInstanceRequest.
-func (_ *ListAwsRdsInstanceRequest) AtlasValidateJSON(ctx context.Context, r json.RawMessage, path string) (err error) {
-	if hook, ok := interface{}(&ListAwsRdsInstanceRequest{}).(interface {
-		AtlasJSONValidate(context.Context, json.RawMessage, string) (json.RawMessage, error)
-	}); ok {
-		if r, err = hook.AtlasJSONValidate(ctx, r, path); err != nil {
-			return err
-		}
-	}
-	return validate_Object_ListAwsRdsInstanceRequest(ctx, r, path)
-}
-
-func validate_required_Object_ListAwsRdsInstanceRequest(ctx context.Context, v map[string]json.RawMessage, path string) error {
-	method := runtime1.HTTPMethodFromContext(ctx)
-	_ = method
-	return nil
-}
-
-// validate_Object_ListAwsRdsInstancesResponse function validates a JSON for a given object.
-func validate_Object_ListAwsRdsInstancesResponse(ctx context.Context, r json.RawMessage, path string) (err error) {
-	if hook, ok := interface{}(&ListAwsRdsInstancesResponse{}).(interface {
-		AtlasJSONValidate(context.Context, json.RawMessage, string) (json.RawMessage, error)
-	}); ok {
-		if r, err = hook.AtlasJSONValidate(ctx, r, path); err != nil {
-			return err
-		}
-	}
-
-	var v map[string]json.RawMessage
-	if err = json.Unmarshal(r, &v); err != nil {
-		return fmt.Errorf("invalid value for %q: expected object.", path)
-	}
-
-	if err = validate_required_Object_ListAwsRdsInstancesResponse(ctx, v, path); err != nil {
-		return err
-	}
-
-	allowUnknown := runtime1.AllowUnknownFromContext(ctx)
-
-	for k, _ := range v {
-		switch k {
-		case "results":
-			if v[k] == nil {
-				continue
-			}
-			var vArr []json.RawMessage
-			vArrPath := runtime1.JoinPath(path, k)
-			if err = json.Unmarshal(v[k], &vArr); err != nil {
-				return fmt.Errorf("invalid value for %q: expected array.", vArrPath)
-			}
-			for i, vv := range vArr {
-				vvPath := fmt.Sprintf("%s.[%d]", vArrPath, i)
-				if err = validate_Object_AwsRdsInstance(ctx, vv, vvPath); err != nil {
-					return err
-				}
-			}
-		case "page":
-			if v[k] == nil {
-				continue
-			}
-			vv := v[k]
-			vvPath := runtime1.JoinPath(path, k)
-			validator, ok := interface{}(&query.PageInfo{}).(interface {
-				AtlasValidateJSON(context.Context, json.RawMessage, string) error
-			})
-			if !ok {
-				continue
-			}
-			if err = validator.AtlasValidateJSON(ctx, vv, vvPath); err != nil {
-				return err
-			}
-		default:
-			if !allowUnknown {
-				return fmt.Errorf("unknown field %q.", runtime1.JoinPath(path, k))
-			}
-		}
-	}
-	return nil
-}
-
-// AtlasValidateJSON function validates a JSON for object ListAwsRdsInstancesResponse.
-func (_ *ListAwsRdsInstancesResponse) AtlasValidateJSON(ctx context.Context, r json.RawMessage, path string) (err error) {
-	if hook, ok := interface{}(&ListAwsRdsInstancesResponse{}).(interface {
-		AtlasJSONValidate(context.Context, json.RawMessage, string) (json.RawMessage, error)
-	}); ok {
-		if r, err = hook.AtlasJSONValidate(ctx, r, path); err != nil {
-			return err
-		}
-	}
-	return validate_Object_ListAwsRdsInstancesResponse(ctx, r, path)
-}
-
-func validate_required_Object_ListAwsRdsInstancesResponse(ctx context.Context, v map[string]json.RawMessage, path string) error {
-	method := runtime1.HTTPMethodFromContext(ctx)
-	_ = method
-	return nil
-}
-
-// validate_Object_Value function validates a JSON for a given object.
-func validate_Object_Value(ctx context.Context, r json.RawMessage, path string) (err error) {
-	if hook, ok := interface{}(&Value{}).(interface {
-		AtlasJSONValidate(context.Context, json.RawMessage, string) (json.RawMessage, error)
-	}); ok {
-		if r, err = hook.AtlasJSONValidate(ctx, r, path); err != nil {
-			return err
-		}
-	}
-
-	var v map[string]json.RawMessage
-	if err = json.Unmarshal(r, &v); err != nil {
-		return fmt.Errorf("invalid value for %q: expected object.", path)
-	}
-
-	if err = validate_required_Object_Value(ctx, v, path); err != nil {
-		return err
-	}
-
-	allowUnknown := runtime1.AllowUnknownFromContext(ctx)
-
-	for k, _ := range v {
-		switch k {
-		case "id":
-			if v[k] == nil {
-				continue
-			}
-			vv := v[k]
-			vvPath := runtime1.JoinPath(path, k)
-			validator, ok := interface{}(&resource.Identifier{}).(interface {
-				AtlasValidateJSON(context.Context, json.RawMessage, string) error
-			})
-			if !ok {
-				continue
-			}
-			if err = validator.AtlasValidateJSON(ctx, vv, vvPath); err != nil {
-				return err
-			}
-		case "name":
-		case "description":
-		case "keys":
-			if v[k] == nil {
-				continue
-			}
-			vv := v[k]
-			vvPath := runtime1.JoinPath(path, k)
-			validator, ok := interface{}(&types.JSONValue{}).(interface {
-				AtlasValidateJSON(context.Context, json.RawMessage, string) error
-			})
-			if !ok {
-				continue
-			}
-			if err = validator.AtlasValidateJSON(ctx, vv, vvPath); err != nil {
-				return err
-			}
-		case "aws_rds_instance_id":
-			if v[k] == nil {
-				continue
-			}
-			vv := v[k]
-			vvPath := runtime1.JoinPath(path, k)
-			validator, ok := interface{}(&resource.Identifier{}).(interface {
-				AtlasValidateJSON(context.Context, json.RawMessage, string) error
-			})
-			if !ok {
-				continue
-			}
-			if err = validator.AtlasValidateJSON(ctx, vv, vvPath); err != nil {
-				return err
-			}
-		default:
-			if !allowUnknown {
-				return fmt.Errorf("unknown field %q.", runtime1.JoinPath(path, k))
-			}
-		}
-	}
-	return nil
-}
-
-// AtlasValidateJSON function validates a JSON for object Value.
-func (_ *Value) AtlasValidateJSON(ctx context.Context, r json.RawMessage, path string) (err error) {
-	if hook, ok := interface{}(&Value{}).(interface {
-		AtlasJSONValidate(context.Context, json.RawMessage, string) (json.RawMessage, error)
-	}); ok {
-		if r, err = hook.AtlasJSONValidate(ctx, r, path); err != nil {
-			return err
-		}
-	}
-	return validate_Object_Value(ctx, r, path)
-}
-
-func validate_required_Object_Value(ctx context.Context, v map[string]json.RawMessage, path string) error {
-	method := runtime1.HTTPMethodFromContext(ctx)
-	_ = method
-	return nil
-}
-
-// validate_Object_CreateValueRequest function validates a JSON for a given object.
-func validate_Object_CreateValueRequest(ctx context.Context, r json.RawMessage, path string) (err error) {
-	if hook, ok := interface{}(&CreateValueRequest{}).(interface {
-		AtlasJSONValidate(context.Context, json.RawMessage, string) (json.RawMessage, error)
-	}); ok {
-		if r, err = hook.AtlasJSONValidate(ctx, r, path); err != nil {
-			return err
-		}
-	}
-
-	var v map[string]json.RawMessage
-	if err = json.Unmarshal(r, &v); err != nil {
-		return fmt.Errorf("invalid value for %q: expected object.", path)
-	}
-
-	if err = validate_required_Object_CreateValueRequest(ctx, v, path); err != nil {
-		return err
-	}
-
-	allowUnknown := runtime1.AllowUnknownFromContext(ctx)
-
-	for k, _ := range v {
-		switch k {
-		case "payload":
-			if v[k] == nil {
-				continue
-			}
-			vv := v[k]
-			vvPath := runtime1.JoinPath(path, k)
-			if err = validate_Object_Value(ctx, vv, vvPath); err != nil {
-				return err
-			}
-		default:
-			if !allowUnknown {
-				return fmt.Errorf("unknown field %q.", runtime1.JoinPath(path, k))
-			}
-		}
-	}
-	return nil
-}
-
-// AtlasValidateJSON function validates a JSON for object CreateValueRequest.
-func (_ *CreateValueRequest) AtlasValidateJSON(ctx context.Context, r json.RawMessage, path string) (err error) {
-	if hook, ok := interface{}(&CreateValueRequest{}).(interface {
-		AtlasJSONValidate(context.Context, json.RawMessage, string) (json.RawMessage, error)
-	}); ok {
-		if r, err = hook.AtlasJSONValidate(ctx, r, path); err != nil {
-			return err
-		}
-	}
-	return validate_Object_CreateValueRequest(ctx, r, path)
-}
-
-func validate_required_Object_CreateValueRequest(ctx context.Context, v map[string]json.RawMessage, path string) error {
-	method := runtime1.HTTPMethodFromContext(ctx)
-	_ = method
-	return nil
-}
-
-// validate_Object_CreateValueResponse function validates a JSON for a given object.
-func validate_Object_CreateValueResponse(ctx context.Context, r json.RawMessage, path string) (err error) {
-	if hook, ok := interface{}(&CreateValueResponse{}).(interface {
-		AtlasJSONValidate(context.Context, json.RawMessage, string) (json.RawMessage, error)
-	}); ok {
-		if r, err = hook.AtlasJSONValidate(ctx, r, path); err != nil {
-			return err
-		}
-	}
-
-	var v map[string]json.RawMessage
-	if err = json.Unmarshal(r, &v); err != nil {
-		return fmt.Errorf("invalid value for %q: expected object.", path)
-	}
-
-	if err = validate_required_Object_CreateValueResponse(ctx, v, path); err != nil {
-		return err
-	}
-
-	allowUnknown := runtime1.AllowUnknownFromContext(ctx)
-
-	for k, _ := range v {
-		switch k {
-		case "result":
-			if v[k] == nil {
-				continue
-			}
-			vv := v[k]
-			vvPath := runtime1.JoinPath(path, k)
-			if err = validate_Object_Value(ctx, vv, vvPath); err != nil {
-				return err
-			}
-		default:
-			if !allowUnknown {
-				return fmt.Errorf("unknown field %q.", runtime1.JoinPath(path, k))
-			}
-		}
-	}
-	return nil
-}
-
-// AtlasValidateJSON function validates a JSON for object CreateValueResponse.
-func (_ *CreateValueResponse) AtlasValidateJSON(ctx context.Context, r json.RawMessage, path string) (err error) {
-	if hook, ok := interface{}(&CreateValueResponse{}).(interface {
-		AtlasJSONValidate(context.Context, json.RawMessage, string) (json.RawMessage, error)
-	}); ok {
-		if r, err = hook.AtlasJSONValidate(ctx, r, path); err != nil {
-			return err
-		}
-	}
-	return validate_Object_CreateValueResponse(ctx, r, path)
-}
-
-func validate_required_Object_CreateValueResponse(ctx context.Context, v map[string]json.RawMessage, path string) error {
-	method := runtime1.HTTPMethodFromContext(ctx)
-	_ = method
-	return nil
-}
-
-// validate_Object_ReadValueRequest function validates a JSON for a given object.
-func validate_Object_ReadValueRequest(ctx context.Context, r json.RawMessage, path string) (err error) {
-	if hook, ok := interface{}(&ReadValueRequest{}).(interface {
-		AtlasJSONValidate(context.Context, json.RawMessage, string) (json.RawMessage, error)
-	}); ok {
-		if r, err = hook.AtlasJSONValidate(ctx, r, path); err != nil {
-			return err
-		}
-	}
-
-	var v map[string]json.RawMessage
-	if err = json.Unmarshal(r, &v); err != nil {
-		return fmt.Errorf("invalid value for %q: expected object.", path)
-	}
-
-	if err = validate_required_Object_ReadValueRequest(ctx, v, path); err != nil {
-		return err
-	}
-
-	allowUnknown := runtime1.AllowUnknownFromContext(ctx)
-
-	for k, _ := range v {
-		switch k {
-		case "id":
-			if v[k] == nil {
-				continue
-			}
-			vv := v[k]
-			vvPath := runtime1.JoinPath(path, k)
-			validator, ok := interface{}(&resource.Identifier{}).(interface {
-				AtlasValidateJSON(context.Context, json.RawMessage, string) error
-			})
-			if !ok {
-				continue
-			}
-			if err = validator.AtlasValidateJSON(ctx, vv, vvPath); err != nil {
-				return err
-			}
-		case "fields":
-			if v[k] == nil {
-				continue
-			}
-			vv := v[k]
-			vvPath := runtime1.JoinPath(path, k)
-			validator, ok := interface{}(&query.FieldSelection{}).(interface {
-				AtlasValidateJSON(context.Context, json.RawMessage, string) error
-			})
-			if !ok {
-				continue
-			}
-			if err = validator.AtlasValidateJSON(ctx, vv, vvPath); err != nil {
-				return err
-			}
-		default:
-			if !allowUnknown {
-				return fmt.Errorf("unknown field %q.", runtime1.JoinPath(path, k))
-			}
-		}
-	}
-	return nil
-}
-
-// AtlasValidateJSON function validates a JSON for object ReadValueRequest.
-func (_ *ReadValueRequest) AtlasValidateJSON(ctx context.Context, r json.RawMessage, path string) (err error) {
-	if hook, ok := interface{}(&ReadValueRequest{}).(interface {
-		AtlasJSONValidate(context.Context, json.RawMessage, string) (json.RawMessage, error)
-	}); ok {
-		if r, err = hook.AtlasJSONValidate(ctx, r, path); err != nil {
-			return err
-		}
-	}
-	return validate_Object_ReadValueRequest(ctx, r, path)
-}
-
-func validate_required_Object_ReadValueRequest(ctx context.Context, v map[string]json.RawMessage, path string) error {
-	method := runtime1.HTTPMethodFromContext(ctx)
-	_ = method
-	return nil
-}
-
-// validate_Object_ReadValueResponse function validates a JSON for a given object.
-func validate_Object_ReadValueResponse(ctx context.Context, r json.RawMessage, path string) (err error) {
-	if hook, ok := interface{}(&ReadValueResponse{}).(interface {
-		AtlasJSONValidate(context.Context, json.RawMessage, string) (json.RawMessage, error)
-	}); ok {
-		if r, err = hook.AtlasJSONValidate(ctx, r, path); err != nil {
-			return err
-		}
-	}
-
-	var v map[string]json.RawMessage
-	if err = json.Unmarshal(r, &v); err != nil {
-		return fmt.Errorf("invalid value for %q: expected object.", path)
-	}
-
-	if err = validate_required_Object_ReadValueResponse(ctx, v, path); err != nil {
-		return err
-	}
-
-	allowUnknown := runtime1.AllowUnknownFromContext(ctx)
-
-	for k, _ := range v {
-		switch k {
-		case "result":
-			if v[k] == nil {
-				continue
-			}
-			vv := v[k]
-			vvPath := runtime1.JoinPath(path, k)
-			if err = validate_Object_Value(ctx, vv, vvPath); err != nil {
-				return err
-			}
-		default:
-			if !allowUnknown {
-				return fmt.Errorf("unknown field %q.", runtime1.JoinPath(path, k))
-			}
-		}
-	}
-	return nil
-}
-
-// AtlasValidateJSON function validates a JSON for object ReadValueResponse.
-func (_ *ReadValueResponse) AtlasValidateJSON(ctx context.Context, r json.RawMessage, path string) (err error) {
-	if hook, ok := interface{}(&ReadValueResponse{}).(interface {
-		AtlasJSONValidate(context.Context, json.RawMessage, string) (json.RawMessage, error)
-	}); ok {
-		if r, err = hook.AtlasJSONValidate(ctx, r, path); err != nil {
-			return err
-		}
-	}
-	return validate_Object_ReadValueResponse(ctx, r, path)
-}
-
-func validate_required_Object_ReadValueResponse(ctx context.Context, v map[string]json.RawMessage, path string) error {
-	method := runtime1.HTTPMethodFromContext(ctx)
-	_ = method
-	return nil
-}
-
-// validate_Object_UpdateValueRequest function validates a JSON for a given object.
-func validate_Object_UpdateValueRequest(ctx context.Context, r json.RawMessage, path string) (err error) {
-	if hook, ok := interface{}(&UpdateValueRequest{}).(interface {
-		AtlasJSONValidate(context.Context, json.RawMessage, string) (json.RawMessage, error)
-	}); ok {
-		if r, err = hook.AtlasJSONValidate(ctx, r, path); err != nil {
-			return err
-		}
-	}
-
-	var v map[string]json.RawMessage
-	if err = json.Unmarshal(r, &v); err != nil {
-		return fmt.Errorf("invalid value for %q: expected object.", path)
-	}
-
-	if err = validate_required_Object_UpdateValueRequest(ctx, v, path); err != nil {
-		return err
-	}
-
-	allowUnknown := runtime1.AllowUnknownFromContext(ctx)
-
-	for k, _ := range v {
-		switch k {
-		case "payload":
-			if v[k] == nil {
-				continue
-			}
-			vv := v[k]
-			vvPath := runtime1.JoinPath(path, k)
-			if err = validate_Object_Value(ctx, vv, vvPath); err != nil {
-				return err
-			}
-		case "fields":
-			if v[k] == nil {
-				continue
-			}
-			vv := v[k]
-			vvPath := runtime1.JoinPath(path, k)
-			validator, ok := interface{}(&field_mask.FieldMask{}).(interface {
-				AtlasValidateJSON(context.Context, json.RawMessage, string) error
-			})
-			if !ok {
-				continue
-			}
-			if err = validator.AtlasValidateJSON(ctx, vv, vvPath); err != nil {
-				return err
-			}
-		default:
-			if !allowUnknown {
-				return fmt.Errorf("unknown field %q.", runtime1.JoinPath(path, k))
-			}
-		}
-	}
-	return nil
-}
-
-// AtlasValidateJSON function validates a JSON for object UpdateValueRequest.
-func (_ *UpdateValueRequest) AtlasValidateJSON(ctx context.Context, r json.RawMessage, path string) (err error) {
-	if hook, ok := interface{}(&UpdateValueRequest{}).(interface {
-		AtlasJSONValidate(context.Context, json.RawMessage, string) (json.RawMessage, error)
-	}); ok {
-		if r, err = hook.AtlasJSONValidate(ctx, r, path); err != nil {
-			return err
-		}
-	}
-	return validate_Object_UpdateValueRequest(ctx, r, path)
-}
-
-func validate_required_Object_UpdateValueRequest(ctx context.Context, v map[string]json.RawMessage, path string) error {
-	method := runtime1.HTTPMethodFromContext(ctx)
-	_ = method
-	return nil
-}
-
-// validate_Object_UpdateValueResponse function validates a JSON for a given object.
-func validate_Object_UpdateValueResponse(ctx context.Context, r json.RawMessage, path string) (err error) {
-	if hook, ok := interface{}(&UpdateValueResponse{}).(interface {
-		AtlasJSONValidate(context.Context, json.RawMessage, string) (json.RawMessage, error)
-	}); ok {
-		if r, err = hook.AtlasJSONValidate(ctx, r, path); err != nil {
-			return err
-		}
-	}
-
-	var v map[string]json.RawMessage
-	if err = json.Unmarshal(r, &v); err != nil {
-		return fmt.Errorf("invalid value for %q: expected object.", path)
-	}
-
-	if err = validate_required_Object_UpdateValueResponse(ctx, v, path); err != nil {
-		return err
-	}
-
-	allowUnknown := runtime1.AllowUnknownFromContext(ctx)
-
-	for k, _ := range v {
-		switch k {
-		case "result":
-			if v[k] == nil {
-				continue
-			}
-			vv := v[k]
-			vvPath := runtime1.JoinPath(path, k)
-			if err = validate_Object_Value(ctx, vv, vvPath); err != nil {
-				return err
-			}
-		default:
-			if !allowUnknown {
-				return fmt.Errorf("unknown field %q.", runtime1.JoinPath(path, k))
-			}
-		}
-	}
-	return nil
-}
-
-// AtlasValidateJSON function validates a JSON for object UpdateValueResponse.
-func (_ *UpdateValueResponse) AtlasValidateJSON(ctx context.Context, r json.RawMessage, path string) (err error) {
-	if hook, ok := interface{}(&UpdateValueResponse{}).(interface {
-		AtlasJSONValidate(context.Context, json.RawMessage, string) (json.RawMessage, error)
-	}); ok {
-		if r, err = hook.AtlasJSONValidate(ctx, r, path); err != nil {
-			return err
-		}
-	}
-	return validate_Object_UpdateValueResponse(ctx, r, path)
-}
-
-func validate_required_Object_UpdateValueResponse(ctx context.Context, v map[string]json.RawMessage, path string) error {
-	method := runtime1.HTTPMethodFromContext(ctx)
-	_ = method
-	return nil
-}
-
-// validate_Object_DeleteValueRequest function validates a JSON for a given object.
-func validate_Object_DeleteValueRequest(ctx context.Context, r json.RawMessage, path string) (err error) {
-	if hook, ok := interface{}(&DeleteValueRequest{}).(interface {
-		AtlasJSONValidate(context.Context, json.RawMessage, string) (json.RawMessage, error)
-	}); ok {
-		if r, err = hook.AtlasJSONValidate(ctx, r, path); err != nil {
-			return err
-		}
-	}
-
-	var v map[string]json.RawMessage
-	if err = json.Unmarshal(r, &v); err != nil {
-		return fmt.Errorf("invalid value for %q: expected object.", path)
-	}
-
-	if err = validate_required_Object_DeleteValueRequest(ctx, v, path); err != nil {
-		return err
-	}
-
-	allowUnknown := runtime1.AllowUnknownFromContext(ctx)
-
-	for k, _ := range v {
-		switch k {
-		case "id":
-			if v[k] == nil {
-				continue
-			}
-			vv := v[k]
-			vvPath := runtime1.JoinPath(path, k)
-			validator, ok := interface{}(&resource.Identifier{}).(interface {
-				AtlasValidateJSON(context.Context, json.RawMessage, string) error
-			})
-			if !ok {
-				continue
-			}
-			if err = validator.AtlasValidateJSON(ctx, vv, vvPath); err != nil {
-				return err
-			}
-		default:
-			if !allowUnknown {
-				return fmt.Errorf("unknown field %q.", runtime1.JoinPath(path, k))
-			}
-		}
-	}
-	return nil
-}
-
-// AtlasValidateJSON function validates a JSON for object DeleteValueRequest.
-func (_ *DeleteValueRequest) AtlasValidateJSON(ctx context.Context, r json.RawMessage, path string) (err error) {
-	if hook, ok := interface{}(&DeleteValueRequest{}).(interface {
-		AtlasJSONValidate(context.Context, json.RawMessage, string) (json.RawMessage, error)
-	}); ok {
-		if r, err = hook.AtlasJSONValidate(ctx, r, path); err != nil {
-			return err
-		}
-	}
-	return validate_Object_DeleteValueRequest(ctx, r, path)
-}
-
-func validate_required_Object_DeleteValueRequest(ctx context.Context, v map[string]json.RawMessage, path string) error {
-	method := runtime1.HTTPMethodFromContext(ctx)
-	_ = method
-	return nil
-}
-
-// validate_Object_DeleteValueResponse function validates a JSON for a given object.
-func validate_Object_DeleteValueResponse(ctx context.Context, r json.RawMessage, path string) (err error) {
-	if hook, ok := interface{}(&DeleteValueResponse{}).(interface {
-		AtlasJSONValidate(context.Context, json.RawMessage, string) (json.RawMessage, error)
-	}); ok {
-		if r, err = hook.AtlasJSONValidate(ctx, r, path); err != nil {
-			return err
-		}
-	}
-
-	var v map[string]json.RawMessage
-	if err = json.Unmarshal(r, &v); err != nil {
-		return fmt.Errorf("invalid value for %q: expected object.", path)
-	}
-
-	if err = validate_required_Object_DeleteValueResponse(ctx, v, path); err != nil {
-		return err
-	}
-
-	allowUnknown := runtime1.AllowUnknownFromContext(ctx)
-
-	for k, _ := range v {
-		switch k {
-		default:
-			if !allowUnknown {
-				return fmt.Errorf("unknown field %q.", runtime1.JoinPath(path, k))
-			}
-		}
-	}
-	return nil
-}
-
-// AtlasValidateJSON function validates a JSON for object DeleteValueResponse.
-func (_ *DeleteValueResponse) AtlasValidateJSON(ctx context.Context, r json.RawMessage, path string) (err error) {
-	if hook, ok := interface{}(&DeleteValueResponse{}).(interface {
-		AtlasJSONValidate(context.Context, json.RawMessage, string) (json.RawMessage, error)
-	}); ok {
-		if r, err = hook.AtlasJSONValidate(ctx, r, path); err != nil {
-			return err
-		}
-	}
-	return validate_Object_DeleteValueResponse(ctx, r, path)
-}
-
-func validate_required_Object_DeleteValueResponse(ctx context.Context, v map[string]json.RawMessage, path string) error {
-	method := runtime1.HTTPMethodFromContext(ctx)
-	_ = method
-	return nil
-}
-
-// validate_Object_ListValueRequest function validates a JSON for a given object.
-func validate_Object_ListValueRequest(ctx context.Context, r json.RawMessage, path string) (err error) {
-	if hook, ok := interface{}(&ListValueRequest{}).(interface {
-		AtlasJSONValidate(context.Context, json.RawMessage, string) (json.RawMessage, error)
-	}); ok {
-		if r, err = hook.AtlasJSONValidate(ctx, r, path); err != nil {
-			return err
-		}
-	}
-
-	var v map[string]json.RawMessage
-	if err = json.Unmarshal(r, &v); err != nil {
-		return fmt.Errorf("invalid value for %q: expected object.", path)
-	}
-
-	if err = validate_required_Object_ListValueRequest(ctx, v, path); err != nil {
-		return err
-	}
-
-	allowUnknown := runtime1.AllowUnknownFromContext(ctx)
-
-	for k, _ := range v {
-		switch k {
-		case "filter":
-			if v[k] == nil {
-				continue
-			}
-			vv := v[k]
-			vvPath := runtime1.JoinPath(path, k)
-			validator, ok := interface{}(&query.Filtering{}).(interface {
-				AtlasValidateJSON(context.Context, json.RawMessage, string) error
-			})
-			if !ok {
-				continue
-			}
-			if err = validator.AtlasValidateJSON(ctx, vv, vvPath); err != nil {
-				return err
-			}
-		case "order_by":
-			if v[k] == nil {
-				continue
-			}
-			vv := v[k]
-			vvPath := runtime1.JoinPath(path, k)
-			validator, ok := interface{}(&query.Sorting{}).(interface {
-				AtlasValidateJSON(context.Context, json.RawMessage, string) error
-			})
-			if !ok {
-				continue
-			}
-			if err = validator.AtlasValidateJSON(ctx, vv, vvPath); err != nil {
-				return err
-			}
-		case "fields":
-			if v[k] == nil {
-				continue
-			}
-			vv := v[k]
-			vvPath := runtime1.JoinPath(path, k)
-			validator, ok := interface{}(&query.FieldSelection{}).(interface {
-				AtlasValidateJSON(context.Context, json.RawMessage, string) error
-			})
-			if !ok {
-				continue
-			}
-			if err = validator.AtlasValidateJSON(ctx, vv, vvPath); err != nil {
-				return err
-			}
-		case "paging":
-			if v[k] == nil {
-				continue
-			}
-			vv := v[k]
-			vvPath := runtime1.JoinPath(path, k)
-			validator, ok := interface{}(&query.Pagination{}).(interface {
-				AtlasValidateJSON(context.Context, json.RawMessage, string) error
-			})
-			if !ok {
-				continue
-			}
-			if err = validator.AtlasValidateJSON(ctx, vv, vvPath); err != nil {
-				return err
-			}
-		default:
-			if !allowUnknown {
-				return fmt.Errorf("unknown field %q.", runtime1.JoinPath(path, k))
-			}
-		}
-	}
-	return nil
-}
-
-// AtlasValidateJSON function validates a JSON for object ListValueRequest.
-func (_ *ListValueRequest) AtlasValidateJSON(ctx context.Context, r json.RawMessage, path string) (err error) {
-	if hook, ok := interface{}(&ListValueRequest{}).(interface {
-		AtlasJSONValidate(context.Context, json.RawMessage, string) (json.RawMessage, error)
-	}); ok {
-		if r, err = hook.AtlasJSONValidate(ctx, r, path); err != nil {
-			return err
-		}
-	}
-	return validate_Object_ListValueRequest(ctx, r, path)
-}
-
-func validate_required_Object_ListValueRequest(ctx context.Context, v map[string]json.RawMessage, path string) error {
-	method := runtime1.HTTPMethodFromContext(ctx)
-	_ = method
-	return nil
-}
-
-// validate_Object_ListValuesResponse function validates a JSON for a given object.
-func validate_Object_ListValuesResponse(ctx context.Context, r json.RawMessage, path string) (err error) {
-	if hook, ok := interface{}(&ListValuesResponse{}).(interface {
-		AtlasJSONValidate(context.Context, json.RawMessage, string) (json.RawMessage, error)
-	}); ok {
-		if r, err = hook.AtlasJSONValidate(ctx, r, path); err != nil {
-			return err
-		}
-	}
-
-	var v map[string]json.RawMessage
-	if err = json.Unmarshal(r, &v); err != nil {
-		return fmt.Errorf("invalid value for %q: expected object.", path)
-	}
-
-	if err = validate_required_Object_ListValuesResponse(ctx, v, path); err != nil {
-		return err
-	}
-
-	allowUnknown := runtime1.AllowUnknownFromContext(ctx)
-
-	for k, _ := range v {
-		switch k {
-		case "results":
-			if v[k] == nil {
-				continue
-			}
-			var vArr []json.RawMessage
-			vArrPath := runtime1.JoinPath(path, k)
-			if err = json.Unmarshal(v[k], &vArr); err != nil {
-				return fmt.Errorf("invalid value for %q: expected array.", vArrPath)
-			}
-			for i, vv := range vArr {
-				vvPath := fmt.Sprintf("%s.[%d]", vArrPath, i)
-				if err = validate_Object_Value(ctx, vv, vvPath); err != nil {
-					return err
-				}
-			}
-		case "page":
-			if v[k] == nil {
-				continue
-			}
-			vv := v[k]
-			vvPath := runtime1.JoinPath(path, k)
-			validator, ok := interface{}(&query.PageInfo{}).(interface {
-				AtlasValidateJSON(context.Context, json.RawMessage, string) error
-			})
-			if !ok {
-				continue
-			}
-			if err = validator.AtlasValidateJSON(ctx, vv, vvPath); err != nil {
-				return err
-			}
-		default:
-			if !allowUnknown {
-				return fmt.Errorf("unknown field %q.", runtime1.JoinPath(path, k))
-			}
-		}
-	}
-	return nil
-}
-
-// AtlasValidateJSON function validates a JSON for object ListValuesResponse.
-func (_ *ListValuesResponse) AtlasValidateJSON(ctx context.Context, r json.RawMessage, path string) (err error) {
-	if hook, ok := interface{}(&ListValuesResponse{}).(interface {
-		AtlasJSONValidate(context.Context, json.RawMessage, string) (json.RawMessage, error)
-	}); ok {
-		if r, err = hook.AtlasJSONValidate(ctx, r, path); err != nil {
-			return err
-		}
-	}
-	return validate_Object_ListValuesResponse(ctx, r, path)
-}
-
-func validate_required_Object_ListValuesResponse(ctx context.Context, v map[string]json.RawMessage, path string) error {
-	method := runtime1.HTTPMethodFromContext(ctx)
-	_ = method
-	return nil
-}
-
 // validate_Object_Artifact function validates a JSON for a given object.
 func validate_Object_Artifact(ctx context.Context, r json.RawMessage, path string) (err error) {
 	if hook, ok := interface{}(&Artifact{}).(interface {
@@ -12064,7 +8573,7 @@ func validate_Object_Artifact(ctx context.Context, r json.RawMessage, path strin
 		case "description":
 		case "repo":
 		case "commit":
-		case "chart_version_id":
+		case "app_version_id":
 			if v[k] == nil {
 				continue
 			}
@@ -14475,39 +10984,75 @@ var validate_Patterns = []struct {
 		allowUnknown: false,
 	},
 	{
-		pattern:      pattern_Stages_Create_0,
+		pattern:      pattern_Lifecycles_Create_0,
 		httpMethod:   "POST",
-		validator:    validate_Stages_Create_0,
+		validator:    validate_Lifecycles_Create_0,
 		allowUnknown: false,
 	},
 	{
-		pattern:      pattern_Stages_Read_0,
+		pattern:      pattern_Lifecycles_Read_0,
 		httpMethod:   "GET",
-		validator:    validate_Stages_Read_0,
+		validator:    validate_Lifecycles_Read_0,
 		allowUnknown: false,
 	},
 	{
-		pattern:      pattern_Stages_Update_0,
+		pattern:      pattern_Lifecycles_Update_0,
 		httpMethod:   "PUT",
-		validator:    validate_Stages_Update_0,
+		validator:    validate_Lifecycles_Update_0,
 		allowUnknown: false,
 	},
 	{
-		pattern:      pattern_Stages_Update_1,
+		pattern:      pattern_Lifecycles_Update_1,
 		httpMethod:   "PATCH",
-		validator:    validate_Stages_Update_1,
+		validator:    validate_Lifecycles_Update_1,
 		allowUnknown: false,
 	},
 	{
-		pattern:      pattern_Stages_Delete_0,
+		pattern:      pattern_Lifecycles_Delete_0,
 		httpMethod:   "DELETE",
-		validator:    validate_Stages_Delete_0,
+		validator:    validate_Lifecycles_Delete_0,
 		allowUnknown: false,
 	},
 	{
-		pattern:      pattern_Stages_List_0,
+		pattern:      pattern_Lifecycles_List_0,
 		httpMethod:   "GET",
-		validator:    validate_Stages_List_0,
+		validator:    validate_Lifecycles_List_0,
+		allowUnknown: false,
+	},
+	{
+		pattern:      pattern_AppConfigs_Create_0,
+		httpMethod:   "POST",
+		validator:    validate_AppConfigs_Create_0,
+		allowUnknown: false,
+	},
+	{
+		pattern:      pattern_AppConfigs_Read_0,
+		httpMethod:   "GET",
+		validator:    validate_AppConfigs_Read_0,
+		allowUnknown: false,
+	},
+	{
+		pattern:      pattern_AppConfigs_Update_0,
+		httpMethod:   "PUT",
+		validator:    validate_AppConfigs_Update_0,
+		allowUnknown: false,
+	},
+	{
+		pattern:      pattern_AppConfigs_Update_1,
+		httpMethod:   "PATCH",
+		validator:    validate_AppConfigs_Update_1,
+		allowUnknown: false,
+	},
+	{
+		pattern:      pattern_AppConfigs_Delete_0,
+		httpMethod:   "DELETE",
+		validator:    validate_AppConfigs_Delete_0,
+		allowUnknown: false,
+	},
+	{
+		pattern:      pattern_AppConfigs_List_0,
+		httpMethod:   "GET",
+		validator:    validate_AppConfigs_List_0,
 		allowUnknown: false,
 	},
 	{
@@ -14547,147 +11092,75 @@ var validate_Patterns = []struct {
 		allowUnknown: false,
 	},
 	{
-		pattern:      pattern_AppRegionConfigs_Create_0,
+		pattern:      pattern_Applications_Create_0,
 		httpMethod:   "POST",
-		validator:    validate_AppRegionConfigs_Create_0,
+		validator:    validate_Applications_Create_0,
 		allowUnknown: false,
 	},
 	{
-		pattern:      pattern_AppRegionConfigs_Read_0,
+		pattern:      pattern_Applications_Read_0,
 		httpMethod:   "GET",
-		validator:    validate_AppRegionConfigs_Read_0,
+		validator:    validate_Applications_Read_0,
 		allowUnknown: false,
 	},
 	{
-		pattern:      pattern_AppRegionConfigs_Update_0,
+		pattern:      pattern_Applications_Update_0,
 		httpMethod:   "PUT",
-		validator:    validate_AppRegionConfigs_Update_0,
+		validator:    validate_Applications_Update_0,
 		allowUnknown: false,
 	},
 	{
-		pattern:      pattern_AppRegionConfigs_Update_1,
+		pattern:      pattern_Applications_Update_1,
 		httpMethod:   "PATCH",
-		validator:    validate_AppRegionConfigs_Update_1,
+		validator:    validate_Applications_Update_1,
 		allowUnknown: false,
 	},
 	{
-		pattern:      pattern_AppRegionConfigs_Delete_0,
+		pattern:      pattern_Applications_Delete_0,
 		httpMethod:   "DELETE",
-		validator:    validate_AppRegionConfigs_Delete_0,
+		validator:    validate_Applications_Delete_0,
 		allowUnknown: false,
 	},
 	{
-		pattern:      pattern_AppRegionConfigs_List_0,
+		pattern:      pattern_Applications_List_0,
 		httpMethod:   "GET",
-		validator:    validate_AppRegionConfigs_List_0,
+		validator:    validate_Applications_List_0,
 		allowUnknown: false,
 	},
 	{
-		pattern:      pattern_AppStageConfigs_Create_0,
+		pattern:      pattern_AppVersions_Create_0,
 		httpMethod:   "POST",
-		validator:    validate_AppStageConfigs_Create_0,
+		validator:    validate_AppVersions_Create_0,
 		allowUnknown: false,
 	},
 	{
-		pattern:      pattern_AppStageConfigs_Read_0,
+		pattern:      pattern_AppVersions_Read_0,
 		httpMethod:   "GET",
-		validator:    validate_AppStageConfigs_Read_0,
+		validator:    validate_AppVersions_Read_0,
 		allowUnknown: false,
 	},
 	{
-		pattern:      pattern_AppStageConfigs_Update_0,
+		pattern:      pattern_AppVersions_Update_0,
 		httpMethod:   "PUT",
-		validator:    validate_AppStageConfigs_Update_0,
+		validator:    validate_AppVersions_Update_0,
 		allowUnknown: false,
 	},
 	{
-		pattern:      pattern_AppStageConfigs_Update_1,
+		pattern:      pattern_AppVersions_Update_1,
 		httpMethod:   "PATCH",
-		validator:    validate_AppStageConfigs_Update_1,
+		validator:    validate_AppVersions_Update_1,
 		allowUnknown: false,
 	},
 	{
-		pattern:      pattern_AppStageConfigs_Delete_0,
+		pattern:      pattern_AppVersions_Delete_0,
 		httpMethod:   "DELETE",
-		validator:    validate_AppStageConfigs_Delete_0,
+		validator:    validate_AppVersions_Delete_0,
 		allowUnknown: false,
 	},
 	{
-		pattern:      pattern_AppStageConfigs_List_0,
+		pattern:      pattern_AppVersions_List_0,
 		httpMethod:   "GET",
-		validator:    validate_AppStageConfigs_List_0,
-		allowUnknown: false,
-	},
-	{
-		pattern:      pattern_AppEnvironmentConfigs_Create_0,
-		httpMethod:   "POST",
-		validator:    validate_AppEnvironmentConfigs_Create_0,
-		allowUnknown: false,
-	},
-	{
-		pattern:      pattern_AppEnvironmentConfigs_Read_0,
-		httpMethod:   "GET",
-		validator:    validate_AppEnvironmentConfigs_Read_0,
-		allowUnknown: false,
-	},
-	{
-		pattern:      pattern_AppEnvironmentConfigs_Update_0,
-		httpMethod:   "PUT",
-		validator:    validate_AppEnvironmentConfigs_Update_0,
-		allowUnknown: false,
-	},
-	{
-		pattern:      pattern_AppEnvironmentConfigs_Update_1,
-		httpMethod:   "PATCH",
-		validator:    validate_AppEnvironmentConfigs_Update_1,
-		allowUnknown: false,
-	},
-	{
-		pattern:      pattern_AppEnvironmentConfigs_Delete_0,
-		httpMethod:   "DELETE",
-		validator:    validate_AppEnvironmentConfigs_Delete_0,
-		allowUnknown: false,
-	},
-	{
-		pattern:      pattern_AppEnvironmentConfigs_List_0,
-		httpMethod:   "GET",
-		validator:    validate_AppEnvironmentConfigs_List_0,
-		allowUnknown: false,
-	},
-	{
-		pattern:      pattern_ChartVersions_Create_0,
-		httpMethod:   "POST",
-		validator:    validate_ChartVersions_Create_0,
-		allowUnknown: false,
-	},
-	{
-		pattern:      pattern_ChartVersions_Read_0,
-		httpMethod:   "GET",
-		validator:    validate_ChartVersions_Read_0,
-		allowUnknown: false,
-	},
-	{
-		pattern:      pattern_ChartVersions_Update_0,
-		httpMethod:   "PUT",
-		validator:    validate_ChartVersions_Update_0,
-		allowUnknown: false,
-	},
-	{
-		pattern:      pattern_ChartVersions_Update_1,
-		httpMethod:   "PATCH",
-		validator:    validate_ChartVersions_Update_1,
-		allowUnknown: false,
-	},
-	{
-		pattern:      pattern_ChartVersions_Delete_0,
-		httpMethod:   "DELETE",
-		validator:    validate_ChartVersions_Delete_0,
-		allowUnknown: false,
-	},
-	{
-		pattern:      pattern_ChartVersions_List_0,
-		httpMethod:   "GET",
-		validator:    validate_ChartVersions_List_0,
+		validator:    validate_AppVersions_List_0,
 		allowUnknown: false,
 	},
 	{
@@ -14796,114 +11269,6 @@ var validate_Patterns = []struct {
 		pattern:      pattern_Secrets_List_0,
 		httpMethod:   "GET",
 		validator:    validate_Secrets_List_0,
-		allowUnknown: false,
-	},
-	{
-		pattern:      pattern_AwsServices_Create_0,
-		httpMethod:   "POST",
-		validator:    validate_AwsServices_Create_0,
-		allowUnknown: false,
-	},
-	{
-		pattern:      pattern_AwsServices_Read_0,
-		httpMethod:   "GET",
-		validator:    validate_AwsServices_Read_0,
-		allowUnknown: false,
-	},
-	{
-		pattern:      pattern_AwsServices_Update_0,
-		httpMethod:   "PUT",
-		validator:    validate_AwsServices_Update_0,
-		allowUnknown: false,
-	},
-	{
-		pattern:      pattern_AwsServices_Update_1,
-		httpMethod:   "PATCH",
-		validator:    validate_AwsServices_Update_1,
-		allowUnknown: false,
-	},
-	{
-		pattern:      pattern_AwsServices_Delete_0,
-		httpMethod:   "DELETE",
-		validator:    validate_AwsServices_Delete_0,
-		allowUnknown: false,
-	},
-	{
-		pattern:      pattern_AwsServices_List_0,
-		httpMethod:   "GET",
-		validator:    validate_AwsServices_List_0,
-		allowUnknown: false,
-	},
-	{
-		pattern:      pattern_AwsRdsInstances_Create_0,
-		httpMethod:   "POST",
-		validator:    validate_AwsRdsInstances_Create_0,
-		allowUnknown: false,
-	},
-	{
-		pattern:      pattern_AwsRdsInstances_Read_0,
-		httpMethod:   "GET",
-		validator:    validate_AwsRdsInstances_Read_0,
-		allowUnknown: false,
-	},
-	{
-		pattern:      pattern_AwsRdsInstances_Update_0,
-		httpMethod:   "PUT",
-		validator:    validate_AwsRdsInstances_Update_0,
-		allowUnknown: false,
-	},
-	{
-		pattern:      pattern_AwsRdsInstances_Update_1,
-		httpMethod:   "PATCH",
-		validator:    validate_AwsRdsInstances_Update_1,
-		allowUnknown: false,
-	},
-	{
-		pattern:      pattern_AwsRdsInstances_Delete_0,
-		httpMethod:   "DELETE",
-		validator:    validate_AwsRdsInstances_Delete_0,
-		allowUnknown: false,
-	},
-	{
-		pattern:      pattern_AwsRdsInstances_List_0,
-		httpMethod:   "GET",
-		validator:    validate_AwsRdsInstances_List_0,
-		allowUnknown: false,
-	},
-	{
-		pattern:      pattern_Values_Create_0,
-		httpMethod:   "POST",
-		validator:    validate_Values_Create_0,
-		allowUnknown: false,
-	},
-	{
-		pattern:      pattern_Values_Read_0,
-		httpMethod:   "GET",
-		validator:    validate_Values_Read_0,
-		allowUnknown: false,
-	},
-	{
-		pattern:      pattern_Values_Update_0,
-		httpMethod:   "PUT",
-		validator:    validate_Values_Update_0,
-		allowUnknown: false,
-	},
-	{
-		pattern:      pattern_Values_Update_1,
-		httpMethod:   "PATCH",
-		validator:    validate_Values_Update_1,
-		allowUnknown: false,
-	},
-	{
-		pattern:      pattern_Values_Delete_0,
-		httpMethod:   "DELETE",
-		validator:    validate_Values_Delete_0,
-		allowUnknown: false,
-	},
-	{
-		pattern:      pattern_Values_List_0,
-		httpMethod:   "GET",
-		validator:    validate_Values_List_0,
 		allowUnknown: false,
 	},
 	{

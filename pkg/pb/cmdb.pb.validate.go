@@ -1048,46 +1048,6 @@ func (m *Region) Validate() error {
 
 	// no validation rules for Description
 
-	for idx, item := range m.GetStages() {
-		_, _ = idx, item
-
-		if v, ok := interface{}(item).(interface{ Validate() error }); ok {
-			if err := v.Validate(); err != nil {
-				return RegionValidationError{
-					field:  fmt.Sprintf("Stages[%v]", idx),
-					reason: "embedded message failed validation",
-					cause:  err,
-				}
-			}
-		}
-
-	}
-
-	for idx, item := range m.GetAwsServices() {
-		_, _ = idx, item
-
-		if v, ok := interface{}(item).(interface{ Validate() error }); ok {
-			if err := v.Validate(); err != nil {
-				return RegionValidationError{
-					field:  fmt.Sprintf("AwsServices[%v]", idx),
-					reason: "embedded message failed validation",
-					cause:  err,
-				}
-			}
-		}
-
-	}
-
-	if v, ok := interface{}(m.GetValueId()).(interface{ Validate() error }); ok {
-		if err := v.Validate(); err != nil {
-			return RegionValidationError{
-				field:  "ValueId",
-				reason: "embedded message failed validation",
-				cause:  err,
-			}
-		}
-	}
-
 	if v, ok := interface{}(m.GetCloudProviderId()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
 			return RegionValidationError{
@@ -1980,16 +1940,16 @@ var _ interface {
 	ErrorName() string
 } = ListRegionsResponseValidationError{}
 
-// Validate checks the field values on Stage with the rules defined in the
+// Validate checks the field values on Lifecycle with the rules defined in the
 // proto definition for this message. If any rules are violated, an error is returned.
-func (m *Stage) Validate() error {
+func (m *Lifecycle) Validate() error {
 	if m == nil {
 		return nil
 	}
 
 	if v, ok := interface{}(m.GetId()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
-			return StageValidationError{
+			return LifecycleValidationError{
 				field:  "Id",
 				reason: "embedded message failed validation",
 				cause:  err,
@@ -2001,14 +1961,14 @@ func (m *Stage) Validate() error {
 
 	// no validation rules for Description
 
-	// no validation rules for Type
+	// no validation rules for ConfigYaml
 
 	for idx, item := range m.GetEnvironments() {
 		_, _ = idx, item
 
 		if v, ok := interface{}(item).(interface{ Validate() error }); ok {
 			if err := v.Validate(); err != nil {
-				return StageValidationError{
+				return LifecycleValidationError{
 					field:  fmt.Sprintf("Environments[%v]", idx),
 					reason: "embedded message failed validation",
 					cause:  err,
@@ -2018,32 +1978,27 @@ func (m *Stage) Validate() error {
 
 	}
 
-	if v, ok := interface{}(m.GetValueId()).(interface{ Validate() error }); ok {
-		if err := v.Validate(); err != nil {
-			return StageValidationError{
-				field:  "ValueId",
-				reason: "embedded message failed validation",
-				cause:  err,
-			}
-		}
-	}
+	for idx, item := range m.GetLifeCycles() {
+		_, _ = idx, item
 
-	if v, ok := interface{}(m.GetRegionId()).(interface{ Validate() error }); ok {
-		if err := v.Validate(); err != nil {
-			return StageValidationError{
-				field:  "RegionId",
-				reason: "embedded message failed validation",
-				cause:  err,
+		if v, ok := interface{}(item).(interface{ Validate() error }); ok {
+			if err := v.Validate(); err != nil {
+				return LifecycleValidationError{
+					field:  fmt.Sprintf("LifeCycles[%v]", idx),
+					reason: "embedded message failed validation",
+					cause:  err,
+				}
 			}
 		}
+
 	}
 
 	return nil
 }
 
-// StageValidationError is the validation error returned by Stage.Validate if
-// the designated constraints aren't met.
-type StageValidationError struct {
+// LifecycleValidationError is the validation error returned by
+// Lifecycle.Validate if the designated constraints aren't met.
+type LifecycleValidationError struct {
 	field  string
 	reason string
 	cause  error
@@ -2051,22 +2006,22 @@ type StageValidationError struct {
 }
 
 // Field function returns field value.
-func (e StageValidationError) Field() string { return e.field }
+func (e LifecycleValidationError) Field() string { return e.field }
 
 // Reason function returns reason value.
-func (e StageValidationError) Reason() string { return e.reason }
+func (e LifecycleValidationError) Reason() string { return e.reason }
 
 // Cause function returns cause value.
-func (e StageValidationError) Cause() error { return e.cause }
+func (e LifecycleValidationError) Cause() error { return e.cause }
 
 // Key function returns key value.
-func (e StageValidationError) Key() bool { return e.key }
+func (e LifecycleValidationError) Key() bool { return e.key }
 
 // ErrorName returns error name.
-func (e StageValidationError) ErrorName() string { return "StageValidationError" }
+func (e LifecycleValidationError) ErrorName() string { return "LifecycleValidationError" }
 
 // Error satisfies the builtin error interface
-func (e StageValidationError) Error() string {
+func (e LifecycleValidationError) Error() string {
 	cause := ""
 	if e.cause != nil {
 		cause = fmt.Sprintf(" | caused by: %v", e.cause)
@@ -2078,14 +2033,14 @@ func (e StageValidationError) Error() string {
 	}
 
 	return fmt.Sprintf(
-		"invalid %sStage.%s: %s%s",
+		"invalid %sLifecycle.%s: %s%s",
 		key,
 		e.field,
 		e.reason,
 		cause)
 }
 
-var _ error = StageValidationError{}
+var _ error = LifecycleValidationError{}
 
 var _ interface {
 	Field() string
@@ -2093,19 +2048,19 @@ var _ interface {
 	Key() bool
 	Cause() error
 	ErrorName() string
-} = StageValidationError{}
+} = LifecycleValidationError{}
 
-// Validate checks the field values on CreateStageRequest with the rules
+// Validate checks the field values on CreateLifecycleRequest with the rules
 // defined in the proto definition for this message. If any rules are
 // violated, an error is returned.
-func (m *CreateStageRequest) Validate() error {
+func (m *CreateLifecycleRequest) Validate() error {
 	if m == nil {
 		return nil
 	}
 
 	if v, ok := interface{}(m.GetPayload()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
-			return CreateStageRequestValidationError{
+			return CreateLifecycleRequestValidationError{
 				field:  "Payload",
 				reason: "embedded message failed validation",
 				cause:  err,
@@ -2116,9 +2071,9 @@ func (m *CreateStageRequest) Validate() error {
 	return nil
 }
 
-// CreateStageRequestValidationError is the validation error returned by
-// CreateStageRequest.Validate if the designated constraints aren't met.
-type CreateStageRequestValidationError struct {
+// CreateLifecycleRequestValidationError is the validation error returned by
+// CreateLifecycleRequest.Validate if the designated constraints aren't met.
+type CreateLifecycleRequestValidationError struct {
 	field  string
 	reason string
 	cause  error
@@ -2126,24 +2081,24 @@ type CreateStageRequestValidationError struct {
 }
 
 // Field function returns field value.
-func (e CreateStageRequestValidationError) Field() string { return e.field }
+func (e CreateLifecycleRequestValidationError) Field() string { return e.field }
 
 // Reason function returns reason value.
-func (e CreateStageRequestValidationError) Reason() string { return e.reason }
+func (e CreateLifecycleRequestValidationError) Reason() string { return e.reason }
 
 // Cause function returns cause value.
-func (e CreateStageRequestValidationError) Cause() error { return e.cause }
+func (e CreateLifecycleRequestValidationError) Cause() error { return e.cause }
 
 // Key function returns key value.
-func (e CreateStageRequestValidationError) Key() bool { return e.key }
+func (e CreateLifecycleRequestValidationError) Key() bool { return e.key }
 
 // ErrorName returns error name.
-func (e CreateStageRequestValidationError) ErrorName() string {
-	return "CreateStageRequestValidationError"
+func (e CreateLifecycleRequestValidationError) ErrorName() string {
+	return "CreateLifecycleRequestValidationError"
 }
 
 // Error satisfies the builtin error interface
-func (e CreateStageRequestValidationError) Error() string {
+func (e CreateLifecycleRequestValidationError) Error() string {
 	cause := ""
 	if e.cause != nil {
 		cause = fmt.Sprintf(" | caused by: %v", e.cause)
@@ -2155,14 +2110,14 @@ func (e CreateStageRequestValidationError) Error() string {
 	}
 
 	return fmt.Sprintf(
-		"invalid %sCreateStageRequest.%s: %s%s",
+		"invalid %sCreateLifecycleRequest.%s: %s%s",
 		key,
 		e.field,
 		e.reason,
 		cause)
 }
 
-var _ error = CreateStageRequestValidationError{}
+var _ error = CreateLifecycleRequestValidationError{}
 
 var _ interface {
 	Field() string
@@ -2170,19 +2125,19 @@ var _ interface {
 	Key() bool
 	Cause() error
 	ErrorName() string
-} = CreateStageRequestValidationError{}
+} = CreateLifecycleRequestValidationError{}
 
-// Validate checks the field values on CreateStageResponse with the rules
+// Validate checks the field values on CreateLifecycleResponse with the rules
 // defined in the proto definition for this message. If any rules are
 // violated, an error is returned.
-func (m *CreateStageResponse) Validate() error {
+func (m *CreateLifecycleResponse) Validate() error {
 	if m == nil {
 		return nil
 	}
 
 	if v, ok := interface{}(m.GetResult()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
-			return CreateStageResponseValidationError{
+			return CreateLifecycleResponseValidationError{
 				field:  "Result",
 				reason: "embedded message failed validation",
 				cause:  err,
@@ -2193,9 +2148,9 @@ func (m *CreateStageResponse) Validate() error {
 	return nil
 }
 
-// CreateStageResponseValidationError is the validation error returned by
-// CreateStageResponse.Validate if the designated constraints aren't met.
-type CreateStageResponseValidationError struct {
+// CreateLifecycleResponseValidationError is the validation error returned by
+// CreateLifecycleResponse.Validate if the designated constraints aren't met.
+type CreateLifecycleResponseValidationError struct {
 	field  string
 	reason string
 	cause  error
@@ -2203,24 +2158,24 @@ type CreateStageResponseValidationError struct {
 }
 
 // Field function returns field value.
-func (e CreateStageResponseValidationError) Field() string { return e.field }
+func (e CreateLifecycleResponseValidationError) Field() string { return e.field }
 
 // Reason function returns reason value.
-func (e CreateStageResponseValidationError) Reason() string { return e.reason }
+func (e CreateLifecycleResponseValidationError) Reason() string { return e.reason }
 
 // Cause function returns cause value.
-func (e CreateStageResponseValidationError) Cause() error { return e.cause }
+func (e CreateLifecycleResponseValidationError) Cause() error { return e.cause }
 
 // Key function returns key value.
-func (e CreateStageResponseValidationError) Key() bool { return e.key }
+func (e CreateLifecycleResponseValidationError) Key() bool { return e.key }
 
 // ErrorName returns error name.
-func (e CreateStageResponseValidationError) ErrorName() string {
-	return "CreateStageResponseValidationError"
+func (e CreateLifecycleResponseValidationError) ErrorName() string {
+	return "CreateLifecycleResponseValidationError"
 }
 
 // Error satisfies the builtin error interface
-func (e CreateStageResponseValidationError) Error() string {
+func (e CreateLifecycleResponseValidationError) Error() string {
 	cause := ""
 	if e.cause != nil {
 		cause = fmt.Sprintf(" | caused by: %v", e.cause)
@@ -2232,14 +2187,14 @@ func (e CreateStageResponseValidationError) Error() string {
 	}
 
 	return fmt.Sprintf(
-		"invalid %sCreateStageResponse.%s: %s%s",
+		"invalid %sCreateLifecycleResponse.%s: %s%s",
 		key,
 		e.field,
 		e.reason,
 		cause)
 }
 
-var _ error = CreateStageResponseValidationError{}
+var _ error = CreateLifecycleResponseValidationError{}
 
 var _ interface {
 	Field() string
@@ -2247,19 +2202,19 @@ var _ interface {
 	Key() bool
 	Cause() error
 	ErrorName() string
-} = CreateStageResponseValidationError{}
+} = CreateLifecycleResponseValidationError{}
 
-// Validate checks the field values on ReadStageRequest with the rules defined
-// in the proto definition for this message. If any rules are violated, an
-// error is returned.
-func (m *ReadStageRequest) Validate() error {
+// Validate checks the field values on ReadLifecycleRequest with the rules
+// defined in the proto definition for this message. If any rules are
+// violated, an error is returned.
+func (m *ReadLifecycleRequest) Validate() error {
 	if m == nil {
 		return nil
 	}
 
 	if v, ok := interface{}(m.GetId()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
-			return ReadStageRequestValidationError{
+			return ReadLifecycleRequestValidationError{
 				field:  "Id",
 				reason: "embedded message failed validation",
 				cause:  err,
@@ -2269,7 +2224,7 @@ func (m *ReadStageRequest) Validate() error {
 
 	if v, ok := interface{}(m.GetFields()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
-			return ReadStageRequestValidationError{
+			return ReadLifecycleRequestValidationError{
 				field:  "Fields",
 				reason: "embedded message failed validation",
 				cause:  err,
@@ -2280,9 +2235,9 @@ func (m *ReadStageRequest) Validate() error {
 	return nil
 }
 
-// ReadStageRequestValidationError is the validation error returned by
-// ReadStageRequest.Validate if the designated constraints aren't met.
-type ReadStageRequestValidationError struct {
+// ReadLifecycleRequestValidationError is the validation error returned by
+// ReadLifecycleRequest.Validate if the designated constraints aren't met.
+type ReadLifecycleRequestValidationError struct {
 	field  string
 	reason string
 	cause  error
@@ -2290,22 +2245,24 @@ type ReadStageRequestValidationError struct {
 }
 
 // Field function returns field value.
-func (e ReadStageRequestValidationError) Field() string { return e.field }
+func (e ReadLifecycleRequestValidationError) Field() string { return e.field }
 
 // Reason function returns reason value.
-func (e ReadStageRequestValidationError) Reason() string { return e.reason }
+func (e ReadLifecycleRequestValidationError) Reason() string { return e.reason }
 
 // Cause function returns cause value.
-func (e ReadStageRequestValidationError) Cause() error { return e.cause }
+func (e ReadLifecycleRequestValidationError) Cause() error { return e.cause }
 
 // Key function returns key value.
-func (e ReadStageRequestValidationError) Key() bool { return e.key }
+func (e ReadLifecycleRequestValidationError) Key() bool { return e.key }
 
 // ErrorName returns error name.
-func (e ReadStageRequestValidationError) ErrorName() string { return "ReadStageRequestValidationError" }
+func (e ReadLifecycleRequestValidationError) ErrorName() string {
+	return "ReadLifecycleRequestValidationError"
+}
 
 // Error satisfies the builtin error interface
-func (e ReadStageRequestValidationError) Error() string {
+func (e ReadLifecycleRequestValidationError) Error() string {
 	cause := ""
 	if e.cause != nil {
 		cause = fmt.Sprintf(" | caused by: %v", e.cause)
@@ -2317,14 +2274,14 @@ func (e ReadStageRequestValidationError) Error() string {
 	}
 
 	return fmt.Sprintf(
-		"invalid %sReadStageRequest.%s: %s%s",
+		"invalid %sReadLifecycleRequest.%s: %s%s",
 		key,
 		e.field,
 		e.reason,
 		cause)
 }
 
-var _ error = ReadStageRequestValidationError{}
+var _ error = ReadLifecycleRequestValidationError{}
 
 var _ interface {
 	Field() string
@@ -2332,19 +2289,19 @@ var _ interface {
 	Key() bool
 	Cause() error
 	ErrorName() string
-} = ReadStageRequestValidationError{}
+} = ReadLifecycleRequestValidationError{}
 
-// Validate checks the field values on ReadStageResponse with the rules defined
-// in the proto definition for this message. If any rules are violated, an
-// error is returned.
-func (m *ReadStageResponse) Validate() error {
+// Validate checks the field values on ReadLifecycleResponse with the rules
+// defined in the proto definition for this message. If any rules are
+// violated, an error is returned.
+func (m *ReadLifecycleResponse) Validate() error {
 	if m == nil {
 		return nil
 	}
 
 	if v, ok := interface{}(m.GetResult()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
-			return ReadStageResponseValidationError{
+			return ReadLifecycleResponseValidationError{
 				field:  "Result",
 				reason: "embedded message failed validation",
 				cause:  err,
@@ -2355,9 +2312,9 @@ func (m *ReadStageResponse) Validate() error {
 	return nil
 }
 
-// ReadStageResponseValidationError is the validation error returned by
-// ReadStageResponse.Validate if the designated constraints aren't met.
-type ReadStageResponseValidationError struct {
+// ReadLifecycleResponseValidationError is the validation error returned by
+// ReadLifecycleResponse.Validate if the designated constraints aren't met.
+type ReadLifecycleResponseValidationError struct {
 	field  string
 	reason string
 	cause  error
@@ -2365,24 +2322,24 @@ type ReadStageResponseValidationError struct {
 }
 
 // Field function returns field value.
-func (e ReadStageResponseValidationError) Field() string { return e.field }
+func (e ReadLifecycleResponseValidationError) Field() string { return e.field }
 
 // Reason function returns reason value.
-func (e ReadStageResponseValidationError) Reason() string { return e.reason }
+func (e ReadLifecycleResponseValidationError) Reason() string { return e.reason }
 
 // Cause function returns cause value.
-func (e ReadStageResponseValidationError) Cause() error { return e.cause }
+func (e ReadLifecycleResponseValidationError) Cause() error { return e.cause }
 
 // Key function returns key value.
-func (e ReadStageResponseValidationError) Key() bool { return e.key }
+func (e ReadLifecycleResponseValidationError) Key() bool { return e.key }
 
 // ErrorName returns error name.
-func (e ReadStageResponseValidationError) ErrorName() string {
-	return "ReadStageResponseValidationError"
+func (e ReadLifecycleResponseValidationError) ErrorName() string {
+	return "ReadLifecycleResponseValidationError"
 }
 
 // Error satisfies the builtin error interface
-func (e ReadStageResponseValidationError) Error() string {
+func (e ReadLifecycleResponseValidationError) Error() string {
 	cause := ""
 	if e.cause != nil {
 		cause = fmt.Sprintf(" | caused by: %v", e.cause)
@@ -2394,14 +2351,14 @@ func (e ReadStageResponseValidationError) Error() string {
 	}
 
 	return fmt.Sprintf(
-		"invalid %sReadStageResponse.%s: %s%s",
+		"invalid %sReadLifecycleResponse.%s: %s%s",
 		key,
 		e.field,
 		e.reason,
 		cause)
 }
 
-var _ error = ReadStageResponseValidationError{}
+var _ error = ReadLifecycleResponseValidationError{}
 
 var _ interface {
 	Field() string
@@ -2409,19 +2366,19 @@ var _ interface {
 	Key() bool
 	Cause() error
 	ErrorName() string
-} = ReadStageResponseValidationError{}
+} = ReadLifecycleResponseValidationError{}
 
-// Validate checks the field values on UpdateStageRequest with the rules
+// Validate checks the field values on UpdateLifecycleRequest with the rules
 // defined in the proto definition for this message. If any rules are
 // violated, an error is returned.
-func (m *UpdateStageRequest) Validate() error {
+func (m *UpdateLifecycleRequest) Validate() error {
 	if m == nil {
 		return nil
 	}
 
 	if v, ok := interface{}(m.GetPayload()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
-			return UpdateStageRequestValidationError{
+			return UpdateLifecycleRequestValidationError{
 				field:  "Payload",
 				reason: "embedded message failed validation",
 				cause:  err,
@@ -2431,7 +2388,7 @@ func (m *UpdateStageRequest) Validate() error {
 
 	if v, ok := interface{}(m.GetFields()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
-			return UpdateStageRequestValidationError{
+			return UpdateLifecycleRequestValidationError{
 				field:  "Fields",
 				reason: "embedded message failed validation",
 				cause:  err,
@@ -2442,9 +2399,9 @@ func (m *UpdateStageRequest) Validate() error {
 	return nil
 }
 
-// UpdateStageRequestValidationError is the validation error returned by
-// UpdateStageRequest.Validate if the designated constraints aren't met.
-type UpdateStageRequestValidationError struct {
+// UpdateLifecycleRequestValidationError is the validation error returned by
+// UpdateLifecycleRequest.Validate if the designated constraints aren't met.
+type UpdateLifecycleRequestValidationError struct {
 	field  string
 	reason string
 	cause  error
@@ -2452,24 +2409,24 @@ type UpdateStageRequestValidationError struct {
 }
 
 // Field function returns field value.
-func (e UpdateStageRequestValidationError) Field() string { return e.field }
+func (e UpdateLifecycleRequestValidationError) Field() string { return e.field }
 
 // Reason function returns reason value.
-func (e UpdateStageRequestValidationError) Reason() string { return e.reason }
+func (e UpdateLifecycleRequestValidationError) Reason() string { return e.reason }
 
 // Cause function returns cause value.
-func (e UpdateStageRequestValidationError) Cause() error { return e.cause }
+func (e UpdateLifecycleRequestValidationError) Cause() error { return e.cause }
 
 // Key function returns key value.
-func (e UpdateStageRequestValidationError) Key() bool { return e.key }
+func (e UpdateLifecycleRequestValidationError) Key() bool { return e.key }
 
 // ErrorName returns error name.
-func (e UpdateStageRequestValidationError) ErrorName() string {
-	return "UpdateStageRequestValidationError"
+func (e UpdateLifecycleRequestValidationError) ErrorName() string {
+	return "UpdateLifecycleRequestValidationError"
 }
 
 // Error satisfies the builtin error interface
-func (e UpdateStageRequestValidationError) Error() string {
+func (e UpdateLifecycleRequestValidationError) Error() string {
 	cause := ""
 	if e.cause != nil {
 		cause = fmt.Sprintf(" | caused by: %v", e.cause)
@@ -2481,14 +2438,14 @@ func (e UpdateStageRequestValidationError) Error() string {
 	}
 
 	return fmt.Sprintf(
-		"invalid %sUpdateStageRequest.%s: %s%s",
+		"invalid %sUpdateLifecycleRequest.%s: %s%s",
 		key,
 		e.field,
 		e.reason,
 		cause)
 }
 
-var _ error = UpdateStageRequestValidationError{}
+var _ error = UpdateLifecycleRequestValidationError{}
 
 var _ interface {
 	Field() string
@@ -2496,19 +2453,19 @@ var _ interface {
 	Key() bool
 	Cause() error
 	ErrorName() string
-} = UpdateStageRequestValidationError{}
+} = UpdateLifecycleRequestValidationError{}
 
-// Validate checks the field values on UpdateStageResponse with the rules
+// Validate checks the field values on UpdateLifecycleResponse with the rules
 // defined in the proto definition for this message. If any rules are
 // violated, an error is returned.
-func (m *UpdateStageResponse) Validate() error {
+func (m *UpdateLifecycleResponse) Validate() error {
 	if m == nil {
 		return nil
 	}
 
 	if v, ok := interface{}(m.GetResult()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
-			return UpdateStageResponseValidationError{
+			return UpdateLifecycleResponseValidationError{
 				field:  "Result",
 				reason: "embedded message failed validation",
 				cause:  err,
@@ -2519,9 +2476,9 @@ func (m *UpdateStageResponse) Validate() error {
 	return nil
 }
 
-// UpdateStageResponseValidationError is the validation error returned by
-// UpdateStageResponse.Validate if the designated constraints aren't met.
-type UpdateStageResponseValidationError struct {
+// UpdateLifecycleResponseValidationError is the validation error returned by
+// UpdateLifecycleResponse.Validate if the designated constraints aren't met.
+type UpdateLifecycleResponseValidationError struct {
 	field  string
 	reason string
 	cause  error
@@ -2529,24 +2486,24 @@ type UpdateStageResponseValidationError struct {
 }
 
 // Field function returns field value.
-func (e UpdateStageResponseValidationError) Field() string { return e.field }
+func (e UpdateLifecycleResponseValidationError) Field() string { return e.field }
 
 // Reason function returns reason value.
-func (e UpdateStageResponseValidationError) Reason() string { return e.reason }
+func (e UpdateLifecycleResponseValidationError) Reason() string { return e.reason }
 
 // Cause function returns cause value.
-func (e UpdateStageResponseValidationError) Cause() error { return e.cause }
+func (e UpdateLifecycleResponseValidationError) Cause() error { return e.cause }
 
 // Key function returns key value.
-func (e UpdateStageResponseValidationError) Key() bool { return e.key }
+func (e UpdateLifecycleResponseValidationError) Key() bool { return e.key }
 
 // ErrorName returns error name.
-func (e UpdateStageResponseValidationError) ErrorName() string {
-	return "UpdateStageResponseValidationError"
+func (e UpdateLifecycleResponseValidationError) ErrorName() string {
+	return "UpdateLifecycleResponseValidationError"
 }
 
 // Error satisfies the builtin error interface
-func (e UpdateStageResponseValidationError) Error() string {
+func (e UpdateLifecycleResponseValidationError) Error() string {
 	cause := ""
 	if e.cause != nil {
 		cause = fmt.Sprintf(" | caused by: %v", e.cause)
@@ -2558,14 +2515,14 @@ func (e UpdateStageResponseValidationError) Error() string {
 	}
 
 	return fmt.Sprintf(
-		"invalid %sUpdateStageResponse.%s: %s%s",
+		"invalid %sUpdateLifecycleResponse.%s: %s%s",
 		key,
 		e.field,
 		e.reason,
 		cause)
 }
 
-var _ error = UpdateStageResponseValidationError{}
+var _ error = UpdateLifecycleResponseValidationError{}
 
 var _ interface {
 	Field() string
@@ -2573,19 +2530,19 @@ var _ interface {
 	Key() bool
 	Cause() error
 	ErrorName() string
-} = UpdateStageResponseValidationError{}
+} = UpdateLifecycleResponseValidationError{}
 
-// Validate checks the field values on DeleteStageRequest with the rules
+// Validate checks the field values on DeleteLifecycleRequest with the rules
 // defined in the proto definition for this message. If any rules are
 // violated, an error is returned.
-func (m *DeleteStageRequest) Validate() error {
+func (m *DeleteLifecycleRequest) Validate() error {
 	if m == nil {
 		return nil
 	}
 
 	if v, ok := interface{}(m.GetId()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
-			return DeleteStageRequestValidationError{
+			return DeleteLifecycleRequestValidationError{
 				field:  "Id",
 				reason: "embedded message failed validation",
 				cause:  err,
@@ -2596,9 +2553,9 @@ func (m *DeleteStageRequest) Validate() error {
 	return nil
 }
 
-// DeleteStageRequestValidationError is the validation error returned by
-// DeleteStageRequest.Validate if the designated constraints aren't met.
-type DeleteStageRequestValidationError struct {
+// DeleteLifecycleRequestValidationError is the validation error returned by
+// DeleteLifecycleRequest.Validate if the designated constraints aren't met.
+type DeleteLifecycleRequestValidationError struct {
 	field  string
 	reason string
 	cause  error
@@ -2606,24 +2563,24 @@ type DeleteStageRequestValidationError struct {
 }
 
 // Field function returns field value.
-func (e DeleteStageRequestValidationError) Field() string { return e.field }
+func (e DeleteLifecycleRequestValidationError) Field() string { return e.field }
 
 // Reason function returns reason value.
-func (e DeleteStageRequestValidationError) Reason() string { return e.reason }
+func (e DeleteLifecycleRequestValidationError) Reason() string { return e.reason }
 
 // Cause function returns cause value.
-func (e DeleteStageRequestValidationError) Cause() error { return e.cause }
+func (e DeleteLifecycleRequestValidationError) Cause() error { return e.cause }
 
 // Key function returns key value.
-func (e DeleteStageRequestValidationError) Key() bool { return e.key }
+func (e DeleteLifecycleRequestValidationError) Key() bool { return e.key }
 
 // ErrorName returns error name.
-func (e DeleteStageRequestValidationError) ErrorName() string {
-	return "DeleteStageRequestValidationError"
+func (e DeleteLifecycleRequestValidationError) ErrorName() string {
+	return "DeleteLifecycleRequestValidationError"
 }
 
 // Error satisfies the builtin error interface
-func (e DeleteStageRequestValidationError) Error() string {
+func (e DeleteLifecycleRequestValidationError) Error() string {
 	cause := ""
 	if e.cause != nil {
 		cause = fmt.Sprintf(" | caused by: %v", e.cause)
@@ -2635,14 +2592,14 @@ func (e DeleteStageRequestValidationError) Error() string {
 	}
 
 	return fmt.Sprintf(
-		"invalid %sDeleteStageRequest.%s: %s%s",
+		"invalid %sDeleteLifecycleRequest.%s: %s%s",
 		key,
 		e.field,
 		e.reason,
 		cause)
 }
 
-var _ error = DeleteStageRequestValidationError{}
+var _ error = DeleteLifecycleRequestValidationError{}
 
 var _ interface {
 	Field() string
@@ -2650,12 +2607,12 @@ var _ interface {
 	Key() bool
 	Cause() error
 	ErrorName() string
-} = DeleteStageRequestValidationError{}
+} = DeleteLifecycleRequestValidationError{}
 
-// Validate checks the field values on DeleteStageResponse with the rules
+// Validate checks the field values on DeleteLifecycleResponse with the rules
 // defined in the proto definition for this message. If any rules are
 // violated, an error is returned.
-func (m *DeleteStageResponse) Validate() error {
+func (m *DeleteLifecycleResponse) Validate() error {
 	if m == nil {
 		return nil
 	}
@@ -2663,9 +2620,9 @@ func (m *DeleteStageResponse) Validate() error {
 	return nil
 }
 
-// DeleteStageResponseValidationError is the validation error returned by
-// DeleteStageResponse.Validate if the designated constraints aren't met.
-type DeleteStageResponseValidationError struct {
+// DeleteLifecycleResponseValidationError is the validation error returned by
+// DeleteLifecycleResponse.Validate if the designated constraints aren't met.
+type DeleteLifecycleResponseValidationError struct {
 	field  string
 	reason string
 	cause  error
@@ -2673,24 +2630,24 @@ type DeleteStageResponseValidationError struct {
 }
 
 // Field function returns field value.
-func (e DeleteStageResponseValidationError) Field() string { return e.field }
+func (e DeleteLifecycleResponseValidationError) Field() string { return e.field }
 
 // Reason function returns reason value.
-func (e DeleteStageResponseValidationError) Reason() string { return e.reason }
+func (e DeleteLifecycleResponseValidationError) Reason() string { return e.reason }
 
 // Cause function returns cause value.
-func (e DeleteStageResponseValidationError) Cause() error { return e.cause }
+func (e DeleteLifecycleResponseValidationError) Cause() error { return e.cause }
 
 // Key function returns key value.
-func (e DeleteStageResponseValidationError) Key() bool { return e.key }
+func (e DeleteLifecycleResponseValidationError) Key() bool { return e.key }
 
 // ErrorName returns error name.
-func (e DeleteStageResponseValidationError) ErrorName() string {
-	return "DeleteStageResponseValidationError"
+func (e DeleteLifecycleResponseValidationError) ErrorName() string {
+	return "DeleteLifecycleResponseValidationError"
 }
 
 // Error satisfies the builtin error interface
-func (e DeleteStageResponseValidationError) Error() string {
+func (e DeleteLifecycleResponseValidationError) Error() string {
 	cause := ""
 	if e.cause != nil {
 		cause = fmt.Sprintf(" | caused by: %v", e.cause)
@@ -2702,14 +2659,14 @@ func (e DeleteStageResponseValidationError) Error() string {
 	}
 
 	return fmt.Sprintf(
-		"invalid %sDeleteStageResponse.%s: %s%s",
+		"invalid %sDeleteLifecycleResponse.%s: %s%s",
 		key,
 		e.field,
 		e.reason,
 		cause)
 }
 
-var _ error = DeleteStageResponseValidationError{}
+var _ error = DeleteLifecycleResponseValidationError{}
 
 var _ interface {
 	Field() string
@@ -2717,19 +2674,19 @@ var _ interface {
 	Key() bool
 	Cause() error
 	ErrorName() string
-} = DeleteStageResponseValidationError{}
+} = DeleteLifecycleResponseValidationError{}
 
-// Validate checks the field values on ListStageRequest with the rules defined
-// in the proto definition for this message. If any rules are violated, an
-// error is returned.
-func (m *ListStageRequest) Validate() error {
+// Validate checks the field values on ListLifecycleRequest with the rules
+// defined in the proto definition for this message. If any rules are
+// violated, an error is returned.
+func (m *ListLifecycleRequest) Validate() error {
 	if m == nil {
 		return nil
 	}
 
 	if v, ok := interface{}(m.GetFilter()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
-			return ListStageRequestValidationError{
+			return ListLifecycleRequestValidationError{
 				field:  "Filter",
 				reason: "embedded message failed validation",
 				cause:  err,
@@ -2739,7 +2696,7 @@ func (m *ListStageRequest) Validate() error {
 
 	if v, ok := interface{}(m.GetOrderBy()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
-			return ListStageRequestValidationError{
+			return ListLifecycleRequestValidationError{
 				field:  "OrderBy",
 				reason: "embedded message failed validation",
 				cause:  err,
@@ -2749,7 +2706,7 @@ func (m *ListStageRequest) Validate() error {
 
 	if v, ok := interface{}(m.GetFields()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
-			return ListStageRequestValidationError{
+			return ListLifecycleRequestValidationError{
 				field:  "Fields",
 				reason: "embedded message failed validation",
 				cause:  err,
@@ -2759,7 +2716,7 @@ func (m *ListStageRequest) Validate() error {
 
 	if v, ok := interface{}(m.GetPaging()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
-			return ListStageRequestValidationError{
+			return ListLifecycleRequestValidationError{
 				field:  "Paging",
 				reason: "embedded message failed validation",
 				cause:  err,
@@ -2770,9 +2727,9 @@ func (m *ListStageRequest) Validate() error {
 	return nil
 }
 
-// ListStageRequestValidationError is the validation error returned by
-// ListStageRequest.Validate if the designated constraints aren't met.
-type ListStageRequestValidationError struct {
+// ListLifecycleRequestValidationError is the validation error returned by
+// ListLifecycleRequest.Validate if the designated constraints aren't met.
+type ListLifecycleRequestValidationError struct {
 	field  string
 	reason string
 	cause  error
@@ -2780,22 +2737,24 @@ type ListStageRequestValidationError struct {
 }
 
 // Field function returns field value.
-func (e ListStageRequestValidationError) Field() string { return e.field }
+func (e ListLifecycleRequestValidationError) Field() string { return e.field }
 
 // Reason function returns reason value.
-func (e ListStageRequestValidationError) Reason() string { return e.reason }
+func (e ListLifecycleRequestValidationError) Reason() string { return e.reason }
 
 // Cause function returns cause value.
-func (e ListStageRequestValidationError) Cause() error { return e.cause }
+func (e ListLifecycleRequestValidationError) Cause() error { return e.cause }
 
 // Key function returns key value.
-func (e ListStageRequestValidationError) Key() bool { return e.key }
+func (e ListLifecycleRequestValidationError) Key() bool { return e.key }
 
 // ErrorName returns error name.
-func (e ListStageRequestValidationError) ErrorName() string { return "ListStageRequestValidationError" }
+func (e ListLifecycleRequestValidationError) ErrorName() string {
+	return "ListLifecycleRequestValidationError"
+}
 
 // Error satisfies the builtin error interface
-func (e ListStageRequestValidationError) Error() string {
+func (e ListLifecycleRequestValidationError) Error() string {
 	cause := ""
 	if e.cause != nil {
 		cause = fmt.Sprintf(" | caused by: %v", e.cause)
@@ -2807,14 +2766,14 @@ func (e ListStageRequestValidationError) Error() string {
 	}
 
 	return fmt.Sprintf(
-		"invalid %sListStageRequest.%s: %s%s",
+		"invalid %sListLifecycleRequest.%s: %s%s",
 		key,
 		e.field,
 		e.reason,
 		cause)
 }
 
-var _ error = ListStageRequestValidationError{}
+var _ error = ListLifecycleRequestValidationError{}
 
 var _ interface {
 	Field() string
@@ -2822,12 +2781,12 @@ var _ interface {
 	Key() bool
 	Cause() error
 	ErrorName() string
-} = ListStageRequestValidationError{}
+} = ListLifecycleRequestValidationError{}
 
-// Validate checks the field values on ListStagesResponse with the rules
+// Validate checks the field values on ListLifecyclesResponse with the rules
 // defined in the proto definition for this message. If any rules are
 // violated, an error is returned.
-func (m *ListStagesResponse) Validate() error {
+func (m *ListLifecyclesResponse) Validate() error {
 	if m == nil {
 		return nil
 	}
@@ -2837,7 +2796,7 @@ func (m *ListStagesResponse) Validate() error {
 
 		if v, ok := interface{}(item).(interface{ Validate() error }); ok {
 			if err := v.Validate(); err != nil {
-				return ListStagesResponseValidationError{
+				return ListLifecyclesResponseValidationError{
 					field:  fmt.Sprintf("Results[%v]", idx),
 					reason: "embedded message failed validation",
 					cause:  err,
@@ -2849,7 +2808,7 @@ func (m *ListStagesResponse) Validate() error {
 
 	if v, ok := interface{}(m.GetPage()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
-			return ListStagesResponseValidationError{
+			return ListLifecyclesResponseValidationError{
 				field:  "Page",
 				reason: "embedded message failed validation",
 				cause:  err,
@@ -2860,9 +2819,9 @@ func (m *ListStagesResponse) Validate() error {
 	return nil
 }
 
-// ListStagesResponseValidationError is the validation error returned by
-// ListStagesResponse.Validate if the designated constraints aren't met.
-type ListStagesResponseValidationError struct {
+// ListLifecyclesResponseValidationError is the validation error returned by
+// ListLifecyclesResponse.Validate if the designated constraints aren't met.
+type ListLifecyclesResponseValidationError struct {
 	field  string
 	reason string
 	cause  error
@@ -2870,24 +2829,24 @@ type ListStagesResponseValidationError struct {
 }
 
 // Field function returns field value.
-func (e ListStagesResponseValidationError) Field() string { return e.field }
+func (e ListLifecyclesResponseValidationError) Field() string { return e.field }
 
 // Reason function returns reason value.
-func (e ListStagesResponseValidationError) Reason() string { return e.reason }
+func (e ListLifecyclesResponseValidationError) Reason() string { return e.reason }
 
 // Cause function returns cause value.
-func (e ListStagesResponseValidationError) Cause() error { return e.cause }
+func (e ListLifecyclesResponseValidationError) Cause() error { return e.cause }
 
 // Key function returns key value.
-func (e ListStagesResponseValidationError) Key() bool { return e.key }
+func (e ListLifecyclesResponseValidationError) Key() bool { return e.key }
 
 // ErrorName returns error name.
-func (e ListStagesResponseValidationError) ErrorName() string {
-	return "ListStagesResponseValidationError"
+func (e ListLifecyclesResponseValidationError) ErrorName() string {
+	return "ListLifecyclesResponseValidationError"
 }
 
 // Error satisfies the builtin error interface
-func (e ListStagesResponseValidationError) Error() string {
+func (e ListLifecyclesResponseValidationError) Error() string {
 	cause := ""
 	if e.cause != nil {
 		cause = fmt.Sprintf(" | caused by: %v", e.cause)
@@ -2899,14 +2858,14 @@ func (e ListStagesResponseValidationError) Error() string {
 	}
 
 	return fmt.Sprintf(
-		"invalid %sListStagesResponse.%s: %s%s",
+		"invalid %sListLifecyclesResponse.%s: %s%s",
 		key,
 		e.field,
 		e.reason,
 		cause)
 }
 
-var _ error = ListStagesResponseValidationError{}
+var _ error = ListLifecyclesResponseValidationError{}
 
 var _ interface {
 	Field() string
@@ -2914,7 +2873,932 @@ var _ interface {
 	Key() bool
 	Cause() error
 	ErrorName() string
-} = ListStagesResponseValidationError{}
+} = ListLifecyclesResponseValidationError{}
+
+// Validate checks the field values on AppConfig with the rules defined in the
+// proto definition for this message. If any rules are violated, an error is returned.
+func (m *AppConfig) Validate() error {
+	if m == nil {
+		return nil
+	}
+
+	if v, ok := interface{}(m.GetId()).(interface{ Validate() error }); ok {
+		if err := v.Validate(); err != nil {
+			return AppConfigValidationError{
+				field:  "Id",
+				reason: "embedded message failed validation",
+				cause:  err,
+			}
+		}
+	}
+
+	// no validation rules for Name
+
+	// no validation rules for Description
+
+	// no validation rules for ConfigYaml
+
+	if v, ok := interface{}(m.GetApplicationId()).(interface{ Validate() error }); ok {
+		if err := v.Validate(); err != nil {
+			return AppConfigValidationError{
+				field:  "ApplicationId",
+				reason: "embedded message failed validation",
+				cause:  err,
+			}
+		}
+	}
+
+	if v, ok := interface{}(m.GetLifecycleId()).(interface{ Validate() error }); ok {
+		if err := v.Validate(); err != nil {
+			return AppConfigValidationError{
+				field:  "LifecycleId",
+				reason: "embedded message failed validation",
+				cause:  err,
+			}
+		}
+	}
+
+	return nil
+}
+
+// AppConfigValidationError is the validation error returned by
+// AppConfig.Validate if the designated constraints aren't met.
+type AppConfigValidationError struct {
+	field  string
+	reason string
+	cause  error
+	key    bool
+}
+
+// Field function returns field value.
+func (e AppConfigValidationError) Field() string { return e.field }
+
+// Reason function returns reason value.
+func (e AppConfigValidationError) Reason() string { return e.reason }
+
+// Cause function returns cause value.
+func (e AppConfigValidationError) Cause() error { return e.cause }
+
+// Key function returns key value.
+func (e AppConfigValidationError) Key() bool { return e.key }
+
+// ErrorName returns error name.
+func (e AppConfigValidationError) ErrorName() string { return "AppConfigValidationError" }
+
+// Error satisfies the builtin error interface
+func (e AppConfigValidationError) Error() string {
+	cause := ""
+	if e.cause != nil {
+		cause = fmt.Sprintf(" | caused by: %v", e.cause)
+	}
+
+	key := ""
+	if e.key {
+		key = "key for "
+	}
+
+	return fmt.Sprintf(
+		"invalid %sAppConfig.%s: %s%s",
+		key,
+		e.field,
+		e.reason,
+		cause)
+}
+
+var _ error = AppConfigValidationError{}
+
+var _ interface {
+	Field() string
+	Reason() string
+	Key() bool
+	Cause() error
+	ErrorName() string
+} = AppConfigValidationError{}
+
+// Validate checks the field values on CreateAppConfigRequest with the rules
+// defined in the proto definition for this message. If any rules are
+// violated, an error is returned.
+func (m *CreateAppConfigRequest) Validate() error {
+	if m == nil {
+		return nil
+	}
+
+	if v, ok := interface{}(m.GetPayload()).(interface{ Validate() error }); ok {
+		if err := v.Validate(); err != nil {
+			return CreateAppConfigRequestValidationError{
+				field:  "Payload",
+				reason: "embedded message failed validation",
+				cause:  err,
+			}
+		}
+	}
+
+	return nil
+}
+
+// CreateAppConfigRequestValidationError is the validation error returned by
+// CreateAppConfigRequest.Validate if the designated constraints aren't met.
+type CreateAppConfigRequestValidationError struct {
+	field  string
+	reason string
+	cause  error
+	key    bool
+}
+
+// Field function returns field value.
+func (e CreateAppConfigRequestValidationError) Field() string { return e.field }
+
+// Reason function returns reason value.
+func (e CreateAppConfigRequestValidationError) Reason() string { return e.reason }
+
+// Cause function returns cause value.
+func (e CreateAppConfigRequestValidationError) Cause() error { return e.cause }
+
+// Key function returns key value.
+func (e CreateAppConfigRequestValidationError) Key() bool { return e.key }
+
+// ErrorName returns error name.
+func (e CreateAppConfigRequestValidationError) ErrorName() string {
+	return "CreateAppConfigRequestValidationError"
+}
+
+// Error satisfies the builtin error interface
+func (e CreateAppConfigRequestValidationError) Error() string {
+	cause := ""
+	if e.cause != nil {
+		cause = fmt.Sprintf(" | caused by: %v", e.cause)
+	}
+
+	key := ""
+	if e.key {
+		key = "key for "
+	}
+
+	return fmt.Sprintf(
+		"invalid %sCreateAppConfigRequest.%s: %s%s",
+		key,
+		e.field,
+		e.reason,
+		cause)
+}
+
+var _ error = CreateAppConfigRequestValidationError{}
+
+var _ interface {
+	Field() string
+	Reason() string
+	Key() bool
+	Cause() error
+	ErrorName() string
+} = CreateAppConfigRequestValidationError{}
+
+// Validate checks the field values on CreateAppConfigResponse with the rules
+// defined in the proto definition for this message. If any rules are
+// violated, an error is returned.
+func (m *CreateAppConfigResponse) Validate() error {
+	if m == nil {
+		return nil
+	}
+
+	if v, ok := interface{}(m.GetResult()).(interface{ Validate() error }); ok {
+		if err := v.Validate(); err != nil {
+			return CreateAppConfigResponseValidationError{
+				field:  "Result",
+				reason: "embedded message failed validation",
+				cause:  err,
+			}
+		}
+	}
+
+	return nil
+}
+
+// CreateAppConfigResponseValidationError is the validation error returned by
+// CreateAppConfigResponse.Validate if the designated constraints aren't met.
+type CreateAppConfigResponseValidationError struct {
+	field  string
+	reason string
+	cause  error
+	key    bool
+}
+
+// Field function returns field value.
+func (e CreateAppConfigResponseValidationError) Field() string { return e.field }
+
+// Reason function returns reason value.
+func (e CreateAppConfigResponseValidationError) Reason() string { return e.reason }
+
+// Cause function returns cause value.
+func (e CreateAppConfigResponseValidationError) Cause() error { return e.cause }
+
+// Key function returns key value.
+func (e CreateAppConfigResponseValidationError) Key() bool { return e.key }
+
+// ErrorName returns error name.
+func (e CreateAppConfigResponseValidationError) ErrorName() string {
+	return "CreateAppConfigResponseValidationError"
+}
+
+// Error satisfies the builtin error interface
+func (e CreateAppConfigResponseValidationError) Error() string {
+	cause := ""
+	if e.cause != nil {
+		cause = fmt.Sprintf(" | caused by: %v", e.cause)
+	}
+
+	key := ""
+	if e.key {
+		key = "key for "
+	}
+
+	return fmt.Sprintf(
+		"invalid %sCreateAppConfigResponse.%s: %s%s",
+		key,
+		e.field,
+		e.reason,
+		cause)
+}
+
+var _ error = CreateAppConfigResponseValidationError{}
+
+var _ interface {
+	Field() string
+	Reason() string
+	Key() bool
+	Cause() error
+	ErrorName() string
+} = CreateAppConfigResponseValidationError{}
+
+// Validate checks the field values on ReadAppConfigRequest with the rules
+// defined in the proto definition for this message. If any rules are
+// violated, an error is returned.
+func (m *ReadAppConfigRequest) Validate() error {
+	if m == nil {
+		return nil
+	}
+
+	if v, ok := interface{}(m.GetId()).(interface{ Validate() error }); ok {
+		if err := v.Validate(); err != nil {
+			return ReadAppConfigRequestValidationError{
+				field:  "Id",
+				reason: "embedded message failed validation",
+				cause:  err,
+			}
+		}
+	}
+
+	if v, ok := interface{}(m.GetFields()).(interface{ Validate() error }); ok {
+		if err := v.Validate(); err != nil {
+			return ReadAppConfigRequestValidationError{
+				field:  "Fields",
+				reason: "embedded message failed validation",
+				cause:  err,
+			}
+		}
+	}
+
+	return nil
+}
+
+// ReadAppConfigRequestValidationError is the validation error returned by
+// ReadAppConfigRequest.Validate if the designated constraints aren't met.
+type ReadAppConfigRequestValidationError struct {
+	field  string
+	reason string
+	cause  error
+	key    bool
+}
+
+// Field function returns field value.
+func (e ReadAppConfigRequestValidationError) Field() string { return e.field }
+
+// Reason function returns reason value.
+func (e ReadAppConfigRequestValidationError) Reason() string { return e.reason }
+
+// Cause function returns cause value.
+func (e ReadAppConfigRequestValidationError) Cause() error { return e.cause }
+
+// Key function returns key value.
+func (e ReadAppConfigRequestValidationError) Key() bool { return e.key }
+
+// ErrorName returns error name.
+func (e ReadAppConfigRequestValidationError) ErrorName() string {
+	return "ReadAppConfigRequestValidationError"
+}
+
+// Error satisfies the builtin error interface
+func (e ReadAppConfigRequestValidationError) Error() string {
+	cause := ""
+	if e.cause != nil {
+		cause = fmt.Sprintf(" | caused by: %v", e.cause)
+	}
+
+	key := ""
+	if e.key {
+		key = "key for "
+	}
+
+	return fmt.Sprintf(
+		"invalid %sReadAppConfigRequest.%s: %s%s",
+		key,
+		e.field,
+		e.reason,
+		cause)
+}
+
+var _ error = ReadAppConfigRequestValidationError{}
+
+var _ interface {
+	Field() string
+	Reason() string
+	Key() bool
+	Cause() error
+	ErrorName() string
+} = ReadAppConfigRequestValidationError{}
+
+// Validate checks the field values on ReadAppConfigResponse with the rules
+// defined in the proto definition for this message. If any rules are
+// violated, an error is returned.
+func (m *ReadAppConfigResponse) Validate() error {
+	if m == nil {
+		return nil
+	}
+
+	if v, ok := interface{}(m.GetResult()).(interface{ Validate() error }); ok {
+		if err := v.Validate(); err != nil {
+			return ReadAppConfigResponseValidationError{
+				field:  "Result",
+				reason: "embedded message failed validation",
+				cause:  err,
+			}
+		}
+	}
+
+	return nil
+}
+
+// ReadAppConfigResponseValidationError is the validation error returned by
+// ReadAppConfigResponse.Validate if the designated constraints aren't met.
+type ReadAppConfigResponseValidationError struct {
+	field  string
+	reason string
+	cause  error
+	key    bool
+}
+
+// Field function returns field value.
+func (e ReadAppConfigResponseValidationError) Field() string { return e.field }
+
+// Reason function returns reason value.
+func (e ReadAppConfigResponseValidationError) Reason() string { return e.reason }
+
+// Cause function returns cause value.
+func (e ReadAppConfigResponseValidationError) Cause() error { return e.cause }
+
+// Key function returns key value.
+func (e ReadAppConfigResponseValidationError) Key() bool { return e.key }
+
+// ErrorName returns error name.
+func (e ReadAppConfigResponseValidationError) ErrorName() string {
+	return "ReadAppConfigResponseValidationError"
+}
+
+// Error satisfies the builtin error interface
+func (e ReadAppConfigResponseValidationError) Error() string {
+	cause := ""
+	if e.cause != nil {
+		cause = fmt.Sprintf(" | caused by: %v", e.cause)
+	}
+
+	key := ""
+	if e.key {
+		key = "key for "
+	}
+
+	return fmt.Sprintf(
+		"invalid %sReadAppConfigResponse.%s: %s%s",
+		key,
+		e.field,
+		e.reason,
+		cause)
+}
+
+var _ error = ReadAppConfigResponseValidationError{}
+
+var _ interface {
+	Field() string
+	Reason() string
+	Key() bool
+	Cause() error
+	ErrorName() string
+} = ReadAppConfigResponseValidationError{}
+
+// Validate checks the field values on UpdateAppConfigRequest with the rules
+// defined in the proto definition for this message. If any rules are
+// violated, an error is returned.
+func (m *UpdateAppConfigRequest) Validate() error {
+	if m == nil {
+		return nil
+	}
+
+	if v, ok := interface{}(m.GetPayload()).(interface{ Validate() error }); ok {
+		if err := v.Validate(); err != nil {
+			return UpdateAppConfigRequestValidationError{
+				field:  "Payload",
+				reason: "embedded message failed validation",
+				cause:  err,
+			}
+		}
+	}
+
+	if v, ok := interface{}(m.GetFields()).(interface{ Validate() error }); ok {
+		if err := v.Validate(); err != nil {
+			return UpdateAppConfigRequestValidationError{
+				field:  "Fields",
+				reason: "embedded message failed validation",
+				cause:  err,
+			}
+		}
+	}
+
+	return nil
+}
+
+// UpdateAppConfigRequestValidationError is the validation error returned by
+// UpdateAppConfigRequest.Validate if the designated constraints aren't met.
+type UpdateAppConfigRequestValidationError struct {
+	field  string
+	reason string
+	cause  error
+	key    bool
+}
+
+// Field function returns field value.
+func (e UpdateAppConfigRequestValidationError) Field() string { return e.field }
+
+// Reason function returns reason value.
+func (e UpdateAppConfigRequestValidationError) Reason() string { return e.reason }
+
+// Cause function returns cause value.
+func (e UpdateAppConfigRequestValidationError) Cause() error { return e.cause }
+
+// Key function returns key value.
+func (e UpdateAppConfigRequestValidationError) Key() bool { return e.key }
+
+// ErrorName returns error name.
+func (e UpdateAppConfigRequestValidationError) ErrorName() string {
+	return "UpdateAppConfigRequestValidationError"
+}
+
+// Error satisfies the builtin error interface
+func (e UpdateAppConfigRequestValidationError) Error() string {
+	cause := ""
+	if e.cause != nil {
+		cause = fmt.Sprintf(" | caused by: %v", e.cause)
+	}
+
+	key := ""
+	if e.key {
+		key = "key for "
+	}
+
+	return fmt.Sprintf(
+		"invalid %sUpdateAppConfigRequest.%s: %s%s",
+		key,
+		e.field,
+		e.reason,
+		cause)
+}
+
+var _ error = UpdateAppConfigRequestValidationError{}
+
+var _ interface {
+	Field() string
+	Reason() string
+	Key() bool
+	Cause() error
+	ErrorName() string
+} = UpdateAppConfigRequestValidationError{}
+
+// Validate checks the field values on UpdateAppConfigResponse with the rules
+// defined in the proto definition for this message. If any rules are
+// violated, an error is returned.
+func (m *UpdateAppConfigResponse) Validate() error {
+	if m == nil {
+		return nil
+	}
+
+	if v, ok := interface{}(m.GetResult()).(interface{ Validate() error }); ok {
+		if err := v.Validate(); err != nil {
+			return UpdateAppConfigResponseValidationError{
+				field:  "Result",
+				reason: "embedded message failed validation",
+				cause:  err,
+			}
+		}
+	}
+
+	return nil
+}
+
+// UpdateAppConfigResponseValidationError is the validation error returned by
+// UpdateAppConfigResponse.Validate if the designated constraints aren't met.
+type UpdateAppConfigResponseValidationError struct {
+	field  string
+	reason string
+	cause  error
+	key    bool
+}
+
+// Field function returns field value.
+func (e UpdateAppConfigResponseValidationError) Field() string { return e.field }
+
+// Reason function returns reason value.
+func (e UpdateAppConfigResponseValidationError) Reason() string { return e.reason }
+
+// Cause function returns cause value.
+func (e UpdateAppConfigResponseValidationError) Cause() error { return e.cause }
+
+// Key function returns key value.
+func (e UpdateAppConfigResponseValidationError) Key() bool { return e.key }
+
+// ErrorName returns error name.
+func (e UpdateAppConfigResponseValidationError) ErrorName() string {
+	return "UpdateAppConfigResponseValidationError"
+}
+
+// Error satisfies the builtin error interface
+func (e UpdateAppConfigResponseValidationError) Error() string {
+	cause := ""
+	if e.cause != nil {
+		cause = fmt.Sprintf(" | caused by: %v", e.cause)
+	}
+
+	key := ""
+	if e.key {
+		key = "key for "
+	}
+
+	return fmt.Sprintf(
+		"invalid %sUpdateAppConfigResponse.%s: %s%s",
+		key,
+		e.field,
+		e.reason,
+		cause)
+}
+
+var _ error = UpdateAppConfigResponseValidationError{}
+
+var _ interface {
+	Field() string
+	Reason() string
+	Key() bool
+	Cause() error
+	ErrorName() string
+} = UpdateAppConfigResponseValidationError{}
+
+// Validate checks the field values on DeleteAppConfigRequest with the rules
+// defined in the proto definition for this message. If any rules are
+// violated, an error is returned.
+func (m *DeleteAppConfigRequest) Validate() error {
+	if m == nil {
+		return nil
+	}
+
+	if v, ok := interface{}(m.GetId()).(interface{ Validate() error }); ok {
+		if err := v.Validate(); err != nil {
+			return DeleteAppConfigRequestValidationError{
+				field:  "Id",
+				reason: "embedded message failed validation",
+				cause:  err,
+			}
+		}
+	}
+
+	return nil
+}
+
+// DeleteAppConfigRequestValidationError is the validation error returned by
+// DeleteAppConfigRequest.Validate if the designated constraints aren't met.
+type DeleteAppConfigRequestValidationError struct {
+	field  string
+	reason string
+	cause  error
+	key    bool
+}
+
+// Field function returns field value.
+func (e DeleteAppConfigRequestValidationError) Field() string { return e.field }
+
+// Reason function returns reason value.
+func (e DeleteAppConfigRequestValidationError) Reason() string { return e.reason }
+
+// Cause function returns cause value.
+func (e DeleteAppConfigRequestValidationError) Cause() error { return e.cause }
+
+// Key function returns key value.
+func (e DeleteAppConfigRequestValidationError) Key() bool { return e.key }
+
+// ErrorName returns error name.
+func (e DeleteAppConfigRequestValidationError) ErrorName() string {
+	return "DeleteAppConfigRequestValidationError"
+}
+
+// Error satisfies the builtin error interface
+func (e DeleteAppConfigRequestValidationError) Error() string {
+	cause := ""
+	if e.cause != nil {
+		cause = fmt.Sprintf(" | caused by: %v", e.cause)
+	}
+
+	key := ""
+	if e.key {
+		key = "key for "
+	}
+
+	return fmt.Sprintf(
+		"invalid %sDeleteAppConfigRequest.%s: %s%s",
+		key,
+		e.field,
+		e.reason,
+		cause)
+}
+
+var _ error = DeleteAppConfigRequestValidationError{}
+
+var _ interface {
+	Field() string
+	Reason() string
+	Key() bool
+	Cause() error
+	ErrorName() string
+} = DeleteAppConfigRequestValidationError{}
+
+// Validate checks the field values on DeleteAppConfigResponse with the rules
+// defined in the proto definition for this message. If any rules are
+// violated, an error is returned.
+func (m *DeleteAppConfigResponse) Validate() error {
+	if m == nil {
+		return nil
+	}
+
+	return nil
+}
+
+// DeleteAppConfigResponseValidationError is the validation error returned by
+// DeleteAppConfigResponse.Validate if the designated constraints aren't met.
+type DeleteAppConfigResponseValidationError struct {
+	field  string
+	reason string
+	cause  error
+	key    bool
+}
+
+// Field function returns field value.
+func (e DeleteAppConfigResponseValidationError) Field() string { return e.field }
+
+// Reason function returns reason value.
+func (e DeleteAppConfigResponseValidationError) Reason() string { return e.reason }
+
+// Cause function returns cause value.
+func (e DeleteAppConfigResponseValidationError) Cause() error { return e.cause }
+
+// Key function returns key value.
+func (e DeleteAppConfigResponseValidationError) Key() bool { return e.key }
+
+// ErrorName returns error name.
+func (e DeleteAppConfigResponseValidationError) ErrorName() string {
+	return "DeleteAppConfigResponseValidationError"
+}
+
+// Error satisfies the builtin error interface
+func (e DeleteAppConfigResponseValidationError) Error() string {
+	cause := ""
+	if e.cause != nil {
+		cause = fmt.Sprintf(" | caused by: %v", e.cause)
+	}
+
+	key := ""
+	if e.key {
+		key = "key for "
+	}
+
+	return fmt.Sprintf(
+		"invalid %sDeleteAppConfigResponse.%s: %s%s",
+		key,
+		e.field,
+		e.reason,
+		cause)
+}
+
+var _ error = DeleteAppConfigResponseValidationError{}
+
+var _ interface {
+	Field() string
+	Reason() string
+	Key() bool
+	Cause() error
+	ErrorName() string
+} = DeleteAppConfigResponseValidationError{}
+
+// Validate checks the field values on ListAppConfigRequest with the rules
+// defined in the proto definition for this message. If any rules are
+// violated, an error is returned.
+func (m *ListAppConfigRequest) Validate() error {
+	if m == nil {
+		return nil
+	}
+
+	if v, ok := interface{}(m.GetFilter()).(interface{ Validate() error }); ok {
+		if err := v.Validate(); err != nil {
+			return ListAppConfigRequestValidationError{
+				field:  "Filter",
+				reason: "embedded message failed validation",
+				cause:  err,
+			}
+		}
+	}
+
+	if v, ok := interface{}(m.GetOrderBy()).(interface{ Validate() error }); ok {
+		if err := v.Validate(); err != nil {
+			return ListAppConfigRequestValidationError{
+				field:  "OrderBy",
+				reason: "embedded message failed validation",
+				cause:  err,
+			}
+		}
+	}
+
+	if v, ok := interface{}(m.GetFields()).(interface{ Validate() error }); ok {
+		if err := v.Validate(); err != nil {
+			return ListAppConfigRequestValidationError{
+				field:  "Fields",
+				reason: "embedded message failed validation",
+				cause:  err,
+			}
+		}
+	}
+
+	if v, ok := interface{}(m.GetPaging()).(interface{ Validate() error }); ok {
+		if err := v.Validate(); err != nil {
+			return ListAppConfigRequestValidationError{
+				field:  "Paging",
+				reason: "embedded message failed validation",
+				cause:  err,
+			}
+		}
+	}
+
+	return nil
+}
+
+// ListAppConfigRequestValidationError is the validation error returned by
+// ListAppConfigRequest.Validate if the designated constraints aren't met.
+type ListAppConfigRequestValidationError struct {
+	field  string
+	reason string
+	cause  error
+	key    bool
+}
+
+// Field function returns field value.
+func (e ListAppConfigRequestValidationError) Field() string { return e.field }
+
+// Reason function returns reason value.
+func (e ListAppConfigRequestValidationError) Reason() string { return e.reason }
+
+// Cause function returns cause value.
+func (e ListAppConfigRequestValidationError) Cause() error { return e.cause }
+
+// Key function returns key value.
+func (e ListAppConfigRequestValidationError) Key() bool { return e.key }
+
+// ErrorName returns error name.
+func (e ListAppConfigRequestValidationError) ErrorName() string {
+	return "ListAppConfigRequestValidationError"
+}
+
+// Error satisfies the builtin error interface
+func (e ListAppConfigRequestValidationError) Error() string {
+	cause := ""
+	if e.cause != nil {
+		cause = fmt.Sprintf(" | caused by: %v", e.cause)
+	}
+
+	key := ""
+	if e.key {
+		key = "key for "
+	}
+
+	return fmt.Sprintf(
+		"invalid %sListAppConfigRequest.%s: %s%s",
+		key,
+		e.field,
+		e.reason,
+		cause)
+}
+
+var _ error = ListAppConfigRequestValidationError{}
+
+var _ interface {
+	Field() string
+	Reason() string
+	Key() bool
+	Cause() error
+	ErrorName() string
+} = ListAppConfigRequestValidationError{}
+
+// Validate checks the field values on ListAppConfigsResponse with the rules
+// defined in the proto definition for this message. If any rules are
+// violated, an error is returned.
+func (m *ListAppConfigsResponse) Validate() error {
+	if m == nil {
+		return nil
+	}
+
+	for idx, item := range m.GetResults() {
+		_, _ = idx, item
+
+		if v, ok := interface{}(item).(interface{ Validate() error }); ok {
+			if err := v.Validate(); err != nil {
+				return ListAppConfigsResponseValidationError{
+					field:  fmt.Sprintf("Results[%v]", idx),
+					reason: "embedded message failed validation",
+					cause:  err,
+				}
+			}
+		}
+
+	}
+
+	if v, ok := interface{}(m.GetPage()).(interface{ Validate() error }); ok {
+		if err := v.Validate(); err != nil {
+			return ListAppConfigsResponseValidationError{
+				field:  "Page",
+				reason: "embedded message failed validation",
+				cause:  err,
+			}
+		}
+	}
+
+	return nil
+}
+
+// ListAppConfigsResponseValidationError is the validation error returned by
+// ListAppConfigsResponse.Validate if the designated constraints aren't met.
+type ListAppConfigsResponseValidationError struct {
+	field  string
+	reason string
+	cause  error
+	key    bool
+}
+
+// Field function returns field value.
+func (e ListAppConfigsResponseValidationError) Field() string { return e.field }
+
+// Reason function returns reason value.
+func (e ListAppConfigsResponseValidationError) Reason() string { return e.reason }
+
+// Cause function returns cause value.
+func (e ListAppConfigsResponseValidationError) Cause() error { return e.cause }
+
+// Key function returns key value.
+func (e ListAppConfigsResponseValidationError) Key() bool { return e.key }
+
+// ErrorName returns error name.
+func (e ListAppConfigsResponseValidationError) ErrorName() string {
+	return "ListAppConfigsResponseValidationError"
+}
+
+// Error satisfies the builtin error interface
+func (e ListAppConfigsResponseValidationError) Error() string {
+	cause := ""
+	if e.cause != nil {
+		cause = fmt.Sprintf(" | caused by: %v", e.cause)
+	}
+
+	key := ""
+	if e.key {
+		key = "key for "
+	}
+
+	return fmt.Sprintf(
+		"invalid %sListAppConfigsResponse.%s: %s%s",
+		key,
+		e.field,
+		e.reason,
+		cause)
+}
+
+var _ error = ListAppConfigsResponseValidationError{}
+
+var _ interface {
+	Field() string
+	Reason() string
+	Key() bool
+	Cause() error
+	ErrorName() string
+} = ListAppConfigsResponseValidationError{}
 
 // Validate checks the field values on Environment with the rules defined in
 // the proto definition for this message. If any rules are violated, an error
@@ -2953,20 +3837,12 @@ func (m *Environment) Validate() error {
 
 	}
 
-	if v, ok := interface{}(m.GetValueId()).(interface{ Validate() error }); ok {
-		if err := v.Validate(); err != nil {
-			return EnvironmentValidationError{
-				field:  "ValueId",
-				reason: "embedded message failed validation",
-				cause:  err,
-			}
-		}
-	}
+	// no validation rules for ConfigYaml
 
-	if v, ok := interface{}(m.GetStageId()).(interface{ Validate() error }); ok {
+	if v, ok := interface{}(m.GetLifecycleId()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
 			return EnvironmentValidationError{
-				field:  "StageId",
+				field:  "LifecycleId",
 				reason: "embedded message failed validation",
 				cause:  err,
 			}
@@ -3855,964 +4731,17 @@ var _ interface {
 	ErrorName() string
 } = ListEnvironmentsResponseValidationError{}
 
-// Validate checks the field values on AppRegionConfig with the rules defined
-// in the proto definition for this message. If any rules are violated, an
-// error is returned.
-func (m *AppRegionConfig) Validate() error {
-	if m == nil {
-		return nil
-	}
-
-	if v, ok := interface{}(m.GetId()).(interface{ Validate() error }); ok {
-		if err := v.Validate(); err != nil {
-			return AppRegionConfigValidationError{
-				field:  "Id",
-				reason: "embedded message failed validation",
-				cause:  err,
-			}
-		}
-	}
-
-	// no validation rules for Name
-
-	// no validation rules for Description
-
-	for idx, item := range m.GetAppStageConfigs() {
-		_, _ = idx, item
-
-		if v, ok := interface{}(item).(interface{ Validate() error }); ok {
-			if err := v.Validate(); err != nil {
-				return AppRegionConfigValidationError{
-					field:  fmt.Sprintf("AppStageConfigs[%v]", idx),
-					reason: "embedded message failed validation",
-					cause:  err,
-				}
-			}
-		}
-
-	}
-
-	if v, ok := interface{}(m.GetValueId()).(interface{ Validate() error }); ok {
-		if err := v.Validate(); err != nil {
-			return AppRegionConfigValidationError{
-				field:  "ValueId",
-				reason: "embedded message failed validation",
-				cause:  err,
-			}
-		}
-	}
-
-	if v, ok := interface{}(m.GetRegionId()).(interface{ Validate() error }); ok {
-		if err := v.Validate(); err != nil {
-			return AppRegionConfigValidationError{
-				field:  "RegionId",
-				reason: "embedded message failed validation",
-				cause:  err,
-			}
-		}
-	}
-
-	return nil
-}
-
-// AppRegionConfigValidationError is the validation error returned by
-// AppRegionConfig.Validate if the designated constraints aren't met.
-type AppRegionConfigValidationError struct {
-	field  string
-	reason string
-	cause  error
-	key    bool
-}
-
-// Field function returns field value.
-func (e AppRegionConfigValidationError) Field() string { return e.field }
-
-// Reason function returns reason value.
-func (e AppRegionConfigValidationError) Reason() string { return e.reason }
-
-// Cause function returns cause value.
-func (e AppRegionConfigValidationError) Cause() error { return e.cause }
-
-// Key function returns key value.
-func (e AppRegionConfigValidationError) Key() bool { return e.key }
-
-// ErrorName returns error name.
-func (e AppRegionConfigValidationError) ErrorName() string { return "AppRegionConfigValidationError" }
-
-// Error satisfies the builtin error interface
-func (e AppRegionConfigValidationError) Error() string {
-	cause := ""
-	if e.cause != nil {
-		cause = fmt.Sprintf(" | caused by: %v", e.cause)
-	}
-
-	key := ""
-	if e.key {
-		key = "key for "
-	}
-
-	return fmt.Sprintf(
-		"invalid %sAppRegionConfig.%s: %s%s",
-		key,
-		e.field,
-		e.reason,
-		cause)
-}
-
-var _ error = AppRegionConfigValidationError{}
-
-var _ interface {
-	Field() string
-	Reason() string
-	Key() bool
-	Cause() error
-	ErrorName() string
-} = AppRegionConfigValidationError{}
-
-// Validate checks the field values on CreateAppRegionConfigRequest with the
-// rules defined in the proto definition for this message. If any rules are
-// violated, an error is returned.
-func (m *CreateAppRegionConfigRequest) Validate() error {
-	if m == nil {
-		return nil
-	}
-
-	if v, ok := interface{}(m.GetPayload()).(interface{ Validate() error }); ok {
-		if err := v.Validate(); err != nil {
-			return CreateAppRegionConfigRequestValidationError{
-				field:  "Payload",
-				reason: "embedded message failed validation",
-				cause:  err,
-			}
-		}
-	}
-
-	return nil
-}
-
-// CreateAppRegionConfigRequestValidationError is the validation error returned
-// by CreateAppRegionConfigRequest.Validate if the designated constraints
-// aren't met.
-type CreateAppRegionConfigRequestValidationError struct {
-	field  string
-	reason string
-	cause  error
-	key    bool
-}
-
-// Field function returns field value.
-func (e CreateAppRegionConfigRequestValidationError) Field() string { return e.field }
-
-// Reason function returns reason value.
-func (e CreateAppRegionConfigRequestValidationError) Reason() string { return e.reason }
-
-// Cause function returns cause value.
-func (e CreateAppRegionConfigRequestValidationError) Cause() error { return e.cause }
-
-// Key function returns key value.
-func (e CreateAppRegionConfigRequestValidationError) Key() bool { return e.key }
-
-// ErrorName returns error name.
-func (e CreateAppRegionConfigRequestValidationError) ErrorName() string {
-	return "CreateAppRegionConfigRequestValidationError"
-}
-
-// Error satisfies the builtin error interface
-func (e CreateAppRegionConfigRequestValidationError) Error() string {
-	cause := ""
-	if e.cause != nil {
-		cause = fmt.Sprintf(" | caused by: %v", e.cause)
-	}
-
-	key := ""
-	if e.key {
-		key = "key for "
-	}
-
-	return fmt.Sprintf(
-		"invalid %sCreateAppRegionConfigRequest.%s: %s%s",
-		key,
-		e.field,
-		e.reason,
-		cause)
-}
-
-var _ error = CreateAppRegionConfigRequestValidationError{}
-
-var _ interface {
-	Field() string
-	Reason() string
-	Key() bool
-	Cause() error
-	ErrorName() string
-} = CreateAppRegionConfigRequestValidationError{}
-
-// Validate checks the field values on CreateAppRegionConfigResponse with the
-// rules defined in the proto definition for this message. If any rules are
-// violated, an error is returned.
-func (m *CreateAppRegionConfigResponse) Validate() error {
-	if m == nil {
-		return nil
-	}
-
-	if v, ok := interface{}(m.GetResult()).(interface{ Validate() error }); ok {
-		if err := v.Validate(); err != nil {
-			return CreateAppRegionConfigResponseValidationError{
-				field:  "Result",
-				reason: "embedded message failed validation",
-				cause:  err,
-			}
-		}
-	}
-
-	return nil
-}
-
-// CreateAppRegionConfigResponseValidationError is the validation error
-// returned by CreateAppRegionConfigResponse.Validate if the designated
-// constraints aren't met.
-type CreateAppRegionConfigResponseValidationError struct {
-	field  string
-	reason string
-	cause  error
-	key    bool
-}
-
-// Field function returns field value.
-func (e CreateAppRegionConfigResponseValidationError) Field() string { return e.field }
-
-// Reason function returns reason value.
-func (e CreateAppRegionConfigResponseValidationError) Reason() string { return e.reason }
-
-// Cause function returns cause value.
-func (e CreateAppRegionConfigResponseValidationError) Cause() error { return e.cause }
-
-// Key function returns key value.
-func (e CreateAppRegionConfigResponseValidationError) Key() bool { return e.key }
-
-// ErrorName returns error name.
-func (e CreateAppRegionConfigResponseValidationError) ErrorName() string {
-	return "CreateAppRegionConfigResponseValidationError"
-}
-
-// Error satisfies the builtin error interface
-func (e CreateAppRegionConfigResponseValidationError) Error() string {
-	cause := ""
-	if e.cause != nil {
-		cause = fmt.Sprintf(" | caused by: %v", e.cause)
-	}
-
-	key := ""
-	if e.key {
-		key = "key for "
-	}
-
-	return fmt.Sprintf(
-		"invalid %sCreateAppRegionConfigResponse.%s: %s%s",
-		key,
-		e.field,
-		e.reason,
-		cause)
-}
-
-var _ error = CreateAppRegionConfigResponseValidationError{}
-
-var _ interface {
-	Field() string
-	Reason() string
-	Key() bool
-	Cause() error
-	ErrorName() string
-} = CreateAppRegionConfigResponseValidationError{}
-
-// Validate checks the field values on ReadAppRegionConfigRequest with the
-// rules defined in the proto definition for this message. If any rules are
-// violated, an error is returned.
-func (m *ReadAppRegionConfigRequest) Validate() error {
-	if m == nil {
-		return nil
-	}
-
-	if v, ok := interface{}(m.GetId()).(interface{ Validate() error }); ok {
-		if err := v.Validate(); err != nil {
-			return ReadAppRegionConfigRequestValidationError{
-				field:  "Id",
-				reason: "embedded message failed validation",
-				cause:  err,
-			}
-		}
-	}
-
-	if v, ok := interface{}(m.GetFields()).(interface{ Validate() error }); ok {
-		if err := v.Validate(); err != nil {
-			return ReadAppRegionConfigRequestValidationError{
-				field:  "Fields",
-				reason: "embedded message failed validation",
-				cause:  err,
-			}
-		}
-	}
-
-	return nil
-}
-
-// ReadAppRegionConfigRequestValidationError is the validation error returned
-// by ReadAppRegionConfigRequest.Validate if the designated constraints aren't met.
-type ReadAppRegionConfigRequestValidationError struct {
-	field  string
-	reason string
-	cause  error
-	key    bool
-}
-
-// Field function returns field value.
-func (e ReadAppRegionConfigRequestValidationError) Field() string { return e.field }
-
-// Reason function returns reason value.
-func (e ReadAppRegionConfigRequestValidationError) Reason() string { return e.reason }
-
-// Cause function returns cause value.
-func (e ReadAppRegionConfigRequestValidationError) Cause() error { return e.cause }
-
-// Key function returns key value.
-func (e ReadAppRegionConfigRequestValidationError) Key() bool { return e.key }
-
-// ErrorName returns error name.
-func (e ReadAppRegionConfigRequestValidationError) ErrorName() string {
-	return "ReadAppRegionConfigRequestValidationError"
-}
-
-// Error satisfies the builtin error interface
-func (e ReadAppRegionConfigRequestValidationError) Error() string {
-	cause := ""
-	if e.cause != nil {
-		cause = fmt.Sprintf(" | caused by: %v", e.cause)
-	}
-
-	key := ""
-	if e.key {
-		key = "key for "
-	}
-
-	return fmt.Sprintf(
-		"invalid %sReadAppRegionConfigRequest.%s: %s%s",
-		key,
-		e.field,
-		e.reason,
-		cause)
-}
-
-var _ error = ReadAppRegionConfigRequestValidationError{}
-
-var _ interface {
-	Field() string
-	Reason() string
-	Key() bool
-	Cause() error
-	ErrorName() string
-} = ReadAppRegionConfigRequestValidationError{}
-
-// Validate checks the field values on ReadAppRegionConfigResponse with the
-// rules defined in the proto definition for this message. If any rules are
-// violated, an error is returned.
-func (m *ReadAppRegionConfigResponse) Validate() error {
-	if m == nil {
-		return nil
-	}
-
-	if v, ok := interface{}(m.GetResult()).(interface{ Validate() error }); ok {
-		if err := v.Validate(); err != nil {
-			return ReadAppRegionConfigResponseValidationError{
-				field:  "Result",
-				reason: "embedded message failed validation",
-				cause:  err,
-			}
-		}
-	}
-
-	return nil
-}
-
-// ReadAppRegionConfigResponseValidationError is the validation error returned
-// by ReadAppRegionConfigResponse.Validate if the designated constraints
-// aren't met.
-type ReadAppRegionConfigResponseValidationError struct {
-	field  string
-	reason string
-	cause  error
-	key    bool
-}
-
-// Field function returns field value.
-func (e ReadAppRegionConfigResponseValidationError) Field() string { return e.field }
-
-// Reason function returns reason value.
-func (e ReadAppRegionConfigResponseValidationError) Reason() string { return e.reason }
-
-// Cause function returns cause value.
-func (e ReadAppRegionConfigResponseValidationError) Cause() error { return e.cause }
-
-// Key function returns key value.
-func (e ReadAppRegionConfigResponseValidationError) Key() bool { return e.key }
-
-// ErrorName returns error name.
-func (e ReadAppRegionConfigResponseValidationError) ErrorName() string {
-	return "ReadAppRegionConfigResponseValidationError"
-}
-
-// Error satisfies the builtin error interface
-func (e ReadAppRegionConfigResponseValidationError) Error() string {
-	cause := ""
-	if e.cause != nil {
-		cause = fmt.Sprintf(" | caused by: %v", e.cause)
-	}
-
-	key := ""
-	if e.key {
-		key = "key for "
-	}
-
-	return fmt.Sprintf(
-		"invalid %sReadAppRegionConfigResponse.%s: %s%s",
-		key,
-		e.field,
-		e.reason,
-		cause)
-}
-
-var _ error = ReadAppRegionConfigResponseValidationError{}
-
-var _ interface {
-	Field() string
-	Reason() string
-	Key() bool
-	Cause() error
-	ErrorName() string
-} = ReadAppRegionConfigResponseValidationError{}
-
-// Validate checks the field values on UpdateAppRegionConfigRequest with the
-// rules defined in the proto definition for this message. If any rules are
-// violated, an error is returned.
-func (m *UpdateAppRegionConfigRequest) Validate() error {
-	if m == nil {
-		return nil
-	}
-
-	if v, ok := interface{}(m.GetPayload()).(interface{ Validate() error }); ok {
-		if err := v.Validate(); err != nil {
-			return UpdateAppRegionConfigRequestValidationError{
-				field:  "Payload",
-				reason: "embedded message failed validation",
-				cause:  err,
-			}
-		}
-	}
-
-	if v, ok := interface{}(m.GetFields()).(interface{ Validate() error }); ok {
-		if err := v.Validate(); err != nil {
-			return UpdateAppRegionConfigRequestValidationError{
-				field:  "Fields",
-				reason: "embedded message failed validation",
-				cause:  err,
-			}
-		}
-	}
-
-	return nil
-}
-
-// UpdateAppRegionConfigRequestValidationError is the validation error returned
-// by UpdateAppRegionConfigRequest.Validate if the designated constraints
-// aren't met.
-type UpdateAppRegionConfigRequestValidationError struct {
-	field  string
-	reason string
-	cause  error
-	key    bool
-}
-
-// Field function returns field value.
-func (e UpdateAppRegionConfigRequestValidationError) Field() string { return e.field }
-
-// Reason function returns reason value.
-func (e UpdateAppRegionConfigRequestValidationError) Reason() string { return e.reason }
-
-// Cause function returns cause value.
-func (e UpdateAppRegionConfigRequestValidationError) Cause() error { return e.cause }
-
-// Key function returns key value.
-func (e UpdateAppRegionConfigRequestValidationError) Key() bool { return e.key }
-
-// ErrorName returns error name.
-func (e UpdateAppRegionConfigRequestValidationError) ErrorName() string {
-	return "UpdateAppRegionConfigRequestValidationError"
-}
-
-// Error satisfies the builtin error interface
-func (e UpdateAppRegionConfigRequestValidationError) Error() string {
-	cause := ""
-	if e.cause != nil {
-		cause = fmt.Sprintf(" | caused by: %v", e.cause)
-	}
-
-	key := ""
-	if e.key {
-		key = "key for "
-	}
-
-	return fmt.Sprintf(
-		"invalid %sUpdateAppRegionConfigRequest.%s: %s%s",
-		key,
-		e.field,
-		e.reason,
-		cause)
-}
-
-var _ error = UpdateAppRegionConfigRequestValidationError{}
-
-var _ interface {
-	Field() string
-	Reason() string
-	Key() bool
-	Cause() error
-	ErrorName() string
-} = UpdateAppRegionConfigRequestValidationError{}
-
-// Validate checks the field values on UpdateAppRegionConfigResponse with the
-// rules defined in the proto definition for this message. If any rules are
-// violated, an error is returned.
-func (m *UpdateAppRegionConfigResponse) Validate() error {
-	if m == nil {
-		return nil
-	}
-
-	if v, ok := interface{}(m.GetResult()).(interface{ Validate() error }); ok {
-		if err := v.Validate(); err != nil {
-			return UpdateAppRegionConfigResponseValidationError{
-				field:  "Result",
-				reason: "embedded message failed validation",
-				cause:  err,
-			}
-		}
-	}
-
-	return nil
-}
-
-// UpdateAppRegionConfigResponseValidationError is the validation error
-// returned by UpdateAppRegionConfigResponse.Validate if the designated
-// constraints aren't met.
-type UpdateAppRegionConfigResponseValidationError struct {
-	field  string
-	reason string
-	cause  error
-	key    bool
-}
-
-// Field function returns field value.
-func (e UpdateAppRegionConfigResponseValidationError) Field() string { return e.field }
-
-// Reason function returns reason value.
-func (e UpdateAppRegionConfigResponseValidationError) Reason() string { return e.reason }
-
-// Cause function returns cause value.
-func (e UpdateAppRegionConfigResponseValidationError) Cause() error { return e.cause }
-
-// Key function returns key value.
-func (e UpdateAppRegionConfigResponseValidationError) Key() bool { return e.key }
-
-// ErrorName returns error name.
-func (e UpdateAppRegionConfigResponseValidationError) ErrorName() string {
-	return "UpdateAppRegionConfigResponseValidationError"
-}
-
-// Error satisfies the builtin error interface
-func (e UpdateAppRegionConfigResponseValidationError) Error() string {
-	cause := ""
-	if e.cause != nil {
-		cause = fmt.Sprintf(" | caused by: %v", e.cause)
-	}
-
-	key := ""
-	if e.key {
-		key = "key for "
-	}
-
-	return fmt.Sprintf(
-		"invalid %sUpdateAppRegionConfigResponse.%s: %s%s",
-		key,
-		e.field,
-		e.reason,
-		cause)
-}
-
-var _ error = UpdateAppRegionConfigResponseValidationError{}
-
-var _ interface {
-	Field() string
-	Reason() string
-	Key() bool
-	Cause() error
-	ErrorName() string
-} = UpdateAppRegionConfigResponseValidationError{}
-
-// Validate checks the field values on DeleteAppRegionConfigRequest with the
-// rules defined in the proto definition for this message. If any rules are
-// violated, an error is returned.
-func (m *DeleteAppRegionConfigRequest) Validate() error {
-	if m == nil {
-		return nil
-	}
-
-	if v, ok := interface{}(m.GetId()).(interface{ Validate() error }); ok {
-		if err := v.Validate(); err != nil {
-			return DeleteAppRegionConfigRequestValidationError{
-				field:  "Id",
-				reason: "embedded message failed validation",
-				cause:  err,
-			}
-		}
-	}
-
-	return nil
-}
-
-// DeleteAppRegionConfigRequestValidationError is the validation error returned
-// by DeleteAppRegionConfigRequest.Validate if the designated constraints
-// aren't met.
-type DeleteAppRegionConfigRequestValidationError struct {
-	field  string
-	reason string
-	cause  error
-	key    bool
-}
-
-// Field function returns field value.
-func (e DeleteAppRegionConfigRequestValidationError) Field() string { return e.field }
-
-// Reason function returns reason value.
-func (e DeleteAppRegionConfigRequestValidationError) Reason() string { return e.reason }
-
-// Cause function returns cause value.
-func (e DeleteAppRegionConfigRequestValidationError) Cause() error { return e.cause }
-
-// Key function returns key value.
-func (e DeleteAppRegionConfigRequestValidationError) Key() bool { return e.key }
-
-// ErrorName returns error name.
-func (e DeleteAppRegionConfigRequestValidationError) ErrorName() string {
-	return "DeleteAppRegionConfigRequestValidationError"
-}
-
-// Error satisfies the builtin error interface
-func (e DeleteAppRegionConfigRequestValidationError) Error() string {
-	cause := ""
-	if e.cause != nil {
-		cause = fmt.Sprintf(" | caused by: %v", e.cause)
-	}
-
-	key := ""
-	if e.key {
-		key = "key for "
-	}
-
-	return fmt.Sprintf(
-		"invalid %sDeleteAppRegionConfigRequest.%s: %s%s",
-		key,
-		e.field,
-		e.reason,
-		cause)
-}
-
-var _ error = DeleteAppRegionConfigRequestValidationError{}
-
-var _ interface {
-	Field() string
-	Reason() string
-	Key() bool
-	Cause() error
-	ErrorName() string
-} = DeleteAppRegionConfigRequestValidationError{}
-
-// Validate checks the field values on DeleteAppRegionConfigResponse with the
-// rules defined in the proto definition for this message. If any rules are
-// violated, an error is returned.
-func (m *DeleteAppRegionConfigResponse) Validate() error {
-	if m == nil {
-		return nil
-	}
-
-	return nil
-}
-
-// DeleteAppRegionConfigResponseValidationError is the validation error
-// returned by DeleteAppRegionConfigResponse.Validate if the designated
-// constraints aren't met.
-type DeleteAppRegionConfigResponseValidationError struct {
-	field  string
-	reason string
-	cause  error
-	key    bool
-}
-
-// Field function returns field value.
-func (e DeleteAppRegionConfigResponseValidationError) Field() string { return e.field }
-
-// Reason function returns reason value.
-func (e DeleteAppRegionConfigResponseValidationError) Reason() string { return e.reason }
-
-// Cause function returns cause value.
-func (e DeleteAppRegionConfigResponseValidationError) Cause() error { return e.cause }
-
-// Key function returns key value.
-func (e DeleteAppRegionConfigResponseValidationError) Key() bool { return e.key }
-
-// ErrorName returns error name.
-func (e DeleteAppRegionConfigResponseValidationError) ErrorName() string {
-	return "DeleteAppRegionConfigResponseValidationError"
-}
-
-// Error satisfies the builtin error interface
-func (e DeleteAppRegionConfigResponseValidationError) Error() string {
-	cause := ""
-	if e.cause != nil {
-		cause = fmt.Sprintf(" | caused by: %v", e.cause)
-	}
-
-	key := ""
-	if e.key {
-		key = "key for "
-	}
-
-	return fmt.Sprintf(
-		"invalid %sDeleteAppRegionConfigResponse.%s: %s%s",
-		key,
-		e.field,
-		e.reason,
-		cause)
-}
-
-var _ error = DeleteAppRegionConfigResponseValidationError{}
-
-var _ interface {
-	Field() string
-	Reason() string
-	Key() bool
-	Cause() error
-	ErrorName() string
-} = DeleteAppRegionConfigResponseValidationError{}
-
-// Validate checks the field values on ListAppRegionConfigRequest with the
-// rules defined in the proto definition for this message. If any rules are
-// violated, an error is returned.
-func (m *ListAppRegionConfigRequest) Validate() error {
-	if m == nil {
-		return nil
-	}
-
-	if v, ok := interface{}(m.GetFilter()).(interface{ Validate() error }); ok {
-		if err := v.Validate(); err != nil {
-			return ListAppRegionConfigRequestValidationError{
-				field:  "Filter",
-				reason: "embedded message failed validation",
-				cause:  err,
-			}
-		}
-	}
-
-	if v, ok := interface{}(m.GetOrderBy()).(interface{ Validate() error }); ok {
-		if err := v.Validate(); err != nil {
-			return ListAppRegionConfigRequestValidationError{
-				field:  "OrderBy",
-				reason: "embedded message failed validation",
-				cause:  err,
-			}
-		}
-	}
-
-	if v, ok := interface{}(m.GetFields()).(interface{ Validate() error }); ok {
-		if err := v.Validate(); err != nil {
-			return ListAppRegionConfigRequestValidationError{
-				field:  "Fields",
-				reason: "embedded message failed validation",
-				cause:  err,
-			}
-		}
-	}
-
-	if v, ok := interface{}(m.GetPaging()).(interface{ Validate() error }); ok {
-		if err := v.Validate(); err != nil {
-			return ListAppRegionConfigRequestValidationError{
-				field:  "Paging",
-				reason: "embedded message failed validation",
-				cause:  err,
-			}
-		}
-	}
-
-	return nil
-}
-
-// ListAppRegionConfigRequestValidationError is the validation error returned
-// by ListAppRegionConfigRequest.Validate if the designated constraints aren't met.
-type ListAppRegionConfigRequestValidationError struct {
-	field  string
-	reason string
-	cause  error
-	key    bool
-}
-
-// Field function returns field value.
-func (e ListAppRegionConfigRequestValidationError) Field() string { return e.field }
-
-// Reason function returns reason value.
-func (e ListAppRegionConfigRequestValidationError) Reason() string { return e.reason }
-
-// Cause function returns cause value.
-func (e ListAppRegionConfigRequestValidationError) Cause() error { return e.cause }
-
-// Key function returns key value.
-func (e ListAppRegionConfigRequestValidationError) Key() bool { return e.key }
-
-// ErrorName returns error name.
-func (e ListAppRegionConfigRequestValidationError) ErrorName() string {
-	return "ListAppRegionConfigRequestValidationError"
-}
-
-// Error satisfies the builtin error interface
-func (e ListAppRegionConfigRequestValidationError) Error() string {
-	cause := ""
-	if e.cause != nil {
-		cause = fmt.Sprintf(" | caused by: %v", e.cause)
-	}
-
-	key := ""
-	if e.key {
-		key = "key for "
-	}
-
-	return fmt.Sprintf(
-		"invalid %sListAppRegionConfigRequest.%s: %s%s",
-		key,
-		e.field,
-		e.reason,
-		cause)
-}
-
-var _ error = ListAppRegionConfigRequestValidationError{}
-
-var _ interface {
-	Field() string
-	Reason() string
-	Key() bool
-	Cause() error
-	ErrorName() string
-} = ListAppRegionConfigRequestValidationError{}
-
-// Validate checks the field values on ListAppRegionConfigsResponse with the
-// rules defined in the proto definition for this message. If any rules are
-// violated, an error is returned.
-func (m *ListAppRegionConfigsResponse) Validate() error {
-	if m == nil {
-		return nil
-	}
-
-	for idx, item := range m.GetResults() {
-		_, _ = idx, item
-
-		if v, ok := interface{}(item).(interface{ Validate() error }); ok {
-			if err := v.Validate(); err != nil {
-				return ListAppRegionConfigsResponseValidationError{
-					field:  fmt.Sprintf("Results[%v]", idx),
-					reason: "embedded message failed validation",
-					cause:  err,
-				}
-			}
-		}
-
-	}
-
-	if v, ok := interface{}(m.GetPage()).(interface{ Validate() error }); ok {
-		if err := v.Validate(); err != nil {
-			return ListAppRegionConfigsResponseValidationError{
-				field:  "Page",
-				reason: "embedded message failed validation",
-				cause:  err,
-			}
-		}
-	}
-
-	return nil
-}
-
-// ListAppRegionConfigsResponseValidationError is the validation error returned
-// by ListAppRegionConfigsResponse.Validate if the designated constraints
-// aren't met.
-type ListAppRegionConfigsResponseValidationError struct {
-	field  string
-	reason string
-	cause  error
-	key    bool
-}
-
-// Field function returns field value.
-func (e ListAppRegionConfigsResponseValidationError) Field() string { return e.field }
-
-// Reason function returns reason value.
-func (e ListAppRegionConfigsResponseValidationError) Reason() string { return e.reason }
-
-// Cause function returns cause value.
-func (e ListAppRegionConfigsResponseValidationError) Cause() error { return e.cause }
-
-// Key function returns key value.
-func (e ListAppRegionConfigsResponseValidationError) Key() bool { return e.key }
-
-// ErrorName returns error name.
-func (e ListAppRegionConfigsResponseValidationError) ErrorName() string {
-	return "ListAppRegionConfigsResponseValidationError"
-}
-
-// Error satisfies the builtin error interface
-func (e ListAppRegionConfigsResponseValidationError) Error() string {
-	cause := ""
-	if e.cause != nil {
-		cause = fmt.Sprintf(" | caused by: %v", e.cause)
-	}
-
-	key := ""
-	if e.key {
-		key = "key for "
-	}
-
-	return fmt.Sprintf(
-		"invalid %sListAppRegionConfigsResponse.%s: %s%s",
-		key,
-		e.field,
-		e.reason,
-		cause)
-}
-
-var _ error = ListAppRegionConfigsResponseValidationError{}
-
-var _ interface {
-	Field() string
-	Reason() string
-	Key() bool
-	Cause() error
-	ErrorName() string
-} = ListAppRegionConfigsResponseValidationError{}
-
-// Validate checks the field values on AppStageConfig with the rules defined in
+// Validate checks the field values on Application with the rules defined in
 // the proto definition for this message. If any rules are violated, an error
 // is returned.
-func (m *AppStageConfig) Validate() error {
+func (m *Application) Validate() error {
 	if m == nil {
 		return nil
 	}
 
 	if v, ok := interface{}(m.GetId()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
-			return AppStageConfigValidationError{
+			return ApplicationValidationError{
 				field:  "Id",
 				reason: "embedded message failed validation",
 				cause:  err,
@@ -4824,13 +4753,21 @@ func (m *AppStageConfig) Validate() error {
 
 	// no validation rules for Description
 
-	for idx, item := range m.GetAppEnvironmentConfigs() {
+	// no validation rules for Chart
+
+	// no validation rules for Repo
+
+	// no validation rules for TicketLink
+
+	// no validation rules for ConfigYaml
+
+	for idx, item := range m.GetAppVersions() {
 		_, _ = idx, item
 
 		if v, ok := interface{}(item).(interface{ Validate() error }); ok {
 			if err := v.Validate(); err != nil {
-				return AppStageConfigValidationError{
-					field:  fmt.Sprintf("AppEnvironmentConfigs[%v]", idx),
+				return ApplicationValidationError{
+					field:  fmt.Sprintf("AppVersions[%v]", idx),
 					reason: "embedded message failed validation",
 					cause:  err,
 				}
@@ -4839,32 +4776,12 @@ func (m *AppStageConfig) Validate() error {
 
 	}
 
-	if v, ok := interface{}(m.GetValueId()).(interface{ Validate() error }); ok {
-		if err := v.Validate(); err != nil {
-			return AppStageConfigValidationError{
-				field:  "ValueId",
-				reason: "embedded message failed validation",
-				cause:  err,
-			}
-		}
-	}
-
-	if v, ok := interface{}(m.GetStageId()).(interface{ Validate() error }); ok {
-		if err := v.Validate(); err != nil {
-			return AppStageConfigValidationError{
-				field:  "StageId",
-				reason: "embedded message failed validation",
-				cause:  err,
-			}
-		}
-	}
-
 	return nil
 }
 
-// AppStageConfigValidationError is the validation error returned by
-// AppStageConfig.Validate if the designated constraints aren't met.
-type AppStageConfigValidationError struct {
+// ApplicationValidationError is the validation error returned by
+// Application.Validate if the designated constraints aren't met.
+type ApplicationValidationError struct {
 	field  string
 	reason string
 	cause  error
@@ -4872,22 +4789,22 @@ type AppStageConfigValidationError struct {
 }
 
 // Field function returns field value.
-func (e AppStageConfigValidationError) Field() string { return e.field }
+func (e ApplicationValidationError) Field() string { return e.field }
 
 // Reason function returns reason value.
-func (e AppStageConfigValidationError) Reason() string { return e.reason }
+func (e ApplicationValidationError) Reason() string { return e.reason }
 
 // Cause function returns cause value.
-func (e AppStageConfigValidationError) Cause() error { return e.cause }
+func (e ApplicationValidationError) Cause() error { return e.cause }
 
 // Key function returns key value.
-func (e AppStageConfigValidationError) Key() bool { return e.key }
+func (e ApplicationValidationError) Key() bool { return e.key }
 
 // ErrorName returns error name.
-func (e AppStageConfigValidationError) ErrorName() string { return "AppStageConfigValidationError" }
+func (e ApplicationValidationError) ErrorName() string { return "ApplicationValidationError" }
 
 // Error satisfies the builtin error interface
-func (e AppStageConfigValidationError) Error() string {
+func (e ApplicationValidationError) Error() string {
 	cause := ""
 	if e.cause != nil {
 		cause = fmt.Sprintf(" | caused by: %v", e.cause)
@@ -4899,14 +4816,14 @@ func (e AppStageConfigValidationError) Error() string {
 	}
 
 	return fmt.Sprintf(
-		"invalid %sAppStageConfig.%s: %s%s",
+		"invalid %sApplication.%s: %s%s",
 		key,
 		e.field,
 		e.reason,
 		cause)
 }
 
-var _ error = AppStageConfigValidationError{}
+var _ error = ApplicationValidationError{}
 
 var _ interface {
 	Field() string
@@ -4914,19 +4831,19 @@ var _ interface {
 	Key() bool
 	Cause() error
 	ErrorName() string
-} = AppStageConfigValidationError{}
+} = ApplicationValidationError{}
 
-// Validate checks the field values on CreateAppStageConfigRequest with the
-// rules defined in the proto definition for this message. If any rules are
+// Validate checks the field values on CreateApplicationRequest with the rules
+// defined in the proto definition for this message. If any rules are
 // violated, an error is returned.
-func (m *CreateAppStageConfigRequest) Validate() error {
+func (m *CreateApplicationRequest) Validate() error {
 	if m == nil {
 		return nil
 	}
 
 	if v, ok := interface{}(m.GetPayload()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
-			return CreateAppStageConfigRequestValidationError{
+			return CreateApplicationRequestValidationError{
 				field:  "Payload",
 				reason: "embedded message failed validation",
 				cause:  err,
@@ -4937,10 +4854,9 @@ func (m *CreateAppStageConfigRequest) Validate() error {
 	return nil
 }
 
-// CreateAppStageConfigRequestValidationError is the validation error returned
-// by CreateAppStageConfigRequest.Validate if the designated constraints
-// aren't met.
-type CreateAppStageConfigRequestValidationError struct {
+// CreateApplicationRequestValidationError is the validation error returned by
+// CreateApplicationRequest.Validate if the designated constraints aren't met.
+type CreateApplicationRequestValidationError struct {
 	field  string
 	reason string
 	cause  error
@@ -4948,24 +4864,24 @@ type CreateAppStageConfigRequestValidationError struct {
 }
 
 // Field function returns field value.
-func (e CreateAppStageConfigRequestValidationError) Field() string { return e.field }
+func (e CreateApplicationRequestValidationError) Field() string { return e.field }
 
 // Reason function returns reason value.
-func (e CreateAppStageConfigRequestValidationError) Reason() string { return e.reason }
+func (e CreateApplicationRequestValidationError) Reason() string { return e.reason }
 
 // Cause function returns cause value.
-func (e CreateAppStageConfigRequestValidationError) Cause() error { return e.cause }
+func (e CreateApplicationRequestValidationError) Cause() error { return e.cause }
 
 // Key function returns key value.
-func (e CreateAppStageConfigRequestValidationError) Key() bool { return e.key }
+func (e CreateApplicationRequestValidationError) Key() bool { return e.key }
 
 // ErrorName returns error name.
-func (e CreateAppStageConfigRequestValidationError) ErrorName() string {
-	return "CreateAppStageConfigRequestValidationError"
+func (e CreateApplicationRequestValidationError) ErrorName() string {
+	return "CreateApplicationRequestValidationError"
 }
 
 // Error satisfies the builtin error interface
-func (e CreateAppStageConfigRequestValidationError) Error() string {
+func (e CreateApplicationRequestValidationError) Error() string {
 	cause := ""
 	if e.cause != nil {
 		cause = fmt.Sprintf(" | caused by: %v", e.cause)
@@ -4977,14 +4893,14 @@ func (e CreateAppStageConfigRequestValidationError) Error() string {
 	}
 
 	return fmt.Sprintf(
-		"invalid %sCreateAppStageConfigRequest.%s: %s%s",
+		"invalid %sCreateApplicationRequest.%s: %s%s",
 		key,
 		e.field,
 		e.reason,
 		cause)
 }
 
-var _ error = CreateAppStageConfigRequestValidationError{}
+var _ error = CreateApplicationRequestValidationError{}
 
 var _ interface {
 	Field() string
@@ -4992,19 +4908,19 @@ var _ interface {
 	Key() bool
 	Cause() error
 	ErrorName() string
-} = CreateAppStageConfigRequestValidationError{}
+} = CreateApplicationRequestValidationError{}
 
-// Validate checks the field values on CreateAppStageConfigResponse with the
-// rules defined in the proto definition for this message. If any rules are
+// Validate checks the field values on CreateApplicationResponse with the rules
+// defined in the proto definition for this message. If any rules are
 // violated, an error is returned.
-func (m *CreateAppStageConfigResponse) Validate() error {
+func (m *CreateApplicationResponse) Validate() error {
 	if m == nil {
 		return nil
 	}
 
 	if v, ok := interface{}(m.GetResult()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
-			return CreateAppStageConfigResponseValidationError{
+			return CreateApplicationResponseValidationError{
 				field:  "Result",
 				reason: "embedded message failed validation",
 				cause:  err,
@@ -5015,10 +4931,9 @@ func (m *CreateAppStageConfigResponse) Validate() error {
 	return nil
 }
 
-// CreateAppStageConfigResponseValidationError is the validation error returned
-// by CreateAppStageConfigResponse.Validate if the designated constraints
-// aren't met.
-type CreateAppStageConfigResponseValidationError struct {
+// CreateApplicationResponseValidationError is the validation error returned by
+// CreateApplicationResponse.Validate if the designated constraints aren't met.
+type CreateApplicationResponseValidationError struct {
 	field  string
 	reason string
 	cause  error
@@ -5026,24 +4941,24 @@ type CreateAppStageConfigResponseValidationError struct {
 }
 
 // Field function returns field value.
-func (e CreateAppStageConfigResponseValidationError) Field() string { return e.field }
+func (e CreateApplicationResponseValidationError) Field() string { return e.field }
 
 // Reason function returns reason value.
-func (e CreateAppStageConfigResponseValidationError) Reason() string { return e.reason }
+func (e CreateApplicationResponseValidationError) Reason() string { return e.reason }
 
 // Cause function returns cause value.
-func (e CreateAppStageConfigResponseValidationError) Cause() error { return e.cause }
+func (e CreateApplicationResponseValidationError) Cause() error { return e.cause }
 
 // Key function returns key value.
-func (e CreateAppStageConfigResponseValidationError) Key() bool { return e.key }
+func (e CreateApplicationResponseValidationError) Key() bool { return e.key }
 
 // ErrorName returns error name.
-func (e CreateAppStageConfigResponseValidationError) ErrorName() string {
-	return "CreateAppStageConfigResponseValidationError"
+func (e CreateApplicationResponseValidationError) ErrorName() string {
+	return "CreateApplicationResponseValidationError"
 }
 
 // Error satisfies the builtin error interface
-func (e CreateAppStageConfigResponseValidationError) Error() string {
+func (e CreateApplicationResponseValidationError) Error() string {
 	cause := ""
 	if e.cause != nil {
 		cause = fmt.Sprintf(" | caused by: %v", e.cause)
@@ -5055,14 +4970,14 @@ func (e CreateAppStageConfigResponseValidationError) Error() string {
 	}
 
 	return fmt.Sprintf(
-		"invalid %sCreateAppStageConfigResponse.%s: %s%s",
+		"invalid %sCreateApplicationResponse.%s: %s%s",
 		key,
 		e.field,
 		e.reason,
 		cause)
 }
 
-var _ error = CreateAppStageConfigResponseValidationError{}
+var _ error = CreateApplicationResponseValidationError{}
 
 var _ interface {
 	Field() string
@@ -5070,19 +4985,19 @@ var _ interface {
 	Key() bool
 	Cause() error
 	ErrorName() string
-} = CreateAppStageConfigResponseValidationError{}
+} = CreateApplicationResponseValidationError{}
 
-// Validate checks the field values on ReadAppStageConfigRequest with the rules
+// Validate checks the field values on ReadApplicationRequest with the rules
 // defined in the proto definition for this message. If any rules are
 // violated, an error is returned.
-func (m *ReadAppStageConfigRequest) Validate() error {
+func (m *ReadApplicationRequest) Validate() error {
 	if m == nil {
 		return nil
 	}
 
 	if v, ok := interface{}(m.GetId()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
-			return ReadAppStageConfigRequestValidationError{
+			return ReadApplicationRequestValidationError{
 				field:  "Id",
 				reason: "embedded message failed validation",
 				cause:  err,
@@ -5092,7 +5007,7 @@ func (m *ReadAppStageConfigRequest) Validate() error {
 
 	if v, ok := interface{}(m.GetFields()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
-			return ReadAppStageConfigRequestValidationError{
+			return ReadApplicationRequestValidationError{
 				field:  "Fields",
 				reason: "embedded message failed validation",
 				cause:  err,
@@ -5103,9 +5018,9 @@ func (m *ReadAppStageConfigRequest) Validate() error {
 	return nil
 }
 
-// ReadAppStageConfigRequestValidationError is the validation error returned by
-// ReadAppStageConfigRequest.Validate if the designated constraints aren't met.
-type ReadAppStageConfigRequestValidationError struct {
+// ReadApplicationRequestValidationError is the validation error returned by
+// ReadApplicationRequest.Validate if the designated constraints aren't met.
+type ReadApplicationRequestValidationError struct {
 	field  string
 	reason string
 	cause  error
@@ -5113,24 +5028,24 @@ type ReadAppStageConfigRequestValidationError struct {
 }
 
 // Field function returns field value.
-func (e ReadAppStageConfigRequestValidationError) Field() string { return e.field }
+func (e ReadApplicationRequestValidationError) Field() string { return e.field }
 
 // Reason function returns reason value.
-func (e ReadAppStageConfigRequestValidationError) Reason() string { return e.reason }
+func (e ReadApplicationRequestValidationError) Reason() string { return e.reason }
 
 // Cause function returns cause value.
-func (e ReadAppStageConfigRequestValidationError) Cause() error { return e.cause }
+func (e ReadApplicationRequestValidationError) Cause() error { return e.cause }
 
 // Key function returns key value.
-func (e ReadAppStageConfigRequestValidationError) Key() bool { return e.key }
+func (e ReadApplicationRequestValidationError) Key() bool { return e.key }
 
 // ErrorName returns error name.
-func (e ReadAppStageConfigRequestValidationError) ErrorName() string {
-	return "ReadAppStageConfigRequestValidationError"
+func (e ReadApplicationRequestValidationError) ErrorName() string {
+	return "ReadApplicationRequestValidationError"
 }
 
 // Error satisfies the builtin error interface
-func (e ReadAppStageConfigRequestValidationError) Error() string {
+func (e ReadApplicationRequestValidationError) Error() string {
 	cause := ""
 	if e.cause != nil {
 		cause = fmt.Sprintf(" | caused by: %v", e.cause)
@@ -5142,14 +5057,14 @@ func (e ReadAppStageConfigRequestValidationError) Error() string {
 	}
 
 	return fmt.Sprintf(
-		"invalid %sReadAppStageConfigRequest.%s: %s%s",
+		"invalid %sReadApplicationRequest.%s: %s%s",
 		key,
 		e.field,
 		e.reason,
 		cause)
 }
 
-var _ error = ReadAppStageConfigRequestValidationError{}
+var _ error = ReadApplicationRequestValidationError{}
 
 var _ interface {
 	Field() string
@@ -5157,19 +5072,19 @@ var _ interface {
 	Key() bool
 	Cause() error
 	ErrorName() string
-} = ReadAppStageConfigRequestValidationError{}
+} = ReadApplicationRequestValidationError{}
 
-// Validate checks the field values on ReadAppStageConfigResponse with the
-// rules defined in the proto definition for this message. If any rules are
+// Validate checks the field values on ReadApplicationResponse with the rules
+// defined in the proto definition for this message. If any rules are
 // violated, an error is returned.
-func (m *ReadAppStageConfigResponse) Validate() error {
+func (m *ReadApplicationResponse) Validate() error {
 	if m == nil {
 		return nil
 	}
 
 	if v, ok := interface{}(m.GetResult()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
-			return ReadAppStageConfigResponseValidationError{
+			return ReadApplicationResponseValidationError{
 				field:  "Result",
 				reason: "embedded message failed validation",
 				cause:  err,
@@ -5180,9 +5095,9 @@ func (m *ReadAppStageConfigResponse) Validate() error {
 	return nil
 }
 
-// ReadAppStageConfigResponseValidationError is the validation error returned
-// by ReadAppStageConfigResponse.Validate if the designated constraints aren't met.
-type ReadAppStageConfigResponseValidationError struct {
+// ReadApplicationResponseValidationError is the validation error returned by
+// ReadApplicationResponse.Validate if the designated constraints aren't met.
+type ReadApplicationResponseValidationError struct {
 	field  string
 	reason string
 	cause  error
@@ -5190,24 +5105,24 @@ type ReadAppStageConfigResponseValidationError struct {
 }
 
 // Field function returns field value.
-func (e ReadAppStageConfigResponseValidationError) Field() string { return e.field }
+func (e ReadApplicationResponseValidationError) Field() string { return e.field }
 
 // Reason function returns reason value.
-func (e ReadAppStageConfigResponseValidationError) Reason() string { return e.reason }
+func (e ReadApplicationResponseValidationError) Reason() string { return e.reason }
 
 // Cause function returns cause value.
-func (e ReadAppStageConfigResponseValidationError) Cause() error { return e.cause }
+func (e ReadApplicationResponseValidationError) Cause() error { return e.cause }
 
 // Key function returns key value.
-func (e ReadAppStageConfigResponseValidationError) Key() bool { return e.key }
+func (e ReadApplicationResponseValidationError) Key() bool { return e.key }
 
 // ErrorName returns error name.
-func (e ReadAppStageConfigResponseValidationError) ErrorName() string {
-	return "ReadAppStageConfigResponseValidationError"
+func (e ReadApplicationResponseValidationError) ErrorName() string {
+	return "ReadApplicationResponseValidationError"
 }
 
 // Error satisfies the builtin error interface
-func (e ReadAppStageConfigResponseValidationError) Error() string {
+func (e ReadApplicationResponseValidationError) Error() string {
 	cause := ""
 	if e.cause != nil {
 		cause = fmt.Sprintf(" | caused by: %v", e.cause)
@@ -5219,14 +5134,14 @@ func (e ReadAppStageConfigResponseValidationError) Error() string {
 	}
 
 	return fmt.Sprintf(
-		"invalid %sReadAppStageConfigResponse.%s: %s%s",
+		"invalid %sReadApplicationResponse.%s: %s%s",
 		key,
 		e.field,
 		e.reason,
 		cause)
 }
 
-var _ error = ReadAppStageConfigResponseValidationError{}
+var _ error = ReadApplicationResponseValidationError{}
 
 var _ interface {
 	Field() string
@@ -5234,19 +5149,19 @@ var _ interface {
 	Key() bool
 	Cause() error
 	ErrorName() string
-} = ReadAppStageConfigResponseValidationError{}
+} = ReadApplicationResponseValidationError{}
 
-// Validate checks the field values on UpdateAppStageConfigRequest with the
-// rules defined in the proto definition for this message. If any rules are
+// Validate checks the field values on UpdateApplicationRequest with the rules
+// defined in the proto definition for this message. If any rules are
 // violated, an error is returned.
-func (m *UpdateAppStageConfigRequest) Validate() error {
+func (m *UpdateApplicationRequest) Validate() error {
 	if m == nil {
 		return nil
 	}
 
 	if v, ok := interface{}(m.GetPayload()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
-			return UpdateAppStageConfigRequestValidationError{
+			return UpdateApplicationRequestValidationError{
 				field:  "Payload",
 				reason: "embedded message failed validation",
 				cause:  err,
@@ -5256,7 +5171,7 @@ func (m *UpdateAppStageConfigRequest) Validate() error {
 
 	if v, ok := interface{}(m.GetFields()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
-			return UpdateAppStageConfigRequestValidationError{
+			return UpdateApplicationRequestValidationError{
 				field:  "Fields",
 				reason: "embedded message failed validation",
 				cause:  err,
@@ -5267,10 +5182,9 @@ func (m *UpdateAppStageConfigRequest) Validate() error {
 	return nil
 }
 
-// UpdateAppStageConfigRequestValidationError is the validation error returned
-// by UpdateAppStageConfigRequest.Validate if the designated constraints
-// aren't met.
-type UpdateAppStageConfigRequestValidationError struct {
+// UpdateApplicationRequestValidationError is the validation error returned by
+// UpdateApplicationRequest.Validate if the designated constraints aren't met.
+type UpdateApplicationRequestValidationError struct {
 	field  string
 	reason string
 	cause  error
@@ -5278,24 +5192,24 @@ type UpdateAppStageConfigRequestValidationError struct {
 }
 
 // Field function returns field value.
-func (e UpdateAppStageConfigRequestValidationError) Field() string { return e.field }
+func (e UpdateApplicationRequestValidationError) Field() string { return e.field }
 
 // Reason function returns reason value.
-func (e UpdateAppStageConfigRequestValidationError) Reason() string { return e.reason }
+func (e UpdateApplicationRequestValidationError) Reason() string { return e.reason }
 
 // Cause function returns cause value.
-func (e UpdateAppStageConfigRequestValidationError) Cause() error { return e.cause }
+func (e UpdateApplicationRequestValidationError) Cause() error { return e.cause }
 
 // Key function returns key value.
-func (e UpdateAppStageConfigRequestValidationError) Key() bool { return e.key }
+func (e UpdateApplicationRequestValidationError) Key() bool { return e.key }
 
 // ErrorName returns error name.
-func (e UpdateAppStageConfigRequestValidationError) ErrorName() string {
-	return "UpdateAppStageConfigRequestValidationError"
+func (e UpdateApplicationRequestValidationError) ErrorName() string {
+	return "UpdateApplicationRequestValidationError"
 }
 
 // Error satisfies the builtin error interface
-func (e UpdateAppStageConfigRequestValidationError) Error() string {
+func (e UpdateApplicationRequestValidationError) Error() string {
 	cause := ""
 	if e.cause != nil {
 		cause = fmt.Sprintf(" | caused by: %v", e.cause)
@@ -5307,14 +5221,14 @@ func (e UpdateAppStageConfigRequestValidationError) Error() string {
 	}
 
 	return fmt.Sprintf(
-		"invalid %sUpdateAppStageConfigRequest.%s: %s%s",
+		"invalid %sUpdateApplicationRequest.%s: %s%s",
 		key,
 		e.field,
 		e.reason,
 		cause)
 }
 
-var _ error = UpdateAppStageConfigRequestValidationError{}
+var _ error = UpdateApplicationRequestValidationError{}
 
 var _ interface {
 	Field() string
@@ -5322,19 +5236,19 @@ var _ interface {
 	Key() bool
 	Cause() error
 	ErrorName() string
-} = UpdateAppStageConfigRequestValidationError{}
+} = UpdateApplicationRequestValidationError{}
 
-// Validate checks the field values on UpdateAppStageConfigResponse with the
-// rules defined in the proto definition for this message. If any rules are
+// Validate checks the field values on UpdateApplicationResponse with the rules
+// defined in the proto definition for this message. If any rules are
 // violated, an error is returned.
-func (m *UpdateAppStageConfigResponse) Validate() error {
+func (m *UpdateApplicationResponse) Validate() error {
 	if m == nil {
 		return nil
 	}
 
 	if v, ok := interface{}(m.GetResult()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
-			return UpdateAppStageConfigResponseValidationError{
+			return UpdateApplicationResponseValidationError{
 				field:  "Result",
 				reason: "embedded message failed validation",
 				cause:  err,
@@ -5345,10 +5259,9 @@ func (m *UpdateAppStageConfigResponse) Validate() error {
 	return nil
 }
 
-// UpdateAppStageConfigResponseValidationError is the validation error returned
-// by UpdateAppStageConfigResponse.Validate if the designated constraints
-// aren't met.
-type UpdateAppStageConfigResponseValidationError struct {
+// UpdateApplicationResponseValidationError is the validation error returned by
+// UpdateApplicationResponse.Validate if the designated constraints aren't met.
+type UpdateApplicationResponseValidationError struct {
 	field  string
 	reason string
 	cause  error
@@ -5356,24 +5269,24 @@ type UpdateAppStageConfigResponseValidationError struct {
 }
 
 // Field function returns field value.
-func (e UpdateAppStageConfigResponseValidationError) Field() string { return e.field }
+func (e UpdateApplicationResponseValidationError) Field() string { return e.field }
 
 // Reason function returns reason value.
-func (e UpdateAppStageConfigResponseValidationError) Reason() string { return e.reason }
+func (e UpdateApplicationResponseValidationError) Reason() string { return e.reason }
 
 // Cause function returns cause value.
-func (e UpdateAppStageConfigResponseValidationError) Cause() error { return e.cause }
+func (e UpdateApplicationResponseValidationError) Cause() error { return e.cause }
 
 // Key function returns key value.
-func (e UpdateAppStageConfigResponseValidationError) Key() bool { return e.key }
+func (e UpdateApplicationResponseValidationError) Key() bool { return e.key }
 
 // ErrorName returns error name.
-func (e UpdateAppStageConfigResponseValidationError) ErrorName() string {
-	return "UpdateAppStageConfigResponseValidationError"
+func (e UpdateApplicationResponseValidationError) ErrorName() string {
+	return "UpdateApplicationResponseValidationError"
 }
 
 // Error satisfies the builtin error interface
-func (e UpdateAppStageConfigResponseValidationError) Error() string {
+func (e UpdateApplicationResponseValidationError) Error() string {
 	cause := ""
 	if e.cause != nil {
 		cause = fmt.Sprintf(" | caused by: %v", e.cause)
@@ -5385,14 +5298,14 @@ func (e UpdateAppStageConfigResponseValidationError) Error() string {
 	}
 
 	return fmt.Sprintf(
-		"invalid %sUpdateAppStageConfigResponse.%s: %s%s",
+		"invalid %sUpdateApplicationResponse.%s: %s%s",
 		key,
 		e.field,
 		e.reason,
 		cause)
 }
 
-var _ error = UpdateAppStageConfigResponseValidationError{}
+var _ error = UpdateApplicationResponseValidationError{}
 
 var _ interface {
 	Field() string
@@ -5400,19 +5313,19 @@ var _ interface {
 	Key() bool
 	Cause() error
 	ErrorName() string
-} = UpdateAppStageConfigResponseValidationError{}
+} = UpdateApplicationResponseValidationError{}
 
-// Validate checks the field values on DeleteAppStageConfigRequest with the
-// rules defined in the proto definition for this message. If any rules are
+// Validate checks the field values on DeleteApplicationRequest with the rules
+// defined in the proto definition for this message. If any rules are
 // violated, an error is returned.
-func (m *DeleteAppStageConfigRequest) Validate() error {
+func (m *DeleteApplicationRequest) Validate() error {
 	if m == nil {
 		return nil
 	}
 
 	if v, ok := interface{}(m.GetId()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
-			return DeleteAppStageConfigRequestValidationError{
+			return DeleteApplicationRequestValidationError{
 				field:  "Id",
 				reason: "embedded message failed validation",
 				cause:  err,
@@ -5423,10 +5336,9 @@ func (m *DeleteAppStageConfigRequest) Validate() error {
 	return nil
 }
 
-// DeleteAppStageConfigRequestValidationError is the validation error returned
-// by DeleteAppStageConfigRequest.Validate if the designated constraints
-// aren't met.
-type DeleteAppStageConfigRequestValidationError struct {
+// DeleteApplicationRequestValidationError is the validation error returned by
+// DeleteApplicationRequest.Validate if the designated constraints aren't met.
+type DeleteApplicationRequestValidationError struct {
 	field  string
 	reason string
 	cause  error
@@ -5434,24 +5346,24 @@ type DeleteAppStageConfigRequestValidationError struct {
 }
 
 // Field function returns field value.
-func (e DeleteAppStageConfigRequestValidationError) Field() string { return e.field }
+func (e DeleteApplicationRequestValidationError) Field() string { return e.field }
 
 // Reason function returns reason value.
-func (e DeleteAppStageConfigRequestValidationError) Reason() string { return e.reason }
+func (e DeleteApplicationRequestValidationError) Reason() string { return e.reason }
 
 // Cause function returns cause value.
-func (e DeleteAppStageConfigRequestValidationError) Cause() error { return e.cause }
+func (e DeleteApplicationRequestValidationError) Cause() error { return e.cause }
 
 // Key function returns key value.
-func (e DeleteAppStageConfigRequestValidationError) Key() bool { return e.key }
+func (e DeleteApplicationRequestValidationError) Key() bool { return e.key }
 
 // ErrorName returns error name.
-func (e DeleteAppStageConfigRequestValidationError) ErrorName() string {
-	return "DeleteAppStageConfigRequestValidationError"
+func (e DeleteApplicationRequestValidationError) ErrorName() string {
+	return "DeleteApplicationRequestValidationError"
 }
 
 // Error satisfies the builtin error interface
-func (e DeleteAppStageConfigRequestValidationError) Error() string {
+func (e DeleteApplicationRequestValidationError) Error() string {
 	cause := ""
 	if e.cause != nil {
 		cause = fmt.Sprintf(" | caused by: %v", e.cause)
@@ -5463,14 +5375,14 @@ func (e DeleteAppStageConfigRequestValidationError) Error() string {
 	}
 
 	return fmt.Sprintf(
-		"invalid %sDeleteAppStageConfigRequest.%s: %s%s",
+		"invalid %sDeleteApplicationRequest.%s: %s%s",
 		key,
 		e.field,
 		e.reason,
 		cause)
 }
 
-var _ error = DeleteAppStageConfigRequestValidationError{}
+var _ error = DeleteApplicationRequestValidationError{}
 
 var _ interface {
 	Field() string
@@ -5478,12 +5390,12 @@ var _ interface {
 	Key() bool
 	Cause() error
 	ErrorName() string
-} = DeleteAppStageConfigRequestValidationError{}
+} = DeleteApplicationRequestValidationError{}
 
-// Validate checks the field values on DeleteAppStageConfigResponse with the
-// rules defined in the proto definition for this message. If any rules are
+// Validate checks the field values on DeleteApplicationResponse with the rules
+// defined in the proto definition for this message. If any rules are
 // violated, an error is returned.
-func (m *DeleteAppStageConfigResponse) Validate() error {
+func (m *DeleteApplicationResponse) Validate() error {
 	if m == nil {
 		return nil
 	}
@@ -5491,10 +5403,9 @@ func (m *DeleteAppStageConfigResponse) Validate() error {
 	return nil
 }
 
-// DeleteAppStageConfigResponseValidationError is the validation error returned
-// by DeleteAppStageConfigResponse.Validate if the designated constraints
-// aren't met.
-type DeleteAppStageConfigResponseValidationError struct {
+// DeleteApplicationResponseValidationError is the validation error returned by
+// DeleteApplicationResponse.Validate if the designated constraints aren't met.
+type DeleteApplicationResponseValidationError struct {
 	field  string
 	reason string
 	cause  error
@@ -5502,24 +5413,24 @@ type DeleteAppStageConfigResponseValidationError struct {
 }
 
 // Field function returns field value.
-func (e DeleteAppStageConfigResponseValidationError) Field() string { return e.field }
+func (e DeleteApplicationResponseValidationError) Field() string { return e.field }
 
 // Reason function returns reason value.
-func (e DeleteAppStageConfigResponseValidationError) Reason() string { return e.reason }
+func (e DeleteApplicationResponseValidationError) Reason() string { return e.reason }
 
 // Cause function returns cause value.
-func (e DeleteAppStageConfigResponseValidationError) Cause() error { return e.cause }
+func (e DeleteApplicationResponseValidationError) Cause() error { return e.cause }
 
 // Key function returns key value.
-func (e DeleteAppStageConfigResponseValidationError) Key() bool { return e.key }
+func (e DeleteApplicationResponseValidationError) Key() bool { return e.key }
 
 // ErrorName returns error name.
-func (e DeleteAppStageConfigResponseValidationError) ErrorName() string {
-	return "DeleteAppStageConfigResponseValidationError"
+func (e DeleteApplicationResponseValidationError) ErrorName() string {
+	return "DeleteApplicationResponseValidationError"
 }
 
 // Error satisfies the builtin error interface
-func (e DeleteAppStageConfigResponseValidationError) Error() string {
+func (e DeleteApplicationResponseValidationError) Error() string {
 	cause := ""
 	if e.cause != nil {
 		cause = fmt.Sprintf(" | caused by: %v", e.cause)
@@ -5531,14 +5442,14 @@ func (e DeleteAppStageConfigResponseValidationError) Error() string {
 	}
 
 	return fmt.Sprintf(
-		"invalid %sDeleteAppStageConfigResponse.%s: %s%s",
+		"invalid %sDeleteApplicationResponse.%s: %s%s",
 		key,
 		e.field,
 		e.reason,
 		cause)
 }
 
-var _ error = DeleteAppStageConfigResponseValidationError{}
+var _ error = DeleteApplicationResponseValidationError{}
 
 var _ interface {
 	Field() string
@@ -5546,19 +5457,19 @@ var _ interface {
 	Key() bool
 	Cause() error
 	ErrorName() string
-} = DeleteAppStageConfigResponseValidationError{}
+} = DeleteApplicationResponseValidationError{}
 
-// Validate checks the field values on ListAppStageConfigRequest with the rules
+// Validate checks the field values on ListApplicationRequest with the rules
 // defined in the proto definition for this message. If any rules are
 // violated, an error is returned.
-func (m *ListAppStageConfigRequest) Validate() error {
+func (m *ListApplicationRequest) Validate() error {
 	if m == nil {
 		return nil
 	}
 
 	if v, ok := interface{}(m.GetFilter()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
-			return ListAppStageConfigRequestValidationError{
+			return ListApplicationRequestValidationError{
 				field:  "Filter",
 				reason: "embedded message failed validation",
 				cause:  err,
@@ -5568,7 +5479,7 @@ func (m *ListAppStageConfigRequest) Validate() error {
 
 	if v, ok := interface{}(m.GetOrderBy()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
-			return ListAppStageConfigRequestValidationError{
+			return ListApplicationRequestValidationError{
 				field:  "OrderBy",
 				reason: "embedded message failed validation",
 				cause:  err,
@@ -5578,7 +5489,7 @@ func (m *ListAppStageConfigRequest) Validate() error {
 
 	if v, ok := interface{}(m.GetFields()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
-			return ListAppStageConfigRequestValidationError{
+			return ListApplicationRequestValidationError{
 				field:  "Fields",
 				reason: "embedded message failed validation",
 				cause:  err,
@@ -5588,7 +5499,7 @@ func (m *ListAppStageConfigRequest) Validate() error {
 
 	if v, ok := interface{}(m.GetPaging()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
-			return ListAppStageConfigRequestValidationError{
+			return ListApplicationRequestValidationError{
 				field:  "Paging",
 				reason: "embedded message failed validation",
 				cause:  err,
@@ -5599,9 +5510,9 @@ func (m *ListAppStageConfigRequest) Validate() error {
 	return nil
 }
 
-// ListAppStageConfigRequestValidationError is the validation error returned by
-// ListAppStageConfigRequest.Validate if the designated constraints aren't met.
-type ListAppStageConfigRequestValidationError struct {
+// ListApplicationRequestValidationError is the validation error returned by
+// ListApplicationRequest.Validate if the designated constraints aren't met.
+type ListApplicationRequestValidationError struct {
 	field  string
 	reason string
 	cause  error
@@ -5609,24 +5520,24 @@ type ListAppStageConfigRequestValidationError struct {
 }
 
 // Field function returns field value.
-func (e ListAppStageConfigRequestValidationError) Field() string { return e.field }
+func (e ListApplicationRequestValidationError) Field() string { return e.field }
 
 // Reason function returns reason value.
-func (e ListAppStageConfigRequestValidationError) Reason() string { return e.reason }
+func (e ListApplicationRequestValidationError) Reason() string { return e.reason }
 
 // Cause function returns cause value.
-func (e ListAppStageConfigRequestValidationError) Cause() error { return e.cause }
+func (e ListApplicationRequestValidationError) Cause() error { return e.cause }
 
 // Key function returns key value.
-func (e ListAppStageConfigRequestValidationError) Key() bool { return e.key }
+func (e ListApplicationRequestValidationError) Key() bool { return e.key }
 
 // ErrorName returns error name.
-func (e ListAppStageConfigRequestValidationError) ErrorName() string {
-	return "ListAppStageConfigRequestValidationError"
+func (e ListApplicationRequestValidationError) ErrorName() string {
+	return "ListApplicationRequestValidationError"
 }
 
 // Error satisfies the builtin error interface
-func (e ListAppStageConfigRequestValidationError) Error() string {
+func (e ListApplicationRequestValidationError) Error() string {
 	cause := ""
 	if e.cause != nil {
 		cause = fmt.Sprintf(" | caused by: %v", e.cause)
@@ -5638,14 +5549,14 @@ func (e ListAppStageConfigRequestValidationError) Error() string {
 	}
 
 	return fmt.Sprintf(
-		"invalid %sListAppStageConfigRequest.%s: %s%s",
+		"invalid %sListApplicationRequest.%s: %s%s",
 		key,
 		e.field,
 		e.reason,
 		cause)
 }
 
-var _ error = ListAppStageConfigRequestValidationError{}
+var _ error = ListApplicationRequestValidationError{}
 
 var _ interface {
 	Field() string
@@ -5653,12 +5564,12 @@ var _ interface {
 	Key() bool
 	Cause() error
 	ErrorName() string
-} = ListAppStageConfigRequestValidationError{}
+} = ListApplicationRequestValidationError{}
 
-// Validate checks the field values on ListAppStageConfigsResponse with the
-// rules defined in the proto definition for this message. If any rules are
+// Validate checks the field values on ListApplicationsResponse with the rules
+// defined in the proto definition for this message. If any rules are
 // violated, an error is returned.
-func (m *ListAppStageConfigsResponse) Validate() error {
+func (m *ListApplicationsResponse) Validate() error {
 	if m == nil {
 		return nil
 	}
@@ -5668,7 +5579,7 @@ func (m *ListAppStageConfigsResponse) Validate() error {
 
 		if v, ok := interface{}(item).(interface{ Validate() error }); ok {
 			if err := v.Validate(); err != nil {
-				return ListAppStageConfigsResponseValidationError{
+				return ListApplicationsResponseValidationError{
 					field:  fmt.Sprintf("Results[%v]", idx),
 					reason: "embedded message failed validation",
 					cause:  err,
@@ -5680,7 +5591,7 @@ func (m *ListAppStageConfigsResponse) Validate() error {
 
 	if v, ok := interface{}(m.GetPage()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
-			return ListAppStageConfigsResponseValidationError{
+			return ListApplicationsResponseValidationError{
 				field:  "Page",
 				reason: "embedded message failed validation",
 				cause:  err,
@@ -5691,10 +5602,9 @@ func (m *ListAppStageConfigsResponse) Validate() error {
 	return nil
 }
 
-// ListAppStageConfigsResponseValidationError is the validation error returned
-// by ListAppStageConfigsResponse.Validate if the designated constraints
-// aren't met.
-type ListAppStageConfigsResponseValidationError struct {
+// ListApplicationsResponseValidationError is the validation error returned by
+// ListApplicationsResponse.Validate if the designated constraints aren't met.
+type ListApplicationsResponseValidationError struct {
 	field  string
 	reason string
 	cause  error
@@ -5702,24 +5612,24 @@ type ListAppStageConfigsResponseValidationError struct {
 }
 
 // Field function returns field value.
-func (e ListAppStageConfigsResponseValidationError) Field() string { return e.field }
+func (e ListApplicationsResponseValidationError) Field() string { return e.field }
 
 // Reason function returns reason value.
-func (e ListAppStageConfigsResponseValidationError) Reason() string { return e.reason }
+func (e ListApplicationsResponseValidationError) Reason() string { return e.reason }
 
 // Cause function returns cause value.
-func (e ListAppStageConfigsResponseValidationError) Cause() error { return e.cause }
+func (e ListApplicationsResponseValidationError) Cause() error { return e.cause }
 
 // Key function returns key value.
-func (e ListAppStageConfigsResponseValidationError) Key() bool { return e.key }
+func (e ListApplicationsResponseValidationError) Key() bool { return e.key }
 
 // ErrorName returns error name.
-func (e ListAppStageConfigsResponseValidationError) ErrorName() string {
-	return "ListAppStageConfigsResponseValidationError"
+func (e ListApplicationsResponseValidationError) ErrorName() string {
+	return "ListApplicationsResponseValidationError"
 }
 
 // Error satisfies the builtin error interface
-func (e ListAppStageConfigsResponseValidationError) Error() string {
+func (e ListApplicationsResponseValidationError) Error() string {
 	cause := ""
 	if e.cause != nil {
 		cause = fmt.Sprintf(" | caused by: %v", e.cause)
@@ -5731,14 +5641,14 @@ func (e ListAppStageConfigsResponseValidationError) Error() string {
 	}
 
 	return fmt.Sprintf(
-		"invalid %sListAppStageConfigsResponse.%s: %s%s",
+		"invalid %sListApplicationsResponse.%s: %s%s",
 		key,
 		e.field,
 		e.reason,
 		cause)
 }
 
-var _ error = ListAppStageConfigsResponseValidationError{}
+var _ error = ListApplicationsResponseValidationError{}
 
 var _ interface {
 	Field() string
@@ -5746,955 +5656,18 @@ var _ interface {
 	Key() bool
 	Cause() error
 	ErrorName() string
-} = ListAppStageConfigsResponseValidationError{}
+} = ListApplicationsResponseValidationError{}
 
-// Validate checks the field values on AppEnvironmentConfig with the rules
-// defined in the proto definition for this message. If any rules are
-// violated, an error is returned.
-func (m *AppEnvironmentConfig) Validate() error {
+// Validate checks the field values on AppVersion with the rules defined in the
+// proto definition for this message. If any rules are violated, an error is returned.
+func (m *AppVersion) Validate() error {
 	if m == nil {
 		return nil
 	}
 
 	if v, ok := interface{}(m.GetId()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
-			return AppEnvironmentConfigValidationError{
-				field:  "Id",
-				reason: "embedded message failed validation",
-				cause:  err,
-			}
-		}
-	}
-
-	// no validation rules for Name
-
-	// no validation rules for Description
-
-	if v, ok := interface{}(m.GetValueId()).(interface{ Validate() error }); ok {
-		if err := v.Validate(); err != nil {
-			return AppEnvironmentConfigValidationError{
-				field:  "ValueId",
-				reason: "embedded message failed validation",
-				cause:  err,
-			}
-		}
-	}
-
-	if v, ok := interface{}(m.GetEnvironmentId()).(interface{ Validate() error }); ok {
-		if err := v.Validate(); err != nil {
-			return AppEnvironmentConfigValidationError{
-				field:  "EnvironmentId",
-				reason: "embedded message failed validation",
-				cause:  err,
-			}
-		}
-	}
-
-	return nil
-}
-
-// AppEnvironmentConfigValidationError is the validation error returned by
-// AppEnvironmentConfig.Validate if the designated constraints aren't met.
-type AppEnvironmentConfigValidationError struct {
-	field  string
-	reason string
-	cause  error
-	key    bool
-}
-
-// Field function returns field value.
-func (e AppEnvironmentConfigValidationError) Field() string { return e.field }
-
-// Reason function returns reason value.
-func (e AppEnvironmentConfigValidationError) Reason() string { return e.reason }
-
-// Cause function returns cause value.
-func (e AppEnvironmentConfigValidationError) Cause() error { return e.cause }
-
-// Key function returns key value.
-func (e AppEnvironmentConfigValidationError) Key() bool { return e.key }
-
-// ErrorName returns error name.
-func (e AppEnvironmentConfigValidationError) ErrorName() string {
-	return "AppEnvironmentConfigValidationError"
-}
-
-// Error satisfies the builtin error interface
-func (e AppEnvironmentConfigValidationError) Error() string {
-	cause := ""
-	if e.cause != nil {
-		cause = fmt.Sprintf(" | caused by: %v", e.cause)
-	}
-
-	key := ""
-	if e.key {
-		key = "key for "
-	}
-
-	return fmt.Sprintf(
-		"invalid %sAppEnvironmentConfig.%s: %s%s",
-		key,
-		e.field,
-		e.reason,
-		cause)
-}
-
-var _ error = AppEnvironmentConfigValidationError{}
-
-var _ interface {
-	Field() string
-	Reason() string
-	Key() bool
-	Cause() error
-	ErrorName() string
-} = AppEnvironmentConfigValidationError{}
-
-// Validate checks the field values on CreateAppEnvironmentConfigRequest with
-// the rules defined in the proto definition for this message. If any rules
-// are violated, an error is returned.
-func (m *CreateAppEnvironmentConfigRequest) Validate() error {
-	if m == nil {
-		return nil
-	}
-
-	if v, ok := interface{}(m.GetPayload()).(interface{ Validate() error }); ok {
-		if err := v.Validate(); err != nil {
-			return CreateAppEnvironmentConfigRequestValidationError{
-				field:  "Payload",
-				reason: "embedded message failed validation",
-				cause:  err,
-			}
-		}
-	}
-
-	return nil
-}
-
-// CreateAppEnvironmentConfigRequestValidationError is the validation error
-// returned by CreateAppEnvironmentConfigRequest.Validate if the designated
-// constraints aren't met.
-type CreateAppEnvironmentConfigRequestValidationError struct {
-	field  string
-	reason string
-	cause  error
-	key    bool
-}
-
-// Field function returns field value.
-func (e CreateAppEnvironmentConfigRequestValidationError) Field() string { return e.field }
-
-// Reason function returns reason value.
-func (e CreateAppEnvironmentConfigRequestValidationError) Reason() string { return e.reason }
-
-// Cause function returns cause value.
-func (e CreateAppEnvironmentConfigRequestValidationError) Cause() error { return e.cause }
-
-// Key function returns key value.
-func (e CreateAppEnvironmentConfigRequestValidationError) Key() bool { return e.key }
-
-// ErrorName returns error name.
-func (e CreateAppEnvironmentConfigRequestValidationError) ErrorName() string {
-	return "CreateAppEnvironmentConfigRequestValidationError"
-}
-
-// Error satisfies the builtin error interface
-func (e CreateAppEnvironmentConfigRequestValidationError) Error() string {
-	cause := ""
-	if e.cause != nil {
-		cause = fmt.Sprintf(" | caused by: %v", e.cause)
-	}
-
-	key := ""
-	if e.key {
-		key = "key for "
-	}
-
-	return fmt.Sprintf(
-		"invalid %sCreateAppEnvironmentConfigRequest.%s: %s%s",
-		key,
-		e.field,
-		e.reason,
-		cause)
-}
-
-var _ error = CreateAppEnvironmentConfigRequestValidationError{}
-
-var _ interface {
-	Field() string
-	Reason() string
-	Key() bool
-	Cause() error
-	ErrorName() string
-} = CreateAppEnvironmentConfigRequestValidationError{}
-
-// Validate checks the field values on CreateAppEnvironmentConfigResponse with
-// the rules defined in the proto definition for this message. If any rules
-// are violated, an error is returned.
-func (m *CreateAppEnvironmentConfigResponse) Validate() error {
-	if m == nil {
-		return nil
-	}
-
-	if v, ok := interface{}(m.GetResult()).(interface{ Validate() error }); ok {
-		if err := v.Validate(); err != nil {
-			return CreateAppEnvironmentConfigResponseValidationError{
-				field:  "Result",
-				reason: "embedded message failed validation",
-				cause:  err,
-			}
-		}
-	}
-
-	return nil
-}
-
-// CreateAppEnvironmentConfigResponseValidationError is the validation error
-// returned by CreateAppEnvironmentConfigResponse.Validate if the designated
-// constraints aren't met.
-type CreateAppEnvironmentConfigResponseValidationError struct {
-	field  string
-	reason string
-	cause  error
-	key    bool
-}
-
-// Field function returns field value.
-func (e CreateAppEnvironmentConfigResponseValidationError) Field() string { return e.field }
-
-// Reason function returns reason value.
-func (e CreateAppEnvironmentConfigResponseValidationError) Reason() string { return e.reason }
-
-// Cause function returns cause value.
-func (e CreateAppEnvironmentConfigResponseValidationError) Cause() error { return e.cause }
-
-// Key function returns key value.
-func (e CreateAppEnvironmentConfigResponseValidationError) Key() bool { return e.key }
-
-// ErrorName returns error name.
-func (e CreateAppEnvironmentConfigResponseValidationError) ErrorName() string {
-	return "CreateAppEnvironmentConfigResponseValidationError"
-}
-
-// Error satisfies the builtin error interface
-func (e CreateAppEnvironmentConfigResponseValidationError) Error() string {
-	cause := ""
-	if e.cause != nil {
-		cause = fmt.Sprintf(" | caused by: %v", e.cause)
-	}
-
-	key := ""
-	if e.key {
-		key = "key for "
-	}
-
-	return fmt.Sprintf(
-		"invalid %sCreateAppEnvironmentConfigResponse.%s: %s%s",
-		key,
-		e.field,
-		e.reason,
-		cause)
-}
-
-var _ error = CreateAppEnvironmentConfigResponseValidationError{}
-
-var _ interface {
-	Field() string
-	Reason() string
-	Key() bool
-	Cause() error
-	ErrorName() string
-} = CreateAppEnvironmentConfigResponseValidationError{}
-
-// Validate checks the field values on ReadAppEnvironmentConfigRequest with the
-// rules defined in the proto definition for this message. If any rules are
-// violated, an error is returned.
-func (m *ReadAppEnvironmentConfigRequest) Validate() error {
-	if m == nil {
-		return nil
-	}
-
-	if v, ok := interface{}(m.GetId()).(interface{ Validate() error }); ok {
-		if err := v.Validate(); err != nil {
-			return ReadAppEnvironmentConfigRequestValidationError{
-				field:  "Id",
-				reason: "embedded message failed validation",
-				cause:  err,
-			}
-		}
-	}
-
-	if v, ok := interface{}(m.GetFields()).(interface{ Validate() error }); ok {
-		if err := v.Validate(); err != nil {
-			return ReadAppEnvironmentConfigRequestValidationError{
-				field:  "Fields",
-				reason: "embedded message failed validation",
-				cause:  err,
-			}
-		}
-	}
-
-	return nil
-}
-
-// ReadAppEnvironmentConfigRequestValidationError is the validation error
-// returned by ReadAppEnvironmentConfigRequest.Validate if the designated
-// constraints aren't met.
-type ReadAppEnvironmentConfigRequestValidationError struct {
-	field  string
-	reason string
-	cause  error
-	key    bool
-}
-
-// Field function returns field value.
-func (e ReadAppEnvironmentConfigRequestValidationError) Field() string { return e.field }
-
-// Reason function returns reason value.
-func (e ReadAppEnvironmentConfigRequestValidationError) Reason() string { return e.reason }
-
-// Cause function returns cause value.
-func (e ReadAppEnvironmentConfigRequestValidationError) Cause() error { return e.cause }
-
-// Key function returns key value.
-func (e ReadAppEnvironmentConfigRequestValidationError) Key() bool { return e.key }
-
-// ErrorName returns error name.
-func (e ReadAppEnvironmentConfigRequestValidationError) ErrorName() string {
-	return "ReadAppEnvironmentConfigRequestValidationError"
-}
-
-// Error satisfies the builtin error interface
-func (e ReadAppEnvironmentConfigRequestValidationError) Error() string {
-	cause := ""
-	if e.cause != nil {
-		cause = fmt.Sprintf(" | caused by: %v", e.cause)
-	}
-
-	key := ""
-	if e.key {
-		key = "key for "
-	}
-
-	return fmt.Sprintf(
-		"invalid %sReadAppEnvironmentConfigRequest.%s: %s%s",
-		key,
-		e.field,
-		e.reason,
-		cause)
-}
-
-var _ error = ReadAppEnvironmentConfigRequestValidationError{}
-
-var _ interface {
-	Field() string
-	Reason() string
-	Key() bool
-	Cause() error
-	ErrorName() string
-} = ReadAppEnvironmentConfigRequestValidationError{}
-
-// Validate checks the field values on ReadAppEnvironmentConfigResponse with
-// the rules defined in the proto definition for this message. If any rules
-// are violated, an error is returned.
-func (m *ReadAppEnvironmentConfigResponse) Validate() error {
-	if m == nil {
-		return nil
-	}
-
-	if v, ok := interface{}(m.GetResult()).(interface{ Validate() error }); ok {
-		if err := v.Validate(); err != nil {
-			return ReadAppEnvironmentConfigResponseValidationError{
-				field:  "Result",
-				reason: "embedded message failed validation",
-				cause:  err,
-			}
-		}
-	}
-
-	return nil
-}
-
-// ReadAppEnvironmentConfigResponseValidationError is the validation error
-// returned by ReadAppEnvironmentConfigResponse.Validate if the designated
-// constraints aren't met.
-type ReadAppEnvironmentConfigResponseValidationError struct {
-	field  string
-	reason string
-	cause  error
-	key    bool
-}
-
-// Field function returns field value.
-func (e ReadAppEnvironmentConfigResponseValidationError) Field() string { return e.field }
-
-// Reason function returns reason value.
-func (e ReadAppEnvironmentConfigResponseValidationError) Reason() string { return e.reason }
-
-// Cause function returns cause value.
-func (e ReadAppEnvironmentConfigResponseValidationError) Cause() error { return e.cause }
-
-// Key function returns key value.
-func (e ReadAppEnvironmentConfigResponseValidationError) Key() bool { return e.key }
-
-// ErrorName returns error name.
-func (e ReadAppEnvironmentConfigResponseValidationError) ErrorName() string {
-	return "ReadAppEnvironmentConfigResponseValidationError"
-}
-
-// Error satisfies the builtin error interface
-func (e ReadAppEnvironmentConfigResponseValidationError) Error() string {
-	cause := ""
-	if e.cause != nil {
-		cause = fmt.Sprintf(" | caused by: %v", e.cause)
-	}
-
-	key := ""
-	if e.key {
-		key = "key for "
-	}
-
-	return fmt.Sprintf(
-		"invalid %sReadAppEnvironmentConfigResponse.%s: %s%s",
-		key,
-		e.field,
-		e.reason,
-		cause)
-}
-
-var _ error = ReadAppEnvironmentConfigResponseValidationError{}
-
-var _ interface {
-	Field() string
-	Reason() string
-	Key() bool
-	Cause() error
-	ErrorName() string
-} = ReadAppEnvironmentConfigResponseValidationError{}
-
-// Validate checks the field values on UpdateAppEnvironmentConfigRequest with
-// the rules defined in the proto definition for this message. If any rules
-// are violated, an error is returned.
-func (m *UpdateAppEnvironmentConfigRequest) Validate() error {
-	if m == nil {
-		return nil
-	}
-
-	if v, ok := interface{}(m.GetPayload()).(interface{ Validate() error }); ok {
-		if err := v.Validate(); err != nil {
-			return UpdateAppEnvironmentConfigRequestValidationError{
-				field:  "Payload",
-				reason: "embedded message failed validation",
-				cause:  err,
-			}
-		}
-	}
-
-	if v, ok := interface{}(m.GetFields()).(interface{ Validate() error }); ok {
-		if err := v.Validate(); err != nil {
-			return UpdateAppEnvironmentConfigRequestValidationError{
-				field:  "Fields",
-				reason: "embedded message failed validation",
-				cause:  err,
-			}
-		}
-	}
-
-	return nil
-}
-
-// UpdateAppEnvironmentConfigRequestValidationError is the validation error
-// returned by UpdateAppEnvironmentConfigRequest.Validate if the designated
-// constraints aren't met.
-type UpdateAppEnvironmentConfigRequestValidationError struct {
-	field  string
-	reason string
-	cause  error
-	key    bool
-}
-
-// Field function returns field value.
-func (e UpdateAppEnvironmentConfigRequestValidationError) Field() string { return e.field }
-
-// Reason function returns reason value.
-func (e UpdateAppEnvironmentConfigRequestValidationError) Reason() string { return e.reason }
-
-// Cause function returns cause value.
-func (e UpdateAppEnvironmentConfigRequestValidationError) Cause() error { return e.cause }
-
-// Key function returns key value.
-func (e UpdateAppEnvironmentConfigRequestValidationError) Key() bool { return e.key }
-
-// ErrorName returns error name.
-func (e UpdateAppEnvironmentConfigRequestValidationError) ErrorName() string {
-	return "UpdateAppEnvironmentConfigRequestValidationError"
-}
-
-// Error satisfies the builtin error interface
-func (e UpdateAppEnvironmentConfigRequestValidationError) Error() string {
-	cause := ""
-	if e.cause != nil {
-		cause = fmt.Sprintf(" | caused by: %v", e.cause)
-	}
-
-	key := ""
-	if e.key {
-		key = "key for "
-	}
-
-	return fmt.Sprintf(
-		"invalid %sUpdateAppEnvironmentConfigRequest.%s: %s%s",
-		key,
-		e.field,
-		e.reason,
-		cause)
-}
-
-var _ error = UpdateAppEnvironmentConfigRequestValidationError{}
-
-var _ interface {
-	Field() string
-	Reason() string
-	Key() bool
-	Cause() error
-	ErrorName() string
-} = UpdateAppEnvironmentConfigRequestValidationError{}
-
-// Validate checks the field values on UpdateAppEnvironmentConfigResponse with
-// the rules defined in the proto definition for this message. If any rules
-// are violated, an error is returned.
-func (m *UpdateAppEnvironmentConfigResponse) Validate() error {
-	if m == nil {
-		return nil
-	}
-
-	if v, ok := interface{}(m.GetResult()).(interface{ Validate() error }); ok {
-		if err := v.Validate(); err != nil {
-			return UpdateAppEnvironmentConfigResponseValidationError{
-				field:  "Result",
-				reason: "embedded message failed validation",
-				cause:  err,
-			}
-		}
-	}
-
-	return nil
-}
-
-// UpdateAppEnvironmentConfigResponseValidationError is the validation error
-// returned by UpdateAppEnvironmentConfigResponse.Validate if the designated
-// constraints aren't met.
-type UpdateAppEnvironmentConfigResponseValidationError struct {
-	field  string
-	reason string
-	cause  error
-	key    bool
-}
-
-// Field function returns field value.
-func (e UpdateAppEnvironmentConfigResponseValidationError) Field() string { return e.field }
-
-// Reason function returns reason value.
-func (e UpdateAppEnvironmentConfigResponseValidationError) Reason() string { return e.reason }
-
-// Cause function returns cause value.
-func (e UpdateAppEnvironmentConfigResponseValidationError) Cause() error { return e.cause }
-
-// Key function returns key value.
-func (e UpdateAppEnvironmentConfigResponseValidationError) Key() bool { return e.key }
-
-// ErrorName returns error name.
-func (e UpdateAppEnvironmentConfigResponseValidationError) ErrorName() string {
-	return "UpdateAppEnvironmentConfigResponseValidationError"
-}
-
-// Error satisfies the builtin error interface
-func (e UpdateAppEnvironmentConfigResponseValidationError) Error() string {
-	cause := ""
-	if e.cause != nil {
-		cause = fmt.Sprintf(" | caused by: %v", e.cause)
-	}
-
-	key := ""
-	if e.key {
-		key = "key for "
-	}
-
-	return fmt.Sprintf(
-		"invalid %sUpdateAppEnvironmentConfigResponse.%s: %s%s",
-		key,
-		e.field,
-		e.reason,
-		cause)
-}
-
-var _ error = UpdateAppEnvironmentConfigResponseValidationError{}
-
-var _ interface {
-	Field() string
-	Reason() string
-	Key() bool
-	Cause() error
-	ErrorName() string
-} = UpdateAppEnvironmentConfigResponseValidationError{}
-
-// Validate checks the field values on DeleteAppEnvironmentConfigRequest with
-// the rules defined in the proto definition for this message. If any rules
-// are violated, an error is returned.
-func (m *DeleteAppEnvironmentConfigRequest) Validate() error {
-	if m == nil {
-		return nil
-	}
-
-	if v, ok := interface{}(m.GetId()).(interface{ Validate() error }); ok {
-		if err := v.Validate(); err != nil {
-			return DeleteAppEnvironmentConfigRequestValidationError{
-				field:  "Id",
-				reason: "embedded message failed validation",
-				cause:  err,
-			}
-		}
-	}
-
-	return nil
-}
-
-// DeleteAppEnvironmentConfigRequestValidationError is the validation error
-// returned by DeleteAppEnvironmentConfigRequest.Validate if the designated
-// constraints aren't met.
-type DeleteAppEnvironmentConfigRequestValidationError struct {
-	field  string
-	reason string
-	cause  error
-	key    bool
-}
-
-// Field function returns field value.
-func (e DeleteAppEnvironmentConfigRequestValidationError) Field() string { return e.field }
-
-// Reason function returns reason value.
-func (e DeleteAppEnvironmentConfigRequestValidationError) Reason() string { return e.reason }
-
-// Cause function returns cause value.
-func (e DeleteAppEnvironmentConfigRequestValidationError) Cause() error { return e.cause }
-
-// Key function returns key value.
-func (e DeleteAppEnvironmentConfigRequestValidationError) Key() bool { return e.key }
-
-// ErrorName returns error name.
-func (e DeleteAppEnvironmentConfigRequestValidationError) ErrorName() string {
-	return "DeleteAppEnvironmentConfigRequestValidationError"
-}
-
-// Error satisfies the builtin error interface
-func (e DeleteAppEnvironmentConfigRequestValidationError) Error() string {
-	cause := ""
-	if e.cause != nil {
-		cause = fmt.Sprintf(" | caused by: %v", e.cause)
-	}
-
-	key := ""
-	if e.key {
-		key = "key for "
-	}
-
-	return fmt.Sprintf(
-		"invalid %sDeleteAppEnvironmentConfigRequest.%s: %s%s",
-		key,
-		e.field,
-		e.reason,
-		cause)
-}
-
-var _ error = DeleteAppEnvironmentConfigRequestValidationError{}
-
-var _ interface {
-	Field() string
-	Reason() string
-	Key() bool
-	Cause() error
-	ErrorName() string
-} = DeleteAppEnvironmentConfigRequestValidationError{}
-
-// Validate checks the field values on DeleteAppEnvironmentConfigResponse with
-// the rules defined in the proto definition for this message. If any rules
-// are violated, an error is returned.
-func (m *DeleteAppEnvironmentConfigResponse) Validate() error {
-	if m == nil {
-		return nil
-	}
-
-	return nil
-}
-
-// DeleteAppEnvironmentConfigResponseValidationError is the validation error
-// returned by DeleteAppEnvironmentConfigResponse.Validate if the designated
-// constraints aren't met.
-type DeleteAppEnvironmentConfigResponseValidationError struct {
-	field  string
-	reason string
-	cause  error
-	key    bool
-}
-
-// Field function returns field value.
-func (e DeleteAppEnvironmentConfigResponseValidationError) Field() string { return e.field }
-
-// Reason function returns reason value.
-func (e DeleteAppEnvironmentConfigResponseValidationError) Reason() string { return e.reason }
-
-// Cause function returns cause value.
-func (e DeleteAppEnvironmentConfigResponseValidationError) Cause() error { return e.cause }
-
-// Key function returns key value.
-func (e DeleteAppEnvironmentConfigResponseValidationError) Key() bool { return e.key }
-
-// ErrorName returns error name.
-func (e DeleteAppEnvironmentConfigResponseValidationError) ErrorName() string {
-	return "DeleteAppEnvironmentConfigResponseValidationError"
-}
-
-// Error satisfies the builtin error interface
-func (e DeleteAppEnvironmentConfigResponseValidationError) Error() string {
-	cause := ""
-	if e.cause != nil {
-		cause = fmt.Sprintf(" | caused by: %v", e.cause)
-	}
-
-	key := ""
-	if e.key {
-		key = "key for "
-	}
-
-	return fmt.Sprintf(
-		"invalid %sDeleteAppEnvironmentConfigResponse.%s: %s%s",
-		key,
-		e.field,
-		e.reason,
-		cause)
-}
-
-var _ error = DeleteAppEnvironmentConfigResponseValidationError{}
-
-var _ interface {
-	Field() string
-	Reason() string
-	Key() bool
-	Cause() error
-	ErrorName() string
-} = DeleteAppEnvironmentConfigResponseValidationError{}
-
-// Validate checks the field values on ListAppEnvironmentConfigRequest with the
-// rules defined in the proto definition for this message. If any rules are
-// violated, an error is returned.
-func (m *ListAppEnvironmentConfigRequest) Validate() error {
-	if m == nil {
-		return nil
-	}
-
-	if v, ok := interface{}(m.GetFilter()).(interface{ Validate() error }); ok {
-		if err := v.Validate(); err != nil {
-			return ListAppEnvironmentConfigRequestValidationError{
-				field:  "Filter",
-				reason: "embedded message failed validation",
-				cause:  err,
-			}
-		}
-	}
-
-	if v, ok := interface{}(m.GetOrderBy()).(interface{ Validate() error }); ok {
-		if err := v.Validate(); err != nil {
-			return ListAppEnvironmentConfigRequestValidationError{
-				field:  "OrderBy",
-				reason: "embedded message failed validation",
-				cause:  err,
-			}
-		}
-	}
-
-	if v, ok := interface{}(m.GetFields()).(interface{ Validate() error }); ok {
-		if err := v.Validate(); err != nil {
-			return ListAppEnvironmentConfigRequestValidationError{
-				field:  "Fields",
-				reason: "embedded message failed validation",
-				cause:  err,
-			}
-		}
-	}
-
-	if v, ok := interface{}(m.GetPaging()).(interface{ Validate() error }); ok {
-		if err := v.Validate(); err != nil {
-			return ListAppEnvironmentConfigRequestValidationError{
-				field:  "Paging",
-				reason: "embedded message failed validation",
-				cause:  err,
-			}
-		}
-	}
-
-	return nil
-}
-
-// ListAppEnvironmentConfigRequestValidationError is the validation error
-// returned by ListAppEnvironmentConfigRequest.Validate if the designated
-// constraints aren't met.
-type ListAppEnvironmentConfigRequestValidationError struct {
-	field  string
-	reason string
-	cause  error
-	key    bool
-}
-
-// Field function returns field value.
-func (e ListAppEnvironmentConfigRequestValidationError) Field() string { return e.field }
-
-// Reason function returns reason value.
-func (e ListAppEnvironmentConfigRequestValidationError) Reason() string { return e.reason }
-
-// Cause function returns cause value.
-func (e ListAppEnvironmentConfigRequestValidationError) Cause() error { return e.cause }
-
-// Key function returns key value.
-func (e ListAppEnvironmentConfigRequestValidationError) Key() bool { return e.key }
-
-// ErrorName returns error name.
-func (e ListAppEnvironmentConfigRequestValidationError) ErrorName() string {
-	return "ListAppEnvironmentConfigRequestValidationError"
-}
-
-// Error satisfies the builtin error interface
-func (e ListAppEnvironmentConfigRequestValidationError) Error() string {
-	cause := ""
-	if e.cause != nil {
-		cause = fmt.Sprintf(" | caused by: %v", e.cause)
-	}
-
-	key := ""
-	if e.key {
-		key = "key for "
-	}
-
-	return fmt.Sprintf(
-		"invalid %sListAppEnvironmentConfigRequest.%s: %s%s",
-		key,
-		e.field,
-		e.reason,
-		cause)
-}
-
-var _ error = ListAppEnvironmentConfigRequestValidationError{}
-
-var _ interface {
-	Field() string
-	Reason() string
-	Key() bool
-	Cause() error
-	ErrorName() string
-} = ListAppEnvironmentConfigRequestValidationError{}
-
-// Validate checks the field values on ListAppEnvironmentConfigsResponse with
-// the rules defined in the proto definition for this message. If any rules
-// are violated, an error is returned.
-func (m *ListAppEnvironmentConfigsResponse) Validate() error {
-	if m == nil {
-		return nil
-	}
-
-	for idx, item := range m.GetResults() {
-		_, _ = idx, item
-
-		if v, ok := interface{}(item).(interface{ Validate() error }); ok {
-			if err := v.Validate(); err != nil {
-				return ListAppEnvironmentConfigsResponseValidationError{
-					field:  fmt.Sprintf("Results[%v]", idx),
-					reason: "embedded message failed validation",
-					cause:  err,
-				}
-			}
-		}
-
-	}
-
-	if v, ok := interface{}(m.GetPage()).(interface{ Validate() error }); ok {
-		if err := v.Validate(); err != nil {
-			return ListAppEnvironmentConfigsResponseValidationError{
-				field:  "Page",
-				reason: "embedded message failed validation",
-				cause:  err,
-			}
-		}
-	}
-
-	return nil
-}
-
-// ListAppEnvironmentConfigsResponseValidationError is the validation error
-// returned by ListAppEnvironmentConfigsResponse.Validate if the designated
-// constraints aren't met.
-type ListAppEnvironmentConfigsResponseValidationError struct {
-	field  string
-	reason string
-	cause  error
-	key    bool
-}
-
-// Field function returns field value.
-func (e ListAppEnvironmentConfigsResponseValidationError) Field() string { return e.field }
-
-// Reason function returns reason value.
-func (e ListAppEnvironmentConfigsResponseValidationError) Reason() string { return e.reason }
-
-// Cause function returns cause value.
-func (e ListAppEnvironmentConfigsResponseValidationError) Cause() error { return e.cause }
-
-// Key function returns key value.
-func (e ListAppEnvironmentConfigsResponseValidationError) Key() bool { return e.key }
-
-// ErrorName returns error name.
-func (e ListAppEnvironmentConfigsResponseValidationError) ErrorName() string {
-	return "ListAppEnvironmentConfigsResponseValidationError"
-}
-
-// Error satisfies the builtin error interface
-func (e ListAppEnvironmentConfigsResponseValidationError) Error() string {
-	cause := ""
-	if e.cause != nil {
-		cause = fmt.Sprintf(" | caused by: %v", e.cause)
-	}
-
-	key := ""
-	if e.key {
-		key = "key for "
-	}
-
-	return fmt.Sprintf(
-		"invalid %sListAppEnvironmentConfigsResponse.%s: %s%s",
-		key,
-		e.field,
-		e.reason,
-		cause)
-}
-
-var _ error = ListAppEnvironmentConfigsResponseValidationError{}
-
-var _ interface {
-	Field() string
-	Reason() string
-	Key() bool
-	Cause() error
-	ErrorName() string
-} = ListAppEnvironmentConfigsResponseValidationError{}
-
-// Validate checks the field values on ChartVersion with the rules defined in
-// the proto definition for this message. If any rules are violated, an error
-// is returned.
-func (m *ChartVersion) Validate() error {
-	if m == nil {
-		return nil
-	}
-
-	if v, ok := interface{}(m.GetId()).(interface{ Validate() error }); ok {
-		if err := v.Validate(); err != nil {
-			return ChartVersionValidationError{
+			return AppVersionValidationError{
 				field:  "Id",
 				reason: "embedded message failed validation",
 				cause:  err,
@@ -6710,12 +5683,22 @@ func (m *ChartVersion) Validate() error {
 
 	// no validation rules for Version
 
+	if v, ok := interface{}(m.GetApplicationId()).(interface{ Validate() error }); ok {
+		if err := v.Validate(); err != nil {
+			return AppVersionValidationError{
+				field:  "ApplicationId",
+				reason: "embedded message failed validation",
+				cause:  err,
+			}
+		}
+	}
+
 	return nil
 }
 
-// ChartVersionValidationError is the validation error returned by
-// ChartVersion.Validate if the designated constraints aren't met.
-type ChartVersionValidationError struct {
+// AppVersionValidationError is the validation error returned by
+// AppVersion.Validate if the designated constraints aren't met.
+type AppVersionValidationError struct {
 	field  string
 	reason string
 	cause  error
@@ -6723,22 +5706,22 @@ type ChartVersionValidationError struct {
 }
 
 // Field function returns field value.
-func (e ChartVersionValidationError) Field() string { return e.field }
+func (e AppVersionValidationError) Field() string { return e.field }
 
 // Reason function returns reason value.
-func (e ChartVersionValidationError) Reason() string { return e.reason }
+func (e AppVersionValidationError) Reason() string { return e.reason }
 
 // Cause function returns cause value.
-func (e ChartVersionValidationError) Cause() error { return e.cause }
+func (e AppVersionValidationError) Cause() error { return e.cause }
 
 // Key function returns key value.
-func (e ChartVersionValidationError) Key() bool { return e.key }
+func (e AppVersionValidationError) Key() bool { return e.key }
 
 // ErrorName returns error name.
-func (e ChartVersionValidationError) ErrorName() string { return "ChartVersionValidationError" }
+func (e AppVersionValidationError) ErrorName() string { return "AppVersionValidationError" }
 
 // Error satisfies the builtin error interface
-func (e ChartVersionValidationError) Error() string {
+func (e AppVersionValidationError) Error() string {
 	cause := ""
 	if e.cause != nil {
 		cause = fmt.Sprintf(" | caused by: %v", e.cause)
@@ -6750,14 +5733,14 @@ func (e ChartVersionValidationError) Error() string {
 	}
 
 	return fmt.Sprintf(
-		"invalid %sChartVersion.%s: %s%s",
+		"invalid %sAppVersion.%s: %s%s",
 		key,
 		e.field,
 		e.reason,
 		cause)
 }
 
-var _ error = ChartVersionValidationError{}
+var _ error = AppVersionValidationError{}
 
 var _ interface {
 	Field() string
@@ -6765,19 +5748,19 @@ var _ interface {
 	Key() bool
 	Cause() error
 	ErrorName() string
-} = ChartVersionValidationError{}
+} = AppVersionValidationError{}
 
-// Validate checks the field values on CreateChartVersionRequest with the rules
+// Validate checks the field values on CreateAppVersionRequest with the rules
 // defined in the proto definition for this message. If any rules are
 // violated, an error is returned.
-func (m *CreateChartVersionRequest) Validate() error {
+func (m *CreateAppVersionRequest) Validate() error {
 	if m == nil {
 		return nil
 	}
 
 	if v, ok := interface{}(m.GetPayload()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
-			return CreateChartVersionRequestValidationError{
+			return CreateAppVersionRequestValidationError{
 				field:  "Payload",
 				reason: "embedded message failed validation",
 				cause:  err,
@@ -6788,9 +5771,9 @@ func (m *CreateChartVersionRequest) Validate() error {
 	return nil
 }
 
-// CreateChartVersionRequestValidationError is the validation error returned by
-// CreateChartVersionRequest.Validate if the designated constraints aren't met.
-type CreateChartVersionRequestValidationError struct {
+// CreateAppVersionRequestValidationError is the validation error returned by
+// CreateAppVersionRequest.Validate if the designated constraints aren't met.
+type CreateAppVersionRequestValidationError struct {
 	field  string
 	reason string
 	cause  error
@@ -6798,24 +5781,24 @@ type CreateChartVersionRequestValidationError struct {
 }
 
 // Field function returns field value.
-func (e CreateChartVersionRequestValidationError) Field() string { return e.field }
+func (e CreateAppVersionRequestValidationError) Field() string { return e.field }
 
 // Reason function returns reason value.
-func (e CreateChartVersionRequestValidationError) Reason() string { return e.reason }
+func (e CreateAppVersionRequestValidationError) Reason() string { return e.reason }
 
 // Cause function returns cause value.
-func (e CreateChartVersionRequestValidationError) Cause() error { return e.cause }
+func (e CreateAppVersionRequestValidationError) Cause() error { return e.cause }
 
 // Key function returns key value.
-func (e CreateChartVersionRequestValidationError) Key() bool { return e.key }
+func (e CreateAppVersionRequestValidationError) Key() bool { return e.key }
 
 // ErrorName returns error name.
-func (e CreateChartVersionRequestValidationError) ErrorName() string {
-	return "CreateChartVersionRequestValidationError"
+func (e CreateAppVersionRequestValidationError) ErrorName() string {
+	return "CreateAppVersionRequestValidationError"
 }
 
 // Error satisfies the builtin error interface
-func (e CreateChartVersionRequestValidationError) Error() string {
+func (e CreateAppVersionRequestValidationError) Error() string {
 	cause := ""
 	if e.cause != nil {
 		cause = fmt.Sprintf(" | caused by: %v", e.cause)
@@ -6827,14 +5810,14 @@ func (e CreateChartVersionRequestValidationError) Error() string {
 	}
 
 	return fmt.Sprintf(
-		"invalid %sCreateChartVersionRequest.%s: %s%s",
+		"invalid %sCreateAppVersionRequest.%s: %s%s",
 		key,
 		e.field,
 		e.reason,
 		cause)
 }
 
-var _ error = CreateChartVersionRequestValidationError{}
+var _ error = CreateAppVersionRequestValidationError{}
 
 var _ interface {
 	Field() string
@@ -6842,19 +5825,19 @@ var _ interface {
 	Key() bool
 	Cause() error
 	ErrorName() string
-} = CreateChartVersionRequestValidationError{}
+} = CreateAppVersionRequestValidationError{}
 
-// Validate checks the field values on CreateChartVersionResponse with the
-// rules defined in the proto definition for this message. If any rules are
+// Validate checks the field values on CreateAppVersionResponse with the rules
+// defined in the proto definition for this message. If any rules are
 // violated, an error is returned.
-func (m *CreateChartVersionResponse) Validate() error {
+func (m *CreateAppVersionResponse) Validate() error {
 	if m == nil {
 		return nil
 	}
 
 	if v, ok := interface{}(m.GetResult()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
-			return CreateChartVersionResponseValidationError{
+			return CreateAppVersionResponseValidationError{
 				field:  "Result",
 				reason: "embedded message failed validation",
 				cause:  err,
@@ -6865,9 +5848,9 @@ func (m *CreateChartVersionResponse) Validate() error {
 	return nil
 }
 
-// CreateChartVersionResponseValidationError is the validation error returned
-// by CreateChartVersionResponse.Validate if the designated constraints aren't met.
-type CreateChartVersionResponseValidationError struct {
+// CreateAppVersionResponseValidationError is the validation error returned by
+// CreateAppVersionResponse.Validate if the designated constraints aren't met.
+type CreateAppVersionResponseValidationError struct {
 	field  string
 	reason string
 	cause  error
@@ -6875,24 +5858,24 @@ type CreateChartVersionResponseValidationError struct {
 }
 
 // Field function returns field value.
-func (e CreateChartVersionResponseValidationError) Field() string { return e.field }
+func (e CreateAppVersionResponseValidationError) Field() string { return e.field }
 
 // Reason function returns reason value.
-func (e CreateChartVersionResponseValidationError) Reason() string { return e.reason }
+func (e CreateAppVersionResponseValidationError) Reason() string { return e.reason }
 
 // Cause function returns cause value.
-func (e CreateChartVersionResponseValidationError) Cause() error { return e.cause }
+func (e CreateAppVersionResponseValidationError) Cause() error { return e.cause }
 
 // Key function returns key value.
-func (e CreateChartVersionResponseValidationError) Key() bool { return e.key }
+func (e CreateAppVersionResponseValidationError) Key() bool { return e.key }
 
 // ErrorName returns error name.
-func (e CreateChartVersionResponseValidationError) ErrorName() string {
-	return "CreateChartVersionResponseValidationError"
+func (e CreateAppVersionResponseValidationError) ErrorName() string {
+	return "CreateAppVersionResponseValidationError"
 }
 
 // Error satisfies the builtin error interface
-func (e CreateChartVersionResponseValidationError) Error() string {
+func (e CreateAppVersionResponseValidationError) Error() string {
 	cause := ""
 	if e.cause != nil {
 		cause = fmt.Sprintf(" | caused by: %v", e.cause)
@@ -6904,14 +5887,14 @@ func (e CreateChartVersionResponseValidationError) Error() string {
 	}
 
 	return fmt.Sprintf(
-		"invalid %sCreateChartVersionResponse.%s: %s%s",
+		"invalid %sCreateAppVersionResponse.%s: %s%s",
 		key,
 		e.field,
 		e.reason,
 		cause)
 }
 
-var _ error = CreateChartVersionResponseValidationError{}
+var _ error = CreateAppVersionResponseValidationError{}
 
 var _ interface {
 	Field() string
@@ -6919,19 +5902,19 @@ var _ interface {
 	Key() bool
 	Cause() error
 	ErrorName() string
-} = CreateChartVersionResponseValidationError{}
+} = CreateAppVersionResponseValidationError{}
 
-// Validate checks the field values on ReadChartVersionRequest with the rules
+// Validate checks the field values on ReadAppVersionRequest with the rules
 // defined in the proto definition for this message. If any rules are
 // violated, an error is returned.
-func (m *ReadChartVersionRequest) Validate() error {
+func (m *ReadAppVersionRequest) Validate() error {
 	if m == nil {
 		return nil
 	}
 
 	if v, ok := interface{}(m.GetId()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
-			return ReadChartVersionRequestValidationError{
+			return ReadAppVersionRequestValidationError{
 				field:  "Id",
 				reason: "embedded message failed validation",
 				cause:  err,
@@ -6941,7 +5924,7 @@ func (m *ReadChartVersionRequest) Validate() error {
 
 	if v, ok := interface{}(m.GetFields()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
-			return ReadChartVersionRequestValidationError{
+			return ReadAppVersionRequestValidationError{
 				field:  "Fields",
 				reason: "embedded message failed validation",
 				cause:  err,
@@ -6952,9 +5935,9 @@ func (m *ReadChartVersionRequest) Validate() error {
 	return nil
 }
 
-// ReadChartVersionRequestValidationError is the validation error returned by
-// ReadChartVersionRequest.Validate if the designated constraints aren't met.
-type ReadChartVersionRequestValidationError struct {
+// ReadAppVersionRequestValidationError is the validation error returned by
+// ReadAppVersionRequest.Validate if the designated constraints aren't met.
+type ReadAppVersionRequestValidationError struct {
 	field  string
 	reason string
 	cause  error
@@ -6962,24 +5945,24 @@ type ReadChartVersionRequestValidationError struct {
 }
 
 // Field function returns field value.
-func (e ReadChartVersionRequestValidationError) Field() string { return e.field }
+func (e ReadAppVersionRequestValidationError) Field() string { return e.field }
 
 // Reason function returns reason value.
-func (e ReadChartVersionRequestValidationError) Reason() string { return e.reason }
+func (e ReadAppVersionRequestValidationError) Reason() string { return e.reason }
 
 // Cause function returns cause value.
-func (e ReadChartVersionRequestValidationError) Cause() error { return e.cause }
+func (e ReadAppVersionRequestValidationError) Cause() error { return e.cause }
 
 // Key function returns key value.
-func (e ReadChartVersionRequestValidationError) Key() bool { return e.key }
+func (e ReadAppVersionRequestValidationError) Key() bool { return e.key }
 
 // ErrorName returns error name.
-func (e ReadChartVersionRequestValidationError) ErrorName() string {
-	return "ReadChartVersionRequestValidationError"
+func (e ReadAppVersionRequestValidationError) ErrorName() string {
+	return "ReadAppVersionRequestValidationError"
 }
 
 // Error satisfies the builtin error interface
-func (e ReadChartVersionRequestValidationError) Error() string {
+func (e ReadAppVersionRequestValidationError) Error() string {
 	cause := ""
 	if e.cause != nil {
 		cause = fmt.Sprintf(" | caused by: %v", e.cause)
@@ -6991,14 +5974,14 @@ func (e ReadChartVersionRequestValidationError) Error() string {
 	}
 
 	return fmt.Sprintf(
-		"invalid %sReadChartVersionRequest.%s: %s%s",
+		"invalid %sReadAppVersionRequest.%s: %s%s",
 		key,
 		e.field,
 		e.reason,
 		cause)
 }
 
-var _ error = ReadChartVersionRequestValidationError{}
+var _ error = ReadAppVersionRequestValidationError{}
 
 var _ interface {
 	Field() string
@@ -7006,19 +5989,19 @@ var _ interface {
 	Key() bool
 	Cause() error
 	ErrorName() string
-} = ReadChartVersionRequestValidationError{}
+} = ReadAppVersionRequestValidationError{}
 
-// Validate checks the field values on ReadChartVersionResponse with the rules
+// Validate checks the field values on ReadAppVersionResponse with the rules
 // defined in the proto definition for this message. If any rules are
 // violated, an error is returned.
-func (m *ReadChartVersionResponse) Validate() error {
+func (m *ReadAppVersionResponse) Validate() error {
 	if m == nil {
 		return nil
 	}
 
 	if v, ok := interface{}(m.GetResult()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
-			return ReadChartVersionResponseValidationError{
+			return ReadAppVersionResponseValidationError{
 				field:  "Result",
 				reason: "embedded message failed validation",
 				cause:  err,
@@ -7029,9 +6012,9 @@ func (m *ReadChartVersionResponse) Validate() error {
 	return nil
 }
 
-// ReadChartVersionResponseValidationError is the validation error returned by
-// ReadChartVersionResponse.Validate if the designated constraints aren't met.
-type ReadChartVersionResponseValidationError struct {
+// ReadAppVersionResponseValidationError is the validation error returned by
+// ReadAppVersionResponse.Validate if the designated constraints aren't met.
+type ReadAppVersionResponseValidationError struct {
 	field  string
 	reason string
 	cause  error
@@ -7039,24 +6022,24 @@ type ReadChartVersionResponseValidationError struct {
 }
 
 // Field function returns field value.
-func (e ReadChartVersionResponseValidationError) Field() string { return e.field }
+func (e ReadAppVersionResponseValidationError) Field() string { return e.field }
 
 // Reason function returns reason value.
-func (e ReadChartVersionResponseValidationError) Reason() string { return e.reason }
+func (e ReadAppVersionResponseValidationError) Reason() string { return e.reason }
 
 // Cause function returns cause value.
-func (e ReadChartVersionResponseValidationError) Cause() error { return e.cause }
+func (e ReadAppVersionResponseValidationError) Cause() error { return e.cause }
 
 // Key function returns key value.
-func (e ReadChartVersionResponseValidationError) Key() bool { return e.key }
+func (e ReadAppVersionResponseValidationError) Key() bool { return e.key }
 
 // ErrorName returns error name.
-func (e ReadChartVersionResponseValidationError) ErrorName() string {
-	return "ReadChartVersionResponseValidationError"
+func (e ReadAppVersionResponseValidationError) ErrorName() string {
+	return "ReadAppVersionResponseValidationError"
 }
 
 // Error satisfies the builtin error interface
-func (e ReadChartVersionResponseValidationError) Error() string {
+func (e ReadAppVersionResponseValidationError) Error() string {
 	cause := ""
 	if e.cause != nil {
 		cause = fmt.Sprintf(" | caused by: %v", e.cause)
@@ -7068,14 +6051,14 @@ func (e ReadChartVersionResponseValidationError) Error() string {
 	}
 
 	return fmt.Sprintf(
-		"invalid %sReadChartVersionResponse.%s: %s%s",
+		"invalid %sReadAppVersionResponse.%s: %s%s",
 		key,
 		e.field,
 		e.reason,
 		cause)
 }
 
-var _ error = ReadChartVersionResponseValidationError{}
+var _ error = ReadAppVersionResponseValidationError{}
 
 var _ interface {
 	Field() string
@@ -7083,19 +6066,19 @@ var _ interface {
 	Key() bool
 	Cause() error
 	ErrorName() string
-} = ReadChartVersionResponseValidationError{}
+} = ReadAppVersionResponseValidationError{}
 
-// Validate checks the field values on UpdateChartVersionRequest with the rules
+// Validate checks the field values on UpdateAppVersionRequest with the rules
 // defined in the proto definition for this message. If any rules are
 // violated, an error is returned.
-func (m *UpdateChartVersionRequest) Validate() error {
+func (m *UpdateAppVersionRequest) Validate() error {
 	if m == nil {
 		return nil
 	}
 
 	if v, ok := interface{}(m.GetPayload()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
-			return UpdateChartVersionRequestValidationError{
+			return UpdateAppVersionRequestValidationError{
 				field:  "Payload",
 				reason: "embedded message failed validation",
 				cause:  err,
@@ -7105,7 +6088,7 @@ func (m *UpdateChartVersionRequest) Validate() error {
 
 	if v, ok := interface{}(m.GetFields()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
-			return UpdateChartVersionRequestValidationError{
+			return UpdateAppVersionRequestValidationError{
 				field:  "Fields",
 				reason: "embedded message failed validation",
 				cause:  err,
@@ -7116,9 +6099,9 @@ func (m *UpdateChartVersionRequest) Validate() error {
 	return nil
 }
 
-// UpdateChartVersionRequestValidationError is the validation error returned by
-// UpdateChartVersionRequest.Validate if the designated constraints aren't met.
-type UpdateChartVersionRequestValidationError struct {
+// UpdateAppVersionRequestValidationError is the validation error returned by
+// UpdateAppVersionRequest.Validate if the designated constraints aren't met.
+type UpdateAppVersionRequestValidationError struct {
 	field  string
 	reason string
 	cause  error
@@ -7126,24 +6109,24 @@ type UpdateChartVersionRequestValidationError struct {
 }
 
 // Field function returns field value.
-func (e UpdateChartVersionRequestValidationError) Field() string { return e.field }
+func (e UpdateAppVersionRequestValidationError) Field() string { return e.field }
 
 // Reason function returns reason value.
-func (e UpdateChartVersionRequestValidationError) Reason() string { return e.reason }
+func (e UpdateAppVersionRequestValidationError) Reason() string { return e.reason }
 
 // Cause function returns cause value.
-func (e UpdateChartVersionRequestValidationError) Cause() error { return e.cause }
+func (e UpdateAppVersionRequestValidationError) Cause() error { return e.cause }
 
 // Key function returns key value.
-func (e UpdateChartVersionRequestValidationError) Key() bool { return e.key }
+func (e UpdateAppVersionRequestValidationError) Key() bool { return e.key }
 
 // ErrorName returns error name.
-func (e UpdateChartVersionRequestValidationError) ErrorName() string {
-	return "UpdateChartVersionRequestValidationError"
+func (e UpdateAppVersionRequestValidationError) ErrorName() string {
+	return "UpdateAppVersionRequestValidationError"
 }
 
 // Error satisfies the builtin error interface
-func (e UpdateChartVersionRequestValidationError) Error() string {
+func (e UpdateAppVersionRequestValidationError) Error() string {
 	cause := ""
 	if e.cause != nil {
 		cause = fmt.Sprintf(" | caused by: %v", e.cause)
@@ -7155,14 +6138,14 @@ func (e UpdateChartVersionRequestValidationError) Error() string {
 	}
 
 	return fmt.Sprintf(
-		"invalid %sUpdateChartVersionRequest.%s: %s%s",
+		"invalid %sUpdateAppVersionRequest.%s: %s%s",
 		key,
 		e.field,
 		e.reason,
 		cause)
 }
 
-var _ error = UpdateChartVersionRequestValidationError{}
+var _ error = UpdateAppVersionRequestValidationError{}
 
 var _ interface {
 	Field() string
@@ -7170,19 +6153,19 @@ var _ interface {
 	Key() bool
 	Cause() error
 	ErrorName() string
-} = UpdateChartVersionRequestValidationError{}
+} = UpdateAppVersionRequestValidationError{}
 
-// Validate checks the field values on UpdateChartVersionResponse with the
-// rules defined in the proto definition for this message. If any rules are
+// Validate checks the field values on UpdateAppVersionResponse with the rules
+// defined in the proto definition for this message. If any rules are
 // violated, an error is returned.
-func (m *UpdateChartVersionResponse) Validate() error {
+func (m *UpdateAppVersionResponse) Validate() error {
 	if m == nil {
 		return nil
 	}
 
 	if v, ok := interface{}(m.GetResult()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
-			return UpdateChartVersionResponseValidationError{
+			return UpdateAppVersionResponseValidationError{
 				field:  "Result",
 				reason: "embedded message failed validation",
 				cause:  err,
@@ -7193,9 +6176,9 @@ func (m *UpdateChartVersionResponse) Validate() error {
 	return nil
 }
 
-// UpdateChartVersionResponseValidationError is the validation error returned
-// by UpdateChartVersionResponse.Validate if the designated constraints aren't met.
-type UpdateChartVersionResponseValidationError struct {
+// UpdateAppVersionResponseValidationError is the validation error returned by
+// UpdateAppVersionResponse.Validate if the designated constraints aren't met.
+type UpdateAppVersionResponseValidationError struct {
 	field  string
 	reason string
 	cause  error
@@ -7203,24 +6186,24 @@ type UpdateChartVersionResponseValidationError struct {
 }
 
 // Field function returns field value.
-func (e UpdateChartVersionResponseValidationError) Field() string { return e.field }
+func (e UpdateAppVersionResponseValidationError) Field() string { return e.field }
 
 // Reason function returns reason value.
-func (e UpdateChartVersionResponseValidationError) Reason() string { return e.reason }
+func (e UpdateAppVersionResponseValidationError) Reason() string { return e.reason }
 
 // Cause function returns cause value.
-func (e UpdateChartVersionResponseValidationError) Cause() error { return e.cause }
+func (e UpdateAppVersionResponseValidationError) Cause() error { return e.cause }
 
 // Key function returns key value.
-func (e UpdateChartVersionResponseValidationError) Key() bool { return e.key }
+func (e UpdateAppVersionResponseValidationError) Key() bool { return e.key }
 
 // ErrorName returns error name.
-func (e UpdateChartVersionResponseValidationError) ErrorName() string {
-	return "UpdateChartVersionResponseValidationError"
+func (e UpdateAppVersionResponseValidationError) ErrorName() string {
+	return "UpdateAppVersionResponseValidationError"
 }
 
 // Error satisfies the builtin error interface
-func (e UpdateChartVersionResponseValidationError) Error() string {
+func (e UpdateAppVersionResponseValidationError) Error() string {
 	cause := ""
 	if e.cause != nil {
 		cause = fmt.Sprintf(" | caused by: %v", e.cause)
@@ -7232,14 +6215,14 @@ func (e UpdateChartVersionResponseValidationError) Error() string {
 	}
 
 	return fmt.Sprintf(
-		"invalid %sUpdateChartVersionResponse.%s: %s%s",
+		"invalid %sUpdateAppVersionResponse.%s: %s%s",
 		key,
 		e.field,
 		e.reason,
 		cause)
 }
 
-var _ error = UpdateChartVersionResponseValidationError{}
+var _ error = UpdateAppVersionResponseValidationError{}
 
 var _ interface {
 	Field() string
@@ -7247,19 +6230,19 @@ var _ interface {
 	Key() bool
 	Cause() error
 	ErrorName() string
-} = UpdateChartVersionResponseValidationError{}
+} = UpdateAppVersionResponseValidationError{}
 
-// Validate checks the field values on DeleteChartVersionRequest with the rules
+// Validate checks the field values on DeleteAppVersionRequest with the rules
 // defined in the proto definition for this message. If any rules are
 // violated, an error is returned.
-func (m *DeleteChartVersionRequest) Validate() error {
+func (m *DeleteAppVersionRequest) Validate() error {
 	if m == nil {
 		return nil
 	}
 
 	if v, ok := interface{}(m.GetId()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
-			return DeleteChartVersionRequestValidationError{
+			return DeleteAppVersionRequestValidationError{
 				field:  "Id",
 				reason: "embedded message failed validation",
 				cause:  err,
@@ -7270,9 +6253,9 @@ func (m *DeleteChartVersionRequest) Validate() error {
 	return nil
 }
 
-// DeleteChartVersionRequestValidationError is the validation error returned by
-// DeleteChartVersionRequest.Validate if the designated constraints aren't met.
-type DeleteChartVersionRequestValidationError struct {
+// DeleteAppVersionRequestValidationError is the validation error returned by
+// DeleteAppVersionRequest.Validate if the designated constraints aren't met.
+type DeleteAppVersionRequestValidationError struct {
 	field  string
 	reason string
 	cause  error
@@ -7280,24 +6263,24 @@ type DeleteChartVersionRequestValidationError struct {
 }
 
 // Field function returns field value.
-func (e DeleteChartVersionRequestValidationError) Field() string { return e.field }
+func (e DeleteAppVersionRequestValidationError) Field() string { return e.field }
 
 // Reason function returns reason value.
-func (e DeleteChartVersionRequestValidationError) Reason() string { return e.reason }
+func (e DeleteAppVersionRequestValidationError) Reason() string { return e.reason }
 
 // Cause function returns cause value.
-func (e DeleteChartVersionRequestValidationError) Cause() error { return e.cause }
+func (e DeleteAppVersionRequestValidationError) Cause() error { return e.cause }
 
 // Key function returns key value.
-func (e DeleteChartVersionRequestValidationError) Key() bool { return e.key }
+func (e DeleteAppVersionRequestValidationError) Key() bool { return e.key }
 
 // ErrorName returns error name.
-func (e DeleteChartVersionRequestValidationError) ErrorName() string {
-	return "DeleteChartVersionRequestValidationError"
+func (e DeleteAppVersionRequestValidationError) ErrorName() string {
+	return "DeleteAppVersionRequestValidationError"
 }
 
 // Error satisfies the builtin error interface
-func (e DeleteChartVersionRequestValidationError) Error() string {
+func (e DeleteAppVersionRequestValidationError) Error() string {
 	cause := ""
 	if e.cause != nil {
 		cause = fmt.Sprintf(" | caused by: %v", e.cause)
@@ -7309,14 +6292,14 @@ func (e DeleteChartVersionRequestValidationError) Error() string {
 	}
 
 	return fmt.Sprintf(
-		"invalid %sDeleteChartVersionRequest.%s: %s%s",
+		"invalid %sDeleteAppVersionRequest.%s: %s%s",
 		key,
 		e.field,
 		e.reason,
 		cause)
 }
 
-var _ error = DeleteChartVersionRequestValidationError{}
+var _ error = DeleteAppVersionRequestValidationError{}
 
 var _ interface {
 	Field() string
@@ -7324,12 +6307,12 @@ var _ interface {
 	Key() bool
 	Cause() error
 	ErrorName() string
-} = DeleteChartVersionRequestValidationError{}
+} = DeleteAppVersionRequestValidationError{}
 
-// Validate checks the field values on DeleteChartVersionResponse with the
-// rules defined in the proto definition for this message. If any rules are
+// Validate checks the field values on DeleteAppVersionResponse with the rules
+// defined in the proto definition for this message. If any rules are
 // violated, an error is returned.
-func (m *DeleteChartVersionResponse) Validate() error {
+func (m *DeleteAppVersionResponse) Validate() error {
 	if m == nil {
 		return nil
 	}
@@ -7337,9 +6320,9 @@ func (m *DeleteChartVersionResponse) Validate() error {
 	return nil
 }
 
-// DeleteChartVersionResponseValidationError is the validation error returned
-// by DeleteChartVersionResponse.Validate if the designated constraints aren't met.
-type DeleteChartVersionResponseValidationError struct {
+// DeleteAppVersionResponseValidationError is the validation error returned by
+// DeleteAppVersionResponse.Validate if the designated constraints aren't met.
+type DeleteAppVersionResponseValidationError struct {
 	field  string
 	reason string
 	cause  error
@@ -7347,24 +6330,24 @@ type DeleteChartVersionResponseValidationError struct {
 }
 
 // Field function returns field value.
-func (e DeleteChartVersionResponseValidationError) Field() string { return e.field }
+func (e DeleteAppVersionResponseValidationError) Field() string { return e.field }
 
 // Reason function returns reason value.
-func (e DeleteChartVersionResponseValidationError) Reason() string { return e.reason }
+func (e DeleteAppVersionResponseValidationError) Reason() string { return e.reason }
 
 // Cause function returns cause value.
-func (e DeleteChartVersionResponseValidationError) Cause() error { return e.cause }
+func (e DeleteAppVersionResponseValidationError) Cause() error { return e.cause }
 
 // Key function returns key value.
-func (e DeleteChartVersionResponseValidationError) Key() bool { return e.key }
+func (e DeleteAppVersionResponseValidationError) Key() bool { return e.key }
 
 // ErrorName returns error name.
-func (e DeleteChartVersionResponseValidationError) ErrorName() string {
-	return "DeleteChartVersionResponseValidationError"
+func (e DeleteAppVersionResponseValidationError) ErrorName() string {
+	return "DeleteAppVersionResponseValidationError"
 }
 
 // Error satisfies the builtin error interface
-func (e DeleteChartVersionResponseValidationError) Error() string {
+func (e DeleteAppVersionResponseValidationError) Error() string {
 	cause := ""
 	if e.cause != nil {
 		cause = fmt.Sprintf(" | caused by: %v", e.cause)
@@ -7376,14 +6359,14 @@ func (e DeleteChartVersionResponseValidationError) Error() string {
 	}
 
 	return fmt.Sprintf(
-		"invalid %sDeleteChartVersionResponse.%s: %s%s",
+		"invalid %sDeleteAppVersionResponse.%s: %s%s",
 		key,
 		e.field,
 		e.reason,
 		cause)
 }
 
-var _ error = DeleteChartVersionResponseValidationError{}
+var _ error = DeleteAppVersionResponseValidationError{}
 
 var _ interface {
 	Field() string
@@ -7391,19 +6374,19 @@ var _ interface {
 	Key() bool
 	Cause() error
 	ErrorName() string
-} = DeleteChartVersionResponseValidationError{}
+} = DeleteAppVersionResponseValidationError{}
 
-// Validate checks the field values on ListChartVersionRequest with the rules
+// Validate checks the field values on ListAppVersionRequest with the rules
 // defined in the proto definition for this message. If any rules are
 // violated, an error is returned.
-func (m *ListChartVersionRequest) Validate() error {
+func (m *ListAppVersionRequest) Validate() error {
 	if m == nil {
 		return nil
 	}
 
 	if v, ok := interface{}(m.GetFilter()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
-			return ListChartVersionRequestValidationError{
+			return ListAppVersionRequestValidationError{
 				field:  "Filter",
 				reason: "embedded message failed validation",
 				cause:  err,
@@ -7413,7 +6396,7 @@ func (m *ListChartVersionRequest) Validate() error {
 
 	if v, ok := interface{}(m.GetOrderBy()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
-			return ListChartVersionRequestValidationError{
+			return ListAppVersionRequestValidationError{
 				field:  "OrderBy",
 				reason: "embedded message failed validation",
 				cause:  err,
@@ -7423,7 +6406,7 @@ func (m *ListChartVersionRequest) Validate() error {
 
 	if v, ok := interface{}(m.GetFields()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
-			return ListChartVersionRequestValidationError{
+			return ListAppVersionRequestValidationError{
 				field:  "Fields",
 				reason: "embedded message failed validation",
 				cause:  err,
@@ -7433,7 +6416,7 @@ func (m *ListChartVersionRequest) Validate() error {
 
 	if v, ok := interface{}(m.GetPaging()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
-			return ListChartVersionRequestValidationError{
+			return ListAppVersionRequestValidationError{
 				field:  "Paging",
 				reason: "embedded message failed validation",
 				cause:  err,
@@ -7444,9 +6427,9 @@ func (m *ListChartVersionRequest) Validate() error {
 	return nil
 }
 
-// ListChartVersionRequestValidationError is the validation error returned by
-// ListChartVersionRequest.Validate if the designated constraints aren't met.
-type ListChartVersionRequestValidationError struct {
+// ListAppVersionRequestValidationError is the validation error returned by
+// ListAppVersionRequest.Validate if the designated constraints aren't met.
+type ListAppVersionRequestValidationError struct {
 	field  string
 	reason string
 	cause  error
@@ -7454,24 +6437,24 @@ type ListChartVersionRequestValidationError struct {
 }
 
 // Field function returns field value.
-func (e ListChartVersionRequestValidationError) Field() string { return e.field }
+func (e ListAppVersionRequestValidationError) Field() string { return e.field }
 
 // Reason function returns reason value.
-func (e ListChartVersionRequestValidationError) Reason() string { return e.reason }
+func (e ListAppVersionRequestValidationError) Reason() string { return e.reason }
 
 // Cause function returns cause value.
-func (e ListChartVersionRequestValidationError) Cause() error { return e.cause }
+func (e ListAppVersionRequestValidationError) Cause() error { return e.cause }
 
 // Key function returns key value.
-func (e ListChartVersionRequestValidationError) Key() bool { return e.key }
+func (e ListAppVersionRequestValidationError) Key() bool { return e.key }
 
 // ErrorName returns error name.
-func (e ListChartVersionRequestValidationError) ErrorName() string {
-	return "ListChartVersionRequestValidationError"
+func (e ListAppVersionRequestValidationError) ErrorName() string {
+	return "ListAppVersionRequestValidationError"
 }
 
 // Error satisfies the builtin error interface
-func (e ListChartVersionRequestValidationError) Error() string {
+func (e ListAppVersionRequestValidationError) Error() string {
 	cause := ""
 	if e.cause != nil {
 		cause = fmt.Sprintf(" | caused by: %v", e.cause)
@@ -7483,14 +6466,14 @@ func (e ListChartVersionRequestValidationError) Error() string {
 	}
 
 	return fmt.Sprintf(
-		"invalid %sListChartVersionRequest.%s: %s%s",
+		"invalid %sListAppVersionRequest.%s: %s%s",
 		key,
 		e.field,
 		e.reason,
 		cause)
 }
 
-var _ error = ListChartVersionRequestValidationError{}
+var _ error = ListAppVersionRequestValidationError{}
 
 var _ interface {
 	Field() string
@@ -7498,12 +6481,12 @@ var _ interface {
 	Key() bool
 	Cause() error
 	ErrorName() string
-} = ListChartVersionRequestValidationError{}
+} = ListAppVersionRequestValidationError{}
 
-// Validate checks the field values on ListChartVersionsResponse with the rules
+// Validate checks the field values on ListAppVersionsResponse with the rules
 // defined in the proto definition for this message. If any rules are
 // violated, an error is returned.
-func (m *ListChartVersionsResponse) Validate() error {
+func (m *ListAppVersionsResponse) Validate() error {
 	if m == nil {
 		return nil
 	}
@@ -7513,7 +6496,7 @@ func (m *ListChartVersionsResponse) Validate() error {
 
 		if v, ok := interface{}(item).(interface{ Validate() error }); ok {
 			if err := v.Validate(); err != nil {
-				return ListChartVersionsResponseValidationError{
+				return ListAppVersionsResponseValidationError{
 					field:  fmt.Sprintf("Results[%v]", idx),
 					reason: "embedded message failed validation",
 					cause:  err,
@@ -7525,7 +6508,7 @@ func (m *ListChartVersionsResponse) Validate() error {
 
 	if v, ok := interface{}(m.GetPage()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
-			return ListChartVersionsResponseValidationError{
+			return ListAppVersionsResponseValidationError{
 				field:  "Page",
 				reason: "embedded message failed validation",
 				cause:  err,
@@ -7536,9 +6519,9 @@ func (m *ListChartVersionsResponse) Validate() error {
 	return nil
 }
 
-// ListChartVersionsResponseValidationError is the validation error returned by
-// ListChartVersionsResponse.Validate if the designated constraints aren't met.
-type ListChartVersionsResponseValidationError struct {
+// ListAppVersionsResponseValidationError is the validation error returned by
+// ListAppVersionsResponse.Validate if the designated constraints aren't met.
+type ListAppVersionsResponseValidationError struct {
 	field  string
 	reason string
 	cause  error
@@ -7546,24 +6529,24 @@ type ListChartVersionsResponseValidationError struct {
 }
 
 // Field function returns field value.
-func (e ListChartVersionsResponseValidationError) Field() string { return e.field }
+func (e ListAppVersionsResponseValidationError) Field() string { return e.field }
 
 // Reason function returns reason value.
-func (e ListChartVersionsResponseValidationError) Reason() string { return e.reason }
+func (e ListAppVersionsResponseValidationError) Reason() string { return e.reason }
 
 // Cause function returns cause value.
-func (e ListChartVersionsResponseValidationError) Cause() error { return e.cause }
+func (e ListAppVersionsResponseValidationError) Cause() error { return e.cause }
 
 // Key function returns key value.
-func (e ListChartVersionsResponseValidationError) Key() bool { return e.key }
+func (e ListAppVersionsResponseValidationError) Key() bool { return e.key }
 
 // ErrorName returns error name.
-func (e ListChartVersionsResponseValidationError) ErrorName() string {
-	return "ListChartVersionsResponseValidationError"
+func (e ListAppVersionsResponseValidationError) ErrorName() string {
+	return "ListAppVersionsResponseValidationError"
 }
 
 // Error satisfies the builtin error interface
-func (e ListChartVersionsResponseValidationError) Error() string {
+func (e ListAppVersionsResponseValidationError) Error() string {
 	cause := ""
 	if e.cause != nil {
 		cause = fmt.Sprintf(" | caused by: %v", e.cause)
@@ -7575,14 +6558,14 @@ func (e ListChartVersionsResponseValidationError) Error() string {
 	}
 
 	return fmt.Sprintf(
-		"invalid %sListChartVersionsResponse.%s: %s%s",
+		"invalid %sListAppVersionsResponse.%s: %s%s",
 		key,
 		e.field,
 		e.reason,
 		cause)
 }
 
-var _ error = ListChartVersionsResponseValidationError{}
+var _ error = ListAppVersionsResponseValidationError{}
 
 var _ interface {
 	Field() string
@@ -7590,7 +6573,7 @@ var _ interface {
 	Key() bool
 	Cause() error
 	ErrorName() string
-} = ListChartVersionsResponseValidationError{}
+} = ListAppVersionsResponseValidationError{}
 
 // Validate checks the field values on ApplicationInstance with the rules
 // defined in the proto definition for this message. If any rules are
@@ -7624,20 +6607,10 @@ func (m *ApplicationInstance) Validate() error {
 		}
 	}
 
-	if v, ok := interface{}(m.GetValueId()).(interface{ Validate() error }); ok {
+	if v, ok := interface{}(m.GetAppVersionId()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
 			return ApplicationInstanceValidationError{
-				field:  "ValueId",
-				reason: "embedded message failed validation",
-				cause:  err,
-			}
-		}
-	}
-
-	if v, ok := interface{}(m.GetChartVersionId()).(interface{ Validate() error }); ok {
-		if err := v.Validate(); err != nil {
-			return ApplicationInstanceValidationError{
-				field:  "ChartVersionId",
+				field:  "AppVersionId",
 				reason: "embedded message failed validation",
 				cause:  err,
 			}
@@ -9499,26 +8472,6 @@ func (m *Secret) Validate() error {
 		}
 	}
 
-	if v, ok := interface{}(m.GetValueId()).(interface{ Validate() error }); ok {
-		if err := v.Validate(); err != nil {
-			return SecretValidationError{
-				field:  "ValueId",
-				reason: "embedded message failed validation",
-				cause:  err,
-			}
-		}
-	}
-
-	if v, ok := interface{}(m.GetAwsRdsInstanceId()).(interface{ Validate() error }); ok {
-		if err := v.Validate(); err != nil {
-			return SecretValidationError{
-				field:  "AwsRdsInstanceId",
-				reason: "embedded message failed validation",
-				cause:  err,
-			}
-		}
-	}
-
 	return nil
 }
 
@@ -10401,2790 +9354,6 @@ var _ interface {
 	ErrorName() string
 } = ListSecretsResponseValidationError{}
 
-// Validate checks the field values on AwsService with the rules defined in the
-// proto definition for this message. If any rules are violated, an error is returned.
-func (m *AwsService) Validate() error {
-	if m == nil {
-		return nil
-	}
-
-	if v, ok := interface{}(m.GetId()).(interface{ Validate() error }); ok {
-		if err := v.Validate(); err != nil {
-			return AwsServiceValidationError{
-				field:  "Id",
-				reason: "embedded message failed validation",
-				cause:  err,
-			}
-		}
-	}
-
-	// no validation rules for Name
-
-	// no validation rules for Description
-
-	for idx, item := range m.GetAwsRdsInstances() {
-		_, _ = idx, item
-
-		if v, ok := interface{}(item).(interface{ Validate() error }); ok {
-			if err := v.Validate(); err != nil {
-				return AwsServiceValidationError{
-					field:  fmt.Sprintf("AwsRdsInstances[%v]", idx),
-					reason: "embedded message failed validation",
-					cause:  err,
-				}
-			}
-		}
-
-	}
-
-	if v, ok := interface{}(m.GetRegionId()).(interface{ Validate() error }); ok {
-		if err := v.Validate(); err != nil {
-			return AwsServiceValidationError{
-				field:  "RegionId",
-				reason: "embedded message failed validation",
-				cause:  err,
-			}
-		}
-	}
-
-	return nil
-}
-
-// AwsServiceValidationError is the validation error returned by
-// AwsService.Validate if the designated constraints aren't met.
-type AwsServiceValidationError struct {
-	field  string
-	reason string
-	cause  error
-	key    bool
-}
-
-// Field function returns field value.
-func (e AwsServiceValidationError) Field() string { return e.field }
-
-// Reason function returns reason value.
-func (e AwsServiceValidationError) Reason() string { return e.reason }
-
-// Cause function returns cause value.
-func (e AwsServiceValidationError) Cause() error { return e.cause }
-
-// Key function returns key value.
-func (e AwsServiceValidationError) Key() bool { return e.key }
-
-// ErrorName returns error name.
-func (e AwsServiceValidationError) ErrorName() string { return "AwsServiceValidationError" }
-
-// Error satisfies the builtin error interface
-func (e AwsServiceValidationError) Error() string {
-	cause := ""
-	if e.cause != nil {
-		cause = fmt.Sprintf(" | caused by: %v", e.cause)
-	}
-
-	key := ""
-	if e.key {
-		key = "key for "
-	}
-
-	return fmt.Sprintf(
-		"invalid %sAwsService.%s: %s%s",
-		key,
-		e.field,
-		e.reason,
-		cause)
-}
-
-var _ error = AwsServiceValidationError{}
-
-var _ interface {
-	Field() string
-	Reason() string
-	Key() bool
-	Cause() error
-	ErrorName() string
-} = AwsServiceValidationError{}
-
-// Validate checks the field values on CreateAwsServiceRequest with the rules
-// defined in the proto definition for this message. If any rules are
-// violated, an error is returned.
-func (m *CreateAwsServiceRequest) Validate() error {
-	if m == nil {
-		return nil
-	}
-
-	if v, ok := interface{}(m.GetPayload()).(interface{ Validate() error }); ok {
-		if err := v.Validate(); err != nil {
-			return CreateAwsServiceRequestValidationError{
-				field:  "Payload",
-				reason: "embedded message failed validation",
-				cause:  err,
-			}
-		}
-	}
-
-	return nil
-}
-
-// CreateAwsServiceRequestValidationError is the validation error returned by
-// CreateAwsServiceRequest.Validate if the designated constraints aren't met.
-type CreateAwsServiceRequestValidationError struct {
-	field  string
-	reason string
-	cause  error
-	key    bool
-}
-
-// Field function returns field value.
-func (e CreateAwsServiceRequestValidationError) Field() string { return e.field }
-
-// Reason function returns reason value.
-func (e CreateAwsServiceRequestValidationError) Reason() string { return e.reason }
-
-// Cause function returns cause value.
-func (e CreateAwsServiceRequestValidationError) Cause() error { return e.cause }
-
-// Key function returns key value.
-func (e CreateAwsServiceRequestValidationError) Key() bool { return e.key }
-
-// ErrorName returns error name.
-func (e CreateAwsServiceRequestValidationError) ErrorName() string {
-	return "CreateAwsServiceRequestValidationError"
-}
-
-// Error satisfies the builtin error interface
-func (e CreateAwsServiceRequestValidationError) Error() string {
-	cause := ""
-	if e.cause != nil {
-		cause = fmt.Sprintf(" | caused by: %v", e.cause)
-	}
-
-	key := ""
-	if e.key {
-		key = "key for "
-	}
-
-	return fmt.Sprintf(
-		"invalid %sCreateAwsServiceRequest.%s: %s%s",
-		key,
-		e.field,
-		e.reason,
-		cause)
-}
-
-var _ error = CreateAwsServiceRequestValidationError{}
-
-var _ interface {
-	Field() string
-	Reason() string
-	Key() bool
-	Cause() error
-	ErrorName() string
-} = CreateAwsServiceRequestValidationError{}
-
-// Validate checks the field values on CreateAwsServiceResponse with the rules
-// defined in the proto definition for this message. If any rules are
-// violated, an error is returned.
-func (m *CreateAwsServiceResponse) Validate() error {
-	if m == nil {
-		return nil
-	}
-
-	if v, ok := interface{}(m.GetResult()).(interface{ Validate() error }); ok {
-		if err := v.Validate(); err != nil {
-			return CreateAwsServiceResponseValidationError{
-				field:  "Result",
-				reason: "embedded message failed validation",
-				cause:  err,
-			}
-		}
-	}
-
-	return nil
-}
-
-// CreateAwsServiceResponseValidationError is the validation error returned by
-// CreateAwsServiceResponse.Validate if the designated constraints aren't met.
-type CreateAwsServiceResponseValidationError struct {
-	field  string
-	reason string
-	cause  error
-	key    bool
-}
-
-// Field function returns field value.
-func (e CreateAwsServiceResponseValidationError) Field() string { return e.field }
-
-// Reason function returns reason value.
-func (e CreateAwsServiceResponseValidationError) Reason() string { return e.reason }
-
-// Cause function returns cause value.
-func (e CreateAwsServiceResponseValidationError) Cause() error { return e.cause }
-
-// Key function returns key value.
-func (e CreateAwsServiceResponseValidationError) Key() bool { return e.key }
-
-// ErrorName returns error name.
-func (e CreateAwsServiceResponseValidationError) ErrorName() string {
-	return "CreateAwsServiceResponseValidationError"
-}
-
-// Error satisfies the builtin error interface
-func (e CreateAwsServiceResponseValidationError) Error() string {
-	cause := ""
-	if e.cause != nil {
-		cause = fmt.Sprintf(" | caused by: %v", e.cause)
-	}
-
-	key := ""
-	if e.key {
-		key = "key for "
-	}
-
-	return fmt.Sprintf(
-		"invalid %sCreateAwsServiceResponse.%s: %s%s",
-		key,
-		e.field,
-		e.reason,
-		cause)
-}
-
-var _ error = CreateAwsServiceResponseValidationError{}
-
-var _ interface {
-	Field() string
-	Reason() string
-	Key() bool
-	Cause() error
-	ErrorName() string
-} = CreateAwsServiceResponseValidationError{}
-
-// Validate checks the field values on ReadAwsServiceRequest with the rules
-// defined in the proto definition for this message. If any rules are
-// violated, an error is returned.
-func (m *ReadAwsServiceRequest) Validate() error {
-	if m == nil {
-		return nil
-	}
-
-	if v, ok := interface{}(m.GetId()).(interface{ Validate() error }); ok {
-		if err := v.Validate(); err != nil {
-			return ReadAwsServiceRequestValidationError{
-				field:  "Id",
-				reason: "embedded message failed validation",
-				cause:  err,
-			}
-		}
-	}
-
-	if v, ok := interface{}(m.GetFields()).(interface{ Validate() error }); ok {
-		if err := v.Validate(); err != nil {
-			return ReadAwsServiceRequestValidationError{
-				field:  "Fields",
-				reason: "embedded message failed validation",
-				cause:  err,
-			}
-		}
-	}
-
-	return nil
-}
-
-// ReadAwsServiceRequestValidationError is the validation error returned by
-// ReadAwsServiceRequest.Validate if the designated constraints aren't met.
-type ReadAwsServiceRequestValidationError struct {
-	field  string
-	reason string
-	cause  error
-	key    bool
-}
-
-// Field function returns field value.
-func (e ReadAwsServiceRequestValidationError) Field() string { return e.field }
-
-// Reason function returns reason value.
-func (e ReadAwsServiceRequestValidationError) Reason() string { return e.reason }
-
-// Cause function returns cause value.
-func (e ReadAwsServiceRequestValidationError) Cause() error { return e.cause }
-
-// Key function returns key value.
-func (e ReadAwsServiceRequestValidationError) Key() bool { return e.key }
-
-// ErrorName returns error name.
-func (e ReadAwsServiceRequestValidationError) ErrorName() string {
-	return "ReadAwsServiceRequestValidationError"
-}
-
-// Error satisfies the builtin error interface
-func (e ReadAwsServiceRequestValidationError) Error() string {
-	cause := ""
-	if e.cause != nil {
-		cause = fmt.Sprintf(" | caused by: %v", e.cause)
-	}
-
-	key := ""
-	if e.key {
-		key = "key for "
-	}
-
-	return fmt.Sprintf(
-		"invalid %sReadAwsServiceRequest.%s: %s%s",
-		key,
-		e.field,
-		e.reason,
-		cause)
-}
-
-var _ error = ReadAwsServiceRequestValidationError{}
-
-var _ interface {
-	Field() string
-	Reason() string
-	Key() bool
-	Cause() error
-	ErrorName() string
-} = ReadAwsServiceRequestValidationError{}
-
-// Validate checks the field values on ReadAwsServiceResponse with the rules
-// defined in the proto definition for this message. If any rules are
-// violated, an error is returned.
-func (m *ReadAwsServiceResponse) Validate() error {
-	if m == nil {
-		return nil
-	}
-
-	if v, ok := interface{}(m.GetResult()).(interface{ Validate() error }); ok {
-		if err := v.Validate(); err != nil {
-			return ReadAwsServiceResponseValidationError{
-				field:  "Result",
-				reason: "embedded message failed validation",
-				cause:  err,
-			}
-		}
-	}
-
-	return nil
-}
-
-// ReadAwsServiceResponseValidationError is the validation error returned by
-// ReadAwsServiceResponse.Validate if the designated constraints aren't met.
-type ReadAwsServiceResponseValidationError struct {
-	field  string
-	reason string
-	cause  error
-	key    bool
-}
-
-// Field function returns field value.
-func (e ReadAwsServiceResponseValidationError) Field() string { return e.field }
-
-// Reason function returns reason value.
-func (e ReadAwsServiceResponseValidationError) Reason() string { return e.reason }
-
-// Cause function returns cause value.
-func (e ReadAwsServiceResponseValidationError) Cause() error { return e.cause }
-
-// Key function returns key value.
-func (e ReadAwsServiceResponseValidationError) Key() bool { return e.key }
-
-// ErrorName returns error name.
-func (e ReadAwsServiceResponseValidationError) ErrorName() string {
-	return "ReadAwsServiceResponseValidationError"
-}
-
-// Error satisfies the builtin error interface
-func (e ReadAwsServiceResponseValidationError) Error() string {
-	cause := ""
-	if e.cause != nil {
-		cause = fmt.Sprintf(" | caused by: %v", e.cause)
-	}
-
-	key := ""
-	if e.key {
-		key = "key for "
-	}
-
-	return fmt.Sprintf(
-		"invalid %sReadAwsServiceResponse.%s: %s%s",
-		key,
-		e.field,
-		e.reason,
-		cause)
-}
-
-var _ error = ReadAwsServiceResponseValidationError{}
-
-var _ interface {
-	Field() string
-	Reason() string
-	Key() bool
-	Cause() error
-	ErrorName() string
-} = ReadAwsServiceResponseValidationError{}
-
-// Validate checks the field values on UpdateAwsServiceRequest with the rules
-// defined in the proto definition for this message. If any rules are
-// violated, an error is returned.
-func (m *UpdateAwsServiceRequest) Validate() error {
-	if m == nil {
-		return nil
-	}
-
-	if v, ok := interface{}(m.GetPayload()).(interface{ Validate() error }); ok {
-		if err := v.Validate(); err != nil {
-			return UpdateAwsServiceRequestValidationError{
-				field:  "Payload",
-				reason: "embedded message failed validation",
-				cause:  err,
-			}
-		}
-	}
-
-	if v, ok := interface{}(m.GetFields()).(interface{ Validate() error }); ok {
-		if err := v.Validate(); err != nil {
-			return UpdateAwsServiceRequestValidationError{
-				field:  "Fields",
-				reason: "embedded message failed validation",
-				cause:  err,
-			}
-		}
-	}
-
-	return nil
-}
-
-// UpdateAwsServiceRequestValidationError is the validation error returned by
-// UpdateAwsServiceRequest.Validate if the designated constraints aren't met.
-type UpdateAwsServiceRequestValidationError struct {
-	field  string
-	reason string
-	cause  error
-	key    bool
-}
-
-// Field function returns field value.
-func (e UpdateAwsServiceRequestValidationError) Field() string { return e.field }
-
-// Reason function returns reason value.
-func (e UpdateAwsServiceRequestValidationError) Reason() string { return e.reason }
-
-// Cause function returns cause value.
-func (e UpdateAwsServiceRequestValidationError) Cause() error { return e.cause }
-
-// Key function returns key value.
-func (e UpdateAwsServiceRequestValidationError) Key() bool { return e.key }
-
-// ErrorName returns error name.
-func (e UpdateAwsServiceRequestValidationError) ErrorName() string {
-	return "UpdateAwsServiceRequestValidationError"
-}
-
-// Error satisfies the builtin error interface
-func (e UpdateAwsServiceRequestValidationError) Error() string {
-	cause := ""
-	if e.cause != nil {
-		cause = fmt.Sprintf(" | caused by: %v", e.cause)
-	}
-
-	key := ""
-	if e.key {
-		key = "key for "
-	}
-
-	return fmt.Sprintf(
-		"invalid %sUpdateAwsServiceRequest.%s: %s%s",
-		key,
-		e.field,
-		e.reason,
-		cause)
-}
-
-var _ error = UpdateAwsServiceRequestValidationError{}
-
-var _ interface {
-	Field() string
-	Reason() string
-	Key() bool
-	Cause() error
-	ErrorName() string
-} = UpdateAwsServiceRequestValidationError{}
-
-// Validate checks the field values on UpdateAwsServiceResponse with the rules
-// defined in the proto definition for this message. If any rules are
-// violated, an error is returned.
-func (m *UpdateAwsServiceResponse) Validate() error {
-	if m == nil {
-		return nil
-	}
-
-	if v, ok := interface{}(m.GetResult()).(interface{ Validate() error }); ok {
-		if err := v.Validate(); err != nil {
-			return UpdateAwsServiceResponseValidationError{
-				field:  "Result",
-				reason: "embedded message failed validation",
-				cause:  err,
-			}
-		}
-	}
-
-	return nil
-}
-
-// UpdateAwsServiceResponseValidationError is the validation error returned by
-// UpdateAwsServiceResponse.Validate if the designated constraints aren't met.
-type UpdateAwsServiceResponseValidationError struct {
-	field  string
-	reason string
-	cause  error
-	key    bool
-}
-
-// Field function returns field value.
-func (e UpdateAwsServiceResponseValidationError) Field() string { return e.field }
-
-// Reason function returns reason value.
-func (e UpdateAwsServiceResponseValidationError) Reason() string { return e.reason }
-
-// Cause function returns cause value.
-func (e UpdateAwsServiceResponseValidationError) Cause() error { return e.cause }
-
-// Key function returns key value.
-func (e UpdateAwsServiceResponseValidationError) Key() bool { return e.key }
-
-// ErrorName returns error name.
-func (e UpdateAwsServiceResponseValidationError) ErrorName() string {
-	return "UpdateAwsServiceResponseValidationError"
-}
-
-// Error satisfies the builtin error interface
-func (e UpdateAwsServiceResponseValidationError) Error() string {
-	cause := ""
-	if e.cause != nil {
-		cause = fmt.Sprintf(" | caused by: %v", e.cause)
-	}
-
-	key := ""
-	if e.key {
-		key = "key for "
-	}
-
-	return fmt.Sprintf(
-		"invalid %sUpdateAwsServiceResponse.%s: %s%s",
-		key,
-		e.field,
-		e.reason,
-		cause)
-}
-
-var _ error = UpdateAwsServiceResponseValidationError{}
-
-var _ interface {
-	Field() string
-	Reason() string
-	Key() bool
-	Cause() error
-	ErrorName() string
-} = UpdateAwsServiceResponseValidationError{}
-
-// Validate checks the field values on DeleteAwsServiceRequest with the rules
-// defined in the proto definition for this message. If any rules are
-// violated, an error is returned.
-func (m *DeleteAwsServiceRequest) Validate() error {
-	if m == nil {
-		return nil
-	}
-
-	if v, ok := interface{}(m.GetId()).(interface{ Validate() error }); ok {
-		if err := v.Validate(); err != nil {
-			return DeleteAwsServiceRequestValidationError{
-				field:  "Id",
-				reason: "embedded message failed validation",
-				cause:  err,
-			}
-		}
-	}
-
-	return nil
-}
-
-// DeleteAwsServiceRequestValidationError is the validation error returned by
-// DeleteAwsServiceRequest.Validate if the designated constraints aren't met.
-type DeleteAwsServiceRequestValidationError struct {
-	field  string
-	reason string
-	cause  error
-	key    bool
-}
-
-// Field function returns field value.
-func (e DeleteAwsServiceRequestValidationError) Field() string { return e.field }
-
-// Reason function returns reason value.
-func (e DeleteAwsServiceRequestValidationError) Reason() string { return e.reason }
-
-// Cause function returns cause value.
-func (e DeleteAwsServiceRequestValidationError) Cause() error { return e.cause }
-
-// Key function returns key value.
-func (e DeleteAwsServiceRequestValidationError) Key() bool { return e.key }
-
-// ErrorName returns error name.
-func (e DeleteAwsServiceRequestValidationError) ErrorName() string {
-	return "DeleteAwsServiceRequestValidationError"
-}
-
-// Error satisfies the builtin error interface
-func (e DeleteAwsServiceRequestValidationError) Error() string {
-	cause := ""
-	if e.cause != nil {
-		cause = fmt.Sprintf(" | caused by: %v", e.cause)
-	}
-
-	key := ""
-	if e.key {
-		key = "key for "
-	}
-
-	return fmt.Sprintf(
-		"invalid %sDeleteAwsServiceRequest.%s: %s%s",
-		key,
-		e.field,
-		e.reason,
-		cause)
-}
-
-var _ error = DeleteAwsServiceRequestValidationError{}
-
-var _ interface {
-	Field() string
-	Reason() string
-	Key() bool
-	Cause() error
-	ErrorName() string
-} = DeleteAwsServiceRequestValidationError{}
-
-// Validate checks the field values on DeleteAwsServiceResponse with the rules
-// defined in the proto definition for this message. If any rules are
-// violated, an error is returned.
-func (m *DeleteAwsServiceResponse) Validate() error {
-	if m == nil {
-		return nil
-	}
-
-	return nil
-}
-
-// DeleteAwsServiceResponseValidationError is the validation error returned by
-// DeleteAwsServiceResponse.Validate if the designated constraints aren't met.
-type DeleteAwsServiceResponseValidationError struct {
-	field  string
-	reason string
-	cause  error
-	key    bool
-}
-
-// Field function returns field value.
-func (e DeleteAwsServiceResponseValidationError) Field() string { return e.field }
-
-// Reason function returns reason value.
-func (e DeleteAwsServiceResponseValidationError) Reason() string { return e.reason }
-
-// Cause function returns cause value.
-func (e DeleteAwsServiceResponseValidationError) Cause() error { return e.cause }
-
-// Key function returns key value.
-func (e DeleteAwsServiceResponseValidationError) Key() bool { return e.key }
-
-// ErrorName returns error name.
-func (e DeleteAwsServiceResponseValidationError) ErrorName() string {
-	return "DeleteAwsServiceResponseValidationError"
-}
-
-// Error satisfies the builtin error interface
-func (e DeleteAwsServiceResponseValidationError) Error() string {
-	cause := ""
-	if e.cause != nil {
-		cause = fmt.Sprintf(" | caused by: %v", e.cause)
-	}
-
-	key := ""
-	if e.key {
-		key = "key for "
-	}
-
-	return fmt.Sprintf(
-		"invalid %sDeleteAwsServiceResponse.%s: %s%s",
-		key,
-		e.field,
-		e.reason,
-		cause)
-}
-
-var _ error = DeleteAwsServiceResponseValidationError{}
-
-var _ interface {
-	Field() string
-	Reason() string
-	Key() bool
-	Cause() error
-	ErrorName() string
-} = DeleteAwsServiceResponseValidationError{}
-
-// Validate checks the field values on ListAwsServiceRequest with the rules
-// defined in the proto definition for this message. If any rules are
-// violated, an error is returned.
-func (m *ListAwsServiceRequest) Validate() error {
-	if m == nil {
-		return nil
-	}
-
-	if v, ok := interface{}(m.GetFilter()).(interface{ Validate() error }); ok {
-		if err := v.Validate(); err != nil {
-			return ListAwsServiceRequestValidationError{
-				field:  "Filter",
-				reason: "embedded message failed validation",
-				cause:  err,
-			}
-		}
-	}
-
-	if v, ok := interface{}(m.GetOrderBy()).(interface{ Validate() error }); ok {
-		if err := v.Validate(); err != nil {
-			return ListAwsServiceRequestValidationError{
-				field:  "OrderBy",
-				reason: "embedded message failed validation",
-				cause:  err,
-			}
-		}
-	}
-
-	if v, ok := interface{}(m.GetFields()).(interface{ Validate() error }); ok {
-		if err := v.Validate(); err != nil {
-			return ListAwsServiceRequestValidationError{
-				field:  "Fields",
-				reason: "embedded message failed validation",
-				cause:  err,
-			}
-		}
-	}
-
-	if v, ok := interface{}(m.GetPaging()).(interface{ Validate() error }); ok {
-		if err := v.Validate(); err != nil {
-			return ListAwsServiceRequestValidationError{
-				field:  "Paging",
-				reason: "embedded message failed validation",
-				cause:  err,
-			}
-		}
-	}
-
-	return nil
-}
-
-// ListAwsServiceRequestValidationError is the validation error returned by
-// ListAwsServiceRequest.Validate if the designated constraints aren't met.
-type ListAwsServiceRequestValidationError struct {
-	field  string
-	reason string
-	cause  error
-	key    bool
-}
-
-// Field function returns field value.
-func (e ListAwsServiceRequestValidationError) Field() string { return e.field }
-
-// Reason function returns reason value.
-func (e ListAwsServiceRequestValidationError) Reason() string { return e.reason }
-
-// Cause function returns cause value.
-func (e ListAwsServiceRequestValidationError) Cause() error { return e.cause }
-
-// Key function returns key value.
-func (e ListAwsServiceRequestValidationError) Key() bool { return e.key }
-
-// ErrorName returns error name.
-func (e ListAwsServiceRequestValidationError) ErrorName() string {
-	return "ListAwsServiceRequestValidationError"
-}
-
-// Error satisfies the builtin error interface
-func (e ListAwsServiceRequestValidationError) Error() string {
-	cause := ""
-	if e.cause != nil {
-		cause = fmt.Sprintf(" | caused by: %v", e.cause)
-	}
-
-	key := ""
-	if e.key {
-		key = "key for "
-	}
-
-	return fmt.Sprintf(
-		"invalid %sListAwsServiceRequest.%s: %s%s",
-		key,
-		e.field,
-		e.reason,
-		cause)
-}
-
-var _ error = ListAwsServiceRequestValidationError{}
-
-var _ interface {
-	Field() string
-	Reason() string
-	Key() bool
-	Cause() error
-	ErrorName() string
-} = ListAwsServiceRequestValidationError{}
-
-// Validate checks the field values on ListAwsServicesResponse with the rules
-// defined in the proto definition for this message. If any rules are
-// violated, an error is returned.
-func (m *ListAwsServicesResponse) Validate() error {
-	if m == nil {
-		return nil
-	}
-
-	for idx, item := range m.GetResults() {
-		_, _ = idx, item
-
-		if v, ok := interface{}(item).(interface{ Validate() error }); ok {
-			if err := v.Validate(); err != nil {
-				return ListAwsServicesResponseValidationError{
-					field:  fmt.Sprintf("Results[%v]", idx),
-					reason: "embedded message failed validation",
-					cause:  err,
-				}
-			}
-		}
-
-	}
-
-	if v, ok := interface{}(m.GetPage()).(interface{ Validate() error }); ok {
-		if err := v.Validate(); err != nil {
-			return ListAwsServicesResponseValidationError{
-				field:  "Page",
-				reason: "embedded message failed validation",
-				cause:  err,
-			}
-		}
-	}
-
-	return nil
-}
-
-// ListAwsServicesResponseValidationError is the validation error returned by
-// ListAwsServicesResponse.Validate if the designated constraints aren't met.
-type ListAwsServicesResponseValidationError struct {
-	field  string
-	reason string
-	cause  error
-	key    bool
-}
-
-// Field function returns field value.
-func (e ListAwsServicesResponseValidationError) Field() string { return e.field }
-
-// Reason function returns reason value.
-func (e ListAwsServicesResponseValidationError) Reason() string { return e.reason }
-
-// Cause function returns cause value.
-func (e ListAwsServicesResponseValidationError) Cause() error { return e.cause }
-
-// Key function returns key value.
-func (e ListAwsServicesResponseValidationError) Key() bool { return e.key }
-
-// ErrorName returns error name.
-func (e ListAwsServicesResponseValidationError) ErrorName() string {
-	return "ListAwsServicesResponseValidationError"
-}
-
-// Error satisfies the builtin error interface
-func (e ListAwsServicesResponseValidationError) Error() string {
-	cause := ""
-	if e.cause != nil {
-		cause = fmt.Sprintf(" | caused by: %v", e.cause)
-	}
-
-	key := ""
-	if e.key {
-		key = "key for "
-	}
-
-	return fmt.Sprintf(
-		"invalid %sListAwsServicesResponse.%s: %s%s",
-		key,
-		e.field,
-		e.reason,
-		cause)
-}
-
-var _ error = ListAwsServicesResponseValidationError{}
-
-var _ interface {
-	Field() string
-	Reason() string
-	Key() bool
-	Cause() error
-	ErrorName() string
-} = ListAwsServicesResponseValidationError{}
-
-// Validate checks the field values on AwsRdsInstance with the rules defined in
-// the proto definition for this message. If any rules are violated, an error
-// is returned.
-func (m *AwsRdsInstance) Validate() error {
-	if m == nil {
-		return nil
-	}
-
-	if v, ok := interface{}(m.GetId()).(interface{ Validate() error }); ok {
-		if err := v.Validate(); err != nil {
-			return AwsRdsInstanceValidationError{
-				field:  "Id",
-				reason: "embedded message failed validation",
-				cause:  err,
-			}
-		}
-	}
-
-	// no validation rules for Name
-
-	// no validation rules for Description
-
-	// no validation rules for DatabaseHost
-
-	// no validation rules for DatabaseName
-
-	// no validation rules for DatabaseUser
-
-	if v, ok := interface{}(m.GetDatabasePassword()).(interface{ Validate() error }); ok {
-		if err := v.Validate(); err != nil {
-			return AwsRdsInstanceValidationError{
-				field:  "DatabasePassword",
-				reason: "embedded message failed validation",
-				cause:  err,
-			}
-		}
-	}
-
-	if v, ok := interface{}(m.GetAwsServiceId()).(interface{ Validate() error }); ok {
-		if err := v.Validate(); err != nil {
-			return AwsRdsInstanceValidationError{
-				field:  "AwsServiceId",
-				reason: "embedded message failed validation",
-				cause:  err,
-			}
-		}
-	}
-
-	return nil
-}
-
-// AwsRdsInstanceValidationError is the validation error returned by
-// AwsRdsInstance.Validate if the designated constraints aren't met.
-type AwsRdsInstanceValidationError struct {
-	field  string
-	reason string
-	cause  error
-	key    bool
-}
-
-// Field function returns field value.
-func (e AwsRdsInstanceValidationError) Field() string { return e.field }
-
-// Reason function returns reason value.
-func (e AwsRdsInstanceValidationError) Reason() string { return e.reason }
-
-// Cause function returns cause value.
-func (e AwsRdsInstanceValidationError) Cause() error { return e.cause }
-
-// Key function returns key value.
-func (e AwsRdsInstanceValidationError) Key() bool { return e.key }
-
-// ErrorName returns error name.
-func (e AwsRdsInstanceValidationError) ErrorName() string { return "AwsRdsInstanceValidationError" }
-
-// Error satisfies the builtin error interface
-func (e AwsRdsInstanceValidationError) Error() string {
-	cause := ""
-	if e.cause != nil {
-		cause = fmt.Sprintf(" | caused by: %v", e.cause)
-	}
-
-	key := ""
-	if e.key {
-		key = "key for "
-	}
-
-	return fmt.Sprintf(
-		"invalid %sAwsRdsInstance.%s: %s%s",
-		key,
-		e.field,
-		e.reason,
-		cause)
-}
-
-var _ error = AwsRdsInstanceValidationError{}
-
-var _ interface {
-	Field() string
-	Reason() string
-	Key() bool
-	Cause() error
-	ErrorName() string
-} = AwsRdsInstanceValidationError{}
-
-// Validate checks the field values on CreateAwsRdsInstanceRequest with the
-// rules defined in the proto definition for this message. If any rules are
-// violated, an error is returned.
-func (m *CreateAwsRdsInstanceRequest) Validate() error {
-	if m == nil {
-		return nil
-	}
-
-	if v, ok := interface{}(m.GetPayload()).(interface{ Validate() error }); ok {
-		if err := v.Validate(); err != nil {
-			return CreateAwsRdsInstanceRequestValidationError{
-				field:  "Payload",
-				reason: "embedded message failed validation",
-				cause:  err,
-			}
-		}
-	}
-
-	return nil
-}
-
-// CreateAwsRdsInstanceRequestValidationError is the validation error returned
-// by CreateAwsRdsInstanceRequest.Validate if the designated constraints
-// aren't met.
-type CreateAwsRdsInstanceRequestValidationError struct {
-	field  string
-	reason string
-	cause  error
-	key    bool
-}
-
-// Field function returns field value.
-func (e CreateAwsRdsInstanceRequestValidationError) Field() string { return e.field }
-
-// Reason function returns reason value.
-func (e CreateAwsRdsInstanceRequestValidationError) Reason() string { return e.reason }
-
-// Cause function returns cause value.
-func (e CreateAwsRdsInstanceRequestValidationError) Cause() error { return e.cause }
-
-// Key function returns key value.
-func (e CreateAwsRdsInstanceRequestValidationError) Key() bool { return e.key }
-
-// ErrorName returns error name.
-func (e CreateAwsRdsInstanceRequestValidationError) ErrorName() string {
-	return "CreateAwsRdsInstanceRequestValidationError"
-}
-
-// Error satisfies the builtin error interface
-func (e CreateAwsRdsInstanceRequestValidationError) Error() string {
-	cause := ""
-	if e.cause != nil {
-		cause = fmt.Sprintf(" | caused by: %v", e.cause)
-	}
-
-	key := ""
-	if e.key {
-		key = "key for "
-	}
-
-	return fmt.Sprintf(
-		"invalid %sCreateAwsRdsInstanceRequest.%s: %s%s",
-		key,
-		e.field,
-		e.reason,
-		cause)
-}
-
-var _ error = CreateAwsRdsInstanceRequestValidationError{}
-
-var _ interface {
-	Field() string
-	Reason() string
-	Key() bool
-	Cause() error
-	ErrorName() string
-} = CreateAwsRdsInstanceRequestValidationError{}
-
-// Validate checks the field values on CreateAwsRdsInstanceResponse with the
-// rules defined in the proto definition for this message. If any rules are
-// violated, an error is returned.
-func (m *CreateAwsRdsInstanceResponse) Validate() error {
-	if m == nil {
-		return nil
-	}
-
-	if v, ok := interface{}(m.GetResult()).(interface{ Validate() error }); ok {
-		if err := v.Validate(); err != nil {
-			return CreateAwsRdsInstanceResponseValidationError{
-				field:  "Result",
-				reason: "embedded message failed validation",
-				cause:  err,
-			}
-		}
-	}
-
-	return nil
-}
-
-// CreateAwsRdsInstanceResponseValidationError is the validation error returned
-// by CreateAwsRdsInstanceResponse.Validate if the designated constraints
-// aren't met.
-type CreateAwsRdsInstanceResponseValidationError struct {
-	field  string
-	reason string
-	cause  error
-	key    bool
-}
-
-// Field function returns field value.
-func (e CreateAwsRdsInstanceResponseValidationError) Field() string { return e.field }
-
-// Reason function returns reason value.
-func (e CreateAwsRdsInstanceResponseValidationError) Reason() string { return e.reason }
-
-// Cause function returns cause value.
-func (e CreateAwsRdsInstanceResponseValidationError) Cause() error { return e.cause }
-
-// Key function returns key value.
-func (e CreateAwsRdsInstanceResponseValidationError) Key() bool { return e.key }
-
-// ErrorName returns error name.
-func (e CreateAwsRdsInstanceResponseValidationError) ErrorName() string {
-	return "CreateAwsRdsInstanceResponseValidationError"
-}
-
-// Error satisfies the builtin error interface
-func (e CreateAwsRdsInstanceResponseValidationError) Error() string {
-	cause := ""
-	if e.cause != nil {
-		cause = fmt.Sprintf(" | caused by: %v", e.cause)
-	}
-
-	key := ""
-	if e.key {
-		key = "key for "
-	}
-
-	return fmt.Sprintf(
-		"invalid %sCreateAwsRdsInstanceResponse.%s: %s%s",
-		key,
-		e.field,
-		e.reason,
-		cause)
-}
-
-var _ error = CreateAwsRdsInstanceResponseValidationError{}
-
-var _ interface {
-	Field() string
-	Reason() string
-	Key() bool
-	Cause() error
-	ErrorName() string
-} = CreateAwsRdsInstanceResponseValidationError{}
-
-// Validate checks the field values on ReadAwsRdsInstanceRequest with the rules
-// defined in the proto definition for this message. If any rules are
-// violated, an error is returned.
-func (m *ReadAwsRdsInstanceRequest) Validate() error {
-	if m == nil {
-		return nil
-	}
-
-	if v, ok := interface{}(m.GetId()).(interface{ Validate() error }); ok {
-		if err := v.Validate(); err != nil {
-			return ReadAwsRdsInstanceRequestValidationError{
-				field:  "Id",
-				reason: "embedded message failed validation",
-				cause:  err,
-			}
-		}
-	}
-
-	if v, ok := interface{}(m.GetFields()).(interface{ Validate() error }); ok {
-		if err := v.Validate(); err != nil {
-			return ReadAwsRdsInstanceRequestValidationError{
-				field:  "Fields",
-				reason: "embedded message failed validation",
-				cause:  err,
-			}
-		}
-	}
-
-	return nil
-}
-
-// ReadAwsRdsInstanceRequestValidationError is the validation error returned by
-// ReadAwsRdsInstanceRequest.Validate if the designated constraints aren't met.
-type ReadAwsRdsInstanceRequestValidationError struct {
-	field  string
-	reason string
-	cause  error
-	key    bool
-}
-
-// Field function returns field value.
-func (e ReadAwsRdsInstanceRequestValidationError) Field() string { return e.field }
-
-// Reason function returns reason value.
-func (e ReadAwsRdsInstanceRequestValidationError) Reason() string { return e.reason }
-
-// Cause function returns cause value.
-func (e ReadAwsRdsInstanceRequestValidationError) Cause() error { return e.cause }
-
-// Key function returns key value.
-func (e ReadAwsRdsInstanceRequestValidationError) Key() bool { return e.key }
-
-// ErrorName returns error name.
-func (e ReadAwsRdsInstanceRequestValidationError) ErrorName() string {
-	return "ReadAwsRdsInstanceRequestValidationError"
-}
-
-// Error satisfies the builtin error interface
-func (e ReadAwsRdsInstanceRequestValidationError) Error() string {
-	cause := ""
-	if e.cause != nil {
-		cause = fmt.Sprintf(" | caused by: %v", e.cause)
-	}
-
-	key := ""
-	if e.key {
-		key = "key for "
-	}
-
-	return fmt.Sprintf(
-		"invalid %sReadAwsRdsInstanceRequest.%s: %s%s",
-		key,
-		e.field,
-		e.reason,
-		cause)
-}
-
-var _ error = ReadAwsRdsInstanceRequestValidationError{}
-
-var _ interface {
-	Field() string
-	Reason() string
-	Key() bool
-	Cause() error
-	ErrorName() string
-} = ReadAwsRdsInstanceRequestValidationError{}
-
-// Validate checks the field values on ReadAwsRdsInstanceResponse with the
-// rules defined in the proto definition for this message. If any rules are
-// violated, an error is returned.
-func (m *ReadAwsRdsInstanceResponse) Validate() error {
-	if m == nil {
-		return nil
-	}
-
-	if v, ok := interface{}(m.GetResult()).(interface{ Validate() error }); ok {
-		if err := v.Validate(); err != nil {
-			return ReadAwsRdsInstanceResponseValidationError{
-				field:  "Result",
-				reason: "embedded message failed validation",
-				cause:  err,
-			}
-		}
-	}
-
-	return nil
-}
-
-// ReadAwsRdsInstanceResponseValidationError is the validation error returned
-// by ReadAwsRdsInstanceResponse.Validate if the designated constraints aren't met.
-type ReadAwsRdsInstanceResponseValidationError struct {
-	field  string
-	reason string
-	cause  error
-	key    bool
-}
-
-// Field function returns field value.
-func (e ReadAwsRdsInstanceResponseValidationError) Field() string { return e.field }
-
-// Reason function returns reason value.
-func (e ReadAwsRdsInstanceResponseValidationError) Reason() string { return e.reason }
-
-// Cause function returns cause value.
-func (e ReadAwsRdsInstanceResponseValidationError) Cause() error { return e.cause }
-
-// Key function returns key value.
-func (e ReadAwsRdsInstanceResponseValidationError) Key() bool { return e.key }
-
-// ErrorName returns error name.
-func (e ReadAwsRdsInstanceResponseValidationError) ErrorName() string {
-	return "ReadAwsRdsInstanceResponseValidationError"
-}
-
-// Error satisfies the builtin error interface
-func (e ReadAwsRdsInstanceResponseValidationError) Error() string {
-	cause := ""
-	if e.cause != nil {
-		cause = fmt.Sprintf(" | caused by: %v", e.cause)
-	}
-
-	key := ""
-	if e.key {
-		key = "key for "
-	}
-
-	return fmt.Sprintf(
-		"invalid %sReadAwsRdsInstanceResponse.%s: %s%s",
-		key,
-		e.field,
-		e.reason,
-		cause)
-}
-
-var _ error = ReadAwsRdsInstanceResponseValidationError{}
-
-var _ interface {
-	Field() string
-	Reason() string
-	Key() bool
-	Cause() error
-	ErrorName() string
-} = ReadAwsRdsInstanceResponseValidationError{}
-
-// Validate checks the field values on UpdateAwsRdsInstanceRequest with the
-// rules defined in the proto definition for this message. If any rules are
-// violated, an error is returned.
-func (m *UpdateAwsRdsInstanceRequest) Validate() error {
-	if m == nil {
-		return nil
-	}
-
-	if v, ok := interface{}(m.GetPayload()).(interface{ Validate() error }); ok {
-		if err := v.Validate(); err != nil {
-			return UpdateAwsRdsInstanceRequestValidationError{
-				field:  "Payload",
-				reason: "embedded message failed validation",
-				cause:  err,
-			}
-		}
-	}
-
-	if v, ok := interface{}(m.GetFields()).(interface{ Validate() error }); ok {
-		if err := v.Validate(); err != nil {
-			return UpdateAwsRdsInstanceRequestValidationError{
-				field:  "Fields",
-				reason: "embedded message failed validation",
-				cause:  err,
-			}
-		}
-	}
-
-	return nil
-}
-
-// UpdateAwsRdsInstanceRequestValidationError is the validation error returned
-// by UpdateAwsRdsInstanceRequest.Validate if the designated constraints
-// aren't met.
-type UpdateAwsRdsInstanceRequestValidationError struct {
-	field  string
-	reason string
-	cause  error
-	key    bool
-}
-
-// Field function returns field value.
-func (e UpdateAwsRdsInstanceRequestValidationError) Field() string { return e.field }
-
-// Reason function returns reason value.
-func (e UpdateAwsRdsInstanceRequestValidationError) Reason() string { return e.reason }
-
-// Cause function returns cause value.
-func (e UpdateAwsRdsInstanceRequestValidationError) Cause() error { return e.cause }
-
-// Key function returns key value.
-func (e UpdateAwsRdsInstanceRequestValidationError) Key() bool { return e.key }
-
-// ErrorName returns error name.
-func (e UpdateAwsRdsInstanceRequestValidationError) ErrorName() string {
-	return "UpdateAwsRdsInstanceRequestValidationError"
-}
-
-// Error satisfies the builtin error interface
-func (e UpdateAwsRdsInstanceRequestValidationError) Error() string {
-	cause := ""
-	if e.cause != nil {
-		cause = fmt.Sprintf(" | caused by: %v", e.cause)
-	}
-
-	key := ""
-	if e.key {
-		key = "key for "
-	}
-
-	return fmt.Sprintf(
-		"invalid %sUpdateAwsRdsInstanceRequest.%s: %s%s",
-		key,
-		e.field,
-		e.reason,
-		cause)
-}
-
-var _ error = UpdateAwsRdsInstanceRequestValidationError{}
-
-var _ interface {
-	Field() string
-	Reason() string
-	Key() bool
-	Cause() error
-	ErrorName() string
-} = UpdateAwsRdsInstanceRequestValidationError{}
-
-// Validate checks the field values on UpdateAwsRdsInstanceResponse with the
-// rules defined in the proto definition for this message. If any rules are
-// violated, an error is returned.
-func (m *UpdateAwsRdsInstanceResponse) Validate() error {
-	if m == nil {
-		return nil
-	}
-
-	if v, ok := interface{}(m.GetResult()).(interface{ Validate() error }); ok {
-		if err := v.Validate(); err != nil {
-			return UpdateAwsRdsInstanceResponseValidationError{
-				field:  "Result",
-				reason: "embedded message failed validation",
-				cause:  err,
-			}
-		}
-	}
-
-	return nil
-}
-
-// UpdateAwsRdsInstanceResponseValidationError is the validation error returned
-// by UpdateAwsRdsInstanceResponse.Validate if the designated constraints
-// aren't met.
-type UpdateAwsRdsInstanceResponseValidationError struct {
-	field  string
-	reason string
-	cause  error
-	key    bool
-}
-
-// Field function returns field value.
-func (e UpdateAwsRdsInstanceResponseValidationError) Field() string { return e.field }
-
-// Reason function returns reason value.
-func (e UpdateAwsRdsInstanceResponseValidationError) Reason() string { return e.reason }
-
-// Cause function returns cause value.
-func (e UpdateAwsRdsInstanceResponseValidationError) Cause() error { return e.cause }
-
-// Key function returns key value.
-func (e UpdateAwsRdsInstanceResponseValidationError) Key() bool { return e.key }
-
-// ErrorName returns error name.
-func (e UpdateAwsRdsInstanceResponseValidationError) ErrorName() string {
-	return "UpdateAwsRdsInstanceResponseValidationError"
-}
-
-// Error satisfies the builtin error interface
-func (e UpdateAwsRdsInstanceResponseValidationError) Error() string {
-	cause := ""
-	if e.cause != nil {
-		cause = fmt.Sprintf(" | caused by: %v", e.cause)
-	}
-
-	key := ""
-	if e.key {
-		key = "key for "
-	}
-
-	return fmt.Sprintf(
-		"invalid %sUpdateAwsRdsInstanceResponse.%s: %s%s",
-		key,
-		e.field,
-		e.reason,
-		cause)
-}
-
-var _ error = UpdateAwsRdsInstanceResponseValidationError{}
-
-var _ interface {
-	Field() string
-	Reason() string
-	Key() bool
-	Cause() error
-	ErrorName() string
-} = UpdateAwsRdsInstanceResponseValidationError{}
-
-// Validate checks the field values on DeleteAwsRdsInstanceRequest with the
-// rules defined in the proto definition for this message. If any rules are
-// violated, an error is returned.
-func (m *DeleteAwsRdsInstanceRequest) Validate() error {
-	if m == nil {
-		return nil
-	}
-
-	if v, ok := interface{}(m.GetId()).(interface{ Validate() error }); ok {
-		if err := v.Validate(); err != nil {
-			return DeleteAwsRdsInstanceRequestValidationError{
-				field:  "Id",
-				reason: "embedded message failed validation",
-				cause:  err,
-			}
-		}
-	}
-
-	return nil
-}
-
-// DeleteAwsRdsInstanceRequestValidationError is the validation error returned
-// by DeleteAwsRdsInstanceRequest.Validate if the designated constraints
-// aren't met.
-type DeleteAwsRdsInstanceRequestValidationError struct {
-	field  string
-	reason string
-	cause  error
-	key    bool
-}
-
-// Field function returns field value.
-func (e DeleteAwsRdsInstanceRequestValidationError) Field() string { return e.field }
-
-// Reason function returns reason value.
-func (e DeleteAwsRdsInstanceRequestValidationError) Reason() string { return e.reason }
-
-// Cause function returns cause value.
-func (e DeleteAwsRdsInstanceRequestValidationError) Cause() error { return e.cause }
-
-// Key function returns key value.
-func (e DeleteAwsRdsInstanceRequestValidationError) Key() bool { return e.key }
-
-// ErrorName returns error name.
-func (e DeleteAwsRdsInstanceRequestValidationError) ErrorName() string {
-	return "DeleteAwsRdsInstanceRequestValidationError"
-}
-
-// Error satisfies the builtin error interface
-func (e DeleteAwsRdsInstanceRequestValidationError) Error() string {
-	cause := ""
-	if e.cause != nil {
-		cause = fmt.Sprintf(" | caused by: %v", e.cause)
-	}
-
-	key := ""
-	if e.key {
-		key = "key for "
-	}
-
-	return fmt.Sprintf(
-		"invalid %sDeleteAwsRdsInstanceRequest.%s: %s%s",
-		key,
-		e.field,
-		e.reason,
-		cause)
-}
-
-var _ error = DeleteAwsRdsInstanceRequestValidationError{}
-
-var _ interface {
-	Field() string
-	Reason() string
-	Key() bool
-	Cause() error
-	ErrorName() string
-} = DeleteAwsRdsInstanceRequestValidationError{}
-
-// Validate checks the field values on DeleteAwsRdsInstanceResponse with the
-// rules defined in the proto definition for this message. If any rules are
-// violated, an error is returned.
-func (m *DeleteAwsRdsInstanceResponse) Validate() error {
-	if m == nil {
-		return nil
-	}
-
-	return nil
-}
-
-// DeleteAwsRdsInstanceResponseValidationError is the validation error returned
-// by DeleteAwsRdsInstanceResponse.Validate if the designated constraints
-// aren't met.
-type DeleteAwsRdsInstanceResponseValidationError struct {
-	field  string
-	reason string
-	cause  error
-	key    bool
-}
-
-// Field function returns field value.
-func (e DeleteAwsRdsInstanceResponseValidationError) Field() string { return e.field }
-
-// Reason function returns reason value.
-func (e DeleteAwsRdsInstanceResponseValidationError) Reason() string { return e.reason }
-
-// Cause function returns cause value.
-func (e DeleteAwsRdsInstanceResponseValidationError) Cause() error { return e.cause }
-
-// Key function returns key value.
-func (e DeleteAwsRdsInstanceResponseValidationError) Key() bool { return e.key }
-
-// ErrorName returns error name.
-func (e DeleteAwsRdsInstanceResponseValidationError) ErrorName() string {
-	return "DeleteAwsRdsInstanceResponseValidationError"
-}
-
-// Error satisfies the builtin error interface
-func (e DeleteAwsRdsInstanceResponseValidationError) Error() string {
-	cause := ""
-	if e.cause != nil {
-		cause = fmt.Sprintf(" | caused by: %v", e.cause)
-	}
-
-	key := ""
-	if e.key {
-		key = "key for "
-	}
-
-	return fmt.Sprintf(
-		"invalid %sDeleteAwsRdsInstanceResponse.%s: %s%s",
-		key,
-		e.field,
-		e.reason,
-		cause)
-}
-
-var _ error = DeleteAwsRdsInstanceResponseValidationError{}
-
-var _ interface {
-	Field() string
-	Reason() string
-	Key() bool
-	Cause() error
-	ErrorName() string
-} = DeleteAwsRdsInstanceResponseValidationError{}
-
-// Validate checks the field values on ListAwsRdsInstanceRequest with the rules
-// defined in the proto definition for this message. If any rules are
-// violated, an error is returned.
-func (m *ListAwsRdsInstanceRequest) Validate() error {
-	if m == nil {
-		return nil
-	}
-
-	if v, ok := interface{}(m.GetFilter()).(interface{ Validate() error }); ok {
-		if err := v.Validate(); err != nil {
-			return ListAwsRdsInstanceRequestValidationError{
-				field:  "Filter",
-				reason: "embedded message failed validation",
-				cause:  err,
-			}
-		}
-	}
-
-	if v, ok := interface{}(m.GetOrderBy()).(interface{ Validate() error }); ok {
-		if err := v.Validate(); err != nil {
-			return ListAwsRdsInstanceRequestValidationError{
-				field:  "OrderBy",
-				reason: "embedded message failed validation",
-				cause:  err,
-			}
-		}
-	}
-
-	if v, ok := interface{}(m.GetFields()).(interface{ Validate() error }); ok {
-		if err := v.Validate(); err != nil {
-			return ListAwsRdsInstanceRequestValidationError{
-				field:  "Fields",
-				reason: "embedded message failed validation",
-				cause:  err,
-			}
-		}
-	}
-
-	if v, ok := interface{}(m.GetPaging()).(interface{ Validate() error }); ok {
-		if err := v.Validate(); err != nil {
-			return ListAwsRdsInstanceRequestValidationError{
-				field:  "Paging",
-				reason: "embedded message failed validation",
-				cause:  err,
-			}
-		}
-	}
-
-	return nil
-}
-
-// ListAwsRdsInstanceRequestValidationError is the validation error returned by
-// ListAwsRdsInstanceRequest.Validate if the designated constraints aren't met.
-type ListAwsRdsInstanceRequestValidationError struct {
-	field  string
-	reason string
-	cause  error
-	key    bool
-}
-
-// Field function returns field value.
-func (e ListAwsRdsInstanceRequestValidationError) Field() string { return e.field }
-
-// Reason function returns reason value.
-func (e ListAwsRdsInstanceRequestValidationError) Reason() string { return e.reason }
-
-// Cause function returns cause value.
-func (e ListAwsRdsInstanceRequestValidationError) Cause() error { return e.cause }
-
-// Key function returns key value.
-func (e ListAwsRdsInstanceRequestValidationError) Key() bool { return e.key }
-
-// ErrorName returns error name.
-func (e ListAwsRdsInstanceRequestValidationError) ErrorName() string {
-	return "ListAwsRdsInstanceRequestValidationError"
-}
-
-// Error satisfies the builtin error interface
-func (e ListAwsRdsInstanceRequestValidationError) Error() string {
-	cause := ""
-	if e.cause != nil {
-		cause = fmt.Sprintf(" | caused by: %v", e.cause)
-	}
-
-	key := ""
-	if e.key {
-		key = "key for "
-	}
-
-	return fmt.Sprintf(
-		"invalid %sListAwsRdsInstanceRequest.%s: %s%s",
-		key,
-		e.field,
-		e.reason,
-		cause)
-}
-
-var _ error = ListAwsRdsInstanceRequestValidationError{}
-
-var _ interface {
-	Field() string
-	Reason() string
-	Key() bool
-	Cause() error
-	ErrorName() string
-} = ListAwsRdsInstanceRequestValidationError{}
-
-// Validate checks the field values on ListAwsRdsInstancesResponse with the
-// rules defined in the proto definition for this message. If any rules are
-// violated, an error is returned.
-func (m *ListAwsRdsInstancesResponse) Validate() error {
-	if m == nil {
-		return nil
-	}
-
-	for idx, item := range m.GetResults() {
-		_, _ = idx, item
-
-		if v, ok := interface{}(item).(interface{ Validate() error }); ok {
-			if err := v.Validate(); err != nil {
-				return ListAwsRdsInstancesResponseValidationError{
-					field:  fmt.Sprintf("Results[%v]", idx),
-					reason: "embedded message failed validation",
-					cause:  err,
-				}
-			}
-		}
-
-	}
-
-	if v, ok := interface{}(m.GetPage()).(interface{ Validate() error }); ok {
-		if err := v.Validate(); err != nil {
-			return ListAwsRdsInstancesResponseValidationError{
-				field:  "Page",
-				reason: "embedded message failed validation",
-				cause:  err,
-			}
-		}
-	}
-
-	return nil
-}
-
-// ListAwsRdsInstancesResponseValidationError is the validation error returned
-// by ListAwsRdsInstancesResponse.Validate if the designated constraints
-// aren't met.
-type ListAwsRdsInstancesResponseValidationError struct {
-	field  string
-	reason string
-	cause  error
-	key    bool
-}
-
-// Field function returns field value.
-func (e ListAwsRdsInstancesResponseValidationError) Field() string { return e.field }
-
-// Reason function returns reason value.
-func (e ListAwsRdsInstancesResponseValidationError) Reason() string { return e.reason }
-
-// Cause function returns cause value.
-func (e ListAwsRdsInstancesResponseValidationError) Cause() error { return e.cause }
-
-// Key function returns key value.
-func (e ListAwsRdsInstancesResponseValidationError) Key() bool { return e.key }
-
-// ErrorName returns error name.
-func (e ListAwsRdsInstancesResponseValidationError) ErrorName() string {
-	return "ListAwsRdsInstancesResponseValidationError"
-}
-
-// Error satisfies the builtin error interface
-func (e ListAwsRdsInstancesResponseValidationError) Error() string {
-	cause := ""
-	if e.cause != nil {
-		cause = fmt.Sprintf(" | caused by: %v", e.cause)
-	}
-
-	key := ""
-	if e.key {
-		key = "key for "
-	}
-
-	return fmt.Sprintf(
-		"invalid %sListAwsRdsInstancesResponse.%s: %s%s",
-		key,
-		e.field,
-		e.reason,
-		cause)
-}
-
-var _ error = ListAwsRdsInstancesResponseValidationError{}
-
-var _ interface {
-	Field() string
-	Reason() string
-	Key() bool
-	Cause() error
-	ErrorName() string
-} = ListAwsRdsInstancesResponseValidationError{}
-
-// Validate checks the field values on Value with the rules defined in the
-// proto definition for this message. If any rules are violated, an error is returned.
-func (m *Value) Validate() error {
-	if m == nil {
-		return nil
-	}
-
-	if v, ok := interface{}(m.GetId()).(interface{ Validate() error }); ok {
-		if err := v.Validate(); err != nil {
-			return ValueValidationError{
-				field:  "Id",
-				reason: "embedded message failed validation",
-				cause:  err,
-			}
-		}
-	}
-
-	// no validation rules for Name
-
-	// no validation rules for Description
-
-	if v, ok := interface{}(m.GetKeys()).(interface{ Validate() error }); ok {
-		if err := v.Validate(); err != nil {
-			return ValueValidationError{
-				field:  "Keys",
-				reason: "embedded message failed validation",
-				cause:  err,
-			}
-		}
-	}
-
-	if v, ok := interface{}(m.GetAwsRdsInstanceId()).(interface{ Validate() error }); ok {
-		if err := v.Validate(); err != nil {
-			return ValueValidationError{
-				field:  "AwsRdsInstanceId",
-				reason: "embedded message failed validation",
-				cause:  err,
-			}
-		}
-	}
-
-	return nil
-}
-
-// ValueValidationError is the validation error returned by Value.Validate if
-// the designated constraints aren't met.
-type ValueValidationError struct {
-	field  string
-	reason string
-	cause  error
-	key    bool
-}
-
-// Field function returns field value.
-func (e ValueValidationError) Field() string { return e.field }
-
-// Reason function returns reason value.
-func (e ValueValidationError) Reason() string { return e.reason }
-
-// Cause function returns cause value.
-func (e ValueValidationError) Cause() error { return e.cause }
-
-// Key function returns key value.
-func (e ValueValidationError) Key() bool { return e.key }
-
-// ErrorName returns error name.
-func (e ValueValidationError) ErrorName() string { return "ValueValidationError" }
-
-// Error satisfies the builtin error interface
-func (e ValueValidationError) Error() string {
-	cause := ""
-	if e.cause != nil {
-		cause = fmt.Sprintf(" | caused by: %v", e.cause)
-	}
-
-	key := ""
-	if e.key {
-		key = "key for "
-	}
-
-	return fmt.Sprintf(
-		"invalid %sValue.%s: %s%s",
-		key,
-		e.field,
-		e.reason,
-		cause)
-}
-
-var _ error = ValueValidationError{}
-
-var _ interface {
-	Field() string
-	Reason() string
-	Key() bool
-	Cause() error
-	ErrorName() string
-} = ValueValidationError{}
-
-// Validate checks the field values on CreateValueRequest with the rules
-// defined in the proto definition for this message. If any rules are
-// violated, an error is returned.
-func (m *CreateValueRequest) Validate() error {
-	if m == nil {
-		return nil
-	}
-
-	if v, ok := interface{}(m.GetPayload()).(interface{ Validate() error }); ok {
-		if err := v.Validate(); err != nil {
-			return CreateValueRequestValidationError{
-				field:  "Payload",
-				reason: "embedded message failed validation",
-				cause:  err,
-			}
-		}
-	}
-
-	return nil
-}
-
-// CreateValueRequestValidationError is the validation error returned by
-// CreateValueRequest.Validate if the designated constraints aren't met.
-type CreateValueRequestValidationError struct {
-	field  string
-	reason string
-	cause  error
-	key    bool
-}
-
-// Field function returns field value.
-func (e CreateValueRequestValidationError) Field() string { return e.field }
-
-// Reason function returns reason value.
-func (e CreateValueRequestValidationError) Reason() string { return e.reason }
-
-// Cause function returns cause value.
-func (e CreateValueRequestValidationError) Cause() error { return e.cause }
-
-// Key function returns key value.
-func (e CreateValueRequestValidationError) Key() bool { return e.key }
-
-// ErrorName returns error name.
-func (e CreateValueRequestValidationError) ErrorName() string {
-	return "CreateValueRequestValidationError"
-}
-
-// Error satisfies the builtin error interface
-func (e CreateValueRequestValidationError) Error() string {
-	cause := ""
-	if e.cause != nil {
-		cause = fmt.Sprintf(" | caused by: %v", e.cause)
-	}
-
-	key := ""
-	if e.key {
-		key = "key for "
-	}
-
-	return fmt.Sprintf(
-		"invalid %sCreateValueRequest.%s: %s%s",
-		key,
-		e.field,
-		e.reason,
-		cause)
-}
-
-var _ error = CreateValueRequestValidationError{}
-
-var _ interface {
-	Field() string
-	Reason() string
-	Key() bool
-	Cause() error
-	ErrorName() string
-} = CreateValueRequestValidationError{}
-
-// Validate checks the field values on CreateValueResponse with the rules
-// defined in the proto definition for this message. If any rules are
-// violated, an error is returned.
-func (m *CreateValueResponse) Validate() error {
-	if m == nil {
-		return nil
-	}
-
-	if v, ok := interface{}(m.GetResult()).(interface{ Validate() error }); ok {
-		if err := v.Validate(); err != nil {
-			return CreateValueResponseValidationError{
-				field:  "Result",
-				reason: "embedded message failed validation",
-				cause:  err,
-			}
-		}
-	}
-
-	return nil
-}
-
-// CreateValueResponseValidationError is the validation error returned by
-// CreateValueResponse.Validate if the designated constraints aren't met.
-type CreateValueResponseValidationError struct {
-	field  string
-	reason string
-	cause  error
-	key    bool
-}
-
-// Field function returns field value.
-func (e CreateValueResponseValidationError) Field() string { return e.field }
-
-// Reason function returns reason value.
-func (e CreateValueResponseValidationError) Reason() string { return e.reason }
-
-// Cause function returns cause value.
-func (e CreateValueResponseValidationError) Cause() error { return e.cause }
-
-// Key function returns key value.
-func (e CreateValueResponseValidationError) Key() bool { return e.key }
-
-// ErrorName returns error name.
-func (e CreateValueResponseValidationError) ErrorName() string {
-	return "CreateValueResponseValidationError"
-}
-
-// Error satisfies the builtin error interface
-func (e CreateValueResponseValidationError) Error() string {
-	cause := ""
-	if e.cause != nil {
-		cause = fmt.Sprintf(" | caused by: %v", e.cause)
-	}
-
-	key := ""
-	if e.key {
-		key = "key for "
-	}
-
-	return fmt.Sprintf(
-		"invalid %sCreateValueResponse.%s: %s%s",
-		key,
-		e.field,
-		e.reason,
-		cause)
-}
-
-var _ error = CreateValueResponseValidationError{}
-
-var _ interface {
-	Field() string
-	Reason() string
-	Key() bool
-	Cause() error
-	ErrorName() string
-} = CreateValueResponseValidationError{}
-
-// Validate checks the field values on ReadValueRequest with the rules defined
-// in the proto definition for this message. If any rules are violated, an
-// error is returned.
-func (m *ReadValueRequest) Validate() error {
-	if m == nil {
-		return nil
-	}
-
-	if v, ok := interface{}(m.GetId()).(interface{ Validate() error }); ok {
-		if err := v.Validate(); err != nil {
-			return ReadValueRequestValidationError{
-				field:  "Id",
-				reason: "embedded message failed validation",
-				cause:  err,
-			}
-		}
-	}
-
-	if v, ok := interface{}(m.GetFields()).(interface{ Validate() error }); ok {
-		if err := v.Validate(); err != nil {
-			return ReadValueRequestValidationError{
-				field:  "Fields",
-				reason: "embedded message failed validation",
-				cause:  err,
-			}
-		}
-	}
-
-	return nil
-}
-
-// ReadValueRequestValidationError is the validation error returned by
-// ReadValueRequest.Validate if the designated constraints aren't met.
-type ReadValueRequestValidationError struct {
-	field  string
-	reason string
-	cause  error
-	key    bool
-}
-
-// Field function returns field value.
-func (e ReadValueRequestValidationError) Field() string { return e.field }
-
-// Reason function returns reason value.
-func (e ReadValueRequestValidationError) Reason() string { return e.reason }
-
-// Cause function returns cause value.
-func (e ReadValueRequestValidationError) Cause() error { return e.cause }
-
-// Key function returns key value.
-func (e ReadValueRequestValidationError) Key() bool { return e.key }
-
-// ErrorName returns error name.
-func (e ReadValueRequestValidationError) ErrorName() string { return "ReadValueRequestValidationError" }
-
-// Error satisfies the builtin error interface
-func (e ReadValueRequestValidationError) Error() string {
-	cause := ""
-	if e.cause != nil {
-		cause = fmt.Sprintf(" | caused by: %v", e.cause)
-	}
-
-	key := ""
-	if e.key {
-		key = "key for "
-	}
-
-	return fmt.Sprintf(
-		"invalid %sReadValueRequest.%s: %s%s",
-		key,
-		e.field,
-		e.reason,
-		cause)
-}
-
-var _ error = ReadValueRequestValidationError{}
-
-var _ interface {
-	Field() string
-	Reason() string
-	Key() bool
-	Cause() error
-	ErrorName() string
-} = ReadValueRequestValidationError{}
-
-// Validate checks the field values on ReadValueResponse with the rules defined
-// in the proto definition for this message. If any rules are violated, an
-// error is returned.
-func (m *ReadValueResponse) Validate() error {
-	if m == nil {
-		return nil
-	}
-
-	if v, ok := interface{}(m.GetResult()).(interface{ Validate() error }); ok {
-		if err := v.Validate(); err != nil {
-			return ReadValueResponseValidationError{
-				field:  "Result",
-				reason: "embedded message failed validation",
-				cause:  err,
-			}
-		}
-	}
-
-	return nil
-}
-
-// ReadValueResponseValidationError is the validation error returned by
-// ReadValueResponse.Validate if the designated constraints aren't met.
-type ReadValueResponseValidationError struct {
-	field  string
-	reason string
-	cause  error
-	key    bool
-}
-
-// Field function returns field value.
-func (e ReadValueResponseValidationError) Field() string { return e.field }
-
-// Reason function returns reason value.
-func (e ReadValueResponseValidationError) Reason() string { return e.reason }
-
-// Cause function returns cause value.
-func (e ReadValueResponseValidationError) Cause() error { return e.cause }
-
-// Key function returns key value.
-func (e ReadValueResponseValidationError) Key() bool { return e.key }
-
-// ErrorName returns error name.
-func (e ReadValueResponseValidationError) ErrorName() string {
-	return "ReadValueResponseValidationError"
-}
-
-// Error satisfies the builtin error interface
-func (e ReadValueResponseValidationError) Error() string {
-	cause := ""
-	if e.cause != nil {
-		cause = fmt.Sprintf(" | caused by: %v", e.cause)
-	}
-
-	key := ""
-	if e.key {
-		key = "key for "
-	}
-
-	return fmt.Sprintf(
-		"invalid %sReadValueResponse.%s: %s%s",
-		key,
-		e.field,
-		e.reason,
-		cause)
-}
-
-var _ error = ReadValueResponseValidationError{}
-
-var _ interface {
-	Field() string
-	Reason() string
-	Key() bool
-	Cause() error
-	ErrorName() string
-} = ReadValueResponseValidationError{}
-
-// Validate checks the field values on UpdateValueRequest with the rules
-// defined in the proto definition for this message. If any rules are
-// violated, an error is returned.
-func (m *UpdateValueRequest) Validate() error {
-	if m == nil {
-		return nil
-	}
-
-	if v, ok := interface{}(m.GetPayload()).(interface{ Validate() error }); ok {
-		if err := v.Validate(); err != nil {
-			return UpdateValueRequestValidationError{
-				field:  "Payload",
-				reason: "embedded message failed validation",
-				cause:  err,
-			}
-		}
-	}
-
-	if v, ok := interface{}(m.GetFields()).(interface{ Validate() error }); ok {
-		if err := v.Validate(); err != nil {
-			return UpdateValueRequestValidationError{
-				field:  "Fields",
-				reason: "embedded message failed validation",
-				cause:  err,
-			}
-		}
-	}
-
-	return nil
-}
-
-// UpdateValueRequestValidationError is the validation error returned by
-// UpdateValueRequest.Validate if the designated constraints aren't met.
-type UpdateValueRequestValidationError struct {
-	field  string
-	reason string
-	cause  error
-	key    bool
-}
-
-// Field function returns field value.
-func (e UpdateValueRequestValidationError) Field() string { return e.field }
-
-// Reason function returns reason value.
-func (e UpdateValueRequestValidationError) Reason() string { return e.reason }
-
-// Cause function returns cause value.
-func (e UpdateValueRequestValidationError) Cause() error { return e.cause }
-
-// Key function returns key value.
-func (e UpdateValueRequestValidationError) Key() bool { return e.key }
-
-// ErrorName returns error name.
-func (e UpdateValueRequestValidationError) ErrorName() string {
-	return "UpdateValueRequestValidationError"
-}
-
-// Error satisfies the builtin error interface
-func (e UpdateValueRequestValidationError) Error() string {
-	cause := ""
-	if e.cause != nil {
-		cause = fmt.Sprintf(" | caused by: %v", e.cause)
-	}
-
-	key := ""
-	if e.key {
-		key = "key for "
-	}
-
-	return fmt.Sprintf(
-		"invalid %sUpdateValueRequest.%s: %s%s",
-		key,
-		e.field,
-		e.reason,
-		cause)
-}
-
-var _ error = UpdateValueRequestValidationError{}
-
-var _ interface {
-	Field() string
-	Reason() string
-	Key() bool
-	Cause() error
-	ErrorName() string
-} = UpdateValueRequestValidationError{}
-
-// Validate checks the field values on UpdateValueResponse with the rules
-// defined in the proto definition for this message. If any rules are
-// violated, an error is returned.
-func (m *UpdateValueResponse) Validate() error {
-	if m == nil {
-		return nil
-	}
-
-	if v, ok := interface{}(m.GetResult()).(interface{ Validate() error }); ok {
-		if err := v.Validate(); err != nil {
-			return UpdateValueResponseValidationError{
-				field:  "Result",
-				reason: "embedded message failed validation",
-				cause:  err,
-			}
-		}
-	}
-
-	return nil
-}
-
-// UpdateValueResponseValidationError is the validation error returned by
-// UpdateValueResponse.Validate if the designated constraints aren't met.
-type UpdateValueResponseValidationError struct {
-	field  string
-	reason string
-	cause  error
-	key    bool
-}
-
-// Field function returns field value.
-func (e UpdateValueResponseValidationError) Field() string { return e.field }
-
-// Reason function returns reason value.
-func (e UpdateValueResponseValidationError) Reason() string { return e.reason }
-
-// Cause function returns cause value.
-func (e UpdateValueResponseValidationError) Cause() error { return e.cause }
-
-// Key function returns key value.
-func (e UpdateValueResponseValidationError) Key() bool { return e.key }
-
-// ErrorName returns error name.
-func (e UpdateValueResponseValidationError) ErrorName() string {
-	return "UpdateValueResponseValidationError"
-}
-
-// Error satisfies the builtin error interface
-func (e UpdateValueResponseValidationError) Error() string {
-	cause := ""
-	if e.cause != nil {
-		cause = fmt.Sprintf(" | caused by: %v", e.cause)
-	}
-
-	key := ""
-	if e.key {
-		key = "key for "
-	}
-
-	return fmt.Sprintf(
-		"invalid %sUpdateValueResponse.%s: %s%s",
-		key,
-		e.field,
-		e.reason,
-		cause)
-}
-
-var _ error = UpdateValueResponseValidationError{}
-
-var _ interface {
-	Field() string
-	Reason() string
-	Key() bool
-	Cause() error
-	ErrorName() string
-} = UpdateValueResponseValidationError{}
-
-// Validate checks the field values on DeleteValueRequest with the rules
-// defined in the proto definition for this message. If any rules are
-// violated, an error is returned.
-func (m *DeleteValueRequest) Validate() error {
-	if m == nil {
-		return nil
-	}
-
-	if v, ok := interface{}(m.GetId()).(interface{ Validate() error }); ok {
-		if err := v.Validate(); err != nil {
-			return DeleteValueRequestValidationError{
-				field:  "Id",
-				reason: "embedded message failed validation",
-				cause:  err,
-			}
-		}
-	}
-
-	return nil
-}
-
-// DeleteValueRequestValidationError is the validation error returned by
-// DeleteValueRequest.Validate if the designated constraints aren't met.
-type DeleteValueRequestValidationError struct {
-	field  string
-	reason string
-	cause  error
-	key    bool
-}
-
-// Field function returns field value.
-func (e DeleteValueRequestValidationError) Field() string { return e.field }
-
-// Reason function returns reason value.
-func (e DeleteValueRequestValidationError) Reason() string { return e.reason }
-
-// Cause function returns cause value.
-func (e DeleteValueRequestValidationError) Cause() error { return e.cause }
-
-// Key function returns key value.
-func (e DeleteValueRequestValidationError) Key() bool { return e.key }
-
-// ErrorName returns error name.
-func (e DeleteValueRequestValidationError) ErrorName() string {
-	return "DeleteValueRequestValidationError"
-}
-
-// Error satisfies the builtin error interface
-func (e DeleteValueRequestValidationError) Error() string {
-	cause := ""
-	if e.cause != nil {
-		cause = fmt.Sprintf(" | caused by: %v", e.cause)
-	}
-
-	key := ""
-	if e.key {
-		key = "key for "
-	}
-
-	return fmt.Sprintf(
-		"invalid %sDeleteValueRequest.%s: %s%s",
-		key,
-		e.field,
-		e.reason,
-		cause)
-}
-
-var _ error = DeleteValueRequestValidationError{}
-
-var _ interface {
-	Field() string
-	Reason() string
-	Key() bool
-	Cause() error
-	ErrorName() string
-} = DeleteValueRequestValidationError{}
-
-// Validate checks the field values on DeleteValueResponse with the rules
-// defined in the proto definition for this message. If any rules are
-// violated, an error is returned.
-func (m *DeleteValueResponse) Validate() error {
-	if m == nil {
-		return nil
-	}
-
-	return nil
-}
-
-// DeleteValueResponseValidationError is the validation error returned by
-// DeleteValueResponse.Validate if the designated constraints aren't met.
-type DeleteValueResponseValidationError struct {
-	field  string
-	reason string
-	cause  error
-	key    bool
-}
-
-// Field function returns field value.
-func (e DeleteValueResponseValidationError) Field() string { return e.field }
-
-// Reason function returns reason value.
-func (e DeleteValueResponseValidationError) Reason() string { return e.reason }
-
-// Cause function returns cause value.
-func (e DeleteValueResponseValidationError) Cause() error { return e.cause }
-
-// Key function returns key value.
-func (e DeleteValueResponseValidationError) Key() bool { return e.key }
-
-// ErrorName returns error name.
-func (e DeleteValueResponseValidationError) ErrorName() string {
-	return "DeleteValueResponseValidationError"
-}
-
-// Error satisfies the builtin error interface
-func (e DeleteValueResponseValidationError) Error() string {
-	cause := ""
-	if e.cause != nil {
-		cause = fmt.Sprintf(" | caused by: %v", e.cause)
-	}
-
-	key := ""
-	if e.key {
-		key = "key for "
-	}
-
-	return fmt.Sprintf(
-		"invalid %sDeleteValueResponse.%s: %s%s",
-		key,
-		e.field,
-		e.reason,
-		cause)
-}
-
-var _ error = DeleteValueResponseValidationError{}
-
-var _ interface {
-	Field() string
-	Reason() string
-	Key() bool
-	Cause() error
-	ErrorName() string
-} = DeleteValueResponseValidationError{}
-
-// Validate checks the field values on ListValueRequest with the rules defined
-// in the proto definition for this message. If any rules are violated, an
-// error is returned.
-func (m *ListValueRequest) Validate() error {
-	if m == nil {
-		return nil
-	}
-
-	if v, ok := interface{}(m.GetFilter()).(interface{ Validate() error }); ok {
-		if err := v.Validate(); err != nil {
-			return ListValueRequestValidationError{
-				field:  "Filter",
-				reason: "embedded message failed validation",
-				cause:  err,
-			}
-		}
-	}
-
-	if v, ok := interface{}(m.GetOrderBy()).(interface{ Validate() error }); ok {
-		if err := v.Validate(); err != nil {
-			return ListValueRequestValidationError{
-				field:  "OrderBy",
-				reason: "embedded message failed validation",
-				cause:  err,
-			}
-		}
-	}
-
-	if v, ok := interface{}(m.GetFields()).(interface{ Validate() error }); ok {
-		if err := v.Validate(); err != nil {
-			return ListValueRequestValidationError{
-				field:  "Fields",
-				reason: "embedded message failed validation",
-				cause:  err,
-			}
-		}
-	}
-
-	if v, ok := interface{}(m.GetPaging()).(interface{ Validate() error }); ok {
-		if err := v.Validate(); err != nil {
-			return ListValueRequestValidationError{
-				field:  "Paging",
-				reason: "embedded message failed validation",
-				cause:  err,
-			}
-		}
-	}
-
-	return nil
-}
-
-// ListValueRequestValidationError is the validation error returned by
-// ListValueRequest.Validate if the designated constraints aren't met.
-type ListValueRequestValidationError struct {
-	field  string
-	reason string
-	cause  error
-	key    bool
-}
-
-// Field function returns field value.
-func (e ListValueRequestValidationError) Field() string { return e.field }
-
-// Reason function returns reason value.
-func (e ListValueRequestValidationError) Reason() string { return e.reason }
-
-// Cause function returns cause value.
-func (e ListValueRequestValidationError) Cause() error { return e.cause }
-
-// Key function returns key value.
-func (e ListValueRequestValidationError) Key() bool { return e.key }
-
-// ErrorName returns error name.
-func (e ListValueRequestValidationError) ErrorName() string { return "ListValueRequestValidationError" }
-
-// Error satisfies the builtin error interface
-func (e ListValueRequestValidationError) Error() string {
-	cause := ""
-	if e.cause != nil {
-		cause = fmt.Sprintf(" | caused by: %v", e.cause)
-	}
-
-	key := ""
-	if e.key {
-		key = "key for "
-	}
-
-	return fmt.Sprintf(
-		"invalid %sListValueRequest.%s: %s%s",
-		key,
-		e.field,
-		e.reason,
-		cause)
-}
-
-var _ error = ListValueRequestValidationError{}
-
-var _ interface {
-	Field() string
-	Reason() string
-	Key() bool
-	Cause() error
-	ErrorName() string
-} = ListValueRequestValidationError{}
-
-// Validate checks the field values on ListValuesResponse with the rules
-// defined in the proto definition for this message. If any rules are
-// violated, an error is returned.
-func (m *ListValuesResponse) Validate() error {
-	if m == nil {
-		return nil
-	}
-
-	for idx, item := range m.GetResults() {
-		_, _ = idx, item
-
-		if v, ok := interface{}(item).(interface{ Validate() error }); ok {
-			if err := v.Validate(); err != nil {
-				return ListValuesResponseValidationError{
-					field:  fmt.Sprintf("Results[%v]", idx),
-					reason: "embedded message failed validation",
-					cause:  err,
-				}
-			}
-		}
-
-	}
-
-	if v, ok := interface{}(m.GetPage()).(interface{ Validate() error }); ok {
-		if err := v.Validate(); err != nil {
-			return ListValuesResponseValidationError{
-				field:  "Page",
-				reason: "embedded message failed validation",
-				cause:  err,
-			}
-		}
-	}
-
-	return nil
-}
-
-// ListValuesResponseValidationError is the validation error returned by
-// ListValuesResponse.Validate if the designated constraints aren't met.
-type ListValuesResponseValidationError struct {
-	field  string
-	reason string
-	cause  error
-	key    bool
-}
-
-// Field function returns field value.
-func (e ListValuesResponseValidationError) Field() string { return e.field }
-
-// Reason function returns reason value.
-func (e ListValuesResponseValidationError) Reason() string { return e.reason }
-
-// Cause function returns cause value.
-func (e ListValuesResponseValidationError) Cause() error { return e.cause }
-
-// Key function returns key value.
-func (e ListValuesResponseValidationError) Key() bool { return e.key }
-
-// ErrorName returns error name.
-func (e ListValuesResponseValidationError) ErrorName() string {
-	return "ListValuesResponseValidationError"
-}
-
-// Error satisfies the builtin error interface
-func (e ListValuesResponseValidationError) Error() string {
-	cause := ""
-	if e.cause != nil {
-		cause = fmt.Sprintf(" | caused by: %v", e.cause)
-	}
-
-	key := ""
-	if e.key {
-		key = "key for "
-	}
-
-	return fmt.Sprintf(
-		"invalid %sListValuesResponse.%s: %s%s",
-		key,
-		e.field,
-		e.reason,
-		cause)
-}
-
-var _ error = ListValuesResponseValidationError{}
-
-var _ interface {
-	Field() string
-	Reason() string
-	Key() bool
-	Cause() error
-	ErrorName() string
-} = ListValuesResponseValidationError{}
-
 // Validate checks the field values on Artifact with the rules defined in the
 // proto definition for this message. If any rules are violated, an error is returned.
 func (m *Artifact) Validate() error {
@@ -13210,10 +9379,10 @@ func (m *Artifact) Validate() error {
 
 	// no validation rules for Commit
 
-	if v, ok := interface{}(m.GetChartVersionId()).(interface{ Validate() error }); ok {
+	if v, ok := interface{}(m.GetAppVersionId()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
 			return ArtifactValidationError{
-				field:  "ChartVersionId",
+				field:  "AppVersionId",
 				reason: "embedded message failed validation",
 				cause:  err,
 			}

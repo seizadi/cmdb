@@ -73,7 +73,7 @@ var (
 	// define flag overrides
 	flagServerAddress = pflag.String("server.address", defaultServerAddress, "adress of gRPC server")
 	flagServerPort    = pflag.String("server.port", defaultServerPort, "port of gRPC server")
-	flagServerVersion     = pflag.String("server.version", defaultServerVersion, "endpoint version of server")
+	flagServerVersion = pflag.String("server.version", defaultServerVersion, "endpoint version of server")
 
 	flagGatewayEnable      = pflag.Bool("gateway.enable", defaultGatewayEnable, "enable gatway")
 	flagGatewayAddress     = pflag.String("gateway.address", defaultGatewayAddress, "address of gateway server")
@@ -85,7 +85,7 @@ var (
 	flagDatabaseEnable   = pflag.Bool("database.enable", defaultDatabaseEnable, "enable database")
 	flagDatabaseDSN      = pflag.String("database.dsn", defaultDatabaseDSN, "DSN of the database")
 	flagDatabaseType     = pflag.String("database.type", defaultDatabaseType, "type of the database")
-	flagDatabaseHost  = pflag.String("database.host", defaultDatabaseHost, "address of the database")
+	flagDatabaseHost     = pflag.String("database.host", defaultDatabaseHost, "address of the database")
 	flagDatabasePort     = pflag.String("database.port", defaultDatabasePort, "port of the database")
 	flagDatabaseName     = pflag.String("database.name", defaultDatabaseName, "name of the database")
 	flagDatabaseUser     = pflag.String("database.user", defaultDatabaseUser, "database username")
