@@ -127,6 +127,22 @@ func (m *CmdbClient) CreateRegion(req *pb.CreateRegionRequest) (*pb.CreateRegion
 	return res, nil
 }
 
+func (m *CmdbClient) CreateLifecycle(req *pb.CreateLifecycleRequest) (*pb.CreateLifecycleResponse, error) {
+	
+	// We can now create stubs that wrap conn:
+	stub := pb.NewLifecyclesClient(m.Conn)
+	
+	// Now we can use the stub to make RPCs
+	ctx := metadata.NewOutgoingContext(context.Background(),
+		metadata.Pairs("Authorization", "Bearer "+m.ApiKey))
+	res, err := stub.Create(ctx, req)
+	if err != nil {
+		return nil, err
+	}
+	
+	return res, nil
+}
+
 func (m *CmdbClient) GetLifecycles() (*pb.ListLifecyclesResponse, error) {
 	
 	// We can now create stubs that wrap conn:
