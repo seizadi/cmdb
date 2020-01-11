@@ -450,7 +450,7 @@ service Lifecycles {
 
 
 // ------------------------------------------------------------
-// AppConfig represents a custom configuration for Application
+// dro represents a custom configuration for Application
 // ------------------------------------------------------------
 message AppConfig {
   option (gorm.opts) = {

@@ -143,6 +143,24 @@ func (m *CmdbClient) CreateStage(req *pb.CreateStageRequest) (*pb.CreateStageRes
 	return res, nil
 }
 
+
+func (m *CmdbClient) GetLifecycles() (*pb.ListLifecyclesResponse, error) {
+	
+	// We can now create stubs that wrap conn:
+	stub := pb.NewLifecyclesClient(m.Conn)
+	
+	// Now we can use the stub to make RPCs
+	ctx := metadata.NewOutgoingContext(context.Background(),
+		metadata.Pairs("Authorization", "Bearer "+m.ApiKey))
+	reqList := &pb.ListLifecycleRequest{}
+	respList, err := stub.List(ctx, reqList)
+	if err != nil {
+		return nil, err
+	}
+	
+	return respList, nil
+}
+
 func (m *CmdbClient) CreateEnvironment(req *pb.CreateEnvironmentRequest) (*pb.CreateEnvironmentResponse, error) {
 
 	// We can now create stubs that wrap conn:
@@ -208,10 +226,10 @@ func (m *CmdbClient) CreateApplicationInstance(req *pb.CreateApplicationInstance
 	return res, nil
 }
 
-func (m *CmdbClient) CreateChartVersion(req *pb.CreateChartVersionRequest) (*pb.CreateChartVersionResponse, error) {
+func (m *CmdbClient) CreateChartVersion(req *pb.CreateAppVersionRequest) (*pb.CreateAppVersionResponse, error) {
 
 	// We can now create stubs that wrap conn:
-	stub := pb.NewChartVersionsClient(m.Conn)
+	stub := pb.NewAppVersionsClient(m.Conn)
 
 	// Now we can use the stub to make RPCs
 	ctx := metadata.NewOutgoingContext(context.Background(),
