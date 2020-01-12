@@ -7576,10 +7576,10 @@ func (m *ApplicationInstance) Validate() error {
 		}
 	}
 
-	if v, ok := interface{}(m.GetAppVersionId()).(interface{ Validate() error }); ok {
+	if v, ok := interface{}(m.GetChartVersionId()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
 			return ApplicationInstanceValidationError{
-				field:  "AppVersionId",
+				field:  "ChartVersionId",
 				reason: "embedded message failed validation",
 				cause:  err,
 			}

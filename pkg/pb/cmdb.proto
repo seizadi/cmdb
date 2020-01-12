@@ -1096,7 +1096,7 @@ message ApplicationInstance {
   Deployment deployment = 4;
 
   // Reference to the ChartVersion
-  atlas.rpc.Identifier app_version_id = 5 [(gorm.field) = {reference_of: "AppVersion", tag: {type: "integer"}}];
+  atlas.rpc.Identifier chart_version_id = 5 [(gorm.field) = {reference_of: "ChartVersion", tag: {type: "integer"}}];
 
   // Reference to the Environment
   atlas.rpc.Identifier environment_id = 6 [(gorm.field) = {reference_of: "Environment", tag: {type: "integer"}}];

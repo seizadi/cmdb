@@ -7113,7 +7113,7 @@ func validate_Object_ApplicationInstance(ctx context.Context, r json.RawMessage,
 			if err = validate_Object_Deployment(ctx, vv, vvPath); err != nil {
 				return err
 			}
-		case "app_version_id":
+		case "chart_version_id":
 			if v[k] == nil {
 				continue
 			}
