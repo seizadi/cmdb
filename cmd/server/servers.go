@@ -98,6 +98,11 @@ func CreateServer(logger *logrus.Logger, db *gorm.DB, interceptors []grpc.UnaryS
 	}
 	pb.RegisterVaultsServer(grpcServer, vault)
 	
-
+	chart_version, err := svc.NewChartVersionsServer()
+	if err != nil {
+		return nil, err
+	}
+	pb.RegisterChartVersionsServer(grpcServer, chart_version)
+	
 	return grpcServer, nil
 }

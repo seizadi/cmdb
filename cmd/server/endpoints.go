@@ -23,5 +23,6 @@ func RegisterGatewayEndpoints() gateway.Option {
 		pb.RegisterKubeClustersHandlerFromEndpoint,
 		pb.RegisterSecretsHandlerFromEndpoint,
 		pb.RegisterVaultsHandlerFromEndpoint,
+		pb.RegisterChartVersionsHandlerFromEndpoint,
 	)
 }

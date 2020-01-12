@@ -1993,6 +1993,16 @@ func (m *Lifecycle) Validate() error {
 
 	}
 
+	if v, ok := interface{}(m.GetLifecycleId()).(interface{ Validate() error }); ok {
+		if err := v.Validate(); err != nil {
+			return LifecycleValidationError{
+				field:  "LifecycleId",
+				reason: "embedded message failed validation",
+				cause:  err,
+			}
+		}
+	}
+
 	return nil
 }
 
@@ -2874,6 +2884,924 @@ var _ interface {
 	Cause() error
 	ErrorName() string
 } = ListLifecyclesResponseValidationError{}
+
+// Validate checks the field values on ChartVersion with the rules defined in
+// the proto definition for this message. If any rules are violated, an error
+// is returned.
+func (m *ChartVersion) Validate() error {
+	if m == nil {
+		return nil
+	}
+
+	if v, ok := interface{}(m.GetId()).(interface{ Validate() error }); ok {
+		if err := v.Validate(); err != nil {
+			return ChartVersionValidationError{
+				field:  "Id",
+				reason: "embedded message failed validation",
+				cause:  err,
+			}
+		}
+	}
+
+	// no validation rules for Name
+
+	// no validation rules for Description
+
+	// no validation rules for Repo
+
+	// no validation rules for Version
+
+	if v, ok := interface{}(m.GetApplicationId()).(interface{ Validate() error }); ok {
+		if err := v.Validate(); err != nil {
+			return ChartVersionValidationError{
+				field:  "ApplicationId",
+				reason: "embedded message failed validation",
+				cause:  err,
+			}
+		}
+	}
+
+	return nil
+}
+
+// ChartVersionValidationError is the validation error returned by
+// ChartVersion.Validate if the designated constraints aren't met.
+type ChartVersionValidationError struct {
+	field  string
+	reason string
+	cause  error
+	key    bool
+}
+
+// Field function returns field value.
+func (e ChartVersionValidationError) Field() string { return e.field }
+
+// Reason function returns reason value.
+func (e ChartVersionValidationError) Reason() string { return e.reason }
+
+// Cause function returns cause value.
+func (e ChartVersionValidationError) Cause() error { return e.cause }
+
+// Key function returns key value.
+func (e ChartVersionValidationError) Key() bool { return e.key }
+
+// ErrorName returns error name.
+func (e ChartVersionValidationError) ErrorName() string { return "ChartVersionValidationError" }
+
+// Error satisfies the builtin error interface
+func (e ChartVersionValidationError) Error() string {
+	cause := ""
+	if e.cause != nil {
+		cause = fmt.Sprintf(" | caused by: %v", e.cause)
+	}
+
+	key := ""
+	if e.key {
+		key = "key for "
+	}
+
+	return fmt.Sprintf(
+		"invalid %sChartVersion.%s: %s%s",
+		key,
+		e.field,
+		e.reason,
+		cause)
+}
+
+var _ error = ChartVersionValidationError{}
+
+var _ interface {
+	Field() string
+	Reason() string
+	Key() bool
+	Cause() error
+	ErrorName() string
+} = ChartVersionValidationError{}
+
+// Validate checks the field values on CreateChartVersionRequest with the rules
+// defined in the proto definition for this message. If any rules are
+// violated, an error is returned.
+func (m *CreateChartVersionRequest) Validate() error {
+	if m == nil {
+		return nil
+	}
+
+	if v, ok := interface{}(m.GetPayload()).(interface{ Validate() error }); ok {
+		if err := v.Validate(); err != nil {
+			return CreateChartVersionRequestValidationError{
+				field:  "Payload",
+				reason: "embedded message failed validation",
+				cause:  err,
+			}
+		}
+	}
+
+	return nil
+}
+
+// CreateChartVersionRequestValidationError is the validation error returned by
+// CreateChartVersionRequest.Validate if the designated constraints aren't met.
+type CreateChartVersionRequestValidationError struct {
+	field  string
+	reason string
+	cause  error
+	key    bool
+}
+
+// Field function returns field value.
+func (e CreateChartVersionRequestValidationError) Field() string { return e.field }
+
+// Reason function returns reason value.
+func (e CreateChartVersionRequestValidationError) Reason() string { return e.reason }
+
+// Cause function returns cause value.
+func (e CreateChartVersionRequestValidationError) Cause() error { return e.cause }
+
+// Key function returns key value.
+func (e CreateChartVersionRequestValidationError) Key() bool { return e.key }
+
+// ErrorName returns error name.
+func (e CreateChartVersionRequestValidationError) ErrorName() string {
+	return "CreateChartVersionRequestValidationError"
+}
+
+// Error satisfies the builtin error interface
+func (e CreateChartVersionRequestValidationError) Error() string {
+	cause := ""
+	if e.cause != nil {
+		cause = fmt.Sprintf(" | caused by: %v", e.cause)
+	}
+
+	key := ""
+	if e.key {
+		key = "key for "
+	}
+
+	return fmt.Sprintf(
+		"invalid %sCreateChartVersionRequest.%s: %s%s",
+		key,
+		e.field,
+		e.reason,
+		cause)
+}
+
+var _ error = CreateChartVersionRequestValidationError{}
+
+var _ interface {
+	Field() string
+	Reason() string
+	Key() bool
+	Cause() error
+	ErrorName() string
+} = CreateChartVersionRequestValidationError{}
+
+// Validate checks the field values on CreateChartVersionResponse with the
+// rules defined in the proto definition for this message. If any rules are
+// violated, an error is returned.
+func (m *CreateChartVersionResponse) Validate() error {
+	if m == nil {
+		return nil
+	}
+
+	if v, ok := interface{}(m.GetResult()).(interface{ Validate() error }); ok {
+		if err := v.Validate(); err != nil {
+			return CreateChartVersionResponseValidationError{
+				field:  "Result",
+				reason: "embedded message failed validation",
+				cause:  err,
+			}
+		}
+	}
+
+	return nil
+}
+
+// CreateChartVersionResponseValidationError is the validation error returned
+// by CreateChartVersionResponse.Validate if the designated constraints aren't met.
+type CreateChartVersionResponseValidationError struct {
+	field  string
+	reason string
+	cause  error
+	key    bool
+}
+
+// Field function returns field value.
+func (e CreateChartVersionResponseValidationError) Field() string { return e.field }
+
+// Reason function returns reason value.
+func (e CreateChartVersionResponseValidationError) Reason() string { return e.reason }
+
+// Cause function returns cause value.
+func (e CreateChartVersionResponseValidationError) Cause() error { return e.cause }
+
+// Key function returns key value.
+func (e CreateChartVersionResponseValidationError) Key() bool { return e.key }
+
+// ErrorName returns error name.
+func (e CreateChartVersionResponseValidationError) ErrorName() string {
+	return "CreateChartVersionResponseValidationError"
+}
+
+// Error satisfies the builtin error interface
+func (e CreateChartVersionResponseValidationError) Error() string {
+	cause := ""
+	if e.cause != nil {
+		cause = fmt.Sprintf(" | caused by: %v", e.cause)
+	}
+
+	key := ""
+	if e.key {
+		key = "key for "
+	}
+
+	return fmt.Sprintf(
+		"invalid %sCreateChartVersionResponse.%s: %s%s",
+		key,
+		e.field,
+		e.reason,
+		cause)
+}
+
+var _ error = CreateChartVersionResponseValidationError{}
+
+var _ interface {
+	Field() string
+	Reason() string
+	Key() bool
+	Cause() error
+	ErrorName() string
+} = CreateChartVersionResponseValidationError{}
+
+// Validate checks the field values on ReadChartVersionRequest with the rules
+// defined in the proto definition for this message. If any rules are
+// violated, an error is returned.
+func (m *ReadChartVersionRequest) Validate() error {
+	if m == nil {
+		return nil
+	}
+
+	if v, ok := interface{}(m.GetId()).(interface{ Validate() error }); ok {
+		if err := v.Validate(); err != nil {
+			return ReadChartVersionRequestValidationError{
+				field:  "Id",
+				reason: "embedded message failed validation",
+				cause:  err,
+			}
+		}
+	}
+
+	if v, ok := interface{}(m.GetFields()).(interface{ Validate() error }); ok {
+		if err := v.Validate(); err != nil {
+			return ReadChartVersionRequestValidationError{
+				field:  "Fields",
+				reason: "embedded message failed validation",
+				cause:  err,
+			}
+		}
+	}
+
+	return nil
+}
+
+// ReadChartVersionRequestValidationError is the validation error returned by
+// ReadChartVersionRequest.Validate if the designated constraints aren't met.
+type ReadChartVersionRequestValidationError struct {
+	field  string
+	reason string
+	cause  error
+	key    bool
+}
+
+// Field function returns field value.
+func (e ReadChartVersionRequestValidationError) Field() string { return e.field }
+
+// Reason function returns reason value.
+func (e ReadChartVersionRequestValidationError) Reason() string { return e.reason }
+
+// Cause function returns cause value.
+func (e ReadChartVersionRequestValidationError) Cause() error { return e.cause }
+
+// Key function returns key value.
+func (e ReadChartVersionRequestValidationError) Key() bool { return e.key }
+
+// ErrorName returns error name.
+func (e ReadChartVersionRequestValidationError) ErrorName() string {
+	return "ReadChartVersionRequestValidationError"
+}
+
+// Error satisfies the builtin error interface
+func (e ReadChartVersionRequestValidationError) Error() string {
+	cause := ""
+	if e.cause != nil {
+		cause = fmt.Sprintf(" | caused by: %v", e.cause)
+	}
+
+	key := ""
+	if e.key {
+		key = "key for "
+	}
+
+	return fmt.Sprintf(
+		"invalid %sReadChartVersionRequest.%s: %s%s",
+		key,
+		e.field,
+		e.reason,
+		cause)
+}
+
+var _ error = ReadChartVersionRequestValidationError{}
+
+var _ interface {
+	Field() string
+	Reason() string
+	Key() bool
+	Cause() error
+	ErrorName() string
+} = ReadChartVersionRequestValidationError{}
+
+// Validate checks the field values on ReadChartVersionResponse with the rules
+// defined in the proto definition for this message. If any rules are
+// violated, an error is returned.
+func (m *ReadChartVersionResponse) Validate() error {
+	if m == nil {
+		return nil
+	}
+
+	if v, ok := interface{}(m.GetResult()).(interface{ Validate() error }); ok {
+		if err := v.Validate(); err != nil {
+			return ReadChartVersionResponseValidationError{
+				field:  "Result",
+				reason: "embedded message failed validation",
+				cause:  err,
+			}
+		}
+	}
+
+	return nil
+}
+
+// ReadChartVersionResponseValidationError is the validation error returned by
+// ReadChartVersionResponse.Validate if the designated constraints aren't met.
+type ReadChartVersionResponseValidationError struct {
+	field  string
+	reason string
+	cause  error
+	key    bool
+}
+
+// Field function returns field value.
+func (e ReadChartVersionResponseValidationError) Field() string { return e.field }
+
+// Reason function returns reason value.
+func (e ReadChartVersionResponseValidationError) Reason() string { return e.reason }
+
+// Cause function returns cause value.
+func (e ReadChartVersionResponseValidationError) Cause() error { return e.cause }
+
+// Key function returns key value.
+func (e ReadChartVersionResponseValidationError) Key() bool { return e.key }
+
+// ErrorName returns error name.
+func (e ReadChartVersionResponseValidationError) ErrorName() string {
+	return "ReadChartVersionResponseValidationError"
+}
+
+// Error satisfies the builtin error interface
+func (e ReadChartVersionResponseValidationError) Error() string {
+	cause := ""
+	if e.cause != nil {
+		cause = fmt.Sprintf(" | caused by: %v", e.cause)
+	}
+
+	key := ""
+	if e.key {
+		key = "key for "
+	}
+
+	return fmt.Sprintf(
+		"invalid %sReadChartVersionResponse.%s: %s%s",
+		key,
+		e.field,
+		e.reason,
+		cause)
+}
+
+var _ error = ReadChartVersionResponseValidationError{}
+
+var _ interface {
+	Field() string
+	Reason() string
+	Key() bool
+	Cause() error
+	ErrorName() string
+} = ReadChartVersionResponseValidationError{}
+
+// Validate checks the field values on UpdateChartVersionRequest with the rules
+// defined in the proto definition for this message. If any rules are
+// violated, an error is returned.
+func (m *UpdateChartVersionRequest) Validate() error {
+	if m == nil {
+		return nil
+	}
+
+	if v, ok := interface{}(m.GetPayload()).(interface{ Validate() error }); ok {
+		if err := v.Validate(); err != nil {
+			return UpdateChartVersionRequestValidationError{
+				field:  "Payload",
+				reason: "embedded message failed validation",
+				cause:  err,
+			}
+		}
+	}
+
+	if v, ok := interface{}(m.GetFields()).(interface{ Validate() error }); ok {
+		if err := v.Validate(); err != nil {
+			return UpdateChartVersionRequestValidationError{
+				field:  "Fields",
+				reason: "embedded message failed validation",
+				cause:  err,
+			}
+		}
+	}
+
+	return nil
+}
+
+// UpdateChartVersionRequestValidationError is the validation error returned by
+// UpdateChartVersionRequest.Validate if the designated constraints aren't met.
+type UpdateChartVersionRequestValidationError struct {
+	field  string
+	reason string
+	cause  error
+	key    bool
+}
+
+// Field function returns field value.
+func (e UpdateChartVersionRequestValidationError) Field() string { return e.field }
+
+// Reason function returns reason value.
+func (e UpdateChartVersionRequestValidationError) Reason() string { return e.reason }
+
+// Cause function returns cause value.
+func (e UpdateChartVersionRequestValidationError) Cause() error { return e.cause }
+
+// Key function returns key value.
+func (e UpdateChartVersionRequestValidationError) Key() bool { return e.key }
+
+// ErrorName returns error name.
+func (e UpdateChartVersionRequestValidationError) ErrorName() string {
+	return "UpdateChartVersionRequestValidationError"
+}
+
+// Error satisfies the builtin error interface
+func (e UpdateChartVersionRequestValidationError) Error() string {
+	cause := ""
+	if e.cause != nil {
+		cause = fmt.Sprintf(" | caused by: %v", e.cause)
+	}
+
+	key := ""
+	if e.key {
+		key = "key for "
+	}
+
+	return fmt.Sprintf(
+		"invalid %sUpdateChartVersionRequest.%s: %s%s",
+		key,
+		e.field,
+		e.reason,
+		cause)
+}
+
+var _ error = UpdateChartVersionRequestValidationError{}
+
+var _ interface {
+	Field() string
+	Reason() string
+	Key() bool
+	Cause() error
+	ErrorName() string
+} = UpdateChartVersionRequestValidationError{}
+
+// Validate checks the field values on UpdateChartVersionResponse with the
+// rules defined in the proto definition for this message. If any rules are
+// violated, an error is returned.
+func (m *UpdateChartVersionResponse) Validate() error {
+	if m == nil {
+		return nil
+	}
+
+	if v, ok := interface{}(m.GetResult()).(interface{ Validate() error }); ok {
+		if err := v.Validate(); err != nil {
+			return UpdateChartVersionResponseValidationError{
+				field:  "Result",
+				reason: "embedded message failed validation",
+				cause:  err,
+			}
+		}
+	}
+
+	return nil
+}
+
+// UpdateChartVersionResponseValidationError is the validation error returned
+// by UpdateChartVersionResponse.Validate if the designated constraints aren't met.
+type UpdateChartVersionResponseValidationError struct {
+	field  string
+	reason string
+	cause  error
+	key    bool
+}
+
+// Field function returns field value.
+func (e UpdateChartVersionResponseValidationError) Field() string { return e.field }
+
+// Reason function returns reason value.
+func (e UpdateChartVersionResponseValidationError) Reason() string { return e.reason }
+
+// Cause function returns cause value.
+func (e UpdateChartVersionResponseValidationError) Cause() error { return e.cause }
+
+// Key function returns key value.
+func (e UpdateChartVersionResponseValidationError) Key() bool { return e.key }
+
+// ErrorName returns error name.
+func (e UpdateChartVersionResponseValidationError) ErrorName() string {
+	return "UpdateChartVersionResponseValidationError"
+}
+
+// Error satisfies the builtin error interface
+func (e UpdateChartVersionResponseValidationError) Error() string {
+	cause := ""
+	if e.cause != nil {
+		cause = fmt.Sprintf(" | caused by: %v", e.cause)
+	}
+
+	key := ""
+	if e.key {
+		key = "key for "
+	}
+
+	return fmt.Sprintf(
+		"invalid %sUpdateChartVersionResponse.%s: %s%s",
+		key,
+		e.field,
+		e.reason,
+		cause)
+}
+
+var _ error = UpdateChartVersionResponseValidationError{}
+
+var _ interface {
+	Field() string
+	Reason() string
+	Key() bool
+	Cause() error
+	ErrorName() string
+} = UpdateChartVersionResponseValidationError{}
+
+// Validate checks the field values on DeleteChartVersionRequest with the rules
+// defined in the proto definition for this message. If any rules are
+// violated, an error is returned.
+func (m *DeleteChartVersionRequest) Validate() error {
+	if m == nil {
+		return nil
+	}
+
+	if v, ok := interface{}(m.GetId()).(interface{ Validate() error }); ok {
+		if err := v.Validate(); err != nil {
+			return DeleteChartVersionRequestValidationError{
+				field:  "Id",
+				reason: "embedded message failed validation",
+				cause:  err,
+			}
+		}
+	}
+
+	return nil
+}
+
+// DeleteChartVersionRequestValidationError is the validation error returned by
+// DeleteChartVersionRequest.Validate if the designated constraints aren't met.
+type DeleteChartVersionRequestValidationError struct {
+	field  string
+	reason string
+	cause  error
+	key    bool
+}
+
+// Field function returns field value.
+func (e DeleteChartVersionRequestValidationError) Field() string { return e.field }
+
+// Reason function returns reason value.
+func (e DeleteChartVersionRequestValidationError) Reason() string { return e.reason }
+
+// Cause function returns cause value.
+func (e DeleteChartVersionRequestValidationError) Cause() error { return e.cause }
+
+// Key function returns key value.
+func (e DeleteChartVersionRequestValidationError) Key() bool { return e.key }
+
+// ErrorName returns error name.
+func (e DeleteChartVersionRequestValidationError) ErrorName() string {
+	return "DeleteChartVersionRequestValidationError"
+}
+
+// Error satisfies the builtin error interface
+func (e DeleteChartVersionRequestValidationError) Error() string {
+	cause := ""
+	if e.cause != nil {
+		cause = fmt.Sprintf(" | caused by: %v", e.cause)
+	}
+
+	key := ""
+	if e.key {
+		key = "key for "
+	}
+
+	return fmt.Sprintf(
+		"invalid %sDeleteChartVersionRequest.%s: %s%s",
+		key,
+		e.field,
+		e.reason,
+		cause)
+}
+
+var _ error = DeleteChartVersionRequestValidationError{}
+
+var _ interface {
+	Field() string
+	Reason() string
+	Key() bool
+	Cause() error
+	ErrorName() string
+} = DeleteChartVersionRequestValidationError{}
+
+// Validate checks the field values on DeleteChartVersionResponse with the
+// rules defined in the proto definition for this message. If any rules are
+// violated, an error is returned.
+func (m *DeleteChartVersionResponse) Validate() error {
+	if m == nil {
+		return nil
+	}
+
+	return nil
+}
+
+// DeleteChartVersionResponseValidationError is the validation error returned
+// by DeleteChartVersionResponse.Validate if the designated constraints aren't met.
+type DeleteChartVersionResponseValidationError struct {
+	field  string
+	reason string
+	cause  error
+	key    bool
+}
+
+// Field function returns field value.
+func (e DeleteChartVersionResponseValidationError) Field() string { return e.field }
+
+// Reason function returns reason value.
+func (e DeleteChartVersionResponseValidationError) Reason() string { return e.reason }
+
+// Cause function returns cause value.
+func (e DeleteChartVersionResponseValidationError) Cause() error { return e.cause }
+
+// Key function returns key value.
+func (e DeleteChartVersionResponseValidationError) Key() bool { return e.key }
+
+// ErrorName returns error name.
+func (e DeleteChartVersionResponseValidationError) ErrorName() string {
+	return "DeleteChartVersionResponseValidationError"
+}
+
+// Error satisfies the builtin error interface
+func (e DeleteChartVersionResponseValidationError) Error() string {
+	cause := ""
+	if e.cause != nil {
+		cause = fmt.Sprintf(" | caused by: %v", e.cause)
+	}
+
+	key := ""
+	if e.key {
+		key = "key for "
+	}
+
+	return fmt.Sprintf(
+		"invalid %sDeleteChartVersionResponse.%s: %s%s",
+		key,
+		e.field,
+		e.reason,
+		cause)
+}
+
+var _ error = DeleteChartVersionResponseValidationError{}
+
+var _ interface {
+	Field() string
+	Reason() string
+	Key() bool
+	Cause() error
+	ErrorName() string
+} = DeleteChartVersionResponseValidationError{}
+
+// Validate checks the field values on ListChartVersionRequest with the rules
+// defined in the proto definition for this message. If any rules are
+// violated, an error is returned.
+func (m *ListChartVersionRequest) Validate() error {
+	if m == nil {
+		return nil
+	}
+
+	if v, ok := interface{}(m.GetFilter()).(interface{ Validate() error }); ok {
+		if err := v.Validate(); err != nil {
+			return ListChartVersionRequestValidationError{
+				field:  "Filter",
+				reason: "embedded message failed validation",
+				cause:  err,
+			}
+		}
+	}
+
+	if v, ok := interface{}(m.GetOrderBy()).(interface{ Validate() error }); ok {
+		if err := v.Validate(); err != nil {
+			return ListChartVersionRequestValidationError{
+				field:  "OrderBy",
+				reason: "embedded message failed validation",
+				cause:  err,
+			}
+		}
+	}
+
+	if v, ok := interface{}(m.GetFields()).(interface{ Validate() error }); ok {
+		if err := v.Validate(); err != nil {
+			return ListChartVersionRequestValidationError{
+				field:  "Fields",
+				reason: "embedded message failed validation",
+				cause:  err,
+			}
+		}
+	}
+
+	if v, ok := interface{}(m.GetPaging()).(interface{ Validate() error }); ok {
+		if err := v.Validate(); err != nil {
+			return ListChartVersionRequestValidationError{
+				field:  "Paging",
+				reason: "embedded message failed validation",
+				cause:  err,
+			}
+		}
+	}
+
+	return nil
+}
+
+// ListChartVersionRequestValidationError is the validation error returned by
+// ListChartVersionRequest.Validate if the designated constraints aren't met.
+type ListChartVersionRequestValidationError struct {
+	field  string
+	reason string
+	cause  error
+	key    bool
+}
+
+// Field function returns field value.
+func (e ListChartVersionRequestValidationError) Field() string { return e.field }
+
+// Reason function returns reason value.
+func (e ListChartVersionRequestValidationError) Reason() string { return e.reason }
+
+// Cause function returns cause value.
+func (e ListChartVersionRequestValidationError) Cause() error { return e.cause }
+
+// Key function returns key value.
+func (e ListChartVersionRequestValidationError) Key() bool { return e.key }
+
+// ErrorName returns error name.
+func (e ListChartVersionRequestValidationError) ErrorName() string {
+	return "ListChartVersionRequestValidationError"
+}
+
+// Error satisfies the builtin error interface
+func (e ListChartVersionRequestValidationError) Error() string {
+	cause := ""
+	if e.cause != nil {
+		cause = fmt.Sprintf(" | caused by: %v", e.cause)
+	}
+
+	key := ""
+	if e.key {
+		key = "key for "
+	}
+
+	return fmt.Sprintf(
+		"invalid %sListChartVersionRequest.%s: %s%s",
+		key,
+		e.field,
+		e.reason,
+		cause)
+}
+
+var _ error = ListChartVersionRequestValidationError{}
+
+var _ interface {
+	Field() string
+	Reason() string
+	Key() bool
+	Cause() error
+	ErrorName() string
+} = ListChartVersionRequestValidationError{}
+
+// Validate checks the field values on ListChartVersionsResponse with the rules
+// defined in the proto definition for this message. If any rules are
+// violated, an error is returned.
+func (m *ListChartVersionsResponse) Validate() error {
+	if m == nil {
+		return nil
+	}
+
+	for idx, item := range m.GetResults() {
+		_, _ = idx, item
+
+		if v, ok := interface{}(item).(interface{ Validate() error }); ok {
+			if err := v.Validate(); err != nil {
+				return ListChartVersionsResponseValidationError{
+					field:  fmt.Sprintf("Results[%v]", idx),
+					reason: "embedded message failed validation",
+					cause:  err,
+				}
+			}
+		}
+
+	}
+
+	if v, ok := interface{}(m.GetPage()).(interface{ Validate() error }); ok {
+		if err := v.Validate(); err != nil {
+			return ListChartVersionsResponseValidationError{
+				field:  "Page",
+				reason: "embedded message failed validation",
+				cause:  err,
+			}
+		}
+	}
+
+	return nil
+}
+
+// ListChartVersionsResponseValidationError is the validation error returned by
+// ListChartVersionsResponse.Validate if the designated constraints aren't met.
+type ListChartVersionsResponseValidationError struct {
+	field  string
+	reason string
+	cause  error
+	key    bool
+}
+
+// Field function returns field value.
+func (e ListChartVersionsResponseValidationError) Field() string { return e.field }
+
+// Reason function returns reason value.
+func (e ListChartVersionsResponseValidationError) Reason() string { return e.reason }
+
+// Cause function returns cause value.
+func (e ListChartVersionsResponseValidationError) Cause() error { return e.cause }
+
+// Key function returns key value.
+func (e ListChartVersionsResponseValidationError) Key() bool { return e.key }
+
+// ErrorName returns error name.
+func (e ListChartVersionsResponseValidationError) ErrorName() string {
+	return "ListChartVersionsResponseValidationError"
+}
+
+// Error satisfies the builtin error interface
+func (e ListChartVersionsResponseValidationError) Error() string {
+	cause := ""
+	if e.cause != nil {
+		cause = fmt.Sprintf(" | caused by: %v", e.cause)
+	}
+
+	key := ""
+	if e.key {
+		key = "key for "
+	}
+
+	return fmt.Sprintf(
+		"invalid %sListChartVersionsResponse.%s: %s%s",
+		key,
+		e.field,
+		e.reason,
+		cause)
+}
+
+var _ error = ListChartVersionsResponseValidationError{}
+
+var _ interface {
+	Field() string
+	Reason() string
+	Key() bool
+	Cause() error
+	ErrorName() string
+} = ListChartVersionsResponseValidationError{}
 
 // Validate checks the field values on AppConfig with the rules defined in the
 // proto definition for this message. If any rules are violated, an error is returned.
@@ -4776,6 +5704,21 @@ func (m *Application) Validate() error {
 
 	}
 
+	for idx, item := range m.GetApplicationInstances() {
+		_, _ = idx, item
+
+		if v, ok := interface{}(item).(interface{ Validate() error }); ok {
+			if err := v.Validate(); err != nil {
+				return ApplicationValidationError{
+					field:  fmt.Sprintf("ApplicationInstances[%v]", idx),
+					reason: "embedded message failed validation",
+					cause:  err,
+				}
+			}
+		}
+
+	}
+
 	return nil
 }
 
@@ -5679,14 +6622,40 @@ func (m *AppVersion) Validate() error {
 
 	// no validation rules for Description
 
-	// no validation rules for Repo
+	if v, ok := interface{}(m.GetChartVersion()).(interface{ Validate() error }); ok {
+		if err := v.Validate(); err != nil {
+			return AppVersionValidationError{
+				field:  "ChartVersion",
+				reason: "embedded message failed validation",
+				cause:  err,
+			}
+		}
+	}
 
-	// no validation rules for Version
+	if v, ok := interface{}(m.GetChartVersionId()).(interface{ Validate() error }); ok {
+		if err := v.Validate(); err != nil {
+			return AppVersionValidationError{
+				field:  "ChartVersionId",
+				reason: "embedded message failed validation",
+				cause:  err,
+			}
+		}
+	}
 
 	if v, ok := interface{}(m.GetApplicationId()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
 			return AppVersionValidationError{
 				field:  "ApplicationId",
+				reason: "embedded message failed validation",
+				cause:  err,
+			}
+		}
+	}
+
+	if v, ok := interface{}(m.GetLifecycleId()).(interface{ Validate() error }); ok {
+		if err := v.Validate(); err != nil {
+			return AppVersionValidationError{
+				field:  "LifecycleId",
 				reason: "embedded message failed validation",
 				cause:  err,
 			}

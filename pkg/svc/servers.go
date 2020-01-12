@@ -116,3 +116,11 @@ type appConfigsServer struct {
 func NewAppConfigsServer() (pb.AppConfigsServer, error) {
 	return &appConfigsServer{&pb.AppConfigsDefaultServer{}}, nil
 }
+
+type chartVersionsServer struct {
+	*pb.ChartVersionsDefaultServer
+}
+// NewChartVersionsServer returns an instance of the default ChartVersion server interface
+func NewChartVersionsServer() (pb.ChartVersionsServer, error) {
+	return &chartVersionsServer{&pb.ChartVersionsDefaultServer{}}, nil
+}

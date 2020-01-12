@@ -351,7 +351,7 @@ message Lifecycle {
   repeated Lifecycle life_cycles = 6;
 
   // Reference to parent Lifecycle
-  atlas.rpc.Identifier lifecycle_id = 6 [(gorm.field) = {reference_of: "Lifecycle", tag: {type: "integer"}}];
+  atlas.rpc.Identifier lifecycle_id = 7 [(gorm.field) = {reference_of: "Lifecycle", tag: {type: "integer"}}];
 }
 
 message CreateLifecycleRequest {
@@ -449,8 +449,130 @@ service Lifecycles {
 }
 
 
+// ------------------------------------------------------
+// ChartVersion represents a Chart Version for an Application
+// ------------------------------------------------------
+message ChartVersion {
+  option (gorm.opts) = {
+      ormable: true,
+      multi_account: true
+  };
+
+  // The ChartVersion identifier.
+  atlas.rpc.Identifier id = 1 [(gorm.field).tag = {type: "serial"  primary_key: true}];
+
+  // The name of the ChartVersion
+  string name = 2;
+
+  // The description of the ChartVersion
+  string description = 3;
+
+  // The repo of the ChartVersion
+  string repo = 4;
+
+  // The version of the ChartVersion
+  string version = 5;
+
+  // Reference to Application
+  atlas.rpc.Identifier application_id = 6 [(gorm.field) = {reference_of: "Application", tag: {type: "integer"}}];
+}
+
+message CreateChartVersionRequest {
+  ChartVersion payload = 1;
+}
+
+message CreateChartVersionResponse {
+  ChartVersion result = 1;
+}
+
+message ReadChartVersionRequest {
+  atlas.rpc.Identifier id = 1;
+  infoblox.api.FieldSelection fields = 2;
+}
+
+message ReadChartVersionResponse {
+  ChartVersion result = 1;
+}
+
+message UpdateChartVersionRequest {
+  ChartVersion payload = 1;
+  google.protobuf.FieldMask fields = 2;
+}
+
+message UpdateChartVersionResponse {
+  ChartVersion result = 1;
+}
+
+message DeleteChartVersionRequest {
+  atlas.rpc.Identifier id = 1;
+}
+
+message DeleteChartVersionResponse {}
+
+message ListChartVersionRequest {
+  infoblox.api.Filtering filter = 1;
+  infoblox.api.Sorting order_by = 2;
+  infoblox.api.FieldSelection fields = 3;
+  infoblox.api.Pagination paging = 4;
+}
+
+message ListChartVersionsResponse {
+  repeated ChartVersion results = 1;
+  infoblox.api.PageInfo page = 2;
+}
+
+service ChartVersions {
+  option (gorm.server) = {
+      autogen: true,
+      txn_middleware: true,
+    };
+
+  // Use this method to create a ChartVersion information.
+  rpc Create (CreateChartVersionRequest) returns (CreateChartVersionResponse) {
+    option (google.api.http) = {
+            post: "/chart_versions"
+            body: "payload"
+        };
+  }
+
+  // Use this method to read a ChartVersion information by identifier.
+  rpc Read (ReadChartVersionRequest) returns (ReadChartVersionResponse) {
+    option (google.api.http) = {
+            get: "/chart_versions/{id.resource_id}"
+        };
+  }
+
+  // Use this method to update a ChartVersion information.
+  rpc Update (UpdateChartVersionRequest) returns (UpdateChartVersionResponse) {
+    option (atlas_validate.method).allow_unknown_fields = false;
+    option (google.api.http) = {
+            put: "/chart_versions/{payload.id.resource_id}"
+            body: "payload"
+            additional_bindings: {
+                patch: "/chart_versions/{payload.id.resource_id}"
+                body: "payload"
+            }
+    };
+  }
+
+  // Use this method to delete a particular ChartVersion.
+  rpc Delete (DeleteChartVersionRequest) returns (DeleteChartVersionResponse) {
+    option (google.api.http) = {
+            delete: "/chart_versions/{id.resource_id}"
+        };
+    option (gorm.method).object_type = "ChartVersion";
+  }
+
+  // Use this method to retrieve all the ChartVersions.
+  rpc List (ListChartVersionRequest) returns (ListChartVersionsResponse) {
+    option (google.api.http) = {
+            get: "/chart_versions"
+        };
+  }
+}
+
 // ------------------------------------------------------------
-// dro represents a custom configuration for Application
+// AppConfiug represents a custom configuration for Application
 // ------------------------------------------------------------
 message AppConfig {
   option (gorm.opts) = {
@@ -832,7 +954,7 @@ service Applications {
 message AppVersion {
   option (gorm.opts) = {
       ormable: true,
-      multi_account: true
+      multi_account: true,
   };
 
   // The AppVersion identifier.
@@ -844,14 +966,18 @@ message AppVersion {
   // The description of the AppVersion
   string description = 3;
 
-  // Chart Repo
-  string repo = 4;
+  // ChartVersion referenced
+  ChartVersion chart_version = 4 [(gorm.field).belongs_to = {}];
 
-  // Chart Version
-  string version = 5;
+  // ChartVersion referenced by this AppVersion
+  atlas.rpc.Identifier chart_version_id = 5 [(gorm.field) = {reference_of: "ChartVersion", tag: {type: "integer"}}];
 
   // Application referenced by this AppVersion
   atlas.rpc.Identifier application_id = 6 [(gorm.field) = {reference_of: "Application", tag: {type: "integer"}}];
+
+  // Lifecycle referenced by this AppVersion
+  atlas.rpc.Identifier lifecycle_id = 7 [(gorm.field) = {reference_of: "Lifecycle", tag: {type: "integer"}}];
+
 }
 
 message CreateAppVersionRequest {
