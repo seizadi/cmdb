@@ -1993,6 +1993,36 @@ func (m *Lifecycle) Validate() error {
 
 	}
 
+	for idx, item := range m.GetAppConfig() {
+		_, _ = idx, item
+
+		if v, ok := interface{}(item).(interface{ Validate() error }); ok {
+			if err := v.Validate(); err != nil {
+				return LifecycleValidationError{
+					field:  fmt.Sprintf("AppConfig[%v]", idx),
+					reason: "embedded message failed validation",
+					cause:  err,
+				}
+			}
+		}
+
+	}
+
+	for idx, item := range m.GetAppVersion() {
+		_, _ = idx, item
+
+		if v, ok := interface{}(item).(interface{ Validate() error }); ok {
+			if err := v.Validate(); err != nil {
+				return LifecycleValidationError{
+					field:  fmt.Sprintf("AppVersion[%v]", idx),
+					reason: "embedded message failed validation",
+					cause:  err,
+				}
+			}
+		}
+
+	}
+
 	if v, ok := interface{}(m.GetLifecycleId()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
 			return LifecycleValidationError{

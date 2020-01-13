@@ -350,8 +350,14 @@ message Lifecycle {
   // Lifecycles chained to this stage
   repeated Lifecycle life_cycles = 6;
 
+  // AppConfig
+  repeated AppConfig app_config = 7;
+
+  // AppVersion
+  repeated AppVersion app_version = 8;
+
   // Reference to parent Lifecycle
-  atlas.rpc.Identifier lifecycle_id = 7 [(gorm.field) = {reference_of: "Lifecycle", tag: {type: "integer"}}];
+  atlas.rpc.Identifier lifecycle_id = 9 [(gorm.field) = {reference_of: "Lifecycle", tag: {type: "integer"}}];
 }
 
 message CreateLifecycleRequest {
@@ -572,7 +578,7 @@ service ChartVersions {
 }
 
 // ------------------------------------------------------------
-// AppConfiug represents a custom configuration for Application
+// AppConfig represents a custom configuration for Application
 // ------------------------------------------------------------
 message AppConfig {
   option (gorm.opts) = {
@@ -595,8 +601,8 @@ message AppConfig {
   // Reference to Application
   atlas.rpc.Identifier application_id = 5 [(gorm.field) = {reference_of: "Application", tag: {type: "integer"}}];
 
-// Reference to Lifecycle
-atlas.rpc.Identifier lifecycle_id = 6 [(gorm.field) = {reference_of: "Lifecycle", tag: {type: "integer"}}];
+  // Reference to Lifecycle
+  atlas.rpc.Identifier lifecycle_id = 6 [(gorm.field) = {reference_of: "Lifecycle", tag: {type: "integer"}}];
 
 }
 

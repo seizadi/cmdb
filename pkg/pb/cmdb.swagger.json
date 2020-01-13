@@ -3265,6 +3265,20 @@
     },
     "cmdbLifecycle": {
       "properties": {
+        "app_config": {
+          "type": "array",
+          "title": "AppConfig",
+          "items": {
+            "$ref": "#/definitions/cmdbAppConfig"
+          }
+        },
+        "app_version": {
+          "type": "array",
+          "title": "AppVersion",
+          "items": {
+            "$ref": "#/definitions/cmdbAppVersion"
+          }
+        },
         "config_yaml": {
           "type": "string",
           "title": "Custom configuration"

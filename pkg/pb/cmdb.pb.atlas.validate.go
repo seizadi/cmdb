@@ -2350,6 +2350,36 @@ func validate_Object_Lifecycle(ctx context.Context, r json.RawMessage, path stri
 					return err
 				}
 			}
+		case "app_config":
+			if v[k] == nil {
+				continue
+			}
+			var vArr []json.RawMessage
+			vArrPath := runtime1.JoinPath(path, k)
+			if err = json.Unmarshal(v[k], &vArr); err != nil {
+				return fmt.Errorf("invalid value for %q: expected array.", vArrPath)
+			}
+			for i, vv := range vArr {
+				vvPath := fmt.Sprintf("%s.[%d]", vArrPath, i)
+				if err = validate_Object_AppConfig(ctx, vv, vvPath); err != nil {
+					return err
+				}
+			}
+		case "app_version":
+			if v[k] == nil {
+				continue
+			}
+			var vArr []json.RawMessage
+			vArrPath := runtime1.JoinPath(path, k)
+			if err = json.Unmarshal(v[k], &vArr); err != nil {
+				return fmt.Errorf("invalid value for %q: expected array.", vArrPath)
+			}
+			for i, vv := range vArr {
+				vvPath := fmt.Sprintf("%s.[%d]", vArrPath, i)
+				if err = validate_Object_AppVersion(ctx, vv, vvPath); err != nil {
+					return err
+				}
+			}
 		case "lifecycle_id":
 			if v[k] == nil {
 				continue

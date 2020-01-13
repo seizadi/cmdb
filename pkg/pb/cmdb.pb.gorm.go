@@ -414,6 +414,8 @@ type RegionWithAfterToPB interface {
 
 type LifecycleORM struct {
 	AccountID    string
+	AppConfig    []*AppConfigORM  `gorm:"foreignkey:LifecycleId;association_foreignkey:Id"`
+	AppVersion   []*AppVersionORM `gorm:"foreignkey:LifecycleId;association_foreignkey:Id"`
 	ConfigYaml   string
 	Description  string
 	Environments []*EnvironmentORM `gorm:"foreignkey:LifecycleId;association_foreignkey:Id"`
@@ -466,6 +468,28 @@ func (m *Lifecycle) ToORM(ctx context.Context) (LifecycleORM, error) {
 			}
 		} else {
 			to.LifeCycles = append(to.LifeCycles, nil)
+		}
+	}
+	for _, v := range m.AppConfig {
+		if v != nil {
+			if tempAppConfig, cErr := v.ToORM(ctx); cErr == nil {
+				to.AppConfig = append(to.AppConfig, &tempAppConfig)
+			} else {
+				return to, cErr
+			}
+		} else {
+			to.AppConfig = append(to.AppConfig, nil)
+		}
+	}
+	for _, v := range m.AppVersion {
+		if v != nil {
+			if tempAppVersion, cErr := v.ToORM(ctx); cErr == nil {
+				to.AppVersion = append(to.AppVersion, &tempAppVersion)
+			} else {
+				return to, cErr
+			}
+		} else {
+			to.AppVersion = append(to.AppVersion, nil)
 		}
 	}
 	if m.LifecycleId != nil {
@@ -524,6 +548,28 @@ func (m *LifecycleORM) ToPB(ctx context.Context) (Lifecycle, error) {
 			}
 		} else {
 			to.LifeCycles = append(to.LifeCycles, nil)
+		}
+	}
+	for _, v := range m.AppConfig {
+		if v != nil {
+			if tempAppConfig, cErr := v.ToPB(ctx); cErr == nil {
+				to.AppConfig = append(to.AppConfig, &tempAppConfig)
+			} else {
+				return to, cErr
+			}
+		} else {
+			to.AppConfig = append(to.AppConfig, nil)
+		}
+	}
+	for _, v := range m.AppVersion {
+		if v != nil {
+			if tempAppVersion, cErr := v.ToPB(ctx); cErr == nil {
+				to.AppVersion = append(to.AppVersion, &tempAppVersion)
+			} else {
+				return to, cErr
+			}
+		} else {
+			to.AppVersion = append(to.AppVersion, nil)
 		}
 	}
 	if m.LifecycleId != nil {
@@ -2836,6 +2882,24 @@ func DefaultStrictUpdateLifecycle(ctx context.Context, in *Lifecycle, db *gorm1.
 			return nil, err
 		}
 	}
+	filterAppConfig := AppConfigORM{}
+	if ormObj.Id == 0 {
+		return nil, errors1.EmptyIdError
+	}
+	filterAppConfig.LifecycleId = new(int64)
+	*filterAppConfig.LifecycleId = ormObj.Id
+	if err = db.Where(filterAppConfig).Delete(AppConfigORM{}).Error; err != nil {
+		return nil, err
+	}
+	filterAppVersion := AppVersionORM{}
+	if ormObj.Id == 0 {
+		return nil, errors1.EmptyIdError
+	}
+	filterAppVersion.LifecycleId = new(int64)
+	*filterAppVersion.LifecycleId = ormObj.Id
+	if err = db.Where(filterAppVersion).Delete(AppVersionORM{}).Error; err != nil {
+		return nil, err
+	}
 	filterEnvironments := EnvironmentORM{}
 	if ormObj.Id == 0 {
 		return nil, errors1.EmptyIdError
@@ -2989,6 +3053,14 @@ func DefaultApplyFieldMaskLifecycle(ctx context.Context, patchee *Lifecycle, pat
 		}
 		if f == prefix+"LifeCycles" {
 			patchee.LifeCycles = patcher.LifeCycles
+			continue
+		}
+		if f == prefix+"AppConfig" {
+			patchee.AppConfig = patcher.AppConfig
+			continue
+		}
+		if f == prefix+"AppVersion" {
+			patchee.AppVersion = patcher.AppVersion
 			continue
 		}
 		if f == prefix+"LifecycleId" {
