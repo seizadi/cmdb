@@ -2,11 +2,13 @@ package model
 
 import "time"
 
-type Region struct {
+type ChartVersion struct {
 	ID          uint      `gorm:"primary_key" json:"id"`
 	CreatedAt   time.Time `json:"created_at"`
 	UpdatedAt   time.Time `json:"updated_at"`
 	Name        string
 	Description string
-	Networks    []Network
+	Repo        string
+	Version     string
+	Application Application
 }

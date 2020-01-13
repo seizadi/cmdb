@@ -7,8 +7,7 @@ type AppVersion struct {
 	CreatedAt   time.Time `json:"created_at"`
 	UpdatedAt   time.Time `json:"updated_at"`
 	Name        string
-	Application Application
 	Description string
-	Repo        string
-	Version     string
+	ChartVersion ChartVersion
+	Application Application
 }

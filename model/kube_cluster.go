@@ -8,4 +8,5 @@ type KubeCluster struct {
 	UpdatedAt   time.Time `json:"updated_at"`
 	Name        string
 	Description string
+	Network     Network
 }

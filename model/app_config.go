@@ -8,6 +8,6 @@ type AppConfig struct {
 	UpdatedAt   time.Time `json:"updated_at"`
 	Name        string
 	Description string
-	Application Application
 	ConfigYaml  string
+	Application Application
 }
