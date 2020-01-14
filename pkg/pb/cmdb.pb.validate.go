@@ -3876,6 +3876,16 @@ func (m *AppConfig) Validate() error {
 		}
 	}
 
+	if v, ok := interface{}(m.GetEnvironmentId()).(interface{ Validate() error }); ok {
+		if err := v.Validate(); err != nil {
+			return AppConfigValidationError{
+				field:  "EnvironmentId",
+				reason: "embedded message failed validation",
+				cause:  err,
+			}
+		}
+	}
+
 	return nil
 }
 
@@ -4780,6 +4790,8 @@ func (m *Environment) Validate() error {
 
 	// no validation rules for Description
 
+	// no validation rules for ConfigYaml
+
 	for idx, item := range m.GetApplicationInstances() {
 		_, _ = idx, item
 
@@ -4795,7 +4807,35 @@ func (m *Environment) Validate() error {
 
 	}
 
-	// no validation rules for ConfigYaml
+	for idx, item := range m.GetAppConfig() {
+		_, _ = idx, item
+
+		if v, ok := interface{}(item).(interface{ Validate() error }); ok {
+			if err := v.Validate(); err != nil {
+				return EnvironmentValidationError{
+					field:  fmt.Sprintf("AppConfig[%v]", idx),
+					reason: "embedded message failed validation",
+					cause:  err,
+				}
+			}
+		}
+
+	}
+
+	for idx, item := range m.GetAppVersion() {
+		_, _ = idx, item
+
+		if v, ok := interface{}(item).(interface{ Validate() error }); ok {
+			if err := v.Validate(); err != nil {
+				return EnvironmentValidationError{
+					field:  fmt.Sprintf("AppVersion[%v]", idx),
+					reason: "embedded message failed validation",
+					cause:  err,
+				}
+			}
+		}
+
+	}
 
 	if v, ok := interface{}(m.GetLifecycleId()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
@@ -6686,6 +6726,16 @@ func (m *AppVersion) Validate() error {
 		if err := v.Validate(); err != nil {
 			return AppVersionValidationError{
 				field:  "LifecycleId",
+				reason: "embedded message failed validation",
+				cause:  err,
+			}
+		}
+	}
+
+	if v, ok := interface{}(m.GetEnvironmentId()).(interface{ Validate() error }); ok {
+		if err := v.Validate(); err != nil {
+			return AppVersionValidationError{
+				field:  "EnvironmentId",
 				reason: "embedded message failed validation",
 				cause:  err,
 			}

@@ -8,7 +8,8 @@ CREATE TABLE app_configs (
   description text DEFAULT NULL,
   config_yaml text DEFAULT NULL,
   application_id int REFERENCES applications(id) ON DELETE CASCADE,
-  lifecycle_id int REFERENCES lifecycles(id) ON DELETE CASCADE
+  lifecycle_id int REFERENCES lifecycles(id) ON DELETE CASCADE,
+  environment_id int REFERENCES environments(id) ON DELETE CASCADE
 );
 
 CREATE TRIGGER app_configs_updated_at

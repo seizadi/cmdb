@@ -37,7 +37,7 @@ func CreateServer(logger *logrus.Logger, db *gorm.DB, interceptors []grpc.UnaryS
 		return nil, err
 	}
 	pb.RegisterRegionsServer(grpcServer, region)
-	
+
 	application, err := svc.NewApplicationsServer()
 	if err != nil {
 		return nil, err
@@ -67,25 +67,25 @@ func CreateServer(logger *logrus.Logger, db *gorm.DB, interceptors []grpc.UnaryS
 		return nil, err
 	}
 	pb.RegisterKubeClustersServer(grpcServer, kube_cluster)
-	
+
 	app_version, err := svc.NewAppVersionsServer()
 	if err != nil {
 		return nil, err
 	}
 	pb.RegisterAppVersionsServer(grpcServer, app_version)
-	
+
 	lifecycle, err := svc.NewLifecyclesServer()
 	if err != nil {
 		return nil, err
 	}
 	pb.RegisterLifecyclesServer(grpcServer, lifecycle)
-	
+
 	app_config, err := svc.NewAppConfigsServer()
 	if err != nil {
 		return nil, err
 	}
 	pb.RegisterAppConfigsServer(grpcServer, app_config)
-	
+
 	secret, err := svc.NewSecretsServer()
 	if err != nil {
 		return nil, err
@@ -97,12 +97,12 @@ func CreateServer(logger *logrus.Logger, db *gorm.DB, interceptors []grpc.UnaryS
 		return nil, err
 	}
 	pb.RegisterVaultsServer(grpcServer, vault)
-	
+
 	chart_version, err := svc.NewChartVersionsServer()
 	if err != nil {
 		return nil, err
 	}
 	pb.RegisterChartVersionsServer(grpcServer, chart_version)
-	
+
 	return grpcServer, nil
 }

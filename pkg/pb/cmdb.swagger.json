@@ -2819,7 +2819,7 @@
     },
     "cmdbAppConfig": {
       "type": "object",
-      "title": "------------------------------------------------------------\nAppConfiug represents a custom configuration for Application\n------------------------------------------------------------",
+      "title": "------------------------------------------------------------\nAppConfig represents a custom configuration for Application\n------------------------------------------------------------",
       "properties": {
         "application_id": {
           "description": "The resource identifier.",
@@ -2832,6 +2832,10 @@
         "description": {
           "type": "string",
           "title": "The description of the AppConfig"
+        },
+        "environment_id": {
+          "description": "The resource identifier.",
+          "type": "string"
         },
         "id": {
           "description": "The resource identifier.",
@@ -2867,6 +2871,10 @@
         "description": {
           "type": "string",
           "title": "The description of the AppVersion"
+        },
+        "environment_id": {
+          "description": "The resource identifier.",
+          "type": "string"
         },
         "id": {
           "description": "The resource identifier.",
@@ -3214,6 +3222,20 @@
       "type": "object",
       "title": "-------------------------------------------------------------\nEnvironment owns a set of ApplicationInstances for Deployment\n-------------------------------------------------------------",
       "properties": {
+        "app_config": {
+          "type": "array",
+          "title": "AppConfig",
+          "items": {
+            "$ref": "#/definitions/cmdbAppConfig"
+          }
+        },
+        "app_version": {
+          "type": "array",
+          "title": "AppVersion",
+          "items": {
+            "$ref": "#/definitions/cmdbAppVersion"
+          }
+        },
         "application_instances": {
           "type": "array",
           "title": "ApplicationInstances in this Environment",

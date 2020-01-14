@@ -604,6 +604,8 @@ message AppConfig {
   // Reference to Lifecycle
   atlas.rpc.Identifier lifecycle_id = 6 [(gorm.field) = {reference_of: "Lifecycle", tag: {type: "integer"}}];
 
+  // Reference to Environment
+  atlas.rpc.Identifier environment_id = 7 [(gorm.field) = {reference_of: "Environment", tag: {type: "integer"}}];
 }
 
 message CreateAppConfigRequest {
@@ -718,14 +720,20 @@ message Environment {
   // The description of the Environment
   string description = 3;
 
-  // ApplicationInstances in this Environment
-  repeated ApplicationInstance application_instances = 4;
-
   // Custom config for this Environment
-  string config_yaml = 5;
+  string config_yaml = 4;
+
+  // ApplicationInstances in this Environment
+  repeated ApplicationInstance application_instances = 5;
+
+  // AppConfig
+  repeated AppConfig app_config = 6;
+
+  // AppVersion
+  repeated AppVersion app_version = 7;
 
   // Lifecycle referenced by this Environment
-  atlas.rpc.Identifier lifecycle_id = 6 [(gorm.field) = {reference_of: "Lifecycle", tag: {type: "integer"}}];
+  atlas.rpc.Identifier lifecycle_id = 8 [(gorm.field) = {reference_of: "Lifecycle", tag: {type: "integer"}}];
 }
 
 message CreateEnvironmentRequest {
@@ -984,6 +992,8 @@ message AppVersion {
   // Lifecycle referenced by this AppVersion
   atlas.rpc.Identifier lifecycle_id = 7 [(gorm.field) = {reference_of: "Lifecycle", tag: {type: "integer"}}];
 
+  // Reference to Environment
+  atlas.rpc.Identifier environment_id = 8 [(gorm.field) = {reference_of: "Environment", tag: {type: "integer"}}];
 }
 
 message CreateAppVersionRequest {

@@ -128,10 +128,10 @@ func (m *CmdbClient) CreateRegion(req *pb.CreateRegionRequest) (*pb.CreateRegion
 }
 
 func (m *CmdbClient) CreateLifecycle(req *pb.CreateLifecycleRequest) (*pb.CreateLifecycleResponse, error) {
-	
+
 	// We can now create stubs that wrap conn:
 	stub := pb.NewLifecyclesClient(m.Conn)
-	
+
 	// Now we can use the stub to make RPCs
 	ctx := metadata.NewOutgoingContext(context.Background(),
 		metadata.Pairs("Authorization", "Bearer "+m.ApiKey))
@@ -139,15 +139,15 @@ func (m *CmdbClient) CreateLifecycle(req *pb.CreateLifecycleRequest) (*pb.Create
 	if err != nil {
 		return nil, err
 	}
-	
+
 	return res, nil
 }
 
 func (m *CmdbClient) GetLifecycles() (*pb.ListLifecyclesResponse, error) {
-	
+
 	// We can now create stubs that wrap conn:
 	stub := pb.NewLifecyclesClient(m.Conn)
-	
+
 	// Now we can use the stub to make RPCs
 	ctx := metadata.NewOutgoingContext(context.Background(),
 		metadata.Pairs("Authorization", "Bearer "+m.ApiKey))
@@ -156,7 +156,7 @@ func (m *CmdbClient) GetLifecycles() (*pb.ListLifecyclesResponse, error) {
 	if err != nil {
 		return nil, err
 	}
-	
+
 	return respList, nil
 }
 
@@ -226,10 +226,10 @@ func (m *CmdbClient) CreateApplicationInstance(req *pb.CreateApplicationInstance
 }
 
 func (m *CmdbClient) CreateChartVersion(req *pb.CreateChartVersionRequest) (*pb.CreateChartVersionResponse, error) {
-	
+
 	// We can now create stubs that wrap conn:
 	stub := pb.NewChartVersionsClient(m.Conn)
-	
+
 	// Now we can use the stub to make RPCs
 	ctx := metadata.NewOutgoingContext(context.Background(),
 		metadata.Pairs("Authorization", "Bearer "+m.ApiKey))
@@ -237,7 +237,7 @@ func (m *CmdbClient) CreateChartVersion(req *pb.CreateChartVersionRequest) (*pb.
 	if err != nil {
 		return nil, err
 	}
-	
+
 	return res, nil
 }
 

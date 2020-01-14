@@ -10,8 +10,8 @@ CREATE TABLE app_versions (
   version text DEFAULT NULL,
   chart_version_id int REFERENCES chart_versions(id) ON DELETE CASCADE,
   application_id int REFERENCES applications(id) ON DELETE CASCADE,
-  lifecycle_id int REFERENCES lifecycles(id) ON DELETE CASCADE
-
+  lifecycle_id int REFERENCES lifecycles(id) ON DELETE CASCADE,
+  environment_id int REFERENCES environments(id) ON DELETE CASCADE
 );
 
 CREATE TRIGGER app_versions_updated_at

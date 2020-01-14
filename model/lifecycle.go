@@ -3,8 +3,8 @@ package model
 import "time"
 
 type Lifecycle struct {
-	Lifecycles []Lifecycle
-	ID          uint      `gorm:"primary_key" json:"id"`
+	Lifecycles  []Lifecycle
+	ID          int       `gorm:"primary_key" json:"id"`
 	CreatedAt   time.Time `json:"created_at"`
 	UpdatedAt   time.Time `json:"updated_at"`
 	Name        string

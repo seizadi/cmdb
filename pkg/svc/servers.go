@@ -88,6 +88,7 @@ func NewVaultsServer() (pb.VaultsServer, error) {
 type applicationsServer struct {
 	*pb.ApplicationsDefaultServer
 }
+
 // NewApplicationsServer returns an instance of the default Application server interface
 func NewApplicationsServer() (pb.ApplicationsServer, error) {
 	return &applicationsServer{&pb.ApplicationsDefaultServer{}}, nil
@@ -96,6 +97,7 @@ func NewApplicationsServer() (pb.ApplicationsServer, error) {
 type appVersionsServer struct {
 	*pb.AppVersionsDefaultServer
 }
+
 // NewAppVersionsServer returns an instance of the default AppVersion server interface
 func NewAppVersionsServer() (pb.AppVersionsServer, error) {
 	return &appVersionsServer{&pb.AppVersionsDefaultServer{}}, nil
@@ -104,6 +106,7 @@ func NewAppVersionsServer() (pb.AppVersionsServer, error) {
 type lifecyclesServer struct {
 	*pb.LifecyclesDefaultServer
 }
+
 // NewLifecyclesServer returns an instance of the default Lifecycle server interface
 func NewLifecyclesServer() (pb.LifecyclesServer, error) {
 	return &lifecyclesServer{&pb.LifecyclesDefaultServer{}}, nil
@@ -112,6 +115,7 @@ func NewLifecyclesServer() (pb.LifecyclesServer, error) {
 type appConfigsServer struct {
 	*pb.AppConfigsDefaultServer
 }
+
 // NewAppConfigsServer returns an instance of the default AppConfig server interface
 func NewAppConfigsServer() (pb.AppConfigsServer, error) {
 	return &appConfigsServer{&pb.AppConfigsDefaultServer{}}, nil
@@ -120,6 +124,7 @@ func NewAppConfigsServer() (pb.AppConfigsServer, error) {
 type chartVersionsServer struct {
 	*pb.ChartVersionsDefaultServer
 }
+
 // NewChartVersionsServer returns an instance of the default ChartVersion server interface
 func NewChartVersionsServer() (pb.ChartVersionsServer, error) {
 	return &chartVersionsServer{&pb.ChartVersionsDefaultServer{}}, nil
