@@ -189,6 +189,9 @@ curl -H "Authorization: Bearer $JWT" http://localhost:8080/v1/secrets -d '{"vaul
 curl -H "Authorization: Bearer $JWT" http://localhost:8080/v1/vaults
 curl -H "Authorization: Bearer $JWT" http://localhost:8080/v1/version_tags -d '{"name": "cmdb-app", "description": "cmdb application version tag", "version": "v0.0.4", "repo": "https://github.com/seizadi/cmdb/releases/tag/v0.0.4", "commit": "20ec77f5a8f8e260deb51e8d888a2597762184b6"}'
 
+curl -H "Authorization: Bearer $JWT" http://localhost:8080/v1/lifecycles | jq
+curl -H "Authorization: Bearer $JWT" http://localhost:8080/v1/environments | jq
+
 ```
 Now I can go to the proto file and customize the resources based on
 my data model for the remaining resources:
