@@ -1329,8 +1329,9 @@ type AppVersionWithAfterToPB interface {
 
 type ApplicationInstanceORM struct {
 	AccountID      string
-	ApplicationId  *int64
-	ChartVersionId *int64         `gorm:"type:integer"`
+	ApplicationId  *int64 `gorm:"type:integer"`
+	ChartVersionId *int64 `gorm:"type:integer"`
+	ConfigYaml     string
 	Deployment     *DeploymentORM `gorm:"foreignkey:ApplicationInstanceId;association_foreignkey:Id"`
 	Description    string
 	EnvironmentId  *int64 `gorm:"type:integer"`
@@ -1367,6 +1368,7 @@ func (m *ApplicationInstance) ToORM(ctx context.Context) (ApplicationInstanceORM
 		}
 		to.Deployment = &tempDeployment
 	}
+	to.ConfigYaml = m.ConfigYaml
 	if m.ChartVersionId != nil {
 		if v, err := resource1.DecodeInt64(&ChartVersion{}, m.ChartVersionId); err != nil {
 			return to, err
@@ -1379,6 +1381,13 @@ func (m *ApplicationInstance) ToORM(ctx context.Context) (ApplicationInstanceORM
 			return to, err
 		} else {
 			to.EnvironmentId = &v
+		}
+	}
+	if m.ApplicationId != nil {
+		if v, err := resource1.DecodeInt64(&Application{}, m.ApplicationId); err != nil {
+			return to, err
+		} else {
+			to.ApplicationId = &v
 		}
 	}
 	accountID, err := auth1.GetAccountID(ctx, nil)
@@ -1416,6 +1425,7 @@ func (m *ApplicationInstanceORM) ToPB(ctx context.Context) (ApplicationInstance,
 		}
 		to.Deployment = &tempDeployment
 	}
+	to.ConfigYaml = m.ConfigYaml
 	if m.ChartVersionId != nil {
 		if v, err := resource1.Encode(&ChartVersion{}, *m.ChartVersionId); err != nil {
 			return to, err
@@ -1428,6 +1438,13 @@ func (m *ApplicationInstanceORM) ToPB(ctx context.Context) (ApplicationInstance,
 			return to, err
 		} else {
 			to.EnvironmentId = v
+		}
+	}
+	if m.ApplicationId != nil {
+		if v, err := resource1.Encode(&Application{}, *m.ApplicationId); err != nil {
+			return to, err
+		} else {
+			to.ApplicationId = v
 		}
 	}
 	if posthook, ok := interface{}(m).(ApplicationInstanceWithAfterToPB); ok {
@@ -5501,12 +5518,20 @@ func DefaultApplyFieldMaskApplicationInstance(ctx context.Context, patchee *Appl
 			patchee.Deployment = patcher.Deployment
 			continue
 		}
+		if f == prefix+"ConfigYaml" {
+			patchee.ConfigYaml = patcher.ConfigYaml
+			continue
+		}
 		if f == prefix+"ChartVersionId" {
 			patchee.ChartVersionId = patcher.ChartVersionId
 			continue
 		}
 		if f == prefix+"EnvironmentId" {
 			patchee.EnvironmentId = patcher.EnvironmentId
+			continue
+		}
+		if f == prefix+"ApplicationId" {
+			patchee.ApplicationId = patcher.ApplicationId
 			continue
 		}
 	}

@@ -6,6 +6,7 @@ CREATE TABLE application_instances (
    updated_at timestamptz DEFAULT NULL,
    name text DEFAULT NULL,
    description text DEFAULT NULL,
+   config_yaml text DEFAULT NULL,
    app_version_id int REFERENCES app_versions(id) ON DELETE CASCADE,
    environment_id int REFERENCES environments(id) ON DELETE CASCADE,
    application_id int REFERENCES applications(id) ON DELETE CASCADE

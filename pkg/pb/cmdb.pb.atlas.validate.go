@@ -7203,6 +7203,7 @@ func validate_Object_ApplicationInstance(ctx context.Context, r json.RawMessage,
 			if err = validate_Object_Deployment(ctx, vv, vvPath); err != nil {
 				return err
 			}
+		case "config_yaml":
 		case "chart_version_id":
 			if v[k] == nil {
 				continue
@@ -7219,6 +7220,21 @@ func validate_Object_ApplicationInstance(ctx context.Context, r json.RawMessage,
 				return err
 			}
 		case "environment_id":
+			if v[k] == nil {
+				continue
+			}
+			vv := v[k]
+			vvPath := runtime1.JoinPath(path, k)
+			validator, ok := interface{}(&resource.Identifier{}).(interface {
+				AtlasValidateJSON(context.Context, json.RawMessage, string) error
+			})
+			if !ok {
+				continue
+			}
+			if err = validator.AtlasValidateJSON(ctx, vv, vvPath); err != nil {
+				return err
+			}
+		case "application_id":
 			if v[k] == nil {
 				continue
 			}

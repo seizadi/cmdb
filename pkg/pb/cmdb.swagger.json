@@ -2944,9 +2944,17 @@
       "type": "object",
       "title": "-----------------------------------------------------------------------\nApplicationInstance represents application instance deployed in an Environment\n-----------------------------------------------------------------------",
       "properties": {
+        "application_id": {
+          "description": "The resource identifier.",
+          "type": "string"
+        },
         "chart_version_id": {
           "description": "The resource identifier.",
           "type": "string"
+        },
+        "config_yaml": {
+          "type": "string",
+          "title": "Custom configuration"
         },
         "deployment": {
           "title": "Deployment of this ApplicationInstance",
