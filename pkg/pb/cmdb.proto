@@ -8,6 +8,7 @@ import "google/api/annotations.proto";
 import "github.com/lyft/protoc-gen-validate/validate/validate.proto";
 import "protoc-gen-swagger/options/annotations.proto";
 import "github.com/infobloxopen/protoc-gen-gorm/options/gorm.proto";
+import "github.com/infobloxopen/protoc-gen-gorm/types/types.proto";
 import "github.com/infobloxopen/atlas-app-toolkit/query/collection_operators.proto";
 import "github.com/infobloxopen/atlas-app-toolkit/rpc/resource/resource.proto";
 import "github.com/infobloxopen/protoc-gen-atlas-query-validate/options/query_validate.proto";
@@ -479,8 +480,11 @@ message ChartVersion {
   // The version of the ChartVersion
   string version = 5;
 
+  // The Event job details
+  gorm.types.JSONValue  event_job = 6;
+
   // Reference to Application
-  atlas.rpc.Identifier application_id = 6 [(gorm.field) = {reference_of: "Application", tag: {type: "integer"}}];
+  atlas.rpc.Identifier application_id = 7 [(gorm.field) = {reference_of: "Application", tag: {type: "integer"}}];
 }
 
 message CreateChartVersionRequest {
@@ -1488,8 +1492,8 @@ message Artifact {
   // The commit Id of the Artifact in repo
   string commit = 5;
 
-  // The AppVersion of the artifact belongs to.
-  atlas.rpc.Identifier app_version_id = 6 [(gorm.field) = {reference_of: "AppVersion", tag: {type: "integer"}}];
+  // The ChartVersion of the artifact belongs to.
+  atlas.rpc.Identifier chart_version_id = 6 [(gorm.field) = {reference_of: "ChartVersion", tag: {type: "integer"}}];
 }
 
 message CreateArtifactRequest {

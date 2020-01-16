@@ -15,6 +15,7 @@ import runtime1 "github.com/infobloxopen/protoc-gen-atlas-validate/runtime"
 import resource "github.com/infobloxopen/atlas-app-toolkit/rpc/resource"
 import query "github.com/infobloxopen/atlas-app-toolkit/query"
 import field_mask "google.golang.org/genproto/protobuf/field_mask"
+import types "github.com/infobloxopen/protoc-gen-gorm/types"
 import proto "github.com/gogo/protobuf/proto"
 import math "math"
 import _ "github.com/golang/protobuf/ptypes/empty"
@@ -24,6 +25,7 @@ import _ "github.com/infobloxopen/atlas-app-toolkit/rpc/resource"
 import _ "github.com/infobloxopen/protoc-gen-atlas-query-validate/options"
 import _ "github.com/infobloxopen/protoc-gen-atlas-validate/options"
 import _ "github.com/infobloxopen/protoc-gen-gorm/options"
+import _ "github.com/infobloxopen/protoc-gen-gorm/types"
 import _ "github.com/lyft/protoc-gen-validate/validate"
 import _ "google.golang.org/genproto/googleapis/api/annotations"
 import _ "google.golang.org/genproto/protobuf/field_mask"
@@ -3159,6 +3161,21 @@ func validate_Object_ChartVersion(ctx context.Context, r json.RawMessage, path s
 		case "description":
 		case "repo":
 		case "version":
+		case "event_job":
+			if v[k] == nil {
+				continue
+			}
+			vv := v[k]
+			vvPath := runtime1.JoinPath(path, k)
+			validator, ok := interface{}(&types.JSONValue{}).(interface {
+				AtlasValidateJSON(context.Context, json.RawMessage, string) error
+			})
+			if !ok {
+				continue
+			}
+			if err = validator.AtlasValidateJSON(ctx, vv, vvPath); err != nil {
+				return err
+			}
 		case "application_id":
 			if v[k] == nil {
 				continue
@@ -9579,7 +9596,7 @@ func validate_Object_Artifact(ctx context.Context, r json.RawMessage, path strin
 		case "description":
 		case "repo":
 		case "commit":
-		case "app_version_id":
+		case "chart_version_id":
 			if v[k] == nil {
 				continue
 			}

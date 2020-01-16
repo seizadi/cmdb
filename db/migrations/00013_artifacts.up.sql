@@ -8,7 +8,7 @@ CREATE TABLE artifacts (
   description text DEFAULT NULL,
   repo text DEFAULT NULL,
   commit text DEFAULT NULL,
-  app_version_id int REFERENCES app_versions(id) ON DELETE CASCADE
+  chart_version_id int REFERENCES chart_versions(id) ON DELETE CASCADE
 );
 
 CREATE TRIGGER artifacts_updated_at

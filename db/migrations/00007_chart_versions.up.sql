@@ -8,6 +8,7 @@ CREATE TABLE chart_versions (
   description text DEFAULT NULL,
   repo text DEFAULT NULL,
   version text DEFAULT NULL,
+  chart_store jsonb NOT NULL DEFAULT '{}',
   application_id int REFERENCES applications(id) ON DELETE CASCADE
 );
 

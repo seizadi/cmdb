@@ -2941,6 +2941,16 @@ func (m *ChartVersion) Validate() error {
 
 	// no validation rules for Version
 
+	if v, ok := interface{}(m.GetEventJob()).(interface{ Validate() error }); ok {
+		if err := v.Validate(); err != nil {
+			return ChartVersionValidationError{
+				field:  "EventJob",
+				reason: "embedded message failed validation",
+				cause:  err,
+			}
+		}
+	}
+
 	if v, ok := interface{}(m.GetApplicationId()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
 			return ChartVersionValidationError{
@@ -10450,10 +10460,10 @@ func (m *Artifact) Validate() error {
 
 	// no validation rules for Commit
 
-	if v, ok := interface{}(m.GetAppVersionId()).(interface{ Validate() error }); ok {
+	if v, ok := interface{}(m.GetChartVersionId()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
 			return ArtifactValidationError{
-				field:  "AppVersionId",
+				field:  "ChartVersionId",
 				reason: "embedded message failed validation",
 				cause:  err,
 			}

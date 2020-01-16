@@ -43,6 +43,7 @@ var CmdbMethodsRequireFilteringValidation = map[string]map[string]options.Filter
 		"description":    options.FilteringOption{ValueType: options.QueryValidate_STRING},
 		"repo":           options.FilteringOption{ValueType: options.QueryValidate_STRING},
 		"version":        options.FilteringOption{ValueType: options.QueryValidate_STRING},
+		"event_job.*":    options.FilteringOption{ValueType: options.QueryValidate_STRING},
 		"application_id": options.FilteringOption{ValueType: options.QueryValidate_STRING},
 	},
 	"/api.cmdb.AppConfigs/List": map[string]options.FilteringOption{
@@ -112,12 +113,12 @@ var CmdbMethodsRequireFilteringValidation = map[string]map[string]options.Filter
 		"vault_id":    options.FilteringOption{ValueType: options.QueryValidate_STRING},
 	},
 	"/api.cmdb.Artifacts/List": map[string]options.FilteringOption{
-		"id":             options.FilteringOption{ValueType: options.QueryValidate_STRING},
-		"name":           options.FilteringOption{ValueType: options.QueryValidate_STRING},
-		"description":    options.FilteringOption{ValueType: options.QueryValidate_STRING},
-		"repo":           options.FilteringOption{ValueType: options.QueryValidate_STRING},
-		"commit":         options.FilteringOption{ValueType: options.QueryValidate_STRING},
-		"app_version_id": options.FilteringOption{ValueType: options.QueryValidate_STRING},
+		"id":               options.FilteringOption{ValueType: options.QueryValidate_STRING},
+		"name":             options.FilteringOption{ValueType: options.QueryValidate_STRING},
+		"description":      options.FilteringOption{ValueType: options.QueryValidate_STRING},
+		"repo":             options.FilteringOption{ValueType: options.QueryValidate_STRING},
+		"commit":           options.FilteringOption{ValueType: options.QueryValidate_STRING},
+		"chart_version_id": options.FilteringOption{ValueType: options.QueryValidate_STRING},
 	},
 	"/api.cmdb.KubeClusters/List": map[string]options.FilteringOption{
 		"id":          options.FilteringOption{ValueType: options.QueryValidate_STRING},
@@ -162,6 +163,7 @@ var CmdbMethodsRequireSortingValidation = map[string][]string{
 		"description",
 		"repo",
 		"version",
+		"event_job",
 		"application_id",
 	},
 	"/api.cmdb.AppConfigs/List": []string{
@@ -227,7 +229,7 @@ var CmdbMethodsRequireSortingValidation = map[string][]string{
 		"description",
 		"repo",
 		"commit",
-		"app_version_id",
+		"chart_version_id",
 	},
 	"/api.cmdb.KubeClusters/List": []string{
 		"id",
@@ -356,6 +358,8 @@ var CmdbMethodsRequireFieldSelectionValidation = map[string][]string{
 		"description",
 		"repo",
 		"version",
+		"event_job.value",
+		"event_job",
 		"application_id",
 	},
 	"/api.cmdb.ChartVersions/List": {
@@ -364,6 +368,8 @@ var CmdbMethodsRequireFieldSelectionValidation = map[string][]string{
 		"description",
 		"repo",
 		"version",
+		"event_job.value",
+		"event_job",
 		"application_id",
 	},
 	"/api.cmdb.AppConfigs/Read": {
@@ -624,7 +630,7 @@ var CmdbMethodsRequireFieldSelectionValidation = map[string][]string{
 		"description",
 		"repo",
 		"commit",
-		"app_version_id",
+		"chart_version_id",
 	},
 	"/api.cmdb.Artifacts/List": {
 		"id",
@@ -632,7 +638,7 @@ var CmdbMethodsRequireFieldSelectionValidation = map[string][]string{
 		"description",
 		"repo",
 		"commit",
-		"app_version_id",
+		"chart_version_id",
 	},
 	"/api.cmdb.KubeClusters/Read": {
 		"id",
@@ -653,7 +659,7 @@ var CmdbMethodsRequireFieldSelectionValidation = map[string][]string{
 		"artifact.description",
 		"artifact.repo",
 		"artifact.commit",
-		"artifact.app_version_id",
+		"artifact.chart_version_id",
 		"artifact",
 		"artifact_id",
 		"kube_cluster.id",
@@ -672,7 +678,7 @@ var CmdbMethodsRequireFieldSelectionValidation = map[string][]string{
 		"artifact.description",
 		"artifact.repo",
 		"artifact.commit",
-		"artifact.app_version_id",
+		"artifact.chart_version_id",
 		"artifact",
 		"artifact_id",
 		"kube_cluster.id",

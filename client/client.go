@@ -241,6 +241,22 @@ func (m *CmdbClient) CreateChartVersion(req *pb.CreateChartVersionRequest) (*pb.
 	return res, nil
 }
 
+func (m *CmdbClient) UpdateChartVersion(req *pb.UpdateChartVersionRequest) (*pb.UpdateChartVersionResponse, error) {
+	
+	// We can now create stubs that wrap conn:
+	stub := pb.NewChartVersionsClient(m.Conn)
+	
+	// Now we can use the stub to make RPCs
+	ctx := metadata.NewOutgoingContext(context.Background(),
+		metadata.Pairs("Authorization", "Bearer "+m.ApiKey))
+	res, err := stub.Update(ctx, req)
+	if err != nil {
+		return nil, err
+	}
+	
+	return res, nil
+}
+
 func (m *CmdbClient) CreateAppVersion(req *pb.CreateAppVersionRequest) (*pb.CreateAppVersionResponse, error) {
 
 	// We can now create stubs that wrap conn:

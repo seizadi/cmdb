@@ -2987,7 +2987,7 @@
       "type": "object",
       "title": "---------------------------------------------------------------------\nArtifact represents an element built by CI (e.g. resolved manifest)\n---------------------------------------------------------------------",
       "properties": {
-        "app_version_id": {
+        "chart_version_id": {
           "description": "The resource identifier.",
           "type": "string"
         },
@@ -3025,6 +3025,10 @@
         "description": {
           "type": "string",
           "title": "The description of the ChartVersion"
+        },
+        "event_job": {
+          "title": "The Event job details",
+          "$ref": "#/definitions/typesJSONValue"
         },
         "id": {
           "description": "The resource identifier.",
@@ -3863,6 +3867,14 @@
       "title": "---------------------------------\nCMDB Application Version\n---------------------------------",
       "properties": {
         "version": {
+          "type": "string"
+        }
+      }
+    },
+    "typesJSONValue": {
+      "type": "object",
+      "properties": {
+        "value": {
           "type": "string"
         }
       }
