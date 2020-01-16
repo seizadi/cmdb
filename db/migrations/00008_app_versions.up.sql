@@ -6,8 +6,6 @@ CREATE TABLE app_versions (
   updated_at timestamptz DEFAULT NULL,
   name text DEFAULT NULL,
   description text DEFAULT NULL,
-  repo text DEFAULT NULL,
-  version text DEFAULT NULL,
   chart_version_id int REFERENCES chart_versions(id) ON DELETE CASCADE,
   application_id int REFERENCES applications(id) ON DELETE CASCADE,
   lifecycle_id int REFERENCES lifecycles(id) ON DELETE CASCADE,
