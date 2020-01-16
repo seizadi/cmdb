@@ -52,10 +52,10 @@ Once the database was completed I created an ERD using LucidChart import feature
 and generated a more complete ERD, this process is tedious so not something for fast
 iterative process. There are two ERDs one for the data model to drive Application configuration
 based on Helm Charts:
-![atlas basic call stack](https://raw.githubusercontent.com/seizadi/cmdb/master/doc/db/cmdb_app_config_erd.jpeg)
+![atlas basic call stack](https://raw.githubusercontent.com/seizadi/cmdb/master/doc/db/cmdb_app_config_erd.png)
 
 The other is geared toward the Deployment model based on Kubernetes:
-![atlas basic call stack](https://raw.githubusercontent.com/seizadi/cmdb/master/doc/db/cmdb_app_deployment_erd.jpeg)
+![atlas basic call stack](https://raw.githubusercontent.com/seizadi/cmdb/master/doc/db/cmdb_app_deployment_erd.png)
 
 ### Database Migration
 
