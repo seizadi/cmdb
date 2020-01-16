@@ -22,11 +22,8 @@ start a new application.
 
 ### Prerequisites
 
-**Install go dep**
-
-``` sh
-go get -u github.com/golang/dep/cmd/dep
-```
+   * Go 1.13.5
+   * Postgres
 
 ## Database
 
@@ -51,6 +48,15 @@ We would build out the data model incrementaly starting with the top node
 in our case the Region. Then add the necessary migration for it, see below
 for more detail on database migration below.
 
+Once the database was completed I created an ERD using LucidChart import feature
+and generated a more complete ERD, this process is tedious so not something for fast
+iterative process. There are two ERDs one for the data model to drive Application configuration
+based on Helm Charts:
+![atlas basic call stack](https://raw.githubusercontent.com/seizadi/cmdb/master/doc/db/cmdb_app_config_erd.jpeg)
+
+The other is geared toward the Deployment model based on Kubernetes:
+![atlas basic call stack](https://raw.githubusercontent.com/seizadi/cmdb/master/doc/db/cmdb_app_deployment_erd.jpeg)
+
 ### Database Migration
 
 For migrating the database schema, [golang-migrate](https://github.com/golang-migrate/migrate) framework is used.
@@ -67,25 +73,31 @@ make migrate-up
 
 ### Local development setup
 
-Table creation should be done manually by running the migrations scripts or following the steps defined in database migration section. Scripts can be found at `./db/migrations/`
-
-Create vendor directory with required golang packages
-``` sh
-make vendor
-```
+Table creation should be done manually by running the migrations scripts or following the steps defined in 
+database migration section. Scripts can be found at `./db/migrations/`
 
 Run CMDB App server:
 
 ```bash
 go run ./cmd/server/*.go
 ```
+
+### GRPC Configuration
+I wrote a project [CMDB Config](https://github.com/seizadi/cmdb-config) that I used to populate
+the [CMDB using GRPC Client library](https://github.com/seizadi/cmdb/tree/master/client).
+
+I built an Angular UI and it uses the CMDB REST interface, but I think the GRPC Client would
+be a better inerface.
+
+### REST Configuration
 Then you do the REST call:
 ```sh
 curl http://localhost:8080/v1/version
 {"version":"0.0.1"}
 ```
 
-CMDB supports Multi-Account environment, Authorization token (Bearer) is required. You can generate it using https://jwt.io/ with following Payload:
+CMDB supports Multi-Account environment, Authorization token (Bearer) is required. 
+You can generate it using https://jwt.io/ with following Payload:
 ```
 {
   "AccountID": YourAccountID
@@ -123,19 +135,6 @@ Now let's add a Region:
 curl -H "Authorization: Bearer $JWT" http://localhost:8080/v1/regions -d '{"name": "us-west-1", "description": "sample..."}'
 {"result":{"id":"cmdb-app/regions/1","name":"us-west-1","description":"sample..."}}
 ```
-
-Add Container:
-```sh
-curl -H "Authorization: Bearer $JWT" http://localhost:8080/v1/containers -d '{"name": "cmdb-app", "description": "sample cmdb application", "container_name": "cmdb-app", "image_repo": "soheileizadi/cmdb-server", "image_tag": "latest", "image_pull_policy": "always"}'
-{"result":{"id":"cmdb-app/containers/1","name":"cmdb-app","description":"sample cmdb application","container_name":"cmdb-app","image_repo":"soheileizadi/cmdb-server","image_tag":"latest","image_pull_policy":"always"}}
-```
-
-Add VersionTag:
-```sh
-curl -H "Authorization: Bearer $JWT" http://localhost:8080/v1/version_tags -d '{"name": "cmdb-app", "description": "cmdb application version tag", "version": "v0.0.4", "repo": "https://github.com/seizadi/cmdb/releases/tag/v0.0.4", "commit": "20ec77f5a8f8e260deb51e8d888a2597762184b6"}'
-{"result":{"id":"cmdb-app/version_tags/1","name":"cmdb-app","description":"cmdb application version tag","version":"v0.0.4","repo":"https://github.com/seizadi/cmdb/releases/tag/v0.0.4","commit":"20ec77f5a8f8e260deb51e8d888a2597762184b6"}}sc-l-seizadi:cmdb seizadi$
-
-```
 Add Secrets:
 ```sh
 curl -H "Authorization: Bearer $JWT" http://localhost:8080/v1/secrets -d '{"name": "cmdb-app db password", "description": "cmdb database password", "type": "opaque", "key": "db_password"}'
@@ -170,7 +169,7 @@ prone. I decided to create a project to automate much of the code and
 migration process,
 [see atlas-template](https://github.com/seizadi/atlas-template)
 
-I did the remaining 9 service and migration using that tool. In
+I did the remaining services and migration using that tool. In
 order to test the new project I did
 ```sh
 dropdb cmdb
@@ -183,66 +182,13 @@ Now testing the new environment and testing the old interfaces all passed:
 ```sh
 curl http://localhost:8080/v1/version
 export JWT="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJBY2NvdW50SUQiOjF9.GsXyFDDARjXe1t9DPo2LIBKHEal3O7t3vLI3edA7dGU"
-curl -H "Authorization: Bearer $JWT" http://localhost:8080/v1/containers -d '{"name": "cmdb-app", "description": "sample cmdb application", "container_name": "cmdb-app", "image_repo": "soheileizadi/cmdb-server", "image_tag": "latest", "image_pull_policy": "always"}'
-curl -H "Authorization: Bearer $JWT" http://localhost:8080/v1/vaults -d '{"name": "vault for QA", "description": "Vault to store QA Secrets", "path": "k8s/qa0-secrets"}'
-curl -H "Authorization: Bearer $JWT" http://localhost:8080/v1/secrets -d '{"vault_id":"cmdb-app/vaults/1", "name": "cmdb-app db password", "description": "cmdb database password", "type": "opaque", "key": "db_password"}'
-curl -H "Authorization: Bearer $JWT" http://localhost:8080/v1/vaults
-curl -H "Authorization: Bearer $JWT" http://localhost:8080/v1/version_tags -d '{"name": "cmdb-app", "description": "cmdb application version tag", "version": "v0.0.4", "repo": "https://github.com/seizadi/cmdb/releases/tag/v0.0.4", "commit": "20ec77f5a8f8e260deb51e8d888a2597762184b6"}'
 
 curl -H "Authorization: Bearer $JWT" http://localhost:8080/v1/lifecycles | jq
 curl -H "Authorization: Bearer $JWT" http://localhost:8080/v1/environments | jq
 
 ```
 Now I can go to the proto file and customize the resources based on
-my data model for the remaining resources:
-
-Add Kubernetes Cluster:
-```
-curl -H "Authorization: Bearer $JWT" http://localhost:8080/v1/kube_clusters -d '{"name": "cluster-10", "description": "kubernetes cluster for development"}'
-{"result":{"id":"cmdb-app/kube_clusters/1","name":"cluster-10","description":"kubernetes cluster for development"}}
-```
-
-Add Artifact:
-```sh
-curl -H "Authorization: Bearer $JWT" http://localhost:8080/v1/artifacts -d '{"version_tag_id":"cmdb-app/version_tags/1", "name": "cmdb-app dev manifest", "description": "cmdb manifest for development", "repo": "https://github.com/seizadi/deploy/cmdb_manifest.yaml", "commit": "50ec74f5a8f8e260deb51e8d888a2597762184b6"}'
-{"result":{"id":"cmdb-app/artifacts/1","name":"cmdb-app dev manifest","description":"cmdb manifest for development","repo":"https://github.com/seizadi/deploy/cmdb_manifest.yaml","commit":"50ec74f5a8f8e260deb51e8d888a2597762184b6","version_tag_id":"cmdb-app/version_tags/1"}}sc-l-seizadi:cmdb seizadi$
-```
-
-Add AWS RDS Instance:
-```sh
-curl -H "Authorization: Bearer $JWT" http://localhost:8080/v1/aws_rds_instances -d '{"name": "cmdb rds", "description": "cmdb rds database", "database_host": "cmdb.cf1k7otqh6nf.us-east-1.rds.amazonaws.com", "database_name": "cmdb", "database_user": "cmdb", "database_password": {"vault_id":"cmdb-app/vaults/1", "name": "cmdb db password", "description": "cmdb rds database password", "type": "opaque", "key": "DATABASE_PASSWORD"}}'
-{"result":{"id":"cmdb-app/aws_rds_instances/1","name":"cmdb rds","description":"cmdb rds database","database_host":"cmdb.cf1k7otqh6nf.us-east-1.rds.amazonaws.com","database_name":"cmdb","database_user":"cmdb","database_password":{"id":"cmdb-app/secrets/2","name":"cmdb db password","description":"cmdb rds database password","type":"opaque","key":"DATABASE_PASSWORD","vault_id":"cmdb-app/vaults/1","aws_rds_instance_id":"cmdb-app/aws_rds_instances/1"}}}
-
-```
-
-Add Deployment:
-```sh
-curl -H "Authorization: Bearer $JWT" http://localhost:8080/v1/deployments -d '{"kube_cluster_id":"cmdb-app/kube_clusters/1", "artifact_id":"cmdb-app/artifacts/1", "name": "cmdb dev deploy", "description": "cmdb deployment for development"}'
-{"result":{"id":"cmdb-app/deployments/1","name":"cmdb dev deploy","description":"cmdb deployment for development","artifact_id":"cmdb-app/artifacts/1","kube_cluster_id":"cmdb-app/kube_clusters/1"}}
-
-curl -H "Authorization: Bearer $JWT" http://localhost:8080/v1/deployments
-{"results":[{"id":"cmdb-app/deployments/1","name":"cmdb dev deploy","description":"cmdb deployment for development","artifact":{"id":"cmdb-app/artifacts/1","name":"cmdb-app dev manifest","description":"cmdb manifest for development","repo":"https://github.com/seizadi/deploy/cmdb_manifest.yaml","commit":"50ec74f5a8f8e260deb51e8d888a2597762184b6","version_tag_id":"cmdb-app/version_tags/1"},"artifact_id":"cmdb-app/artifacts/1","kube_cluster":{"id":"cmdb-app/kube_clusters/1","name":"cluster-10","description":"kubernetes cluster for development"},"kube_cluster_id":"cmdb-app/kube_clusters/1"}]}
-
-```
-
-Add AWS Service:
-```sh
-curl -H "Authorization: Bearer $JWT" http://localhost:8080/v1/aws_services -d '{"name": "cmdb dev AWS Service", "description": "cmdb AWS Services for development"}'
-{"result":{"id":"cmdb-app/aws_services/1","name":"cmdb dev AWS Service","description":"cmdb AWS Services for development"}}
-
-curl -X PATCH -H "Authorization: Bearer $JWT" http://localhost:8080/v1/aws_rds_instances/2 -d '{"aws_service_id": "cmdb-app/aws_services/1"}'
-{"result":{"id":"cmdb-app/aws_rds_instances/2","name":"cmdb rds","description":"cmdb rds database","database_host":"cmdb.cf1k7otqh6nf.us-east-1.rds.amazonaws.com","database_name":"cmdb","database_user":"cmdb","database_password":{"id":"cmdb-app/secrets/3","name":"cmdb db password","description":"cmdb rds database password","type":"opaque","key":"DATABASE_PASSWORD","vault_id":"cmdb-app/vaults/1","aws_rds_instance_id":"cmdb-app/aws_rds_instances/2"},"aws_service_id":"cmdb-app/aws_services/1"}}
-
-curl -H "Authorization: Bearer $JWT" http://localhost:8080/v1/aws_services
-{"results":[{"id":"cmdb-app/aws_services/1","name":"cmdb dev AWS Service","description":"cmdb AWS Services for development","aws_rds_instances":[{"id":"cmdb-app/aws_rds_instances/1","aws_service_id":"cmdb-app/aws_services/1"},{"id":"cmdb-app/aws_rds_instances/2","name":"cmdb rds","description":"cmdb rds database","database_host":"cmdb.cf1k7otqh6nf.us-east-1.rds.amazonaws.com","database_name":"cmdb","database_user":"cmdb","database_password":{"id":"cmdb-app/secrets/3","name":"cmdb db password","description":"cmdb rds database password","type":"opaque","key":"DATABASE_PASSWORD","vault_id":"cmdb-app/vaults/1","aws_rds_instance_id":"cmdb-app/aws_rds_instances/2"},"aws_service_id":"cmdb-app/aws_services/1"}]}]}
-
-```
-
-Add Manifest:
-```sh
-curl -H "Authorization: Bearer $JWT" http://localhost:8080/v1/manifests -d '{"name": "cmdb dev manifest", "description": "cmdb manifest for development", "repo": "https://github.com/seizadi/deploy/cmdb_manifest.yaml", "commit": "50ec74f5a8f8e260deb51e8d888a2597762184b6", "values": {"SSL_PORT": "3443"}, "services": [{"Name": "cmdb", "Type": "ClusterIP", "ServiceName": "cmdb", "Ports": [{"Name": "http", "Protocol": "TCP", "Port": "3000"}, {"Name": "https", "Protocol": "TCP", "Port": "3443"}]}], "ingress": {"Enabled": "true", "Annotations": [ {"ingress.kubernetes.io/secure-backends": "true"}, {"kubernetes.io/ingress.class": "nginx"}, {"ingress.kubernetes.io/limit-rps": "300"}, {"ingress.kubernetes.io/proxy-read-timeout": "300"}], "Hosts": ["test.infoblox.com"], "Path": ""}, "artifact_id":"cmdb-app/artifacts/1", "vault_id":"cmdb-app/vaults/1", "aws_service_id": "cmdb-app/aws_services/1"}'
-
-```
+my data model for the remaining resources.
 
 Add Application:
 ```sh
@@ -300,7 +246,6 @@ curl -H "Authorization: Bearer $JWT" http://localhost:8080/v1/manifests -d '{"na
 curl -X PATCH -H "Authorization: Bearer $JWT" http://localhost:8080/v1/applications/1 -d '{"version_tag_id":"cmdb-app/version_tags/1", "manifest_id":"cmdb-app/manifests/1"}'
 curl -X PUT -H "Authorization: Bearer $JWT" http://localhost:8080/v1/manifests/1 -d '{"name": "cmdb dev manifest", "description": "cmdb manifest for development", "repo": "https://github.com/seizadi/deploy/cmdb_manifest.yaml", "commit": "50ec74f5a8f8e260deb51e8d888a2597762184b6", "values": {"values":{"SSL_PORT": "3443"}}, "services": [{"name": "cmdb", "type": "clusterIP", "serviceName": "cmdb", "ports": [{"name": "http", "protocol": "tcp", "port": 3000}, {"name": "https", "protocol": "tcp", "port": 3443}]}], "ingress": {"enabled": true, "annotations": [ {"ingress.kubernetes.io/secure-backends": "true"}, {"kubernetes.io/ingress.class": "nginx"}, {"ingress.kubernetes.io/limit-rps": "300"}, {"ingress.kubernetes.io/proxy-read-timeout": "300"}], "hosts": ["test.infoblox.com"], "path": ""}, "artifact_id":"cmdb-app/artifacts/1", "vault_id":"cmdb-app/vaults/1", "aws_service_id": "cmdb-app/aws_services/1"}'
 curl -H "Authorization: Bearer $JWT" http://localhost:8080/v1/deployments -d '{"kube_cluster_id":"cmdb-app/kube_clusters/1", "artifact_id":"cmdb-app/artifacts/1", "application_id":"cmdb-app/applications/1", "name": "cmdb dev deploy", "description": "cmdb deployment for development"}'
-
 
 ```
 
@@ -366,7 +311,7 @@ cmdb=# \dt
 ```
 
 ##### Usage
-
+The following section uses the helm chart to deploy the server on minikube and tests it function.
 Try it out by executing following curl commands:
 ```sh
 export JWT="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJBY2NvdW50SUQiOjF9.GsXyFDDARjXe1t9DPo2LIBKHEal3O7t3vLI3edA7dGU"
