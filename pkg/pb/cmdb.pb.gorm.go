@@ -612,10 +612,10 @@ type LifecycleWithAfterToPB interface {
 
 type ChartVersionORM struct {
 	AccountID     string
-	ApplicationId *int64 `gorm:"type:integer"`
+	ApplicationId *int64           `gorm:"type:integer"`
+	ChartStore    *postgres1.Jsonb `gorm:"type:jsonb"`
 	Description   string
-	EventJob      *postgres1.Jsonb `gorm:"type:jsonb"`
-	Id            int64            `gorm:"type:serial;primary_key"`
+	Id            int64 `gorm:"type:serial;primary_key"`
 	Name          string
 	Repo          string
 	Version       string
@@ -645,8 +645,8 @@ func (m *ChartVersion) ToORM(ctx context.Context) (ChartVersionORM, error) {
 	to.Description = m.Description
 	to.Repo = m.Repo
 	to.Version = m.Version
-	if m.EventJob != nil {
-		to.EventJob = &postgres1.Jsonb{[]byte(m.EventJob.Value)}
+	if m.ChartStore != nil {
+		to.ChartStore = &postgres1.Jsonb{[]byte(m.ChartStore.Value)}
 	}
 	if m.ApplicationId != nil {
 		if v, err := resource1.DecodeInt64(&Application{}, m.ApplicationId); err != nil {
@@ -685,8 +685,8 @@ func (m *ChartVersionORM) ToPB(ctx context.Context) (ChartVersion, error) {
 	to.Description = m.Description
 	to.Repo = m.Repo
 	to.Version = m.Version
-	if m.EventJob != nil {
-		to.EventJob = &types1.JSONValue{Value: string(m.EventJob.RawMessage)}
+	if m.ChartStore != nil {
+		to.ChartStore = &types1.JSONValue{Value: string(m.ChartStore.RawMessage)}
 	}
 	if m.ApplicationId != nil {
 		if v, err := resource1.Encode(&Application{}, *m.ApplicationId); err != nil {
@@ -3533,7 +3533,7 @@ func DefaultApplyFieldMaskChartVersion(ctx context.Context, patchee *ChartVersio
 		return nil, errors1.NilArgumentError
 	}
 	var err error
-	var updatedEventJob bool
+	var updatedChartStore bool
 	for _, f := range updateMask.Paths {
 		if f == prefix+"Id" {
 			patchee.Id = patcher.Id
@@ -3555,9 +3555,9 @@ func DefaultApplyFieldMaskChartVersion(ctx context.Context, patchee *ChartVersio
 			patchee.Version = patcher.Version
 			continue
 		}
-		if !updatedEventJob && strings.HasPrefix(f, prefix+"EventJob") {
-			patchee.EventJob = patcher.EventJob
-			updatedEventJob = true
+		if !updatedChartStore && strings.HasPrefix(f, prefix+"ChartStore") {
+			patchee.ChartStore = patcher.ChartStore
+			updatedChartStore = true
 			continue
 		}
 		if f == prefix+"ApplicationId" {

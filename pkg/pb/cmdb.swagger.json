@@ -3022,13 +3022,13 @@
           "description": "The resource identifier.",
           "type": "string"
         },
+        "chart_store": {
+          "title": "The Event job details",
+          "$ref": "#/definitions/typesJSONValue"
+        },
         "description": {
           "type": "string",
           "title": "The description of the ChartVersion"
-        },
-        "event_job": {
-          "title": "The Event job details",
-          "$ref": "#/definitions/typesJSONValue"
         },
         "id": {
           "description": "The resource identifier.",

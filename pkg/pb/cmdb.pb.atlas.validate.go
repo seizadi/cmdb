@@ -3161,7 +3161,7 @@ func validate_Object_ChartVersion(ctx context.Context, r json.RawMessage, path s
 		case "description":
 		case "repo":
 		case "version":
-		case "event_job":
+		case "chart_store":
 			if v[k] == nil {
 				continue
 			}

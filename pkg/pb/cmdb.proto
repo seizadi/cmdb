@@ -481,7 +481,7 @@ message ChartVersion {
   string version = 5;
 
   // The Event job details
-  gorm.types.JSONValue  event_job = 6;
+  gorm.types.JSONValue  chart_store = 6;
 
   // Reference to Application
   atlas.rpc.Identifier application_id = 7 [(gorm.field) = {reference_of: "Application", tag: {type: "integer"}}];

@@ -43,7 +43,7 @@ var CmdbMethodsRequireFilteringValidation = map[string]map[string]options.Filter
 		"description":    options.FilteringOption{ValueType: options.QueryValidate_STRING},
 		"repo":           options.FilteringOption{ValueType: options.QueryValidate_STRING},
 		"version":        options.FilteringOption{ValueType: options.QueryValidate_STRING},
-		"event_job.*":    options.FilteringOption{ValueType: options.QueryValidate_STRING},
+		"chart_store.*":  options.FilteringOption{ValueType: options.QueryValidate_STRING},
 		"application_id": options.FilteringOption{ValueType: options.QueryValidate_STRING},
 	},
 	"/api.cmdb.AppConfigs/List": map[string]options.FilteringOption{
@@ -163,7 +163,7 @@ var CmdbMethodsRequireSortingValidation = map[string][]string{
 		"description",
 		"repo",
 		"version",
-		"event_job",
+		"chart_store",
 		"application_id",
 	},
 	"/api.cmdb.AppConfigs/List": []string{
@@ -358,8 +358,8 @@ var CmdbMethodsRequireFieldSelectionValidation = map[string][]string{
 		"description",
 		"repo",
 		"version",
-		"event_job.value",
-		"event_job",
+		"chart_store.value",
+		"chart_store",
 		"application_id",
 	},
 	"/api.cmdb.ChartVersions/List": {
@@ -368,8 +368,8 @@ var CmdbMethodsRequireFieldSelectionValidation = map[string][]string{
 		"description",
 		"repo",
 		"version",
-		"event_job.value",
-		"event_job",
+		"chart_store.value",
+		"chart_store",
 		"application_id",
 	},
 	"/api.cmdb.AppConfigs/Read": {

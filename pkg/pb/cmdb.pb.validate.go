@@ -2941,10 +2941,10 @@ func (m *ChartVersion) Validate() error {
 
 	// no validation rules for Version
 
-	if v, ok := interface{}(m.GetEventJob()).(interface{ Validate() error }); ok {
+	if v, ok := interface{}(m.GetChartStore()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
 			return ChartVersionValidationError{
-				field:  "EventJob",
+				field:  "ChartStore",
 				reason: "embedded message failed validation",
 				cause:  err,
 			}
