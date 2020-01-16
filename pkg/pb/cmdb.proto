@@ -225,8 +225,11 @@ message Region {
   // The description of the Region
   string description = 3;
 
+  // The Networks in a Region
+  repeated Network networks = 4;
+
   // Reference to Cloud Provider
-  atlas.rpc.Identifier cloud_provider_id = 4 [(gorm.field) = {reference_of: "CloudProvider", tag: {type: "integer"}}];
+  atlas.rpc.Identifier cloud_provider_id = 5 [(gorm.field) = {reference_of: "CloudProvider", tag: {type: "integer"}}];
 }
 
 message CreateRegionRequest {
@@ -323,6 +326,121 @@ service Regions {
   }
 }
 
+// ------------------------------------------------------
+// Network represents a particular AWS VPC
+// ------------------------------------------------------
+message Network {
+  option (gorm.opts) = {
+      ormable: true,
+      multi_account: true
+  };
+
+  // The Network identifier.
+  atlas.rpc.Identifier id = 1 [(gorm.field).tag = {type: "serial"  primary_key: true}];
+
+  // The name of the Network
+  string name = 2;
+
+  // The description of the Network
+  string description = 3;
+
+  // Reference to Region
+  atlas.rpc.Identifier region_id = 4 [(gorm.field) = {reference_of: "Region", tag: {type: "integer"}}];
+}
+
+message CreateNetworkRequest {
+  Network payload = 1;
+}
+
+message CreateNetworkResponse {
+  Network result = 1;
+}
+
+message ReadNetworkRequest {
+  atlas.rpc.Identifier id = 1;
+  infoblox.api.FieldSelection fields = 2;
+}
+
+message ReadNetworkResponse {
+  Network result = 1;
+}
+
+message UpdateNetworkRequest {
+  Network payload = 1;
+  google.protobuf.FieldMask fields = 2;
+}
+
+message UpdateNetworkResponse {
+  Network result = 1;
+}
+
+message DeleteNetworkRequest {
+  atlas.rpc.Identifier id = 1;
+}
+
+message DeleteNetworkResponse {}
+
+message ListNetworkRequest {
+  infoblox.api.Filtering filter = 1;
+  infoblox.api.Sorting order_by = 2;
+  infoblox.api.FieldSelection fields = 3;
+  infoblox.api.Pagination paging = 4;
+}
+
+message ListNetworksResponse {
+  repeated Network results = 1;
+  infoblox.api.PageInfo page = 2;
+}
+
+service Networks {
+  option (gorm.server) = {
+      autogen: true,
+      txn_middleware: true,
+    };
+
+  // Use this method to create a Network information.
+  rpc Create (CreateNetworkRequest) returns (CreateNetworkResponse) {
+    option (google.api.http) = {
+            post: "/networks"
+            body: "payload"
+        };
+  }
+
+  // Use this method to read a Network information by identifier.
+  rpc Read (ReadNetworkRequest) returns (ReadNetworkResponse) {
+    option (google.api.http) = {
+            get: "/networks/{id.resource_id}"
+        };
+  }
+
+  // Use this method to update a Network information.
+  rpc Update (UpdateNetworkRequest) returns (UpdateNetworkResponse) {
+    option (atlas_validate.method).allow_unknown_fields = false;
+    option (google.api.http) = {
+            put: "/networks/{payload.id.resource_id}"
+            body: "payload"
+            additional_bindings: {
+                patch: "/networks/{payload.id.resource_id}"
+                body: "payload"
+            }
+    };
+  }
+
+  // Use this method to delete a particular Network.
+  rpc Delete (DeleteNetworkRequest) returns (DeleteNetworkResponse) {
+    option (google.api.http) = {
+            delete: "/networks/{id.resource_id}"
+        };
+    option (gorm.method).object_type = "Network";
+  }
+
+  // Use this method to retrieve all the Networks.
+  rpc List (ListNetworkRequest) returns (ListNetworksResponse) {
+    option (google.api.http) = {
+            get: "/networks"
+        };
+  }
+}
 
 // -----------------------------------------------------------
 // Lifecycle represents a stage in CI/CD e.g. preprod or prod
@@ -1608,6 +1726,9 @@ message KubeCluster {
 
   // The description of the KubeCluster
   string description = 3;
+
+  // Reference to Network
+  atlas.rpc.Identifier network_id = 5 [(gorm.field) = {reference_of: "Network", tag: {type: "integer"}}];
 }
 
 message CreateKubeClusterRequest {

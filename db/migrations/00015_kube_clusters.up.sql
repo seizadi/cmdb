@@ -5,7 +5,9 @@ CREATE TABLE kube_clusters (
   created_at timestamptz DEFAULT current_timestamp,
   updated_at timestamptz DEFAULT NULL,
   name text DEFAULT NULL,
-  description text DEFAULT NULL
+  description text DEFAULT NULL,
+  network_id int REFERENCES networks(id) ON DELETE CASCADE
+
 );
 
 CREATE TRIGGER kube_clusters_updated_at

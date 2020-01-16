@@ -134,6 +134,51 @@ func validate_Regions_List_0(ctx context.Context, r json.RawMessage) (err error)
 	return nil
 }
 
+// validate_Networks_Create_0 is an entrypoint for validating "POST" HTTP request
+// that match *.pb.gw.go/pattern_Networks_Create_0.
+func validate_Networks_Create_0(ctx context.Context, r json.RawMessage) (err error) {
+	return validate_Object_Network(ctx, r, "")
+}
+
+// validate_Networks_Read_0 is an entrypoint for validating "GET" HTTP request
+// that match *.pb.gw.go/pattern_Networks_Read_0.
+func validate_Networks_Read_0(ctx context.Context, r json.RawMessage) (err error) {
+	if len(r) != 0 {
+		return fmt.Errorf("body is not allowed")
+	}
+	return nil
+}
+
+// validate_Networks_Update_0 is an entrypoint for validating "PUT" HTTP request
+// that match *.pb.gw.go/pattern_Networks_Update_0.
+func validate_Networks_Update_0(ctx context.Context, r json.RawMessage) (err error) {
+	return validate_Object_Network(ctx, r, "")
+}
+
+// validate_Networks_Update_1 is an entrypoint for validating "PATCH" HTTP request
+// that match *.pb.gw.go/pattern_Networks_Update_1.
+func validate_Networks_Update_1(ctx context.Context, r json.RawMessage) (err error) {
+	return validate_Object_Network(ctx, r, "")
+}
+
+// validate_Networks_Delete_0 is an entrypoint for validating "DELETE" HTTP request
+// that match *.pb.gw.go/pattern_Networks_Delete_0.
+func validate_Networks_Delete_0(ctx context.Context, r json.RawMessage) (err error) {
+	if len(r) != 0 {
+		return fmt.Errorf("body is not allowed")
+	}
+	return nil
+}
+
+// validate_Networks_List_0 is an entrypoint for validating "GET" HTTP request
+// that match *.pb.gw.go/pattern_Networks_List_0.
+func validate_Networks_List_0(ctx context.Context, r json.RawMessage) (err error) {
+	if len(r) != 0 {
+		return fmt.Errorf("body is not allowed")
+	}
+	return nil
+}
+
 // validate_Lifecycles_Create_0 is an entrypoint for validating "POST" HTTP request
 // that match *.pb.gw.go/pattern_Lifecycles_Create_0.
 func validate_Lifecycles_Create_0(ctx context.Context, r json.RawMessage) (err error) {
@@ -1544,6 +1589,21 @@ func validate_Object_Region(ctx context.Context, r json.RawMessage, path string)
 			}
 		case "name":
 		case "description":
+		case "networks":
+			if v[k] == nil {
+				continue
+			}
+			var vArr []json.RawMessage
+			vArrPath := runtime1.JoinPath(path, k)
+			if err = json.Unmarshal(v[k], &vArr); err != nil {
+				return fmt.Errorf("invalid value for %q: expected array.", vArrPath)
+			}
+			for i, vv := range vArr {
+				vvPath := fmt.Sprintf("%s.[%d]", vArrPath, i)
+				if err = validate_Object_Network(ctx, vv, vvPath); err != nil {
+					return err
+				}
+			}
 		case "cloud_provider_id":
 			if v[k] == nil {
 				continue
@@ -2276,6 +2336,783 @@ func (_ *ListRegionsResponse) AtlasValidateJSON(ctx context.Context, r json.RawM
 }
 
 func validate_required_Object_ListRegionsResponse(ctx context.Context, v map[string]json.RawMessage, path string) error {
+	method := runtime1.HTTPMethodFromContext(ctx)
+	_ = method
+	return nil
+}
+
+// validate_Object_Network function validates a JSON for a given object.
+func validate_Object_Network(ctx context.Context, r json.RawMessage, path string) (err error) {
+	if hook, ok := interface{}(&Network{}).(interface {
+		AtlasJSONValidate(context.Context, json.RawMessage, string) (json.RawMessage, error)
+	}); ok {
+		if r, err = hook.AtlasJSONValidate(ctx, r, path); err != nil {
+			return err
+		}
+	}
+
+	var v map[string]json.RawMessage
+	if err = json.Unmarshal(r, &v); err != nil {
+		return fmt.Errorf("invalid value for %q: expected object.", path)
+	}
+
+	if err = validate_required_Object_Network(ctx, v, path); err != nil {
+		return err
+	}
+
+	allowUnknown := runtime1.AllowUnknownFromContext(ctx)
+
+	for k, _ := range v {
+		switch k {
+		case "id":
+			if v[k] == nil {
+				continue
+			}
+			vv := v[k]
+			vvPath := runtime1.JoinPath(path, k)
+			validator, ok := interface{}(&resource.Identifier{}).(interface {
+				AtlasValidateJSON(context.Context, json.RawMessage, string) error
+			})
+			if !ok {
+				continue
+			}
+			if err = validator.AtlasValidateJSON(ctx, vv, vvPath); err != nil {
+				return err
+			}
+		case "name":
+		case "description":
+		case "region_id":
+			if v[k] == nil {
+				continue
+			}
+			vv := v[k]
+			vvPath := runtime1.JoinPath(path, k)
+			validator, ok := interface{}(&resource.Identifier{}).(interface {
+				AtlasValidateJSON(context.Context, json.RawMessage, string) error
+			})
+			if !ok {
+				continue
+			}
+			if err = validator.AtlasValidateJSON(ctx, vv, vvPath); err != nil {
+				return err
+			}
+		default:
+			if !allowUnknown {
+				return fmt.Errorf("unknown field %q.", runtime1.JoinPath(path, k))
+			}
+		}
+	}
+	return nil
+}
+
+// AtlasValidateJSON function validates a JSON for object Network.
+func (_ *Network) AtlasValidateJSON(ctx context.Context, r json.RawMessage, path string) (err error) {
+	if hook, ok := interface{}(&Network{}).(interface {
+		AtlasJSONValidate(context.Context, json.RawMessage, string) (json.RawMessage, error)
+	}); ok {
+		if r, err = hook.AtlasJSONValidate(ctx, r, path); err != nil {
+			return err
+		}
+	}
+	return validate_Object_Network(ctx, r, path)
+}
+
+func validate_required_Object_Network(ctx context.Context, v map[string]json.RawMessage, path string) error {
+	method := runtime1.HTTPMethodFromContext(ctx)
+	_ = method
+	return nil
+}
+
+// validate_Object_CreateNetworkRequest function validates a JSON for a given object.
+func validate_Object_CreateNetworkRequest(ctx context.Context, r json.RawMessage, path string) (err error) {
+	if hook, ok := interface{}(&CreateNetworkRequest{}).(interface {
+		AtlasJSONValidate(context.Context, json.RawMessage, string) (json.RawMessage, error)
+	}); ok {
+		if r, err = hook.AtlasJSONValidate(ctx, r, path); err != nil {
+			return err
+		}
+	}
+
+	var v map[string]json.RawMessage
+	if err = json.Unmarshal(r, &v); err != nil {
+		return fmt.Errorf("invalid value for %q: expected object.", path)
+	}
+
+	if err = validate_required_Object_CreateNetworkRequest(ctx, v, path); err != nil {
+		return err
+	}
+
+	allowUnknown := runtime1.AllowUnknownFromContext(ctx)
+
+	for k, _ := range v {
+		switch k {
+		case "payload":
+			if v[k] == nil {
+				continue
+			}
+			vv := v[k]
+			vvPath := runtime1.JoinPath(path, k)
+			if err = validate_Object_Network(ctx, vv, vvPath); err != nil {
+				return err
+			}
+		default:
+			if !allowUnknown {
+				return fmt.Errorf("unknown field %q.", runtime1.JoinPath(path, k))
+			}
+		}
+	}
+	return nil
+}
+
+// AtlasValidateJSON function validates a JSON for object CreateNetworkRequest.
+func (_ *CreateNetworkRequest) AtlasValidateJSON(ctx context.Context, r json.RawMessage, path string) (err error) {
+	if hook, ok := interface{}(&CreateNetworkRequest{}).(interface {
+		AtlasJSONValidate(context.Context, json.RawMessage, string) (json.RawMessage, error)
+	}); ok {
+		if r, err = hook.AtlasJSONValidate(ctx, r, path); err != nil {
+			return err
+		}
+	}
+	return validate_Object_CreateNetworkRequest(ctx, r, path)
+}
+
+func validate_required_Object_CreateNetworkRequest(ctx context.Context, v map[string]json.RawMessage, path string) error {
+	method := runtime1.HTTPMethodFromContext(ctx)
+	_ = method
+	return nil
+}
+
+// validate_Object_CreateNetworkResponse function validates a JSON for a given object.
+func validate_Object_CreateNetworkResponse(ctx context.Context, r json.RawMessage, path string) (err error) {
+	if hook, ok := interface{}(&CreateNetworkResponse{}).(interface {
+		AtlasJSONValidate(context.Context, json.RawMessage, string) (json.RawMessage, error)
+	}); ok {
+		if r, err = hook.AtlasJSONValidate(ctx, r, path); err != nil {
+			return err
+		}
+	}
+
+	var v map[string]json.RawMessage
+	if err = json.Unmarshal(r, &v); err != nil {
+		return fmt.Errorf("invalid value for %q: expected object.", path)
+	}
+
+	if err = validate_required_Object_CreateNetworkResponse(ctx, v, path); err != nil {
+		return err
+	}
+
+	allowUnknown := runtime1.AllowUnknownFromContext(ctx)
+
+	for k, _ := range v {
+		switch k {
+		case "result":
+			if v[k] == nil {
+				continue
+			}
+			vv := v[k]
+			vvPath := runtime1.JoinPath(path, k)
+			if err = validate_Object_Network(ctx, vv, vvPath); err != nil {
+				return err
+			}
+		default:
+			if !allowUnknown {
+				return fmt.Errorf("unknown field %q.", runtime1.JoinPath(path, k))
+			}
+		}
+	}
+	return nil
+}
+
+// AtlasValidateJSON function validates a JSON for object CreateNetworkResponse.
+func (_ *CreateNetworkResponse) AtlasValidateJSON(ctx context.Context, r json.RawMessage, path string) (err error) {
+	if hook, ok := interface{}(&CreateNetworkResponse{}).(interface {
+		AtlasJSONValidate(context.Context, json.RawMessage, string) (json.RawMessage, error)
+	}); ok {
+		if r, err = hook.AtlasJSONValidate(ctx, r, path); err != nil {
+			return err
+		}
+	}
+	return validate_Object_CreateNetworkResponse(ctx, r, path)
+}
+
+func validate_required_Object_CreateNetworkResponse(ctx context.Context, v map[string]json.RawMessage, path string) error {
+	method := runtime1.HTTPMethodFromContext(ctx)
+	_ = method
+	return nil
+}
+
+// validate_Object_ReadNetworkRequest function validates a JSON for a given object.
+func validate_Object_ReadNetworkRequest(ctx context.Context, r json.RawMessage, path string) (err error) {
+	if hook, ok := interface{}(&ReadNetworkRequest{}).(interface {
+		AtlasJSONValidate(context.Context, json.RawMessage, string) (json.RawMessage, error)
+	}); ok {
+		if r, err = hook.AtlasJSONValidate(ctx, r, path); err != nil {
+			return err
+		}
+	}
+
+	var v map[string]json.RawMessage
+	if err = json.Unmarshal(r, &v); err != nil {
+		return fmt.Errorf("invalid value for %q: expected object.", path)
+	}
+
+	if err = validate_required_Object_ReadNetworkRequest(ctx, v, path); err != nil {
+		return err
+	}
+
+	allowUnknown := runtime1.AllowUnknownFromContext(ctx)
+
+	for k, _ := range v {
+		switch k {
+		case "id":
+			if v[k] == nil {
+				continue
+			}
+			vv := v[k]
+			vvPath := runtime1.JoinPath(path, k)
+			validator, ok := interface{}(&resource.Identifier{}).(interface {
+				AtlasValidateJSON(context.Context, json.RawMessage, string) error
+			})
+			if !ok {
+				continue
+			}
+			if err = validator.AtlasValidateJSON(ctx, vv, vvPath); err != nil {
+				return err
+			}
+		case "fields":
+			if v[k] == nil {
+				continue
+			}
+			vv := v[k]
+			vvPath := runtime1.JoinPath(path, k)
+			validator, ok := interface{}(&query.FieldSelection{}).(interface {
+				AtlasValidateJSON(context.Context, json.RawMessage, string) error
+			})
+			if !ok {
+				continue
+			}
+			if err = validator.AtlasValidateJSON(ctx, vv, vvPath); err != nil {
+				return err
+			}
+		default:
+			if !allowUnknown {
+				return fmt.Errorf("unknown field %q.", runtime1.JoinPath(path, k))
+			}
+		}
+	}
+	return nil
+}
+
+// AtlasValidateJSON function validates a JSON for object ReadNetworkRequest.
+func (_ *ReadNetworkRequest) AtlasValidateJSON(ctx context.Context, r json.RawMessage, path string) (err error) {
+	if hook, ok := interface{}(&ReadNetworkRequest{}).(interface {
+		AtlasJSONValidate(context.Context, json.RawMessage, string) (json.RawMessage, error)
+	}); ok {
+		if r, err = hook.AtlasJSONValidate(ctx, r, path); err != nil {
+			return err
+		}
+	}
+	return validate_Object_ReadNetworkRequest(ctx, r, path)
+}
+
+func validate_required_Object_ReadNetworkRequest(ctx context.Context, v map[string]json.RawMessage, path string) error {
+	method := runtime1.HTTPMethodFromContext(ctx)
+	_ = method
+	return nil
+}
+
+// validate_Object_ReadNetworkResponse function validates a JSON for a given object.
+func validate_Object_ReadNetworkResponse(ctx context.Context, r json.RawMessage, path string) (err error) {
+	if hook, ok := interface{}(&ReadNetworkResponse{}).(interface {
+		AtlasJSONValidate(context.Context, json.RawMessage, string) (json.RawMessage, error)
+	}); ok {
+		if r, err = hook.AtlasJSONValidate(ctx, r, path); err != nil {
+			return err
+		}
+	}
+
+	var v map[string]json.RawMessage
+	if err = json.Unmarshal(r, &v); err != nil {
+		return fmt.Errorf("invalid value for %q: expected object.", path)
+	}
+
+	if err = validate_required_Object_ReadNetworkResponse(ctx, v, path); err != nil {
+		return err
+	}
+
+	allowUnknown := runtime1.AllowUnknownFromContext(ctx)
+
+	for k, _ := range v {
+		switch k {
+		case "result":
+			if v[k] == nil {
+				continue
+			}
+			vv := v[k]
+			vvPath := runtime1.JoinPath(path, k)
+			if err = validate_Object_Network(ctx, vv, vvPath); err != nil {
+				return err
+			}
+		default:
+			if !allowUnknown {
+				return fmt.Errorf("unknown field %q.", runtime1.JoinPath(path, k))
+			}
+		}
+	}
+	return nil
+}
+
+// AtlasValidateJSON function validates a JSON for object ReadNetworkResponse.
+func (_ *ReadNetworkResponse) AtlasValidateJSON(ctx context.Context, r json.RawMessage, path string) (err error) {
+	if hook, ok := interface{}(&ReadNetworkResponse{}).(interface {
+		AtlasJSONValidate(context.Context, json.RawMessage, string) (json.RawMessage, error)
+	}); ok {
+		if r, err = hook.AtlasJSONValidate(ctx, r, path); err != nil {
+			return err
+		}
+	}
+	return validate_Object_ReadNetworkResponse(ctx, r, path)
+}
+
+func validate_required_Object_ReadNetworkResponse(ctx context.Context, v map[string]json.RawMessage, path string) error {
+	method := runtime1.HTTPMethodFromContext(ctx)
+	_ = method
+	return nil
+}
+
+// validate_Object_UpdateNetworkRequest function validates a JSON for a given object.
+func validate_Object_UpdateNetworkRequest(ctx context.Context, r json.RawMessage, path string) (err error) {
+	if hook, ok := interface{}(&UpdateNetworkRequest{}).(interface {
+		AtlasJSONValidate(context.Context, json.RawMessage, string) (json.RawMessage, error)
+	}); ok {
+		if r, err = hook.AtlasJSONValidate(ctx, r, path); err != nil {
+			return err
+		}
+	}
+
+	var v map[string]json.RawMessage
+	if err = json.Unmarshal(r, &v); err != nil {
+		return fmt.Errorf("invalid value for %q: expected object.", path)
+	}
+
+	if err = validate_required_Object_UpdateNetworkRequest(ctx, v, path); err != nil {
+		return err
+	}
+
+	allowUnknown := runtime1.AllowUnknownFromContext(ctx)
+
+	for k, _ := range v {
+		switch k {
+		case "payload":
+			if v[k] == nil {
+				continue
+			}
+			vv := v[k]
+			vvPath := runtime1.JoinPath(path, k)
+			if err = validate_Object_Network(ctx, vv, vvPath); err != nil {
+				return err
+			}
+		case "fields":
+			if v[k] == nil {
+				continue
+			}
+			vv := v[k]
+			vvPath := runtime1.JoinPath(path, k)
+			validator, ok := interface{}(&field_mask.FieldMask{}).(interface {
+				AtlasValidateJSON(context.Context, json.RawMessage, string) error
+			})
+			if !ok {
+				continue
+			}
+			if err = validator.AtlasValidateJSON(ctx, vv, vvPath); err != nil {
+				return err
+			}
+		default:
+			if !allowUnknown {
+				return fmt.Errorf("unknown field %q.", runtime1.JoinPath(path, k))
+			}
+		}
+	}
+	return nil
+}
+
+// AtlasValidateJSON function validates a JSON for object UpdateNetworkRequest.
+func (_ *UpdateNetworkRequest) AtlasValidateJSON(ctx context.Context, r json.RawMessage, path string) (err error) {
+	if hook, ok := interface{}(&UpdateNetworkRequest{}).(interface {
+		AtlasJSONValidate(context.Context, json.RawMessage, string) (json.RawMessage, error)
+	}); ok {
+		if r, err = hook.AtlasJSONValidate(ctx, r, path); err != nil {
+			return err
+		}
+	}
+	return validate_Object_UpdateNetworkRequest(ctx, r, path)
+}
+
+func validate_required_Object_UpdateNetworkRequest(ctx context.Context, v map[string]json.RawMessage, path string) error {
+	method := runtime1.HTTPMethodFromContext(ctx)
+	_ = method
+	return nil
+}
+
+// validate_Object_UpdateNetworkResponse function validates a JSON for a given object.
+func validate_Object_UpdateNetworkResponse(ctx context.Context, r json.RawMessage, path string) (err error) {
+	if hook, ok := interface{}(&UpdateNetworkResponse{}).(interface {
+		AtlasJSONValidate(context.Context, json.RawMessage, string) (json.RawMessage, error)
+	}); ok {
+		if r, err = hook.AtlasJSONValidate(ctx, r, path); err != nil {
+			return err
+		}
+	}
+
+	var v map[string]json.RawMessage
+	if err = json.Unmarshal(r, &v); err != nil {
+		return fmt.Errorf("invalid value for %q: expected object.", path)
+	}
+
+	if err = validate_required_Object_UpdateNetworkResponse(ctx, v, path); err != nil {
+		return err
+	}
+
+	allowUnknown := runtime1.AllowUnknownFromContext(ctx)
+
+	for k, _ := range v {
+		switch k {
+		case "result":
+			if v[k] == nil {
+				continue
+			}
+			vv := v[k]
+			vvPath := runtime1.JoinPath(path, k)
+			if err = validate_Object_Network(ctx, vv, vvPath); err != nil {
+				return err
+			}
+		default:
+			if !allowUnknown {
+				return fmt.Errorf("unknown field %q.", runtime1.JoinPath(path, k))
+			}
+		}
+	}
+	return nil
+}
+
+// AtlasValidateJSON function validates a JSON for object UpdateNetworkResponse.
+func (_ *UpdateNetworkResponse) AtlasValidateJSON(ctx context.Context, r json.RawMessage, path string) (err error) {
+	if hook, ok := interface{}(&UpdateNetworkResponse{}).(interface {
+		AtlasJSONValidate(context.Context, json.RawMessage, string) (json.RawMessage, error)
+	}); ok {
+		if r, err = hook.AtlasJSONValidate(ctx, r, path); err != nil {
+			return err
+		}
+	}
+	return validate_Object_UpdateNetworkResponse(ctx, r, path)
+}
+
+func validate_required_Object_UpdateNetworkResponse(ctx context.Context, v map[string]json.RawMessage, path string) error {
+	method := runtime1.HTTPMethodFromContext(ctx)
+	_ = method
+	return nil
+}
+
+// validate_Object_DeleteNetworkRequest function validates a JSON for a given object.
+func validate_Object_DeleteNetworkRequest(ctx context.Context, r json.RawMessage, path string) (err error) {
+	if hook, ok := interface{}(&DeleteNetworkRequest{}).(interface {
+		AtlasJSONValidate(context.Context, json.RawMessage, string) (json.RawMessage, error)
+	}); ok {
+		if r, err = hook.AtlasJSONValidate(ctx, r, path); err != nil {
+			return err
+		}
+	}
+
+	var v map[string]json.RawMessage
+	if err = json.Unmarshal(r, &v); err != nil {
+		return fmt.Errorf("invalid value for %q: expected object.", path)
+	}
+
+	if err = validate_required_Object_DeleteNetworkRequest(ctx, v, path); err != nil {
+		return err
+	}
+
+	allowUnknown := runtime1.AllowUnknownFromContext(ctx)
+
+	for k, _ := range v {
+		switch k {
+		case "id":
+			if v[k] == nil {
+				continue
+			}
+			vv := v[k]
+			vvPath := runtime1.JoinPath(path, k)
+			validator, ok := interface{}(&resource.Identifier{}).(interface {
+				AtlasValidateJSON(context.Context, json.RawMessage, string) error
+			})
+			if !ok {
+				continue
+			}
+			if err = validator.AtlasValidateJSON(ctx, vv, vvPath); err != nil {
+				return err
+			}
+		default:
+			if !allowUnknown {
+				return fmt.Errorf("unknown field %q.", runtime1.JoinPath(path, k))
+			}
+		}
+	}
+	return nil
+}
+
+// AtlasValidateJSON function validates a JSON for object DeleteNetworkRequest.
+func (_ *DeleteNetworkRequest) AtlasValidateJSON(ctx context.Context, r json.RawMessage, path string) (err error) {
+	if hook, ok := interface{}(&DeleteNetworkRequest{}).(interface {
+		AtlasJSONValidate(context.Context, json.RawMessage, string) (json.RawMessage, error)
+	}); ok {
+		if r, err = hook.AtlasJSONValidate(ctx, r, path); err != nil {
+			return err
+		}
+	}
+	return validate_Object_DeleteNetworkRequest(ctx, r, path)
+}
+
+func validate_required_Object_DeleteNetworkRequest(ctx context.Context, v map[string]json.RawMessage, path string) error {
+	method := runtime1.HTTPMethodFromContext(ctx)
+	_ = method
+	return nil
+}
+
+// validate_Object_DeleteNetworkResponse function validates a JSON for a given object.
+func validate_Object_DeleteNetworkResponse(ctx context.Context, r json.RawMessage, path string) (err error) {
+	if hook, ok := interface{}(&DeleteNetworkResponse{}).(interface {
+		AtlasJSONValidate(context.Context, json.RawMessage, string) (json.RawMessage, error)
+	}); ok {
+		if r, err = hook.AtlasJSONValidate(ctx, r, path); err != nil {
+			return err
+		}
+	}
+
+	var v map[string]json.RawMessage
+	if err = json.Unmarshal(r, &v); err != nil {
+		return fmt.Errorf("invalid value for %q: expected object.", path)
+	}
+
+	if err = validate_required_Object_DeleteNetworkResponse(ctx, v, path); err != nil {
+		return err
+	}
+
+	allowUnknown := runtime1.AllowUnknownFromContext(ctx)
+
+	for k, _ := range v {
+		switch k {
+		default:
+			if !allowUnknown {
+				return fmt.Errorf("unknown field %q.", runtime1.JoinPath(path, k))
+			}
+		}
+	}
+	return nil
+}
+
+// AtlasValidateJSON function validates a JSON for object DeleteNetworkResponse.
+func (_ *DeleteNetworkResponse) AtlasValidateJSON(ctx context.Context, r json.RawMessage, path string) (err error) {
+	if hook, ok := interface{}(&DeleteNetworkResponse{}).(interface {
+		AtlasJSONValidate(context.Context, json.RawMessage, string) (json.RawMessage, error)
+	}); ok {
+		if r, err = hook.AtlasJSONValidate(ctx, r, path); err != nil {
+			return err
+		}
+	}
+	return validate_Object_DeleteNetworkResponse(ctx, r, path)
+}
+
+func validate_required_Object_DeleteNetworkResponse(ctx context.Context, v map[string]json.RawMessage, path string) error {
+	method := runtime1.HTTPMethodFromContext(ctx)
+	_ = method
+	return nil
+}
+
+// validate_Object_ListNetworkRequest function validates a JSON for a given object.
+func validate_Object_ListNetworkRequest(ctx context.Context, r json.RawMessage, path string) (err error) {
+	if hook, ok := interface{}(&ListNetworkRequest{}).(interface {
+		AtlasJSONValidate(context.Context, json.RawMessage, string) (json.RawMessage, error)
+	}); ok {
+		if r, err = hook.AtlasJSONValidate(ctx, r, path); err != nil {
+			return err
+		}
+	}
+
+	var v map[string]json.RawMessage
+	if err = json.Unmarshal(r, &v); err != nil {
+		return fmt.Errorf("invalid value for %q: expected object.", path)
+	}
+
+	if err = validate_required_Object_ListNetworkRequest(ctx, v, path); err != nil {
+		return err
+	}
+
+	allowUnknown := runtime1.AllowUnknownFromContext(ctx)
+
+	for k, _ := range v {
+		switch k {
+		case "filter":
+			if v[k] == nil {
+				continue
+			}
+			vv := v[k]
+			vvPath := runtime1.JoinPath(path, k)
+			validator, ok := interface{}(&query.Filtering{}).(interface {
+				AtlasValidateJSON(context.Context, json.RawMessage, string) error
+			})
+			if !ok {
+				continue
+			}
+			if err = validator.AtlasValidateJSON(ctx, vv, vvPath); err != nil {
+				return err
+			}
+		case "order_by":
+			if v[k] == nil {
+				continue
+			}
+			vv := v[k]
+			vvPath := runtime1.JoinPath(path, k)
+			validator, ok := interface{}(&query.Sorting{}).(interface {
+				AtlasValidateJSON(context.Context, json.RawMessage, string) error
+			})
+			if !ok {
+				continue
+			}
+			if err = validator.AtlasValidateJSON(ctx, vv, vvPath); err != nil {
+				return err
+			}
+		case "fields":
+			if v[k] == nil {
+				continue
+			}
+			vv := v[k]
+			vvPath := runtime1.JoinPath(path, k)
+			validator, ok := interface{}(&query.FieldSelection{}).(interface {
+				AtlasValidateJSON(context.Context, json.RawMessage, string) error
+			})
+			if !ok {
+				continue
+			}
+			if err = validator.AtlasValidateJSON(ctx, vv, vvPath); err != nil {
+				return err
+			}
+		case "paging":
+			if v[k] == nil {
+				continue
+			}
+			vv := v[k]
+			vvPath := runtime1.JoinPath(path, k)
+			validator, ok := interface{}(&query.Pagination{}).(interface {
+				AtlasValidateJSON(context.Context, json.RawMessage, string) error
+			})
+			if !ok {
+				continue
+			}
+			if err = validator.AtlasValidateJSON(ctx, vv, vvPath); err != nil {
+				return err
+			}
+		default:
+			if !allowUnknown {
+				return fmt.Errorf("unknown field %q.", runtime1.JoinPath(path, k))
+			}
+		}
+	}
+	return nil
+}
+
+// AtlasValidateJSON function validates a JSON for object ListNetworkRequest.
+func (_ *ListNetworkRequest) AtlasValidateJSON(ctx context.Context, r json.RawMessage, path string) (err error) {
+	if hook, ok := interface{}(&ListNetworkRequest{}).(interface {
+		AtlasJSONValidate(context.Context, json.RawMessage, string) (json.RawMessage, error)
+	}); ok {
+		if r, err = hook.AtlasJSONValidate(ctx, r, path); err != nil {
+			return err
+		}
+	}
+	return validate_Object_ListNetworkRequest(ctx, r, path)
+}
+
+func validate_required_Object_ListNetworkRequest(ctx context.Context, v map[string]json.RawMessage, path string) error {
+	method := runtime1.HTTPMethodFromContext(ctx)
+	_ = method
+	return nil
+}
+
+// validate_Object_ListNetworksResponse function validates a JSON for a given object.
+func validate_Object_ListNetworksResponse(ctx context.Context, r json.RawMessage, path string) (err error) {
+	if hook, ok := interface{}(&ListNetworksResponse{}).(interface {
+		AtlasJSONValidate(context.Context, json.RawMessage, string) (json.RawMessage, error)
+	}); ok {
+		if r, err = hook.AtlasJSONValidate(ctx, r, path); err != nil {
+			return err
+		}
+	}
+
+	var v map[string]json.RawMessage
+	if err = json.Unmarshal(r, &v); err != nil {
+		return fmt.Errorf("invalid value for %q: expected object.", path)
+	}
+
+	if err = validate_required_Object_ListNetworksResponse(ctx, v, path); err != nil {
+		return err
+	}
+
+	allowUnknown := runtime1.AllowUnknownFromContext(ctx)
+
+	for k, _ := range v {
+		switch k {
+		case "results":
+			if v[k] == nil {
+				continue
+			}
+			var vArr []json.RawMessage
+			vArrPath := runtime1.JoinPath(path, k)
+			if err = json.Unmarshal(v[k], &vArr); err != nil {
+				return fmt.Errorf("invalid value for %q: expected array.", vArrPath)
+			}
+			for i, vv := range vArr {
+				vvPath := fmt.Sprintf("%s.[%d]", vArrPath, i)
+				if err = validate_Object_Network(ctx, vv, vvPath); err != nil {
+					return err
+				}
+			}
+		case "page":
+			if v[k] == nil {
+				continue
+			}
+			vv := v[k]
+			vvPath := runtime1.JoinPath(path, k)
+			validator, ok := interface{}(&query.PageInfo{}).(interface {
+				AtlasValidateJSON(context.Context, json.RawMessage, string) error
+			})
+			if !ok {
+				continue
+			}
+			if err = validator.AtlasValidateJSON(ctx, vv, vvPath); err != nil {
+				return err
+			}
+		default:
+			if !allowUnknown {
+				return fmt.Errorf("unknown field %q.", runtime1.JoinPath(path, k))
+			}
+		}
+	}
+	return nil
+}
+
+// AtlasValidateJSON function validates a JSON for object ListNetworksResponse.
+func (_ *ListNetworksResponse) AtlasValidateJSON(ctx context.Context, r json.RawMessage, path string) (err error) {
+	if hook, ok := interface{}(&ListNetworksResponse{}).(interface {
+		AtlasJSONValidate(context.Context, json.RawMessage, string) (json.RawMessage, error)
+	}); ok {
+		if r, err = hook.AtlasJSONValidate(ctx, r, path); err != nil {
+			return err
+		}
+	}
+	return validate_Object_ListNetworksResponse(ctx, r, path)
+}
+
+func validate_required_Object_ListNetworksResponse(ctx context.Context, v map[string]json.RawMessage, path string) error {
 	method := runtime1.HTTPMethodFromContext(ctx)
 	_ = method
 	return nil
@@ -10373,6 +11210,21 @@ func validate_Object_KubeCluster(ctx context.Context, r json.RawMessage, path st
 			}
 		case "name":
 		case "description":
+		case "network_id":
+			if v[k] == nil {
+				continue
+			}
+			vv := v[k]
+			vvPath := runtime1.JoinPath(path, k)
+			validator, ok := interface{}(&resource.Identifier{}).(interface {
+				AtlasValidateJSON(context.Context, json.RawMessage, string) error
+			})
+			if !ok {
+				continue
+			}
+			if err = validator.AtlasValidateJSON(ctx, vv, vvPath); err != nil {
+				return err
+			}
 		default:
 			if !allowUnknown {
 				return fmt.Errorf("unknown field %q.", runtime1.JoinPath(path, k))
@@ -12004,6 +12856,42 @@ var validate_Patterns = []struct {
 		pattern:      pattern_Regions_List_0,
 		httpMethod:   "GET",
 		validator:    validate_Regions_List_0,
+		allowUnknown: false,
+	},
+	{
+		pattern:      pattern_Networks_Create_0,
+		httpMethod:   "POST",
+		validator:    validate_Networks_Create_0,
+		allowUnknown: false,
+	},
+	{
+		pattern:      pattern_Networks_Read_0,
+		httpMethod:   "GET",
+		validator:    validate_Networks_Read_0,
+		allowUnknown: false,
+	},
+	{
+		pattern:      pattern_Networks_Update_0,
+		httpMethod:   "PUT",
+		validator:    validate_Networks_Update_0,
+		allowUnknown: false,
+	},
+	{
+		pattern:      pattern_Networks_Update_1,
+		httpMethod:   "PATCH",
+		validator:    validate_Networks_Update_1,
+		allowUnknown: false,
+	},
+	{
+		pattern:      pattern_Networks_Delete_0,
+		httpMethod:   "DELETE",
+		validator:    validate_Networks_Delete_0,
+		allowUnknown: false,
+	},
+	{
+		pattern:      pattern_Networks_List_0,
+		httpMethod:   "GET",
+		validator:    validate_Networks_List_0,
 		allowUnknown: false,
 	},
 	{

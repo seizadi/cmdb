@@ -103,6 +103,12 @@ func CreateServer(logger *logrus.Logger, db *gorm.DB, interceptors []grpc.UnaryS
 		return nil, err
 	}
 	pb.RegisterChartVersionsServer(grpcServer, chart_version)
+	
+	network, err := svc.NewNetworksServer()
+	if err != nil {
+		return nil, err
+	}
+	pb.RegisterNetworksServer(grpcServer, network)
 
 	return grpcServer, nil
 }

@@ -129,3 +129,11 @@ type chartVersionsServer struct {
 func NewChartVersionsServer() (pb.ChartVersionsServer, error) {
 	return &chartVersionsServer{&pb.ChartVersionsDefaultServer{}}, nil
 }
+
+type networksServer struct {
+	*pb.NetworksDefaultServer
+}
+// NewNetworksServer returns an instance of the default Network server interface
+func NewNetworksServer() (pb.NetworksServer, error) {
+	return &networksServer{&pb.NetworksDefaultServer{}}, nil
+}

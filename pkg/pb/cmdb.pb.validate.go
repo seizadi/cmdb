@@ -1048,6 +1048,21 @@ func (m *Region) Validate() error {
 
 	// no validation rules for Description
 
+	for idx, item := range m.GetNetworks() {
+		_, _ = idx, item
+
+		if v, ok := interface{}(item).(interface{ Validate() error }); ok {
+			if err := v.Validate(); err != nil {
+				return RegionValidationError{
+					field:  fmt.Sprintf("Networks[%v]", idx),
+					reason: "embedded message failed validation",
+					cause:  err,
+				}
+			}
+		}
+
+	}
+
 	if v, ok := interface{}(m.GetCloudProviderId()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
 			return RegionValidationError{
@@ -1939,6 +1954,919 @@ var _ interface {
 	Cause() error
 	ErrorName() string
 } = ListRegionsResponseValidationError{}
+
+// Validate checks the field values on Network with the rules defined in the
+// proto definition for this message. If any rules are violated, an error is returned.
+func (m *Network) Validate() error {
+	if m == nil {
+		return nil
+	}
+
+	if v, ok := interface{}(m.GetId()).(interface{ Validate() error }); ok {
+		if err := v.Validate(); err != nil {
+			return NetworkValidationError{
+				field:  "Id",
+				reason: "embedded message failed validation",
+				cause:  err,
+			}
+		}
+	}
+
+	// no validation rules for Name
+
+	// no validation rules for Description
+
+	if v, ok := interface{}(m.GetRegionId()).(interface{ Validate() error }); ok {
+		if err := v.Validate(); err != nil {
+			return NetworkValidationError{
+				field:  "RegionId",
+				reason: "embedded message failed validation",
+				cause:  err,
+			}
+		}
+	}
+
+	return nil
+}
+
+// NetworkValidationError is the validation error returned by Network.Validate
+// if the designated constraints aren't met.
+type NetworkValidationError struct {
+	field  string
+	reason string
+	cause  error
+	key    bool
+}
+
+// Field function returns field value.
+func (e NetworkValidationError) Field() string { return e.field }
+
+// Reason function returns reason value.
+func (e NetworkValidationError) Reason() string { return e.reason }
+
+// Cause function returns cause value.
+func (e NetworkValidationError) Cause() error { return e.cause }
+
+// Key function returns key value.
+func (e NetworkValidationError) Key() bool { return e.key }
+
+// ErrorName returns error name.
+func (e NetworkValidationError) ErrorName() string { return "NetworkValidationError" }
+
+// Error satisfies the builtin error interface
+func (e NetworkValidationError) Error() string {
+	cause := ""
+	if e.cause != nil {
+		cause = fmt.Sprintf(" | caused by: %v", e.cause)
+	}
+
+	key := ""
+	if e.key {
+		key = "key for "
+	}
+
+	return fmt.Sprintf(
+		"invalid %sNetwork.%s: %s%s",
+		key,
+		e.field,
+		e.reason,
+		cause)
+}
+
+var _ error = NetworkValidationError{}
+
+var _ interface {
+	Field() string
+	Reason() string
+	Key() bool
+	Cause() error
+	ErrorName() string
+} = NetworkValidationError{}
+
+// Validate checks the field values on CreateNetworkRequest with the rules
+// defined in the proto definition for this message. If any rules are
+// violated, an error is returned.
+func (m *CreateNetworkRequest) Validate() error {
+	if m == nil {
+		return nil
+	}
+
+	if v, ok := interface{}(m.GetPayload()).(interface{ Validate() error }); ok {
+		if err := v.Validate(); err != nil {
+			return CreateNetworkRequestValidationError{
+				field:  "Payload",
+				reason: "embedded message failed validation",
+				cause:  err,
+			}
+		}
+	}
+
+	return nil
+}
+
+// CreateNetworkRequestValidationError is the validation error returned by
+// CreateNetworkRequest.Validate if the designated constraints aren't met.
+type CreateNetworkRequestValidationError struct {
+	field  string
+	reason string
+	cause  error
+	key    bool
+}
+
+// Field function returns field value.
+func (e CreateNetworkRequestValidationError) Field() string { return e.field }
+
+// Reason function returns reason value.
+func (e CreateNetworkRequestValidationError) Reason() string { return e.reason }
+
+// Cause function returns cause value.
+func (e CreateNetworkRequestValidationError) Cause() error { return e.cause }
+
+// Key function returns key value.
+func (e CreateNetworkRequestValidationError) Key() bool { return e.key }
+
+// ErrorName returns error name.
+func (e CreateNetworkRequestValidationError) ErrorName() string {
+	return "CreateNetworkRequestValidationError"
+}
+
+// Error satisfies the builtin error interface
+func (e CreateNetworkRequestValidationError) Error() string {
+	cause := ""
+	if e.cause != nil {
+		cause = fmt.Sprintf(" | caused by: %v", e.cause)
+	}
+
+	key := ""
+	if e.key {
+		key = "key for "
+	}
+
+	return fmt.Sprintf(
+		"invalid %sCreateNetworkRequest.%s: %s%s",
+		key,
+		e.field,
+		e.reason,
+		cause)
+}
+
+var _ error = CreateNetworkRequestValidationError{}
+
+var _ interface {
+	Field() string
+	Reason() string
+	Key() bool
+	Cause() error
+	ErrorName() string
+} = CreateNetworkRequestValidationError{}
+
+// Validate checks the field values on CreateNetworkResponse with the rules
+// defined in the proto definition for this message. If any rules are
+// violated, an error is returned.
+func (m *CreateNetworkResponse) Validate() error {
+	if m == nil {
+		return nil
+	}
+
+	if v, ok := interface{}(m.GetResult()).(interface{ Validate() error }); ok {
+		if err := v.Validate(); err != nil {
+			return CreateNetworkResponseValidationError{
+				field:  "Result",
+				reason: "embedded message failed validation",
+				cause:  err,
+			}
+		}
+	}
+
+	return nil
+}
+
+// CreateNetworkResponseValidationError is the validation error returned by
+// CreateNetworkResponse.Validate if the designated constraints aren't met.
+type CreateNetworkResponseValidationError struct {
+	field  string
+	reason string
+	cause  error
+	key    bool
+}
+
+// Field function returns field value.
+func (e CreateNetworkResponseValidationError) Field() string { return e.field }
+
+// Reason function returns reason value.
+func (e CreateNetworkResponseValidationError) Reason() string { return e.reason }
+
+// Cause function returns cause value.
+func (e CreateNetworkResponseValidationError) Cause() error { return e.cause }
+
+// Key function returns key value.
+func (e CreateNetworkResponseValidationError) Key() bool { return e.key }
+
+// ErrorName returns error name.
+func (e CreateNetworkResponseValidationError) ErrorName() string {
+	return "CreateNetworkResponseValidationError"
+}
+
+// Error satisfies the builtin error interface
+func (e CreateNetworkResponseValidationError) Error() string {
+	cause := ""
+	if e.cause != nil {
+		cause = fmt.Sprintf(" | caused by: %v", e.cause)
+	}
+
+	key := ""
+	if e.key {
+		key = "key for "
+	}
+
+	return fmt.Sprintf(
+		"invalid %sCreateNetworkResponse.%s: %s%s",
+		key,
+		e.field,
+		e.reason,
+		cause)
+}
+
+var _ error = CreateNetworkResponseValidationError{}
+
+var _ interface {
+	Field() string
+	Reason() string
+	Key() bool
+	Cause() error
+	ErrorName() string
+} = CreateNetworkResponseValidationError{}
+
+// Validate checks the field values on ReadNetworkRequest with the rules
+// defined in the proto definition for this message. If any rules are
+// violated, an error is returned.
+func (m *ReadNetworkRequest) Validate() error {
+	if m == nil {
+		return nil
+	}
+
+	if v, ok := interface{}(m.GetId()).(interface{ Validate() error }); ok {
+		if err := v.Validate(); err != nil {
+			return ReadNetworkRequestValidationError{
+				field:  "Id",
+				reason: "embedded message failed validation",
+				cause:  err,
+			}
+		}
+	}
+
+	if v, ok := interface{}(m.GetFields()).(interface{ Validate() error }); ok {
+		if err := v.Validate(); err != nil {
+			return ReadNetworkRequestValidationError{
+				field:  "Fields",
+				reason: "embedded message failed validation",
+				cause:  err,
+			}
+		}
+	}
+
+	return nil
+}
+
+// ReadNetworkRequestValidationError is the validation error returned by
+// ReadNetworkRequest.Validate if the designated constraints aren't met.
+type ReadNetworkRequestValidationError struct {
+	field  string
+	reason string
+	cause  error
+	key    bool
+}
+
+// Field function returns field value.
+func (e ReadNetworkRequestValidationError) Field() string { return e.field }
+
+// Reason function returns reason value.
+func (e ReadNetworkRequestValidationError) Reason() string { return e.reason }
+
+// Cause function returns cause value.
+func (e ReadNetworkRequestValidationError) Cause() error { return e.cause }
+
+// Key function returns key value.
+func (e ReadNetworkRequestValidationError) Key() bool { return e.key }
+
+// ErrorName returns error name.
+func (e ReadNetworkRequestValidationError) ErrorName() string {
+	return "ReadNetworkRequestValidationError"
+}
+
+// Error satisfies the builtin error interface
+func (e ReadNetworkRequestValidationError) Error() string {
+	cause := ""
+	if e.cause != nil {
+		cause = fmt.Sprintf(" | caused by: %v", e.cause)
+	}
+
+	key := ""
+	if e.key {
+		key = "key for "
+	}
+
+	return fmt.Sprintf(
+		"invalid %sReadNetworkRequest.%s: %s%s",
+		key,
+		e.field,
+		e.reason,
+		cause)
+}
+
+var _ error = ReadNetworkRequestValidationError{}
+
+var _ interface {
+	Field() string
+	Reason() string
+	Key() bool
+	Cause() error
+	ErrorName() string
+} = ReadNetworkRequestValidationError{}
+
+// Validate checks the field values on ReadNetworkResponse with the rules
+// defined in the proto definition for this message. If any rules are
+// violated, an error is returned.
+func (m *ReadNetworkResponse) Validate() error {
+	if m == nil {
+		return nil
+	}
+
+	if v, ok := interface{}(m.GetResult()).(interface{ Validate() error }); ok {
+		if err := v.Validate(); err != nil {
+			return ReadNetworkResponseValidationError{
+				field:  "Result",
+				reason: "embedded message failed validation",
+				cause:  err,
+			}
+		}
+	}
+
+	return nil
+}
+
+// ReadNetworkResponseValidationError is the validation error returned by
+// ReadNetworkResponse.Validate if the designated constraints aren't met.
+type ReadNetworkResponseValidationError struct {
+	field  string
+	reason string
+	cause  error
+	key    bool
+}
+
+// Field function returns field value.
+func (e ReadNetworkResponseValidationError) Field() string { return e.field }
+
+// Reason function returns reason value.
+func (e ReadNetworkResponseValidationError) Reason() string { return e.reason }
+
+// Cause function returns cause value.
+func (e ReadNetworkResponseValidationError) Cause() error { return e.cause }
+
+// Key function returns key value.
+func (e ReadNetworkResponseValidationError) Key() bool { return e.key }
+
+// ErrorName returns error name.
+func (e ReadNetworkResponseValidationError) ErrorName() string {
+	return "ReadNetworkResponseValidationError"
+}
+
+// Error satisfies the builtin error interface
+func (e ReadNetworkResponseValidationError) Error() string {
+	cause := ""
+	if e.cause != nil {
+		cause = fmt.Sprintf(" | caused by: %v", e.cause)
+	}
+
+	key := ""
+	if e.key {
+		key = "key for "
+	}
+
+	return fmt.Sprintf(
+		"invalid %sReadNetworkResponse.%s: %s%s",
+		key,
+		e.field,
+		e.reason,
+		cause)
+}
+
+var _ error = ReadNetworkResponseValidationError{}
+
+var _ interface {
+	Field() string
+	Reason() string
+	Key() bool
+	Cause() error
+	ErrorName() string
+} = ReadNetworkResponseValidationError{}
+
+// Validate checks the field values on UpdateNetworkRequest with the rules
+// defined in the proto definition for this message. If any rules are
+// violated, an error is returned.
+func (m *UpdateNetworkRequest) Validate() error {
+	if m == nil {
+		return nil
+	}
+
+	if v, ok := interface{}(m.GetPayload()).(interface{ Validate() error }); ok {
+		if err := v.Validate(); err != nil {
+			return UpdateNetworkRequestValidationError{
+				field:  "Payload",
+				reason: "embedded message failed validation",
+				cause:  err,
+			}
+		}
+	}
+
+	if v, ok := interface{}(m.GetFields()).(interface{ Validate() error }); ok {
+		if err := v.Validate(); err != nil {
+			return UpdateNetworkRequestValidationError{
+				field:  "Fields",
+				reason: "embedded message failed validation",
+				cause:  err,
+			}
+		}
+	}
+
+	return nil
+}
+
+// UpdateNetworkRequestValidationError is the validation error returned by
+// UpdateNetworkRequest.Validate if the designated constraints aren't met.
+type UpdateNetworkRequestValidationError struct {
+	field  string
+	reason string
+	cause  error
+	key    bool
+}
+
+// Field function returns field value.
+func (e UpdateNetworkRequestValidationError) Field() string { return e.field }
+
+// Reason function returns reason value.
+func (e UpdateNetworkRequestValidationError) Reason() string { return e.reason }
+
+// Cause function returns cause value.
+func (e UpdateNetworkRequestValidationError) Cause() error { return e.cause }
+
+// Key function returns key value.
+func (e UpdateNetworkRequestValidationError) Key() bool { return e.key }
+
+// ErrorName returns error name.
+func (e UpdateNetworkRequestValidationError) ErrorName() string {
+	return "UpdateNetworkRequestValidationError"
+}
+
+// Error satisfies the builtin error interface
+func (e UpdateNetworkRequestValidationError) Error() string {
+	cause := ""
+	if e.cause != nil {
+		cause = fmt.Sprintf(" | caused by: %v", e.cause)
+	}
+
+	key := ""
+	if e.key {
+		key = "key for "
+	}
+
+	return fmt.Sprintf(
+		"invalid %sUpdateNetworkRequest.%s: %s%s",
+		key,
+		e.field,
+		e.reason,
+		cause)
+}
+
+var _ error = UpdateNetworkRequestValidationError{}
+
+var _ interface {
+	Field() string
+	Reason() string
+	Key() bool
+	Cause() error
+	ErrorName() string
+} = UpdateNetworkRequestValidationError{}
+
+// Validate checks the field values on UpdateNetworkResponse with the rules
+// defined in the proto definition for this message. If any rules are
+// violated, an error is returned.
+func (m *UpdateNetworkResponse) Validate() error {
+	if m == nil {
+		return nil
+	}
+
+	if v, ok := interface{}(m.GetResult()).(interface{ Validate() error }); ok {
+		if err := v.Validate(); err != nil {
+			return UpdateNetworkResponseValidationError{
+				field:  "Result",
+				reason: "embedded message failed validation",
+				cause:  err,
+			}
+		}
+	}
+
+	return nil
+}
+
+// UpdateNetworkResponseValidationError is the validation error returned by
+// UpdateNetworkResponse.Validate if the designated constraints aren't met.
+type UpdateNetworkResponseValidationError struct {
+	field  string
+	reason string
+	cause  error
+	key    bool
+}
+
+// Field function returns field value.
+func (e UpdateNetworkResponseValidationError) Field() string { return e.field }
+
+// Reason function returns reason value.
+func (e UpdateNetworkResponseValidationError) Reason() string { return e.reason }
+
+// Cause function returns cause value.
+func (e UpdateNetworkResponseValidationError) Cause() error { return e.cause }
+
+// Key function returns key value.
+func (e UpdateNetworkResponseValidationError) Key() bool { return e.key }
+
+// ErrorName returns error name.
+func (e UpdateNetworkResponseValidationError) ErrorName() string {
+	return "UpdateNetworkResponseValidationError"
+}
+
+// Error satisfies the builtin error interface
+func (e UpdateNetworkResponseValidationError) Error() string {
+	cause := ""
+	if e.cause != nil {
+		cause = fmt.Sprintf(" | caused by: %v", e.cause)
+	}
+
+	key := ""
+	if e.key {
+		key = "key for "
+	}
+
+	return fmt.Sprintf(
+		"invalid %sUpdateNetworkResponse.%s: %s%s",
+		key,
+		e.field,
+		e.reason,
+		cause)
+}
+
+var _ error = UpdateNetworkResponseValidationError{}
+
+var _ interface {
+	Field() string
+	Reason() string
+	Key() bool
+	Cause() error
+	ErrorName() string
+} = UpdateNetworkResponseValidationError{}
+
+// Validate checks the field values on DeleteNetworkRequest with the rules
+// defined in the proto definition for this message. If any rules are
+// violated, an error is returned.
+func (m *DeleteNetworkRequest) Validate() error {
+	if m == nil {
+		return nil
+	}
+
+	if v, ok := interface{}(m.GetId()).(interface{ Validate() error }); ok {
+		if err := v.Validate(); err != nil {
+			return DeleteNetworkRequestValidationError{
+				field:  "Id",
+				reason: "embedded message failed validation",
+				cause:  err,
+			}
+		}
+	}
+
+	return nil
+}
+
+// DeleteNetworkRequestValidationError is the validation error returned by
+// DeleteNetworkRequest.Validate if the designated constraints aren't met.
+type DeleteNetworkRequestValidationError struct {
+	field  string
+	reason string
+	cause  error
+	key    bool
+}
+
+// Field function returns field value.
+func (e DeleteNetworkRequestValidationError) Field() string { return e.field }
+
+// Reason function returns reason value.
+func (e DeleteNetworkRequestValidationError) Reason() string { return e.reason }
+
+// Cause function returns cause value.
+func (e DeleteNetworkRequestValidationError) Cause() error { return e.cause }
+
+// Key function returns key value.
+func (e DeleteNetworkRequestValidationError) Key() bool { return e.key }
+
+// ErrorName returns error name.
+func (e DeleteNetworkRequestValidationError) ErrorName() string {
+	return "DeleteNetworkRequestValidationError"
+}
+
+// Error satisfies the builtin error interface
+func (e DeleteNetworkRequestValidationError) Error() string {
+	cause := ""
+	if e.cause != nil {
+		cause = fmt.Sprintf(" | caused by: %v", e.cause)
+	}
+
+	key := ""
+	if e.key {
+		key = "key for "
+	}
+
+	return fmt.Sprintf(
+		"invalid %sDeleteNetworkRequest.%s: %s%s",
+		key,
+		e.field,
+		e.reason,
+		cause)
+}
+
+var _ error = DeleteNetworkRequestValidationError{}
+
+var _ interface {
+	Field() string
+	Reason() string
+	Key() bool
+	Cause() error
+	ErrorName() string
+} = DeleteNetworkRequestValidationError{}
+
+// Validate checks the field values on DeleteNetworkResponse with the rules
+// defined in the proto definition for this message. If any rules are
+// violated, an error is returned.
+func (m *DeleteNetworkResponse) Validate() error {
+	if m == nil {
+		return nil
+	}
+
+	return nil
+}
+
+// DeleteNetworkResponseValidationError is the validation error returned by
+// DeleteNetworkResponse.Validate if the designated constraints aren't met.
+type DeleteNetworkResponseValidationError struct {
+	field  string
+	reason string
+	cause  error
+	key    bool
+}
+
+// Field function returns field value.
+func (e DeleteNetworkResponseValidationError) Field() string { return e.field }
+
+// Reason function returns reason value.
+func (e DeleteNetworkResponseValidationError) Reason() string { return e.reason }
+
+// Cause function returns cause value.
+func (e DeleteNetworkResponseValidationError) Cause() error { return e.cause }
+
+// Key function returns key value.
+func (e DeleteNetworkResponseValidationError) Key() bool { return e.key }
+
+// ErrorName returns error name.
+func (e DeleteNetworkResponseValidationError) ErrorName() string {
+	return "DeleteNetworkResponseValidationError"
+}
+
+// Error satisfies the builtin error interface
+func (e DeleteNetworkResponseValidationError) Error() string {
+	cause := ""
+	if e.cause != nil {
+		cause = fmt.Sprintf(" | caused by: %v", e.cause)
+	}
+
+	key := ""
+	if e.key {
+		key = "key for "
+	}
+
+	return fmt.Sprintf(
+		"invalid %sDeleteNetworkResponse.%s: %s%s",
+		key,
+		e.field,
+		e.reason,
+		cause)
+}
+
+var _ error = DeleteNetworkResponseValidationError{}
+
+var _ interface {
+	Field() string
+	Reason() string
+	Key() bool
+	Cause() error
+	ErrorName() string
+} = DeleteNetworkResponseValidationError{}
+
+// Validate checks the field values on ListNetworkRequest with the rules
+// defined in the proto definition for this message. If any rules are
+// violated, an error is returned.
+func (m *ListNetworkRequest) Validate() error {
+	if m == nil {
+		return nil
+	}
+
+	if v, ok := interface{}(m.GetFilter()).(interface{ Validate() error }); ok {
+		if err := v.Validate(); err != nil {
+			return ListNetworkRequestValidationError{
+				field:  "Filter",
+				reason: "embedded message failed validation",
+				cause:  err,
+			}
+		}
+	}
+
+	if v, ok := interface{}(m.GetOrderBy()).(interface{ Validate() error }); ok {
+		if err := v.Validate(); err != nil {
+			return ListNetworkRequestValidationError{
+				field:  "OrderBy",
+				reason: "embedded message failed validation",
+				cause:  err,
+			}
+		}
+	}
+
+	if v, ok := interface{}(m.GetFields()).(interface{ Validate() error }); ok {
+		if err := v.Validate(); err != nil {
+			return ListNetworkRequestValidationError{
+				field:  "Fields",
+				reason: "embedded message failed validation",
+				cause:  err,
+			}
+		}
+	}
+
+	if v, ok := interface{}(m.GetPaging()).(interface{ Validate() error }); ok {
+		if err := v.Validate(); err != nil {
+			return ListNetworkRequestValidationError{
+				field:  "Paging",
+				reason: "embedded message failed validation",
+				cause:  err,
+			}
+		}
+	}
+
+	return nil
+}
+
+// ListNetworkRequestValidationError is the validation error returned by
+// ListNetworkRequest.Validate if the designated constraints aren't met.
+type ListNetworkRequestValidationError struct {
+	field  string
+	reason string
+	cause  error
+	key    bool
+}
+
+// Field function returns field value.
+func (e ListNetworkRequestValidationError) Field() string { return e.field }
+
+// Reason function returns reason value.
+func (e ListNetworkRequestValidationError) Reason() string { return e.reason }
+
+// Cause function returns cause value.
+func (e ListNetworkRequestValidationError) Cause() error { return e.cause }
+
+// Key function returns key value.
+func (e ListNetworkRequestValidationError) Key() bool { return e.key }
+
+// ErrorName returns error name.
+func (e ListNetworkRequestValidationError) ErrorName() string {
+	return "ListNetworkRequestValidationError"
+}
+
+// Error satisfies the builtin error interface
+func (e ListNetworkRequestValidationError) Error() string {
+	cause := ""
+	if e.cause != nil {
+		cause = fmt.Sprintf(" | caused by: %v", e.cause)
+	}
+
+	key := ""
+	if e.key {
+		key = "key for "
+	}
+
+	return fmt.Sprintf(
+		"invalid %sListNetworkRequest.%s: %s%s",
+		key,
+		e.field,
+		e.reason,
+		cause)
+}
+
+var _ error = ListNetworkRequestValidationError{}
+
+var _ interface {
+	Field() string
+	Reason() string
+	Key() bool
+	Cause() error
+	ErrorName() string
+} = ListNetworkRequestValidationError{}
+
+// Validate checks the field values on ListNetworksResponse with the rules
+// defined in the proto definition for this message. If any rules are
+// violated, an error is returned.
+func (m *ListNetworksResponse) Validate() error {
+	if m == nil {
+		return nil
+	}
+
+	for idx, item := range m.GetResults() {
+		_, _ = idx, item
+
+		if v, ok := interface{}(item).(interface{ Validate() error }); ok {
+			if err := v.Validate(); err != nil {
+				return ListNetworksResponseValidationError{
+					field:  fmt.Sprintf("Results[%v]", idx),
+					reason: "embedded message failed validation",
+					cause:  err,
+				}
+			}
+		}
+
+	}
+
+	if v, ok := interface{}(m.GetPage()).(interface{ Validate() error }); ok {
+		if err := v.Validate(); err != nil {
+			return ListNetworksResponseValidationError{
+				field:  "Page",
+				reason: "embedded message failed validation",
+				cause:  err,
+			}
+		}
+	}
+
+	return nil
+}
+
+// ListNetworksResponseValidationError is the validation error returned by
+// ListNetworksResponse.Validate if the designated constraints aren't met.
+type ListNetworksResponseValidationError struct {
+	field  string
+	reason string
+	cause  error
+	key    bool
+}
+
+// Field function returns field value.
+func (e ListNetworksResponseValidationError) Field() string { return e.field }
+
+// Reason function returns reason value.
+func (e ListNetworksResponseValidationError) Reason() string { return e.reason }
+
+// Cause function returns cause value.
+func (e ListNetworksResponseValidationError) Cause() error { return e.cause }
+
+// Key function returns key value.
+func (e ListNetworksResponseValidationError) Key() bool { return e.key }
+
+// ErrorName returns error name.
+func (e ListNetworksResponseValidationError) ErrorName() string {
+	return "ListNetworksResponseValidationError"
+}
+
+// Error satisfies the builtin error interface
+func (e ListNetworksResponseValidationError) Error() string {
+	cause := ""
+	if e.cause != nil {
+		cause = fmt.Sprintf(" | caused by: %v", e.cause)
+	}
+
+	key := ""
+	if e.key {
+		key = "key for "
+	}
+
+	return fmt.Sprintf(
+		"invalid %sListNetworksResponse.%s: %s%s",
+		key,
+		e.field,
+		e.reason,
+		cause)
+}
+
+var _ error = ListNetworksResponseValidationError{}
+
+var _ interface {
+	Field() string
+	Reason() string
+	Key() bool
+	Cause() error
+	ErrorName() string
+} = ListNetworksResponseValidationError{}
 
 // Validate checks the field values on Lifecycle with the rules defined in the
 // proto definition for this message. If any rules are violated, an error is returned.
@@ -11373,6 +12301,16 @@ func (m *KubeCluster) Validate() error {
 	// no validation rules for Name
 
 	// no validation rules for Description
+
+	if v, ok := interface{}(m.GetNetworkId()).(interface{ Validate() error }); ok {
+		if err := v.Validate(); err != nil {
+			return KubeClusterValidationError{
+				field:  "NetworkId",
+				reason: "embedded message failed validation",
+				cause:  err,
+			}
+		}
+	}
 
 	return nil
 }
