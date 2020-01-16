@@ -1,0 +1,18 @@
+<div class="row">
+  <div class="col-sm-6" *ngFor="let application of (applicationsState | async).applications">
+    <div class="card">
+      <div class="card-header">
+        <h5 class="card-title">{{ application.name }}</h5>
+        <p class="card-text">{{ application.repo }}</p>
+      </div>
+      <div class="card-body">
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item" *ngFor="let appInst of application.application_instances">
+            <p class="card-text">{{ appInst.name }}</p>
+            <a href="#" class="btn btn-primary mr-2">{{ appInst.chart_version.version }}</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>

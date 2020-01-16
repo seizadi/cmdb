@@ -4,6 +4,20 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 ## Development server
 
+Project created with:
+```bash
+ng new cmdb-ui
+cd cmdb-ui
+npm install @ngrx/store --save
+npm install @ngrx/effects --save
+npm install @ngrx/router-store --save
+npm install @ngrx/store-devtools --save
+ng add ngx-bootstrap  --component collapse
+ng add ngx-bootstrap  --component dropdowns
+
+
+```
+
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
 ## Code scaffolding
