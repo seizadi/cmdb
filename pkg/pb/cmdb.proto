@@ -1114,14 +1114,17 @@ message ApplicationInstance {
   // Custom configuration
   string config_yaml = 5;
 
+  // ChartVersion for the ApplicationInstance
+  ChartVersion chart_version = 6 [(gorm.field).belongs_to = {}];
+
   // Reference to the ChartVersion
-  atlas.rpc.Identifier chart_version_id = 6 [(gorm.field) = {reference_of: "ChartVersion", tag: {type: "integer"}}];
+  atlas.rpc.Identifier chart_version_id = 7 [(gorm.field) = {reference_of: "ChartVersion", tag: {type: "integer"}}];
 
   // Reference to the Environment
-  atlas.rpc.Identifier environment_id = 7 [(gorm.field) = {reference_of: "Environment", tag: {type: "integer"}}];
+  atlas.rpc.Identifier environment_id = 8 [(gorm.field) = {reference_of: "Environment", tag: {type: "integer"}}];
 
   // Reference to the Application
-  atlas.rpc.Identifier application_id = 8 [(gorm.field) = {reference_of: "Application", tag: {type: "integer"}}];
+  atlas.rpc.Identifier application_id = 9 [(gorm.field) = {reference_of: "Application", tag: {type: "integer"}}];
 }
 
 message CreateApplicationInstanceRequest {

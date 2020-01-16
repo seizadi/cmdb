@@ -7658,6 +7658,16 @@ func (m *ApplicationInstance) Validate() error {
 
 	// no validation rules for ConfigYaml
 
+	if v, ok := interface{}(m.GetChartVersion()).(interface{ Validate() error }); ok {
+		if err := v.Validate(); err != nil {
+			return ApplicationInstanceValidationError{
+				field:  "ChartVersion",
+				reason: "embedded message failed validation",
+				cause:  err,
+			}
+		}
+	}
+
 	if v, ok := interface{}(m.GetChartVersionId()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
 			return ApplicationInstanceValidationError{

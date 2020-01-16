@@ -2948,6 +2948,10 @@
           "description": "The resource identifier.",
           "type": "string"
         },
+        "chart_version": {
+          "title": "ChartVersion for the ApplicationInstance",
+          "$ref": "#/definitions/cmdbChartVersion"
+        },
         "chart_version_id": {
           "description": "The resource identifier.",
           "type": "string"

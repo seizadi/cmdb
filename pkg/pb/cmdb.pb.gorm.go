@@ -1329,8 +1329,9 @@ type AppVersionWithAfterToPB interface {
 
 type ApplicationInstanceORM struct {
 	AccountID      string
-	ApplicationId  *int64 `gorm:"type:integer"`
-	ChartVersionId *int64 `gorm:"type:integer"`
+	ApplicationId  *int64           `gorm:"type:integer"`
+	ChartVersion   *ChartVersionORM `gorm:"foreignkey:ChartVersionId;association_foreignkey:Id"`
+	ChartVersionId *int64           `gorm:"type:integer"`
 	ConfigYaml     string
 	Deployment     *DeploymentORM `gorm:"foreignkey:ApplicationInstanceId;association_foreignkey:Id"`
 	Description    string
@@ -1369,6 +1370,13 @@ func (m *ApplicationInstance) ToORM(ctx context.Context) (ApplicationInstanceORM
 		to.Deployment = &tempDeployment
 	}
 	to.ConfigYaml = m.ConfigYaml
+	if m.ChartVersion != nil {
+		tempChartVersion, err := m.ChartVersion.ToORM(ctx)
+		if err != nil {
+			return to, err
+		}
+		to.ChartVersion = &tempChartVersion
+	}
 	if m.ChartVersionId != nil {
 		if v, err := resource1.DecodeInt64(&ChartVersion{}, m.ChartVersionId); err != nil {
 			return to, err
@@ -1426,6 +1434,13 @@ func (m *ApplicationInstanceORM) ToPB(ctx context.Context) (ApplicationInstance,
 		to.Deployment = &tempDeployment
 	}
 	to.ConfigYaml = m.ConfigYaml
+	if m.ChartVersion != nil {
+		tempChartVersion, err := m.ChartVersion.ToPB(ctx)
+		if err != nil {
+			return to, err
+		}
+		to.ChartVersion = &tempChartVersion
+	}
 	if m.ChartVersionId != nil {
 		if v, err := resource1.Encode(&ChartVersion{}, *m.ChartVersionId); err != nil {
 			return to, err
@@ -5484,6 +5499,7 @@ func DefaultApplyFieldMaskApplicationInstance(ctx context.Context, patchee *Appl
 	}
 	var err error
 	var updatedDeployment bool
+	var updatedChartVersion bool
 	for i, f := range updateMask.Paths {
 		if f == prefix+"Id" {
 			patchee.Id = patcher.Id
@@ -5520,6 +5536,27 @@ func DefaultApplyFieldMaskApplicationInstance(ctx context.Context, patchee *Appl
 		}
 		if f == prefix+"ConfigYaml" {
 			patchee.ConfigYaml = patcher.ConfigYaml
+			continue
+		}
+		if !updatedChartVersion && strings.HasPrefix(f, prefix+"ChartVersion.") {
+			updatedChartVersion = true
+			if patcher.ChartVersion == nil {
+				patchee.ChartVersion = nil
+				continue
+			}
+			if patchee.ChartVersion == nil {
+				patchee.ChartVersion = &ChartVersion{}
+			}
+			if o, err := DefaultApplyFieldMaskChartVersion(ctx, patchee.ChartVersion, patcher.ChartVersion, &field_mask1.FieldMask{Paths: updateMask.Paths[i:]}, prefix+"ChartVersion.", db); err != nil {
+				return nil, err
+			} else {
+				patchee.ChartVersion = o
+			}
+			continue
+		}
+		if f == prefix+"ChartVersion" {
+			updatedChartVersion = true
+			patchee.ChartVersion = patcher.ChartVersion
 			continue
 		}
 		if f == prefix+"ChartVersionId" {

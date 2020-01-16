@@ -7204,6 +7204,15 @@ func validate_Object_ApplicationInstance(ctx context.Context, r json.RawMessage,
 				return err
 			}
 		case "config_yaml":
+		case "chart_version":
+			if v[k] == nil {
+				continue
+			}
+			vv := v[k]
+			vvPath := runtime1.JoinPath(path, k)
+			if err = validate_Object_ChartVersion(ctx, vv, vvPath); err != nil {
+				return err
+			}
 		case "chart_version_id":
 			if v[k] == nil {
 				continue
