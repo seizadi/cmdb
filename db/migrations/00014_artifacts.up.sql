@@ -1,6 +1,6 @@
 
 CREATE TABLE artifacts (
-  id serial primary key,
+  id text primary key,
   account_id text,
   created_at timestamptz DEFAULT current_timestamp,
   updated_at timestamptz DEFAULT NULL,
@@ -8,7 +8,7 @@ CREATE TABLE artifacts (
   description text DEFAULT NULL,
   repo text DEFAULT NULL,
   commit text DEFAULT NULL,
-  chart_version_id int REFERENCES chart_versions(id) ON DELETE CASCADE
+  chart_version_id text REFERENCES chart_versions(id) ON DELETE CASCADE
 );
 
 CREATE TRIGGER artifacts_updated_at

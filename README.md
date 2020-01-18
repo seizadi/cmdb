@@ -128,6 +128,10 @@ export JWT="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJBY2NvdW50SUQiOjF9.GsXyFDDARj
 curl -H "Authorization: Bearer $JWT" http://localhost:8080/v1/regions
 {}
 ```
+Add a CloudProvider:
+```bash
+curl -H "Authorization: Bearer $JWT" http://localhost:8080/v1/cloud_providers -d '{"name": "aws"}'
+```
 Now let's add a Region:
 ```sh
 curl -H "Authorization: Bearer $JWT" http://localhost:8080/v1/regions -d '{"name": "us-west-1", "description": "sample..."}'

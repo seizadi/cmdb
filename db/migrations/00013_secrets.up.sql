@@ -1,6 +1,6 @@
 CREATE TABLE secrets
 (
-  id serial primary key,
+  id text primary key,
   account_id text,
   created_at timestamptz DEFAULT current_timestamp,
   updated_at timestamptz DEFAULT NULL,
@@ -9,7 +9,7 @@ CREATE TABLE secrets
   path text DEFAULT NULL,
   type text DEFAULT NULL,
   key text DEFAULT NULL,
-  vault_id int REFERENCES vaults(id) ON DELETE CASCADE
+  vault_id text REFERENCES vaults(id) ON DELETE CASCADE
 );
 
 CREATE TRIGGER secrets_updated_at

@@ -3213,7 +3213,7 @@
     },
     "cmdbChartVersion": {
       "type": "object",
-      "title": "------------------------------------------------------\nChartVersion represents a Chart Version for an Application\n------------------------------------------------------",
+      "title": "-------------------------------------------------------------\nChartVersion represents a Chart Version for an Application\n-------------------------------------------------------------",
       "properties": {
         "application_id": {
           "description": "The resource identifier.",

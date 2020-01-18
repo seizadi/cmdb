@@ -1,12 +1,12 @@
 
 CREATE TABLE networks (
-  id serial primary key,
+  id text primary key,
   account_id text,
   created_at timestamptz DEFAULT current_timestamp,
   updated_at timestamptz DEFAULT NULL,
   name text DEFAULT NULL,
   description text DEFAULT NULL,
-  region_id int REFERENCES regions(id) ON DELETE CASCADE
+  region_id text REFERENCES regions(id) ON DELETE CASCADE
 
 );
 

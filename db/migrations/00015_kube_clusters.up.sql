@@ -1,12 +1,12 @@
 
 CREATE TABLE kube_clusters (
-  id serial primary key,
+  id text primary key,
   account_id text,
   created_at timestamptz DEFAULT current_timestamp,
   updated_at timestamptz DEFAULT NULL,
   name text DEFAULT NULL,
   description text DEFAULT NULL,
-  network_id int REFERENCES networks(id) ON DELETE CASCADE
+  network_id text REFERENCES networks(id) ON DELETE CASCADE
 
 );
 

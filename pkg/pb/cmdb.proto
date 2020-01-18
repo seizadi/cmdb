@@ -95,7 +95,7 @@ message CloudProvider {
   };
 
   // The CloudProvider identifier.
-  atlas.rpc.Identifier id = 1 [(gorm.field).tag = {type: "serial"  primary_key: true}];
+  atlas.rpc.Identifier id = 1 [(gorm.field).tag = {type: "UUID" primary_key: true}];
 
   // The name of the CloudProvider
   string name = 2;
@@ -217,7 +217,7 @@ message Region {
   };
 
   // The Region identifier.
-  atlas.rpc.Identifier id = 1 [(gorm.field).tag = {type: "serial"  primary_key: true}];
+  atlas.rpc.Identifier id = 1 [(gorm.field).tag = {type: "UUID" primary_key: true}];
 
   // The name of the Region
   string name = 2;
@@ -229,7 +229,7 @@ message Region {
   repeated Network networks = 4;
 
   // Reference to Cloud Provider
-  atlas.rpc.Identifier cloud_provider_id = 5 [(gorm.field) = {reference_of: "CloudProvider", tag: {type: "integer"}}];
+  atlas.rpc.Identifier cloud_provider_id = 5 [(gorm.field) = {reference_of: "CloudProvider", tag: {type: "UUID"}}];
 }
 
 message CreateRegionRequest {
@@ -336,7 +336,7 @@ message Network {
   };
 
   // The Network identifier.
-  atlas.rpc.Identifier id = 1 [(gorm.field).tag = {type: "serial"  primary_key: true}];
+  atlas.rpc.Identifier id = 1 [(gorm.field).tag = {type: "UUID" primary_key: true}];
 
   // The name of the Network
   string name = 2;
@@ -345,7 +345,7 @@ message Network {
   string description = 3;
 
   // Reference to Region
-  atlas.rpc.Identifier region_id = 4 [(gorm.field) = {reference_of: "Region", tag: {type: "integer"}}];
+  atlas.rpc.Identifier region_id = 4 [(gorm.field) = {reference_of: "Region", tag: {type: "UUID"}}];
 }
 
 message CreateNetworkRequest {
@@ -452,7 +452,7 @@ message Lifecycle {
   };
 
   // The Lifecycle identifier.
-  atlas.rpc.Identifier id = 1 [(gorm.field).tag = {type: "serial"  primary_key: true}];
+  atlas.rpc.Identifier id = 1 [(gorm.field).tag = {type: "UUID" primary_key: true}];
 
   // The name of the Lifecycle
   string name = 2;
@@ -476,7 +476,7 @@ message Lifecycle {
   repeated AppVersion app_version = 8;
 
   // Reference to parent Lifecycle
-  atlas.rpc.Identifier lifecycle_id = 9 [(gorm.field) = {reference_of: "Lifecycle", tag: {type: "integer"}}];
+  atlas.rpc.Identifier lifecycle_id = 9 [(gorm.field) = {reference_of: "Lifecycle", tag: {type: "UUID"}}];
 }
 
 message CreateLifecycleRequest {
@@ -574,9 +574,9 @@ service Lifecycles {
 }
 
 
-// ------------------------------------------------------
+// -------------------------------------------------------------
 // ChartVersion represents a Chart Version for an Application
-// ------------------------------------------------------
+// -------------------------------------------------------------
 message ChartVersion {
   option (gorm.opts) = {
       ormable: true,
@@ -584,7 +584,7 @@ message ChartVersion {
   };
 
   // The ChartVersion identifier.
-  atlas.rpc.Identifier id = 1 [(gorm.field).tag = {type: "serial"  primary_key: true}];
+  atlas.rpc.Identifier id = 1 [(gorm.field).tag = {type: "UUID" primary_key: true}];
 
   // The name of the ChartVersion
   string name = 2;
@@ -602,7 +602,7 @@ message ChartVersion {
   gorm.types.JSONValue  chart_store = 6;
 
   // Reference to Application
-  atlas.rpc.Identifier application_id = 7 [(gorm.field) = {reference_of: "Application", tag: {type: "integer"}}];
+  atlas.rpc.Identifier application_id = 7 [(gorm.field) = {reference_of: "Application", tag: {type: "UUID"}}];
 }
 
 message CreateChartVersionRequest {
@@ -709,7 +709,7 @@ message AppConfig {
   };
 
   // The AppConfig identifier.
-  atlas.rpc.Identifier id = 1 [(gorm.field).tag = {type: "serial"  primary_key: true}];
+  atlas.rpc.Identifier id = 1 [(gorm.field).tag = {type: "UUID" primary_key: true}];
 
   // The name of the AppConfig
   string name = 2;
@@ -721,13 +721,13 @@ message AppConfig {
   string config_yaml = 4;
 
   // Reference to Application
-  atlas.rpc.Identifier application_id = 5 [(gorm.field) = {reference_of: "Application", tag: {type: "integer"}}];
+  atlas.rpc.Identifier application_id = 5 [(gorm.field) = {reference_of: "Application", tag: {type: "UUID"}}];
 
   // Reference to Lifecycle
-  atlas.rpc.Identifier lifecycle_id = 6 [(gorm.field) = {reference_of: "Lifecycle", tag: {type: "integer"}}];
+  atlas.rpc.Identifier lifecycle_id = 6 [(gorm.field) = {reference_of: "Lifecycle", tag: {type: "UUID"}}];
 
   // Reference to Environment
-  atlas.rpc.Identifier environment_id = 7 [(gorm.field) = {reference_of: "Environment", tag: {type: "integer"}}];
+  atlas.rpc.Identifier environment_id = 7 [(gorm.field) = {reference_of: "Environment", tag: {type: "UUID"}}];
 }
 
 message CreateAppConfigRequest {
@@ -834,7 +834,7 @@ message Environment {
   };
 
   // The Environment identifier.
-  atlas.rpc.Identifier id = 1 [(gorm.field).tag = {type: "serial"  primary_key: true}];
+  atlas.rpc.Identifier id = 1 [(gorm.field).tag = {type: "UUID" primary_key: true}];
 
   // The name of the Environment
   string name = 2;
@@ -855,7 +855,7 @@ message Environment {
   repeated AppVersion app_version = 7;
 
   // Lifecycle referenced by this Environment
-  atlas.rpc.Identifier lifecycle_id = 8 [(gorm.field) = {reference_of: "Lifecycle", tag: {type: "integer"}}];
+  atlas.rpc.Identifier lifecycle_id = 8 [(gorm.field) = {reference_of: "Lifecycle", tag: {type: "UUID"}}];
 }
 
 message CreateEnvironmentRequest {
@@ -962,7 +962,7 @@ message Application {
   };
 
   // The Application identifier.
-  atlas.rpc.Identifier id = 1 [(gorm.field).tag = {type: "serial"  primary_key: true}];
+  atlas.rpc.Identifier id = 1 [(gorm.field).tag = {type: "UUID" primary_key: true}];
 
   // The name of the Application
   string name = 2;
@@ -1094,7 +1094,7 @@ message AppVersion {
   };
 
   // The AppVersion identifier.
-  atlas.rpc.Identifier id = 1 [(gorm.field).tag = {type: "serial"  primary_key: true}];
+  atlas.rpc.Identifier id = 1 [(gorm.field).tag = {type: "UUID" primary_key: true}];
 
   // The name of the AppVersion
   string name = 2;
@@ -1106,16 +1106,16 @@ message AppVersion {
   ChartVersion chart_version = 4 [(gorm.field).belongs_to = {}];
 
   // ChartVersion referenced by this AppVersion
-  atlas.rpc.Identifier chart_version_id = 5 [(gorm.field) = {reference_of: "ChartVersion", tag: {type: "integer"}}];
+  atlas.rpc.Identifier chart_version_id = 5 [(gorm.field) = {reference_of: "ChartVersion", tag: {type: "UUID"}}];
 
   // Application referenced by this AppVersion
-  atlas.rpc.Identifier application_id = 6 [(gorm.field) = {reference_of: "Application", tag: {type: "integer"}}];
+  atlas.rpc.Identifier application_id = 6 [(gorm.field) = {reference_of: "Application", tag: {type: "UUID"}}];
 
   // Lifecycle referenced by this AppVersion
-  atlas.rpc.Identifier lifecycle_id = 7 [(gorm.field) = {reference_of: "Lifecycle", tag: {type: "integer"}}];
+  atlas.rpc.Identifier lifecycle_id = 7 [(gorm.field) = {reference_of: "Lifecycle", tag: {type: "UUID"}}];
 
   // Reference to Environment
-  atlas.rpc.Identifier environment_id = 8 [(gorm.field) = {reference_of: "Environment", tag: {type: "integer"}}];
+  atlas.rpc.Identifier environment_id = 8 [(gorm.field) = {reference_of: "Environment", tag: {type: "UUID"}}];
 }
 
 message CreateAppVersionRequest {
@@ -1222,7 +1222,7 @@ message ApplicationInstance {
   };
 
   // The ApplicationInstance identifier.
-  atlas.rpc.Identifier id = 1 [(gorm.field).tag = {type: "serial"  primary_key: true}];
+  atlas.rpc.Identifier id = 1 [(gorm.field).tag = {type: "UUID" primary_key: true}];
 
   // The name of the ApplicationInstance
   string name = 2;
@@ -1240,13 +1240,13 @@ message ApplicationInstance {
   ChartVersion chart_version = 6 [(gorm.field).belongs_to = {}];
 
   // Reference to the ChartVersion
-  atlas.rpc.Identifier chart_version_id = 7 [(gorm.field) = {reference_of: "ChartVersion", tag: {type: "integer"}}];
+  atlas.rpc.Identifier chart_version_id = 7 [(gorm.field) = {reference_of: "ChartVersion", tag: {type: "UUID"}}];
 
   // Reference to the Environment
-  atlas.rpc.Identifier environment_id = 8 [(gorm.field) = {reference_of: "Environment", tag: {type: "integer"}}];
+  atlas.rpc.Identifier environment_id = 8 [(gorm.field) = {reference_of: "Environment", tag: {type: "UUID"}}];
 
   // Reference to the Application
-  atlas.rpc.Identifier application_id = 9 [(gorm.field) = {reference_of: "Application", tag: {type: "integer"}}];
+  atlas.rpc.Identifier application_id = 9 [(gorm.field) = {reference_of: "Application", tag: {type: "UUID"}}];
 }
 
 message CreateApplicationInstanceRequest {
@@ -1353,7 +1353,7 @@ message Vault {
   };
 
   // The vault identifier.
-  atlas.rpc.Identifier id = 1 [(gorm.field).tag = {type: "serial"  primary_key: true}];
+  atlas.rpc.Identifier id = 1 [(gorm.field).tag = {type: "UUID" primary_key: true}];
 
   // The name of the vault
   string name = 2;
@@ -1470,7 +1470,7 @@ message Secret {
   };
 
   // The secret identifier.
-  atlas.rpc.Identifier id = 1 [(gorm.field).tag = {type: "serial"  primary_key: true}];
+  atlas.rpc.Identifier id = 1 [(gorm.field).tag = {type: "UUID" primary_key: true}];
 
   // The name of the container
   string name = 2;
@@ -1488,7 +1488,7 @@ message Secret {
   string key = 6;
 
   // The vault the secret belongs to.
-  atlas.rpc.Identifier vault_id = 7 [(gorm.field) = {reference_of: "Vault", tag: {type: "integer"}}];
+  atlas.rpc.Identifier vault_id = 7 [(gorm.field) = {reference_of: "Vault", tag: {type: "UUID"}}];
 }
 
 
@@ -1596,7 +1596,7 @@ message Artifact {
   };
 
   // The Artifact identifier.
-  atlas.rpc.Identifier id = 1 [(gorm.field).tag = {type: "serial"  primary_key: true}];
+  atlas.rpc.Identifier id = 1 [(gorm.field).tag = {type: "UUID" primary_key: true}];
 
   // The name of the Artifact
   string name = 2;
@@ -1611,7 +1611,7 @@ message Artifact {
   string commit = 5;
 
   // The ChartVersion of the artifact belongs to.
-  atlas.rpc.Identifier chart_version_id = 6 [(gorm.field) = {reference_of: "ChartVersion", tag: {type: "integer"}}];
+  atlas.rpc.Identifier chart_version_id = 6 [(gorm.field) = {reference_of: "ChartVersion", tag: {type: "UUID"}}];
 }
 
 message CreateArtifactRequest {
@@ -1719,7 +1719,7 @@ message KubeCluster {
   };
 
   // The KubeCluster identifier.
-  atlas.rpc.Identifier id = 1 [(gorm.field).tag = {type: "serial"  primary_key: true}];
+  atlas.rpc.Identifier id = 1 [(gorm.field).tag = {type: "UUID" primary_key: true}];
 
   // The name of the KubeCluster
   string name = 2;
@@ -1728,7 +1728,7 @@ message KubeCluster {
   string description = 3;
 
   // Reference to Network
-  atlas.rpc.Identifier network_id = 5 [(gorm.field) = {reference_of: "Network", tag: {type: "integer"}}];
+  atlas.rpc.Identifier network_id = 5 [(gorm.field) = {reference_of: "Network", tag: {type: "UUID"}}];
 }
 
 message CreateKubeClusterRequest {
@@ -1835,7 +1835,7 @@ message Deployment {
   };
 
   // The Deployment identifier.
-  atlas.rpc.Identifier id = 1 [(gorm.field).tag = {type: "serial"  primary_key: true}];
+  atlas.rpc.Identifier id = 1 [(gorm.field).tag = {type: "UUID" primary_key: true}];
 
   // The name of the Deployment
   string name = 2;
@@ -1847,16 +1847,16 @@ message Deployment {
   Artifact artifact = 4 [(gorm.field).belongs_to = {}];
 
   // Reference to Artifact
-  atlas.rpc.Identifier artifact_id = 5 [(gorm.field) = {reference_of: "Artifact", tag: {type: "integer"}}];
+  atlas.rpc.Identifier artifact_id = 5 [(gorm.field) = {reference_of: "Artifact", tag: {type: "UUID"}}];
 
   // Kubernetes Cluster on which the ApplicationInstance is deployed
   KubeCluster kube_cluster = 6 [(gorm.field).belongs_to = {}];
 
   // Reference to Kubernetes Cluster
-  atlas.rpc.Identifier kube_cluster_id = 7 [(gorm.field) = {reference_of: "KubeCluster", tag: {type: "integer"}}];
+  atlas.rpc.Identifier kube_cluster_id = 7 [(gorm.field) = {reference_of: "KubeCluster", tag: {type: "UUID"}}];
 
   // Reference to ApplicationInstanceInstance
-  atlas.rpc.Identifier application_instance_id = 8 [(gorm.field) = {reference_of: "ApplicationInstance", tag: {type: "integer"}}];
+  atlas.rpc.Identifier application_instance_id = 8 [(gorm.field) = {reference_of: "ApplicationInstance", tag: {type: "UUID"}}];
 }
 
 message CreateDeploymentRequest {

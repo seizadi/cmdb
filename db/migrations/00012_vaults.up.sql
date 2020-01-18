@@ -1,7 +1,7 @@
 
 CREATE TABLE vaults
 (
-  id serial primary key,
+  id text primary key,
   account_id text,
   created_at timestamptz DEFAULT current_timestamp,
   updated_at timestamptz DEFAULT NULL,
