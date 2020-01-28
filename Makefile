@@ -68,14 +68,6 @@ protobuf:
 	--atlas-validate_out="." \
 	--validate_out="lang=go:." 	$(PROJECT_ROOT)/pkg/pb/cmdb.proto
 
-.PHONY: vendor
-vendor:
-	@dep ensure -vendor-only
-
-.PHONY: vendor-update
-vendor-update:
-	@dep ensure
-
 .PHONY: clean
 clean:
 	@docker rmi -f $(shell docker images -q $(SERVER_IMAGE)) || true
@@ -107,3 +99,9 @@ erd:
 	@go-erd -path model |dot -Tsvg > doc/db/out.html
 	@go-erd -path model |dot -Tpdf > doc/db/out.pdf
 	@echo 'Create file://doc/db/out.html and file://doc/db/out.pdf'
+
+.PHONY: coverage
+coverage:
+	@go test -race -coverprofile=coverage.txt -covermode=atomic pkg/svc/*
+	@go tool cover -html=coverage.txt
+
