@@ -131,8 +131,10 @@ curl -H "Authorization: Bearer $JWT" http://localhost:8080/v1/regions
 Add a CloudProvider:
 ```bash
 curl -H "Authorization: Bearer $JWT" http://localhost:8080/v1/cloud_providers -d '{"name": "aws"}'
-curl -H "Authorization: Bearer $JWT" http://localhost:8080/v1/application_instances&_filter=`name~"prometheus"` | jq
+curl -H "Authorization: Bearer $JWT" 'http://localhost:8080/v1/application_instances?_filter=name~"prometheus"&_limit=1' | jq
 curl -H "Authorization: Bearer $JWT" 'http://localhost:8080/v1/application_instances?_filter=name~"prometheus"&_limit=1&_fields=name,id' | jq
+curl -H "Authorization: Bearer $JWT" 'http://localhost:8080/v1/applications?_filter=name~"prometheus"&_limit=1&_fields=name,id' | jq
+
 ```
 Now let's add a Region:
 ```sh
