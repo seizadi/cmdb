@@ -6,6 +6,7 @@ import { Router, Route, Switch, Redirect } from "react-router-dom";
 import Admin from "./layouts/Admin.js";
 
 import "./assets/css/material-dashboard-react.css?v=1.9.0";
+import ApplicationList from './cmdb/applications/ApplicationList'
 
 const hist = createBrowserHistory();
 
@@ -14,6 +15,7 @@ function App() {
     <div className="App">
       <Router history={hist}>
         <Switch>
+          <Route path={'/applications'} exact component={ApplicationList} />
           <Route path="/admin" component={Admin} />
           <Redirect from="/" to="/admin/dashboard" />
         </Switch>
