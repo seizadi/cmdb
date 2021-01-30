@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import Table from "../../components/Table/Table";
 
 // from Redux
-import { listApplications } from "../../actions";
+import { listEnvironments } from "../../actions";
 
 // Table format is something like:
 // <Table
@@ -17,23 +17,23 @@ import { listApplications } from "../../actions";
 //   ]}
 // />
 
-class Applications extends React.Component {
+class Environments extends React.Component {
   componentDidMount() {
-    this.props.listApplications();
+    this.props.listEnvironments();
   }
 
-   applicationTableData = () => {
-    const appTableData = this.props.applications.filter( (application) => {
-      if (application.name && application.name.length ) {
+   environmentTableData = () => {
+    const envTableData = this.props.environments.filter( (environment) => {
+      if (environment.name && environment.name.length ) {
         return true;
       } else {
         return false;
       }
-    }).map( (application) => {
-        return [application.name];
+    }).map( (environment) => {
+        return [environment.name];
     });
 
-    return appTableData;
+    return envTableData;
   };
 
   render() {
@@ -42,7 +42,7 @@ class Applications extends React.Component {
         <Table
           tableHeaderColor="primary"
           tableHead={["Name"]}
-          tableData={this.applicationTableData()}
+          tableData={this.environmentTableData()}
         />
       </>
 
@@ -52,8 +52,8 @@ class Applications extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    applications: Object.values(state.applications)
+    environments: Object.values(state.environments)
   };
 };
 
-export default connect(mapStateToProps, { listApplications })(Applications);
+export default connect(mapStateToProps, { listEnvironments })(Environments);
