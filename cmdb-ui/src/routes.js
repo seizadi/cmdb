@@ -25,6 +25,7 @@ import Notifications from "@material-ui/icons/Notifications";
 import Unarchive from "@material-ui/icons/Unarchive";
 // core components/views for Admin layout
 import DashboardPage from "./views/Dashboard/Dashboard.js";
+import ApplicationList from "./views/ApplicationList/ApplicationList";
 import UserProfile from "./views/UserProfile/UserProfile.js";
 import TableList from "./views/TableList/TableList.js";
 import Typography from "./views/Typography/Typography.js";
@@ -40,6 +41,14 @@ const dashboardRoutes = [
     rtlName: "لوحة القيادة",
     icon: Dashboard,
     component: DashboardPage,
+    layout: "/admin"
+  },
+  {
+    path: "/applications",
+    name: "Applications",
+    rtlName: "قائمة الجدول",
+    icon: "content_paste",
+    component: ApplicationList,
     layout: "/admin"
   },
   {

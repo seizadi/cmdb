@@ -7,9 +7,7 @@ const headers = {
 };
 
 export const listApplications = () => async dispatch => {
-  console.log('api call to get applications...')
-  const response = await cmdb.get('/v1/applications', {headers});
-  console.log(response.data)
+  const response = await cmdb.get('/v1/applications?_order_by=name', {headers});
   dispatch({type: LIST_APPLICATIONS, payload: response.data.results});
 }
 
