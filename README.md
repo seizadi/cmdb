@@ -69,7 +69,28 @@ createdb cmdb
 make migrate-up
 ```
 
+If you run postgres server as container and do port-forward:
+```bash
+kubectl port-forward postgresql-postgresql-0 5432:5432
+createdb -h localhost -U postgres cmdb
+```
+
 ### Local development setup
+
+Make sure you have Postgres Running
+```bash
+/usr/local/Cellar/postgresql/11.5_1/bin/pg_ctl -D /usr/local/var/postgres -l logfile start
+dropdb cmdb
+createdb cmdb
+make migrate-up
+```
+
+If you are running database in container and port-forward:
+```bash
+PGPASSWORD=postgres dropdb -h 127.0.0.1  -U postgres -p 5432 cmdb
+PGPASSWORD=postgres createdb -h 127.0.0.1  -U postgres -p 5432 cmdb
+make migrate-up
+```
 
 Table creation should be done manually by running the migrations scripts or following the steps defined in 
 database migration section. Scripts can be found at `./db/migrations/`
@@ -133,6 +154,7 @@ Add a CloudProvider:
 curl -H "Authorization: Bearer $JWT" http://localhost:8080/v1/cloud_providers -d '{"name": "aws"}'
 curl -H "Authorization: Bearer $JWT" 'http://localhost:8080/v1/application_instances?_filter=name~"prometheus"&_limit=1' | jq
 curl -H "Authorization: Bearer $JWT" 'http://localhost:8080/v1/application_instances?_filter=name~"prometheus"&_limit=1&_fields=name,id' | jq
+curl -H "Authorization: Bearer $JWT" 'http://localhost:8080/v1/applications?_limit=1&_fields=name,id' | jq
 curl -H "Authorization: Bearer $JWT" 'http://localhost:8080/v1/applications?_filter=name~"prometheus"&_limit=1&_fields=name,id' | jq
 
 ```

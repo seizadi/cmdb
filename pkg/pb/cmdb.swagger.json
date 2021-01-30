@@ -66,14 +66,7 @@
             "in": "query"
           }
         ],
-        "responses": {
-          "200": {
-            "description": "GET operation response",
-            "schema": {
-              "$ref": "#/definitions/cmdbListAppConfigsResponse"
-            }
-          }
-        }
+        "responses": {}
       },
       "post": {
         "tags": [
@@ -91,14 +84,7 @@
             }
           }
         ],
-        "responses": {
-          "201": {
-            "description": "POST operation response",
-            "schema": {
-              "$ref": "#/definitions/cmdbCreateAppConfigResponse"
-            }
-          }
-        }
+        "responses": {}
       }
     },
     "/app_configs/{id}": {
@@ -123,14 +109,7 @@
             "in": "query"
           }
         ],
-        "responses": {
-          "200": {
-            "description": "GET operation response",
-            "schema": {
-              "$ref": "#/definitions/cmdbReadAppConfigResponse"
-            }
-          }
-        }
+        "responses": {}
       },
       "put": {
         "tags": [
@@ -155,14 +134,7 @@
             }
           }
         ],
-        "responses": {
-          "201": {
-            "description": "PUT operation response",
-            "schema": {
-              "$ref": "#/definitions/cmdbUpdateAppConfigResponse"
-            }
-          }
-        }
+        "responses": {}
       },
       "delete": {
         "tags": [
@@ -179,11 +151,7 @@
             "required": true
           }
         ],
-        "responses": {
-          "204": {
-            "description": "No Content"
-          }
-        }
+        "responses": {}
       },
       "patch": {
         "tags": [
@@ -208,14 +176,7 @@
             }
           }
         ],
-        "responses": {
-          "201": {
-            "description": "PATCH operation response",
-            "schema": {
-              "$ref": "#/definitions/cmdbUpdateAppConfigResponse"
-            }
-          }
-        }
+        "responses": {}
       }
     },
     "/app_versions": {
@@ -263,14 +224,7 @@
             "in": "query"
           }
         ],
-        "responses": {
-          "200": {
-            "description": "GET operation response",
-            "schema": {
-              "$ref": "#/definitions/cmdbListAppVersionsResponse"
-            }
-          }
-        }
+        "responses": {}
       },
       "post": {
         "tags": [
@@ -288,14 +242,7 @@
             }
           }
         ],
-        "responses": {
-          "201": {
-            "description": "POST operation response",
-            "schema": {
-              "$ref": "#/definitions/cmdbCreateAppVersionResponse"
-            }
-          }
-        }
+        "responses": {}
       }
     },
     "/app_versions/{id}": {
@@ -320,14 +267,7 @@
             "in": "query"
           }
         ],
-        "responses": {
-          "200": {
-            "description": "GET operation response",
-            "schema": {
-              "$ref": "#/definitions/cmdbReadAppVersionResponse"
-            }
-          }
-        }
+        "responses": {}
       },
       "put": {
         "tags": [
@@ -352,14 +292,7 @@
             }
           }
         ],
-        "responses": {
-          "201": {
-            "description": "PUT operation response",
-            "schema": {
-              "$ref": "#/definitions/cmdbUpdateAppVersionResponse"
-            }
-          }
-        }
+        "responses": {}
       },
       "delete": {
         "tags": [
@@ -376,11 +309,7 @@
             "required": true
           }
         ],
-        "responses": {
-          "204": {
-            "description": "No Content"
-          }
-        }
+        "responses": {}
       },
       "patch": {
         "tags": [
@@ -405,14 +334,7 @@
             }
           }
         ],
-        "responses": {
-          "201": {
-            "description": "PATCH operation response",
-            "schema": {
-              "$ref": "#/definitions/cmdbUpdateAppVersionResponse"
-            }
-          }
-        }
+        "responses": {}
       }
     },
     "/application_instances": {
@@ -460,14 +382,7 @@
             "in": "query"
           }
         ],
-        "responses": {
-          "200": {
-            "description": "GET operation response",
-            "schema": {
-              "$ref": "#/definitions/cmdbListApplicationInstancesResponse"
-            }
-          }
-        }
+        "responses": {}
       },
       "post": {
         "tags": [
@@ -485,14 +400,7 @@
             }
           }
         ],
-        "responses": {
-          "201": {
-            "description": "POST operation response",
-            "schema": {
-              "$ref": "#/definitions/cmdbCreateApplicationInstanceResponse"
-            }
-          }
-        }
+        "responses": {}
       }
     },
     "/application_instances/{id}": {
@@ -517,14 +425,7 @@
             "in": "query"
           }
         ],
-        "responses": {
-          "200": {
-            "description": "GET operation response",
-            "schema": {
-              "$ref": "#/definitions/cmdbReadApplicationInstanceResponse"
-            }
-          }
-        }
+        "responses": {}
       },
       "put": {
         "tags": [
@@ -549,14 +450,7 @@
             }
           }
         ],
-        "responses": {
-          "201": {
-            "description": "PUT operation response",
-            "schema": {
-              "$ref": "#/definitions/cmdbUpdateApplicationInstanceResponse"
-            }
-          }
-        }
+        "responses": {}
       },
       "delete": {
         "tags": [
@@ -573,11 +467,7 @@
             "required": true
           }
         ],
-        "responses": {
-          "204": {
-            "description": "No Content"
-          }
-        }
+        "responses": {}
       },
       "patch": {
         "tags": [
@@ -602,14 +492,7 @@
             }
           }
         ],
-        "responses": {
-          "201": {
-            "description": "PATCH operation response",
-            "schema": {
-              "$ref": "#/definitions/cmdbUpdateApplicationInstanceResponse"
-            }
-          }
-        }
+        "responses": {}
       }
     },
     "/applications": {
@@ -657,14 +540,7 @@
             "in": "query"
           }
         ],
-        "responses": {
-          "200": {
-            "description": "GET operation response",
-            "schema": {
-              "$ref": "#/definitions/cmdbListApplicationsResponse"
-            }
-          }
-        }
+        "responses": {}
       },
       "post": {
         "tags": [
@@ -682,14 +558,7 @@
             }
           }
         ],
-        "responses": {
-          "201": {
-            "description": "POST operation response",
-            "schema": {
-              "$ref": "#/definitions/cmdbCreateApplicationResponse"
-            }
-          }
-        }
+        "responses": {}
       }
     },
     "/applications/{id}": {
@@ -714,14 +583,7 @@
             "in": "query"
           }
         ],
-        "responses": {
-          "200": {
-            "description": "GET operation response",
-            "schema": {
-              "$ref": "#/definitions/cmdbReadApplicationResponse"
-            }
-          }
-        }
+        "responses": {}
       },
       "put": {
         "tags": [
@@ -746,14 +608,7 @@
             }
           }
         ],
-        "responses": {
-          "201": {
-            "description": "PUT operation response",
-            "schema": {
-              "$ref": "#/definitions/cmdbUpdateApplicationResponse"
-            }
-          }
-        }
+        "responses": {}
       },
       "delete": {
         "tags": [
@@ -770,11 +625,7 @@
             "required": true
           }
         ],
-        "responses": {
-          "204": {
-            "description": "No Content"
-          }
-        }
+        "responses": {}
       },
       "patch": {
         "tags": [
@@ -799,14 +650,7 @@
             }
           }
         ],
-        "responses": {
-          "201": {
-            "description": "PATCH operation response",
-            "schema": {
-              "$ref": "#/definitions/cmdbUpdateApplicationResponse"
-            }
-          }
-        }
+        "responses": {}
       }
     },
     "/artifacts": {
@@ -854,14 +698,7 @@
             "in": "query"
           }
         ],
-        "responses": {
-          "200": {
-            "description": "GET operation response",
-            "schema": {
-              "$ref": "#/definitions/cmdbListArtifactsResponse"
-            }
-          }
-        }
+        "responses": {}
       },
       "post": {
         "tags": [
@@ -879,14 +716,7 @@
             }
           }
         ],
-        "responses": {
-          "201": {
-            "description": "POST operation response",
-            "schema": {
-              "$ref": "#/definitions/cmdbCreateArtifactResponse"
-            }
-          }
-        }
+        "responses": {}
       }
     },
     "/artifacts/{id}": {
@@ -911,14 +741,7 @@
             "in": "query"
           }
         ],
-        "responses": {
-          "200": {
-            "description": "GET operation response",
-            "schema": {
-              "$ref": "#/definitions/cmdbReadArtifactResponse"
-            }
-          }
-        }
+        "responses": {}
       },
       "put": {
         "tags": [
@@ -943,14 +766,7 @@
             }
           }
         ],
-        "responses": {
-          "201": {
-            "description": "PUT operation response",
-            "schema": {
-              "$ref": "#/definitions/cmdbUpdateArtifactResponse"
-            }
-          }
-        }
+        "responses": {}
       },
       "delete": {
         "tags": [
@@ -967,11 +783,7 @@
             "required": true
           }
         ],
-        "responses": {
-          "204": {
-            "description": "No Content"
-          }
-        }
+        "responses": {}
       },
       "patch": {
         "tags": [
@@ -996,14 +808,7 @@
             }
           }
         ],
-        "responses": {
-          "201": {
-            "description": "PATCH operation response",
-            "schema": {
-              "$ref": "#/definitions/cmdbUpdateArtifactResponse"
-            }
-          }
-        }
+        "responses": {}
       }
     },
     "/chart_versions": {
@@ -1051,14 +856,7 @@
             "in": "query"
           }
         ],
-        "responses": {
-          "200": {
-            "description": "GET operation response",
-            "schema": {
-              "$ref": "#/definitions/cmdbListChartVersionsResponse"
-            }
-          }
-        }
+        "responses": {}
       },
       "post": {
         "tags": [
@@ -1076,14 +874,7 @@
             }
           }
         ],
-        "responses": {
-          "201": {
-            "description": "POST operation response",
-            "schema": {
-              "$ref": "#/definitions/cmdbCreateChartVersionResponse"
-            }
-          }
-        }
+        "responses": {}
       }
     },
     "/chart_versions/{id}": {
@@ -1108,14 +899,7 @@
             "in": "query"
           }
         ],
-        "responses": {
-          "200": {
-            "description": "GET operation response",
-            "schema": {
-              "$ref": "#/definitions/cmdbReadChartVersionResponse"
-            }
-          }
-        }
+        "responses": {}
       },
       "put": {
         "tags": [
@@ -1140,14 +924,7 @@
             }
           }
         ],
-        "responses": {
-          "201": {
-            "description": "PUT operation response",
-            "schema": {
-              "$ref": "#/definitions/cmdbUpdateChartVersionResponse"
-            }
-          }
-        }
+        "responses": {}
       },
       "delete": {
         "tags": [
@@ -1164,11 +941,7 @@
             "required": true
           }
         ],
-        "responses": {
-          "204": {
-            "description": "No Content"
-          }
-        }
+        "responses": {}
       },
       "patch": {
         "tags": [
@@ -1193,14 +966,7 @@
             }
           }
         ],
-        "responses": {
-          "201": {
-            "description": "PATCH operation response",
-            "schema": {
-              "$ref": "#/definitions/cmdbUpdateChartVersionResponse"
-            }
-          }
-        }
+        "responses": {}
       }
     },
     "/cloud_providers": {
@@ -1248,14 +1014,7 @@
             "in": "query"
           }
         ],
-        "responses": {
-          "200": {
-            "description": "GET operation response",
-            "schema": {
-              "$ref": "#/definitions/cmdbListCloudProvidersResponse"
-            }
-          }
-        }
+        "responses": {}
       },
       "post": {
         "tags": [
@@ -1273,14 +1032,7 @@
             }
           }
         ],
-        "responses": {
-          "201": {
-            "description": "POST operation response",
-            "schema": {
-              "$ref": "#/definitions/cmdbCreateCloudProviderResponse"
-            }
-          }
-        }
+        "responses": {}
       }
     },
     "/cloud_providers/{id}": {
@@ -1305,14 +1057,7 @@
             "in": "query"
           }
         ],
-        "responses": {
-          "200": {
-            "description": "GET operation response",
-            "schema": {
-              "$ref": "#/definitions/cmdbReadCloudProviderResponse"
-            }
-          }
-        }
+        "responses": {}
       },
       "put": {
         "tags": [
@@ -1337,14 +1082,7 @@
             }
           }
         ],
-        "responses": {
-          "201": {
-            "description": "PUT operation response",
-            "schema": {
-              "$ref": "#/definitions/cmdbUpdateCloudProviderResponse"
-            }
-          }
-        }
+        "responses": {}
       },
       "delete": {
         "tags": [
@@ -1361,11 +1099,7 @@
             "required": true
           }
         ],
-        "responses": {
-          "204": {
-            "description": "No Content"
-          }
-        }
+        "responses": {}
       },
       "patch": {
         "tags": [
@@ -1390,14 +1124,7 @@
             }
           }
         ],
-        "responses": {
-          "201": {
-            "description": "PATCH operation response",
-            "schema": {
-              "$ref": "#/definitions/cmdbUpdateCloudProviderResponse"
-            }
-          }
-        }
+        "responses": {}
       }
     },
     "/deployments": {
@@ -1445,14 +1172,7 @@
             "in": "query"
           }
         ],
-        "responses": {
-          "200": {
-            "description": "GET operation response",
-            "schema": {
-              "$ref": "#/definitions/cmdbListDeploymentsResponse"
-            }
-          }
-        }
+        "responses": {}
       },
       "post": {
         "tags": [
@@ -1470,14 +1190,7 @@
             }
           }
         ],
-        "responses": {
-          "201": {
-            "description": "POST operation response",
-            "schema": {
-              "$ref": "#/definitions/cmdbCreateDeploymentResponse"
-            }
-          }
-        }
+        "responses": {}
       }
     },
     "/deployments/{id}": {
@@ -1502,14 +1215,7 @@
             "in": "query"
           }
         ],
-        "responses": {
-          "200": {
-            "description": "GET operation response",
-            "schema": {
-              "$ref": "#/definitions/cmdbReadDeploymentResponse"
-            }
-          }
-        }
+        "responses": {}
       },
       "put": {
         "tags": [
@@ -1534,14 +1240,7 @@
             }
           }
         ],
-        "responses": {
-          "201": {
-            "description": "PUT operation response",
-            "schema": {
-              "$ref": "#/definitions/cmdbUpdateDeploymentResponse"
-            }
-          }
-        }
+        "responses": {}
       },
       "delete": {
         "tags": [
@@ -1558,11 +1257,7 @@
             "required": true
           }
         ],
-        "responses": {
-          "204": {
-            "description": "No Content"
-          }
-        }
+        "responses": {}
       },
       "patch": {
         "tags": [
@@ -1587,14 +1282,7 @@
             }
           }
         ],
-        "responses": {
-          "201": {
-            "description": "PATCH operation response",
-            "schema": {
-              "$ref": "#/definitions/cmdbUpdateDeploymentResponse"
-            }
-          }
-        }
+        "responses": {}
       }
     },
     "/environments": {
@@ -1642,14 +1330,7 @@
             "in": "query"
           }
         ],
-        "responses": {
-          "200": {
-            "description": "GET operation response",
-            "schema": {
-              "$ref": "#/definitions/cmdbListEnvironmentsResponse"
-            }
-          }
-        }
+        "responses": {}
       },
       "post": {
         "tags": [
@@ -1667,14 +1348,7 @@
             }
           }
         ],
-        "responses": {
-          "201": {
-            "description": "POST operation response",
-            "schema": {
-              "$ref": "#/definitions/cmdbCreateEnvironmentResponse"
-            }
-          }
-        }
+        "responses": {}
       }
     },
     "/environments/{id}": {
@@ -1699,14 +1373,7 @@
             "in": "query"
           }
         ],
-        "responses": {
-          "200": {
-            "description": "GET operation response",
-            "schema": {
-              "$ref": "#/definitions/cmdbReadEnvironmentResponse"
-            }
-          }
-        }
+        "responses": {}
       },
       "put": {
         "tags": [
@@ -1731,14 +1398,7 @@
             }
           }
         ],
-        "responses": {
-          "201": {
-            "description": "PUT operation response",
-            "schema": {
-              "$ref": "#/definitions/cmdbUpdateEnvironmentResponse"
-            }
-          }
-        }
+        "responses": {}
       },
       "delete": {
         "tags": [
@@ -1755,11 +1415,7 @@
             "required": true
           }
         ],
-        "responses": {
-          "204": {
-            "description": "No Content"
-          }
-        }
+        "responses": {}
       },
       "patch": {
         "tags": [
@@ -1784,14 +1440,7 @@
             }
           }
         ],
-        "responses": {
-          "201": {
-            "description": "PATCH operation response",
-            "schema": {
-              "$ref": "#/definitions/cmdbUpdateEnvironmentResponse"
-            }
-          }
-        }
+        "responses": {}
       }
     },
     "/kube_clusters": {
@@ -1839,14 +1488,7 @@
             "in": "query"
           }
         ],
-        "responses": {
-          "200": {
-            "description": "GET operation response",
-            "schema": {
-              "$ref": "#/definitions/cmdbListKubeClustersResponse"
-            }
-          }
-        }
+        "responses": {}
       },
       "post": {
         "tags": [
@@ -1864,14 +1506,7 @@
             }
           }
         ],
-        "responses": {
-          "201": {
-            "description": "POST operation response",
-            "schema": {
-              "$ref": "#/definitions/cmdbCreateKubeClusterResponse"
-            }
-          }
-        }
+        "responses": {}
       }
     },
     "/kube_clusters/{id}": {
@@ -1896,14 +1531,7 @@
             "in": "query"
           }
         ],
-        "responses": {
-          "200": {
-            "description": "GET operation response",
-            "schema": {
-              "$ref": "#/definitions/cmdbReadKubeClusterResponse"
-            }
-          }
-        }
+        "responses": {}
       },
       "put": {
         "tags": [
@@ -1928,14 +1556,7 @@
             }
           }
         ],
-        "responses": {
-          "201": {
-            "description": "PUT operation response",
-            "schema": {
-              "$ref": "#/definitions/cmdbUpdateKubeClusterResponse"
-            }
-          }
-        }
+        "responses": {}
       },
       "delete": {
         "tags": [
@@ -1952,11 +1573,7 @@
             "required": true
           }
         ],
-        "responses": {
-          "204": {
-            "description": "No Content"
-          }
-        }
+        "responses": {}
       },
       "patch": {
         "tags": [
@@ -1981,14 +1598,7 @@
             }
           }
         ],
-        "responses": {
-          "201": {
-            "description": "PATCH operation response",
-            "schema": {
-              "$ref": "#/definitions/cmdbUpdateKubeClusterResponse"
-            }
-          }
-        }
+        "responses": {}
       }
     },
     "/lifecycles": {
@@ -2036,14 +1646,7 @@
             "in": "query"
           }
         ],
-        "responses": {
-          "200": {
-            "description": "GET operation response",
-            "schema": {
-              "$ref": "#/definitions/cmdbListLifecyclesResponse"
-            }
-          }
-        }
+        "responses": {}
       },
       "post": {
         "tags": [
@@ -2061,14 +1664,7 @@
             }
           }
         ],
-        "responses": {
-          "201": {
-            "description": "POST operation response",
-            "schema": {
-              "$ref": "#/definitions/cmdbCreateLifecycleResponse"
-            }
-          }
-        }
+        "responses": {}
       }
     },
     "/lifecycles/{id}": {
@@ -2093,14 +1689,7 @@
             "in": "query"
           }
         ],
-        "responses": {
-          "200": {
-            "description": "GET operation response",
-            "schema": {
-              "$ref": "#/definitions/cmdbReadLifecycleResponse"
-            }
-          }
-        }
+        "responses": {}
       },
       "put": {
         "tags": [
@@ -2125,14 +1714,7 @@
             }
           }
         ],
-        "responses": {
-          "201": {
-            "description": "PUT operation response",
-            "schema": {
-              "$ref": "#/definitions/cmdbUpdateLifecycleResponse"
-            }
-          }
-        }
+        "responses": {}
       },
       "delete": {
         "tags": [
@@ -2149,11 +1731,7 @@
             "required": true
           }
         ],
-        "responses": {
-          "204": {
-            "description": "No Content"
-          }
-        }
+        "responses": {}
       },
       "patch": {
         "tags": [
@@ -2178,14 +1756,7 @@
             }
           }
         ],
-        "responses": {
-          "201": {
-            "description": "PATCH operation response",
-            "schema": {
-              "$ref": "#/definitions/cmdbUpdateLifecycleResponse"
-            }
-          }
-        }
+        "responses": {}
       }
     },
     "/networks": {
@@ -2233,14 +1804,7 @@
             "in": "query"
           }
         ],
-        "responses": {
-          "200": {
-            "description": "GET operation response",
-            "schema": {
-              "$ref": "#/definitions/cmdbListNetworksResponse"
-            }
-          }
-        }
+        "responses": {}
       },
       "post": {
         "tags": [
@@ -2258,14 +1822,7 @@
             }
           }
         ],
-        "responses": {
-          "201": {
-            "description": "POST operation response",
-            "schema": {
-              "$ref": "#/definitions/cmdbCreateNetworkResponse"
-            }
-          }
-        }
+        "responses": {}
       }
     },
     "/networks/{id}": {
@@ -2290,14 +1847,7 @@
             "in": "query"
           }
         ],
-        "responses": {
-          "200": {
-            "description": "GET operation response",
-            "schema": {
-              "$ref": "#/definitions/cmdbReadNetworkResponse"
-            }
-          }
-        }
+        "responses": {}
       },
       "put": {
         "tags": [
@@ -2322,14 +1872,7 @@
             }
           }
         ],
-        "responses": {
-          "201": {
-            "description": "PUT operation response",
-            "schema": {
-              "$ref": "#/definitions/cmdbUpdateNetworkResponse"
-            }
-          }
-        }
+        "responses": {}
       },
       "delete": {
         "tags": [
@@ -2346,11 +1889,7 @@
             "required": true
           }
         ],
-        "responses": {
-          "204": {
-            "description": "No Content"
-          }
-        }
+        "responses": {}
       },
       "patch": {
         "tags": [
@@ -2375,14 +1914,7 @@
             }
           }
         ],
-        "responses": {
-          "201": {
-            "description": "PATCH operation response",
-            "schema": {
-              "$ref": "#/definitions/cmdbUpdateNetworkResponse"
-            }
-          }
-        }
+        "responses": {}
       }
     },
     "/regions": {
@@ -2430,14 +1962,7 @@
             "in": "query"
           }
         ],
-        "responses": {
-          "200": {
-            "description": "GET operation response",
-            "schema": {
-              "$ref": "#/definitions/cmdbListRegionsResponse"
-            }
-          }
-        }
+        "responses": {}
       },
       "post": {
         "tags": [
@@ -2455,14 +1980,7 @@
             }
           }
         ],
-        "responses": {
-          "201": {
-            "description": "POST operation response",
-            "schema": {
-              "$ref": "#/definitions/cmdbCreateRegionResponse"
-            }
-          }
-        }
+        "responses": {}
       }
     },
     "/regions/{id}": {
@@ -2487,14 +2005,7 @@
             "in": "query"
           }
         ],
-        "responses": {
-          "200": {
-            "description": "GET operation response",
-            "schema": {
-              "$ref": "#/definitions/cmdbReadRegionResponse"
-            }
-          }
-        }
+        "responses": {}
       },
       "put": {
         "tags": [
@@ -2519,14 +2030,7 @@
             }
           }
         ],
-        "responses": {
-          "201": {
-            "description": "PUT operation response",
-            "schema": {
-              "$ref": "#/definitions/cmdbUpdateRegionResponse"
-            }
-          }
-        }
+        "responses": {}
       },
       "delete": {
         "tags": [
@@ -2543,11 +2047,7 @@
             "required": true
           }
         ],
-        "responses": {
-          "204": {
-            "description": "No Content"
-          }
-        }
+        "responses": {}
       },
       "patch": {
         "tags": [
@@ -2572,14 +2072,7 @@
             }
           }
         ],
-        "responses": {
-          "201": {
-            "description": "PATCH operation response",
-            "schema": {
-              "$ref": "#/definitions/cmdbUpdateRegionResponse"
-            }
-          }
-        }
+        "responses": {}
       }
     },
     "/secrets": {
@@ -2627,14 +2120,7 @@
             "in": "query"
           }
         ],
-        "responses": {
-          "200": {
-            "description": "GET operation response",
-            "schema": {
-              "$ref": "#/definitions/cmdbListSecretsResponse"
-            }
-          }
-        }
+        "responses": {}
       },
       "post": {
         "tags": [
@@ -2652,14 +2138,7 @@
             }
           }
         ],
-        "responses": {
-          "201": {
-            "description": "POST operation response",
-            "schema": {
-              "$ref": "#/definitions/cmdbCreateSecretResponse"
-            }
-          }
-        }
+        "responses": {}
       }
     },
     "/secrets/{id}": {
@@ -2684,14 +2163,7 @@
             "in": "query"
           }
         ],
-        "responses": {
-          "200": {
-            "description": "GET operation response",
-            "schema": {
-              "$ref": "#/definitions/cmdbReadSecretResponse"
-            }
-          }
-        }
+        "responses": {}
       },
       "put": {
         "tags": [
@@ -2716,14 +2188,7 @@
             }
           }
         ],
-        "responses": {
-          "201": {
-            "description": "PUT operation response",
-            "schema": {
-              "$ref": "#/definitions/cmdbUpdateSecretResponse"
-            }
-          }
-        }
+        "responses": {}
       },
       "delete": {
         "tags": [
@@ -2740,11 +2205,7 @@
             "required": true
           }
         ],
-        "responses": {
-          "204": {
-            "description": "No Content"
-          }
-        }
+        "responses": {}
       },
       "patch": {
         "tags": [
@@ -2769,14 +2230,7 @@
             }
           }
         ],
-        "responses": {
-          "201": {
-            "description": "PATCH operation response",
-            "schema": {
-              "$ref": "#/definitions/cmdbUpdateSecretResponse"
-            }
-          }
-        }
+        "responses": {}
       }
     },
     "/vaults": {
@@ -2824,14 +2278,7 @@
             "in": "query"
           }
         ],
-        "responses": {
-          "200": {
-            "description": "GET operation response",
-            "schema": {
-              "$ref": "#/definitions/cmdbListVaultsResponse"
-            }
-          }
-        }
+        "responses": {}
       },
       "post": {
         "tags": [
@@ -2849,14 +2296,7 @@
             }
           }
         ],
-        "responses": {
-          "201": {
-            "description": "POST operation response",
-            "schema": {
-              "$ref": "#/definitions/cmdbCreateVaultResponse"
-            }
-          }
-        }
+        "responses": {}
       }
     },
     "/vaults/{id}": {
@@ -2881,14 +2321,7 @@
             "in": "query"
           }
         ],
-        "responses": {
-          "200": {
-            "description": "GET operation response",
-            "schema": {
-              "$ref": "#/definitions/cmdbReadVaultResponse"
-            }
-          }
-        }
+        "responses": {}
       },
       "put": {
         "tags": [
@@ -2913,14 +2346,7 @@
             }
           }
         ],
-        "responses": {
-          "201": {
-            "description": "PUT operation response",
-            "schema": {
-              "$ref": "#/definitions/cmdbUpdateVaultResponse"
-            }
-          }
-        }
+        "responses": {}
       },
       "delete": {
         "tags": [
@@ -2937,11 +2363,7 @@
             "required": true
           }
         ],
-        "responses": {
-          "204": {
-            "description": "No Content"
-          }
-        }
+        "responses": {}
       },
       "patch": {
         "tags": [
@@ -2966,14 +2388,7 @@
             }
           }
         ],
-        "responses": {
-          "201": {
-            "description": "PATCH operation response",
-            "schema": {
-              "$ref": "#/definitions/cmdbUpdateVaultResponse"
-            }
-          }
-        }
+        "responses": {}
       }
     },
     "/version": {
@@ -2982,38 +2397,11 @@
           "Cmdb"
         ],
         "operationId": "CmdbGetVersion",
-        "responses": {
-          "200": {
-            "description": "GET operation response",
-            "schema": {
-              "$ref": "#/definitions/cmdbVersionResponse"
-            }
-          }
-        }
+        "responses": {}
       }
     }
   },
   "definitions": {
-    "apiPageInfo": {
-      "description": "PageInfo represents both server-driven and client-driven pagination response.\nServer-driven pagination is a model in which the server returns some\namount of data along with an token indicating there is more data\nand where subsequent queries can get the next page of data.\nClient-driven pagination is a model in which rows are addressable by\noffset and page size (limit).",
-      "type": "object",
-      "properties": {
-        "offset": {
-          "description": "The service may optionally include the offset of the next page of resources.\nA null value indicates no more pages.",
-          "type": "integer",
-          "format": "int32"
-        },
-        "page_token": {
-          "description": "The service response should contain a string to indicate\nthe next page of resources.\nA null value indicates no more pages.",
-          "type": "string"
-        },
-        "size": {
-          "description": "The service may optionally include the total number of resources being paged.",
-          "type": "integer",
-          "format": "int32"
-        }
-      }
-    },
     "cmdbAppConfig": {
       "type": "object",
       "title": "------------------------------------------------------------\nAppConfig represents a custom configuration for Application\n------------------------------------------------------------",
@@ -3092,20 +2480,6 @@
       "type": "object",
       "title": "------------------------------------------------------\nApplication base resource that can be Deployed\n------------------------------------------------------",
       "properties": {
-        "app_versions": {
-          "type": "array",
-          "title": "Application Versions",
-          "items": {
-            "$ref": "#/definitions/cmdbAppVersion"
-          }
-        },
-        "application_instances": {
-          "type": "array",
-          "title": "Application Instances",
-          "items": {
-            "$ref": "#/definitions/cmdbApplicationInstance"
-          }
-        },
         "chart": {
           "type": "string",
           "title": "The Chart for the Application"
@@ -3220,8 +2594,9 @@
           "type": "string"
         },
         "chart_store": {
+          "type": "object",
           "title": "The Event job details",
-          "$ref": "#/definitions/typesJSONValue"
+          "additionalProperties": {}
         },
         "description": {
           "type": "string",
@@ -3277,126 +2652,6 @@
           "items": {
             "$ref": "#/definitions/cmdbRegion"
           }
-        }
-      }
-    },
-    "cmdbCreateAppConfigResponse": {
-      "type": "object",
-      "properties": {
-        "result": {
-          "$ref": "#/definitions/cmdbAppConfig"
-        }
-      }
-    },
-    "cmdbCreateAppVersionResponse": {
-      "type": "object",
-      "properties": {
-        "result": {
-          "$ref": "#/definitions/cmdbAppVersion"
-        }
-      }
-    },
-    "cmdbCreateApplicationInstanceResponse": {
-      "type": "object",
-      "properties": {
-        "result": {
-          "$ref": "#/definitions/cmdbApplicationInstance"
-        }
-      }
-    },
-    "cmdbCreateApplicationResponse": {
-      "type": "object",
-      "properties": {
-        "result": {
-          "$ref": "#/definitions/cmdbApplication"
-        }
-      }
-    },
-    "cmdbCreateArtifactResponse": {
-      "type": "object",
-      "properties": {
-        "result": {
-          "$ref": "#/definitions/cmdbArtifact"
-        }
-      }
-    },
-    "cmdbCreateChartVersionResponse": {
-      "type": "object",
-      "properties": {
-        "result": {
-          "$ref": "#/definitions/cmdbChartVersion"
-        }
-      }
-    },
-    "cmdbCreateCloudProviderResponse": {
-      "type": "object",
-      "properties": {
-        "result": {
-          "$ref": "#/definitions/cmdbCloudProvider"
-        }
-      }
-    },
-    "cmdbCreateDeploymentResponse": {
-      "type": "object",
-      "properties": {
-        "result": {
-          "$ref": "#/definitions/cmdbDeployment"
-        }
-      }
-    },
-    "cmdbCreateEnvironmentResponse": {
-      "type": "object",
-      "properties": {
-        "result": {
-          "$ref": "#/definitions/cmdbEnvironment"
-        }
-      }
-    },
-    "cmdbCreateKubeClusterResponse": {
-      "type": "object",
-      "properties": {
-        "result": {
-          "$ref": "#/definitions/cmdbKubeCluster"
-        }
-      }
-    },
-    "cmdbCreateLifecycleResponse": {
-      "type": "object",
-      "properties": {
-        "result": {
-          "$ref": "#/definitions/cmdbLifecycle"
-        }
-      }
-    },
-    "cmdbCreateNetworkResponse": {
-      "type": "object",
-      "properties": {
-        "result": {
-          "$ref": "#/definitions/cmdbNetwork"
-        }
-      }
-    },
-    "cmdbCreateRegionResponse": {
-      "type": "object",
-      "properties": {
-        "result": {
-          "$ref": "#/definitions/cmdbRegion"
-        }
-      }
-    },
-    "cmdbCreateSecretResponse": {
-      "type": "object",
-      "properties": {
-        "result": {
-          "$ref": "#/definitions/cmdbSecret"
-        }
-      }
-    },
-    "cmdbCreateVaultResponse": {
-      "type": "object",
-      "properties": {
-        "result": {
-          "$ref": "#/definitions/cmdbVault"
         }
       }
     },
@@ -3556,216 +2811,6 @@
         }
       }
     },
-    "cmdbListAppConfigsResponse": {
-      "type": "object",
-      "properties": {
-        "page": {
-          "$ref": "#/definitions/apiPageInfo"
-        },
-        "results": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/cmdbAppConfig"
-          }
-        }
-      }
-    },
-    "cmdbListAppVersionsResponse": {
-      "type": "object",
-      "properties": {
-        "page": {
-          "$ref": "#/definitions/apiPageInfo"
-        },
-        "results": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/cmdbAppVersion"
-          }
-        }
-      }
-    },
-    "cmdbListApplicationInstancesResponse": {
-      "type": "object",
-      "properties": {
-        "page": {
-          "$ref": "#/definitions/apiPageInfo"
-        },
-        "results": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/cmdbApplicationInstance"
-          }
-        }
-      }
-    },
-    "cmdbListApplicationsResponse": {
-      "type": "object",
-      "properties": {
-        "page": {
-          "$ref": "#/definitions/apiPageInfo"
-        },
-        "results": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/cmdbApplication"
-          }
-        }
-      }
-    },
-    "cmdbListArtifactsResponse": {
-      "type": "object",
-      "properties": {
-        "page": {
-          "$ref": "#/definitions/apiPageInfo"
-        },
-        "results": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/cmdbArtifact"
-          }
-        }
-      }
-    },
-    "cmdbListChartVersionsResponse": {
-      "type": "object",
-      "properties": {
-        "page": {
-          "$ref": "#/definitions/apiPageInfo"
-        },
-        "results": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/cmdbChartVersion"
-          }
-        }
-      }
-    },
-    "cmdbListCloudProvidersResponse": {
-      "type": "object",
-      "properties": {
-        "page": {
-          "$ref": "#/definitions/apiPageInfo"
-        },
-        "results": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/cmdbCloudProvider"
-          }
-        }
-      }
-    },
-    "cmdbListDeploymentsResponse": {
-      "type": "object",
-      "properties": {
-        "page": {
-          "$ref": "#/definitions/apiPageInfo"
-        },
-        "results": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/cmdbDeployment"
-          }
-        }
-      }
-    },
-    "cmdbListEnvironmentsResponse": {
-      "type": "object",
-      "properties": {
-        "page": {
-          "$ref": "#/definitions/apiPageInfo"
-        },
-        "results": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/cmdbEnvironment"
-          }
-        }
-      }
-    },
-    "cmdbListKubeClustersResponse": {
-      "type": "object",
-      "properties": {
-        "page": {
-          "$ref": "#/definitions/apiPageInfo"
-        },
-        "results": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/cmdbKubeCluster"
-          }
-        }
-      }
-    },
-    "cmdbListLifecyclesResponse": {
-      "type": "object",
-      "properties": {
-        "page": {
-          "$ref": "#/definitions/apiPageInfo"
-        },
-        "results": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/cmdbLifecycle"
-          }
-        }
-      }
-    },
-    "cmdbListNetworksResponse": {
-      "type": "object",
-      "properties": {
-        "page": {
-          "$ref": "#/definitions/apiPageInfo"
-        },
-        "results": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/cmdbNetwork"
-          }
-        }
-      }
-    },
-    "cmdbListRegionsResponse": {
-      "type": "object",
-      "properties": {
-        "page": {
-          "$ref": "#/definitions/apiPageInfo"
-        },
-        "results": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/cmdbRegion"
-          }
-        }
-      }
-    },
-    "cmdbListSecretsResponse": {
-      "type": "object",
-      "properties": {
-        "page": {
-          "$ref": "#/definitions/apiPageInfo"
-        },
-        "results": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/cmdbSecret"
-          }
-        }
-      }
-    },
-    "cmdbListVaultsResponse": {
-      "type": "object",
-      "properties": {
-        "page": {
-          "$ref": "#/definitions/apiPageInfo"
-        },
-        "results": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/cmdbVault"
-          }
-        }
-      }
-    },
     "cmdbNetwork": {
       "type": "object",
       "title": "------------------------------------------------------\nNetwork represents a particular AWS VPC\n------------------------------------------------------",
@@ -3799,126 +2844,6 @@
         "GCP",
         "EQUINIX"
       ]
-    },
-    "cmdbReadAppConfigResponse": {
-      "type": "object",
-      "properties": {
-        "result": {
-          "$ref": "#/definitions/cmdbAppConfig"
-        }
-      }
-    },
-    "cmdbReadAppVersionResponse": {
-      "type": "object",
-      "properties": {
-        "result": {
-          "$ref": "#/definitions/cmdbAppVersion"
-        }
-      }
-    },
-    "cmdbReadApplicationInstanceResponse": {
-      "type": "object",
-      "properties": {
-        "result": {
-          "$ref": "#/definitions/cmdbApplicationInstance"
-        }
-      }
-    },
-    "cmdbReadApplicationResponse": {
-      "type": "object",
-      "properties": {
-        "result": {
-          "$ref": "#/definitions/cmdbApplication"
-        }
-      }
-    },
-    "cmdbReadArtifactResponse": {
-      "type": "object",
-      "properties": {
-        "result": {
-          "$ref": "#/definitions/cmdbArtifact"
-        }
-      }
-    },
-    "cmdbReadChartVersionResponse": {
-      "type": "object",
-      "properties": {
-        "result": {
-          "$ref": "#/definitions/cmdbChartVersion"
-        }
-      }
-    },
-    "cmdbReadCloudProviderResponse": {
-      "type": "object",
-      "properties": {
-        "result": {
-          "$ref": "#/definitions/cmdbCloudProvider"
-        }
-      }
-    },
-    "cmdbReadDeploymentResponse": {
-      "type": "object",
-      "properties": {
-        "result": {
-          "$ref": "#/definitions/cmdbDeployment"
-        }
-      }
-    },
-    "cmdbReadEnvironmentResponse": {
-      "type": "object",
-      "properties": {
-        "result": {
-          "$ref": "#/definitions/cmdbEnvironment"
-        }
-      }
-    },
-    "cmdbReadKubeClusterResponse": {
-      "type": "object",
-      "properties": {
-        "result": {
-          "$ref": "#/definitions/cmdbKubeCluster"
-        }
-      }
-    },
-    "cmdbReadLifecycleResponse": {
-      "type": "object",
-      "properties": {
-        "result": {
-          "$ref": "#/definitions/cmdbLifecycle"
-        }
-      }
-    },
-    "cmdbReadNetworkResponse": {
-      "type": "object",
-      "properties": {
-        "result": {
-          "$ref": "#/definitions/cmdbNetwork"
-        }
-      }
-    },
-    "cmdbReadRegionResponse": {
-      "type": "object",
-      "properties": {
-        "result": {
-          "$ref": "#/definitions/cmdbRegion"
-        }
-      }
-    },
-    "cmdbReadSecretResponse": {
-      "type": "object",
-      "properties": {
-        "result": {
-          "$ref": "#/definitions/cmdbSecret"
-        }
-      }
-    },
-    "cmdbReadVaultResponse": {
-      "type": "object",
-      "properties": {
-        "result": {
-          "$ref": "#/definitions/cmdbVault"
-        }
-      }
     },
     "cmdbRegion": {
       "type": "object",
@@ -3985,126 +2910,6 @@
         }
       }
     },
-    "cmdbUpdateAppConfigResponse": {
-      "type": "object",
-      "properties": {
-        "result": {
-          "$ref": "#/definitions/cmdbAppConfig"
-        }
-      }
-    },
-    "cmdbUpdateAppVersionResponse": {
-      "type": "object",
-      "properties": {
-        "result": {
-          "$ref": "#/definitions/cmdbAppVersion"
-        }
-      }
-    },
-    "cmdbUpdateApplicationInstanceResponse": {
-      "type": "object",
-      "properties": {
-        "result": {
-          "$ref": "#/definitions/cmdbApplicationInstance"
-        }
-      }
-    },
-    "cmdbUpdateApplicationResponse": {
-      "type": "object",
-      "properties": {
-        "result": {
-          "$ref": "#/definitions/cmdbApplication"
-        }
-      }
-    },
-    "cmdbUpdateArtifactResponse": {
-      "type": "object",
-      "properties": {
-        "result": {
-          "$ref": "#/definitions/cmdbArtifact"
-        }
-      }
-    },
-    "cmdbUpdateChartVersionResponse": {
-      "type": "object",
-      "properties": {
-        "result": {
-          "$ref": "#/definitions/cmdbChartVersion"
-        }
-      }
-    },
-    "cmdbUpdateCloudProviderResponse": {
-      "type": "object",
-      "properties": {
-        "result": {
-          "$ref": "#/definitions/cmdbCloudProvider"
-        }
-      }
-    },
-    "cmdbUpdateDeploymentResponse": {
-      "type": "object",
-      "properties": {
-        "result": {
-          "$ref": "#/definitions/cmdbDeployment"
-        }
-      }
-    },
-    "cmdbUpdateEnvironmentResponse": {
-      "type": "object",
-      "properties": {
-        "result": {
-          "$ref": "#/definitions/cmdbEnvironment"
-        }
-      }
-    },
-    "cmdbUpdateKubeClusterResponse": {
-      "type": "object",
-      "properties": {
-        "result": {
-          "$ref": "#/definitions/cmdbKubeCluster"
-        }
-      }
-    },
-    "cmdbUpdateLifecycleResponse": {
-      "type": "object",
-      "properties": {
-        "result": {
-          "$ref": "#/definitions/cmdbLifecycle"
-        }
-      }
-    },
-    "cmdbUpdateNetworkResponse": {
-      "type": "object",
-      "properties": {
-        "result": {
-          "$ref": "#/definitions/cmdbNetwork"
-        }
-      }
-    },
-    "cmdbUpdateRegionResponse": {
-      "type": "object",
-      "properties": {
-        "result": {
-          "$ref": "#/definitions/cmdbRegion"
-        }
-      }
-    },
-    "cmdbUpdateSecretResponse": {
-      "type": "object",
-      "properties": {
-        "result": {
-          "$ref": "#/definitions/cmdbSecret"
-        }
-      }
-    },
-    "cmdbUpdateVaultResponse": {
-      "type": "object",
-      "properties": {
-        "result": {
-          "$ref": "#/definitions/cmdbVault"
-        }
-      }
-    },
     "cmdbVault": {
       "type": "object",
       "title": "------------------------------------------------------\nVault represents the store for keeping Secrets\n------------------------------------------------------",
@@ -4128,23 +2933,6 @@
           "items": {
             "$ref": "#/definitions/cmdbSecret"
           }
-        }
-      }
-    },
-    "cmdbVersionResponse": {
-      "type": "object",
-      "title": "---------------------------------\nCMDB Application Version\n---------------------------------",
-      "properties": {
-        "version": {
-          "type": "string"
-        }
-      }
-    },
-    "typesJSONValue": {
-      "type": "object",
-      "properties": {
-        "value": {
-          "type": "string"
         }
       }
     }

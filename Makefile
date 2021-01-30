@@ -27,7 +27,11 @@ DOCKER_GENERATOR     := infoblox/atlas-gentool:latest
 GENERATOR            := $(DOCKER_RUNNER) $(DOCKER_GENERATOR)
 
 # configuration for the database
-DATABASE_HOST ?= localhost:5432
+DATABASE_ADDRESS ?= localhost:5432
+DATABASE_USERNAME ?= postgres
+DATABASE_PASSWORD ?= postgres
+DATABASE_NAME = cmdb
+DATABASE_URL ?= postgres://$(DATABASE_USERNAME):$(DATABASE_PASSWORD)@$(DATABASE_ADDRESS)/$(DATABASE_NAME)?sslmode=disable
 
 # configuration for building on host machine
 GO_CACHE       := -pkgdir $(BUILD_PATH)/go-cache
@@ -83,16 +87,16 @@ down:
 
 .PHONY: migrate-up
 migrate-up:
-	@migrate -database 'postgres://$(DATABASE_HOST)/cmdb?sslmode=disable' -path ./db/migrations up
+	@migrate -database $(DATABASE_URL) -path ./db/migrations up
 #	@migrate -database 'postgres://$(DATABASE_HOST)/cmdb?sslmode=disable' -path ./db/migrations force 14
 
 .PHONY: migrate-goto
 migrate-goto:
-	@migrate -database 'postgres://$(DATABASE_HOST)/cmdb?sslmode=disable' -path ./db/migrations goto 13
+	@migrate -database $(DATABASE_URL) -path ./db/migrations goto 13
 
 .PHONY: migrate-down
 migrate-down:
-	@migrate -database 'postgres://$(DATABASE_HOST)/cmdb?sslmode=disable' -path ./db/migrations down
+	@migrate -database $(DATABASE_URL) -path ./db/migrations down
 
 .PHONY: erd
 erd:

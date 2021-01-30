@@ -984,10 +984,10 @@ message Application {
   string config_yaml = 7;
 
   // Application Versions
-  repeated AppVersion app_versions = 8;
+  //repeated AppVersion app_versions = 8;
 
   // Application Instances
-  repeated ApplicationInstance application_instances = 9;
+  //repeated ApplicationInstance application_instances = 9;
 }
 
 message CreateApplicationRequest {
@@ -1237,7 +1237,7 @@ message ApplicationInstance {
   string config_yaml = 5;
 
   // ChartVersion for the ApplicationInstance
-  ChartVersion chart_version = 6 [(gorm.field).belongs_to = {}];
+  ChartVersion chart_version = 6 [(gorm.field).belongs_to.preload = false];
 
   // Reference to the ChartVersion
   atlas.rpc.Identifier chart_version_id = 7 [(gorm.field) = {reference_of: "ChartVersion", tag: {type: "UUID"}}];

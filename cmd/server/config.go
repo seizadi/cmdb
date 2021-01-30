@@ -25,8 +25,8 @@ const (
 	defaultDatabaseHost     = "0.0.0.0"
 	defaultDatabasePort     = "5432"
 	defaultDatabaseName     = "cmdb"
-	defaultDatabaseUser     = "seizadi"
-	defaultDatabasePassword = ""
+	defaultDatabaseUser     = "postgres"
+	defaultDatabasePassword = "postgres"
 	defaultDatabaseSSL      = "disable"
 	defaultDatabaseOption   = ""
 

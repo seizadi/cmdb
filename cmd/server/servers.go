@@ -11,7 +11,8 @@ import (
 
 func CreateServer(logger *logrus.Logger, db *gorm.DB, interceptors []grpc.UnaryServerInterceptor) (*grpc.Server, error) {
 	// create new gRPC grpcServer with middleware chain
-	grpcServer := grpc.NewServer(grpc.UnaryInterceptor(grpc_middleware.ChainUnaryServer(interceptors...)))
+	grpcServer := grpc.NewServer(
+		grpc.UnaryInterceptor(grpc_middleware.ChainUnaryServer(interceptors...)))
 
 	// register all of our services into the grpcServer
 	s, err := svc.NewBasicServer(db)
