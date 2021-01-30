@@ -83,7 +83,7 @@ const styles = {
 
 const useStyles = makeStyles(styles);
 
-export default function UpgradeToPro() {
+export default function CmdbDoc() {
   const classes = useStyles();
   return (
     <GridContainer justify="center">
@@ -195,9 +195,9 @@ export default function UpgradeToPro() {
                       <Button
                         round
                         color="danger"
-                        href="https://www.creative-tim.com/product/material-dashboard-pro-react?ref=mdr-upgrade-live"
+                        href="https://github.com/seizadi/cmdb"
                       >
-                        Upgrade to Pro
+                        CMDB Documentation
                       </Button>
                     </td>
                   </tr>
