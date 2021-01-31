@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import Table from "../../components/Table/Table";
 
 // from Redux
-import { listEnvironments } from "../../actions";
+import { listLifecycles, listEnvironments } from "../../actions";
 
 // Table format is something like:
 // <Table
@@ -19,6 +19,7 @@ import { listEnvironments } from "../../actions";
 
 class Environments extends React.Component {
   componentDidMount() {
+    this.props.listLifecycles();
     this.props.listEnvironments();
   }
 
@@ -30,7 +31,11 @@ class Environments extends React.Component {
         return false;
       }
     }).map( (environment) => {
-        return [environment.name];
+      const lifecycle = this.props.lifecycles[environment.lifecycle_id];
+      if (lifecycle) {
+        return [environment.name, lifecycle.name]
+      }
+        return [environment.name, ""];
     });
 
     return envTableData;
@@ -41,7 +46,7 @@ class Environments extends React.Component {
       <>
         <Table
           tableHeaderColor="primary"
-          tableHead={["Name"]}
+          tableHead={["Name", "Lifecycle"]}
           tableData={this.environmentTableData()}
         />
       </>
@@ -52,8 +57,10 @@ class Environments extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    environments: Object.values(state.environments)
+    // lifecycles: Object.values(state.lifecycles),
+    lifecycles: state.lifecycles,
+    environments: Object.values(state.environments),
   };
 };
 
-export default connect(mapStateToProps, { listEnvironments })(Environments);
+export default connect(mapStateToProps, { listLifecycles, listEnvironments })(Environments);

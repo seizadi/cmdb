@@ -3174,7 +3174,7 @@ func validate_Object_Lifecycle(ctx context.Context, r json.RawMessage, path stri
 					return err
 				}
 			}
-		case "life_cycles":
+		case "lifecycles":
 			if v[k] == nil {
 				continue
 			}

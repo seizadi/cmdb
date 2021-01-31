@@ -6,9 +6,11 @@ function applicationReducer (state = INITIAL_STATE, action) {
   switch(action.type) {
     case LIST_APPLICATIONS:
       let newState = {};
-      action.payload.forEach((application) => {
-        newState = { ...newState, [application.id]: application }
-      });
+      if (action.payload && action.payload.length > 0) {
+        action.payload.forEach((application) => {
+          newState = {...newState, [application.id]: application}
+        });
+      }
       return newState;
     default:
       return state;

@@ -2908,13 +2908,13 @@ func (m *Lifecycle) Validate() error {
 
 	}
 
-	for idx, item := range m.GetLifeCycles() {
+	for idx, item := range m.GetLifecycles() {
 		_, _ = idx, item
 
 		if v, ok := interface{}(item).(interface{ Validate() error }); ok {
 			if err := v.Validate(); err != nil {
 				return LifecycleValidationError{
-					field:  fmt.Sprintf("LifeCycles[%v]", idx),
+					field:  fmt.Sprintf("Lifecycles[%v]", idx),
 					reason: "embedded message failed validation",
 					cause:  err,
 				}

@@ -467,7 +467,7 @@ message Lifecycle {
   repeated Environment environments = 5;
 
   // Lifecycles chained to this stage
-  repeated Lifecycle life_cycles = 6;
+  repeated Lifecycle lifecycles = 6;
 
   // AppConfig
   repeated AppConfig app_config = 7;

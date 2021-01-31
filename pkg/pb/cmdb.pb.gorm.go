@@ -559,8 +559,8 @@ type LifecycleORM struct {
 	Description  string
 	Environments []*EnvironmentORM `gorm:"foreignkey:LifecycleId;association_foreignkey:Id"`
 	Id           string            `gorm:"type:UUID;primary_key"`
-	LifeCycles   []*LifecycleORM   `gorm:"foreignkey:LifecycleId;association_foreignkey:Id"`
 	LifecycleId  *string           `gorm:"type:UUID"`
+	Lifecycles   []*LifecycleORM   `gorm:"foreignkey:LifecycleId;association_foreignkey:Id"`
 	Name         string
 }
 
@@ -598,15 +598,15 @@ func (m *Lifecycle) ToORM(ctx context.Context) (LifecycleORM, error) {
 			to.Environments = append(to.Environments, nil)
 		}
 	}
-	for _, v := range m.LifeCycles {
+	for _, v := range m.Lifecycles {
 		if v != nil {
-			if tempLifeCycles, cErr := v.ToORM(ctx); cErr == nil {
-				to.LifeCycles = append(to.LifeCycles, &tempLifeCycles)
+			if tempLifecycles, cErr := v.ToORM(ctx); cErr == nil {
+				to.Lifecycles = append(to.Lifecycles, &tempLifecycles)
 			} else {
 				return to, cErr
 			}
 		} else {
-			to.LifeCycles = append(to.LifeCycles, nil)
+			to.Lifecycles = append(to.Lifecycles, nil)
 		}
 	}
 	for _, v := range m.AppConfig {
@@ -679,15 +679,15 @@ func (m *LifecycleORM) ToPB(ctx context.Context) (Lifecycle, error) {
 			to.Environments = append(to.Environments, nil)
 		}
 	}
-	for _, v := range m.LifeCycles {
+	for _, v := range m.Lifecycles {
 		if v != nil {
-			if tempLifeCycles, cErr := v.ToPB(ctx); cErr == nil {
-				to.LifeCycles = append(to.LifeCycles, &tempLifeCycles)
+			if tempLifecycles, cErr := v.ToPB(ctx); cErr == nil {
+				to.Lifecycles = append(to.Lifecycles, &tempLifecycles)
 			} else {
 				return to, cErr
 			}
 		} else {
-			to.LifeCycles = append(to.LifeCycles, nil)
+			to.Lifecycles = append(to.Lifecycles, nil)
 		}
 	}
 	for _, v := range m.AppConfig {
@@ -3530,13 +3530,13 @@ func DefaultStrictUpdateLifecycle(ctx context.Context, in *Lifecycle, db *gorm1.
 	if err = db.Where(filterEnvironments).Delete(EnvironmentORM{}).Error; err != nil {
 		return nil, err
 	}
-	filterLifeCycles := LifecycleORM{}
+	filterLifecycles := LifecycleORM{}
 	if ormObj.Id == "" {
 		return nil, errors1.EmptyIdError
 	}
-	filterLifeCycles.LifecycleId = new(string)
-	*filterLifeCycles.LifecycleId = ormObj.Id
-	if err = db.Where(filterLifeCycles).Delete(LifecycleORM{}).Error; err != nil {
+	filterLifecycles.LifecycleId = new(string)
+	*filterLifecycles.LifecycleId = ormObj.Id
+	if err = db.Where(filterLifecycles).Delete(LifecycleORM{}).Error; err != nil {
 		return nil, err
 	}
 	if hook, ok := interface{}(&ormObj).(LifecycleORMWithBeforeStrictUpdateSave); ok {
@@ -3672,8 +3672,8 @@ func DefaultApplyFieldMaskLifecycle(ctx context.Context, patchee *Lifecycle, pat
 			patchee.Environments = patcher.Environments
 			continue
 		}
-		if f == prefix+"LifeCycles" {
-			patchee.LifeCycles = patcher.LifeCycles
+		if f == prefix+"Lifecycles" {
+			patchee.Lifecycles = patcher.Lifecycles
 			continue
 		}
 		if f == prefix+"AppConfig" {
