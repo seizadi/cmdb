@@ -2,8 +2,8 @@ import React from "react";
 import { connect } from 'react-redux';
 
 // from core components
-import Table from "../../components/Table/Table";
 import EnvironmentSelects from "../environments/EnvironmentSelects";
+import AppButton from "./AppButton";
 
 // from Redux
 import { listApplicationInstances } from "../../actions";
@@ -29,20 +29,49 @@ class ApplicationInstances extends React.Component {
     this.setState({envName} );
   }
 
-  applicationInstanceTableData = () => {
-    const appInstanceTableData = this.props.applicationInstances.filter( (applicationInstance) => {
-      if (applicationInstance.name && applicationInstance.name.length ) {
-        return true;
-      } else {
-        return false;
-      }
-    }).map( (applicationInstance) => {
-      return [applicationInstance.name];
-    });
+  // applicationInstanceTableData = () => {
+  //   const appInstanceTableData = this.props.applicationInstances.filter( (applicationInstance) => {
+  //     if (applicationInstance.name && applicationInstance.name.length ) {
+  //       return true;
+  //     } else {
+  //       return false;
+  //     }
+  //   }).map( (applicationInstance) => {
+  //     return [applicationInstance.name];
+  //   });
+  //
+  //   return appInstanceTableData;
+  // };
+  //
+  // render() {
+  //   return(
+  //     <>
+  //       < EnvironmentSelects
+  //         envName={this.state.envName}
+  //         selectEnvironment={this.selectEnvironment}
+  //       />
+  //       <Table
+  //         tableHeaderColor="primary"
+  //         tableHead={["Name"]}
+  //         tableData={this.applicationInstanceTableData()}
+  //       />
+  //     </>
+  //
+  //   );
+  // }
 
-    return appInstanceTableData;
-  };
-
+  renderAppInstances = () => {
+    return(
+      this.props.applicationInstances.filter( (applicationInstance) => {
+        if (applicationInstance.name && applicationInstance.name.length ) {
+          return true;
+        } else {
+          return false;
+        }
+      }).map( (applicationInstance) => {
+        return <AppButton name={applicationInstance.name}/>;
+      }));
+  }
   render() {
     return(
       <>
@@ -50,13 +79,8 @@ class ApplicationInstances extends React.Component {
           envName={this.state.envName}
           selectEnvironment={this.selectEnvironment}
         />
-        <Table
-          tableHeaderColor="primary"
-          tableHead={["Name"]}
-          tableData={this.applicationInstanceTableData()}
-        />
+        {this.renderAppInstances()}
       </>
-
     );
   }
 }

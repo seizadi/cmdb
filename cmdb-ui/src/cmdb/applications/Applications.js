@@ -2,7 +2,7 @@ import React from "react";
 import { connect } from 'react-redux';
 
 // from core components
-import Table from "../../components/Table/Table";
+import AppButton from "./AppButton";
 
 // from Redux
 import { listApplications } from "../../actions";
@@ -22,31 +22,43 @@ class Applications extends React.Component {
     this.props.listApplications();
   }
 
-   applicationTableData = () => {
-    const appTableData = this.props.applications.filter( (application) => {
-      if (application.name && application.name.length ) {
-        return true;
-      } else {
-        return false;
-      }
-    }).map( (application) => {
-        return [application.name];
-    });
-
-    return appTableData;
-  };
-
+  //  applicationTableData = () => {
+  //   const appTableData = this.props.applications.filter( (application) => {
+  //     if (application.name && application.name.length ) {
+  //       return true;
+  //     } else {
+  //       return false;
+  //     }
+  //   }).map( (application) => {
+  //       return [application.name];
+  //   });
+  //
+  //   return appTableData;
+  // };
+  //
+  // render() {
+  //   return(
+  //     <>
+  //       <Table
+  //         tableHeaderColor="primary"
+  //         tableHead={["Name"]}
+  //         tableData={this.applicationTableData()}
+  //       />
+  //     </>
+  //
+  //   );
+  // }
   render() {
-    return(
-      <>
-        <Table
-          tableHeaderColor="primary"
-          tableHead={["Name"]}
-          tableData={this.applicationTableData()}
-        />
-      </>
-
-    );
+     return (
+      this.props.applications.filter( (application) => {
+        if (application.name && application.name.length ) {
+          return true;
+        } else {
+          return false;
+        }
+      }).map( (application) => {
+          return < AppButton name={application.name}  />;
+      }));
   }
 }
 
