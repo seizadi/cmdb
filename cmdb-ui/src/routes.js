@@ -34,6 +34,7 @@ import Maps from "./views/Maps/Maps.js";
 import NotificationsPage from "./views/Notifications/Notifications.js";
 import CmdbDoc from "./views/CmdbDoc/CmdbDoc.js";
 import EnvironmentList from "./views/EnvironmentList/EnvironmentList";
+import ApplicationInstanceList from "./views/ApplicationInstanceList/ApplicationInstanceList";
 
 const dashboardRoutes = [
   {
@@ -58,6 +59,14 @@ const dashboardRoutes = [
     rtlName: "قائمة الجدول",
     icon: "content_paste",
     component: EnvironmentList,
+    layout: "/admin"
+  },
+  {
+    path: "/application_instances",
+    name: "Application Instances",
+    rtlName: "قائمة الجدول",
+    icon: "content_paste",
+    component: ApplicationInstanceList,
     layout: "/admin"
   },
   {

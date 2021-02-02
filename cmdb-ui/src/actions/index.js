@@ -1,5 +1,8 @@
 import cmdb from "../api/cmdb";
-import { LIST_APPLICATIONS, LIST_ENVIRONMENTS, LIST_LIFECYCLES } from "./types";
+import { LIST_APPLICATIONS,
+  LIST_APPLICATION_INSTANCES,
+  LIST_ENVIRONMENTS, 
+  LIST_LIFECYCLES } from "./types";
 
 const headers = {
   'Content-Type': 'application/json',
@@ -9,6 +12,16 @@ const headers = {
 export const listApplications = () => async dispatch => {
   const response = await cmdb.get('/v1/applications?_order_by=name&_fields=id,name', {headers});
   dispatch({type: LIST_APPLICATIONS, payload: response.data.results});
+}
+
+export const listApplicationInstances = (envId = "") => async dispatch => {
+  let url = '/v1/application_instances';
+  const search = (envId.length > 0 ) ? '&_filter=environment_id=="' + encodeURIComponent(envId) + '"' : '';
+  url = url +
+    '?_order_by=name&_fields=id,name,application_id,environment_id,chart_version_id' +
+    search;
+  const response = await cmdb.get( url, {headers});
+  dispatch({type: LIST_APPLICATION_INSTANCES, payload: response.data.results});
 }
 
 export const listEnvironments = () => async dispatch => {

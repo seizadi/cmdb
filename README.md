@@ -156,7 +156,7 @@ curl -H "Authorization: Bearer $JWT" 'http://localhost:8080/v1/application_insta
 curl -H "Authorization: Bearer $JWT" 'http://localhost:8080/v1/application_instances?_filter=name~"prometheus"&_limit=1&_fields=name,id' | jq
 curl -H "Authorization: Bearer $JWT" 'http://localhost:8080/v1/applications?_limit=1&_fields=name,id' | jq
 curl -H "Authorization: Bearer $JWT" 'http://localhost:8080/v1/applications?_filter=name~"prometheus"&_limit=1&_fields=name,id' | jq
-
+curl -H "Authorization: Bearer $JWT" 'http://localhost:8080/v1/application_instances?_limit=1&_offset=1&_order_by=name&_fields=id,name,application_id,environment_id,chart_version_id' | jq
 ```
 Now let's add a Region:
 ```sh
