@@ -62,7 +62,7 @@ function EnvironmentSelects(props) {
   }, []);
 
   const getEnvOptions = () => {
-    return (props.environments.map(env => {
+    return (props.environments.map( env => {
         return <option key={env.id} value={env.id}>{env.name}</option>;
       }));
     };
@@ -73,11 +73,11 @@ function EnvironmentSelects(props) {
         <InputLabel htmlFor="environment-select-native">Environment</InputLabel>
         <NativeSelect
           id="environment-select-native"
-          value={props.envName}
+          value={props.envId}
           onChange={handleChange}
           input={<BootstrapInput />}
         >
-          <option aria-label="None" value="" />
+          {/*<option aria-label="None" value="" />*/}
           { getEnvOptions() }
         </NativeSelect>
       </FormControl>

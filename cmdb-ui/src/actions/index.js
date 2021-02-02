@@ -2,7 +2,8 @@ import cmdb from "../api/cmdb";
 import { LIST_APPLICATIONS,
   LIST_APPLICATION_INSTANCES,
   LIST_ENVIRONMENTS, 
-  LIST_LIFECYCLES } from "./types";
+  LIST_LIFECYCLES,
+  SELECT_ENVIRONMENT, } from "./types";
 
 const headers = {
   'Content-Type': 'application/json',
@@ -32,4 +33,8 @@ export const listEnvironments = () => async dispatch => {
 export const listLifecycles = () => async dispatch => {
   const response = await cmdb.get('/v1/lifecycles?_order_by=name&_fields=id,name', {headers});
   dispatch({type: LIST_LIFECYCLES, payload: response.data.results});
+}
+
+export const selectEnvironment = ( envId = "" ) =>  {
+  return({type: SELECT_ENVIRONMENT, payload: envId } );
 }

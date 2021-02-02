@@ -6,7 +6,7 @@ import EnvironmentSelects from "../environments/EnvironmentSelects";
 import AppButton from "./AppButton";
 
 // from Redux
-import { listApplicationInstances } from "../../actions";
+import { listApplicationInstances, selectEnvironment } from "../../actions";
 
 // Table format is something like:
 // <Table
@@ -19,14 +19,10 @@ import { listApplicationInstances } from "../../actions";
 // />
 
 class ApplicationInstances extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = { envName: ""};
-  }
 
-  selectEnvironment = (envId, envName) => {
+  selectEnvironment = (envId) => {
+    this.props.selectEnvironment(envId);
     this.props.listApplicationInstances(envId);
-    this.setState({envName} );
   }
 
   // applicationInstanceTableData = () => {
@@ -69,14 +65,14 @@ class ApplicationInstances extends React.Component {
           return false;
         }
       }).map( (applicationInstance) => {
-        return <AppButton name={applicationInstance.name}/>;
+        return <AppButton key={applicationInstance.id} name={applicationInstance.name}/>;
       }));
   }
   render() {
     return(
       <>
         < EnvironmentSelects
-          envName={this.state.envName}
+          envId={this.props.envId}
           selectEnvironment={this.selectEnvironment}
         />
         {this.renderAppInstances()}
@@ -87,8 +83,9 @@ class ApplicationInstances extends React.Component {
 
 const mapStateToProps = state => {
   return {
+    envId: state.selectedEnvId,
     applicationInstances: Object.values(state.applicationInstances),
   };
 };
 
-export default connect(mapStateToProps, {listApplicationInstances})(ApplicationInstances);
+export default connect(mapStateToProps, {listApplicationInstances, selectEnvironment})(ApplicationInstances);
