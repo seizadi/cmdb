@@ -59,7 +59,7 @@ function EnvironmentSelects(props) {
   React.useEffect(() => {
     // Specify how to clean up after this effect:
     props.listEnvironments();
-  }, []);
+  }, [props.listEnvironments]);
 
   const getEnvOptions = () => {
     return (props.environments.map( env => {

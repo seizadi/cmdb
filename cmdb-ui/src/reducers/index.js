@@ -5,6 +5,7 @@ import applicationInstanceReducer from "./applicationInstanceReducers";
 import lifecycleReducer from "./lifecycleReducers";
 import environmentReducer from "./environmentReducers";
 import selectEnvReducer from "./selectEnvReducer";
+import chartVersionReducer from "./chartVersionReducer";
 
 export default combineReducers( {
   selectedEnvId: selectEnvReducer,
@@ -12,4 +13,5 @@ export default combineReducers( {
   applicationInstances: applicationInstanceReducer,
   lifecycles: lifecycleReducer,
   environments: environmentReducer,
+  chartVersions: chartVersionReducer,
 });

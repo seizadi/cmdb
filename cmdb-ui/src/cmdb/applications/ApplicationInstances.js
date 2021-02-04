@@ -22,7 +22,7 @@ class ApplicationInstances extends React.Component {
 
   selectEnvironment = (envId) => {
     this.props.selectEnvironment(envId);
-    this.props.listApplicationInstances(envId);
+    this.props.listApplicationInstances({envId});
   }
 
   // applicationInstanceTableData = () => {
@@ -65,7 +65,7 @@ class ApplicationInstances extends React.Component {
           return false;
         }
       }).map( (applicationInstance) => {
-        return <AppButton key={applicationInstance.id} name={applicationInstance.name}/>;
+        return <AppButton key={applicationInstance.id} app={applicationInstance}/>;
       }));
   }
   render() {

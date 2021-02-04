@@ -13,10 +13,16 @@ const useStyles = makeStyles((theme) => ({
 export default function AppButton(props) {
   const classes = useStyles();
 
+  const handleClick = () => {
+    if (props.onClick) {
+      return props.onClick(props.app);
+    }
+  };
+
   return (
     <span className={classes.root}>
-      <Button variant="contained" color="primary">
-        {props.name}
+      <Button variant="contained" color="primary" onClick={handleClick}>
+        {props.app.name}
       </Button>
     </span>
   );

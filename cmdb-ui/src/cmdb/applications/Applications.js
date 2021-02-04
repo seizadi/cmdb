@@ -5,7 +5,23 @@ import { connect } from 'react-redux';
 import AppButton from "./AppButton";
 
 // from Redux
-import { listApplications } from "../../actions";
+import { listApplications,
+  listApplicationInstances,
+  listEnvironments,
+  listChartVersions,
+  listLifecycles } from "../../actions";
+import AppGraph from "./AppGraph";
+import IconButton from "@material-ui/core/Button";
+import CancelIcon from "@material-ui/icons/Cancel";
+import { createStyles, withStyles } from '@material-ui/core';
+
+const styles = (theme) => createStyles({
+  root: {
+    '& > *': {
+      margin: theme.spacing(1),
+    },
+  }
+});
 
 // Table format is something like:
 // <Table
@@ -18,8 +34,16 @@ import { listApplications } from "../../actions";
 // />
 
 class Applications extends React.Component {
+  constructor() {
+    super();
+    this.state = { showGraph: false };
+  }
+
   componentDidMount() {
     this.props.listApplications();
+    this.props.listEnvironments();
+    this.props.listLifecycles();
+    this.props.listChartVersions();
   }
 
   //  applicationTableData = () => {
@@ -48,24 +72,62 @@ class Applications extends React.Component {
   //
   //   );
   // }
-  render() {
-     return (
+
+  handleAppClick = (application) => {
+    this.props.listApplicationInstances({appId: application.id});
+    this.setState( { showGraph: true });
+  }
+
+  handleAppGraphCancel = () => {
+    this.setState( { showGraph: false });
+  }
+
+  renderApps = () => {
+    return (
       this.props.applications.filter( (application) => {
-        if (application.name && application.name.length ) {
-          return true;
-        } else {
-          return false;
-        }
+        return (application.name && application.name.length);
       }).map( (application) => {
-          return < AppButton name={application.name}  />;
+        return < AppButton key={application.id}
+                           app={application}
+                           onClick={() => {this.handleAppClick(application)}} />
       }));
+  };
+
+  render() {
+    if (this.state.showGraph) {
+      return (
+        <>
+          <div className={this.props.classes.root}>
+            <IconButton aria-label="cancel" onClick={this.handleAppGraphCancel}>
+              <CancelIcon />
+            </IconButton>
+          </div>
+          <AppGraph applicationInstances={this.props.applicationInstances}
+                    environments={this.props.environments}
+                    lifecycles={this.props.lifecycles}
+                    chartVersions={this.props.chartVersions}
+          />
+        </>
+      );
+    }
+    return( this.renderApps() );
   }
 }
 
 const mapStateToProps = state => {
   return {
-    applications: Object.values(state.applications)
+    applications: Object.values(state.applications),
+    applicationInstances: Object.values(state.applicationInstances),
+    environments: state.environments,
+    chartVersions: state.chartVersions,
+    lifecycles: state.lifecycles,
   };
 };
 
-export default connect(mapStateToProps, { listApplications })(Applications);
+export default connect( mapStateToProps,
+  {listApplications,
+    listApplicationInstances,
+    listEnvironments,
+    listChartVersions,
+    listLifecycles })
+(withStyles(styles)(Applications));

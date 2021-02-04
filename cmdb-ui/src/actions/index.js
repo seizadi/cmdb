@@ -3,6 +3,7 @@ import { LIST_APPLICATIONS,
   LIST_APPLICATION_INSTANCES,
   LIST_ENVIRONMENTS, 
   LIST_LIFECYCLES,
+  LIST_CHART_VERSIONS,
   SELECT_ENVIRONMENT, } from "./types";
 
 const headers = {
@@ -15,9 +16,17 @@ export const listApplications = () => async dispatch => {
   dispatch({type: LIST_APPLICATIONS, payload: response.data.results});
 }
 
-export const listApplicationInstances = (envId = "") => async dispatch => {
+export const listApplicationInstances = ({ envId = "", appId = "" }) => async dispatch => {
   let url = '/v1/application_instances';
-  const search = (envId.length > 0 ) ? '&_filter=environment_id=="' + encodeURIComponent(envId) + '"' : '';
+  let search = "";
+  if (envId.length > 0 && appId.length > 0) {
+    search = '&_filter=environment_id=="' + encodeURIComponent(envId) + " AND " +
+      'application_id=="' + encodeURIComponent(appId) +'"';
+  } else if (envId.length > 0) {
+    search = '&_filter=environment_id=="' + encodeURIComponent(envId) + '"';
+  } else if (appId.length > 0 ) {
+    search = '&_filter=application_id=="' + encodeURIComponent(appId) + '"';
+  }
   url = url +
     '?_order_by=name&_fields=id,name,application_id,environment_id,chart_version_id' +
     search;
@@ -33,6 +42,11 @@ export const listEnvironments = () => async dispatch => {
 export const listLifecycles = () => async dispatch => {
   const response = await cmdb.get('/v1/lifecycles?_order_by=name&_fields=id,name', {headers});
   dispatch({type: LIST_LIFECYCLES, payload: response.data.results});
+}
+
+export const listChartVersions = () => async dispatch => {
+  const response = await cmdb.get('/v1/chart_versions?_order_by=name&_fields=id,name,repo,version', {headers});
+  dispatch({type: LIST_CHART_VERSIONS, payload: response.data.results});
 }
 
 export const selectEnvironment = ( envId = "" ) =>  {
