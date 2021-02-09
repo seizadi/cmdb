@@ -6,7 +6,6 @@ import AppButton from "./AppButton";
 
 // from Redux
 import { listApplications,
-  listApplicationInstances,
   listEnvironments,
   listChartVersions,
   listLifecycles } from "../../actions";
@@ -14,6 +13,7 @@ import AppGraph from "./AppGraph";
 import IconButton from "@material-ui/core/Button";
 import CancelIcon from "@material-ui/icons/Cancel";
 import { createStyles, withStyles } from '@material-ui/core';
+import {apiListApplicationInstances} from "../../api/applicationInstances";
 
 const styles = (theme) => createStyles({
   root: {
@@ -36,7 +36,7 @@ const styles = (theme) => createStyles({
 class Applications extends React.Component {
   constructor() {
     super();
-    this.state = { showGraph: false };
+    this.state = { showGraph: false , applicationInstances: [] };
   }
 
   componentDidMount() {
@@ -74,8 +74,13 @@ class Applications extends React.Component {
   // }
 
   handleAppClick = (application) => {
-    this.props.listApplicationInstances({appId: application.id});
-    this.setState( { showGraph: true });
+    // this.props.listApplicationInstances({appId: application.id});
+    // TODO - Handle Failure
+    apiListApplicationInstances("", application.id).then((response) => {
+      if (response.data && response.data.results) {
+        this.setState({showGraph: true, applicationInstances: response.data.results});
+      }
+    });
   }
 
   handleAppGraphCancel = () => {
@@ -102,7 +107,7 @@ class Applications extends React.Component {
               <CancelIcon />
             </IconButton>
           </div>
-          <AppGraph applicationInstances={this.props.applicationInstances}
+          <AppGraph applicationInstances={this.state.applicationInstances}
                     environments={this.props.environments}
                     lifecycles={this.props.lifecycles}
                     chartVersions={this.props.chartVersions}
@@ -117,7 +122,6 @@ class Applications extends React.Component {
 const mapStateToProps = state => {
   return {
     applications: Object.values(state.applications),
-    applicationInstances: Object.values(state.applicationInstances),
     environments: state.environments,
     chartVersions: state.chartVersions,
     lifecycles: state.lifecycles,
@@ -126,7 +130,6 @@ const mapStateToProps = state => {
 
 export default connect( mapStateToProps,
   {listApplications,
-    listApplicationInstances,
     listEnvironments,
     listChartVersions,
     listLifecycles })
