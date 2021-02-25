@@ -1,0 +1,26 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: cmdb
+  description: Go Microservice support Configuration Management Database
+  annotations: 
+    github.com/project-slug: seizadi/cmdb
+    backstage.io/source-ref: "https://github.com/seizadi/cmdb"
+    backstage.io/techdocs-ref: url:https://github.com/seizadi/cmdb
+    backstage.io/github-actions-id: https://github.com/seizadi/cmdb
+spec:
+  type: service
+  lifecycle: experimental
+  owner: seizadi@gmail.com
+
+apiVersion: backstage.io/v1alpha1
+kind: API
+metadata:
+  name: CMDB
+  description: The CMDB Microservice API
+spec:
+  type: openapi
+  lifecycle: experimental
+  owner: seizadi@gmailcom
+  definition:
+    $text: https://raw.githubusercontent.com/seizadi/cmdb/master/pkg/pb/cmdb.swagger.json
