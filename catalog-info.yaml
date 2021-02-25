@@ -12,15 +12,19 @@ spec:
   type: service
   lifecycle: experimental
   owner: seizadi@gmail.com
+  providesApis:
+    - cmdb-api
 
 apiVersion: backstage.io/v1alpha1
 kind: API
 metadata:
-  name: CMDB
+  name: cmdb-api
   description: The CMDB Microservice API
 spec:
   type: openapi
   lifecycle: experimental
   owner: seizadi@gmailcom
+  apiProvidedBy:
+    - cmdb
   definition:
     $text: https://raw.githubusercontent.com/seizadi/cmdb/master/pkg/pb/cmdb.swagger.json
