@@ -30,4 +30,6 @@ spec:
   apiProvidedBy:
     - cmdb
   definition:
+    servers:
+      - url: http://localhost:8080
     $text: https://raw.githubusercontent.com/seizadi/cmdb/master/pkg/pb/cmdb.swagger.json
