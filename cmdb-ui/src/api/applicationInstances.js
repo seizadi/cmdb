@@ -12,7 +12,7 @@ export const apiListApplicationInstances = (envId = "", appId = "" ) => {
     search = '&_filter=application_id=="' + encodeURIComponent(appId) + '"';
   }
   url = url +
-    '?_order_by=name&_fields=id,name,application_id,environment_id,chart_version_id' +
+    '?_order_by=name&_fields=id,name,application_id,environment_id,chart_version_id,config_yaml' +
     search;
 
   return cmdb.get( url, {headers});

@@ -54,8 +54,9 @@ class AppGraph extends React.Component {
       case 'gov-stage':
       case 'gov-prod':
         return 'gov';
+      default:
+        return name;
     }
-    return name;
   }
 
   componentDidMount() {

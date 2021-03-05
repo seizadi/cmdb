@@ -1,11 +1,11 @@
 import React from "react";
-import { connect } from 'react-redux';
+import {connect} from 'react-redux';
 
 // from core components
 import Table from "../../components/Table/Table";
 
 // from Redux
-import { listLifecycles, listEnvironments } from "../../actions";
+import {listEnvironments, listLifecycles} from "../../actions";
 
 // Table format is something like:
 // <Table
@@ -24,21 +24,15 @@ class Environments extends React.Component {
   }
 
    environmentTableData = () => {
-    const envTableData = this.props.environments.filter( (environment) => {
-      if (environment.name && environment.name.length ) {
-        return true;
-      } else {
-        return false;
-      }
-    }).map( (environment) => {
+     return this.props.environments.filter((environment) => {
+      return (environment.name && environment.name.length);
+    }).map((environment) => {
       const lifecycle = this.props.lifecycles[environment.lifecycle_id];
       if (lifecycle) {
         return [environment.name, lifecycle.name]
       }
-        return [environment.name, ""];
+      return [environment.name, ""];
     });
-
-    return envTableData;
   };
 
   render() {
