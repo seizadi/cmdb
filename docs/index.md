@@ -31,4 +31,3 @@ The other is geared toward the
 
 Note you could start with ERD diagram, but there is not an easy way
 to go from ERD to create the protobuf definition right now.
-
