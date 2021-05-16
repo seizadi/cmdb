@@ -6,6 +6,7 @@ CREATE TABLE application_instances (
    updated_at timestamptz DEFAULT NULL,
    name text DEFAULT NULL,
    description text DEFAULT NULL,
+   enable bool DEFAULT TRUE,
    config_yaml text DEFAULT NULL,
    chart_version_id text REFERENCES chart_versions(id) ON DELETE CASCADE,
    environment_id text REFERENCES environments(id) ON DELETE CASCADE,

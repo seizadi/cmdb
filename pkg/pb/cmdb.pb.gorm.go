@@ -1445,6 +1445,7 @@ type ApplicationInstanceORM struct {
 	ConfigYaml     string
 	Deployment     *DeploymentORM `gorm:"foreignkey:ApplicationInstanceId;association_foreignkey:Id"`
 	Description    string
+	Enable         bool
 	EnvironmentId  *string `gorm:"type:UUID"`
 	Id             string  `gorm:"type:UUID;primary_key"`
 	Name           string
@@ -1472,6 +1473,7 @@ func (m *ApplicationInstance) ToORM(ctx context.Context) (ApplicationInstanceORM
 	}
 	to.Name = m.Name
 	to.Description = m.Description
+	to.Enable = m.Enable
 	if m.Deployment != nil {
 		tempDeployment, err := m.Deployment.ToORM(ctx)
 		if err != nil {
@@ -1539,6 +1541,7 @@ func (m *ApplicationInstanceORM) ToPB(ctx context.Context) (ApplicationInstance,
 	}
 	to.Name = m.Name
 	to.Description = m.Description
+	to.Enable = m.Enable
 	if m.Deployment != nil {
 		tempDeployment, err := m.Deployment.ToPB(ctx)
 		if err != nil {
@@ -6004,6 +6007,10 @@ func DefaultApplyFieldMaskApplicationInstance(ctx context.Context, patchee *Appl
 		}
 		if f == prefix+"Description" {
 			patchee.Description = patcher.Description
+			continue
+		}
+		if f == prefix+"Enable" {
+			patchee.Enable = patcher.Enable
 			continue
 		}
 		if !updatedDeployment && strings.HasPrefix(f, prefix+"Deployment.") {

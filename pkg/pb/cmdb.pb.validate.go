@@ -8556,6 +8556,8 @@ func (m *ApplicationInstance) Validate() error {
 
 	// no validation rules for Description
 
+	// no validation rules for Enable
+
 	if v, ok := interface{}(m.GetDeployment()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
 			return ApplicationInstanceValidationError{

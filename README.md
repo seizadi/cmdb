@@ -174,6 +174,15 @@ Add Vault:
 curl -H "Authorization: Bearer $JWT" http://localhost:8080/v1/vaults -d '{"name": "vault for QA", "description": "Vault to store QA Secrets", "path": "k8s/qa0-secrets"}'
 {"result":{"id":"cmdb-app/vaults/1","name":"vault for QA","description":"Vault to store QA Secrets","path":"k8s/qa0-secrets"}}
 ```
+
+```sh
+curl -H "Authorization: Bearer $JWT"  http://localhost:8080/v1/application_instances?_order_by=name&_fields=id,name,application_id,environment_id,chart_version_id,config_yaml&_filter=application_id==%22cmdb-app%2Fapplications%2F66b917a9-8025-4f47-91d2-6d86567145ae%22
+curl -H "Authorization: Bearer $JWT"  http://localhost:8080/v1/application_instances | jq '.results | .[] | .name'
+curl -H "Authorization: Bearer $JWT"  http://localhost:8080/v1/application_instances | jq '.results | length'
+curl -H "Authorization: Bearer $JWT"  http://localhost:8080/v1/application_instances | jq '.results | .[] | select(.application_id=="/cmdb-app/applications/F66b917a9-8025-4f47-91d2-6d86567145ae/"'
+curl -H "Authorization: Bearer $JWT"  http://localhost:8080/v1/application_instances | jq '.results | .[] | select(.application_id | test("*.6d86567145ae*.")'
+
+```
 Then once I had the two independent resources Vault and Secrets I
 created association for them in the migration:
 ```sh

@@ -2539,6 +2539,11 @@
           "type": "string",
           "title": "The description of the ApplicationInstance"
         },
+        "enable": {
+          "type": "boolean",
+          "format": "boolean",
+          "title": "Enable/Disable ApplicationInstance from deployment"
+        },
         "environment_id": {
           "description": "The resource identifier.",
           "type": "string"

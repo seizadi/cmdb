@@ -8018,6 +8018,7 @@ func validate_Object_ApplicationInstance(ctx context.Context, r json.RawMessage,
 			}
 		case "name":
 		case "description":
+		case "enable":
 		case "deployment":
 			if v[k] == nil {
 				continue

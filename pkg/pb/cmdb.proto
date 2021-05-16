@@ -1230,23 +1230,26 @@ message ApplicationInstance {
   // The description of the ApplicationInstance
   string description = 3;
 
+  // Enable/Disable ApplicationInstance from deployment
+  bool enable = 4;
+
   // Deployment of this ApplicationInstance
-  Deployment deployment = 4;
+  Deployment deployment = 5;
 
   // Custom configuration
-  string config_yaml = 5;
+  string config_yaml = 6;
 
   // ChartVersion for the ApplicationInstance
-  ChartVersion chart_version = 6 [(gorm.field).belongs_to.preload = false];
+  ChartVersion chart_version = 7 [(gorm.field).belongs_to.preload = false];
 
   // Reference to the ChartVersion
-  atlas.rpc.Identifier chart_version_id = 7 [(gorm.field) = {reference_of: "ChartVersion", tag: {type: "UUID"}}];
+  atlas.rpc.Identifier chart_version_id = 8 [(gorm.field) = {reference_of: "ChartVersion", tag: {type: "UUID"}}];
 
   // Reference to the Environment
-  atlas.rpc.Identifier environment_id = 8 [(gorm.field) = {reference_of: "Environment", tag: {type: "UUID"}}];
+  atlas.rpc.Identifier environment_id = 9 [(gorm.field) = {reference_of: "Environment", tag: {type: "UUID"}}];
 
   // Reference to the Application
-  atlas.rpc.Identifier application_id = 9 [(gorm.field) = {reference_of: "Application", tag: {type: "UUID"}}];
+  atlas.rpc.Identifier application_id = 10 [(gorm.field) = {reference_of: "Application", tag: {type: "UUID"}}];
 }
 
 message CreateApplicationInstanceRequest {
