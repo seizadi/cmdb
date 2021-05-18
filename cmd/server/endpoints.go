@@ -25,5 +25,6 @@ func RegisterGatewayEndpoints() gateway.Option {
 		pb.RegisterVaultsHandlerFromEndpoint,
 		pb.RegisterChartVersionsHandlerFromEndpoint,
 		pb.RegisterNetworksHandlerFromEndpoint,
+		pb.RegisterManifestHandlerFromEndpoint,
 	)
 }

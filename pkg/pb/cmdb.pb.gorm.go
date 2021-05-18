@@ -177,6 +177,8 @@ It has these top-level messages:
 	DeleteDeploymentResponse
 	ListDeploymentRequest
 	ListDeploymentsResponse
+	ManifestCreateRequest
+	ManifestCreateResponse
 */
 package pb
 
@@ -11400,4 +11402,13 @@ type DeploymentsDeploymentWithBeforeList interface {
 // DeploymentsDeploymentWithAfterList called before DefaultListDeployment in the default List handler
 type DeploymentsDeploymentWithAfterList interface {
 	AfterList(context.Context, *ListDeploymentsResponse, *gorm1.DB) error
+}
+type ManifestDefaultServer struct {
+	DB *gorm1.DB
+}
+
+// ManifestCreate ...
+func (m *ManifestDefaultServer) ManifestCreate(ctx context.Context, in *ManifestCreateRequest) (*ManifestCreateResponse, error) {
+	out := &ManifestCreateResponse{}
+	return out, nil
 }

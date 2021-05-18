@@ -14120,3 +14120,153 @@ var _ interface {
 	Cause() error
 	ErrorName() string
 } = ListDeploymentsResponseValidationError{}
+
+// Validate checks the field values on ManifestCreateRequest with the rules
+// defined in the proto definition for this message. If any rules are
+// violated, an error is returned.
+func (m *ManifestCreateRequest) Validate() error {
+	if m == nil {
+		return nil
+	}
+
+	if v, ok := interface{}(m.GetAppInstanceId()).(interface{ Validate() error }); ok {
+		if err := v.Validate(); err != nil {
+			return ManifestCreateRequestValidationError{
+				field:  "AppInstanceId",
+				reason: "embedded message failed validation",
+				cause:  err,
+			}
+		}
+	}
+
+	// no validation rules for LifecycleSkipValues
+
+	// no validation rules for EnvSkipValues
+
+	return nil
+}
+
+// ManifestCreateRequestValidationError is the validation error returned by
+// ManifestCreateRequest.Validate if the designated constraints aren't met.
+type ManifestCreateRequestValidationError struct {
+	field  string
+	reason string
+	cause  error
+	key    bool
+}
+
+// Field function returns field value.
+func (e ManifestCreateRequestValidationError) Field() string { return e.field }
+
+// Reason function returns reason value.
+func (e ManifestCreateRequestValidationError) Reason() string { return e.reason }
+
+// Cause function returns cause value.
+func (e ManifestCreateRequestValidationError) Cause() error { return e.cause }
+
+// Key function returns key value.
+func (e ManifestCreateRequestValidationError) Key() bool { return e.key }
+
+// ErrorName returns error name.
+func (e ManifestCreateRequestValidationError) ErrorName() string {
+	return "ManifestCreateRequestValidationError"
+}
+
+// Error satisfies the builtin error interface
+func (e ManifestCreateRequestValidationError) Error() string {
+	cause := ""
+	if e.cause != nil {
+		cause = fmt.Sprintf(" | caused by: %v", e.cause)
+	}
+
+	key := ""
+	if e.key {
+		key = "key for "
+	}
+
+	return fmt.Sprintf(
+		"invalid %sManifestCreateRequest.%s: %s%s",
+		key,
+		e.field,
+		e.reason,
+		cause)
+}
+
+var _ error = ManifestCreateRequestValidationError{}
+
+var _ interface {
+	Field() string
+	Reason() string
+	Key() bool
+	Cause() error
+	ErrorName() string
+} = ManifestCreateRequestValidationError{}
+
+// Validate checks the field values on ManifestCreateResponse with the rules
+// defined in the proto definition for this message. If any rules are
+// violated, an error is returned.
+func (m *ManifestCreateResponse) Validate() error {
+	if m == nil {
+		return nil
+	}
+
+	// no validation rules for Artifact
+
+	return nil
+}
+
+// ManifestCreateResponseValidationError is the validation error returned by
+// ManifestCreateResponse.Validate if the designated constraints aren't met.
+type ManifestCreateResponseValidationError struct {
+	field  string
+	reason string
+	cause  error
+	key    bool
+}
+
+// Field function returns field value.
+func (e ManifestCreateResponseValidationError) Field() string { return e.field }
+
+// Reason function returns reason value.
+func (e ManifestCreateResponseValidationError) Reason() string { return e.reason }
+
+// Cause function returns cause value.
+func (e ManifestCreateResponseValidationError) Cause() error { return e.cause }
+
+// Key function returns key value.
+func (e ManifestCreateResponseValidationError) Key() bool { return e.key }
+
+// ErrorName returns error name.
+func (e ManifestCreateResponseValidationError) ErrorName() string {
+	return "ManifestCreateResponseValidationError"
+}
+
+// Error satisfies the builtin error interface
+func (e ManifestCreateResponseValidationError) Error() string {
+	cause := ""
+	if e.cause != nil {
+		cause = fmt.Sprintf(" | caused by: %v", e.cause)
+	}
+
+	key := ""
+	if e.key {
+		key = "key for "
+	}
+
+	return fmt.Sprintf(
+		"invalid %sManifestCreateResponse.%s: %s%s",
+		key,
+		e.field,
+		e.reason,
+		cause)
+}
+
+var _ error = ManifestCreateResponseValidationError{}
+
+var _ interface {
+	Field() string
+	Reason() string
+	Key() bool
+	Cause() error
+	ErrorName() string
+} = ManifestCreateResponseValidationError{}

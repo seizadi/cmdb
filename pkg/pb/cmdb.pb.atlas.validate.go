@@ -719,6 +719,15 @@ func validate_Deployments_List_0(ctx context.Context, r json.RawMessage) (err er
 	return nil
 }
 
+// validate_Manifest_ManifestCreate_0 is an entrypoint for validating "GET" HTTP request
+// that match *.pb.gw.go/pattern_Manifest_ManifestCreate_0.
+func validate_Manifest_ManifestCreate_0(ctx context.Context, r json.RawMessage) (err error) {
+	if len(r) != 0 {
+		return fmt.Errorf("body is not allowed")
+	}
+	return nil
+}
+
 // validate_Object_VersionResponse function validates a JSON for a given object.
 func validate_Object_VersionResponse(ctx context.Context, r json.RawMessage, path string) (err error) {
 	if hook, ok := interface{}(&VersionResponse{}).(interface {
@@ -12743,6 +12752,124 @@ func validate_required_Object_ListDeploymentsResponse(ctx context.Context, v map
 	return nil
 }
 
+// validate_Object_ManifestCreateRequest function validates a JSON for a given object.
+func validate_Object_ManifestCreateRequest(ctx context.Context, r json.RawMessage, path string) (err error) {
+	if hook, ok := interface{}(&ManifestCreateRequest{}).(interface {
+		AtlasJSONValidate(context.Context, json.RawMessage, string) (json.RawMessage, error)
+	}); ok {
+		if r, err = hook.AtlasJSONValidate(ctx, r, path); err != nil {
+			return err
+		}
+	}
+
+	var v map[string]json.RawMessage
+	if err = json.Unmarshal(r, &v); err != nil {
+		return fmt.Errorf("invalid value for %q: expected object.", path)
+	}
+
+	if err = validate_required_Object_ManifestCreateRequest(ctx, v, path); err != nil {
+		return err
+	}
+
+	allowUnknown := runtime1.AllowUnknownFromContext(ctx)
+
+	for k, _ := range v {
+		switch k {
+		case "app_instance_id":
+			if v[k] == nil {
+				continue
+			}
+			vv := v[k]
+			vvPath := runtime1.JoinPath(path, k)
+			validator, ok := interface{}(&resource.Identifier{}).(interface {
+				AtlasValidateJSON(context.Context, json.RawMessage, string) error
+			})
+			if !ok {
+				continue
+			}
+			if err = validator.AtlasValidateJSON(ctx, vv, vvPath); err != nil {
+				return err
+			}
+		case "lifecycle_skip_values":
+		case "env_skip_values":
+		default:
+			if !allowUnknown {
+				return fmt.Errorf("unknown field %q.", runtime1.JoinPath(path, k))
+			}
+		}
+	}
+	return nil
+}
+
+// AtlasValidateJSON function validates a JSON for object ManifestCreateRequest.
+func (_ *ManifestCreateRequest) AtlasValidateJSON(ctx context.Context, r json.RawMessage, path string) (err error) {
+	if hook, ok := interface{}(&ManifestCreateRequest{}).(interface {
+		AtlasJSONValidate(context.Context, json.RawMessage, string) (json.RawMessage, error)
+	}); ok {
+		if r, err = hook.AtlasJSONValidate(ctx, r, path); err != nil {
+			return err
+		}
+	}
+	return validate_Object_ManifestCreateRequest(ctx, r, path)
+}
+
+func validate_required_Object_ManifestCreateRequest(ctx context.Context, v map[string]json.RawMessage, path string) error {
+	method := runtime1.HTTPMethodFromContext(ctx)
+	_ = method
+	return nil
+}
+
+// validate_Object_ManifestCreateResponse function validates a JSON for a given object.
+func validate_Object_ManifestCreateResponse(ctx context.Context, r json.RawMessage, path string) (err error) {
+	if hook, ok := interface{}(&ManifestCreateResponse{}).(interface {
+		AtlasJSONValidate(context.Context, json.RawMessage, string) (json.RawMessage, error)
+	}); ok {
+		if r, err = hook.AtlasJSONValidate(ctx, r, path); err != nil {
+			return err
+		}
+	}
+
+	var v map[string]json.RawMessage
+	if err = json.Unmarshal(r, &v); err != nil {
+		return fmt.Errorf("invalid value for %q: expected object.", path)
+	}
+
+	if err = validate_required_Object_ManifestCreateResponse(ctx, v, path); err != nil {
+		return err
+	}
+
+	allowUnknown := runtime1.AllowUnknownFromContext(ctx)
+
+	for k, _ := range v {
+		switch k {
+		case "artifact":
+		default:
+			if !allowUnknown {
+				return fmt.Errorf("unknown field %q.", runtime1.JoinPath(path, k))
+			}
+		}
+	}
+	return nil
+}
+
+// AtlasValidateJSON function validates a JSON for object ManifestCreateResponse.
+func (_ *ManifestCreateResponse) AtlasValidateJSON(ctx context.Context, r json.RawMessage, path string) (err error) {
+	if hook, ok := interface{}(&ManifestCreateResponse{}).(interface {
+		AtlasJSONValidate(context.Context, json.RawMessage, string) (json.RawMessage, error)
+	}); ok {
+		if r, err = hook.AtlasJSONValidate(ctx, r, path); err != nil {
+			return err
+		}
+	}
+	return validate_Object_ManifestCreateResponse(ctx, r, path)
+}
+
+func validate_required_Object_ManifestCreateResponse(ctx context.Context, v map[string]json.RawMessage, path string) error {
+	method := runtime1.HTTPMethodFromContext(ctx)
+	_ = method
+	return nil
+}
+
 var validate_Patterns = []struct {
 	pattern    runtime.Pattern
 	httpMethod string
@@ -13295,6 +13422,12 @@ var validate_Patterns = []struct {
 		pattern:      pattern_Deployments_List_0,
 		httpMethod:   "GET",
 		validator:    validate_Deployments_List_0,
+		allowUnknown: false,
+	},
+	{
+		pattern:      pattern_Manifest_ManifestCreate_0,
+		httpMethod:   "GET",
+		validator:    validate_Manifest_ManifestCreate_0,
 		allowUnknown: false,
 	},
 }

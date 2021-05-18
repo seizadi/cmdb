@@ -1759,6 +1759,31 @@
         "responses": {}
       }
     },
+    "/manifest": {
+      "get": {
+        "tags": [
+          "Manifest"
+        ],
+        "operationId": "ManifestManifestCreate",
+        "parameters": [
+          {
+            "type": "boolean",
+            "format": "boolean",
+            "description": "Optional if you want to skip Lifecycle Values.",
+            "name": "lifecycle_skip_values",
+            "in": "query"
+          },
+          {
+            "type": "boolean",
+            "format": "boolean",
+            "description": "Optional if you want to skip environment Values.",
+            "name": "env_skip_values",
+            "in": "query"
+          }
+        ],
+        "responses": {}
+      }
+    },
     "/networks": {
       "get": {
         "tags": [

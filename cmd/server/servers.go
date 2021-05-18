@@ -111,5 +111,11 @@ func CreateServer(logger *logrus.Logger, db *gorm.DB, interceptors []grpc.UnaryS
 	}
 	pb.RegisterNetworksServer(grpcServer, network)
 
+	manifest, err := svc.NewManifestServer(db)
+	if err != nil {
+		return nil, err
+	}
+	pb.RegisterManifestServer(grpcServer, manifest)
+
 	return grpcServer, nil
 }
