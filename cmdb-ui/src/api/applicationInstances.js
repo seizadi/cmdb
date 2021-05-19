@@ -17,3 +17,9 @@ export const apiListApplicationInstances = (envId = "", appId = "" ) => {
 
   return cmdb.get( url, {headers});
 }
+
+export const apiGetManifest = (appInstanceId = "" ) => {
+  let url = '/v1/manifest';
+//  return cmdb.get( url, {headers: headers, params: { app_instance_id: appInstanceId }} );
+  return cmdb.get( url, {headers} );
+}

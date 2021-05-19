@@ -16,7 +16,6 @@ type HelmCmd struct {
 
 func NewHelm() (*HelmCmd, error) {
 	k := HelmCmd{
-		devMode:         viper.GetBool("development"),
 		runStreamingCmd: utils.RunStreamingCmd,
 		runCmd:          utils.RunCmd,
 		path: viper.GetString("helm.path"),
@@ -28,17 +27,18 @@ func NewHelm() (*HelmCmd, error) {
 func (h *HelmCmd) CreateManifest(app pb.ApplicationInstance) (string, error) {
 
 	// Use appInstance to create the values file in tmp
-	valuesFile := "tmp/values_file"
+	//valuesFile := "tmp/values_file"
 
 	// Use app to find the ChartVersion for this Inatnace
-	chartVersion := "chart_repo/app_chart:chart_version"
-	kopsCmdStr := h.path +
+	//chartVersion := "chart_repo/app_chart:chart_version"
+	helmCmdStr := h.path +
 		" template" +
-		" --values " + valuesFile + chartVersion
+		" infobloxcto/appinfra-grafana-crds --version v0.1.0-46-gf636d12-j5"
+//		" --values " + valuesFile + chartVersion
 
-	out, err := h.runCmd(kopsCmdStr)
+	out, err := h.runCmd(helmCmdStr)
 	if err != nil {
-		return nil, err
+		return string(out.Bytes()), err
 	}
 	artifact := string(out.Bytes())
 	return artifact, nil

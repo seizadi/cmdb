@@ -6,10 +6,10 @@ import EnvironmentSelects from "../environments/EnvironmentSelects";
 import AppButton from "./AppButton";
 
 // from Redux
-import { listApplicationInstances, selectEnvironment } from "../../actions";
 import Card from "../../components/Card/Card";
 import CardHeader from "../../components/Card/CardHeader";
 import CardIcon from "../../components/Card/CardIcon";
+import { CircularProgress } from '@material-ui/core';
 import IconButton from "@material-ui/core/IconButton";
 import Cancel from "@material-ui/icons/Cancel";
 import CardFooter from "../../components/Card/CardFooter";
@@ -17,6 +17,9 @@ import Update from "@material-ui/icons/Update";
 import { makeStyles } from "@material-ui/core/styles";
 import styles from "../../assets/jss/material-dashboard-react/views/dashboardStyle";
 import {withStyles} from "@material-ui/core";
+
+import { listApplicationInstances, selectEnvironment } from "../../actions";
+import {apiGetManifest} from "../../api/applicationInstances";
 
 // Table format is something like:
 // <Table
@@ -34,9 +37,16 @@ class ApplicationInstances extends React.Component {
 
   constructor(props) {
     super(props);
-    this.state = {showApp: false, appInstance: null};
+    this.state = {showApp: false, appInstance: null, loading: false, artifact: null};
   }
 
+  componentDidMount(){
+    this.mounted = true;
+  }
+
+  componentWillUnmount(){
+    this.mounted = false;
+  }
 
   selectEnvironment = (envId) => {
     this.props.selectEnvironment(envId);
@@ -87,11 +97,21 @@ class ApplicationInstances extends React.Component {
     );
   }
 
-  renderConfigs = (configs) => {
-    return configs.map( (config) => {
-      return <div>{config.replace(/ /g, "\u00a0")}</div>;
-     // return <div style={{whiteSpace: 'pre', color: 'black', background: 'pink'}}>{c}</div>;
+  getManifest = (appId) => {
+    apiGetManifest(appId).then((response) => {
+      if (this.mounted) {
+        let artifact = response.data["artifact"].split ('\n').map ((item, i) => <div key={i}>{item.replace(/ /g, "\u00a0")}</div>);
+        this.setState( { loading: false, artifact } );
+      }
+    }, (error) => {
+      if(this.mounted) {
+        this.setState( { loading: false, artifact: <div> {"Manifest not found" + error} </div> } );
+      }
     });
+    // return configs.map( (config) => {
+    //   return <div>{config.replace(/ /g, "\u00a0")}</div>;
+    //  // return <div style={{whiteSpace: 'pre', color: 'black', background: 'pink'}}>{c}</div>;
+    // });
   }
 
   closeAppView = () => {
@@ -99,22 +119,28 @@ class ApplicationInstances extends React.Component {
   }
 
   showAppView = (applicationInstance) => {
-    console.log("show app: ", applicationInstance);
-    this.setState({showApp: true, applicationInstance: applicationInstance});
+    this.setState({loading: true, showApp: true, artifact: null, applicationInstance: applicationInstance});
   }
 
   renderAppInstance = () => {
-    console.log(this.state.applicationInstance.config_yaml);
-    const configs = this.state.applicationInstance.config_yaml.split('\n');
+    // console.log(this.state.applicationInstance.config_yaml);
+    // const configs = this.state.applicationInstance.config_yaml.split('\n');
+    this.getManifest(this.state.applicationInstance.id);
+    let loading;
+    if (this.state.loading) {
+      loading = <CircularProgress color="secondary" />
+    } else {
+      loading = <div></div>
+    }
+
     return(
       <div>
         <IconButton onClick={this.closeAppView}>
           <Cancel />
         </IconButton>
         <h3>{this.state.applicationInstance.name}</h3>
-        <div>
-          {this.renderConfigs(configs)}
-        </div>
+        {  loading  }
+        <div> {this.state.artifact} </div>
       </div>
     );
     // return(

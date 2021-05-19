@@ -67,6 +67,9 @@ const (
 
 	// Logging
 	defaultLoggingLevel = "debug"
+
+	// Helm
+	defaultHelmPath = "/usr/local/bin/helm"
 )
 
 var (
@@ -124,4 +127,7 @@ var (
 	flagApplicationID   = pflag.String("app.id", defaultApplicationID, "identifier for the application")
 
 	flagLoggingLevel = pflag.String("logging.level", defaultLoggingLevel, "log level of application")
+
+	// Helm
+	flagHelmPath = pflag.String("helm.path", defaultHelmPath, "helm path")
 )
