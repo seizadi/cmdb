@@ -104,10 +104,8 @@ class ApplicationInstances extends React.Component {
         this.setState( { loading: false, artifact } );
       }
     }, (error) => {
-      if(this.mounted) {
-        this.setState( { loading: false, artifact: <div> {"Manifest not found" + error} </div> } );
-      }
-    });
+      new Error("Manifest not found" + error);
+    }).catch( (error) => {});
     // return configs.map( (config) => {
     //   return <div>{config.replace(/ /g, "\u00a0")}</div>;
     //  // return <div style={{whiteSpace: 'pre', color: 'black', background: 'pink'}}>{c}</div>;

@@ -1967,7 +1967,8 @@ service Manifest {
 
   rpc ManifestCreate (ManifestCreateRequest) returns (ManifestCreateResponse) {
     option (google.api.http) = {
-      get: "/manifest"
+      post: "/manifest"
+      body: "*"
     };
   }
 

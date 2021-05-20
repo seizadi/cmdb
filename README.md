@@ -150,7 +150,9 @@ curl -H "Authorization: Bearer $JWT" http://localhost:8080/v1/regions
 {}
 ```
 Add a CloudProvider:
-```bash
+```bas
+curl -H "Authorization: Bearer $JWT" http://localhost:8080/v1/manifest -d '{"name": "aws"}'
+
 curl -H "Authorization: Bearer $JWT" http://localhost:8080/v1/cloud_providers -d '{"name": "aws"}'
 curl -H "Authorization: Bearer $JWT" 'http://localhost:8080/v1/application_instances?_filter=name~"prometheus"&_limit=1' | jq
 curl -H "Authorization: Bearer $JWT" 'http://localhost:8080/v1/application_instances?_filter=name~"prometheus"&_limit=1&_fields=name,id' | jq
@@ -286,6 +288,12 @@ curl -H "Authorization: Bearer $JWT" http://localhost:8080/v1/deployments -d '{"
 
 ```
 
+Testing Manifest, first find an application instance, then use its id in the manifest call:
+```bash
+curl -H "Authorization: Bearer $JWT" 'http://localhost:8080/v1/application_instances?_filter=name~"grafana"&_limit=1' | jq
+curl -H "Authorization: Bearer $JWT" http://localhost:8080/v1/manifest -d '{"lifecycle_skip_values": true, "app_instance_id":"cmdb-app/application_instances/0fc50bcd-5411-4419-b665-97589b669e4d"}'
+
+```
 
 
 #### Build docker images

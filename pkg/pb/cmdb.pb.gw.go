@@ -6142,18 +6142,15 @@ func local_request_Deployments_List_0(ctx context.Context, marshaler runtime.Mar
 
 }
 
-var (
-	filter_Manifest_ManifestCreate_0 = &utilities.DoubleArray{Encoding: map[string]int{}, Base: []int(nil), Check: []int(nil)}
-)
-
 func request_Manifest_ManifestCreate_0(ctx context.Context, marshaler runtime.Marshaler, client ManifestClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var protoReq ManifestCreateRequest
 	var metadata runtime.ServerMetadata
 
-	if err := req.ParseForm(); err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	newReader, berr := utilities.IOReaderFactory(req.Body)
+	if berr != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", berr)
 	}
-	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_Manifest_ManifestCreate_0); err != nil {
+	if err := marshaler.NewDecoder(newReader()).Decode(&protoReq); err != nil && err != io.EOF {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
@@ -6166,10 +6163,11 @@ func local_request_Manifest_ManifestCreate_0(ctx context.Context, marshaler runt
 	var protoReq ManifestCreateRequest
 	var metadata runtime.ServerMetadata
 
-	if err := req.ParseForm(); err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	newReader, berr := utilities.IOReaderFactory(req.Body)
+	if berr != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", berr)
 	}
-	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_Manifest_ManifestCreate_0); err != nil {
+	if err := marshaler.NewDecoder(newReader()).Decode(&protoReq); err != nil && err != io.EOF {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
@@ -8421,7 +8419,7 @@ func RegisterDeploymentsHandlerServer(ctx context.Context, mux *runtime.ServeMux
 // Note that using this registration option will cause many gRPC library features to stop working. Consider using RegisterManifestHandlerFromEndpoint instead.
 func RegisterManifestHandlerServer(ctx context.Context, mux *runtime.ServeMux, server ManifestServer) error {
 
-	mux.Handle("GET", pattern_Manifest_ManifestCreate_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("POST", pattern_Manifest_ManifestCreate_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
@@ -11389,7 +11387,7 @@ func RegisterManifestHandler(ctx context.Context, mux *runtime.ServeMux, conn *g
 // "ManifestClient" to call the correct interceptors.
 func RegisterManifestHandlerClient(ctx context.Context, mux *runtime.ServeMux, client ManifestClient) error {
 
-	mux.Handle("GET", pattern_Manifest_ManifestCreate_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("POST", pattern_Manifest_ManifestCreate_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)

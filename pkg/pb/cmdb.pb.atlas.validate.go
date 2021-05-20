@@ -719,13 +719,10 @@ func validate_Deployments_List_0(ctx context.Context, r json.RawMessage) (err er
 	return nil
 }
 
-// validate_Manifest_ManifestCreate_0 is an entrypoint for validating "GET" HTTP request
+// validate_Manifest_ManifestCreate_0 is an entrypoint for validating "POST" HTTP request
 // that match *.pb.gw.go/pattern_Manifest_ManifestCreate_0.
 func validate_Manifest_ManifestCreate_0(ctx context.Context, r json.RawMessage) (err error) {
-	if len(r) != 0 {
-		return fmt.Errorf("body is not allowed")
-	}
-	return nil
+	return validate_Object_ManifestCreateRequest(ctx, r, "")
 }
 
 // validate_Object_VersionResponse function validates a JSON for a given object.
@@ -13426,7 +13423,7 @@ var validate_Patterns = []struct {
 	},
 	{
 		pattern:      pattern_Manifest_ManifestCreate_0,
-		httpMethod:   "GET",
+		httpMethod:   "POST",
 		validator:    validate_Manifest_ManifestCreate_0,
 		allowUnknown: false,
 	},

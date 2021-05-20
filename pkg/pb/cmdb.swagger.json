@@ -1760,25 +1760,19 @@
       }
     },
     "/manifest": {
-      "get": {
+      "post": {
         "tags": [
           "Manifest"
         ],
         "operationId": "ManifestManifestCreate",
         "parameters": [
           {
-            "type": "boolean",
-            "format": "boolean",
-            "description": "Optional if you want to skip Lifecycle Values.",
-            "name": "lifecycle_skip_values",
-            "in": "query"
-          },
-          {
-            "type": "boolean",
-            "format": "boolean",
-            "description": "Optional if you want to skip environment Values.",
-            "name": "env_skip_values",
-            "in": "query"
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/cmdbManifestCreateRequest"
+            }
           }
         ],
         "responses": {}
@@ -2838,6 +2832,25 @@
         "name": {
           "type": "string",
           "title": "The name of the Lifecycle"
+        }
+      }
+    },
+    "cmdbManifestCreateRequest": {
+      "type": "object",
+      "properties": {
+        "app_instance_id": {
+          "description": "The resource identifier.",
+          "type": "string"
+        },
+        "env_skip_values": {
+          "type": "boolean",
+          "format": "boolean",
+          "title": "Optional if you want to skip environment Values"
+        },
+        "lifecycle_skip_values": {
+          "type": "boolean",
+          "format": "boolean",
+          "title": "Optional if you want to skip Lifecycle Values"
         }
       }
     },
