@@ -87,9 +87,9 @@ class ApplicationInstances extends React.Component {
   renderAppInstances = () => {
     return(
       <>
-        <h3>{this.props.applicationInstances.length} Application Instances</h3>
         { this.props.applicationInstances.filter( (applicationInstance) => {
-          return (applicationInstance.name && applicationInstance.name.length);
+          console.log(applicationInstance)
+          return (applicationInstance.name && applicationInstance.name.length && applicationInstance.enable);
         }).map( (applicationInstance) => {
           return <AppButton key={applicationInstance.id} app={applicationInstance} onClick={() => {this.showAppView(applicationInstance)}}/>;
         })}
@@ -121,14 +121,19 @@ class ApplicationInstances extends React.Component {
   }
 
   renderAppInstance = () => {
-    // console.log(this.state.applicationInstance.config_yaml);
-    // const configs = this.state.applicationInstance.config_yaml.split('\n');
-    this.getManifest(this.state.applicationInstance.id);
-    let loading;
-    if (this.state.loading) {
-      loading = <CircularProgress color="secondary" />
+    let status;
+
+    if (this.state.applicationInstance.enable) {
+      // console.log(this.state.applicationInstance.config_yaml);
+      // const configs = this.state.applicationInstance.config_yaml.split('\n');
+      this.getManifest(this.state.applicationInstance.id);
+      if (this.state.loading) {
+        status = <CircularProgress color="secondary"/>
+      } else {
+        status = <div></div>
+      }
     } else {
-      loading = <div></div>
+      status = <div>App Instance is disabled!</div>;
     }
 
     return(
@@ -137,7 +142,7 @@ class ApplicationInstances extends React.Component {
           <Cancel />
         </IconButton>
         <h3>{this.state.applicationInstance.name}</h3>
-        {  loading  }
+        {  status  }
         <div> {this.state.artifact} </div>
       </div>
     );
