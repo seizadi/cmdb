@@ -29,11 +29,13 @@ class ApplicationInstances extends React.Component {
   }
 
   renderAppInstances = () => {
+    const enabledAppInstances = this.props.applicationInstances.filter((applicationInstance) => {
+      return (applicationInstance.name && applicationInstance.name.length && applicationInstance.enable)
+    });
     return(
       <>
-        { this.props.applicationInstances.filter( (applicationInstance) => {
-          return (applicationInstance.name && applicationInstance.name.length && applicationInstance.enable);
-        }).map( (applicationInstance) => {
+        <h3>{enabledAppInstances.length} Application Instances</h3>
+        { enabledAppInstances.map( (applicationInstance) => {
           return <AppButton key={applicationInstance.id} app={applicationInstance} onClick={() => {this.showAppView(applicationInstance)}}/>;
         })}
       </>
