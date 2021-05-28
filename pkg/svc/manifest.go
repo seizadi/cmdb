@@ -4,6 +4,7 @@ import (
 	"context"
 	"errors"
 	"github.com/jinzhu/gorm"
+	"gopkg.in/yaml.v2"
 
 	"github.com/seizadi/cmdb/helm"
 	"github.com/seizadi/cmdb/pkg/pb"
@@ -52,5 +53,108 @@ func (s *manifestServer) ManifestCreate(ctx context.Context, in *pb.ManifestCrea
 
 	response.Artifact = artifact
 
+	return &response, nil
+}
+
+//ManifestConfigCreate Creates a Config for a application instance
+func (s *manifestServer) ManifestConfigCreate(ctx context.Context, in *pb.ManifestConfigCreateRequest) (*pb.ManifestConfigCreateResponse, error) {
+	db := s.DB
+	response := pb.ManifestConfigCreateResponse{}
+
+	appInstance, err := resource.GetAppInstanceById(in.AppInstanceId, db)
+	if err != nil {
+		return &response, err
+	}
+
+	// Get Environment resource
+	environment, err := resource.GetEnvrionmentById(appInstance.EnvironmentId, db)
+	if err != nil {
+		return &response, err
+	}
+
+	// Get Lifecycle Resource until we reach the root
+	var lifecycles []*pb.LifecycleORM
+
+	lifecycle, err := resource.GetLifecycleById(environment.LifecycleId, db)
+	if err != nil {
+		return &response, err
+	}
+
+	lifecycles  = append(lifecycles, lifecycle)
+	LifecycleId := lifecycle.LifecycleId
+
+	// TODO - I did not put a count here to terminate and prevent infinite loop
+	for {
+		if LifecycleId == nil { // Reached the root node
+			break
+		}
+
+		lifecycle, err := resource.GetLifecycleById(lifecycle.LifecycleId, db)
+		if err != nil {
+			return &response, err
+		}
+		LifecycleId = lifecycle.LifecycleId
+
+		lifecycles  = append(lifecycles, lifecycle)
+	}
+
+	// Now fetch the lifecycle, env and app configuration values
+	// Values are applied in this order: app -> env (app -> value) -> lifecycle (app -> value) -> lifecycle (app -> value)
+	// The app value has highest precedent and over-rides lower values, environment and
+	// lifecycle have app specific config and default value for all apps.
+
+	v := make(map[interface{}]interface{})
+
+	// For each lifecycle in the list get the values and app configuration
+	for _,l := range lifecycles {
+		err = yaml.Unmarshal([]byte(l.ConfigYaml), &v)
+		if err != nil {
+			return &response, err
+		}
+		// Find the AppConfig
+		appConfig, err := resource.GetAppConfigByLifecycleId(appInstance.ApplicationId, &l.Id, db)
+		if err != nil {
+			return &response, err
+		}
+
+		if appConfig != nil {
+			err = yaml.Unmarshal([]byte(appConfig.ConfigYaml), &v)
+			if err != nil {
+				return &response, err
+			}
+		}
+	}
+
+	// Now mix in the environment config
+	err = yaml.Unmarshal([]byte(environment.ConfigYaml), &v)
+	if err != nil {
+		return &response, err
+	}
+
+	// Find the environment AppConfig
+	appConfig, err := resource.GetAppConfigByEnvId(appInstance.ApplicationId, &environment.Id, db)
+	if err != nil {
+		return &response, err
+	}
+
+	if appConfig != nil {
+		err = yaml.Unmarshal([]byte(appConfig.ConfigYaml), &v)
+		if err != nil {
+			return &response, err
+		}
+	}
+
+	// Finally mix in the application config
+	err = yaml.Unmarshal([]byte(appInstance.ConfigYaml), &v)
+	if err != nil {
+		return &response, err
+	}
+
+	config, err := yaml.Marshal(&v)
+	if err != nil {
+		return &response, err
+	}
+
+	response.Config = string(config)
 	return &response, nil
 }

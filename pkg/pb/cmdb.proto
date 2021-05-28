@@ -1972,6 +1972,12 @@ service Manifest {
     };
   }
 
+  rpc ManifestConfigCreate (ManifestConfigCreateRequest) returns (ManifestConfigCreateResponse) {
+    option (google.api.http) = {
+      post: "/manifest/config"
+      body: "*"
+    };
+  }
 }
 
 message ManifestCreateRequest {
@@ -1990,4 +1996,20 @@ message ManifestCreateRequest {
 
 message ManifestCreateResponse {
   string artifact = 1;
+}
+
+message ManifestConfigCreateRequest {
+  // Application Instance Id for which you want the artifact
+  atlas.rpc.Identifier app_instance_id = 1;
+
+  // Optional if you want to skip Lifecycle Values
+  bool lifecycle_skip_values = 2;
+
+  // Optional if you want to skip environment Values
+  bool env_skip_values = 3;
+
+}
+
+message ManifestConfigCreateResponse {
+  string config = 1;
 }

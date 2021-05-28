@@ -16,6 +16,7 @@ require (
 	github.com/infobloxopen/protoc-gen-atlas-validate v0.4.1
 	github.com/infobloxopen/protoc-gen-gorm v0.18.0
 	github.com/jinzhu/gorm v1.9.11
+	github.com/kr/pretty v0.2.1 // indirect
 	github.com/lyft/protoc-gen-validate v0.1.0
 	github.com/mitchellh/mapstructure v1.1.2 // indirect
 	github.com/pkg/errors v0.8.1
@@ -26,4 +27,5 @@ require (
 	golang.org/x/net v0.0.0-20200822124328-c89045814202
 	google.golang.org/genproto v0.0.0-20200513103714-09dca8ec2884
 	google.golang.org/grpc v1.33.1
+	gopkg.in/yaml.v2 v2.2.3
 )

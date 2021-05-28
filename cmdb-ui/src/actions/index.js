@@ -41,7 +41,7 @@ export const selectEnvironment = ( envId = "" ) =>  {
 export const createManifest = (appInstanceId) => async dispatch => {
   let response;
   try {
-    response = await cmdb.post('/v1/manifest', {app_instance_id: appInstanceId}, {headers});
+    response = await cmdb.post('/v1/manifest/config', {app_instance_id: appInstanceId}, {headers});
     dispatch({type: CREATE_MANIFEST, payload: response.data});
   } catch (error) {
     dispatch({type: CREATE_MANIFEST, payload: {artifact: "Failed to get artifact due to error."}});

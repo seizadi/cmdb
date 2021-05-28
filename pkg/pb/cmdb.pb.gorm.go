@@ -179,6 +179,8 @@ It has these top-level messages:
 	ListDeploymentsResponse
 	ManifestCreateRequest
 	ManifestCreateResponse
+	ManifestConfigCreateRequest
+	ManifestConfigCreateResponse
 */
 package pb
 
@@ -11410,5 +11412,11 @@ type ManifestDefaultServer struct {
 // ManifestCreate ...
 func (m *ManifestDefaultServer) ManifestCreate(ctx context.Context, in *ManifestCreateRequest) (*ManifestCreateResponse, error) {
 	out := &ManifestCreateResponse{}
+	return out, nil
+}
+
+// ManifestConfigCreate ...
+func (m *ManifestDefaultServer) ManifestConfigCreate(ctx context.Context, in *ManifestConfigCreateRequest) (*ManifestConfigCreateResponse, error) {
+	out := &ManifestConfigCreateResponse{}
 	return out, nil
 }

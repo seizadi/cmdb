@@ -91,6 +91,10 @@ PGPASSWORD=postgres dropdb -h 127.0.0.1  -U postgres -p 5432 cmdb
 PGPASSWORD=postgres createdb -h 127.0.0.1  -U postgres -p 5432 cmdb
 make migrate-up
 ```
+or debug internal db issues:
+```bash
+PGPASSWORD=postgres psql --host 127.0.0.1 -U postgres -p 5432 -d cmdb
+```
 
 Table creation should be done manually by running the migrations scripts or following the steps defined in 
 database migration section. Scripts can be found at `./db/migrations/`
@@ -148,6 +152,14 @@ Now try a REST calls that requires authentication:
 export JWT="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJBY2NvdW50SUQiOjF9.GsXyFDDARjXe1t9DPo2LIBKHEal3O7t3vLI3edA7dGU"
 curl -H "Authorization: Bearer $JWT" http://localhost:8080/v1/regions
 {}
+```
+Create a manifest...
+```bashrc
+curl -H "Authorization: Bearer $JWT" http://localhost:8080/v1/manifest -d '{"app_instance_id":"cmdb-app/application_instances/fff81bae-ed8f-4a8d-b984-32e8e77c3b53"}'
+
+curl -H "Authorization: Bearer $JWT" http://localhost:8080/v1/manifest/config -d '{"app_instance_id":"cmdb-app/application_instances/fff81bae-ed8f-4a8d-b984-32e8e77c3b53"}'
+curl -H "Authorization: Bearer $JWT" http://localhost:8080/v1/application_instances/fff81bae-ed8f-4a8d-b984-32e8e77c3b53
+
 ```
 Add a CloudProvider:
 ```bas
@@ -291,7 +303,7 @@ curl -H "Authorization: Bearer $JWT" http://localhost:8080/v1/deployments -d '{"
 Testing Manifest, first find an application instance, then use its id in the manifest call:
 ```bash
 curl -H "Authorization: Bearer $JWT" 'http://localhost:8080/v1/application_instances?_filter=name~"grafana"&_limit=1' | jq
-curl -H "Authorization: Bearer $JWT" http://localhost:8080/v1/manifest -d '{"lifecycle_skip_values": true, "app_instance_id":"cmdb-app/application_instances/0fc50bcd-5411-4419-b665-97589b669e4d"}'
+curl -H "Authorization: Bearer $JWT" http://localhost:8080/v1/manifest -d '{"lifecycle_skip_values": false, "app_instance_id":"cmdb-app/application_instances/0184ddbd-2c7d-4414-960c-ae99e461cb7b"}'
 
 ```
 
