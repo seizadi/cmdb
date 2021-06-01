@@ -163,43 +163,14 @@ func (s *manifestServer) ManifestConfigCreate(ctx context.Context, in *pb.Manife
 		return &response, err
 	}
 
-	// TODO - Come back later and figure out how to use go template to do the values
+	// Originally I was using helm to resolve the values, it was taking about 370ms
+	// I wrote it to sue go template engine directly which reduced the time around 70ms
 	values := helm.Values{ Values: v}
 	r := helm.Renderable { Tpl: string(c), Vals: values}
-	//tmpl, err := template.New("test").Funcs(helm.FuncMap()).Parse(string(c))
-	//if err != nil {
-	//	return &response, err
-	//}
-	//tmpl.Option("missingkey=zero")
-	//
-	//
-	//var out bytes.Buffer
 	config, err := helm.RenderWithReferences(r)
 	if err != nil {
-		// It is normal to get errors on first pass
-		// return &response, err
+		return &response, err
 	}
-
-	// FIXME - Remove once the Go Template is working
-	//err = utils.CopyBufferContentsToFile(c, "./render/values.yaml")
-	//if err != nil {
-	//	return &response, err
-	//}
-	//
-	//err = utils.CopyBufferContentsToFile(c, "./render/templates/values.yaml")
-	//if err != nil {
-	//	return &response, err
-	//}
-	//
-	//h, err := helm.NewHelm()
-	//if err != nil {
-	//	return &response, err
-	//}
-	//
-	//config, err := h.CreateValues()
-	//if err != nil {
-	//	return &response, err
-	//}
 
 	response.Config = config
 	return &response, nil
