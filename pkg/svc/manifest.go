@@ -7,7 +7,6 @@ import (
 	"github.com/seizadi/cmdb/helm"
 	"github.com/seizadi/cmdb/pkg/pb"
 	"github.com/seizadi/cmdb/resource"
-	"github.com/seizadi/cmdb/utils"
 	"go.uber.org/config"
 	"gopkg.in/yaml.v2"
 	"strings"
@@ -165,7 +164,8 @@ func (s *manifestServer) ManifestConfigCreate(ctx context.Context, in *pb.Manife
 	}
 
 	// TODO - Come back later and figure out how to use go template to do the values
-	//values := helm.Values{ Values: v}
+	values := helm.Values{ Values: v}
+	r := helm.Renderable { Tpl: string(c), Vals: values}
 	//tmpl, err := template.New("test").Funcs(helm.FuncMap()).Parse(string(c))
 	//if err != nil {
 	//	return &response, err
@@ -174,29 +174,32 @@ func (s *manifestServer) ManifestConfigCreate(ctx context.Context, in *pb.Manife
 	//
 	//
 	//var out bytes.Buffer
-	//err = tmpl.Execute(&out, values)
+	config, err := helm.RenderWithReferences(r)
+	if err != nil {
+		// It is normal to get errors on first pass
+		// return &response, err
+	}
+
+	// FIXME - Remove once the Go Template is working
+	//err = utils.CopyBufferContentsToFile(c, "./render/values.yaml")
 	//if err != nil {
 	//	return &response, err
 	//}
-	err = utils.CopyBufferContentsToFile(c, "./render/values.yaml")
-	if err != nil {
-		return &response, err
-	}
-
-	err = utils.CopyBufferContentsToFile(c, "./render/templates/values.yaml")
-	if err != nil {
-		return &response, err
-	}
-
-	h, err := helm.NewHelm()
-	if err != nil {
-		return &response, err
-	}
-
-	config, err := h.CreateValues()
-	if err != nil {
-		return &response, err
-	}
+	//
+	//err = utils.CopyBufferContentsToFile(c, "./render/templates/values.yaml")
+	//if err != nil {
+	//	return &response, err
+	//}
+	//
+	//h, err := helm.NewHelm()
+	//if err != nil {
+	//	return &response, err
+	//}
+	//
+	//config, err := h.CreateValues()
+	//if err != nil {
+	//	return &response, err
+	//}
 
 	response.Config = config
 	return &response, nil
