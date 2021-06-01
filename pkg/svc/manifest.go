@@ -7,6 +7,7 @@ import (
 	"github.com/seizadi/cmdb/helm"
 	"github.com/seizadi/cmdb/pkg/pb"
 	"github.com/seizadi/cmdb/resource"
+	"github.com/seizadi/cmdb/utils"
 	"go.uber.org/config"
 	"gopkg.in/yaml.v2"
 	"strings"
@@ -47,7 +48,18 @@ func (s *manifestServer) ManifestCreate(ctx context.Context, in *pb.ManifestCrea
 		return &response, err
 	}
 
-	artifact, err := h.CreateManifest(chartVersion.Repo, chartVersion.Version)
+	config, err := s.getManifestConfig(appInstance)
+	if err != nil {
+		return &response, err
+	}
+
+	configPath, err := utils.WriteTempFile(config, "config")
+	if err != nil {
+		return &response, err
+	}
+
+
+	artifact, err := h.CreateManifest(chartVersion.Repo, chartVersion.Version, configPath)
 	if err != nil {
 		return &response, err
 	}
@@ -57,20 +69,13 @@ func (s *manifestServer) ManifestCreate(ctx context.Context, in *pb.ManifestCrea
 	return &response, nil
 }
 
-//ManifestConfigCreate Creates a Config for a application instance
-func (s *manifestServer) ManifestConfigCreate(ctx context.Context, in *pb.ManifestConfigCreateRequest) (*pb.ManifestConfigCreateResponse, error) {
+func (s *manifestServer) getManifestConfig(appInstance *pb.ApplicationInstanceORM) (string, error) {
 	db := s.DB
-	response := pb.ManifestConfigCreateResponse{}
-
-	appInstance, err := resource.GetAppInstanceById(in.AppInstanceId, db)
-	if err != nil {
-		return &response, err
-	}
 
 	// Get Environment resource
 	environment, err := resource.GetEnvrionmentById(appInstance.EnvironmentId, db)
 	if err != nil {
-		return &response, err
+		return "", err
 	}
 
 	// Get Lifecycle Resource until we reach the root
@@ -78,7 +83,7 @@ func (s *manifestServer) ManifestConfigCreate(ctx context.Context, in *pb.Manife
 
 	lifecycle, err := resource.GetLifecycleById(environment.LifecycleId, db)
 	if err != nil {
-		return &response, err
+		return "", err
 	}
 
 	lifecycles  = append([]*pb.LifecycleORM{lifecycle}, lifecycles...)
@@ -92,7 +97,7 @@ func (s *manifestServer) ManifestConfigCreate(ctx context.Context, in *pb.Manife
 
 		lifecycle, err := resource.GetLifecycleById(lifecycle.LifecycleId, db)
 		if err != nil {
-			return &response, err
+			return "", err
 		}
 		LifecycleId = lifecycle.LifecycleId
 
@@ -119,7 +124,7 @@ func (s *manifestServer) ManifestConfigCreate(ctx context.Context, in *pb.Manife
 		// Find the AppConfig
 		appConfig, err := resource.GetAppConfigByLifecycleId(appInstance.ApplicationId, &l.Id, db)
 		if err != nil {
-			return &response, err
+			return "", err
 		}
 
 		if appConfig != nil {
@@ -136,7 +141,7 @@ func (s *manifestServer) ManifestConfigCreate(ctx context.Context, in *pb.Manife
 	// Find the environment AppConfig
 	appConfig, err := resource.GetAppConfigByEnvId(appInstance.ApplicationId, &environment.Id, db)
 	if err != nil {
-		return &response, err
+		return "", err
 	}
 
 	if appConfig != nil {
@@ -152,7 +157,7 @@ func (s *manifestServer) ManifestConfigCreate(ctx context.Context, in *pb.Manife
 
 	provider, err := config.NewYAML(sources...)
 	if err != nil {
-		return &response, err
+		return "", err
 	}
 
 	err = provider.Get(config.Root).Populate(&v)
@@ -160,7 +165,7 @@ func (s *manifestServer) ManifestConfigCreate(ctx context.Context, in *pb.Manife
 	// Create the Yaml File
 	c, err := yaml.Marshal(&v)
 	if err != nil {
-		return &response, err
+		return "", err
 	}
 
 	// Originally I was using helm to resolve the values, it was taking about 370ms
@@ -168,6 +173,24 @@ func (s *manifestServer) ManifestConfigCreate(ctx context.Context, in *pb.Manife
 	values := helm.Values{ Values: v}
 	r := helm.Renderable { Tpl: string(c), Vals: values}
 	config, err := helm.RenderWithReferences(r)
+	if err != nil {
+		return "", err
+	}
+
+	return config, nil
+}
+
+//ManifestConfigCreate Creates a Config for a application instance
+func (s *manifestServer) ManifestConfigCreate(ctx context.Context, in *pb.ManifestConfigCreateRequest) (*pb.ManifestConfigCreateResponse, error) {
+	db := s.DB
+	response := pb.ManifestConfigCreateResponse{}
+
+	appInstance, err := resource.GetAppInstanceById(in.AppInstanceId, db)
+	if err != nil {
+		return &response, err
+	}
+
+	config, err := s.getManifestConfig(appInstance)
 	if err != nil {
 		return &response, err
 	}

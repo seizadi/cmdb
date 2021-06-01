@@ -23,7 +23,7 @@ func NewHelm() (*HelmCmd, error) {
 	return &k, nil
 }
 
-func (h *HelmCmd) CreateManifest(repo string, version string) (string, error) {
+func (h *HelmCmd) CreateManifest(repo string, version string, values string) (string, error) {
 
 	// Use appInstance to create the values file in tmp
 	//valuesFile := "tmp/values_file"
@@ -31,7 +31,7 @@ func (h *HelmCmd) CreateManifest(repo string, version string) (string, error) {
 	// Use app to find the ChartVersion for this Inatnace
 	//chartVersion := "chart_repo/app_chart:chart_version"
 	helmCmdStr := h.path +
-		" template " + repo + " --version " + version
+		" template --values " + values + " " + repo + " --version " + version
 //		" --values " + valuesFile + chartVersion
 
 	out, err := h.runCmd(helmCmdStr)
