@@ -4,11 +4,13 @@ import (
 	"context"
 	"errors"
 	"github.com/jinzhu/gorm"
-	"gopkg.in/yaml.v2"
-
 	"github.com/seizadi/cmdb/helm"
 	"github.com/seizadi/cmdb/pkg/pb"
 	"github.com/seizadi/cmdb/resource"
+	"github.com/seizadi/cmdb/utils"
+	"go.uber.org/config"
+	"gopkg.in/yaml.v2"
+	"strings"
 )
 
 type manifestServer struct {
@@ -80,7 +82,7 @@ func (s *manifestServer) ManifestConfigCreate(ctx context.Context, in *pb.Manife
 		return &response, err
 	}
 
-	lifecycles  = append(lifecycles, lifecycle)
+	lifecycles  = append([]*pb.LifecycleORM{lifecycle}, lifecycles...)
 	LifecycleId := lifecycle.LifecycleId
 
 	// TODO - I did not put a count here to terminate and prevent infinite loop
@@ -95,7 +97,7 @@ func (s *manifestServer) ManifestConfigCreate(ctx context.Context, in *pb.Manife
 		}
 		LifecycleId = lifecycle.LifecycleId
 
-		lifecycles  = append(lifecycles, lifecycle)
+		lifecycles  = append([]*pb.LifecycleORM{lifecycle}, lifecycles...)
 	}
 
 	// Now fetch the lifecycle, env and app configuration values
@@ -103,14 +105,18 @@ func (s *manifestServer) ManifestConfigCreate(ctx context.Context, in *pb.Manife
 	// The app value has highest precedent and over-rides lower values, environment and
 	// lifecycle have app specific config and default value for all apps.
 
-	v := make(map[interface{}]interface{})
+	var v map[interface{}]interface{}
+
+	// One prolblem with this pattern is that errors are not detected until we merge using config.NewYAML
+	var sources []config.YAMLOption
+	var source config.YAMLOption
 
 	// For each lifecycle in the list get the values and app configuration
 	for _,l := range lifecycles {
-		err = yaml.Unmarshal([]byte(l.ConfigYaml), &v)
-		if err != nil {
-			return &response, err
-		}
+		source = config.Source(strings.NewReader(l.ConfigYaml))
+		//sources = append([]config.YAMLOption{source}, sources...)
+		sources = append(sources, source)
+
 		// Find the AppConfig
 		appConfig, err := resource.GetAppConfigByLifecycleId(appInstance.ApplicationId, &l.Id, db)
 		if err != nil {
@@ -118,18 +124,15 @@ func (s *manifestServer) ManifestConfigCreate(ctx context.Context, in *pb.Manife
 		}
 
 		if appConfig != nil {
-			err = yaml.Unmarshal([]byte(appConfig.ConfigYaml), &v)
-			if err != nil {
-				return &response, err
-			}
-		}
+			source = config.Source(strings.NewReader(appConfig.ConfigYaml))
+			//sources = append([]config.YAMLOption{source}, sources...)
+			sources = append(sources, source)		}
 	}
 
 	// Now mix in the environment config
-	err = yaml.Unmarshal([]byte(environment.ConfigYaml), &v)
-	if err != nil {
-		return &response, err
-	}
+	source = config.Source(strings.NewReader(environment.ConfigYaml))
+	//sources = append([]config.YAMLOption{source}, sources...)
+	sources = append(sources, source)
 
 	// Find the environment AppConfig
 	appConfig, err := resource.GetAppConfigByEnvId(appInstance.ApplicationId, &environment.Id, db)
@@ -138,23 +141,63 @@ func (s *manifestServer) ManifestConfigCreate(ctx context.Context, in *pb.Manife
 	}
 
 	if appConfig != nil {
-		err = yaml.Unmarshal([]byte(appConfig.ConfigYaml), &v)
-		if err != nil {
-			return &response, err
-		}
+		source = config.Source(strings.NewReader(appConfig.ConfigYaml))
+		//sources = append([]config.YAMLOption{source}, sources...)
+		sources = append(sources, source)
 	}
 
-	// Finally mix in the application config
-	err = yaml.Unmarshal([]byte(appInstance.ConfigYaml), &v)
+	// Mix in the application config
+	source = config.Source(strings.NewReader(appInstance.ConfigYaml))
+	//sources = append([]config.YAMLOption{source}, sources...)
+	sources = append(sources, source)
+
+	provider, err := config.NewYAML(sources...)
 	if err != nil {
 		return &response, err
 	}
 
-	config, err := yaml.Marshal(&v)
+	err = provider.Get(config.Root).Populate(&v)
+
+	// Create the Yaml File
+	c, err := yaml.Marshal(&v)
 	if err != nil {
 		return &response, err
 	}
 
-	response.Config = string(config)
+	// TODO - Come back later and figure out how to use go template to do the values
+	//values := helm.Values{ Values: v}
+	//tmpl, err := template.New("test").Funcs(helm.FuncMap()).Parse(string(c))
+	//if err != nil {
+	//	return &response, err
+	//}
+	//tmpl.Option("missingkey=zero")
+	//
+	//
+	//var out bytes.Buffer
+	//err = tmpl.Execute(&out, values)
+	//if err != nil {
+	//	return &response, err
+	//}
+	err = utils.CopyBufferContentsToFile(c, "./render/values.yaml")
+	if err != nil {
+		return &response, err
+	}
+
+	err = utils.CopyBufferContentsToFile(c, "./render/templates/values.yaml")
+	if err != nil {
+		return &response, err
+	}
+
+	h, err := helm.NewHelm()
+	if err != nil {
+		return &response, err
+	}
+
+	config, err := h.CreateValues()
+	if err != nil {
+		return &response, err
+	}
+
+	response.Config = config
 	return &response, nil
 }

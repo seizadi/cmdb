@@ -3,3 +3,5 @@ bin
 .DS_Store
 coverage.txt
 tmp
+render/values.yaml
+render/templates/values.yaml

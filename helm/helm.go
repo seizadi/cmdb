@@ -41,3 +41,14 @@ func (h *HelmCmd) CreateManifest(repo string, version string) (string, error) {
 	artifact := string(out.Bytes())
 	return artifact, nil
 }
+
+func (h *HelmCmd) CreateValues() (string, error) {
+	helmCmdStr := h.path + " template ./render"
+
+	out, err := h.runCmd(helmCmdStr)
+	if err != nil {
+		return string(out.Bytes()), err
+	}
+	values := string(out.Bytes())
+	return values, nil
+}

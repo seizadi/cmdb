@@ -7,7 +7,9 @@ import { LIST_APPLICATIONS,
   LIST_CHART_VERSIONS,
   SELECT_ENVIRONMENT,
   CLEAR_MANIFEST,
-  CREATE_MANIFEST, } from "./types";
+  CREATE_MANIFEST,
+  CLEAR_VALUES,
+  CREATE_VALUES, } from "./types";
 
 export const listApplications = () => async dispatch => {
   const response = await cmdb.get('/v1/applications?_order_by=name&_fields=id,name', {headers});
@@ -41,7 +43,7 @@ export const selectEnvironment = ( envId = "" ) =>  {
 export const createManifest = (appInstanceId) => async dispatch => {
   let response;
   try {
-    response = await cmdb.post('/v1/manifest/config', {app_instance_id: appInstanceId}, {headers});
+    response = await cmdb.post('/v1/manifest', {app_instance_id: appInstanceId}, {headers});
     dispatch({type: CREATE_MANIFEST, payload: response.data});
   } catch (error) {
     dispatch({type: CREATE_MANIFEST, payload: {artifact: "Failed to get artifact due to error."}});
@@ -50,4 +52,18 @@ export const createManifest = (appInstanceId) => async dispatch => {
 
 export const clearManifest = (value) => {
   return({type: CLEAR_MANIFEST, payload: value});
+}
+
+export const createValues = (appInstanceId) => async dispatch => {
+  let response;
+  try {
+    response = await cmdb.post('/v1/manifest/config', {app_instance_id: appInstanceId}, {headers});
+    dispatch({type: CREATE_VALUES, payload: response.data});
+  } catch (error) {
+    dispatch({type: CREATE_VALUES, payload: {artifact: "Failed to get values due to error."}});
+  }
+}
+
+export const clearValues = (value) => {
+  return({type: CLEAR_VALUES, payload: value});
 }

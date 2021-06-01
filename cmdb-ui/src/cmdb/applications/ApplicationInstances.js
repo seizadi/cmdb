@@ -12,7 +12,12 @@ import { makeStyles } from "@material-ui/core/styles";
 import styles from "../../assets/jss/material-dashboard-react/views/dashboardStyle";
 import {withStyles} from "@material-ui/core";
 
-import { listApplicationInstances, selectEnvironment, createManifest, clearManifest } from "../../actions";
+import { listApplicationInstances,
+  selectEnvironment,
+  createManifest,
+  clearManifest,
+  createValues,
+  clearValues } from "../../actions";
 
 const useStyles = makeStyles(styles);
 
@@ -20,7 +25,7 @@ class ApplicationInstances extends React.Component {
 
   constructor(props) {
     super(props);
-    this.state = {showApp: false};
+    this.state = {showApp: false, showValue: false};
   }
 
   selectEnvironment = (envId) => {
@@ -36,7 +41,7 @@ class ApplicationInstances extends React.Component {
       <>
         <h3>{enabledAppInstances.length} Application Instances</h3>
         { enabledAppInstances.map( (applicationInstance) => {
-          return <AppButton key={applicationInstance.id} app={applicationInstance} onClick={() => {this.showAppView(applicationInstance)}}/>;
+          return <AppButton key={applicationInstance.id} app={applicationInstance} onClick={(showValues) => {this.showAppView(showValues, applicationInstance)}}/>;
         })}
       </>
     );
@@ -45,14 +50,20 @@ class ApplicationInstances extends React.Component {
   closeAppView = () => {
     this.setState({showApp: false});
     this.props.clearManifest("");
+    this.props.clearValues("");
   }
 
-  showAppView = (applicationInstance) => {
-    this.setState({showApp: true, applicationInstance: applicationInstance});
+  showAppView = (showValues, applicationInstance) => {
+    this.setState({showApp: true, showValues: showValues, applicationInstance: applicationInstance});
     if (applicationInstance.enable) {
-      this.props.createManifest(applicationInstance.id);
+      if (showValues) {
+        this.props.createValues(applicationInstance.id);
+      } else {
+        this.props.createManifest(applicationInstance.id);
+      }
     } else {
       this.props.clearManifest("App Instance is disabled!");
+      this.props.clearValues("App Instance is disabled!");
     }
   }
 
@@ -64,7 +75,7 @@ class ApplicationInstances extends React.Component {
         </IconButton>
         <h3>{this.state.applicationInstance.name}</h3>
         <div>{this.props.manifest.status}</div>
-        <div>{this.props.manifest.artifact}</div>
+        <div>{(this.state.showValues) ? this.props.manifest.values : this.props.manifest.artifact}</div>
       </div>
     );
   }
@@ -87,6 +98,7 @@ const mapStateToProps = state => {
     envId: state.selectedEnvId,
     applicationInstances: Object.values(state.applicationInstances),
     manifest: state.manifest,
+    values: state.values,
   };
 };
 
@@ -94,5 +106,7 @@ export default connect(mapStateToProps,
   {listApplicationInstances,
     createManifest,
     clearManifest,
+    createValues,
+    clearValues,
     selectEnvironment,})
 (withStyles(useStyles)(ApplicationInstances));
