@@ -64,9 +64,7 @@ class AppGraph extends React.Component {
     // Add the charts to Graph
     let chartMap = {}
     this.props.applicationInstances.forEach((appInstance) => {
-      if (appInstance.enable) {
-        chartMap[appInstance.chart_version_id] = appInstance.chart_version_id;
-      }
+      chartMap[appInstance.chart_version_id] = appInstance.chart_version_id;
     });
     const chartIds = Object.values(chartMap)
     chartIds.forEach(id => {
@@ -77,23 +75,21 @@ class AppGraph extends React.Component {
     });
 
     this.props.applicationInstances.forEach((appInstance) => {
-      if (appInstance.enable) {
-        const env = this.props.environments[appInstance.environment_id];
-        const lifecycle = this.props.lifecycles[env.lifecycle_id];
-        const lifecycleName = this.lookupLifeCycleName(lifecycle.name);
-        // Having the environment made the graph too complex
-        // Application Instances have environment prefix in their name
-        // dataSnapShot.nodes.push({id: env.name, color: 'orange'});
-        // dataSnapShot.links.push({source: lifecycleName, target: env.name});
-        dataSnapShot.nodes.push({id: appInstance.name, color: 'green'});
-        // Add lifecycle link
-        dataSnapShot.links.push({source: lifecycleName, target: appInstance.name});
-        // Add chart link
-        const chartName = this.props.chartVersions[appInstance.chart_version_id].repo +
-          ':' + this.props.chartVersions[appInstance.chart_version_id].version;
-        if (chartName && chartName.length > 0) {
-          dataSnapShot.links.push({source: appInstance.name, target: chartName});
-        }
+      const env = this.props.environments[appInstance.environment_id];
+      const lifecycle = this.props.lifecycles[env.lifecycle_id];
+      const lifecycleName = this.lookupLifeCycleName(lifecycle.name);
+      // Having the environment made the graph too complex
+      // Application Instances have environment prefix in their name
+      // dataSnapShot.nodes.push({id: env.name, color: 'orange'});
+      // dataSnapShot.links.push({source: lifecycleName, target: env.name});
+      dataSnapShot.nodes.push({id: appInstance.name, color: 'green'});
+      // Add lifecycle link
+      dataSnapShot.links.push({source: lifecycleName, target: appInstance.name});
+      // Add chart link
+      const chartName = this.props.chartVersions[appInstance.chart_version_id].repo +
+        ':' + this.props.chartVersions[appInstance.chart_version_id].version;
+      if (chartName && chartName.length > 0) {
+        dataSnapShot.links.push({source: appInstance.name, target: chartName});
         this.setState({data: dataSnapShot});
       }
     });
