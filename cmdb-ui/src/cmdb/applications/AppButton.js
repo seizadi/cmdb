@@ -1,8 +1,6 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
-import Menu from '@material-ui/core/Menu';
-import MenuItem from '@material-ui/core/MenuItem';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -14,38 +12,18 @@ const useStyles = makeStyles((theme) => ({
 
 export default function AppButton(props) {
   const classes = useStyles();
-  const [anchorEl, setAnchorEl] = React.useState(null);
 
-  const handleClick = (event) => {
-      setAnchorEl(event.currentTarget);
-  };
-
-  const handleClose = () => {
-    setAnchorEl(null);
-  };
-
-  const handleSelect = (showValues) => {
-    setAnchorEl(null);
+  const handleClick = () => {
     if (props.onClick) {
-      props.onClick(showValues, props.app);
+      return props.onClick(props.app);
     }
   };
 
   return (
     <span className={classes.root}>
-      <Button aria-controls="simple-menu" aria-haspopup="true" color="primary" onClick={handleClick}>
+      <Button variant="contained" color="primary" onClick={handleClick}>
         {props.app.name}
       </Button>
-      <Menu
-        id="simple-menu"
-        anchorEl={anchorEl}
-        keepMounted
-        open={Boolean(anchorEl)}
-        onClose={handleClose}
-      >
-        <MenuItem onClick={() => handleSelect(false) }>Manifest</MenuItem>
-        <MenuItem onClick={() => handleSelect(true) }>Values</MenuItem>
-      </Menu>
     </span>
   );
 }

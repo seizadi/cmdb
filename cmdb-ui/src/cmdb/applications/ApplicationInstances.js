@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 
 // from core components
 import EnvironmentSelects from "../environments/EnvironmentSelects";
-import AppButton from "./AppButton";
+import AppInstanceButton from "./AppInstanceButton";
 
 // from Redux
 import IconButton from "@material-ui/core/IconButton";
@@ -41,7 +41,7 @@ class ApplicationInstances extends React.Component {
       <>
         <h3>{enabledAppInstances.length} Application Instances</h3>
         { enabledAppInstances.map( (applicationInstance) => {
-          return <AppButton key={applicationInstance.id} app={applicationInstance} onClick={(showValues) => {this.showAppView(showValues, applicationInstance)}}/>;
+          return <AppInstanceButton key={applicationInstance.id} app={applicationInstance} onClick={(showValues) => {this.showAppView(showValues, applicationInstance)}}/>;
         })}
       </>
     );

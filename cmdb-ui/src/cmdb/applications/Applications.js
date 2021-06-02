@@ -93,8 +93,8 @@ class Applications extends React.Component {
         return (application.name && application.name.length);
       }).map( (application) => {
         return < AppButton key={application.id}
-                           app={application}
-                           onClick={() => {this.handleAppClick(application)}} />
+                                   app={application}
+                                   onClick={() => {this.handleAppClick(application)}} />
       }));
   };
 
