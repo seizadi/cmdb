@@ -757,7 +757,8 @@ type ChartVersionORM struct {
 	ApplicationId *string          `gorm:"type:UUID"`
 	ChartStore    *postgres1.Jsonb `gorm:"type:jsonb"`
 	Description   string
-	Id            string `gorm:"type:UUID;primary_key"`
+	Id            string  `gorm:"type:UUID;primary_key"`
+	LifecycleId   *string `gorm:"type:UUID"`
 	Name          string
 	Repo          string
 	Version       string
@@ -798,6 +799,14 @@ func (m *ChartVersion) ToORM(ctx context.Context) (ChartVersionORM, error) {
 			to.ApplicationId = &vv
 		}
 	}
+	if m.LifecycleId != nil {
+		if v, err := resource1.Decode(&Lifecycle{}, m.LifecycleId); err != nil {
+			return to, err
+		} else if v != nil {
+			vv := v.(string)
+			to.LifecycleId = &vv
+		}
+	}
 	accountID, err := auth1.GetAccountID(ctx, nil)
 	if err != nil {
 		return to, err
@@ -836,6 +845,13 @@ func (m *ChartVersionORM) ToPB(ctx context.Context) (ChartVersion, error) {
 			return to, err
 		} else {
 			to.ApplicationId = v
+		}
+	}
+	if m.LifecycleId != nil {
+		if v, err := resource1.Encode(&Lifecycle{}, *m.LifecycleId); err != nil {
+			return to, err
+		} else {
+			to.LifecycleId = v
 		}
 	}
 	if posthook, ok := interface{}(m).(ChartVersionWithAfterToPB); ok {
@@ -4073,6 +4089,10 @@ func DefaultApplyFieldMaskChartVersion(ctx context.Context, patchee *ChartVersio
 		}
 		if f == prefix+"ApplicationId" {
 			patchee.ApplicationId = patcher.ApplicationId
+			continue
+		}
+		if f == prefix+"LifecycleId" {
+			patchee.LifecycleId = patcher.LifecycleId
 			continue
 		}
 	}

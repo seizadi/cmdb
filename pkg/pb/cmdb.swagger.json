@@ -2650,6 +2650,10 @@
           "type": "string",
           "readOnly": true
         },
+        "lifecycle_id": {
+          "description": "The resource identifier.",
+          "type": "string"
+        },
         "name": {
           "type": "string",
           "title": "The name of the ChartVersion"

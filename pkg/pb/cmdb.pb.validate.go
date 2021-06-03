@@ -3891,6 +3891,16 @@ func (m *ChartVersion) Validate() error {
 		}
 	}
 
+	if v, ok := interface{}(m.GetLifecycleId()).(interface{ Validate() error }); ok {
+		if err := v.Validate(); err != nil {
+			return ChartVersionValidationError{
+				field:  "LifecycleId",
+				reason: "embedded message failed validation",
+				cause:  err,
+			}
+		}
+	}
+
 	return nil
 }
 

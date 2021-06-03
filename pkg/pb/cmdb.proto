@@ -603,6 +603,9 @@ message ChartVersion {
 
   // Reference to Application
   atlas.rpc.Identifier application_id = 7 [(gorm.field) = {reference_of: "Application", tag: {type: "UUID"}}];
+
+  // Reference to Application Instance
+  atlas.rpc.Identifier lifecycle_id = 8 [(gorm.field) = {reference_of: "Lifecycle", tag: {type: "UUID"}}];
 }
 
 message CreateChartVersionRequest {
