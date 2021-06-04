@@ -1459,6 +1459,7 @@ type AppVersionWithAfterToPB interface {
 
 type ApplicationInstanceORM struct {
 	AccountID      string
+	AppVersionId   *string          `gorm:"type:UUID"`
 	ApplicationId  *string          `gorm:"type:UUID"`
 	ChartVersion   *ChartVersionORM `gorm:"foreignkey:ChartVersionId;association_foreignkey:Id;preload:false"`
 	ChartVersionId *string          `gorm:"type:UUID"`
@@ -1533,6 +1534,14 @@ func (m *ApplicationInstance) ToORM(ctx context.Context) (ApplicationInstanceORM
 			to.ApplicationId = &vv
 		}
 	}
+	if m.AppVersionId != nil {
+		if v, err := resource1.Decode(&AppVersion{}, m.AppVersionId); err != nil {
+			return to, err
+		} else if v != nil {
+			vv := v.(string)
+			to.AppVersionId = &vv
+		}
+	}
 	accountID, err := auth1.GetAccountID(ctx, nil)
 	if err != nil {
 		return to, err
@@ -1596,6 +1605,13 @@ func (m *ApplicationInstanceORM) ToPB(ctx context.Context) (ApplicationInstance,
 			return to, err
 		} else {
 			to.ApplicationId = v
+		}
+	}
+	if m.AppVersionId != nil {
+		if v, err := resource1.Encode(&AppVersion{}, *m.AppVersionId); err != nil {
+			return to, err
+		} else {
+			to.AppVersionId = v
 		}
 	}
 	if posthook, ok := interface{}(m).(ApplicationInstanceWithAfterToPB); ok {
@@ -6093,6 +6109,10 @@ func DefaultApplyFieldMaskApplicationInstance(ctx context.Context, patchee *Appl
 		}
 		if f == prefix+"ApplicationId" {
 			patchee.ApplicationId = patcher.ApplicationId
+			continue
+		}
+		if f == prefix+"AppVersionId" {
+			patchee.AppVersionId = patcher.AppVersionId
 			continue
 		}
 	}

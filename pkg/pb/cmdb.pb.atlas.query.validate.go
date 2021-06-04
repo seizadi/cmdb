@@ -103,6 +103,7 @@ var CmdbMethodsRequireFilteringValidation = map[string]map[string]options.Filter
 		"chart_version_id": options.FilteringOption{ValueType: options.QueryValidate_STRING},
 		"environment_id":   options.FilteringOption{ValueType: options.QueryValidate_STRING},
 		"application_id":   options.FilteringOption{ValueType: options.QueryValidate_STRING},
+		"app_version_id":   options.FilteringOption{ValueType: options.QueryValidate_STRING},
 	},
 	"/api.cmdb.Vaults/List": map[string]options.FilteringOption{
 		"id":          options.FilteringOption{ValueType: options.QueryValidate_STRING},
@@ -224,6 +225,7 @@ var CmdbMethodsRequireSortingValidation = map[string][]string{
 		"chart_version_id",
 		"environment_id",
 		"application_id",
+		"app_version_id",
 	},
 	"/api.cmdb.Vaults/List": []string{
 		"id",
@@ -444,6 +446,7 @@ var CmdbMethodsRequireFieldSelectionValidation = map[string][]string{
 		"application_instances.chart_version_id",
 		"application_instances.environment_id",
 		"application_instances.application_id",
+		"application_instances.app_version_id",
 		"application_instances",
 		"app_config.id",
 		"app_config.name",
@@ -476,6 +479,7 @@ var CmdbMethodsRequireFieldSelectionValidation = map[string][]string{
 		"application_instances.chart_version_id",
 		"application_instances.environment_id",
 		"application_instances.application_id",
+		"application_instances.app_version_id",
 		"application_instances",
 		"app_config.id",
 		"app_config.name",
@@ -571,6 +575,7 @@ var CmdbMethodsRequireFieldSelectionValidation = map[string][]string{
 		"chart_version_id",
 		"environment_id",
 		"application_id",
+		"app_version_id",
 	},
 	"/api.cmdb.ApplicationInstances/List": {
 		"id",
@@ -596,6 +601,7 @@ var CmdbMethodsRequireFieldSelectionValidation = map[string][]string{
 		"chart_version_id",
 		"environment_id",
 		"application_id",
+		"app_version_id",
 	},
 	"/api.cmdb.Vaults/Read": {
 		"id",

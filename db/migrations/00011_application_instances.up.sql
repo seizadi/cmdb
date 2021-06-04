@@ -10,7 +10,8 @@ CREATE TABLE application_instances (
    config_yaml text DEFAULT NULL,
    chart_version_id text REFERENCES chart_versions(id) ON DELETE CASCADE,
    environment_id text REFERENCES environments(id) ON DELETE CASCADE,
-   application_id text REFERENCES applications(id) ON DELETE CASCADE
+   application_id text REFERENCES applications(id) ON DELETE CASCADE,
+   app_version_id text REFERENCES app_versions(id) ON DELETE CASCADE
 );
 
 CREATE TRIGGER application_instances_updated_at

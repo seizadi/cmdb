@@ -1253,6 +1253,10 @@ message ApplicationInstance {
 
   // Reference to the Application
   atlas.rpc.Identifier application_id = 10 [(gorm.field) = {reference_of: "Application", tag: {type: "UUID"}}];
+
+  // Reference to the AppVersion
+  atlas.rpc.Identifier app_version_id = 11 [(gorm.field) = {reference_of: "AppVersion", tag: {type: "UUID"}}];
+
 }
 
 message CreateApplicationInstanceRequest {

@@ -2553,6 +2553,10 @@
       "type": "object",
       "title": "-----------------------------------------------------------------------\nApplicationInstance represents application instance deployed in an Environment\n-----------------------------------------------------------------------",
       "properties": {
+        "app_version_id": {
+          "description": "The resource identifier.",
+          "type": "string"
+        },
         "application_id": {
           "description": "The resource identifier.",
           "type": "string"
