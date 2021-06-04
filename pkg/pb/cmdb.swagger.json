@@ -2640,11 +2640,6 @@
           "description": "The resource identifier.",
           "type": "string"
         },
-        "chart_store": {
-          "type": "object",
-          "title": "The Event job details",
-          "additionalProperties": {}
-        },
         "description": {
           "type": "string",
           "title": "The description of the ChartVersion"
@@ -2653,10 +2648,6 @@
           "description": "The resource identifier.",
           "type": "string",
           "readOnly": true
-        },
-        "lifecycle_id": {
-          "description": "The resource identifier.",
-          "type": "string"
         },
         "name": {
           "type": "string",

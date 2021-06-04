@@ -598,14 +598,8 @@ message ChartVersion {
   // The version of the ChartVersion
   string version = 5;
 
-  // The Event job details
-  gorm.types.JSONValue  chart_store = 6;
-
   // Reference to Application
-  atlas.rpc.Identifier application_id = 7 [(gorm.field) = {reference_of: "Application", tag: {type: "UUID"}}];
-
-  // Reference to Application Instance
-  atlas.rpc.Identifier lifecycle_id = 8 [(gorm.field) = {reference_of: "Lifecycle", tag: {type: "UUID"}}];
+  atlas.rpc.Identifier application_id = 6 [(gorm.field) = {reference_of: "Application", tag: {type: "UUID"}}];
 }
 
 message CreateChartVersionRequest {

@@ -193,10 +193,8 @@ import errors1 "github.com/infobloxopen/protoc-gen-gorm/errors"
 import field_mask1 "google.golang.org/genproto/protobuf/field_mask"
 import gorm1 "github.com/jinzhu/gorm"
 import gorm2 "github.com/infobloxopen/atlas-app-toolkit/gorm"
-import postgres1 "github.com/jinzhu/gorm/dialects/postgres"
 import query1 "github.com/infobloxopen/atlas-app-toolkit/query"
 import resource1 "github.com/infobloxopen/atlas-app-toolkit/gorm/resource"
-import types1 "github.com/infobloxopen/protoc-gen-gorm/types"
 
 import math "math"
 import _ "github.com/golang/protobuf/ptypes/empty"
@@ -754,11 +752,9 @@ type LifecycleWithAfterToPB interface {
 
 type ChartVersionORM struct {
 	AccountID     string
-	ApplicationId *string          `gorm:"type:UUID"`
-	ChartStore    *postgres1.Jsonb `gorm:"type:jsonb"`
+	ApplicationId *string `gorm:"type:UUID"`
 	Description   string
-	Id            string  `gorm:"type:UUID;primary_key"`
-	LifecycleId   *string `gorm:"type:UUID"`
+	Id            string `gorm:"type:UUID;primary_key"`
 	Name          string
 	Repo          string
 	Version       string
@@ -788,23 +784,12 @@ func (m *ChartVersion) ToORM(ctx context.Context) (ChartVersionORM, error) {
 	to.Description = m.Description
 	to.Repo = m.Repo
 	to.Version = m.Version
-	if m.ChartStore != nil {
-		to.ChartStore = &postgres1.Jsonb{[]byte(m.ChartStore.Value)}
-	}
 	if m.ApplicationId != nil {
 		if v, err := resource1.Decode(&Application{}, m.ApplicationId); err != nil {
 			return to, err
 		} else if v != nil {
 			vv := v.(string)
 			to.ApplicationId = &vv
-		}
-	}
-	if m.LifecycleId != nil {
-		if v, err := resource1.Decode(&Lifecycle{}, m.LifecycleId); err != nil {
-			return to, err
-		} else if v != nil {
-			vv := v.(string)
-			to.LifecycleId = &vv
 		}
 	}
 	accountID, err := auth1.GetAccountID(ctx, nil)
@@ -837,21 +822,11 @@ func (m *ChartVersionORM) ToPB(ctx context.Context) (ChartVersion, error) {
 	to.Description = m.Description
 	to.Repo = m.Repo
 	to.Version = m.Version
-	if m.ChartStore != nil {
-		to.ChartStore = &types1.JSONValue{Value: string(m.ChartStore.RawMessage)}
-	}
 	if m.ApplicationId != nil {
 		if v, err := resource1.Encode(&Application{}, *m.ApplicationId); err != nil {
 			return to, err
 		} else {
 			to.ApplicationId = v
-		}
-	}
-	if m.LifecycleId != nil {
-		if v, err := resource1.Encode(&Lifecycle{}, *m.LifecycleId); err != nil {
-			return to, err
-		} else {
-			to.LifecycleId = v
 		}
 	}
 	if posthook, ok := interface{}(m).(ChartVersionWithAfterToPB); ok {
@@ -4076,7 +4051,6 @@ func DefaultApplyFieldMaskChartVersion(ctx context.Context, patchee *ChartVersio
 		return nil, errors1.NilArgumentError
 	}
 	var err error
-	var updatedChartStore bool
 	for _, f := range updateMask.Paths {
 		if f == prefix+"Id" {
 			patchee.Id = patcher.Id
@@ -4098,17 +4072,8 @@ func DefaultApplyFieldMaskChartVersion(ctx context.Context, patchee *ChartVersio
 			patchee.Version = patcher.Version
 			continue
 		}
-		if !updatedChartStore && strings.HasPrefix(f, prefix+"ChartStore") {
-			patchee.ChartStore = patcher.ChartStore
-			updatedChartStore = true
-			continue
-		}
 		if f == prefix+"ApplicationId" {
 			patchee.ApplicationId = patcher.ApplicationId
-			continue
-		}
-		if f == prefix+"LifecycleId" {
-			patchee.LifecycleId = patcher.LifecycleId
 			continue
 		}
 	}

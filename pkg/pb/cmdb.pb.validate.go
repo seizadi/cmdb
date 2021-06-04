@@ -3871,30 +3871,10 @@ func (m *ChartVersion) Validate() error {
 
 	// no validation rules for Version
 
-	if v, ok := interface{}(m.GetChartStore()).(interface{ Validate() error }); ok {
-		if err := v.Validate(); err != nil {
-			return ChartVersionValidationError{
-				field:  "ChartStore",
-				reason: "embedded message failed validation",
-				cause:  err,
-			}
-		}
-	}
-
 	if v, ok := interface{}(m.GetApplicationId()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
 			return ChartVersionValidationError{
 				field:  "ApplicationId",
-				reason: "embedded message failed validation",
-				cause:  err,
-			}
-		}
-	}
-
-	if v, ok := interface{}(m.GetLifecycleId()).(interface{ Validate() error }); ok {
-		if err := v.Validate(); err != nil {
-			return ChartVersionValidationError{
-				field:  "LifecycleId",
 				reason: "embedded message failed validation",
 				cause:  err,
 			}
