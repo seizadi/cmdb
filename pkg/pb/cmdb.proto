@@ -1110,9 +1110,6 @@ message AppVersion {
 
   // Lifecycle referenced by this AppVersion
   atlas.rpc.Identifier lifecycle_id = 7 [(gorm.field) = {reference_of: "Lifecycle", tag: {type: "UUID"}}];
-
-  // Reference to Environment
-  atlas.rpc.Identifier environment_id = 8 [(gorm.field) = {reference_of: "Environment", tag: {type: "UUID"}}];
 }
 
 message CreateAppVersionRequest {

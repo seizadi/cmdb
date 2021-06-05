@@ -7632,16 +7632,6 @@ func (m *AppVersion) Validate() error {
 		}
 	}
 
-	if v, ok := interface{}(m.GetEnvironmentId()).(interface{ Validate() error }); ok {
-		if err := v.Validate(); err != nil {
-			return AppVersionValidationError{
-				field:  "EnvironmentId",
-				reason: "embedded message failed validation",
-				cause:  err,
-			}
-		}
-	}
-
 	return nil
 }
 

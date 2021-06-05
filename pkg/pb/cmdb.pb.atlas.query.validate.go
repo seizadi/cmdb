@@ -88,7 +88,6 @@ var CmdbMethodsRequireFilteringValidation = map[string]map[string]options.Filter
 		"chart_version_id": options.FilteringOption{ValueType: options.QueryValidate_STRING},
 		"application_id":   options.FilteringOption{ValueType: options.QueryValidate_STRING},
 		"lifecycle_id":     options.FilteringOption{ValueType: options.QueryValidate_STRING},
-		"environment_id":   options.FilteringOption{ValueType: options.QueryValidate_STRING},
 	},
 	"/api.cmdb.ApplicationInstances/List": map[string]options.FilteringOption{
 		"id":               options.FilteringOption{ValueType: options.QueryValidate_STRING},
@@ -210,7 +209,6 @@ var CmdbMethodsRequireSortingValidation = map[string][]string{
 		"chart_version_id",
 		"application_id",
 		"lifecycle_id",
-		"environment_id",
 	},
 	"/api.cmdb.ApplicationInstances/List": []string{
 		"id",
@@ -350,7 +348,6 @@ var CmdbMethodsRequireFieldSelectionValidation = map[string][]string{
 		"app_version.chart_version_id",
 		"app_version.application_id",
 		"app_version.lifecycle_id",
-		"app_version.environment_id",
 		"app_version",
 		"lifecycle_id",
 	},
@@ -385,7 +382,6 @@ var CmdbMethodsRequireFieldSelectionValidation = map[string][]string{
 		"app_version.chart_version_id",
 		"app_version.application_id",
 		"app_version.lifecycle_id",
-		"app_version.environment_id",
 		"app_version",
 		"lifecycle_id",
 	},
@@ -452,7 +448,6 @@ var CmdbMethodsRequireFieldSelectionValidation = map[string][]string{
 		"app_version.chart_version_id",
 		"app_version.application_id",
 		"app_version.lifecycle_id",
-		"app_version.environment_id",
 		"app_version",
 		"lifecycle_id",
 	},
@@ -485,7 +480,6 @@ var CmdbMethodsRequireFieldSelectionValidation = map[string][]string{
 		"app_version.chart_version_id",
 		"app_version.application_id",
 		"app_version.lifecycle_id",
-		"app_version.environment_id",
 		"app_version",
 		"lifecycle_id",
 	},
@@ -521,7 +515,6 @@ var CmdbMethodsRequireFieldSelectionValidation = map[string][]string{
 		"chart_version_id",
 		"application_id",
 		"lifecycle_id",
-		"environment_id",
 	},
 	"/api.cmdb.AppVersions/List": {
 		"id",
@@ -537,7 +530,6 @@ var CmdbMethodsRequireFieldSelectionValidation = map[string][]string{
 		"chart_version_id",
 		"application_id",
 		"lifecycle_id",
-		"environment_id",
 	},
 	"/api.cmdb.ApplicationInstances/Read": {
 		"id",
