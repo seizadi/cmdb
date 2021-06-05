@@ -6,7 +6,8 @@ import lifecycleReducer from "./lifecycleReducers";
 import environmentReducer from "./environmentReducers";
 import selectEnvReducer from "./selectEnvReducer";
 import chartVersionReducer from "./chartVersionReducer";
-import manifestReducer from "./ManifestReducers";
+import manifestReducer from "./manifestReducers";
+import graphReducer from "./graphReducer";
 
 export default combineReducers( {
   selectedEnvId: selectEnvReducer,
@@ -16,4 +17,5 @@ export default combineReducers( {
   environments: environmentReducer,
   chartVersions: chartVersionReducer,
   manifest: manifestReducer,
+  graph: graphReducer,
 });

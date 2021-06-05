@@ -1,15 +1,17 @@
 import cmdb, { headers } from "../api/cmdb";
 import {apiListApplicationInstances} from "../api/applicationInstances";
-import { LIST_APPLICATIONS,
+import {
+  LIST_APPLICATIONS,
   LIST_APPLICATION_INSTANCES,
-  LIST_ENVIRONMENTS, 
+  LIST_ENVIRONMENTS,
   LIST_LIFECYCLES,
   LIST_CHART_VERSIONS,
   SELECT_ENVIRONMENT,
   CLEAR_MANIFEST,
   CREATE_MANIFEST,
   CLEAR_VALUES,
-  CREATE_VALUES, } from "./types";
+  CREATE_VALUES,
+  SHOW_DISABLED,} from "./types";
 
 export const listApplications = () => async dispatch => {
   const response = await cmdb.get('/v1/applications?_order_by=name&_fields=id,name', {headers});
@@ -66,4 +68,8 @@ export const createValues = (appInstanceId) => async dispatch => {
 
 export const clearValues = (value) => {
   return({type: CLEAR_VALUES, payload: value});
+}
+
+export const showDisabled = (showDisabled) => {
+  return({type: SHOW_DISABLED, payload: showDisabled});
 }

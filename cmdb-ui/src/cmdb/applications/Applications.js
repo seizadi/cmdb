@@ -6,6 +6,7 @@ import AppButton from "./AppButton";
 
 // from Redux
 import { listApplications,
+  showDisabled,
   listEnvironments,
   listChartVersions,
   listLifecycles } from "../../actions";
@@ -94,7 +95,7 @@ class Applications extends React.Component {
       }).map( (application) => {
         return < AppButton key={application.id}
                                    app={application}
-                                   onClick={() => {this.handleAppClick(application)}} />
+                                   onClick={(showDisabled) => {this.props.showDisabled(showDisabled); this.handleAppClick(application)}} />
       }));
   };
 
@@ -108,6 +109,7 @@ class Applications extends React.Component {
             </IconButton>
           </div>
           <AppGraph applicationInstances={this.state.applicationInstances}
+                    showDisabled={this.state.showDisabled}
                     environments={this.props.environments}
                     lifecycles={this.props.lifecycles}
                     chartVersions={this.props.chartVersions}
@@ -130,6 +132,7 @@ const mapStateToProps = state => {
 
 export default connect( mapStateToProps,
   {listApplications,
+    showDisabled,
     listEnvironments,
     listChartVersions,
     listLifecycles })

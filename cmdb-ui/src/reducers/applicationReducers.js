@@ -1,4 +1,4 @@
-import { LIST_APPLICATIONS } from "../actions/types";
+import {LIST_APPLICATIONS} from "../actions/types";
 
 const INITIAL_STATE = {}
 
