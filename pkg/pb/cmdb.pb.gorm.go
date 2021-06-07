@@ -998,7 +998,6 @@ type AppConfigWithAfterToPB interface {
 type EnvironmentORM struct {
 	AccountID            string
 	AppConfig            []*AppConfigORM           `gorm:"foreignkey:EnvironmentId;association_foreignkey:Id"`
-	AppVersion           []*AppVersionORM          `gorm:"foreignkey:EnvironmentId;association_foreignkey:Id"`
 	ApplicationInstances []*ApplicationInstanceORM `gorm:"foreignkey:EnvironmentId;association_foreignkey:Id"`
 	ConfigYaml           string
 	Description          string
@@ -1050,17 +1049,6 @@ func (m *Environment) ToORM(ctx context.Context) (EnvironmentORM, error) {
 			}
 		} else {
 			to.AppConfig = append(to.AppConfig, nil)
-		}
-	}
-	for _, v := range m.AppVersion {
-		if v != nil {
-			if tempAppVersion, cErr := v.ToORM(ctx); cErr == nil {
-				to.AppVersion = append(to.AppVersion, &tempAppVersion)
-			} else {
-				return to, cErr
-			}
-		} else {
-			to.AppVersion = append(to.AppVersion, nil)
 		}
 	}
 	if m.LifecycleId != nil {
@@ -1120,17 +1108,6 @@ func (m *EnvironmentORM) ToPB(ctx context.Context) (Environment, error) {
 			}
 		} else {
 			to.AppConfig = append(to.AppConfig, nil)
-		}
-	}
-	for _, v := range m.AppVersion {
-		if v != nil {
-			if tempAppVersion, cErr := v.ToPB(ctx); cErr == nil {
-				to.AppVersion = append(to.AppVersion, &tempAppVersion)
-			} else {
-				return to, cErr
-			}
-		} else {
-			to.AppVersion = append(to.AppVersion, nil)
 		}
 	}
 	if m.LifecycleId != nil {
@@ -1273,7 +1250,6 @@ type AppVersionORM struct {
 	ChartVersion   *ChartVersionORM `gorm:"foreignkey:ChartVersionId;association_foreignkey:Id"`
 	ChartVersionId *string          `gorm:"type:UUID"`
 	Description    string
-	EnvironmentId  *string
 	Id             string  `gorm:"type:UUID;primary_key"`
 	LifecycleId    *string `gorm:"type:UUID"`
 	Name           string
@@ -4685,15 +4661,6 @@ func DefaultStrictUpdateEnvironment(ctx context.Context, in *Environment, db *go
 	if err = db.Where(filterAppConfig).Delete(AppConfigORM{}).Error; err != nil {
 		return nil, err
 	}
-	filterAppVersion := AppVersionORM{}
-	if ormObj.Id == "" {
-		return nil, errors1.EmptyIdError
-	}
-	filterAppVersion.EnvironmentId = new(string)
-	*filterAppVersion.EnvironmentId = ormObj.Id
-	if err = db.Where(filterAppVersion).Delete(AppVersionORM{}).Error; err != nil {
-		return nil, err
-	}
 	filterApplicationInstances := ApplicationInstanceORM{}
 	if ormObj.Id == "" {
 		return nil, errors1.EmptyIdError
@@ -4838,10 +4805,6 @@ func DefaultApplyFieldMaskEnvironment(ctx context.Context, patchee *Environment,
 		}
 		if f == prefix+"AppConfig" {
 			patchee.AppConfig = patcher.AppConfig
-			continue
-		}
-		if f == prefix+"AppVersion" {
-			patchee.AppVersion = patcher.AppVersion
 			continue
 		}
 		if f == prefix+"LifecycleId" {

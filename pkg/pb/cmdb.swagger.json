@@ -2743,13 +2743,6 @@
             "$ref": "#/definitions/cmdbAppConfig"
           }
         },
-        "app_version": {
-          "type": "array",
-          "title": "AppVersion",
-          "items": {
-            "$ref": "#/definitions/cmdbAppVersion"
-          }
-        },
         "application_instances": {
           "type": "array",
           "title": "ApplicationInstances in this Environment",
