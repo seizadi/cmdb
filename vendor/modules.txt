@@ -1,21 +1,30 @@
 # github.com/BurntSushi/toml v0.3.1
 github.com/BurntSushi/toml
+# github.com/DATA-DOG/go-sqlmock v1.3.3
+## explicit
 # github.com/Masterminds/goutils v1.1.1
 github.com/Masterminds/goutils
 # github.com/Masterminds/semver/v3 v3.1.1
 github.com/Masterminds/semver/v3
 # github.com/Masterminds/sprig/v3 v3.2.2
+## explicit
 github.com/Masterminds/sprig/v3
 # github.com/bitly/go-simplejson v0.5.0
+## explicit
 github.com/bitly/go-simplejson
+# github.com/bmizerany/assert v0.0.0-20160611221934-b7ed37b82869
+## explicit
 # github.com/dgrijalva/jwt-go v3.2.1-0.20180921172315-3af4c746e1c2+incompatible
+## explicit
 github.com/dgrijalva/jwt-go
 # github.com/fsnotify/fsnotify v1.4.7
 github.com/fsnotify/fsnotify
 # github.com/gogo/protobuf v1.3.1
+## explicit
 github.com/gogo/protobuf/proto
 github.com/gogo/protobuf/protoc-gen-gogo/descriptor
 # github.com/golang/protobuf v1.3.3
+## explicit
 github.com/golang/protobuf/descriptor
 github.com/golang/protobuf/jsonpb
 github.com/golang/protobuf/proto
@@ -33,6 +42,7 @@ github.com/golang/protobuf/ptypes/wrappers
 # github.com/google/uuid v1.1.2
 github.com/google/uuid
 # github.com/grpc-ecosystem/go-grpc-middleware v1.0.1-0.20180830092908-498ae206fc3c
+## explicit
 github.com/grpc-ecosystem/go-grpc-middleware
 github.com/grpc-ecosystem/go-grpc-middleware/auth
 github.com/grpc-ecosystem/go-grpc-middleware/logging
@@ -42,6 +52,7 @@ github.com/grpc-ecosystem/go-grpc-middleware/tags
 github.com/grpc-ecosystem/go-grpc-middleware/tags/logrus
 github.com/grpc-ecosystem/go-grpc-middleware/util/metautils
 # github.com/grpc-ecosystem/grpc-gateway v1.16.0
+## explicit
 github.com/grpc-ecosystem/grpc-gateway/internal
 github.com/grpc-ecosystem/grpc-gateway/protoc-gen-swagger/options
 github.com/grpc-ecosystem/grpc-gateway/runtime
@@ -62,6 +73,7 @@ github.com/huandu/xstrings
 # github.com/imdario/mergo v0.3.11
 github.com/imdario/mergo
 # github.com/infobloxopen/atlas-app-toolkit v0.19.1
+## explicit
 github.com/infobloxopen/atlas-app-toolkit/auth
 github.com/infobloxopen/atlas-app-toolkit/errors
 github.com/infobloxopen/atlas-app-toolkit/errors/mappers/validationerrors
@@ -78,46 +90,57 @@ github.com/infobloxopen/atlas-app-toolkit/rpc/resource
 github.com/infobloxopen/atlas-app-toolkit/server
 github.com/infobloxopen/atlas-app-toolkit/util
 # github.com/infobloxopen/protoc-gen-atlas-query-validate v0.5.0
+## explicit
 github.com/infobloxopen/protoc-gen-atlas-query-validate/options
 # github.com/infobloxopen/protoc-gen-atlas-validate v0.4.1
+## explicit
 github.com/infobloxopen/protoc-gen-atlas-validate/interceptor
 github.com/infobloxopen/protoc-gen-atlas-validate/options
 github.com/infobloxopen/protoc-gen-atlas-validate/runtime
 # github.com/infobloxopen/protoc-gen-gorm v0.18.0
+## explicit
 github.com/infobloxopen/protoc-gen-gorm/errors
 github.com/infobloxopen/protoc-gen-gorm/options
 github.com/infobloxopen/protoc-gen-gorm/types
 # github.com/jinzhu/gorm v1.9.11
+## explicit
 github.com/jinzhu/gorm
 github.com/jinzhu/gorm/dialects/postgres
 # github.com/jinzhu/inflection v1.0.0
 github.com/jinzhu/inflection
 # github.com/konsorten/go-windows-terminal-sequences v1.0.1
 github.com/konsorten/go-windows-terminal-sequences
+# github.com/kr/pretty v0.2.1
+## explicit
 # github.com/lib/pq v1.1.1
 github.com/lib/pq
 github.com/lib/pq/hstore
 github.com/lib/pq/oid
 github.com/lib/pq/scram
 # github.com/lyft/protoc-gen-validate v0.1.0
+## explicit
 github.com/lyft/protoc-gen-validate/validate
 # github.com/magiconair/properties v1.8.0
 github.com/magiconair/properties
 # github.com/mitchellh/copystructure v1.0.0
 github.com/mitchellh/copystructure
 # github.com/mitchellh/mapstructure v1.1.2
+## explicit
 github.com/mitchellh/mapstructure
 # github.com/mitchellh/reflectwalk v1.0.0
 github.com/mitchellh/reflectwalk
 # github.com/pelletier/go-toml v1.2.0
 github.com/pelletier/go-toml
 # github.com/pkg/errors v0.8.1
+## explicit
 github.com/pkg/errors
 # github.com/satori/go.uuid v1.2.0
+## explicit
 github.com/satori/go.uuid
 # github.com/shopspring/decimal v1.2.0
 github.com/shopspring/decimal
 # github.com/sirupsen/logrus v1.2.0
+## explicit
 github.com/sirupsen/logrus
 # github.com/spf13/afero v1.1.2
 github.com/spf13/afero
@@ -127,12 +150,15 @@ github.com/spf13/cast
 # github.com/spf13/jwalterweatherman v1.0.0
 github.com/spf13/jwalterweatherman
 # github.com/spf13/pflag v1.0.3
+## explicit
 github.com/spf13/pflag
 # github.com/spf13/viper v1.2.1
+## explicit
 github.com/spf13/viper
 # go.uber.org/atomic v1.5.0
 go.uber.org/atomic
 # go.uber.org/config v1.4.0
+## explicit
 go.uber.org/config
 go.uber.org/config/internal/merge
 go.uber.org/config/internal/unreachable
@@ -150,6 +176,7 @@ golang.org/x/crypto/ssh/terminal
 golang.org/x/lint
 golang.org/x/lint/golint
 # golang.org/x/net v0.0.0-20200822124328-c89045814202
+## explicit
 golang.org/x/net/context
 golang.org/x/net/http/httpguts
 golang.org/x/net/http2
@@ -182,12 +209,14 @@ golang.org/x/tools/internal/gopathwalk
 golang.org/x/tools/internal/semver
 golang.org/x/tools/internal/span
 # google.golang.org/genproto v0.0.0-20200513103714-09dca8ec2884
+## explicit
 google.golang.org/genproto/googleapis/api/annotations
 google.golang.org/genproto/googleapis/api/httpbody
 google.golang.org/genproto/googleapis/rpc/code
 google.golang.org/genproto/googleapis/rpc/status
 google.golang.org/genproto/protobuf/field_mask
 # google.golang.org/grpc v1.33.1
+## explicit
 google.golang.org/grpc
 google.golang.org/grpc/attributes
 google.golang.org/grpc/backoff
@@ -229,6 +258,7 @@ google.golang.org/grpc/stats
 google.golang.org/grpc/status
 google.golang.org/grpc/tap
 # gopkg.in/yaml.v2 v2.3.0
+## explicit
 gopkg.in/yaml.v2
 # honnef.co/go/tools v0.0.1-2019.2.3
 honnef.co/go/tools/arg
