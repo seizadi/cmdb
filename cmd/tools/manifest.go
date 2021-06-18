@@ -4,13 +4,15 @@ import (
 	"errors"
 	"flag"
 	"fmt"
-	"go.uber.org/config"
-	"gopkg.in/yaml.v2"
 	"io/ioutil"
 	"os"
 	"strings"
 	
+	"go.uber.org/config"
+	"gopkg.in/yaml.v2"
+	
 	"github.com/seizadi/cmdb/helm"
+	"github.com/seizadi/cmdb/utils"
 )
 
 func getManifestConfig(filenames []string) (string, error) {
@@ -42,7 +44,7 @@ func getManifestConfig(filenames []string) (string, error) {
 
 	// Originally I was using helm to resolve the values, it was taking about 370ms
 	// I wrote it to sue go template engine directly which reduced the time around 70ms
-	values := helm.Values{Values: v}
+	values := helm.Values{Values: utils.MergeInterfaceToStringMaps(v)}
 	r := helm.Renderable{Tpl: string(c), Vals: values}
 	config, err := helm.RenderWithReferences(r)
 	if err != nil {

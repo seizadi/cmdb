@@ -1,10 +1,11 @@
 package helm
 
 import (
-	"github.com/Masterminds/sprig/v3"
-	"github.com/pkg/errors"
 	"strings"
 	"text/template"
+	
+	"github.com/Masterminds/sprig/v3"
+	"github.com/pkg/errors"
 )
 
 // Values represents a collection of chart values.
@@ -12,7 +13,7 @@ import (
 // We wrap this so that we can pass it to a chart using our engine as Values
 // Now apply the template to resolve references e.g. {{ Values.this.port }}
 type Values struct {
-	Values map[interface{}]interface{}
+	Values map[string]interface{}
 }
 
 // renderable is an object that can be rendered.
