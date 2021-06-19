@@ -18,13 +18,13 @@ import (
 func getManifestConfig(filenames []string) (string, error) {
 
 	var v map[interface{}]interface{}
-	var sources []config.YAMLOption
 
 	sources, err := ReadFiles(filenames...)
 	if err != nil {
 		return "", err
 	}
 	//fmt.Printf("Sources  #%v \n", sources)
+	sources = append(sources, config.Permissive())
 
 	provider, err := config.NewYAML(sources...)
 	if err != nil {

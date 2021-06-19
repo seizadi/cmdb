@@ -3,14 +3,16 @@ package svc
 import (
 	"context"
 	"errors"
+	"strings"
+	
 	"github.com/jinzhu/gorm"
+	"go.uber.org/config"
+	"gopkg.in/yaml.v2"
+	
 	"github.com/seizadi/cmdb/helm"
 	"github.com/seizadi/cmdb/pkg/pb"
 	"github.com/seizadi/cmdb/resource"
 	"github.com/seizadi/cmdb/utils"
-	"go.uber.org/config"
-	"gopkg.in/yaml.v2"
-	"strings"
 )
 
 type manifestServer struct {
@@ -154,6 +156,7 @@ func (s *manifestServer) getManifestConfig(appInstance *pb.ApplicationInstanceOR
 	source = config.Source(strings.NewReader(appInstance.ConfigYaml))
 	//sources = append([]config.YAMLOption{source}, sources...)
 	sources = append(sources, source)
+	sources = append(sources, config.Permissive())
 
 	provider, err := config.NewYAML(sources...)
 	if err != nil {
@@ -170,7 +173,7 @@ func (s *manifestServer) getManifestConfig(appInstance *pb.ApplicationInstanceOR
 
 	// Originally I was using helm to resolve the values, it was taking about 370ms
 	// I wrote it to sue go template engine directly which reduced the time around 70ms
-	values := helm.Values{ Values: v}
+	values := helm.Values{Values: utils.MergeInterfaceToStringMaps(v)}
 	r := helm.Renderable { Tpl: string(c), Vals: values}
 	config, err := helm.RenderWithReferences(r)
 	if err != nil {

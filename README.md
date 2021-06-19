@@ -146,7 +146,7 @@ http://localhost:8080/v1/kube_clusters \
 ```
 
 Note, `JWT` contains AccountID field.
-
+32f11ca9-a1c4-474c-bb3c-1da05d624032
 Now try a REST calls that requires authentication:
 ```sh
 export JWT="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJBY2NvdW50SUQiOjF9.GsXyFDDARjXe1t9DPo2LIBKHEal3O7t3vLI3edA7dGU"
