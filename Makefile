@@ -109,3 +109,6 @@ coverage:
 	@go test -race -coverprofile=coverage.txt -covermode=atomic pkg/svc/*
 	@go tool cover -html=coverage.txt
 
+.PHONY: tools
+tools:
+	@go build -o bin/manifest cmd/tools/*
