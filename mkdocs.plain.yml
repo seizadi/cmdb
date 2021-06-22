@@ -1,0 +1,15 @@
+# Project information
+site_name: CMDB
+site_url: https://seizadi.github.io/cmdb
+site_author: Soheil Eizadi
+
+# Repository
+repo_name: CMDB
+repo_url: https://github.com/seizadi/cmdb
+edit_uri: edit/master/docs
+docs_dir: docs
+
+# Navigation
+nav:
+  - Home: index.md
+  - Diagrams: diagrams.md

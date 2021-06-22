@@ -1,55 +1,56 @@
-{{- $fullName := include "chart-app.fullname" . -}}
-{{- $appName := include "chart-app.name" . -}}
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ $fullName }}
-{{- if .Values.cmdb }}
-  namespace: {{ .Values.nameSpace }}
-{{- end }}
+  name: {{ include "cmdb.fullname" . }}
   labels:
-    app: {{ $appName }}
-    chart: {{ template "chart-app.chart" . }}
-    release: {{ .Release.Name }}
-    heritage: {{ .Release.Service }}
+    {{- include "cmdb.labels" . | nindent 4 }}
 spec:
+  {{- if not .Values.autoscaling.enabled }}
   replicas: {{ .Values.replicaCount }}
+  {{- end }}
   selector:
     matchLabels:
-      app: {{ $appName }}
-      release: {{ .Release.Name }}
+      {{- include "cmdb.selectorLabels" . | nindent 6 }}
   template:
     metadata:
+      {{- with .Values.podAnnotations }}
+      annotations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
       labels:
-        app: {{ $appName }}
-        release: {{ .Release.Name }}
+        {{- include "cmdb.selectorLabels" . | nindent 8 }}
     spec:
+      {{- with .Values.imagePullSecrets }}
+      imagePullSecrets:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      serviceAccountName: {{ include "cmdb.serviceAccountName" . }}
+      securityContext:
+        {{- toYaml .Values.podSecurityContext | nindent 8 }}
+      initContainers:
+        {{- if .Values.postgresql.enabled }}
+        - name: init-database
+          image: busybox
+          command: ['sh', '-c', 'until nslookup {{ template "postgresql.primary.fullname" . }}; do echo waiting for cmdb database; sleep 10; done;']
+        {{- end }}
       containers:
         - name: {{ .Chart.Name }}
-          image: {{template "imagespec" dict "containers" .Values.containers "containername" "cmdb-app"}}
-          imagePullPolicy: {{template "imagepull" dict "containers" .Values.containers "containername" "cmdb-app"}}
-          envFrom:
-          - configMapRef:
-              name: {{ $fullName }}
+          securityContext:
+            {{- toYaml .Values.securityContext | nindent 12 }}
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
           env:
-{{- if .Values.postgresql.enabled }}
-            - name: CMDB_DATABASE_PASSWORD
-              valueFrom:
-                secretKeyRef:
-                  name: {{ template "chart-app.postgresql.fullname" . }}
-                  key: postgres-password
-{{- end }}
-            - name: "CMDB_LOGGING_LEVEL"
-              value: {{ .Values.logLevel }}
+          - name: "CMDB_LOGGING_LEVEL"
+            value: {{ .Values.logLevel }}
           ports:
-          - containerPort: 8080
-            name: http
-            protocol: TCP
-          - containerPort: 8081
-            protocol: TCP
-          - containerPort: 9090
-            name: grpc
-            protocol: TCP
+            - containerPort: 8080
+              name: http
+              protocol: TCP
+            - containerPort: 8081
+              protocol: TCP
+            - containerPort: 9090
+              name: grpc
+              protocol: TCP
           livenessProbe:
             httpGet:
               path: /healthz
@@ -69,16 +70,16 @@ spec:
             successThreshold: 1
             failureThreshold: 10
           resources:
-{{ toYaml .Values.resources | indent 12 }}
-    {{- with .Values.nodeSelector }}
+            {{- toYaml .Values.resources | nindent 12 }}
+      {{- with .Values.nodeSelector }}
       nodeSelector:
-{{ toYaml . | indent 8 }}
-    {{- end }}
-    {{- with .Values.affinity }}
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.affinity }}
       affinity:
-{{ toYaml . | indent 8 }}
-    {{- end }}
-    {{- with .Values.tolerations }}
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.tolerations }}
       tolerations:
-{{ toYaml . | indent 8 }}
-    {{- end }}
+        {{- toYaml . | nindent 8 }}
+      {{- end }}

@@ -1,32 +1,26 @@
-{{- $fullName := include "chart-app.fullname" . -}}
-{{- $appName := include "chart-app.name" . -}}
-{{- $service := index .Values.services 0 -}}
 apiVersion: v1
 kind: Service
 metadata:
-  name: {{ $fullName }}
-{{- if .Values.cmdb }}
-  namespace: {{ .Values.nameSpace }}
-{{- end }}
+  name: {{ include "cmdb.fullname" . }}
   labels:
-    app: {{ $appName }}
-    chart: {{ template "chart-app.chart" . }}
-    release: {{ .Release.Name }}
-    heritage: {{ .Release.Service }}
+    {{- include "cmdb.labels" . | nindent 4 }}
 spec:
-  type: {{ $service.type }}
+  type: {{ .Values.service.type }}
   ports:
-  {{- range $service.ports }}
+    - port: {{ .Values.service.port }}
+      targetPort: http
+      protocol: TCP
+      name: http
+    {{- range .Values.service.ports }}
     - port: {{ .port }}
       protocol: {{ .protocol }}
       name: {{ .name }}
-    {{- if .targetPort }}
+      {{- if .targetPort }}
       targetPort: {{ .targetPort }}
-    {{- end }}
-    {{- if .nodePort }}
+      {{- end }}
+      {{- if .nodePort }}
       nodePort: {{ .nodePort }}
-    {{- end }}
+  {{- end }}
   {{- end }}
   selector:
-    app: {{ $appName }}
-    release: {{ .Release.Name }}
+    {{- include "cmdb.selectorLabels" . | nindent 4 }}

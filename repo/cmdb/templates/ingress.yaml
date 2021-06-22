@@ -1,72 +1,61 @@
 {{- if .Values.ingress.enabled -}}
-{{- $fullName := include "chart-app.fullname" . -}}
-{{- $appName := include "chart-app.name" . -}}
-{{- $service := index .Values.services 0 -}}
-{{- $servicePort := include "portspec" (dict "ports" $service.ports "portname" "http") -}}
-{{- $serviceGrpcPort := include "portspec" (dict "ports" $service.ports "portname" "grpc") -}}
-{{- $ingressPath := .Values.ingress.path -}}
+{{- $fullName := include "cmdb.fullname" . -}}
+{{- $svcPort := .Values.service.port -}}
+{{- if and .Values.ingress.className (not (semverCompare ">=1.18-0" .Capabilities.KubeVersion.GitVersion)) }}
+  {{- if not (hasKey .Values.ingress.annotations "kubernetes.io/ingress.class") }}
+  {{- $_ := set .Values.ingress.annotations "kubernetes.io/ingress.class" .Values.ingress.className}}
+  {{- end }}
+{{- end }}
+{{- if semverCompare ">=1.19-0" .Capabilities.KubeVersion.GitVersion -}}
+apiVersion: networking.k8s.io/v1
+{{- else if semverCompare ">=1.14-0" .Capabilities.KubeVersion.GitVersion -}}
+apiVersion: networking.k8s.io/v1beta1
+{{- else -}}
 apiVersion: extensions/v1beta1
+{{- end }}
 kind: Ingress
 metadata:
   name: {{ $fullName }}
-{{- if .Values.cmdb }}
-  namespace: {{ .Values.nameSpace }}
-{{- end }}
   labels:
-    app: {{ $appName }}
-    chart: {{ template "chart-app.chart" . }}
-    release: {{ .Release.Name }}
-    heritage: {{ .Release.Service }}
-{{- with .Values.ingress.annotations }}
+    {{- include "cmdb.labels" . | nindent 4 }}
+  {{- with .Values.ingress.annotations }}
   annotations:
-{{ toYaml . | indent 4 }}
-{{- end }}
+    {{- toYaml . | nindent 4 }}
+  {{- end }}
 spec:
-{{- if .Values.ingress.tls }}
+  {{- if and .Values.ingress.className (semverCompare ">=1.18-0" .Capabilities.KubeVersion.GitVersion) }}
+  ingressClassName: {{ .Values.ingress.className }}
+  {{- end }}
+  {{- if .Values.ingress.tls }}
   tls:
-  {{- range .Values.ingress.tls }}
+    {{- range .Values.ingress.tls }}
     - hosts:
-      {{- range .hosts }}
-        - {{ . }}
-      {{- end }}
+        {{- range .hosts }}
+        - {{ . | quote }}
+        {{- end }}
       secretName: {{ .secretName }}
+    {{- end }}
   {{- end }}
-{{- end }}
   rules:
-  {{- range .Values.ingress.hosts }}
-    - host: {{ . }}
+    {{- range .Values.ingress.hosts }}
+    - host: {{ .host | quote }}
       http:
         paths:
-          - path: {{ $ingressPath }}/v1
+          {{- range .paths }}
+          - path: {{ .path }}
+            {{- if and .pathType (semverCompare ">=1.18-0" $.Capabilities.KubeVersion.GitVersion) }}
+            pathType: {{ .pathType }}
+            {{- end }}
             backend:
+              {{- if semverCompare ">=1.19-0" $.Capabilities.KubeVersion.GitVersion }}
+              service:
+                name: {{ $fullName }}
+                port:
+                  number: {{ $svcPort }}
+              {{- else }}
               serviceName: {{ $fullName }}
-              servicePort: {{ $servicePort }}
-  {{- end }}
----
-apiVersion: extensions/v1beta1
-kind: Ingress
-metadata:
-  name: {{ $fullName }}-doc
-{{- if .Values.cmdb }}
-  namespace: {{ .Values.nameSpace }}
-{{- end }}
-  labels:
-    app: {{ $appName }}
-    chart: {{ template "chart-app.chart" . }}
-    release: {{ .Release.Name }}
-    heritage: {{ .Release.Service }}
-  annotations:
-      nginx.ingress.kubernetes.io/rewrite-target: /
-spec:
-  rules:
-  {{- range .Values.ingress.hosts }}
-    - host: {{ . }}
-      http:
-        paths:
-          - path: {{ $ingressPath }}
-            backend:
-              serviceName: {{ $fullName }}
-              servicePort: {{ $servicePort }}
-  {{- end }}
-
+              servicePort: {{ $svcPort }}
+              {{- end }}
+          {{- end }}
+    {{- end }}
 {{- end }}

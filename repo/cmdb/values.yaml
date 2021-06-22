@@ -1,0 +1,135 @@
+# Default values for cmdb.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+# info, debug, or error
+logLevel: error
+
+replicaCount: 1
+
+image:
+  repository: soheileizadi/cmdb-server
+  pullPolicy: IfNotPresent
+  # Overrides the image tag whose default is the chart appVersion.
+  tag: ""
+
+imagePullSecrets: []
+nameOverride: ""
+fullnameOverride: ""
+
+serviceAccount:
+  # Specifies whether a service account should be created
+  create: true
+  # Annotations to add to the service account
+  annotations: {}
+  # The name of the service account to use.
+  # If not set and create is true, a name is generated using the fullname template
+  name: ""
+
+podAnnotations: {}
+
+podSecurityContext: {}
+  # fsGroup: 2000
+
+securityContext: {}
+  # capabilities:
+  #   drop:
+  #   - ALL
+  # readOnlyRootFilesystem: true
+  # runAsNonRoot: true
+  # runAsUser: 1000
+
+service:
+  type: NodePort
+  ports:
+    - name: grpc
+      port: 9090
+      targetport: grpc
+      nodePort: 30090
+      protocol: TCP
+    - name: http
+      port: 8080
+      targetport: http
+      nodePort: 30080
+      protocol: TCP
+
+ingress:
+  enabled: true
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /v1
+    # kubernetes.io/ingress.class: nginx
+    # kubernetes.io/tls-acme: "true"
+  hosts:
+    - host: minikube
+      paths:
+        - path: /cmdb
+
+  tls: []
+  #  - secretName: chart-example-tls
+  #    hosts:
+  #      - chart-example.local
+
+resources: {}
+  # We usually recommend not to specify default resources and to leave this as a conscious
+  # choice for the user. This also increases chances charts run on environments with little
+  # resources, such as Minikube. If you do want to specify resources, uncomment the following
+  # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
+  # limits:
+  #   cpu: 100m
+  #   memory: 128Mi
+  # requests:
+  #   cpu: 100m
+  #   memory: 128Mi
+
+autoscaling:
+  enabled: false
+  minReplicas: 1
+  maxReplicas: 100
+  targetCPUUtilizationPercentage: 80
+  # targetMemoryUtilizationPercentage: 80
+
+nodeSelector: {}
+
+tolerations: []
+
+affinity: {}
+
+## Configuration values for the postgresql dependency.
+## ref: https://github.com/bitnami/charts/tree/master/bitnami/postgresql/#installing-the-chart
+##
+postgresql:
+
+  ## Use the PostgreSQL chart dependency.
+  ##
+  enabled: true
+
+  ### PostgreSQL User to create.
+  ##
+  postgresqlUsername: postgres
+
+  ## PostgreSQL Password for the new user.
+  ## If not set, a random 10 characters password will be used.
+  ##
+  postgresqlPassword: postgres
+
+  ## PostgreSQL Database to create.
+  ##
+  postgresqlDatabase: cmdb
+
+  ## TLS traffic support
+  ##
+  tls:
+    enabled: false
+
+# FIXME - replication is global since it is not scoped to postgresql.replication getting error:
+# executing "postgresql.primary.fullname" at <.Values.replication.enabled>: nil pointer evaluating interface {}.enabled
+## PostgreSQL Replication support
+##
+replication:
+  enabled: false
+
+migration:
+  name: migration
+  image: infoblox/migrate
+  version: v1.0.0
+  imagePullPolicy: Always
