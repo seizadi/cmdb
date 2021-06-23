@@ -1,5 +1,5 @@
 # build the server binary
-FROM golang:1.10.0 AS builder
+FROM golang:1.16.0 AS builder
 LABEL stage=server-intermediate
 WORKDIR /go/src/github.com/seizadi/cmdb
 COPY . .
@@ -21,7 +21,6 @@ WORKDIR /bin
 COPY --from=builder /go/src/github.com/seizadi/cmdb/bin/server .
 COPY --from=builder /go/src/github.com/seizadi/cmdb/config config/
 COPY --from=builder /go/src/github.com/seizadi/cmdb/pkg/pb/cmdb.swagger.json www/swagger.json
-COPY --from=builder /go/src/github.com/seizadi/cmdb/apidoc-poc/swagger-ui-dist www/swagger-ui-dist/
 
 # copy migration scripts to service container
 COPY --from=builder /go/src/github.com/seizadi/cmdb/db/migrations/ /db/migrations/

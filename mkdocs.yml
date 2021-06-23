@@ -12,6 +12,8 @@ docs_dir: docs
 # Navigation
 nav:
   - Home: index.md
+  - Model: model.md
+  - AppModel: app_model.md
   - Diagrams: diagrams.md
 
 # Copyright
@@ -22,7 +24,7 @@ nav:
 # Javascript Scripts
 extra_javascript:
 #  - https://unpkg.com/mermaid/dist/mermaid.min.js
-  - https://cdnjs.cloudflare.com/ajax/libs/mermaid/8.9.2/mermaid.min.js
+  - https://cdnjs.cloudflare.com/ajax/libs/mermaid/8.10.2/mermaid.min.js
 
 # Theme
 theme:
