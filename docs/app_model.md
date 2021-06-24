@@ -1,11 +1,11 @@
 ```mermaid
-%%{init: {'theme': 'base', 'themeVariables': { 'primaryColor': '#fffcbb', 'fontFamily': 'verdana', 'fontSize': '30px'}}}%%
+%%{init: {'theme': 'base', 'themeVariables': { 'primaryColor': '#fffcbb', 'fontFamily': 'aerial', 'fontSize': '50px', 'lineColor': '#ff0000', 'primaryBorderColor': '#ff0000'}}}%%
 erDiagram
-    App }o--|| Owner : "has"
-    App ||--|| Doc : "publish"
-    App ||--|| Namespace : "has"
-    App ||--|| Api : "publish"
-    App ||--o{ Api : "consume"
-    App ||--|| Repo : "use"
-    App }o--o{ Synthetic : "monitor"       
+    APP }o--|| OWNER : "has"
+    APP ||--|| DOC : "publish"
+    APP ||--|| NAMESPACE : "has"
+    APP ||--|| API : "publish"
+    APP ||--o{ API : "consume"
+    APP ||--|| REPO : "use"
+    APP }o--o{ SYNTHETIC : "monitor"       
 ```

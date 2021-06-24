@@ -63,6 +63,7 @@ ingress:
     - host: minikube
       paths:
         - path: /cmdb
+          pathType: ImplementationSpecific
 
   tls: []
   #  - secretName: chart-example-tls

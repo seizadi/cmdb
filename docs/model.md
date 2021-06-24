@@ -1,5 +1,5 @@
 ```mermaid
-%%{init: {'theme': 'base', 'themeVariables': { 'primaryColor': '#fffcbb', 'fontFamily': 'verdana', 'fontSize': '30px'}}}%%
+%%{init: {'theme': 'base', 'themeVariables': { 'primaryColor': '#fffcbb', 'fontFamily': 'aerial', 'fontSize': '50px', 'lineColor': '#ff0000', 'primaryBorderColor': '#ff0000'}}}%%
 erDiagram
     AppCollection ||--o{ ChartVersion : ""
     AppCollection ||--o{ AppCollection : ""

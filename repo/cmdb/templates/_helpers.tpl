@@ -60,3 +60,12 @@ Create the name of the service account to use
 {{- default "default" .Values.serviceAccount.name }}
 {{- end }}
 {{- end }}
+
+{{- define "portspec" -}}
+  {{- $portname := .portname -}}
+  {{- range $port := .ports -}}
+    {{- if eq $port.name $portname -}}
+      {{- $port.port -}}
+    {{- end -}}
+  {{- end -}}
+{{- end -}}
