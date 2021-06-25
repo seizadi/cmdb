@@ -1,0 +1,15 @@
+{{- $fullName := include "cmdb.fullname" . -}}
+{{- $appName := include "cmdb.name" . -}}
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ $fullName }}
+  namespace: {{ .Release.Namespace }}
+  labels:
+    app: {{ $appName }}
+data:
+{{- if .Values.postgresql.enabled }}
+    CMDB_DATABASE_HOST: {{ .Release.Name }}-postgresql
+    CMDB_DATABASE_NAME: {{ .Values.postgresql.postgresqlDatabase }}
+    CMDB_DATABASE_USER: {{ .Values.postgresql.postgresqlUsername }}
+{{- end }}

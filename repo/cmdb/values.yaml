@@ -45,12 +45,10 @@ service:
     - name: grpc
       port: 9090
       targetport: grpc
-      nodePort: 30090
       protocol: TCP
     - name: http
       port: 8080
       targetport: http
-      nodePort: 30080
       protocol: TCP
 
 ingress:
@@ -117,20 +115,18 @@ postgresql:
   ##
   postgresqlDatabase: cmdb
 
+  ## PostgreSQL Port for Database
+  ##
+  service:
+    port: 5432
+
   ## TLS traffic support
   ##
   tls:
     enabled: false
 
-# FIXME - replication is global since it is not scoped to postgresql.replication getting error:
-# executing "postgresql.primary.fullname" at <.Values.replication.enabled>: nil pointer evaluating interface {}.enabled
-## PostgreSQL Replication support
-##
-replication:
-  enabled: false
-
 migration:
   name: migration
   image: infoblox/migrate
   version: v1.0.0
-  imagePullPolicy: Always
+  imagePullPolicy: IfNotPresent

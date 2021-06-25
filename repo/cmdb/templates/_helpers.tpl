@@ -61,6 +61,14 @@ Create the name of the service account to use
 {{- end }}
 {{- end }}
 
+{{- define "sslmode" -}}
+{{- if .Values.postgresql.tls.enabled }}
+{{- print "enable" }}
+{{- else }}
+{{- print "disable" }}
+{{- end }}
+{{- end }}
+
 {{- define "portspec" -}}
   {{- $portname := .portname -}}
   {{- range $port := .ports -}}

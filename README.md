@@ -22,12 +22,13 @@ start a new application.
 
 ### Prerequisites
 
-   * Go 1.13.5
+   * Go 1.16
    * Postgres
 
 ## Database
 
 ### Design
+***Section out of date will need update***
 The process of designing the data model for the application could be
 iterative and maybe visual tools. I created a sample ./model directory
 here with a make target for generating ERD:
@@ -55,7 +56,14 @@ iterative process. There are two ERDs one for the data model to drive
 The other is geared toward the 
 [Application Deployment model based on Kubernetes](docs/db/cmdb_app_deployment_erd.pdf).
 
-### Database Migration
+### Installation
+There is a [helm chart](repo/cmdb)
+tested for minikube, kind and Cluster (EKS tested).
+
+The minikube and kind clusters run their own postgres instance and automatically run migration on startup.
+
+### Local Development
+#### Database Migration
 
 For migrating the database schema, [golang-migrate](https://github.com/golang-migrate/migrate) framework is used.
 
@@ -75,7 +83,7 @@ kubectl port-forward postgresql-postgresql-0 5432:5432
 createdb -h localhost -U postgres cmdb
 ```
 
-### Local development setup
+#### Local development setup
 
 Make sure you have Postgres Running
 ```bash

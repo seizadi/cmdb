@@ -147,7 +147,10 @@ func ServeExternal(logger *logrus.Logger) error {
 	if err != nil {
 		return err
 	}
-
+	
+	prefix := "/" + viper.GetString("gateway.endpoint") + viper.GetString("server.version")
+	prefixApiDoc := "/" + viper.GetString("gateway.endpoint") + "/apidoc"
+	
 	s, err := server.NewServer(
 		// register our grpc server
 		server.WithGrpcServer(grpcServer),
@@ -169,11 +172,11 @@ func ServeExternal(logger *logrus.Logger) error {
 				)}...,
 			),
 			gateway.WithServerAddress(fmt.Sprintf("%s:%s", viper.GetString("server.address"), viper.GetString("server.port"))),
-			RegisterGatewayEndpoints(),
+			RegisterGatewayEndpoints(prefix),
 		),
 		// serve swagger at the root
 		server.WithHandler("/swagger", http.HandlerFunc(func(writer http.ResponseWriter, request *http.Request) {
-			basePath := "/v1/"
+			basePath := prefix + "/"
 			if origURI := request.Header.Get("X-Original-Uri"); origURI != "" {
 				// k8s deployment patch.
 				SwaggerPatch.Do(func() {
@@ -226,12 +229,12 @@ func ServeExternal(logger *logrus.Logger) error {
 			}
 		})),
 
-		server.WithHandler("/apidoc/", http.HandlerFunc(func(writer http.ResponseWriter, request *http.Request) {
+		server.WithHandler(prefixApiDoc + "/", http.HandlerFunc(func(writer http.ResponseWriter, request *http.Request) {
 			filenames := strings.Split(request.URL.Path, "/")
 			http.ServeFile(writer, request, viper.GetString("gateway.swaggerUI")+filenames[len(filenames)-1])
 		})),
 
-		server.WithHandler("/apidoc", http.HandlerFunc(func(writer http.ResponseWriter, request *http.Request) {
+		server.WithHandler(prefixApiDoc, http.HandlerFunc(func(writer http.ResponseWriter, request *http.Request) {
 			host := strings.TrimSuffix(request.Host, ".")
 
 			var schema string
@@ -239,9 +242,9 @@ func ServeExternal(logger *logrus.Logger) error {
 			// We got to figure out the original URI and schema client was requesting
 			// to insert it into the index.html for css/html sources.
 			if origURI := request.Header.Get("X-Original-Uri"); origURI != "" {
-				host += strings.TrimSuffix(origURI, "/apidoc")
+				host += strings.TrimSuffix(origURI, prefixApiDoc)
 			} else {
-				host += strings.TrimSuffix(request.URL.Path, "/apidoc")
+				host += strings.TrimSuffix(request.URL.Path, prefixApiDoc)
 			}
 
 			if origSchema := request.Header.Get("X-Scheme"); origSchema != "" {
@@ -259,7 +262,7 @@ func ServeExternal(logger *logrus.Logger) error {
 				logger.Debugf("Error wile rendering template: %v", err)
 				return
 			}
-			t.Execute(writer, struct{ HRef, SchemaRef string }{HRef: schema + host + "/apidoc", SchemaRef: schema + host + "/swagger"})
+			t.Execute(writer, struct{ HRef, SchemaRef string }{HRef: schema + host + prefixApiDoc, SchemaRef: schema + host + "/swagger"})
 		})),
 	)
 	if err != nil {
