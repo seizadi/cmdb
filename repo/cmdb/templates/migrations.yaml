@@ -8,8 +8,8 @@ spec:
   restartPolicy: OnFailure
   initContainers:
   - name: migration-source
-    image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
-    imagePullPolicy: {{ .Values.image.pullPolicy }}
+    image: "{{ .Values.cmdb.image.repository }}:{{ .Values.cmdb.image.tag | default .Chart.AppVersion }}"
+    imagePullPolicy: {{ .Values.cmdb.image.pullPolicy }}
     volumeMounts:
     - mountPath: "/service-migrations"
       name: migrations
@@ -20,8 +20,8 @@ spec:
     - "/service-migrations"
   containers:
     - name: migration
-      image: {{ .Values.migration.image }}:{{ .Values.migration.version }}
-      imagePullPolicy: {{ .Values.migration.imagePullPolicy }}
+      image: {{ .Values.cmdb.migration.image }}:{{ .Values.cmdb.migration.version }}
+      imagePullPolicy: {{ .Values.cmdb.migration.imagePullPolicy }}
       volumeMounts:
       - mountPath: "/service-migrations"
         name: migrations
@@ -52,7 +52,7 @@ spec:
         value: {{ template "sslmode" . }}
 
       - name: LOGGING_LEVEL
-        value: {{ .Values.logLevel }}
+        value: {{ .Values.cmdb.logLevel }}
       - name: dsn
         value: postgres://$(POSTGRES_USER):$(POSTGRES_PASSWORD)@$(POSTGRES_HOST):$(POSTGRES_PORT)/$(POSTGRES_DB)?sslmode=$(POSTGRES_SSLMODE)
       command:

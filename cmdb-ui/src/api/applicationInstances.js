@@ -1,7 +1,7 @@
 import cmdb, {headers} from './cmdb'
 
 export const apiListApplicationInstances = (envId = "", appId = "" ) => {
-  let url = '/v1/application_instances';
+  let url = '/cmdb/v1/application_instances';
   let search = "";
   if (envId.length > 0 && appId.length > 0) {
     search = '&_filter=environment_id=="' + encodeURIComponent(envId) + " AND " +

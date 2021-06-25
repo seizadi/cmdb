@@ -7,28 +7,28 @@ metadata:
   labels:
     {{- include "cmdb.labels" . | nindent 4 }}
 spec:
-  {{- if not .Values.autoscaling.enabled }}
-  replicas: {{ .Values.replicaCount }}
+  {{- if not .Values.cmdb.autoscaling.enabled }}
+  replicas: {{ .Values.cmdb.replicaCount }}
   {{- end }}
   selector:
     matchLabels:
       {{- include "cmdb.selectorLabels" . | nindent 6 }}
   template:
     metadata:
-      {{- with .Values.podAnnotations }}
+      {{- with .Values.cmdb.podAnnotations }}
       annotations:
         {{- toYaml . | nindent 8 }}
       {{- end }}
       labels:
         {{- include "cmdb.selectorLabels" . | nindent 8 }}
     spec:
-      {{- with .Values.imagePullSecrets }}
+      {{- with .Values.cmdb.imagePullSecrets }}
       imagePullSecrets:
         {{- toYaml . | nindent 8 }}
       {{- end }}
       serviceAccountName: {{ include "cmdb.serviceAccountName" . }}
       securityContext:
-        {{- toYaml .Values.podSecurityContext | nindent 8 }}
+        {{- toYaml .Values.cmdb.podSecurityContext | nindent 8 }}
       initContainers:
         {{- if .Values.postgresql.enabled }}
         - name: init-database
@@ -38,12 +38,12 @@ spec:
       containers:
         - name: {{ .Chart.Name }}
           securityContext:
-            {{- toYaml .Values.securityContext | nindent 12 }}
-          image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
-          imagePullPolicy: {{ .Values.image.pullPolicy }}
+            {{- toYaml .Values.cmdb.securityContext | nindent 12 }}
+          image: "{{ .Values.cmdb.image.repository }}:{{ .Values.cmdb.image.tag | default .Chart.AppVersion }}"
+          imagePullPolicy: {{ .Values.cmdb.image.pullPolicy }}
           env:
           - name: "CMDB_LOGGING_LEVEL"
-            value: {{ .Values.logLevel }}
+            value: {{ .Values.cmdb.logLevel }}
           - name: CMDB_DATABASE_USER
             valueFrom:
               configMapKeyRef:
@@ -97,16 +97,16 @@ spec:
             successThreshold: 1
             failureThreshold: 10
           resources:
-            {{- toYaml .Values.resources | nindent 12 }}
-      {{- with .Values.nodeSelector }}
+            {{- toYaml .Values.cmdb.resources | nindent 12 }}
+      {{- with .Values.cmdb.nodeSelector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}
       {{- end }}
-      {{- with .Values.affinity }}
+      {{- with .Values.cmdb.affinity }}
       affinity:
         {{- toYaml . | nindent 8 }}
       {{- end }}
-      {{- with .Values.tolerations }}
+      {{- with .Values.cmdb.tolerations }}
       tolerations:
         {{- toYaml . | nindent 8 }}
       {{- end }}

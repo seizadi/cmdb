@@ -14,7 +14,7 @@ import {
   SHOW_DISABLED,} from "./types";
 
 export const listApplications = () => async dispatch => {
-  const response = await cmdb.get('/v1/applications?_order_by=name&_fields=id,name', {headers});
+  const response = await cmdb.get('/cmdb/v1/applications?_order_by=name&_fields=id,name', {headers});
   dispatch({type: LIST_APPLICATIONS, payload: response.data.results});
 }
 
@@ -24,17 +24,17 @@ export const listApplicationInstances = ({ envId = "", appId = "" }) => async di
 }
 
 export const listEnvironments = () => async dispatch => {
-  const response = await cmdb.get('/v1/environments?_order_by=name&_fields=id,name,lifecycle_id', {headers});
+  const response = await cmdb.get('/cmdb/v1/environments?_order_by=name&_fields=id,name,lifecycle_id', {headers});
   dispatch({type: LIST_ENVIRONMENTS, payload: response.data.results});
 }
 
 export const listLifecycles = () => async dispatch => {
-  const response = await cmdb.get('/v1/lifecycles?_order_by=name&_fields=id,name', {headers});
+  const response = await cmdb.get('/cmdb/v1/lifecycles?_order_by=name&_fields=id,name', {headers});
   dispatch({type: LIST_LIFECYCLES, payload: response.data.results});
 }
 
 export const listChartVersions = () => async dispatch => {
-  const response = await cmdb.get('/v1/chart_versions?_order_by=name&_fields=id,name,repo,version', {headers});
+  const response = await cmdb.get('/cmdb/v1/chart_versions?_order_by=name&_fields=id,name,repo,version', {headers});
   dispatch({type: LIST_CHART_VERSIONS, payload: response.data.results});
 }
 
@@ -45,7 +45,7 @@ export const selectEnvironment = ( envId = "" ) =>  {
 export const createManifest = (appInstanceId) => async dispatch => {
   let response;
   try {
-    response = await cmdb.post('/v1/manifest', {app_instance_id: appInstanceId}, {headers});
+    response = await cmdb.post('/cmdb/v1/manifest', {app_instance_id: appInstanceId}, {headers});
     dispatch({type: CREATE_MANIFEST, payload: response.data});
   } catch (error) {
     dispatch({type: CREATE_MANIFEST, payload: {artifact: "Failed to get artifact due to error."}});
@@ -59,7 +59,7 @@ export const clearManifest = (value) => {
 export const createValues = (appInstanceId) => async dispatch => {
   let response;
   try {
-    response = await cmdb.post('/v1/manifest/config', {app_instance_id: appInstanceId}, {headers});
+    response = await cmdb.post('/cmdb/v1/manifest/config', {app_instance_id: appInstanceId}, {headers});
     dispatch({type: CREATE_VALUES, payload: response.data});
   } catch (error) {
     dispatch({type: CREATE_VALUES, payload: {artifact: "Failed to get values due to error."}});

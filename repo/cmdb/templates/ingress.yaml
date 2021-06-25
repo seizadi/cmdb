@@ -1,10 +1,10 @@
-{{- if .Values.ingress.enabled -}}
+{{- if .Values.cmdb.ingress.enabled -}}
 {{- $fullName := include "cmdb.fullname" . -}}
-{{- $svcPort := include "portspec" (dict "ports" .Values.service.ports "portname" "http") -}}
-{{- $svcGrpcPort := include "portspec" (dict "ports" .Values.service.ports "portname" "grpc") -}}
-  {{- if and .Values.ingress.className (not (semverCompare ">=1.18-0" .Capabilities.KubeVersion.GitVersion)) }}
-  {{- if not (hasKey .Values.ingress.annotations "kubernetes.io/ingress.class") }}
-  {{- $_ := set .Values.ingress.annotations "kubernetes.io/ingress.class" .Values.ingress.className}}
+{{- $svcPort := include "portspec" (dict "ports" .Values.cmdb.service.ports "portname" "http") -}}
+{{- $svcGrpcPort := include "portspec" (dict "ports" .Values.cmdb.service.ports "portname" "grpc") -}}
+  {{- if and .Values.cmdb.ingress.className (not (semverCompare ">=1.18-0" .Capabilities.KubeVersion.GitVersion)) }}
+  {{- if not (hasKey .Values.cmdb.ingress.annotations "kubernetes.io/ingress.class") }}
+  {{- $_ := set .Values.cmdb.ingress.annotations "kubernetes.io/ingress.class" .Values.cmdb.ingress.className}}
   {{- end }}
 {{- end }}
 {{- if semverCompare ">=1.19-0" .Capabilities.KubeVersion.GitVersion -}}
@@ -20,17 +20,17 @@ metadata:
   namespace: {{ .Release.Namespace }}
   labels:
     {{- include "cmdb.labels" . | nindent 4 }}
-  {{- with .Values.ingress.annotations }}
+  {{- with .Values.cmdb.ingress.annotations }}
   annotations:
     {{- toYaml . | nindent 4 }}
   {{- end }}
 spec:
-  {{- if and .Values.ingress.className (semverCompare ">=1.18-0" .Capabilities.KubeVersion.GitVersion) }}
-  ingressClassName: {{ .Values.ingress.className }}
+  {{- if and .Values.cmdb.ingress.className (semverCompare ">=1.18-0" .Capabilities.KubeVersion.GitVersion) }}
+  ingressClassName: {{ .Values.cmdb.ingress.className }}
   {{- end }}
-  {{- if .Values.ingress.tls }}
+  {{- if .Values.cmdb.ingress.tls }}
   tls:
-    {{- range .Values.ingress.tls }}
+    {{- range .Values.cmdb.ingress.tls }}
     - hosts:
         {{- range .hosts }}
         - {{ . | quote }}
@@ -39,7 +39,7 @@ spec:
     {{- end }}
   {{- end }}
   rules:
-    {{- range .Values.ingress.hosts }}
+    {{- range .Values.cmdb.ingress.hosts }}
     - host: {{ .host | quote }}
       http:
         paths:

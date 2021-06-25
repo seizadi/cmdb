@@ -2,96 +2,105 @@
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 
-# info, debug, or error
-logLevel: error
+cmdb:
 
-replicaCount: 1
+  # info, debug, or error
+  logLevel: error
 
-image:
-  repository: soheileizadi/cmdb-server
-  pullPolicy: IfNotPresent
-  # Overrides the image tag whose default is the chart appVersion.
-  tag: ""
+  replicaCount: 1
 
-imagePullSecrets: []
-nameOverride: ""
-fullnameOverride: ""
+  image:
+    repository: soheileizadi/cmdb-server
+    pullPolicy: IfNotPresent
+    # Overrides the image tag whose default is the chart appVersion.
+    tag: ""
 
-serviceAccount:
-  # Specifies whether a service account should be created
-  create: true
-  # Annotations to add to the service account
-  annotations: {}
-  # The name of the service account to use.
-  # If not set and create is true, a name is generated using the fullname template
-  name: ""
+  imagePullSecrets: []
+  nameOverride: ""
+  fullnameOverride: ""
 
-podAnnotations: {}
+  serviceAccount:
+    # Specifies whether a service account should be created
+    create: true
+    # Annotations to add to the service account
+    annotations: {}
+    # The name of the service account to use.
+    # If not set and create is true, a name is generated using the fullname template
+    name: ""
 
-podSecurityContext: {}
-  # fsGroup: 2000
+  podAnnotations: {}
 
-securityContext: {}
-  # capabilities:
-  #   drop:
-  #   - ALL
-  # readOnlyRootFilesystem: true
-  # runAsNonRoot: true
-  # runAsUser: 1000
+  podSecurityContext: {}
+    # fsGroup: 2000
 
-service:
-  type: NodePort
-  ports:
-    - name: grpc
-      port: 9090
-      targetport: grpc
-      protocol: TCP
-    - name: http
-      port: 8080
-      targetport: http
-      protocol: TCP
+  securityContext: {}
+    # capabilities:
+    #   drop:
+    #   - ALL
+    # readOnlyRootFilesystem: true
+    # runAsNonRoot: true
+    # runAsUser: 1000
 
-ingress:
-  enabled: true
-  annotations:
-    # nginx.ingress.kubernetes.io/rewrite-target: /v1
-    # kubernetes.io/ingress.class: nginx
-    # kubernetes.io/tls-acme: "true"
-  hosts:
-    - host: minikube
-      paths:
-        - path: /cmdb
-          pathType: ImplementationSpecific
+  service:
+    type: NodePort
+    ports:
+      - name: grpc
+        port: 9090
+        targetport: grpc
+        protocol: TCP
+      - name: http
+        port: 8080
+        targetport: http
+        protocol: TCP
 
-  tls: []
-  #  - secretName: chart-example-tls
-  #    hosts:
-  #      - chart-example.local
+  ingress:
+    enabled: true
+    annotations:
+      # nginx.ingress.kubernetes.io/rewrite-target: /v1
+      # kubernetes.io/ingress.class: nginx
+      # kubernetes.io/tls-acme: "true"
+    hosts:
+      - host: minikube
+        paths:
+          - path: /cmdb
+            pathType: ImplementationSpecific
 
-resources: {}
-  # We usually recommend not to specify default resources and to leave this as a conscious
-  # choice for the user. This also increases chances charts run on environments with little
-  # resources, such as Minikube. If you do want to specify resources, uncomment the following
-  # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
-  # limits:
-  #   cpu: 100m
-  #   memory: 128Mi
-  # requests:
-  #   cpu: 100m
-  #   memory: 128Mi
+    tls: []
+    #  - secretName: chart-example-tls
+    #    hosts:
+    #      - chart-example.local
 
-autoscaling:
-  enabled: false
-  minReplicas: 1
-  maxReplicas: 100
-  targetCPUUtilizationPercentage: 80
-  # targetMemoryUtilizationPercentage: 80
+  resources: {}
+    # We usually recommend not to specify default resources and to leave this as a conscious
+    # choice for the user. This also increases chances charts run on environments with little
+    # resources, such as Minikube. If you do want to specify resources, uncomment the following
+    # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
+    # limits:
+    #   cpu: 100m
+    #   memory: 128Mi
+    # requests:
+    #   cpu: 100m
+    #   memory: 128Mi
 
-nodeSelector: {}
+  autoscaling:
+    enabled: false
+    minReplicas: 1
+    maxReplicas: 100
+    targetCPUUtilizationPercentage: 80
+    # targetMemoryUtilizationPercentage: 80
 
-tolerations: []
+  nodeSelector: {}
 
-affinity: {}
+  tolerations: []
+
+  affinity: {}
+
+
+  migration:
+    name: migration
+    image: infoblox/migrate
+    version: v1.0.0
+    imagePullPolicy: IfNotPresent
 
 ## Configuration values for the postgresql dependency.
 ## ref: https://github.com/bitnami/charts/tree/master/bitnami/postgresql/#installing-the-chart
@@ -125,8 +134,3 @@ postgresql:
   tls:
     enabled: false
 
-migration:
-  name: migration
-  image: infoblox/migrate
-  version: v1.0.0
-  imagePullPolicy: IfNotPresent
