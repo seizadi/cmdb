@@ -111,4 +111,5 @@ coverage:
 
 .PHONY: tools
 tools:
+	@echo 'Building tools'
 	@go build -o bin/manifest cmd/tools/*

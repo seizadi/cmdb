@@ -42,7 +42,7 @@ cmdb:
     # runAsUser: 1000
 
   service:
-    type: NodePort
+    type: ClusterIP
     ports:
       - name: grpc
         port: 9090
@@ -60,7 +60,7 @@ cmdb:
       # kubernetes.io/ingress.class: nginx
       # kubernetes.io/tls-acme: "true"
     hosts:
-      - host: minikube
+      - host: localhost
         paths:
           - path: /cmdb
             pathType: ImplementationSpecific
@@ -101,6 +101,15 @@ cmdb:
     image: infoblox/migrate
     version: v1.0.0
     imagePullPolicy: IfNotPresent
+
+  db:
+    postgresql:
+      postgresqlUsername: postgres
+      postgresqlDatabase: cmdb
+      postgresqlPassword: postgres
+      postgresqlHost: cmdb-postgresql
+      service:
+        port: 5432
 
 ## Configuration values for the postgresql dependency.
 ## ref: https://github.com/bitnami/charts/tree/master/bitnami/postgresql/#installing-the-chart

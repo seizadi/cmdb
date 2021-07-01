@@ -123,7 +123,7 @@ be a better inerface.
 ### REST Configuration
 Then you do the REST call:
 ```sh
-curl http://localhost:8080/v1/version
+curl http://localhost/cmdb/v1/version
 {"version":"0.0.1"}
 ```
 
@@ -790,6 +790,43 @@ I built the initial application and it was working fine on local:
 $ go run ./cmd/server/*.go
 $ curl http://localhost:8080/v1/version
 {"version":"0.0.1"}
+```
+
+Ingress on kind cluster configuraiton did not work here is the config for it to work...
+```bash
+cat <<EOF | kind create cluster --config=-
+kind: Cluster
+apiVersion: kind.x-k8s.io/v1alpha4
+nodes:
+- role: control-plane
+  kubeadmConfigPatches:
+  - |
+    kind: InitConfiguration
+    nodeRegistration:
+      kubeletExtraArgs:
+        node-labels: "ingress-ready=true"
+  extraPortMappings:
+  - containerPort: 80
+    hostPort: 80
+    protocol: TCP
+  - containerPort: 443
+    hostPort: 443
+    protocol: TCP
+EOF
+```
+
+Run NGIX controller:
+```bash
+kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/a8408cdb51086a099a2c71ed3e68363eb3a7ae60/deploy/static/provider/kind/deploy.yaml
+kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/master/deploy/static/provider/kind/deploy.yaml
+```
+
+Test it is running:
+```bash
+kubectl wait --namespace ingress-nginx \
+  --for=condition=ready pod \
+  --selector=app.kubernetes.io/component=controller \
+  --timeout=90s
 ```
 
 Then I built a docker image and deployed it on minikube, now found

@@ -49,6 +49,7 @@ spec:
               configMapKeyRef:
                 name: {{ $fullName }}
                 key: CMDB_DATABASE_USER
+          # FIXME - The password should be under if postgresql clause else inject secret
           - name: CMDB_DATABASE_PASSWORD
             valueFrom:
               secretKeyRef:

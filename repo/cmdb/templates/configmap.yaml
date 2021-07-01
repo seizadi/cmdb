@@ -9,7 +9,7 @@ metadata:
     app: {{ $appName }}
 data:
 {{- if .Values.postgresql.enabled }}
-    CMDB_DATABASE_HOST: {{ .Release.Name }}-postgresql
-    CMDB_DATABASE_NAME: {{ .Values.postgresql.postgresqlDatabase }}
-    CMDB_DATABASE_USER: {{ .Values.postgresql.postgresqlUsername }}
+    CMDB_DATABASE_HOST: {{ .Values.cmdb.db.postgresql.postgresqlHost }}
+    CMDB_DATABASE_NAME: {{ .Values.cmdb.db.postgresql.postgresqlDatabase }}
+    CMDB_DATABASE_USER: {{ .Values.cmdb.db.postgresql.postgresqlUsername }}
 {{- end }}

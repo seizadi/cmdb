@@ -118,7 +118,7 @@ func get_base_path() string {
 	if err != nil {
 		os.Exit(0)
 	}
-	return pwd + "/tmp/repo"
+	return pwd
 }
 
 func main() {
