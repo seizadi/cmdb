@@ -6,7 +6,19 @@ K8S_DEST_SERVER := https://kubernetes.default.svc
 CMDB_REPO := https://github.com/seizadi/cmdb
 CMDB_VALUES := https://raw.githubusercontent.com/seizadi/dc-repo/main/build/dev/seizadi-minikube/cmdb.yaml
 
-default: minikube argocd argo_login setup_apps
+default: local
+
+local: kind argocd kind_argo_login setup_apps
+
+vm: minikube argocd minikube_argo_login setup_apps
+
+kind:
+	kind create cluster --config kind.yaml
+	@ echo Add NGINX Ingress
+	# FIXME - Bug in deployment can not use master, revert to master when it is fixed.
+	# kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/master/deploy/static/provider/kind/deploy.yaml
+	kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/a8408cdb51086a099a2c71ed3e68363eb3a7ae60/deploy/static/provider/kind/deploy.yaml
+	kubectl $(K8S_WAIT)  --namespace ingress-nginx --for=condition=ready pod --selector=app.kubernetes.io/component=controller
 
 minikube:
 	minikube start --cpus=2 --memory=4g --kubernetes-version $(K8S_VERSION) --driver=virtualbox --addons ingress
@@ -23,11 +35,20 @@ argocd:
 	kubectl $(K8S_WAIT_ARGOCD) -n argocd --for=condition=Available deployment.apps/argocd-repo-server
 	kubectl $(K8S_WAIT_ARGOCD) -n argocd --for=condition=Available deployment.apps/argocd-server
 
+# FIXME - Merge this with other argo_logins
 #argo_login: argocd_password=$(shell kubectl get pods -n argocd -l app.kubernetes.io/name=argocd-server -o name | cut -d'/' -f 2)
-argo_login: argocd_password=$(shell kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 -d)
-argo_login: argocd_url=$(shell minikube service argocd-server -n argocd --url|tail -1)
-argo_login: argocd_address=$(shell echo $(argocd_url) | awk -F'//' '{print $$2}')
-argo_login:
+minikube_argo_login: argocd_password=$(shell kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 -d)
+minikube_argo_login: argocd_url=$(shell minikube service argocd-server -n argocd --url|tail -1)
+minikube_argo_login: argocd_address=$(shell echo $(argocd_url) | awk -F'//' '{print $$2}')
+minikube_argo_login:
+	@echo "Login to argocd using following command line:"
+	@echo "argocd login $(argocd_address) --username admin --password $(argocd_password) --insecure"
+	@argocd login $(argocd_address) --username admin --password $(argocd_password) --insecure
+
+#argo_login: argocd_password=$(shell kubectl get pods -n argocd -l app.kubernetes.io/name=argocd-server -o name | cut -d'/' -f 2)
+kind_argo_login: argocd_password=$(shell kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 -d)
+kind_argo_login: argocd_address=localhost:30828
+kind_argo_login:
 	@echo "Login to argocd using following command line:"
 	@echo "argocd login $(argocd_address) --username admin --password $(argocd_password) --insecure"
 	@argocd login $(argocd_address) --username admin --password $(argocd_password) --insecure

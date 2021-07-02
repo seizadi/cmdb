@@ -788,7 +788,7 @@ it on the k8 enviornment.
 I built the initial application and it was working fine on local:
 ```sh
 $ go run ./cmd/server/*.go
-$ curl http://localhost:8080/v1/version
+$ curl http://localhost:8080/cmdb/v1/version
 {"version":"0.0.1"}
 ```
 

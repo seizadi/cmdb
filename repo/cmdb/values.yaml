@@ -42,7 +42,7 @@ cmdb:
     # runAsUser: 1000
 
   service:
-    type: LoadBalancer
+    type: ClusterIP
     ports:
       - name: grpc
         port: 9090
