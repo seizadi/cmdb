@@ -39,11 +39,9 @@ spec:
     {{- end }}
   {{- end }}
   rules:
-    {{- range .Values.cmdb.ingress.hosts }}
-    - host: {{ .host | quote }}
-      http:
+    - http:
         paths:
-          {{- range .paths }}
+          {{- range .Values.cmdb.ingress.paths }}
           - path: {{ .path }}
             {{- if and .pathType (semverCompare ">=1.18-0" $.Capabilities.KubeVersion.GitVersion) }}
             pathType: {{ .pathType }}
@@ -59,5 +57,4 @@ spec:
               servicePort: {{ $svcPort }}
               {{- end }}
           {{- end }}
-    {{- end }}
 {{- end }}
