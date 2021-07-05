@@ -28,7 +28,9 @@ cluster: eks-deploy
 	@echo "Get Cluster Config"
 	aws eks update-kubeconfig --name $(shell cat .id)-cmdb
 	@echo "Create NGINX Ingress Controller"
-	kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/master/deploy/static/provider/aws/deploy.yaml
+	# FIXME - The ingress on main has bug
+	# kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/master/deploy/static/provider/aws/deploy.yaml
+	kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/a8408cdb51086a099a2c71ed3e68363eb3a7ae60/deploy/static/provider/aws/deploy.yaml
 	kubectl $(K8S_WAIT) --namespace ingress-nginx --for=condition=ready pod --selector=app.kubernetes.io/component=controller
 	@echo 'Done with build cluster'
 
