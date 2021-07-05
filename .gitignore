@@ -4,4 +4,6 @@ coverage.txt
 tmp
 render/values.yaml
 render/templates/values.yaml
-
+repo/.id
+repo/.host
+repo/cluster.yaml

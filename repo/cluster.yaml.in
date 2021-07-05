@@ -1,0 +1,16 @@
+apiVersion: eksctl.io/v1alpha5
+kind: ClusterConfig
+metadata:
+  name: {{ .Name }}-cmdb
+  region: {{ .Region }}
+nodeGroups:
+  - name: {{ .Name }}-eks
+    instanceType: m5.large
+    desiredCapacity: 2
+    volumeSize: 120
+    tags:
+      'Product': 'Athena'
+      'Component': 'Cluster-Operator'
+      'OrginatingUser': '{{ .Name }}'
+      'Env': 'Dev'
+      'Protected': 'TRUE'
