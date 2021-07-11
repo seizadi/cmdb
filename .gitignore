@@ -5,5 +5,8 @@ tmp
 render/values.yaml
 render/templates/values.yaml
 repo/.id
+repo/.cluster
 repo/.host
 repo/cluster.yaml
+repo/provider-config.yaml
+repo/provider-trust.json
