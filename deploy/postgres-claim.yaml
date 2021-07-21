@@ -1,0 +1,35 @@
+apiVersion: database.example.org/v1alpha1
+kind: PostgresInstance
+metadata:
+  # Composite resources are cluster scoped, so there's no need for a namespace.
+  name: example
+  namespace: cmdb
+spec:
+  # The schema of the spec.parameters object is defined by the earlier example
+  # of an CompositeResourceDefinition. The location, storageGB, and version fields
+  # are patched onto the ResourceGroup, PostgresServer
+  # that this PostgresInstance composes.
+  parameters:
+    storageGB: 20
+#    version: "11.2"
+  # Support for a compositionRef is automatically injected into the schema of
+  # all defined composite resources. This allows the resource
+  # author to explicitly reference a Composition that this composite resource
+  # should use - in this case the earlier example-azure Composition. Note that
+  # it is also possible to select a composition by labels - see the below
+  # PostgresInstance for an example of this approach.
+  compositionRef:
+    name: compositepostgresinstances.aws.database.example.org
+  # Alternative to compositionRef is to use compositionSelector shown below:
+#  compositionSelector:
+#    matchLabels:
+#      provider: aws
+#      purpose: rds-deployment
+  # Support for a writeConnectionSecretToRef is automatically injected into the
+  # schema of all defined composite resources. This allows the
+  # resource to write a connection secret containing any details required to
+  # connect to it - in this case the hostname, username, and password. Composite
+  # resource authors may omit this reference if they do not need or wish to
+  # write these details.
+  writeConnectionSecretToRef:
+    name: cmdb-postgres-instance

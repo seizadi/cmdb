@@ -1,0 +1,29 @@
+# https://github.com/crossplane/provider-aws/blob/master/apis/database/v1beta1/dbsubnetgroup_types.go
+# Reference https://crossplane.io/docs/v0.7/services/aws-services-guide.html#configure-managed-service-access
+# We use the three public subnets Ids from EKS Cluster to create DBSubnetGroup
+apiVersion: database.aws.crossplane.io/v1beta1
+kind: DBSubnetGroup
+metadata:
+  name: {{ .Name }}
+spec:
+  forProvider:
+    description: {{ .Description }}
+    # Region is suppose to be optional but I get an error when I don't include it for aws provider
+    # managed/dbsubnetgroup.database.aws.crossplane.io  unknown endpoint, could not resolve endpoint, partition: "aws", service: "sts", region: "", known: [... us-west-2 ....]
+    region: {{ .Region }}
+    subnetIds:
+      - {{ .Sub1 }}
+      - {{ .Sub2 }}
+      - {{ .Sub3 }}
+    #subnetIdRefs:
+    #  - name: subnet-a
+    #  - name: subnet-b
+    #  - name: subnet-c
+    tags:
+      - key: name
+        value: {{ .Name }}
+  # FIXME - reclaim policy has validation error
+  # https://github.com/crossplane/stack-aws-sample/blob/master/kustomize/aws/database/dbsubnetgroup.yaml
+  # reclaimPolicy: Delete
+  providerRef:
+    name: aws-provider

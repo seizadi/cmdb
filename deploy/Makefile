@@ -14,7 +14,7 @@ default: vm
 
 vm: minikube argocd argo_minikube_host argo_login setup_minikube_apps
 
-eks: cluster argocd  argo_aws_host argo_login crossplane crossplane_trust setup_eks_apps
+eks: cluster argocd crossplane crossplane_trust argo_aws_host argo_login setup_eks_apps
 
 .id:
 	git config user.email | awk -F@ '{print $$1}' > .id
@@ -67,6 +67,9 @@ argo_minikube_host:
 	echo $(argocd_url) | awk -F'//' '{print $$2}' > .host
 
 argo_aws_host:
+	# Found that LoadBalancer was not setup even when the ingress available
+	# FATA[0000] dial tcp: lookup ....elb.amazonaws.com: no such host
+	# FIXME - Need aws call to make sure LoadBalancer is setup, for now I put argocd login later
 	kubectl -n argocd get service argocd-server -o json | jq '.status.loadBalancer.ingress[0].hostname' > .host
 
 #argo_login: argocd_password=$(shell kubectl get pods -n argocd -l app.kubernetes.io/name=argocd-server -o name | cut -d'/' -f 2)
@@ -81,33 +84,76 @@ argo_password:
 	kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 -d
 	@echo "\nUse above password for login"
 
-provider-config.yaml: provider_role=$(shell cat .id )-provider-role
-provider-config.yaml: force provider-config.yaml.in
-	sed "s/{{ .Account }}/$(AWS_ACCOUNT)/g; s/{{ .IamRoleName }}/$(provider_role)/g" provider-config.yaml.in > $@
+crossplane-config.yaml: provider_role=$(shell cat .cluster )-provider-role
+crossplane-config.yaml: force crossplane-config.yaml.in
+	sed "s/{{ .Account }}/$(AWS_ACCOUNT)/g; s/{{ .IamRoleName }}/$(provider_role)/g" crossplane-config.yaml.in > $@
 
-crossplane: provider-config.yaml
+crossplane: crossplane-config.yaml
 	@echo "Install Cross-Plane"
 	kubectl create namespace crossplane-system
 	helm repo add crossplane-stable https://charts.crossplane.io/stable
 	helm install crossplane --namespace crossplane-system crossplane-stable/crossplane
-	kubectl apply -f provider-config.yaml
+	kubectl apply -f crossplane-config.yaml
 	kubectl $(K8S_WAIT) -n crossplane-system --for=condition=Available deployment.apps/crossplane
 	kubectl $(K8S_WAIT) -n crossplane-system --for=condition=Available deployment.apps/crossplane-rbac-manager
+	# Need CRDs to install
+	kubectl $(K8S_WAIT) --for=condition=Established crd/providers.pkg.crossplane.io
 	@echo "Done with Cross-Plane Installation"
 
 provider-trust.json: OIDC_PROVIDER=$(shell aws eks describe-cluster --name $(shell cat .cluster) --region $(AWS_REGION) --query "cluster.identity.oidc.issuer" --output text | sed -e "s/^https:\/\///")
 provider-trust.json: OIDC_PROVIDER_ESCAPED=$(shell echo $(OIDC_PROVIDER) | sed 's/\//\\\//g' )
-provider-trust.json: provider-trust.json.in
-	sed "s/{{ .Account }}/$(AWS_ACCOUNT)/g; s/{{ .OidcProvider }}/'$(OIDC_PROVIDER_ESCAPED)'/g; s/{{ .NameSpace }}/'crossplane-system'/g" provider-trust.json.in > $@
+provider-trust.json: force provider-trust.json.in
+	sed "s/{{ .Account }}/$(AWS_ACCOUNT)/g; s/{{ .OidcProvider }}/$(OIDC_PROVIDER_ESCAPED)/g; s/{{ .NameSpace }}/crossplane-system/g" provider-trust.json.in > $@
 
 
-crossplane_trust: provider_role=$(shell cat .id )-provider-role
+crossplane_trust: provider_role=$(shell cat .cluster )-provider-role
 crossplane_trust: provider-trust.json
 	@echo "Setup CrossPlane Trust"
 	aws iam create-role --role-name $(provider_role) --assume-role-policy-document file://provider-trust.json --description "IAM role for $(shell cat .cluster) Cluster for CrossPlane pprovider-aws" &> /dev/null
 	# FIXME - Setup CrossPlane with minimum access right now it has full admin access
 	aws iam attach-role-policy --role-name $(provider_role) --policy-arn=arn:aws:iam::aws:policy/AdministratorAccess &> /dev/null
+	kubectl apply -f provider-config.yaml
 	@echo "CrossPlane Trust Established"
+
+stack-aws:
+	kubectl apply -f stack-aws.yaml
+	@echo "CrossPlane AWS Stack Setup"
+
+vpcid: vpcid=$(shell aws eks describe-cluster --region $(AWS_REGION) --name $(shell cat .cluster) --query "cluster.resourcesVpcConfig.vpcId" --output text)
+vpcid:
+	echo $(vpcid)
+
+rds-subnet.yaml: vpcid=$(shell aws eks describe-cluster --region $(AWS_REGION) --name $(shell cat .cluster) --query "cluster.resourcesVpcConfig.vpcId" --output text)
+rds-subnet.yaml: pubSubIds=$(shell aws ec2 describe-subnets --region $(AWS_REGION) --filters '[{"Name":"vpc-id","Values":["$(vpcid)"]}]' | jq '.Subnets | .[] | select(.MapPublicIpOnLaunch == true) | .SubnetId')
+rds-subnet.yaml: pubSub1=$(shell echo $(pubSubIds) | awk '{print $$1}')
+rds-subnet.yaml: pubSub2=$(shell echo $(pubSubIds) | awk '{print $$2}')
+rds-subnet.yaml: pubSub3=$(shell echo $(pubSubIds) | awk '{print $$3}')
+rds-subnet.yaml: force rds-subnet.yaml.in
+	sed "s/{{ .Name }}/$(shell cat .cluster)-rds-subnetgroup/g; s/{{ .Region }}/$(AWS_REGION)/g; s/{{ .Sub1 }}/$(pubSub1)/g; s/{{ .Sub2 }}/$(pubSub2)/g; s/{{ .Sub3 }}/$(pubSub2)/g; s/{{ .Description }}/$(shell cat .cluster) EKS map vpc to rds/g" rds-subnet.yaml.in > $@
+
+rds-sg.yaml: vpcid=$(shell aws eks describe-cluster --region $(AWS_REGION) --name $(shell cat .cluster) --query "cluster.resourcesVpcConfig.vpcId" --output text)
+rds-sg.yaml: force rds-sg.yaml.in
+	sed "s/{{ .Name }}/$(shell cat .cluster)-rds-sg/g; s/{{ .Region }}/$(AWS_REGION)/g; s/{{ .VpcId }}/$(vpcid)/g; s/{{ .Port }}/5432/g; s/{{ .Description }}/$(shell cat .cluster) EKS open rds for workloads/g" rds-sg.yaml.in > $@
+
+rds-composition.yaml: vpcid=$(shell aws eks describe-cluster --region $(AWS_REGION) --name $(shell cat .cluster) --query "cluster.resourcesVpcConfig.vpcId" --output text)
+rds-composition.yaml: force rds-composition.yaml.in
+	sed "s/{{ .Region }}/$(AWS_REGION)/g; s/{{ .DbInstanceClass }}/db.t2.small/g; s/{{ .DbEngineVersion }}/11.7/g; s/{{ .VpcSgRef }}/$(shell cat .cluster)-rds-sg/g; s/{{ .SubnetRef }}/$(shell cat .cluster)-rds-subnetgroup/g" rds-composition.yaml.in > $@
+
+rds-subnetgroup: rds-subnet.yaml
+	kubectl apply -f rds-subnet.yaml
+	kubectl $(K8S_WAIT) --for=condition=Ready dbsubnetgroup/$(shell cat .cluster)-rds-subnetgroup
+	kubectl $(K8S_WAIT) --for=condition=Synced dbsubnetgroup/$(shell cat .cluster)-rds-subnetgroup
+
+rds-sg: rds-sg.yaml
+	kubectl apply -f rds-sg.yaml
+	kubectl $(K8S_WAIT) --for=condition=Ready securitygroup/$(shell cat .cluster)-rds-sg
+	kubectl $(K8S_WAIT) --for=condition=Synced securitygroup/$(shell cat .cluster)-rds-sg
+
+rds-composition: rds-composition.yaml
+	kubectl apply -f rds-composition.yaml
+
+rds-comp-resource-def: rds-comp-resource-def.yaml
+	kubectl apply -f rds-comp-resource-def.yaml
 
 
 setup_minikube_apps:
@@ -121,10 +167,10 @@ setup_eks_apps:
 clean_vm:
 	minikube delete
 
-clean_eks: provider_role=$(shell cat .id )-provider-role
+clean_eks: provider_role=$(shell cat .cluster )-provider-role
 clean_eks:
 	# FIXME - Need to cleanup IAM Roles
-	aws iam detach-role-policy --role-name $(provider_role)
+	# aws iam detach-role-policy --role-name $(provider_role) --policy-arn
 	eksctl delete cluster --name $(shell cat .cluster) --region $(AWS_REGION)
 
 force:
