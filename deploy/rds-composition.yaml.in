@@ -41,12 +41,12 @@ spec:
             dbInstanceClass: {{ .DbInstanceClass }}
             masterUsername: masteruser
             engine: postgres
-            engineVersion: {{ .DbEngineVersion }}
+            engineVersion: "{{ .DbEngineVersion }}"
             skipFinalSnapshotBeforeDeletion: true
             publiclyAccessible: false
           writeConnectionSecretToRef:
             namespace: crossplane-system
-          providerConfigRef:
+          providerRef:
             name: aws-provider    
       patches:
         - fromFieldPath: "metadata.uid"

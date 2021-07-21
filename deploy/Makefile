@@ -139,6 +139,9 @@ rds-composition.yaml: vpcid=$(shell aws eks describe-cluster --region $(AWS_REGI
 rds-composition.yaml: force rds-composition.yaml.in
 	sed "s/{{ .Region }}/$(AWS_REGION)/g; s/{{ .DbInstanceClass }}/db.t2.small/g; s/{{ .DbEngineVersion }}/11.7/g; s/{{ .VpcSgRef }}/$(shell cat .cluster)-rds-sg/g; s/{{ .SubnetRef }}/$(shell cat .cluster)-rds-subnetgroup/g" rds-composition.yaml.in > $@
 
+postgres-direct.yaml: force postgres-direct.yaml.in
+	sed "s/{{ .Region }}/$(AWS_REGION)/g; s/{{ .DbInstanceClass }}/db.t2.small/g; s/{{ .DbEngineVersion }}/11.7/g; s/{{ .VpcSgRef }}/$(shell cat .cluster)-rds-sg/g; s/{{ .SubnetRef }}/$(shell cat .cluster)-rds-subnetgroup/g" postgres-direct.yaml.in > $@
+
 rds-subnetgroup: rds-subnet.yaml
 	kubectl apply -f rds-subnet.yaml
 	kubectl $(K8S_WAIT) --for=condition=Ready dbsubnetgroup/$(shell cat .cluster)-rds-subnetgroup
@@ -155,6 +158,11 @@ rds-composition: rds-composition.yaml
 rds-comp-resource-def: rds-comp-resource-def.yaml
 	kubectl apply -f rds-comp-resource-def.yaml
 
+postgres-direct: postgres-direct.yaml
+	kubectl apply -f postgres-direct.yaml
+
+postgres-claim: postgres-claim.yaml
+	kubectl apply -f postgres-claim.yaml
 
 setup_minikube_apps:
 	argocd repo add $(CMDB_REPO) --name cmdb
