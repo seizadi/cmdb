@@ -6,8 +6,9 @@ K8S_WAIT := wait --timeout=120s
 K8S_WAIT_ARGOCD := wait --timeout=600s
 K8S_DEST_SERVER := https://kubernetes.default.svc
 CMDB_REPO := https://github.com/seizadi/cmdb
-CMDB_MINIKUBE_VALUES := https://raw.githubusercontent.com/seizadi/dc-repo/main/build/dev/seizadi-minikube/cmdb.yaml
-CMDB_EKS_VALUES := https://raw.githubusercontent.com/seizadi/dc-repo/main/build/dev/seizadi-eks/cmdb.yaml
+DC_REPO := https://github.com/seizadi/dc-repo
+CMDB_MINIKUBE_VALUES := https://raw.githubusercontent.com/seizadi/dc-repo/main/build/dev/minikube/cmdb.yaml
+CMDB_EKS_VALUES := https://raw.githubusercontent.com/seizadi/dc-repo/main/build/prod/seizadi-eks/cmdb.yaml
 ARGOCD_HOST := locahost
 
 default: vm
@@ -115,10 +116,6 @@ crossplane_trust: provider-trust.json
 	kubectl apply -f provider-config.yaml
 	@echo "CrossPlane Trust Established"
 
-stack-aws:
-	kubectl apply -f stack-aws.yaml
-	@echo "CrossPlane AWS Stack Setup"
-
 vpcid: vpcid=$(shell aws eks describe-cluster --region $(AWS_REGION) --name $(shell cat .cluster) --query "cluster.resourcesVpcConfig.vpcId" --output text)
 vpcid:
 	echo $(vpcid)
@@ -169,10 +166,12 @@ postgres-claim: postgres-claim.yaml
 
 setup_minikube_apps:
 	argocd repo add $(CMDB_REPO) --name cmdb
+	argocd repo add $(DC_REPO) --name dc-repo
 	argocd app create cmdb --repo $(CMDB_REPO) --path repo/cmdb --dest-server $(K8S_DEST_SERVER) --dest-namespace cmdb --values-literal-file $(CMDB_MINIKUBE_VALUES)
 
 setup_eks_apps:
 	argocd repo add $(CMDB_REPO) --name cmdb
+	argocd repo add $(DC_REPO) --name dc-repo
 	argocd app create cmdb --repo $(CMDB_REPO) --path repo/cmdb --dest-server $(K8S_DEST_SERVER) --dest-namespace cmdb --values-literal-file $(CMDB_EKS_VALUES)
 
 clean_vm:
