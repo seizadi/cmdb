@@ -30,11 +30,9 @@ spec:
       securityContext:
         {{- toYaml .Values.cmdb.podSecurityContext | nindent 8 }}
       initContainers:
-        {{- if .Values.postgresql.enabled }}
         - name: init-database
           image: busybox
           command: ['sh', '-c', 'until nslookup {{ .Release.Name }}-postgresql; do echo waiting for cmdb database; sleep 10; done;']
-        {{- end }}
       containers:
         - name: {{ .Chart.Name }}
           securityContext:
@@ -44,22 +42,22 @@ spec:
           env:
           - name: "CMDB_LOGGING_LEVEL"
             value: {{ .Values.cmdb.logLevel }}
-          - name: CMDB_DATABASE_USER
-            valueFrom:
-              configMapKeyRef:
-                name: {{ $fullName }}
-                key: CMDB_DATABASE_USER
-          # FIXME - The password should be under if postgresql clause else inject secret
-          - name: CMDB_DATABASE_PASSWORD
-            valueFrom:
-              secretKeyRef:
-                name: {{ .Release.Name }}-postgresql
-                key: postgresql-password
           - name: CMDB_DATABASE_NAME
             valueFrom:
               configMapKeyRef:
                 name: {{ $fullName }}
                 key: CMDB_DATABASE_NAME
+          {{ if .Values.postgresql.enabled }}
+          - name: CMDB_DATABASE_USER
+            valueFrom:
+              configMapKeyRef:
+                name: {{ $fullName }}
+                key: CMDB_DATABASE_USER
+          - name: CMDB_DATABASE_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: {{ .Release.Name }}-postgres-con
+                key: password
           - name: CMDB_DATABASE_HOST
             valueFrom:
               configMapKeyRef:
@@ -67,9 +65,30 @@ spec:
                 key: CMDB_DATABASE_HOST
           - name: POSTGRES_PORT
             value: {{ .Values.postgresql.service.port | quote }}
+          {{ else }}
+          - name: CMDB_DATABASE_USER
+            valueFrom:
+              secretKeyRef:
+                name: {{ .Release.Name }}-postgres-con
+                key: username
+          - name: CMDB_DATABASE_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: {{ .Release.Name }}-postgres-con
+                key: password
+          - name: CMDB_DATABASE_HOST
+            valueFrom:
+              secretKeyRef:
+                name: {{ .Release.Name }}-postgres-con
+                key: endpoint
+          - name: POSTGRES_PORT
+            valueFrom:
+              secretKeyRef:
+                name: {{ .Release.Name }}-postgres-con
+                key: port
+          {{ end }}
           - name: CMDB_DATABASE_SSL
             value: {{ template "sslmode" . }}
-
           ports:
             - containerPort: 8080
               name: http

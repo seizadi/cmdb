@@ -14,7 +14,7 @@ default: vm
 
 vm: minikube argocd argo_minikube_host argo_login setup_minikube_apps
 
-eks: cluster argocd crossplane crossplane_trust argo_aws_host argo_login setup_eks_apps
+eks: cluster argocd crossplane crossplane_trust crossplane_aws argo_aws_host argo_login setup_eks_apps
 
 .id:
 	git config user.email | awk -F@ '{print $$1}' > .id
@@ -157,6 +157,9 @@ rds-composition: rds-composition.yaml
 
 rds-comp-resource-def: rds-comp-resource-def.yaml
 	kubectl apply -f rds-comp-resource-def.yaml
+
+crossplane_aws: rds-subnetgroup rds-sg rds-composition rds-comp-resource-def
+	@echo "Setup CrossPlane AWS Composition Resources"
 
 postgres-direct: postgres-direct.yaml
 	kubectl apply -f postgres-direct.yaml
