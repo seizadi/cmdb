@@ -56,8 +56,8 @@ spec:
           - name: CMDB_DATABASE_PASSWORD
             valueFrom:
               secretKeyRef:
-                name: {{ .Release.Name }}-postgres-con
-                key: password
+                name: {{ .Release.Name }}-postgresql
+                key: postgresql-password
           - name: CMDB_DATABASE_HOST
             valueFrom:
               configMapKeyRef:
