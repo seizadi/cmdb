@@ -9,7 +9,7 @@
       "Action": "sts:AssumeRoleWithWebIdentity",
       "Condition": {
         "StringLike": {
-          "{{ .OidcProvider }}:sub": "system:serviceaccount:{{.NameSpace}}:provider-aws-*"
+          "{{ .OidcProvider }}:sub": "system:serviceaccount:{{ .NameSpace }}:provider-aws-*"
         }
       }
     }

@@ -1,0 +1,24 @@
+apiVersion: database.aws.crossplane.io/v1beta1
+kind: RDSInstance
+metadata:
+  name: rdspostgresql
+spec:
+  forProvider:
+    region: {{ .Region }}
+    vpcSecurityGroupIDRefs:
+      - name: {{ .VpcSgRef }}
+    dbSubnetGroupNameRef:
+      name: {{ .SubnetRef }}
+    dbInstanceClass: {{ .DbInstanceClass }}
+    masterUsername: masteruser
+    allocatedStorage: 20
+    engine: postgres
+    engineVersion: "{{ .DbEngineVersion }}"
+    skipFinalSnapshotBeforeDeletion: true
+    publiclyAccessible: false
+    # enableIAMDatabaseAuthentication: true
+  writeConnectionSecretToRef:
+    namespace: cmdb
+    name: cmdb-rdspostgresql-conn
+  providerRef:
+    name: aws-provider

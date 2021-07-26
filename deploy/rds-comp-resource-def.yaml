@@ -1,0 +1,99 @@
+# Reference Crossplane Docs https://crossplane.github.io/docs/v1.3/concepts/composition.html
+apiVersion: apiextensions.crossplane.io/v1
+kind: CompositeResourceDefinition
+metadata:
+  # XRDs follow the constraints of CRD names. They must be named
+  # <plural>.<group>, per the plural and group names configured by the
+  # crdSpecTemplate below.
+  name: compositepostgresinstances.database.example.org
+spec:
+  # Composite resources may optionally expose a connection secret - a Kubernetes
+  # Secret containing all of the details a pod might need to connect to the
+  # resource. Resources that wish to expose a connection secret must declare
+  # what keys they support. These keys form a 'contract' - any composition that
+  # intends to be compatible with this resource must compose resources that
+  # supply these connection secret keys.
+  connectionSecretKeys:
+    - username
+    - password
+    - endpoint
+    - port
+
+  # An enforced composition will be selected for all instances of this type and
+  # will override any selectors and references.
+  # enforcedCompositionRef:
+  #   name: securemysql.acme.org
+  group: database.example.org
+  # The defined kind of composite resource.
+  names:
+    kind: CompositePostgresInstance
+    plural: compositepostgresinstances
+  # The kind of claim this composite resource offers. Optional - omit the claim
+  # names if you don't wish to offer a claim for this composite resource. Must
+  # be different from the composite resource's kind. The established convention
+  # is for the claim kind to represent what the resource is, conceptually. e.g.
+  # 'MySQLInstance', not `MySQLInstanceClaim`.
+  claimNames:
+    kind: PostgresInstance
+    plural: postgresinstances
+  # A composite resource may be served at multiple versions simultaneously, but
+  # all versions must have identical schemas; Crossplane does not yet support
+  # conversion between different version schemas.
+  versions:
+  - name: v1alpha1
+    # Served specifies whether this version should be exposed via the API
+    # server's REST API.
+    served: true
+    # Referenceable specifies whether this version may be referenced by a
+    # Composition. Exactly one version may be referenceable by Compositions, and
+    # that version must be served. The referenceable version will always be the
+    # storage version of the underlying CRD.
+    referenceable: true
+    # This schema defines the configuration fields that the composite resource
+    # supports. It uses the same structural OpenAPI schema as a Kubernetes CRD
+    # - for example, this resource supports a spec.parameters.version enum.
+    # The following fields are reserved for Crossplane's use, and will be
+    # overwritten if included in this validation schema:
+    #
+    # - spec.resourceRef
+    # - spec.resourceRefs
+    # - spec.claimRef
+    # - spec.writeConnectionSecretToRef
+    # - status.conditions
+    # - status.connectionDetails
+    schema:
+      openAPIV3Schema:
+        type: object
+        properties:
+          spec:
+            type: object
+            properties:
+              parameters:
+                type: object
+                properties:
+                  # FIXME - Get version to work for selection
+                  # version:
+                  #   description: postgres engine version
+                  #   type: string
+                  #   enum: ["11.12", "12.7, 13.3"]
+                  storageGB:
+                    type: integer
+                  # For now we select RDS in same location as the cluster
+                  # location:
+                  #   description: Geographic location of this postgres server.
+                  #   type: string
+                required:
+                # - version
+                - storageGB
+                # - location
+            required:
+            - parameters
+          # The status subresource can be optionally defined in the XRD
+          # schema to allow observed fields from the composed resources
+          # to be set in the composite resource and claim.
+          status:
+            type: object
+            properties:
+              address:
+                description: Address of this postgres server.
+                type: string

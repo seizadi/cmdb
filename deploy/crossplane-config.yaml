@@ -3,7 +3,7 @@ kind: ControllerConfig
 metadata:
   name: aws-config
   annotations:
-    eks.amazonaws.com/role-arn: arn:aws:iam::{{ .Account }}:role/{{ .IamRoleName }}
+    eks.amazonaws.com/role-arn: arn:aws:iam::405093580753:role/seizadi-cmdb-provider-role
 spec:
   podSecurityContext:
     fsGroup: 2000
@@ -16,11 +16,4 @@ spec:
   package: crossplane/provider-aws:alpha
   controllerConfigRef:
     name: aws-config
----
-apiVersion: aws.crossplane.io/v1beta1
-kind: ProviderConfig
-metadata:
-  name: aws-provider
-spec:
-  credentials:
-    source: InjectedIdentity
+

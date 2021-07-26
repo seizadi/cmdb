@@ -1,0 +1,25 @@
+# https://github.com/crossplane/provider-aws/blob/master/apis/ec2/v1beta1/securitygroup_types.go
+# Reference https://crossplane.io/docs/v0.7/services/aws-services-guide.html#configure-managed-service-access
+# VpcId is the EKS Cluster VPC Id
+# Port is 5432 (Postgres) or 3306 (MySQL)
+#
+apiVersion: ec2.aws.crossplane.io/v1beta1
+kind: SecurityGroup
+metadata:
+  name: {{ .Name }}
+spec:
+  forProvider:
+    # Region is suppose to be optional but I get an error when I don't include it for aws provider
+    region: {{ .Region }}
+    vpcId: {{ .VpcId }}
+    groupName: {{ .Name }}
+    description: {{ .Description }}
+    ingress:
+      - fromPort: {{ .Port }}
+        toPort: {{ .Port }}
+        ipProtocol: tcp
+        ipRanges:
+          - cidrIp: 0.0.0.0/0
+            description: all ips
+  providerRef:
+    name: aws-provider
