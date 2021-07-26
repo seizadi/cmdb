@@ -194,7 +194,7 @@ $(setup_minikube_apps_app_values): force
 
 $(sync_minikube_apps_app_values): app=$(shell echo $@ | awk -F'^' '{print $$3}' | awk -F'.' '{print $$1}')
 $(sync_minikube_apps_app_values): force
-	argocd app sync ${app}
+	argocd app sync --retry-limit 3 --timeout 300 ${app}
 
 setup_eks_apps:
 	argocd repo add $(CMDB_REPO) --name cmdb
