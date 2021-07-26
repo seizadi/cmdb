@@ -1,0 +1,25 @@
+apps:
+  cmdb:
+    namespace: cmdb
+    owner: seizadi@acme.com
+    repo: https://github.com/seizadi/cmdb
+    path: repo/cmdb
+    manifest: minikube_cmdb.yaml
+  secops:
+    namespace: default
+    owner: seizadi@acme.com
+    repo: https://github.com/apptriton/secops
+    path: repo/secops
+    manifest: minikube.yaml
+  secopsscanner:
+    namespace: default
+    owner: seizadi@acme.com
+    repo: https://github.com/apptriton/secops-scanner
+    path: repo/secops-scanner
+    manifest: minikube_secopscanner.yaml
+  helmdiscovery:
+    namespace: default
+    owner: seizadi@acme.com
+    repo: https://github.com/apptriton/helm-discovery
+    path: repo/helm-discovery
+    manifest: minikube_helmdiscovery.yaml

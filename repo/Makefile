@@ -1,7 +1,7 @@
 export AWS_ACCOUNT ?= $(shell aws sts get-caller-identity --output text --query 'Account')
 export AWS_REGION		     = us-west-2
 
-K8S_VERSION := v1.21.0
+K8S_VERSION := v1.21.2
 K8S_WAIT := wait --timeout=120s
 K8S_WAIT_ARGOCD := wait --timeout=600s
 K8S_DEST_SERVER := https://kubernetes.default.svc
@@ -10,9 +10,23 @@ CMDB_MINIKUBE_VALUES := https://raw.githubusercontent.com/seizadi/dc-repo/main/b
 CMDB_EKS_VALUES := https://raw.githubusercontent.com/seizadi/dc-repo/main/build/dev/seizadi-eks/cmdb.yaml
 ARGOCD_HOST := locahost
 
+GIT_USER := $(shell cat ~/credentials.txt | grep ^username | awk '{print $$2}')
+GIT_PASSWORD := $(shell cat ~/credentials.txt | grep ^password | awk '{print $$2}')
+DOCKERHUB_USERNAME := $(shell cat ~/credentials.txt | grep ^dockerhub_username | awk '{print $$2}')
+DOCKERHUB_PASSWORD := $(shell cat ~/credentials.txt | grep ^dockerhub_password | awk '{print $$2}')
+
+
+envs := $(shell cat envs.yaml | yq eval -j| jq .envs | jq 'keys[]' -r)
+apps := $(shell cat apps.yaml | yq eval -j| jq .apps | jq 'keys[]' -r)
+setup_minikube_apps_app_values := $(foreach E,$(envs),$(addsuffix .yaml,$(addprefix setup_minikube_apps_build^$E^,$(apps))))
+sync_minikube_apps_app_values := $(foreach E,$(envs),$(addsuffix .yaml,$(addprefix sync_minikube_apps_build^$E^,$(apps))))
+
 default: vm
 
-vm: minikube argocd argo_minikube_host argo_login setup_minikube_apps
+setup_minikube_apps: $(setup_minikube_apps_app_values)
+sync_minikube_apps: $(sync_minikube_apps_app_values)
+
+vm: minikube docker_login argocd argo_minikube_host argo_login setup_minikube_apps sync_minikube_apps
 
 eks: cluster argocd  argo_aws_host argo_login crossplane crossplane_trust setup_eks_apps
 
@@ -51,10 +65,14 @@ minikube:
 	minikube start --cpus=2 --memory=4g --kubernetes-version $(K8S_VERSION) --driver=virtualbox --addons ingress
 	@echo "Waiting on minikube to come up, this can take a long time!"
 	kubectl $(K8S_WAIT) -n kube-system --for=condition=Available deployment.apps/coredns
+	kubectl create secret generic regcred --from-file=.dockerconfigjson=$$HOME/docker_config.json --type=kubernetes.io/dockerconfigjson
+
+docker_login:
+	minikube ssh -- docker login -u ${DOCKERHUB_USERNAME} -p ${DOCKERHUB_PASSWORD}
 
 argocd:
 	kubectl create namespace argocd
-	kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml
+	kubectl apply -n argocd -f ./argocd-install-e17565ae8124706feb7c17b23195885d8173a26b.yaml
 	kubectl patch svc argocd-server -n argocd -p '{"spec": {"type": "LoadBalancer"}}'
 	@echo "Waiting on ArgoCd to come up, this can take a long time!"
 	kubectl $(K8S_WAIT_ARGOCD) -n argocd --for=condition=Available deployment.apps/argocd-dex-server
@@ -70,7 +88,7 @@ argo_aws_host:
 	kubectl -n argocd get service argocd-server -o json | jq '.status.loadBalancer.ingress[0].hostname' > .host
 
 #argo_login: argocd_password=$(shell kubectl get pods -n argocd -l app.kubernetes.io/name=argocd-server -o name | cut -d'/' -f 2)
-argo_login: argocd_password=$(shell kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 -d)
+argo_login: argocd_password=$(shell kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 -D)
 argo_login: argocd_address=.......elb.amazonaws.com
 argo_login:
 	@echo "Login to argocd using following command line:"
@@ -110,13 +128,29 @@ crossplane_trust: provider-trust.json
 	@echo "CrossPlane Trust Established"
 
 
-setup_minikube_apps:
-	argocd repo add $(CMDB_REPO) --name cmdb
-	argocd app create cmdb --repo $(CMDB_REPO) --path repo/cmdb --dest-server $(K8S_DEST_SERVER) --dest-namespace cmdb --values-literal-file $(CMDB_MINIKUBE_VALUES)
+$(setup_minikube_apps_app_values): app=$(shell echo $@ | awk -F'^' '{print $$3}' | awk -F'.' '{print $$1}')
+$(setup_minikube_apps_app_values): url=$(shell cat apps.yaml | yq eval -j | jq .apps|jq .${app}.repo -r)
+$(setup_minikube_apps_app_values): path=$(shell cat apps.yaml | yq eval -j | jq .apps|jq .${app}.path -r)
+$(setup_minikube_apps_app_values): namespace=$(shell cat apps.yaml | yq eval -j | jq .apps|jq .${app}.namespace -r)
+$(setup_minikube_apps_app_values): manifest=$(shell cat apps.yaml | yq eval -j | jq .apps|jq .${app}.manifest -r)
+$(setup_minikube_apps_app_values): force
+	argocd repo add $(url) --name ${app} --username "$(GIT_USER)" --password "$(GIT_PASSWORD)"
+	argocd app create ${app} --repo $(url) --path ${path} --dest-server $(K8S_DEST_SERVER) --dest-namespace ${namespace} --values-literal-file ${manifest}
+
+
+$(sync_minikube_apps_app_values): app=$(shell echo $@ | awk -F'^' '{print $$3}' | awk -F'.' '{print $$1}')
+$(sync_minikube_apps_app_values): force
+	argocd app sync ${app}
 
 setup_eks_apps:
 	argocd repo add $(CMDB_REPO) --name cmdb
 	argocd app create cmdb --repo $(CMDB_REPO) --path repo/cmdb --dest-server $(K8S_DEST_SERVER) --dest-namespace cmdb --values-literal-file $(CMDB_EKS_VALUES)
+	argocd repo add "https://github.com/apptriton/secops" --name secops
+	argocd app create secops --repo "https://github.com/apptriton/secops" --path repo/secops --dest-server $(K8S_DEST_SERVER) --dest-namespace default --values-literal-file "minikube.yaml"
+	argocd repo add "https://github.com/apptriton/secops-scanner" --name secops-scanner
+	argocd app create secops-scanner --repo "https://github.com/apptriton/secops-scanner" --path repo/secops --dest-server $(K8S_DEST_SERVER) --dest-namespace default
+	argocd repo add "https://github.com/apptriton/helm-discovery" --name helm-discovery
+	argocd app create helm-discovery --repo "https://github.com/apptriton/helm-discovery" --path repo/helm-discovery --dest-server $(K8S_DEST_SERVER) --dest-namespace default
 
 clean_vm:
 	minikube delete
