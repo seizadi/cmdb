@@ -45,10 +45,13 @@ func init() {
 	viper.SetEnvKeyReplacer(strings.NewReplacer(".", "_"))
 	viper.AddConfigPath(viper.GetString("config.source"))
 	if viper.GetString("config.file") != "" {
+		log.Printf("Serving from configuration file: %s", viper.GetString("config.file"))
 		viper.SetConfigName(viper.GetString("config.file"))
 		if err := viper.ReadInConfig(); err != nil {
 			log.Fatalf("cannot load configuration: %v", err)
 		}
+	} else {
+		log.Printf("Serving from default values, environment variables, and/or flags")
 	}
 	resource.RegisterApplication(viper.GetString("app.id"))
 	resource.SetPlural()

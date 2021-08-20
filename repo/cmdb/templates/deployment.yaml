@@ -63,7 +63,7 @@ spec:
               configMapKeyRef:
                 name: {{ $fullName }}
                 key: CMDB_DATABASE_HOST
-          - name: POSTGRES_PORT
+          - name: CMDB_DATABASE_PORT
             value: {{ .Values.postgresql.service.port | quote }}
           {{ else }}
           - name: CMDB_DATABASE_USER
@@ -81,7 +81,7 @@ spec:
               secretKeyRef:
                 name: {{ .Release.Name }}-postgres-con
                 key: endpoint
-          - name: POSTGRES_PORT
+          - name: CMDB_DATABASE_PORT
             valueFrom:
               secretKeyRef:
                 name: {{ .Release.Name }}-postgres-con
