@@ -1,0 +1,496 @@
+
+<!DOCTYPE html>
+
+<html class="no-js" lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<meta content="Soheil Eizadi" name="author"/>
+<link href="https://seizadi.github.io/cmdb/diagrams/" rel="canonical"/>
+<link href="../assets/images/favicon.png" rel="icon"/>
+<meta content="mkdocs-1.2.3, mkdocs-material-7.3.6" name="generator"/>
+<title>Diagrams - CMDB</title>
+<link href="../assets/stylesheets/main.a57b2b03.min.css" rel="stylesheet"/>
+<link href="../assets/stylesheets/palette.3f5d1f46.min.css" rel="stylesheet"/>
+<meta content="#2094f3" name="theme-color"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css?family=IBM+Plex+Sans:300,400,400i,700%7CIBM+Plex+Mono&amp;display=fallback" rel="stylesheet"/>
+<style>:root{--md-text-font-family:"IBM Plex Sans";--md-code-font-family:"IBM Plex Mono"}</style>
+</head>
+<body data-md-color-accent="blue" data-md-color-primary="blue" data-md-color-scheme="default" dir="ltr">
+<script>function __prefix(e){return new URL("..",location).pathname+"."+e}function __get(e,t=localStorage){return JSON.parse(t.getItem(__prefix(e)))}</script>
+<input autocomplete="off" class="md-toggle" data-md-toggle="drawer" id="__drawer" type="checkbox"/>
+<input autocomplete="off" class="md-toggle" data-md-toggle="search" id="__search" type="checkbox"/>
+<label class="md-overlay" for="__drawer"></label>
+<div data-md-component="skip">
+<a class="md-skip" href="#references">
+          Skip to content
+        </a>
+</div>
+<div data-md-component="announce">
+</div>
+<header class="md-header" data-md-component="header">
+<nav aria-label="Header" class="md-header__inner md-grid">
+<a aria-label="CMDB" class="md-header__button md-logo" data-md-component="logo" href=".." title="CMDB">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"></path></svg>
+</a>
+<label class="md-header__button md-icon" for="__drawer">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"></path></svg>
+</label>
+<div class="md-header__title" data-md-component="header-title">
+<div class="md-header__ellipsis">
+<div class="md-header__topic">
+<span class="md-ellipsis">
+            CMDB
+          </span>
+</div>
+<div class="md-header__topic" data-md-component="header-topic">
+<span class="md-ellipsis">
+            
+              Diagrams
+            
+          </span>
+</div>
+</div>
+</div>
+<label class="md-header__button md-icon" for="__search">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"></path></svg>
+</label>
+<div class="md-search" data-md-component="search" role="dialog">
+<label class="md-search__overlay" for="__search"></label>
+<div class="md-search__inner" role="search">
+<form class="md-search__form" name="search">
+<input aria-label="Search" autocapitalize="off" autocomplete="off" autocorrect="off" class="md-search__input" data-md-component="search-query" name="query" placeholder="Search" required="" spellcheck="false" type="text"/>
+<label class="md-search__icon md-icon" for="__search">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"></path></svg>
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"></path></svg>
+</label>
+<nav aria-label="Search" class="md-search__options">
+<button aria-label="Clear" class="md-search__icon md-icon" tabindex="-1" type="reset">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"></path></svg>
+</button>
+</nav>
+</form>
+<div class="md-search__output">
+<div class="md-search__scrollwrap" data-md-scrollfix="">
+<div class="md-search-result" data-md-component="search-result">
+<div class="md-search-result__meta">
+            Initializing search
+          </div>
+<ol class="md-search-result__list"></ol>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="md-header__source">
+<a class="md-source" data-md-component="source" href="https://github.com/seizadi/cmdb/" title="Go to repository">
+<div class="md-source__icon md-icon">
+<svg viewbox="0 0 448 512" xmlns="http://www.w3.org/2000/svg"><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"></path></svg>
+</div>
+<div class="md-source__repository">
+    CMDB
+  </div>
+</a>
+</div>
+</nav>
+</header>
+<div class="md-container" data-md-component="container">
+<main class="md-main" data-md-component="main">
+<div class="md-main__inner md-grid">
+<div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation">
+<div class="md-sidebar__scrollwrap">
+<div class="md-sidebar__inner">
+<nav aria-label="Navigation" class="md-nav md-nav--primary" data-md-level="0">
+<label class="md-nav__title" for="__drawer">
+<a aria-label="CMDB" class="md-nav__button md-logo" data-md-component="logo" href=".." title="CMDB">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"></path></svg>
+</a>
+    CMDB
+  </label>
+<div class="md-nav__source">
+<a class="md-source" data-md-component="source" href="https://github.com/seizadi/cmdb/" title="Go to repository">
+<div class="md-source__icon md-icon">
+<svg viewbox="0 0 448 512" xmlns="http://www.w3.org/2000/svg"><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"></path></svg>
+</div>
+<div class="md-source__repository">
+    CMDB
+  </div>
+</a>
+</div>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="..">
+        Home
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../model/">
+        Model
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../app_model/">
+        AppModel
+      </a>
+</li>
+<li class="md-nav__item md-nav__item--active">
+<input class="md-nav__toggle md-toggle" data-md-toggle="toc" id="__toc" type="checkbox"/>
+<label class="md-nav__link md-nav__link--active" for="__toc">
+          Diagrams
+          <span class="md-nav__icon md-icon"></span>
+</label>
+<a class="md-nav__link md-nav__link--active" href="./">
+        Diagrams
+      </a>
+<nav aria-label="Table of contents" class="md-nav md-nav--secondary">
+<label class="md-nav__title" for="__toc">
+<span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+<ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#class-or-uml">
+    Class or UML
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#graph-or-flowchart">
+    Graph or Flowchart
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#sequence-diagram">
+    Sequence Diagram
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#journey">
+    Journey
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#gantt-chart">
+    Gantt Chart
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#pie-chart">
+    Pie Chart
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</div>
+</div>
+</div>
+<div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc">
+<div class="md-sidebar__scrollwrap">
+<div class="md-sidebar__inner">
+<nav aria-label="Table of contents" class="md-nav md-nav--secondary">
+<label class="md-nav__title" for="__toc">
+<span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+<ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#class-or-uml">
+    Class or UML
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#graph-or-flowchart">
+    Graph or Flowchart
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#sequence-diagram">
+    Sequence Diagram
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#journey">
+    Journey
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#gantt-chart">
+    Gantt Chart
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#pie-chart">
+    Pie Chart
+  </a>
+</li>
+</ul>
+</nav>
+</div>
+</div>
+</div>
+<div class="md-content" data-md-component="content">
+<article class="md-content__inner md-typeset">
+<a class="md-content__button md-icon" href="https://github.com/seizadi/cmdb/edit/master/docs/diagrams.md" title="Edit this page">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"></path></svg>
+</a>
+<h1 id="references">References<a class="headerlink" href="#references" title="Permanent link">¶</a></h1>
+<ul>
+<li><a href="https://chrieke.medium.com/the-best-mkdocs-plugins-and-customizations-fc820eb19759">How to get diagrams in MkDocs</a></li>
+<li><a href="https://suedbroecker.net/2021/01/25/how-to-install-mkdocs-on-mac-and-setup-the-integration-to-github-pages/">How to setup MkDocs on Mac and Github</a></li>
+<li><a href="https://mermaid-js.github.io/mermaid">Mermaid</a></li>
+<li><a href="https://github.com/fralau/mkdocs-mermaid2-plugin#declaring-the-superfences-extension">Mermaid2 plugin</a></li>
+<li><a href="https://mermaid-js.github.io/mermaid-live-editor/#/edit/eyJjb2RlIjoiZ3JhcGggVERcbiAgICBBW0NocmlzdG1hc10gLS0-fEdldCBtb25leXwgQihHbyBzaG9wcGluZylcbiAgICBCIC0tPiBDe0xldCBtZSB0aGlua31cbiAgICBDIC0tPnxPbmV8IERbTGFwdG9wXVxuICAgIEMgLS0-fFR3b3wgRVtpUGhvbmVdXG4gICAgQyAtLT58VGhyZWV8IEZbZmE6ZmEtY2FyIENhcl0iLCJtZXJtYWlkIjp7InRoZW1lIjoiZGVmYXVsdCJ9LCJ1cGRhdGVFZGl0b3IiOmZhbHNlfQ">Mermaid Live Editor</a></li>
+<li><a href="https://mermaid-js.github.io/mermaid/#/flowchart?id=flowcharts-basic-syntax">Mermaid Diagram Syntax</a></li>
+</ul>
+<h2 id="class-or-uml">Class or UML<a class="headerlink" href="#class-or-uml" title="Permanent link">¶</a></h2>
+<p>Class Diagram:</p>
+<p>The different cardinality options are:</p>
+<table>
+<thead>
+<tr>
+<th align="center">Value</th>
+<th align="right">Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">1</td>
+<td align="right">Exactly one</td>
+</tr>
+<tr>
+<td align="center">0..1</td>
+<td align="right">Zero or one</td>
+</tr>
+<tr>
+<td align="center">1..*</td>
+<td align="right">One or more (no upper limit)</td>
+</tr>
+<tr>
+<td align="center">0..n</td>
+<td align="right" n_1="n&gt;1" where="where">Zero to n</td>
+</tr>
+<tr>
+<td align="center">1..n</td>
+<td align="right" n_1="n&gt;1" where="where">One to n</td>
+</tr>
+<tr>
+<td align="center">*</td>
+<td align="right">Many</td>
+</tr>
+<tr>
+<td align="center">n</td>
+<td align="right" n_1="n&gt;1" where="where">n</td>
+</tr>
+</tbody>
+</table>
+<div class="mermaid">classDiagram
+    CloudProvider "1" --&gt; "*" Region
+    Region "1" --&gt; "1..*" Network
+    Network "1" --&gt; "*" KubeCluster
+    KubeCluster "1" --&gt; "*" Deployment
+    Application "1" --&gt; "1..*" AppInstance
+    Application "1" --&gt; "1..*" ChartVersion
+    AppInstance "1" --&gt; "1" ChartVersion
+    AppInstance "1" --&gt; "1" Deployment
+</div>
+<p>ER Diagram:</p>
+<table>
+<thead>
+<tr>
+<th align="left">Value (left)</th>
+<th align="center">Value (right)</th>
+<th align="right">Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">|o</td>
+<td align="center">o|</td>
+<td align="right">Zero or one</td>
+</tr>
+<tr>
+<td align="left">||</td>
+<td align="center">||</td>
+<td align="right">Exactly one</td>
+</tr>
+<tr>
+<td align="left">}o</td>
+<td align="center">o{</td>
+<td align="right">Zero or more (no upper limit)</td>
+</tr>
+<tr>
+<td align="left">}|</td>
+<td align="center">|{</td>
+<td align="right">One or more (no upper limit)</td>
+</tr>
+</tbody>
+</table>
+<div class="mermaid">erDiagram
+    CloudProvider {
+        string account
+    }
+    CloudProvider ||--|{ Region : ""
+    Region ||--o{ Network : ""
+    Network ||--o{ KubeCluster : ""
+    KubeCluster ||--o{ Deployment : ""
+    Application ||--o{ AppInstance : ""
+    Application ||--o{ ChartVersion : ""
+    AppInstance ||--|| ChartVersion : ""
+    AppInstance ||--|| Deployment : ""
+</div>
+<h2 id="graph-or-flowchart">Graph or Flowchart<a class="headerlink" href="#graph-or-flowchart" title="Permanent link">¶</a></h2>
+<div class="mermaid">graph LR
+A((Client)) --&gt; B[Load Balancer]
+B --&gt; C[Server01] --&gt; E[Application1] &amp; F[Application2]
+B --&gt; D[Server02] --&gt; G[(Database)]
+</div>
+<div class="mermaid">graph TB
+A((Start)) --o B
+subgraph stage one
+B[Do Something] --&gt; C{Did it work?}
+C -- No --&gt; B
+end
+C -- Yes --&gt; D[Do more!]
+subgraph stage two
+D --&gt; E{Are we done?}
+E -- No --&gt; B
+E -- Yes --&gt; F[Finish up]
+end
+F ----x G((Stop))
+</div>
+<h2 id="sequence-diagram">Sequence Diagram<a class="headerlink" href="#sequence-diagram" title="Permanent link">¶</a></h2>
+<p>Simple...</p>
+<div class="mermaid">sequenceDiagram
+    Alice-&gt;&gt;John: Hello John, how are you?
+    John--&gt;&gt;Alice: Great!
+    Alice-)John: See you later!
+</div>
+<p>Complex....</p>
+<div class="mermaid">%% Example of sequence diagram
+  sequenceDiagram
+    Alice-&gt;&gt;Bob: Hello Bob, how are you?
+    alt is sick
+    Bob-&gt;&gt;Alice: Not so good :(
+    else is well
+    Bob-&gt;&gt;Alice: Feeling fresh like a daisy
+    end
+    opt Extra response
+    Bob-&gt;&gt;Alice: Thanks for asking
+    end
+</div>
+<p>More Complex....
+<div class="mermaid">  sequenceDiagram
+    autonumber
+    rect rgb(0, 255, 0)
+        par Alice to Bob
+            Alice-&gt;&gt;Bob: Hello Bob, how are you?
+        and Alice to John
+            Alice-&gt;&gt;John: Hello John, how are you?
+            rect rgba(0, 0, 255, .3)
+                par John to Jane
+                Note over John: Note we embed another parallel here
+                    John-&gt;&gt;John: Should I tell Jane?
+                    John-&gt;&gt;Jane: Alice called me!
+                    John-&gt;&gt;Alice: I'm doing good
+                end
+            end
+        and Alice to Jane
+            Alice-&gt;&gt;Jane: Hello Jane, how are you?
+        end
+    end
+</div></p>
+<h2 id="journey">Journey<a class="headerlink" href="#journey" title="Permanent link">¶</a></h2>
+<div class="mermaid">journey
+    title My working day
+    section Go to work
+      Make tea: 5: Me
+      Go upstairs: 3: Me
+      Do work: 1: Me, Cat
+    section Go home
+      Go downstairs: 5: Me
+      Sit down: 5: Me
+</div>
+<h2 id="gantt-chart">Gantt Chart<a class="headerlink" href="#gantt-chart" title="Permanent link">¶</a></h2>
+<div class="mermaid">gantt
+    dateFormat  YYYY-MM-DD
+    title       Adding GANTT diagram functionality to mermaid
+    excludes    weekends
+    %% (`excludes` accepts specific dates in YYYY-MM-DD format, days of the week ("sunday") or "weekends", but not the word "weekdays".)
+
+    section A section
+    Completed task            :done,    des1, 2014-01-06,2014-01-08
+    Active task               :active,  des2, 2014-01-09, 3d
+    Future task               :         des3, after des2, 5d
+    Future task2              :         des4, after des3, 5d
+
+    section Critical tasks
+    Completed task in the critical line :crit, done, 2014-01-06,24h
+    Implement parser and jison          :crit, done, after des1, 2d
+    Create tests for parser             :crit, active, 3d
+    Future task in critical line        :crit, 5d
+    Create tests for renderer           :2d
+    Add to mermaid                      :1d
+
+    section Documentation
+    Describe gantt syntax               :active, a1, after des1, 3d
+    Add gantt diagram to demo page      :after a1  , 20h
+    Add another diagram to demo page    :doc1, after a1  , 48h
+
+    section Last section
+    Describe gantt syntax               :after doc1, 3d
+    Add gantt diagram to demo page      :20h
+    Add another diagram to demo page    :48h
+</div>
+<h2 id="pie-chart">Pie Chart<a class="headerlink" href="#pie-chart" title="Permanent link">¶</a></h2>
+<div class="mermaid">pie
+    title Key elements in Product X
+    "Calcium" : 42.96
+    "Potassium" : 50.05
+    "Magnesium" : 10.01
+    "Iron" :  5
+</div>
+</article>
+</div>
+</div>
+</main>
+<footer class="md-footer">
+<nav aria-label="Footer" class="md-footer__inner md-grid">
+<a aria-label="Previous: AppModel" class="md-footer__link md-footer__link--prev" href="../app_model/" rel="prev">
+<div class="md-footer__button md-icon">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"></path></svg>
+</div>
+<div class="md-footer__title">
+<div class="md-ellipsis">
+<span class="md-footer__direction">
+                Previous
+              </span>
+              AppModel
+            </div>
+</div>
+</a>
+</nav>
+<div class="md-footer-meta md-typeset">
+<div class="md-footer-meta__inner md-grid">
+<div class="md-footer-copyright">
+        
+        
+          Made with
+          <a href="https://squidfunk.github.io/mkdocs-material/" rel="noopener" target="_blank">
+            Material for MkDocs
+          </a>
+</div>
+</div>
+</div>
+</footer>
+</div>
+<div class="md-dialog" data-md-component="dialog">
+<div class="md-dialog__inner md-typeset"></div>
+</div>
+<script id="__config" type="application/json">{"base": "..", "features": ["navigation.instant", "navigation.expand"], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../assets/javascripts/workers/search.fcfe8b6d.min.js", "version": null}</script>
+<script src="../assets/javascripts/bundle.b1047164.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mermaid/8.10.2/mermaid.min.js"></script>
+<script>mermaid.initialize({});</script></body>
+</html>
